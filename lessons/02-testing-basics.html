@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-dars: Testlash va bug turlari | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+
+  /* Severity/Priority colors */
+  --critical: #8B0000;
+  --major: #D64545;
+  --minor: #C08838;
+  --trivial: #7A7A7A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* === HEADER === */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(251, 249, 244, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 14px 0;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.progress-container {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 45px;
+}
+
+/* === HERO === */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.lesson-number {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+.meta-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === SECTION === */
+.section {
+  margin: 80px 0;
+  scroll-margin-top: 80px;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* === TERM BOX === */
+.term-box {
+  background: var(--blue-soft);
+  border-left: 3px solid var(--blue);
+  padding: 18px 22px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.term-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--blue);
+  margin-bottom: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.term-box-title::before { content: "📖"; font-size: 14px; }
+
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+/* === EXAMPLE BOX === */
+.example-box {
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.example-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* === TAKEAWAY === */
+.takeaway-box {
+  background: var(--forest-soft);
+  border-left: 3px solid var(--forest);
+  padding: 16px 22px;
+  margin: 16px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 15px;
+}
+
+.takeaway-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--forest);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+/* === ANALOGY === */
+.analogy-card {
+  background: var(--bg-card);
+  border: 2px dashed var(--gold);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 28px 0;
+  text-align: center;
+}
+
+.analogy-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.analogy-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* === COMPARE GRID === */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.compare-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.compare-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.compare-card.manual h4 { color: var(--blue); }
+.compare-card.auto h4 { color: var(--plum); }
+
+.compare-card ul { list-style: none; padding: 0; }
+
+.compare-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.compare-card li:last-child { border-bottom: none; }
+
+.compare-card .pros { color: var(--forest); }
+.compare-card .cons { color: var(--accent); }
+
+/* === QUIZ === */
+.quiz-card {
+  background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.quiz-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--plum);
+  background: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+
+.quiz-option {
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+
+.quiz-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--line-dark);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+
+.quiz-feedback {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: none;
+  line-height: 1.55;
+}
+
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* === BUG LIFECYCLE === */
+.lifecycle-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.lifecycle-stages {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: min-content;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lifecycle-stage {
+  background: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 100px;
+  transition: all 0.2s ease;
+  cursor: default;
+  position: relative;
+}
+
+.lifecycle-stage.new { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+.lifecycle-stage.assigned { border-color: var(--gold); background: var(--gold-soft); color: var(--gold); }
+.lifecycle-stage.open { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.lifecycle-stage.fixed { border-color: var(--plum); background: var(--plum-soft); color: var(--plum); }
+.lifecycle-stage.retest { border-color: var(--gold); background: var(--gold-soft); color: var(--gold); }
+.lifecycle-stage.closed { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); }
+
+.lifecycle-arrow { color: var(--ink-muted); font-size: 16px; font-weight: 600; }
+
+.lifecycle-stage:hover { transform: translateY(-3px); box-shadow: 0 8px 16px -6px rgba(0,0,0,0.1); }
+
+/* === DRAG AND DROP: LIFECYCLE ORDER === */
+.dnd-game {
+  background: var(--bg-card);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+
+.dnd-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.dnd-slot {
+  min-height: 60px;
+  min-width: 110px;
+  border: 2px dashed var(--line-dark);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  background: var(--bg-soft);
+}
+
+.dnd-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-slot.filled { border-style: solid; }
+.dnd-slot.correct { background: var(--forest-soft); border-color: var(--forest); }
+.dnd-slot.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s ease; }
+
+.dnd-slot-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dnd-items-pool {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  background: var(--bg-soft);
+  border-radius: 12px;
+  min-height: 80px;
+}
+
+.dnd-item {
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: grab;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.dnd-item:hover:not(.placed) {
+  border-color: var(--plum);
+  background: var(--plum-soft);
+  transform: translateY(-2px);
+}
+
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+
+.dnd-score {
+  margin-top: 16px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.dnd-reset-btn {
+  display: block;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  background: var(--plum);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.dnd-reset-btn:hover { background: var(--plum-soft); color: var(--plum); }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* === SEVERITY PRIORITY GRID === */
+.sp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.sp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.sp-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.sp-card.severity h4 { color: var(--accent); }
+.sp-card.priority h4 { color: var(--plum); }
+
+.sp-card-subtitle {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.sp-levels { display: flex; flex-direction: column; gap: 8px; }
+
+.sp-level {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.sp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sp-dot.critical { background: var(--critical); }
+.sp-dot.major { background: var(--major); }
+.sp-dot.minor { background: var(--minor); }
+.sp-dot.trivial { background: var(--trivial); }
+.sp-dot.high { background: var(--critical); }
+.sp-dot.medium { background: var(--major); }
+.sp-dot.low { background: var(--trivial); }
+
+.sp-level-name { font-weight: 600; color: var(--ink); }
+.sp-level-desc { color: var(--ink-soft); font-size: 13px; }
+
+/* === BUG CLASSIFIER (Drag & Drop) === */
+.classifier-card {
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.classifier-card:hover:not(.classified) {
+  border-color: var(--plum);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -6px rgba(0,0,0,0.1);
+}
+
+.classifier-card:active { cursor: grabbing; }
+.classifier-card.dragging { opacity: 0.5; }
+.classifier-card.classified { opacity: 0.4; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); }
+
+.classifier-card-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); }
+
+.classifier-buckets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.classifier-bucket {
+  min-height: 140px;
+  padding: 16px;
+  border: 2px dashed var(--line-dark);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: var(--bg-soft);
+}
+
+.classifier-bucket.drag-over { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+
+.classifier-bucket-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.classifier-bucket-count {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* === MATCHING === */
+.matching-game {
+  background: var(--bg-card);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.matching-column h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+.match-item {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.match-item:hover:not(.matched):not(.selected) {
+  background: var(--plum-soft);
+  border-color: var(--plum);
+}
+
+.match-item.selected {
+  background: var(--plum-soft);
+  border-color: var(--plum);
+  color: var(--plum);
+  font-weight: 500;
+}
+
+.match-item.matched {
+  background: var(--forest-soft);
+  border-color: var(--forest);
+  color: var(--forest);
+  cursor: default;
+  opacity: 0.7;
+}
+
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+
+.match-score {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* === INTERVIEW === */
+.interview-section {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 60px 0;
+}
+
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+
+.interview-item {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.interview-item:hover { border-color: var(--plum); }
+
+.interview-question {
+  padding: 18px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: background 0.2s ease;
+}
+
+.interview-question:hover { background: var(--plum-soft); }
+
+.interview-q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--plum);
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 30px;
+}
+
+.interview-toggle {
+  margin-left: auto;
+  color: var(--plum);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+
+.interview-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: var(--plum-soft);
+}
+
+.interview-item.open .interview-answer { max-height: 700px; }
+
+.interview-answer-inner {
+  padding: 20px 22px 22px 66px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  border-top: 1px solid var(--line);
+}
+
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* === SUMMARY === */
+.summary-section {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  margin: 80px 0;
+  text-align: center;
+}
+
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+
+.summary-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.summary-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.summary-point {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.summary-point-num {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  color: var(--gold);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.summary-point-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* === NAV FOOTER === */
+.nav-footer {
+  max-width: 780px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 18px 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 240px;
+}
+
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+.nav-btn-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+/* === TYPOGRAPHY === */
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+
+p { margin-bottom: 16px; }
+
+.container p, .container li { color: var(--ink-soft); }
+
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+
+li { margin-bottom: 8px; color: var(--ink-soft); }
+
+strong { color: var(--ink); font-weight: 600; }
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: var(--bg-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-dark);
+}
+
+/* === COMPLETION BADGE === */
+.completion-badge {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--forest);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -8px rgba(58, 90, 64, 0.5);
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  animation: slideUp 0.5s ease;
+}
+
+.completion-badge.show { display: flex; }
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .compare-grid, .sp-grid, .classifier-buckets { grid-template-columns: 1fr; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section { padding: 28px 22px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+}
+
+/* === FADE IN === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="lesson-number">2-dars</div>
+  <h1>Testlash nima va <em>bug</em> turlari</h1>
+  <p class="hero-subtitle">Bug qayerdan kelib chiqadi, uning hayot sikli qanday va qaysi buglar birinchi navbatda tuzatiladi? Amaliy misollar bilan o'rganamiz.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Asosiy tushunchalar</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section" id="intro">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Oldingi darsdan bog'lanish</h2>
+  <p class="section-intro">1-darsda siz "QA va testor kim" ekanini bilib oldingiz. Endi keyingi qadam — <strong>testor aniq nima qiladi</strong>? Qanday ishlar u, nima topadi, va topgan muammolarni qanday atraydi?</p>
+  <p>Bu darsda biz chuqurroq kirib boramiz: testlashning turlari, bug qayerdan kelib chiqishi, uning hayot sikli va — eng muhimi — qaysi buglarni <strong>birinchi</strong> tuzatish kerakligini qanday aniqlash kerak.</p>
+</section>
+
+<!-- SECTION 1: WHAT IS TESTING -->
+<section class="section" id="testing">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Testlash nima?</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Testing (testlash)</strong> — dasturiy mahsulotni sinab ko'rish orqali uning sifatini baholash jarayoni.</p>
+    <p><em>Oddiy qilib:</em> dastur foydalanuvchiga yetib borishdan oldin biz uni har tomonlama sinaymiz — to'g'ri ishlayaptimi, chiroyli ko'rinyaptimi, tez ishlayaptimi va hokazo.</p>
+  </div>
+
+  <p>Ko'pchilik testlashni faqat "xatolarni topish" deb o'ylaydi. Aslida u kengroq tushuncha:</p>
+
+  <ul>
+    <li><strong>Tekshirish (verification):</strong> dastur talablarga mosmi? ("biz to'g'ri narsani yaratdikmi?")</li>
+    <li><strong>Baholash (validation):</strong> dastur foydalanuvchiga kerakmi? ("biz narsani to'g'ri yaratdikmi?")</li>
+    <li><strong>Bug topish:</strong> xatoliklarni aniqlash</li>
+    <li><strong>Ishonch oshirish:</strong> mahsulot ishonchli ekanini tasdiqlash</li>
+  </ul>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">Yangi mashina sotib olish</div>
+    <div class="analogy-text">
+      Siz yangi mashina sotib olmoqchisiz. Sotuvchi mashinani ko'rsatadi — chiroyli, yangi. Lekin siz <strong>test drive</strong> qilmay, yo'nalishda sinamay sotib olmaysiz. Tekshirasiz: dvigatel to'g'ri ishlayaptimi, tormoz yaxshimi, konditsioner sovuq beradimi. Xuddi shu ish — testlash. Faqat mashina o'rniga — dastur, sayt, ilova.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: MANUAL VS AUTOMATION -->
+<section class="section" id="types">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Testlashning 2 ta asosiy turi</h2>
+  <p class="section-intro">Testlashning eng keng tarqalgan ikki turi: <strong>qo'lda testlash</strong> va <strong>avtomatlashtirilgan testlash</strong>. Ikkalasi ham muhim, har birining o'z o'rni bor.</p>
+
+  <h3>Manual Testing (qo'lda testlash)</h3>
+  <p>Bu — testor kompyuter oldiga o'tirib, dasturni qo'lda, o'zi sinab ko'radigan testlash. Tugmalarni bosadi, formani to'ldiradi, natijalarni ko'radi.</p>
+
+  <h3>Automation Testing (avtomatlashtirilgan testlash)</h3>
+  <p>Bu — testor maxsus dasturlar (kodlar) yozadi, ular avtomatik ravishda sinab ko'radi. Odam aralashmasdan minglab testlar daqiqalar ichida bajariladi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Yangi atamalar</div>
+    <p><strong>Selenium, Playwright, Cypress</strong> — avtomatlashtirilgan testlar yozish uchun eng mashhur asboblar. Bular "robotlar" kabi — dastur o'zi tugmalarni bosadi, matn kiritadi, natijani tekshiradi.</p>
+    <p><em>Hozir ularni bilish shart emas</em> — 28-darsda batafsil o'rganamiz.</p>
+  </div>
+
+  <h3>Farqi nimada?</h3>
+
+  <div class="compare-grid">
+    <div class="compare-card manual">
+      <h4>Manual Testing</h4>
+      <ul>
+        <li class="pros">✓ Tez boshlanadi</li>
+        <li class="pros">✓ Kam xarajat</li>
+        <li class="pros">✓ Foydalanuvchi nuqtai nazaridan</li>
+        <li class="pros">✓ Chiroy va qulaylik ko'rinadi</li>
+        <li class="cons">✗ Sekin</li>
+        <li class="cons">✗ Inson xatosi bo'lishi mumkin</li>
+        <li class="cons">✗ Qayta-qayta zerikarli</li>
+      </ul>
+    </div>
+    <div class="compare-card auto">
+      <h4>Automation Testing</h4>
+      <ul>
+        <li class="pros">✓ Juda tez (daqiqalarda minglab test)</li>
+        <li class="pros">✓ Qayta-qayta ishlatish mumkin</li>
+        <li class="pros">✓ Xatosiz (agar kod to'g'ri)</li>
+        <li class="pros">✓ Kechasi ham ishlay oladi</li>
+        <li class="cons">✗ Boshlang'ich xarajat katta</li>
+        <li class="cons">✗ Dasturlash bilim kerak</li>
+        <li class="cons">✗ Hamma narsani avtomatlashtirib bo'lmaydi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Amaliy xulosa</div>
+    <p>Yangi boshlovchi sifatida <strong>avval manual testing</strong>ni yaxshi o'rganing. Keyin tajriba orttirib, automation'ga o'tishingiz mumkin. Kompaniyalarda 70-80% testlar baribir qo'lda bajariladi — manual testor har doim kerak bo'ladi.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Real misol — qachon nima ishlatiladi?</div>
+    <p style="margin:0"><strong>Manual:</strong> yangi funksiya chiqqanda ("birinchi marta ko'rib chiqish"), dizayn va UX tekshirish, foydalanuvchi tajribasi.<br><strong>Automation:</strong> har release'dan oldingi regression testlar (eski funksiyalar ishlayaptimi?), ko'p foydalanuvchi yuklamasi, 24/7 monitoring.</p>
+  </div>
+</section>
+
+<!-- QUIZ 1 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Sizning jamoangiz yangi login sahifasi yaratdi. Qaysi turdagi testlash mos keladi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">A</div>
+      <div>Avval manual (birinchi marta ko'rib chiqish), keyin automation (regression uchun)</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>Faqat automation — manual eskirgan usul</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Faqat manual — automation qimmat va murakkab</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- SECTION 3: BUG TERMS -->
+<section class="section" id="bug-terms">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Bug bilan bog'liq atamalar</h2>
+  <p class="section-intro">Testing dunyosida "bug" ga yaqin bir nechta atama bor. Ko'pchilik ularni aralashtirib yuboradi. Keling, bu farqlarni aniq tushunib olaylik — intervyularda ham ko'p so'raladi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Error (xato)</div>
+    <p><strong>Error</strong> — inson qilgan xato. Dasturchi yoki biznes analitik noto'g'ri fikrlagan yoki noto'g'ri yozgan.</p>
+    <p><em>Misol:</em> dasturchi <code>x + y</code> o'rniga <code>x - y</code> deb yozdi.</p>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Defect / Bug (dastur ichidagi xatolik)</div>
+    <p><strong>Defect (Bug)</strong> — Error natijasida kodda paydo bo'lgan muammo. Aynan shu dastur ichida mavjud.</p>
+    <p><em>Misol:</em> yuqorida dasturchi minus yozgani uchun, endi dastur qo'shish o'rniga ayirib beryapti.</p>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Failure (ishlamay qolish)</div>
+    <p><strong>Failure</strong> — Defect natijasida foydalanuvchi ko'rgan muammo. Ya'ni defect ishga tushganda — failure bo'ladi.</p>
+    <p><em>Misol:</em> foydalanuvchi 100 + 50 deb hisobladi, dastur 50 ko'rsatdi. Bu failure.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Zanjir: Error → Defect → Failure</div>
+    <p style="margin:0">Dasturchi yozgan xato (<strong>Error</strong>) → Bu xato kodda saqlanib qoladi (<strong>Defect</strong>) → Foydalanuvchi dasturni ishlatganda muammo yuz beradi (<strong>Failure</strong>).</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Intervyu savoli</div>
+    <p>Error, Defect va Failure o'rtasidagi farqni tushuntiring — bu intervyularda tez-tez so'raladi. Asosiy g'oya: inson xato qiladi → bu kodga o'tadi → foydalanuvchi ko'radi.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: BUG LIFECYCLE -->
+<section class="section" id="lifecycle">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">Bug hayot sikli</h2>
+  <p class="section-intro">Har bir bug topilganidan to tuzatilguniga qadar bir necha bosqichdan o'tadi. Bu jarayon <strong>Bug Life Cycle</strong> deyiladi. Uni bilish — kundalik ishda muhim.</p>
+
+  <div class="lifecycle-wrapper">
+    <div class="lifecycle-stages">
+      <div class="lifecycle-stage new">New<br><small style="font-weight:400;font-size:11px">Yangi topildi</small></div>
+      <div class="lifecycle-arrow">→</div>
+      <div class="lifecycle-stage assigned">Assigned<br><small style="font-weight:400;font-size:11px">Biriktirildi</small></div>
+      <div class="lifecycle-arrow">→</div>
+      <div class="lifecycle-stage open">Open<br><small style="font-weight:400;font-size:11px">Ish jarayonida</small></div>
+      <div class="lifecycle-arrow">→</div>
+      <div class="lifecycle-stage fixed">Fixed<br><small style="font-weight:400;font-size:11px">Tuzatildi</small></div>
+      <div class="lifecycle-arrow">→</div>
+      <div class="lifecycle-stage retest">Retest<br><small style="font-weight:400;font-size:11px">Qayta sinov</small></div>
+      <div class="lifecycle-arrow">→</div>
+      <div class="lifecycle-stage closed">Closed<br><small style="font-weight:400;font-size:11px">Yopildi</small></div>
+    </div>
+  </div>
+
+  <h4>Har bosqich nimani anglatadi?</h4>
+  <ul>
+    <li><strong>New (Yangi):</strong> Testor bug topdi va uni tizimga (masalan, Jira'ga) qo'shdi.</li>
+    <li><strong>Assigned (Biriktirildi):</strong> Bug ma'lum bir dasturchiga tuzatish uchun beriladi.</li>
+    <li><strong>Open (Ish jarayonida):</strong> Dasturchi bug ustida ishlay boshladi.</li>
+    <li><strong>Fixed (Tuzatildi):</strong> Dasturchi bug'ni tuzatdi va testorga tekshirish uchun qaytardi.</li>
+    <li><strong>Retest (Qayta sinov):</strong> Testor bug'ni yana bir marta tekshiradi — haqiqatan ham tuzatilganmi?</li>
+    <li><strong>Closed (Yopildi):</strong> Bug to'liq tuzatilgan va boshqa bu muammo qaytib kelmaydi.</li>
+  </ul>
+
+  <div class="term-box">
+    <div class="term-box-title">Yana bir qancha statuslar</div>
+    <p><strong>Rejected (rad etildi)</strong> — dasturchi bugni "bu bug emas, shunday bo'lishi kerak" deb tushuntirdi.</p>
+    <p><strong>Deferred (kechiktirildi)</strong> — bug mavjud, lekin hozir tuzatilmaydi (muhim emas yoki vaqt yo'q).</p>
+    <p><strong>Duplicate (takrorlangan)</strong> — bu bug allaqachon boshqa tomondan qo'shilgan.</p>
+    <p><strong>Reopened (qayta ochildi)</strong> — dasturchi "tuzatdim" dedi, lekin testor sinadi — bug hali ham bor.</p>
+  </div>
+</section>
+
+<!-- DRAG & DROP: LIFECYCLE ORDER -->
+<div class="dnd-game" id="lifecycleGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Bug hayot siklini to'g'ri tartibga qo'ying</h3>
+  <p class="dnd-instruction">Quyidagi bosqichlarni <strong>to'g'ri tartibda</strong> sudrab joylashtiring. Birinchi → oxirgigacha.</p>
+
+  <div class="dnd-container">
+    <div class="dnd-slot" data-order="1"><span class="dnd-slot-num">1</span></div>
+    <div class="dnd-slot" data-order="2"><span class="dnd-slot-num">2</span></div>
+    <div class="dnd-slot" data-order="3"><span class="dnd-slot-num">3</span></div>
+    <div class="dnd-slot" data-order="4"><span class="dnd-slot-num">4</span></div>
+    <div class="dnd-slot" data-order="5"><span class="dnd-slot-num">5</span></div>
+    <div class="dnd-slot" data-order="6"><span class="dnd-slot-num">6</span></div>
+  </div>
+
+  <div class="dnd-items-pool" id="lifecyclePool">
+    <div class="dnd-item" draggable="true" data-correct="4">Fixed</div>
+    <div class="dnd-item" draggable="true" data-correct="1">New</div>
+    <div class="dnd-item" draggable="true" data-correct="6">Closed</div>
+    <div class="dnd-item" draggable="true" data-correct="3">Open</div>
+    <div class="dnd-item" draggable="true" data-correct="5">Retest</div>
+    <div class="dnd-item" draggable="true" data-correct="2">Assigned</div>
+  </div>
+
+  <div class="dnd-score" id="lifecycleScore">0 / 6 to'g'ri</div>
+  <button class="dnd-reset-btn" onclick="resetLifecycle()">Qaytadan boshlash</button>
+</div>
+
+<!-- SECTION 5: SEVERITY VS PRIORITY -->
+<section class="section" id="severity-priority">
+  <span class="section-label">5-qism</span>
+  <h2 class="section-title">Severity vs Priority</h2>
+  <p class="section-intro">Bu ikki atamani aralashtirib yuborish — intervyularda eng ko'p xato. Har bir bug ikki xil o'lchov bilan baholanadi: <strong>texnik jiddiylik</strong> va <strong>biznes ustuvorligi</strong>.</p>
+
+  <div class="sp-grid">
+    <div class="sp-card severity">
+      <h4>Severity</h4>
+      <div class="sp-card-subtitle">Texnik jiddiylik — bug dasturga qanchalik zarar yetkazadi?</div>
+      <div class="sp-levels">
+        <div class="sp-level">
+          <div class="sp-dot critical"></div>
+          <div>
+            <div class="sp-level-name">Critical</div>
+            <div class="sp-level-desc">Tizim umuman ishlamaydi</div>
+          </div>
+        </div>
+        <div class="sp-level">
+          <div class="sp-dot major"></div>
+          <div>
+            <div class="sp-level-name">Major</div>
+            <div class="sp-level-desc">Muhim funksiya buzilgan</div>
+          </div>
+        </div>
+        <div class="sp-level">
+          <div class="sp-dot minor"></div>
+          <div>
+            <div class="sp-level-name">Minor</div>
+            <div class="sp-level-desc">Kichik muammo, ish ketaveradi</div>
+          </div>
+        </div>
+        <div class="sp-level">
+          <div class="sp-dot trivial"></div>
+          <div>
+            <div class="sp-level-name">Trivial</div>
+            <div class="sp-level-desc">Kosmetik muammo (rang, shrift)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card priority">
+      <h4>Priority</h4>
+      <div class="sp-card-subtitle">Biznes ustuvorligi — qanchalik tez tuzatish kerak?</div>
+      <div class="sp-levels">
+        <div class="sp-level">
+          <div class="sp-dot high"></div>
+          <div>
+            <div class="sp-level-name">High</div>
+            <div class="sp-level-desc">Darhol tuzatish kerak</div>
+          </div>
+        </div>
+        <div class="sp-level">
+          <div class="sp-dot medium"></div>
+          <div>
+            <div class="sp-level-name">Medium</div>
+            <div class="sp-level-desc">Yaqin kunlarda</div>
+          </div>
+        </div>
+        <div class="sp-level">
+          <div class="sp-dot low"></div>
+          <div>
+            <div class="sp-level-name">Low</div>
+            <div class="sp-level-desc">Vaqt bo'lganda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Eng muhim farq</div>
+    <div class="analogy-title">Severity ≠ Priority</div>
+    <div class="analogy-text">
+      <strong>Severity</strong> — texnik mutaxassis o'rnatadi ("bu bug qanchalik yomon?").<br>
+      <strong>Priority</strong> — biznes yoki Product Owner o'rnatadi ("bu bugni qanchalik tez tuzatish kerak?").
+    </div>
+  </div>
+
+  <h4>4 xil kombinatsiya mavjud</h4>
+
+  <div class="example-box">
+    <div class="example-box-title">High Severity + High Priority</div>
+    <p style="margin:0">Click'da to'lov qilish mumkin emas — hamma foydalanuvchi uchun. <strong>Texnik jihatdan ham, biznes uchun ham xavfli.</strong> Darhol tuzatish.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">High Severity + Low Priority</div>
+    <p style="margin:0">Admin panelning juda kam ishlatiladigan qismi umuman ochilmayapti. Texnik jihatdan jiddiy (qism ishlamayapti), lekin biznesga deyarli ta'sir qilmaydi — keyin tuzatiladi.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Low Severity + High Priority</div>
+    <p style="margin:0">Uzum'ning bosh sahifasidagi logo noto'g'ri ranga bo'yalgan. Texnik jihatdan kichkina (rang xatosi), lekin <strong>har bir mijoz darhol ko'radi</strong> — brend uchun juda muhim. Tezda tuzatish.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Low Severity + Low Priority</div>
+    <p style="margin:0">Sozlamalardagi matnda kichkina imlo xatosi. Na texnik xavf, na biznes muammo — vaqt bo'lganda tuzatiladi.</p>
+  </div>
+</section>
+
+<!-- CLASSIFIER GAME -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Bug Classifier</div>
+  <h3 style="margin-top:8px">Buglarni to'g'ri turkumga ajrating</h3>
+  <p class="dnd-instruction">Quyidagi 4 ta real bug'ni ko'ring. Har birini <strong>to'g'ri kombinatsiyaga</strong> sudrab olib boring.</p>
+
+  <div id="classifierCards">
+    <div class="classifier-card" draggable="true" data-category="high-high">
+      <div class="classifier-card-title">Click ilovasida to'lov tugmasi ishlamayapti</div>
+      <div class="classifier-card-desc">Hech kim pul o'tkaza olmayapti. Barcha mijozlarga ta'sir qilmoqda.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="low-high">
+      <div class="classifier-card-title">Uzum bosh sahifasida logo noto'g'ri ranga chiqqan</div>
+      <div class="classifier-card-desc">Ko'k o'rniga yashil ko'rinayapti. Dastur to'g'ri ishlayapti.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="high-low">
+      <div class="classifier-card-title">Admin panelning arxiv bo'limi ishlamayapti</div>
+      <div class="classifier-card-desc">Bo'lim ochilmayapti. Lekin uni faqat bitta admin oyiga bir marta ishlatadi.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="low-low">
+      <div class="classifier-card-title">Sozlamalar sahifasida "e'lon" so'zi "elon" deb yozilgan</div>
+      <div class="classifier-card-desc">Imlo xatosi. Kam odam sozlamalarga kiradi.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="high-high">
+      <div class="classifier-bucket-label" style="color:var(--critical)">High Sev + High Pri</div>
+      <div class="classifier-bucket-count" id="count-high-high">Bo'sh</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="high-low">
+      <div class="classifier-bucket-label" style="color:var(--major)">High Sev + Low Pri</div>
+      <div class="classifier-bucket-count" id="count-high-low">Bo'sh</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="low-high">
+      <div class="classifier-bucket-label" style="color:var(--minor)">Low Sev + High Pri</div>
+      <div class="classifier-bucket-count" id="count-low-high">Bo'sh</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="low-low">
+      <div class="classifier-bucket-label" style="color:var(--trivial)">Low Sev + Low Pri</div>
+      <div class="classifier-bucket-count" id="count-low-low">Bo'sh</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 4 to'g'ri</div>
+</div>
+
+<!-- MATCHING GAME -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Atamalarni ta'riflar bilan bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Chap tomondagi atamani bosing, keyin o'ng tomondan mos ta'rifni tanlang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Atama</h4>
+      <div class="match-item" data-side="left" data-pair="e">Error</div>
+      <div class="match-item" data-side="left" data-pair="d">Defect</div>
+      <div class="match-item" data-side="left" data-pair="f">Failure</div>
+      <div class="match-item" data-side="left" data-pair="s">Severity</div>
+      <div class="match-item" data-side="left" data-pair="p">Priority</div>
+    </div>
+    <div class="matching-column">
+      <h4>Ta'rif</h4>
+      <div class="match-item" data-side="right" data-pair="p">Biznes uchun tuzatish muhimligi</div>
+      <div class="match-item" data-side="right" data-pair="e">Inson qilgan xato</div>
+      <div class="match-item" data-side="right" data-pair="f">Foydalanuvchi ko'rgan muammo</div>
+      <div class="match-item" data-side="right" data-pair="s">Texnik jiddiylik darajasi</div>
+      <div class="match-item" data-side="right" data-pair="d">Kodda mavjud xatolik</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Bu savollar O'zbekistondagi IT kompaniyalardagi QA intervyularida tez-tez so'raladi. Har biriga javobni o'z so'zingizda tayyorlang.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — tayyor javob va maslahatni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Manual testing va automation testing farqini tushuntiring.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Manual testing — testor qo'lda, o'zi dasturni sinab ko'radigan testlash. Automation testing — maxsus kod yozib, testlarni avtomatik bajarish."</p>
+          <p><strong>Qachon qaysi biri?</strong></p>
+          <ul>
+            <li><strong>Manual:</strong> yangi funksiyalar, UX/dizayn, exploratory testing</li>
+            <li><strong>Automation:</strong> regression testlar, katta yuklama, har release'dan oldingi tekshiruvlar</li>
+          </ul>
+          <p><strong>Muhim:</strong> Ikkalasi bir-birini to'ldiradi. 100% automation ham, 100% manual ham — ikkalasi noto'g'ri. Balans muhim.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Error, Defect va Failure orasidagi farq nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bu uchta atama bir zanjirning bo'g'inlari:"</p>
+          <ul>
+            <li><strong>Error</strong> — dasturchi qilgan xato (masalan, noto'g'ri formula yozdi)</li>
+            <li><strong>Defect/Bug</strong> — Error natijasida kodda mavjud muammo</li>
+            <li><strong>Failure</strong> — Defect ishga tushganda, foydalanuvchi ko'radigan muammo</li>
+          </ul>
+          <p><strong>Misol:</strong> "Dasturchi + o'rniga - yozdi (Error) → kod endi noto'g'ri hisoblaydi (Defect) → foydalanuvchi summani noto'g'ri ko'radi (Failure)."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Severity va Priority farqini tushuntiring. Misol bilan.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Severity — texnik jihatdan bug qanchalik yomon. Priority — biznes uchun qanchalik tez tuzatish kerak."</p>
+          <p><strong>Misol:</strong></p>
+          <ul>
+            <li>Logo rangida xato: <strong>Low Severity</strong> (dastur ishlayapti), lekin <strong>High Priority</strong> (har mijoz ko'radi).</li>
+            <li>Admin panelning kam ishlatiladigan qismi ishlamayapti: <strong>High Severity</strong> (qism buzuq), lekin <strong>Low Priority</strong> (kam foydalaniladi).</li>
+          </ul>
+          <p><strong>Kim aniqlaydi?</strong> Severity — testor/texnik, Priority — Product Owner/Manager.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Bug hayot sikli qanday bosqichlardan iborat?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Standart bug hayot sikli 6 ta asosiy bosqichdan iborat:"</p>
+          <ul>
+            <li><strong>New</strong> — bug topildi va tizimga qo'shildi</li>
+            <li><strong>Assigned</strong> — dasturchiga biriktirildi</li>
+            <li><strong>Open</strong> — dasturchi ishlay boshladi</li>
+            <li><strong>Fixed</strong> — tuzatildi, testorga qaytarildi</li>
+            <li><strong>Retest</strong> — testor qayta tekshirmoqda</li>
+            <li><strong>Closed</strong> — bug yopildi</li>
+          </ul>
+          <p><strong>Qo'shimcha statuslar:</strong> Rejected (rad etildi), Deferred (kechiktirildi), Duplicate (takror), Reopened (qayta ochildi).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Agar dasturchi sizga "bu bug emas" desa, nima qilasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Men avval dasturchi bilan muloqotga kirishaman — u nima deb o'ylayotganini tushunishga harakat qilaman. Balki men talablarni noto'g'ri tushungandirman."</p>
+          <p><strong>Keyingi qadamlar:</strong></p>
+          <ul>
+            <li>Talablar hujjatini tekshiraman — u yerda nima yozilgan?</li>
+            <li>Product Owner bilan maslahatlashaman — kutilayotgan natija nima?</li>
+            <li>Video/screenshot bilan aniq muammoni ko'rsataman</li>
+            <li>Agar haqiqatan ham bug bo'lmasa — rozi bo'laman va bug'ni Rejected qilaman</li>
+          </ul>
+          <p><strong>Asosiy fikr:</strong> "Dasturchi bilan kurashmaslik kerak. Hamkorlik — sifatli mahsulot uchun. Ba'zida men xato bo'laman, ba'zida u — bu normal."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Bir kunda bir nechta bug topdingiz, qaysini birinchi qo'yasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Severity va Priority bo'yicha saralayman. Oldinga — eng xavflilari."</p>
+          <p><strong>Tartib:</strong></p>
+          <ol>
+            <li>Critical severity + High priority — darhol xabar beraman</li>
+            <li>High severity + High priority</li>
+            <li>Qolganlari — mantiqiy tartibda</li>
+          </ol>
+          <p><strong>Muhim maslahat:</strong> "Agar juda jiddiy bug topsam (masalan, production'da to'lov ishlamayapti), men Jira'ga yozishdan oldin <strong>avval Slack/Telegram orqali</strong> jamoaga xabar beraman. Jira — rasmiylashtirish uchun, lekin tez reaksiya uchun jonli muloqot kerak."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- SUMMARY -->
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Manual + Automation = kuch</div>
+      <div class="summary-point-text">Ikkalasi bir-birini to'ldiradi. Yangi boshlovchi avval manual'ni o'rganadi, keyin automation'ga o'tadi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Error → Defect → Failure</div>
+      <div class="summary-point-text">Bu zanjirni tushunish — professional testor tili. Intervyuda ham ko'p so'raladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Severity ≠ Priority</div>
+      <div class="summary-point-text">Texnik jiddiylik va biznes ustuvorligi — ikki xil o'lchov. Ularni aralashtirish — eng tez-tez uchraydigan xato.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <a href="01-qa-intro.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>1-dars · QA va testor</div>
+  </a>
+  <a href="03-sdlc-stlc.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>3-dars · SDLC va STLC</div>
+  </a>
+</div>
+
+<!-- COMPLETION BADGE -->
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+// === PROGRESS TRACKING ===
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 6;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+// === QUIZ ===
+const quizFeedback = {
+  q1: {
+    correct: '<strong>Ajoyib!</strong> Bu professional yondashuv. Yangi narsa uchun avval manual — "birinchi qarash" kerak. Keyin automation yozamiz regression uchun. Ikkisi birgalikda ishlaydi.',
+    incorrect: 'Bu noto\'g\'ri yondashuv. Faqat bir tur ishlatish odatda kamchilikka olib keladi. Manual va automation — bir-birini to\'ldiruvchi usullar.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+
+      if (!isCorrect) option.classList.add('incorrect');
+
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// === DRAG & DROP: LIFECYCLE ORDER ===
+let draggedItem = null;
+let lifecycleCorrect = 0;
+
+function setupDragAndDrop() {
+  document.querySelectorAll('#lifecyclePool .dnd-item').forEach(item => {
+    item.addEventListener('dragstart', (e) => {
+      draggedItem = item;
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+    });
+  });
+
+  document.querySelectorAll('#lifecycleGame .dnd-slot').forEach(slot => {
+    slot.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+    });
+    slot.addEventListener('dragleave', () => {
+      slot.classList.remove('drag-over');
+    });
+    slot.addEventListener('drop', (e) => {
+      e.preventDefault();
+      slot.classList.remove('drag-over');
+      if (slot.classList.contains('filled') || !draggedItem) return;
+
+      const correctOrder = parseInt(draggedItem.dataset.correct);
+      const slotOrder = parseInt(slot.dataset.order);
+
+      if (correctOrder === slotOrder) {
+        slot.innerHTML = `<span class="dnd-slot-num">${slotOrder}</span><div style="margin-top:4px;font-weight:600">${draggedItem.textContent}</div>`;
+        slot.classList.add('filled', 'correct');
+        draggedItem.classList.add('placed');
+        lifecycleCorrect++;
+        document.getElementById('lifecycleScore').textContent = `${lifecycleCorrect} / 6 to'g'ri`;
+        completedActivities.add(`lifecycle-${lifecycleCorrect}`);
+        updateProgress();
+
+        if (lifecycleCorrect === 6) {
+          document.getElementById('lifecycleScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Mukammal! Barcha bosqichlar to\'g\'ri!</span>';
+        }
+      } else {
+        slot.classList.add('wrong');
+        setTimeout(() => slot.classList.remove('wrong'), 600);
+      }
+    });
+  });
+}
+
+function resetLifecycle() {
+  document.querySelectorAll('#lifecycleGame .dnd-slot').forEach(slot => {
+    const order = slot.dataset.order;
+    slot.innerHTML = `<span class="dnd-slot-num">${order}</span>`;
+    slot.classList.remove('filled', 'correct', 'wrong');
+  });
+  document.querySelectorAll('#lifecyclePool .dnd-item').forEach(item => {
+    item.classList.remove('placed');
+  });
+  lifecycleCorrect = 0;
+  document.getElementById('lifecycleScore').textContent = '0 / 6 to\'g\'ri';
+}
+
+setupDragAndDrop();
+
+// === CLASSIFIER GAME ===
+let classifierCorrect = 0;
+const bucketCounts = { 'high-high': 0, 'high-low': 0, 'low-high': 0, 'low-low': 0 };
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('dragstart', (e) => {
+    draggedItem = card;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  card.addEventListener('dragend', () => card.classList.remove('dragging'));
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    bucket.classList.add('drag-over');
+  });
+  bucket.addEventListener('dragleave', () => bucket.classList.remove('drag-over'));
+  bucket.addEventListener('drop', (e) => {
+    e.preventDefault();
+    bucket.classList.remove('drag-over');
+    if (!draggedItem || !draggedItem.classList.contains('classifier-card') || draggedItem.classList.contains('classified')) return;
+
+    const cardCategory = draggedItem.dataset.category;
+    const bucketCategory = bucket.dataset.bucket;
+
+    if (cardCategory === bucketCategory) {
+      draggedItem.classList.add('classified');
+      classifierCorrect++;
+      bucketCounts[bucketCategory]++;
+      document.getElementById(`count-${bucketCategory}`).textContent = `${bucketCounts[bucketCategory]} ta bug`;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 4 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+
+      if (classifierCorrect === 4) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 A\'lo! Siz bug turlarini aniqlashda kuchlisiz!</span>';
+      }
+    } else {
+      bucket.classList.add('wrong');
+      setTimeout(() => bucket.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// === MATCHING GAME ===
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha juftlar topildi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// === INTERVIEW ===
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => {
+    question.parentElement.classList.toggle('open');
+  });
+});
+
+// === FADE IN ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .analogy-card, .term-box, .example-box, .takeaway-box, .compare-card, .sp-card').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
