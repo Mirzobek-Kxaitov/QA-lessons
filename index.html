@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA Academy — ISTQB asosidagi O'zbek tilidagi kurs</title>
+<meta name="description" content="Professional QA testing bo'yicha interaktiv darslar. ISTQB CTFL v4.0.1 asosida, O'zbek tilida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+/* === HEADER === */
+.nav {
+  position: sticky;
+  top: 0;
+  background: rgba(251, 249, 244, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 16px 0;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  padding: 8px 20px;
+  background: var(--accent);
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.nav-cta:hover { background: var(--accent-dark); }
+
+/* === HERO === */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 24px 80px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === SECTION === */
+.section {
+  margin: 100px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === BLOCKS OVERVIEW === */
+.blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.block-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+}
+
+.block-card:hover {
+  border-color: var(--line-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+}
+
+.block-num {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.block-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.block-lessons {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* === LESSONS LIST === */
+.lessons-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.lesson-group {
+  margin-bottom: 60px;
+}
+
+.lesson-group-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lesson-group-number {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent);
+  font-variant-numeric: oldstyle-nums;
+}
+
+.lesson-group-title {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.lesson-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lesson-item {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.lesson-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(4px);
+}
+
+.lesson-item.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.lesson-num-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  min-width: 36px;
+  letter-spacing: 1px;
+}
+
+.lesson-info { flex: 1; }
+
+.lesson-title {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.lesson-meta {
+  font-size: 13px;
+  color: var(--ink-muted);
+  display: flex;
+  gap: 14px;
+}
+
+.lesson-status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.status-done {
+  background: var(--forest-soft);
+  color: var(--forest);
+}
+
+.status-current {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.status-locked {
+  background: var(--bg-soft);
+  color: var(--ink-muted);
+}
+
+.lesson-arrow {
+  color: var(--ink-muted);
+  font-size: 20px;
+  transition: all 0.2s ease;
+}
+
+.lesson-item:hover .lesson-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+/* === ABOUT === */
+.about {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 60px;
+  margin: 100px 0;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.about-text p {
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.about-features { display: flex; flex-direction: column; gap: 16px; }
+
+.feature-item {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  padding: 20px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* === FOOTER === */
+.footer {
+  background: #1A1A1A;
+  color: white;
+  padding: 60px 24px 40px;
+  margin-top: 100px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.footer-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.footer-brand span { color: var(--accent); }
+
+.footer-tagline {
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+.footer-col h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer-col a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--accent); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero h1 { font-size: 42px; }
+  .section-title { font-size: 34px; }
+  .about { padding: 32px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-text h2 { font-size: 28px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-stats { gap: 28px; }
+  .stat-num { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">QA<span>.</span>Academy</div>
+    <ul class="nav-links">
+      <li><a href="#curriculum">Dasturlar</a></li>
+      <li><a href="#lessons">Darslar</a></li>
+      <li><a href="#about">Haqida</a></li>
+      <li><a href="lessons/08-principles.html" class="nav-cta">Boshlash</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">● ISTQB CTFL v4.0.1 · O'zbek tilida</div>
+  <h1>Professional QA <em>testor</em> bo'lishning haqiqiy yo'li</h1>
+  <p class="hero-subtitle">Nazariyadan amaliyotgacha, real hayotiy misollar bilan. 28 ta interaktiv dars, tezkor testlar va topshiriqlar — barchasi O'zbek tilida.</p>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">28</div>
+      <div class="stat-label">Interaktiv dars</div>
+    </div>
+    <div>
+      <div class="stat-num">9</div>
+      <div class="stat-label">Tematik blok</div>
+    </div>
+    <div>
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Amaliy misol</div>
+    </div>
+    <div>
+      <div class="stat-num">ISTQB</div>
+      <div class="stat-label">Standartiga mos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM OVERVIEW -->
+<section class="section" id="curriculum">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Dasturning tuzilmasi</span>
+      <h2 class="section-title">9 ta blok, 28 ta dars</h2>
+      <p class="section-subtitle">QA asoslaridan professional darajagacha — har bir tushunchani real misollar bilan o'rganasiz</p>
+    </div>
+
+    <div class="blocks-grid">
+      <div class="block-card">
+        <div class="block-num">BLOK 01</div>
+        <div class="block-title">Asoslar va metodologiya</div>
+        <div class="block-lessons">1–7 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 02</div>
+        <div class="block-title">Prinsiplar va test turlari</div>
+        <div class="block-lessons">8–11 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 03</div>
+        <div class="block-title">Static Testing</div>
+        <div class="block-lessons">12–13 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 04</div>
+        <div class="block-title">Test Design Techniques</div>
+        <div class="block-lessons">14–19 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 05</div>
+        <div class="block-title">Test Management</div>
+        <div class="block-lessons">20–22 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 06</div>
+        <div class="block-title">Risk Management</div>
+        <div class="block-lessons">23–24 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 07</div>
+        <div class="block-title">Monitoring va Reporting</div>
+        <div class="block-lessons">25–26 darslar</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 08</div>
+        <div class="block-title">Defect Management</div>
+        <div class="block-lessons">27-dars</div>
+      </div>
+      <div class="block-card">
+        <div class="block-num">BLOK 09</div>
+        <div class="block-title">Test Tools va Automation</div>
+        <div class="block-lessons">28-dars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS LIST -->
+<section class="section" id="lessons">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Darslar</span>
+      <h2 class="section-title">To'liq dasturlar ro'yxati</h2>
+      <p class="section-subtitle">Har bir darsni alohida ochishingiz mumkin. Tartibiga rioya qilib borish tavsiya etiladi.</p>
+    </div>
+
+    <div class="lessons-wrapper">
+
+      <!-- BLOCK 1 -->
+      <div class="lesson-group">
+        <div class="lesson-group-header">
+          <div class="lesson-group-number">01</div>
+          <div class="lesson-group-title">Asoslar va metodologiya</div>
+        </div>
+        <div class="lesson-items">
+          <a class="lesson-item" href="lessons/01-qa-intro.html">
+            <div class="lesson-num-badge">01</div>
+            <div class="lesson-info">
+              <div class="lesson-title">QA nima va testor kim?</div>
+              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Kirish</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/02-testing-basics.html">
+            <div class="lesson-num-badge">02</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Testlash, bug va testing turlari</div>
+              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Asosiy</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/03-sdlc-stlc.html">
+            <div class="lesson-num-badge">03</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Testlash jarayoni: SDLC va STLC</div>
+              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/04-bug-testware.html">
+            <div class="lesson-num-badge">04</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Bug sabablari va testware</div>
+              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/05-roles-traceability.html">
+            <div class="lesson-num-badge">05</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Rollar, vazifalar va traceability</div>
+              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/06-team-approaches.html">
+            <div class="lesson-num-badge">06</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Whole Team Approach, TDD/ATDD/BDD</div>
+              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Metodologiya</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <a class="lesson-item" href="lessons/07-bdd-shift-left.html">
+            <div class="lesson-num-badge">07</div>
+            <div class="lesson-info">
+              <div class="lesson-title">BDD va Shift Left Testing</div>
+              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Metodologiya</span></div>
+            </div>
+            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- BLOCK 2 -->
+      <div class="lesson-group">
+        <div class="lesson-group-header">
+          <div class="lesson-group-number">02</div>
+          <div class="lesson-group-title">Prinsiplar va test turlari</div>
+        </div>
+        <div class="lesson-items">
+          <a class="lesson-item" href="lessons/08-principles.html">
+            <div class="lesson-num-badge">08</div>
+            <div class="lesson-info">
+              <div class="lesson-title">7 ta prinsip, DevOps va Retrospektivlar</div>
+              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Fundamental</span><span>·</span><span>4 ta interaktiv</span></div>
+            </div>
+            <div class="lesson-status status-current">Hozirda</div>
+            <div class="lesson-arrow">→</div>
+          </a>
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">09</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Test darajalari (Component → Acceptance)</div>
+              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-locked">Tez orada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">10</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Test turlari va ISO 25010</div>
+              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-locked">Rejada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">11</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Confirmation, Regression, Maintenance</div>
+              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Nazariy</span></div>
+            </div>
+            <div class="lesson-status status-locked">Rejada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 4 — preview -->
+      <div class="lesson-group">
+        <div class="lesson-group-header">
+          <div class="lesson-group-number">04</div>
+          <div class="lesson-group-title">Test Design Techniques — eng muhim amaliy blok</div>
+        </div>
+        <div class="lesson-items">
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">14</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Equivalence Partitioning</div>
+              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Amaliy K3</span></div>
+            </div>
+            <div class="lesson-status status-locked">Rejada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">15</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Boundary Value Analysis</div>
+              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Amaliy K3</span></div>
+            </div>
+            <div class="lesson-status status-locked">Rejada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+          <div class="lesson-item locked">
+            <div class="lesson-num-badge">16</div>
+            <div class="lesson-info">
+              <div class="lesson-title">Decision Table va State Transition</div>
+              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Amaliy K3</span></div>
+            </div>
+            <div class="lesson-status status-locked">Rejada</div>
+            <div class="lesson-arrow">→</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align:center;color:var(--ink-muted);font-size:15px;margin-top:40px">
+        Qolgan bloklar (5–9) — jami 28 ta dars tayyorlanmoqda
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="container">
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Nega aynan bu kurs?</h2>
+      <p>Ko'pchilik QA kurslari eski ma'lumotlar yoki tarjima qilingan matnlar asosida tuzilgan. Bu kurs esa <strong>ISTQB CTFL v4.0.1</strong> (2024) — dunyodagi eng obro'li QA sertifikatlash standarti asosida yozilgan.</p>
+      <p>Har bir prinsip, har bir texnika — <strong>O'zbekistondagi real loyihalar</strong> misolida tushuntiriladi. Click, Uzum, Payme, Uzcard — siz tanish bo'lgan kompaniyalar.</p>
+      <p>Kursda <strong>interaktiv mashg'ulotlar</strong>: tezkor testlar, drag-and-drop o'yinlar, real vaziyatlarda qaror qabul qilish. Faqat nazariya emas — amaliyot.</p>
+    </div>
+
+    <div class="about-features">
+      <div class="feature-item">
+        <div class="feature-icon">01</div>
+        <div>
+          <div class="feature-title">ISTQB standartiga mos</div>
+          <div class="feature-desc">Xalqaro sertifikatga tayyorgarlik uchun asos</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">02</div>
+        <div>
+          <div class="feature-title">O'zbek tilida, mahalliy misollar</div>
+          <div class="feature-desc">Tarjima emas, sizning tilda yozilgan</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">03</div>
+        <div>
+          <div class="feature-title">Interaktiv va amaliy</div>
+          <div class="feature-desc">Har darsdan keyin testlar va topshiriqlar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. ISTQB asosida, O'zbek tilida, interaktiv formatda.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Kurslar</h4>
+      <ul>
+        <li><a href="#curriculum">Dastur</a></li>
+        <li><a href="#lessons">Barcha darslar</a></li>
+        <li><a href="lessons/08-principles.html">Boshlash</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="#">Telegram</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy. ISTQB® — International Software Testing Qualifications Board.</div>
+    <div>Made with care</div>
+  </div>
+</footer>
+
+</body>
+</html>

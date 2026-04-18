@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8-dars: Testlashning 7 ta prinsipi | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* === HEADER === */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(251, 249, 244, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 14px 0;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.logo span { color: var(--accent); }
+
+.progress-container {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 45px;
+}
+
+/* === HERO === */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.lesson-number {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+.meta-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === SECTION === */
+.section {
+  margin: 80px 0;
+  scroll-margin-top: 80px;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* === PRINCIPLE CARD === */
+.principle-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 32px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.principle-card:hover {
+  border-color: var(--line-dark);
+  transform: translateY(-2px);
+}
+
+.principle-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.principle-number {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent);
+  flex-shrink: 0;
+  font-variant-numeric: oldstyle-nums;
+}
+
+.principle-title-wrap { flex: 1; padding-top: 8px; }
+
+.principle-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.principle-original {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+
+.principle-content { color: var(--ink-soft); line-height: 1.7; }
+
+.principle-content p { margin-bottom: 16px; }
+
+.principle-content strong { color: var(--ink); font-weight: 600; }
+
+.example-box {
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.example-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.takeaway-box {
+  background: var(--forest-soft);
+  border-left: 3px solid var(--forest);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.takeaway-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--forest);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.takeaway-box ul { padding-left: 20px; }
+.takeaway-box li { margin-bottom: 6px; }
+
+.warning-box {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.warning-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* === QUIZ === */
+.quiz-card {
+  background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.quiz-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--plum);
+  background: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+
+.quiz-option {
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-option:hover:not(.disabled) {
+  border-color: var(--plum);
+  background: var(--plum-soft);
+}
+
+.quiz-option.correct {
+  background: var(--forest-soft);
+  border-color: var(--forest);
+  color: var(--forest);
+}
+
+.quiz-option.incorrect {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+
+.quiz-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--line-dark);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.quiz-option.correct .quiz-marker {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.quiz-option.incorrect .quiz-marker {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.quiz-feedback {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: none;
+  line-height: 1.55;
+}
+
+.quiz-feedback.show { display: block; }
+
+.quiz-feedback.correct {
+  background: var(--forest-soft);
+  color: var(--forest);
+  border: 1px solid var(--forest);
+}
+
+.quiz-feedback.incorrect {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+}
+
+/* === CHART === */
+.chart-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 24px 0;
+}
+
+.chart-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.chart-subtitle { font-size: 14px; color: var(--ink-muted); margin-bottom: 24px; }
+
+/* === TABLE === */
+.table-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  padding: 14px 18px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: var(--bg-soft); }
+
+/* === PIPELINE === */
+.pipeline {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.pipeline-stages {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: min-content;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pipeline-stage {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 110px;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.pipeline-stage:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: scale(1.05);
+}
+
+.pipeline-stage.auto {
+  border-color: var(--forest);
+  background: var(--forest-soft);
+  color: var(--forest);
+}
+
+.pipeline-arrow { color: var(--ink-muted); font-size: 18px; }
+
+/* === RETRO FORMATS === */
+.retro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.retro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.retro-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+}
+
+.retro-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.retro-card-items { display: flex; flex-direction: column; gap: 8px; }
+
+.retro-item {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.retro-item-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* === MATCHING GAME === */
+.matching-game {
+  background: var(--bg-card);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.matching-instruction {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.matching-column h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+.match-item {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.match-item:hover:not(.matched):not(.selected) {
+  background: var(--plum-soft);
+  border-color: var(--plum);
+}
+
+.match-item.selected {
+  background: var(--plum-soft);
+  border-color: var(--plum);
+  color: var(--plum);
+  font-weight: 500;
+}
+
+.match-item.matched {
+  background: var(--forest-soft);
+  border-color: var(--forest);
+  color: var(--forest);
+  cursor: default;
+  opacity: 0.7;
+}
+
+.match-item.wrong {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.match-score {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.match-complete {
+  color: var(--forest);
+  font-weight: 500;
+}
+
+/* === SUMMARY === */
+.summary-section {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  margin: 80px 0;
+  text-align: center;
+}
+
+.summary-section .section-label {
+  background: rgba(255,255,255,0.1);
+  color: var(--gold);
+}
+
+.summary-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.summary-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.summary-point {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.summary-point-num {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  color: var(--gold);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.summary-point-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* === NAV FOOTER === */
+.nav-footer {
+  max-width: 780px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 18px 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 240px;
+}
+
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+.nav-btn-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+/* === TYPOGRAPHY === */
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+
+h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+p { margin-bottom: 16px; }
+
+.container p, .container li { color: var(--ink-soft); }
+
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+
+li { margin-bottom: 8px; color: var(--ink-soft); }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 8px 0 8px 20px;
+  margin: 20px 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: var(--bg-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-dark);
+}
+
+/* === COMPLETION MODAL === */
+.completion-badge {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--forest);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -8px rgba(58, 90, 64, 0.5);
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  animation: slideUp 0.5s ease;
+}
+
+.completion-badge.show { display: flex; }
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .principle-card { padding: 28px 24px; }
+  .principle-number { font-size: 40px; }
+  .principle-title { font-size: 22px; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+}
+
+/* === ANIMATED FADE-IN === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">QA<span>.</span>Academy</div>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="lesson-number">8-dars</div>
+  <h1>Testlashning 7 ta <em>prinsipi</em>, DevOps va retrospektivlar</h1>
+  <p class="hero-subtitle">50 yillik QA tajribasidan tug'ilgan fundamental qoidalar — ular nima uchun muhim va amaliyotda qanday ishlaydi.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>ISTQB CTFL v4.0.1</div>
+    <div class="pill"><span class="pill-dot"></span>K2 darajasi</div>
+    <div class="pill"><span class="pill-dot"></span>4 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="container">
+
+<section class="section" id="intro">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Nega bizga prinsiplar kerak?</h2>
+  <p class="section-intro">Tasavvur qiling, siz yangi testor bo'lib ishga keldingiz. Sizga dasturiy mahsulot berildi va "tekshir" deyishdi. Qayerdan boshlaysiz? Qanday qilib hamma narsani sinab ko'rasiz? Qancha test yetarli?</p>
+  <p>Aynan shu savollarga javob berish uchun <strong>testlash prinsiplari</strong> yaratilgan. Bu prinsiplar so'nggi 50 yil davomida dasturiy ta'minot muhandisligi tajribasidan kelib chiqqan va har qanday loyihada, har qanday texnologiyada qo'llanadi.</p>
+  <p>Ko'pgina yangi testorlar bu prinsiplarni yodlaydi, lekin ma'nosini tushunmaydi. Natijada ishda xato qaror qabul qilishadi. Bu darsda biz har bir prinsipni <strong>real misol</strong> bilan o'rganamiz.</p>
+</section>
+
+<!-- PART 1: PRINCIPLES -->
+<section class="section" id="principles">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Testlashning 7 ta prinsipi</h2>
+</section>
+
+<!-- PRINCIPLE 1 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">01</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Testlash buglarning borligini ko'rsatadi, yo'qligini emas</div>
+      <div class="principle-original">Testing shows the presence, not the absence of defects</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Bu prinsipni 1969-yilda kompyuter olimi <strong>Edsger Dijkstra</strong> shunday ifodalagan:</p>
+    <blockquote>"Testing can be used to show the presence of bugs, but never to show their absence."</blockquote>
+    <p>Agar siz 100 ta test o'tkazdingiz va 5 ta bug topdingiz — bu 5 ta bug borligini tasdiqlaydi. Lekin qolgan 95 ta test muvaffaqiyatli o'tgani <strong>boshqa buglar yo'qligini anglatmaydi</strong>.</p>
+
+    <div class="example-box">
+      <div class="example-box-title">Real misol — Click.uz to'lov tizimi</div>
+      <p style="margin:0">Click to'lov tizimida 1000 ta test o'tkazdik, hammasi muvaffaqiyatli o'tdi. Keyin foydalanuvchi iPhone 15 Pro Max'da Safari orqali kirib, 999,999 so'm miqdorida to'lov qilmoqchi bo'ldi — tizim ishlamay qoldi. Biz bu aniq kombinatsiyani sinab ko'rmagan edik.</p>
+    </div>
+
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Testor uchun amaliy xulosa</div>
+      <ul>
+        <li>Hech qachon "bu mahsulotda bug yo'q" demang</li>
+        <li>"100% testlar o'tdi" emas, "100% rejalashtirilgan testlar o'tdi" deb yozing</li>
+        <li>Buyurtmachiga sifat haqida ishonch bering, lekin kafolat bermang</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPLE 2 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">02</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">To'liq testlash imkonsiz</div>
+      <div class="principle-original">Exhaustive testing is impossible</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Matematik hisoblab ko'ramiz. Oddiy login formasi bor:</p>
+    <ul>
+      <li>Login: 20 ta belgigacha (har biri 95 ta mumkin bo'lgan belgi)</li>
+      <li>Parol: 20 ta belgigacha</li>
+    </ul>
+    <p>Umumiy kombinatsiyalar soni: <code>95²⁰ × 95²⁰ ≈ 10⁷⁹</code></p>
+    <p>Agar har bir testni 1 millisekundda o'tkazsak ham, bu testlarni bajarish <strong>Koinot yoshidan ko'p vaqt oladi</strong>.</p>
+
+    <div class="example-box">
+      <div class="example-box-title">Real misol — Uzum Market qidiruv</div>
+      <p style="margin:0">Qidiruv maydoniga foydalanuvchi istalgan matnni kiritishi mumkin: "iPhone", "айфон", bo'sh joylar, emoji, SQL injection urinishlari, 10,000 belgi... Hammasini sinab ko'rish imkonsiz.</p>
+    </div>
+
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">80/20 qoidasi</div>
+      <p style="margin:0">Tajribali testor <strong>20% test</strong> yordamida <strong>80% buglarni</strong> topadi, agar ularni to'g'ri tanlasa. Test texnikalari (14-19 darslar) bunga yordam beradi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INTERACTIVE QUIZ 1 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Menejer sizdan so'radi: "Testing tugadimi? Production'ga chiqaramizmi?" Qaysi javob eng professional?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Ha, barcha testlar o'tdi, bug yo'q — chiqarishimiz mumkin</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Rejalashtirilgan testlar o'tdi. Qolgan xavflar ro'yxati mana, qaror qaror sizda</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Men hamma narsani sinab ko'rdim, mahsulot mukammal</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- PRINCIPLE 3 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">03</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Erta testlash vaqt va pulni tejaydi</div>
+      <div class="principle-original">Early testing saves time and money</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Dasturlash jarayoni (SDLC) qancha erta bosqichida bug topilsa, uni tuzatish shuncha arzon va tez bo'ladi. Bu <strong>Barri Bem tadqiqoti</strong> (1981) bilan tasdiqlangan:</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Bug tuzatish xarajati bosqichlar bo'yicha</div>
+      <div class="chart-subtitle">Nisbiy xarajat — talablar bosqichida topilgan bug = 1x</div>
+      <canvas id="costChart" height="240"></canvas>
+    </div>
+
+    <div class="example-box">
+      <div class="example-box-title">Real misol — Bank mobil ilova</div>
+      <p>Talablarda yozilgan edi: <em>"Foydalanuvchi pul o'tkazmasi qila olishi kerak"</em></p>
+      <p style="margin-bottom:0">Agar testor <strong>talablarni o'qish bosqichida</strong> "Maksimal summa qancha?", "Kunlik limit bormi?" deb so'rasa — 30 daqiqada yechiladi. Agar production'da foydalanuvchi 50 million so'mlik o'tkazma qilib, sistema qulagandan keyin so'rasa — kompaniyaga millionlab zarar.</p>
+    </div>
+
+    <p>Bu prinsip <strong>Shift Left</strong> falsafasining asosidir (7-darsda ko'rdik). "Chapga siljitish" — testlash faoliyatini SDLC'ning oldingi bosqichlariga ko'chirish.</p>
+  </div>
+</div>
+
+<!-- PRINCIPLE 4 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">04</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Buglar klasterlarda to'planadi</div>
+      <div class="principle-original">Defects cluster together</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Aksariyat buglar kam sonli modullarda to'planadi. Bu <strong>Pareto prinsipi</strong>ning (80/20 qoidasi) testlashdagi ko'rinishi.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">E-commerce loyihadagi buglar taqsimoti</div>
+      <div class="chart-subtitle">1000 ta bugning 72%'i atigi 2 ta modulda — To'lov va Yetkazib berish</div>
+      <canvas id="clusterChart" height="280"></canvas>
+    </div>
+
+    <div class="example-box">
+      <div class="example-box-title">Nega shunday?</div>
+      <ul style="margin:0">
+        <li>Ba'zi modullar murakkabroq (ko'proq mantiq, integratsiyalar)</li>
+        <li>Tashqi tizimlar bilan ishlovchi modullar xavfli (API, to'lov tizimlari)</li>
+        <li>Tez-tez o'zgartiriladigan modullarda ko'proq regression</li>
+      </ul>
+    </div>
+
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <ul>
+        <li>Bug ko'p topilgan joyda <strong>yana</strong> qidiring — u yerda ko'proq bor</li>
+        <li>Bug tarixi (bug history) — testor uchun oltin ma'lumot</li>
+        <li>Risk-based testingda (23-24 darslar) bu prinsip asosiy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPLE 5 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">05</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Testlar eskiradi (Pestitsid paradoksi)</div>
+      <div class="principle-original">Tests wear out — Pesticide Paradox</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Bir xil testlar qayta-qayta takrorlanganda, <strong>yangi buglarni topishda samarasizlashadi</strong>.</p>
+    <p>Qishloq xo'jaligidan analogiya: agar dehqon bir xil pestitsidni doimiy ishlatsa, zararkunandalar unga moslashib, immunitet hosil qiladi. Pestitsid endi ishlamaydi. Shuning uchun pestitsidlar almashtirib turilishi kerak.</p>
+
+    <div class="example-box">
+      <div class="example-box-title">Real misol — 2 yillik bir xil testlar</div>
+      <p>IT kompaniyada 2 yil davomida 500 ta regression test ishlatilgan. Har release'da barcha testlar yashil. Lekin foydalanuvchilar shikoyat qilmoqda: "Ilova sekin", "Kechqurun yopiladi", "Akkauntga kira olmayman".</p>
+      <p style="margin:0">Sababi: testlar faqat funksional narsalarni tekshirardi. Performance, reliability, concurrency muammolarni ko'rmas edi. <strong>Testlar eskirgan</strong> — dastur rivojlangan, testlar esa bir xil qolgan.</p>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-box-title">Istisno</div>
+      <p style="margin:0">Regression testingda bir xil testlar <strong>maqsadli</strong>. Bu prinsip <em>yangi buglarni topish</em> kontekstida tushuniladi, regression testing kontekstida emas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPLE 6 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">06</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Testlash kontekstga bog'liq</div>
+      <div class="principle-original">Testing is context dependent</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Bir xil usulda hamma narsani testlash mumkin emas. Har bir loyiha, mahsulot va sohada <strong>o'z yondashuvi</strong> kerak.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Mahsulot</th><th>Asosiy xavf</th><th>Yondashuv</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bank tizimi</strong></td><td>Moliyaviy yo'qotish</td><td>Formal, ko'p hujjat, security, audit</td></tr>
+          <tr><td><strong>Ijtimoiy tarmoq</strong></td><td>Foydalanuvchi ketishi</td><td>Tezkor, exploratory, A/B testing</td></tr>
+          <tr><td><strong>Tibbiy qurilma</strong></td><td>Inson hayoti</td><td>O'ta qat'iy, 100% compliance</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Agar bank tizimini ijtimoiy tarmoq kabi test qilsangiz — pul yo'qotasiz. Agar ijtimoiy tarmoqni bank kabi test qilsangiz — raqobatda yutqazasiz.</p>
+
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Kontekstni belgilovchi omillar</div>
+      <ul>
+        <li>Biznes sohasi (bank, o'yin, tibbiyot)</li>
+        <li>Mahsulot turi (veb, mobil, embedded)</li>
+        <li>Jamoa tajribasi va o'lcham</li>
+        <li>Qonun-qoidalar (GDPR, PCI DSS)</li>
+        <li>SDLC modeli (Waterfall, Agile, DevOps)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPLE 7 -->
+<div class="principle-card">
+  <div class="principle-header">
+    <div class="principle-number">07</div>
+    <div class="principle-title-wrap">
+      <div class="principle-title">Buglar yo'qligi — yanglish xulosa</div>
+      <div class="principle-original">Absence-of-defects fallacy</div>
+    </div>
+  </div>
+  <div class="principle-content">
+    <p>Hatto agar siz dasturni mukammal test qilib, hamma buglarni tuzatgan bo'lsangiz ham, bu dastur <strong>foydalanuvchilarga kerak</strong> ekanini anglatmaydi.</p>
+
+    <p>Testlash ikki xil bo'ladi:</p>
+    <ul>
+      <li><strong>Verification (tekshirish)</strong> — "Dastur to'g'ri ishlayaptimi?" (talablarga muvofiqmi?)</li>
+      <li><strong>Validation (tasdiqlash)</strong> — "Dastur to'g'ri narsa'mi?" (foydalanuvchiga kerakmi?)</li>
+    </ul>
+
+    <div class="example-box">
+      <div class="example-box-title">Mashhur misol — Microsoft Clippy</div>
+      <p style="margin:0">Microsoft Office'da "Clippy" yordamchi bor edi. Jamoalar uni yaratgan, testlar yozgan, buglarni tuzatgan. Texnik jihatdan mukammal ishlardi. Lekin foydalanuvchilar uni <strong>yomon ko'rardi</strong>. Microsoft 2001-yilda Clippy'ni olib tashladi. Dastur <strong>ishladi</strong>, lekin <strong>kerak emas edi</strong>.</p>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-box-title">Muhim</div>
+      <p style="margin:0">Testing ≠ Sifat kafolati. Testlash — bu faqat sifat <strong>nazorati</strong> (QC). Haqiqiy sifat <strong>kafolati</strong> (QA) — butun SDLC bo'ylab jarayonlarni to'g'ri yo'lga qo'yish.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MATCHING GAME -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Vaziyatlarni prinsiplar bilan bog'lang</h3>
+  <p class="matching-instruction">Chap tomondagi vaziyatni bosing, keyin o'ng tomondan mos prinsipni tanlang. Jami 5 ta juft.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Vaziyat</h4>
+      <div class="match-item" data-side="left" data-pair="p1">
+        "500 ta testdan hammasi o'tdi, bu mahsulot mukammal" — menejer
+      </div>
+      <div class="match-item" data-side="left" data-pair="p4">
+        "Har safar yangi funksiya chiqaramiz, xuddi shu modulda bug"
+      </div>
+      <div class="match-item" data-side="left" data-pair="p5">
+        "Biz 5 yildan beri bir xil test case'larni ishlatamiz"
+      </div>
+      <div class="match-item" data-side="left" data-pair="p6">
+        "Bank ilovasini ijtimoiy tarmoq kabi test qildim"
+      </div>
+      <div class="match-item" data-side="left" data-pair="p7">
+        "Dastur mukammal ishlaydi, lekin foydalanuvchilar shikoyat qilmoqda"
+      </div>
+    </div>
+    <div class="matching-column">
+      <h4>Prinsip</h4>
+      <div class="match-item" data-side="right" data-pair="p6">
+        Testing is context dependent
+      </div>
+      <div class="match-item" data-side="right" data-pair="p1">
+        Testing shows presence, not absence
+      </div>
+      <div class="match-item" data-side="right" data-pair="p7">
+        Absence-of-defects fallacy
+      </div>
+      <div class="match-item" data-side="right" data-pair="p4">
+        Defects cluster together
+      </div>
+      <div class="match-item" data-side="right" data-pair="p5">
+        Tests wear out (Pesticide paradox)
+      </div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- PART 2: DEVOPS -->
+<section class="section" id="devops">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">DevOps va Testing</h2>
+  <p class="section-intro"><strong>DevOps</strong> (Development + Operations) — bu tashkiliy yondashuv bo'lib, dasturlash (shu jumladan testlash) va operatsion jamoalarni birlashtirib, umumiy maqsadlarga erishish uchun mo'ljallangan.</p>
+
+  <h3>DevOps pipeline — avtomatlashtirilgan yetkazib berish</h3>
+  <p>DevOps'ning yuragi — bu <strong>pipeline</strong>. Dasturchi kod yozadi, u avtomatik tarzda quyidagi bosqichlardan o'tadi:</p>
+
+  <div class="pipeline">
+    <div class="pipeline-stages">
+      <div class="pipeline-stage">Kod yozish</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Build</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Unit testlar</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Statik tahlil</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Integration testlar</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Deploy to Test</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage">UAT</div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-stage auto">Production</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:13px;color:var(--ink-muted);margin-top:-10px"><span style="color:var(--forest)">●</span> Yashil bosqichlar — avtomatik</p>
+
+  <h3>DevOps'ning asosiy tushunchalari</h3>
+
+  <div class="retro-grid">
+    <div class="retro-card">
+      <div class="retro-card-title">CI — Continuous Integration</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Dasturchilar kodni kuniga bir necha marta repozitoriyga yuklaydi. Har yuklovda avtomatik build + testlar ishga tushadi.</p>
+    </div>
+    <div class="retro-card">
+      <div class="retro-card-title">CD — Continuous Delivery</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Kod doim release qilishga tayyor. Bir tugma bosish bilan production'ga chiqadi.</p>
+    </div>
+    <div class="retro-card">
+      <div class="retro-card-title">Continuous Deployment</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Avtomatik — inson aralashuvi kerak emas. Testlardan o'tsa, o'zi production'ga chiqadi.</p>
+    </div>
+  </div>
+
+  <h3>Foydalari va risklari</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th style="color:var(--forest)">✓ Foydalari</th><th style="color:var(--accent)">⚠ Risklari</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tezkor feedback — 5 daqiqada</td><td>Pipeline qurish vaqt oladi</td></tr>
+        <tr><td>Shift Left kuchayadi</td><td>CI/CD asboblari saqlash kerak</td></tr>
+        <tr><td>Barqaror test muhitlari</td><td>Avtomatlashtirish mutaxassislari kerak</td></tr>
+        <tr><td>Non-functional sifat ko'rinadi</td><td>Madaniy o'zgarish qiyin</td></tr>
+        <tr><td>Regression xavfi minimal</td><td>Boshlang'ich investitsiya katta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Real misol — Uzcard DevOps'ga o'tish</div>
+    <p><strong>2020 (DevOps'siz):</strong> Release har 3 oyda, 2 hafta downtime, 50 kishilik testing jamoasi, production'da critical buglar</p>
+    <p style="margin:0"><strong>2023 (DevOps):</strong> Release har hafta (ba'zan har kuni), downtime — daqiqalar, 15 kishilik jamoa + 10,000+ avtomatik test, critical bug'lar deyarli yo'q</p>
+  </div>
+</section>
+
+<!-- QUIZ 2 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Startup kompaniyasi DevOps'ga o'tmoqchi. Testor sifatida sizning roli qanday o'zgaradi?</div>
+  <div class="quiz-options" data-quiz="q2">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Men endi kerak emasman — hamma narsa avtomatlashtirilgan</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>Men faqat Jenkins pipeline sozlayman, qo'lda testlash to'xtaydi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">C</div>
+      <div>Dasturchilar bilan testlar yozishda hamkorlik, exploratory testing, pipeline'ga testlar integratsiyasi, sifat strategiyasi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q2"></div>
+</div>
+
+<!-- PART 3: RETROSPECTIVES -->
+<section class="section" id="retro">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Retrospektivlar va jarayonni takomillashtirish</h2>
+  <p class="section-intro"><strong>Retrospektiv</strong> (lotincha <em>retrospicere</em> — "orqaga qarash") — bu jamoa tomonidan o'tkazilgan ish bosqichining tahlili bo'lib, unda jamoa o'rganilgan saboqlar va takomillashtirish imkoniyatlari haqida fikr yuritadi.</p>
+
+  <h3>3 ta asosiy savol</h3>
+  <p>Har qanday retrospektivda 3 savolga javob topiladi:</p>
+
+  <div class="retro-grid">
+    <div class="retro-card" style="border-color:var(--forest)">
+      <div class="retro-card-title" style="color:var(--forest)">✓ Nima yaxshi ketdi?</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Saqlab qolinadigan amaliyotlarni aniqlash</p>
+    </div>
+    <div class="retro-card" style="border-color:var(--accent)">
+      <div class="retro-card-title" style="color:var(--accent)">✗ Nima yaxshi ketmadi?</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Muammolarni ochiq aytish</p>
+    </div>
+    <div class="retro-card" style="border-color:var(--gold)">
+      <div class="retro-card-title" style="color:var(--gold)">→ Qanday yaxshilaymiz?</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0">Konkret harakatlar rejasi</p>
+    </div>
+  </div>
+
+  <h3>4 ta mashhur retrospektiv formati</h3>
+
+  <div class="retro-grid">
+    <div class="retro-card">
+      <div class="retro-card-title">Start–Stop–Continue</div>
+      <div class="retro-card-items">
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--forest)"></div><div><strong>Start:</strong> Nimani boshlash kerak?</div></div>
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--accent)"></div><div><strong>Stop:</strong> Nimani to'xtatish kerak?</div></div>
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--gold)"></div><div><strong>Continue:</strong> Davom ettirish?</div></div>
+      </div>
+    </div>
+
+    <div class="retro-card">
+      <div class="retro-card-title">Mad–Sad–Glad</div>
+      <div class="retro-card-items">
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--accent)"></div><div><strong>Mad:</strong> Nima g'azab keltirdi?</div></div>
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--plum)"></div><div><strong>Sad:</strong> Nima tushkun qildi?</div></div>
+        <div class="retro-item"><div class="retro-item-dot" style="background:var(--forest)"></div><div><strong>Glad:</strong> Nima xursand qildi?</div></div>
+      </div>
+    </div>
+
+    <div class="retro-card">
+      <div class="retro-card-title">4 L's</div>
+      <div class="retro-card-items">
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Liked:</strong> Nima yoqdi?</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Learned:</strong> Nima o'rgandim?</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Lacked:</strong> Nima yetishmadi?</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Longed for:</strong> Nima xohlardim?</div></div>
+      </div>
+    </div>
+
+    <div class="retro-card">
+      <div class="retro-card-title">Sailboat (yelkanli kema)</div>
+      <div class="retro-card-items">
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Shamol:</strong> Oldinga itaradi</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Langar:</strong> To'xtatib qo'yadi</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Qoya:</strong> Xavflar</div></div>
+        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Orol:</strong> Maqsadimiz</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Samarali retrospektiv sirlari</h3>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">✓ To'g'ri amaliyotlar</div>
+    <ul>
+      <li>Hamma o'z fikrini bemalol aytishi uchun <strong>xavfsiz muhit</strong> yarating</li>
+      <li><strong>Aybsizlik qoidasi</strong> (blameless) — shaxslarni emas, jarayonlarni muhokama qiling</li>
+      <li>Har retrospektivdan <strong>3 ta konkret harakat</strong> chiqsin</li>
+      <li>Oldingi harakatlarni <strong>tekshiring</strong></li>
+      <li><strong>Time-box</strong> qo'ying (45-90 daqiqa)</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">✗ Qilmaslik kerak</div>
+    <ul style="margin:0">
+      <li>Shaxsiy ayblovlar ("Siz buni qildingiz!")</li>
+      <li>Faqat shikoyatlar — yechim yo'q</li>
+      <li>Boshliq huzurida — xodimlar ochiq gapirmaydi</li>
+      <li>Harakat rejasisiz tugallash</li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUIZ 3 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Retrospektivda jamoa "Testlar sprint oxiriga qolib ketyapti" deb shikoyat qildi. Qaysi javob eng yaxshi harakat rejasi?</div>
+  <div class="quiz-options" data-quiz="q3">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Testorlar kechgacha ishlashi kerak, sprint vaqtida ulgurish uchun</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Shift Left qo'llash, Definition of Done'ga "testlar tugallangan" shartini qo'shish, pair testing</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Dasturchilarni ayblash, ular kechikyapti deb menejerga shikoyat qilish</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q3"></div>
+</div>
+
+<!-- FINAL COMPREHENSIVE QUIZ -->
+<div class="quiz-card" style="border-color:var(--gold);background:linear-gradient(135deg, var(--gold-soft) 0%, var(--bg-card) 100%)">
+  <div class="quiz-label" style="color:var(--gold);background:white">🏆 Yakuniy test</div>
+  <div class="quiz-question">Siz bank ilovasi uchun testor. Dasturchi yangi funksiya qo'shdi — "Tezkor o'tkazma" 500,000 so'mgacha. Qaysi yondashuv eng to'g'ri?</div>
+  <div class="quiz-options" data-quiz="q4">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Faqat happy path test — 100,000 so'm o'tkazma qilib ko'raman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>500,000 dan ortiq barcha sonlarni ketma-ket sinab ko'raman (exhaustive)</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">C</div>
+      <div>Boundary values (0, 1, 499999, 500000, 500001), invalid inputlar, security (SQL injection), concurrency, context (bank — o'ta muhim)</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q4"></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- SUMMARY -->
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta muhim fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Darsingizdan olib ketadigan eng asosiy g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Prinsiplar — qonun emas, maslahat</div>
+      <div class="summary-point-text">Ular sizga to'g'ri fikrlash uslubini beradi. Yodlab qolmang — tushuning.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">DevOps — texnologiya emas, madaniyat</div>
+      <div class="summary-point-text">Jenkins o'rnatish DevOps emas. Jamoalar birgalikda ishlashga o'tishi — DevOps.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Retrospektiv — vaqt tejash</div>
+      <div class="summary-point-text">Har retrospektiv — keyingi loyihangizda yaxshilanish imkoniyati.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <a href="#" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>7-dars · BDD va Shift Left</div>
+  </a>
+  <a href="#" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>9-dars · Test darajalari</div>
+  </a>
+</div>
+
+<!-- COMPLETION BADGE -->
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+<script>
+// === PROGRESS TRACKING ===
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 9; // 4 quizzes + 5 matching pairs
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+// === QUIZ LOGIC ===
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Bu Prinsip 1 — Testing shows presence, not absence. Professional testor hech qachon "bug yo\'q" demaydi. To\'g\'ri yondashuv: rejalashtirilgan testlar natijalarini va qolgan xavflarni aniq ko\'rsatish.',
+    incorrect: 'Bu javob xavfli. Prinsip 1 (Testing shows presence, not absence) buni taqiqlaydi. Professional testor hech qachon "bug yo\'q" yoki "mukammal" degan gaplarni aytmaydi.'
+  },
+  q2: {
+    correct: '<strong>To\'g\'ri!</strong> DevOps testorni almashtirmaydi — uning rolini o\'zgartiradi. Avtomatlashtirish + inson tajribasi birgalikda kuchli. Whole Team Approach va exploratory testing muhim bo\'lib qoladi.',
+    incorrect: 'Noto\'g\'ri. DevOps testorni almashtirmaydi. Avtomatlashtirish qo\'lda testlashning bir qismini oladi, lekin exploratory testing, sifat strategiyasi va foydalanuvchi nuqtai nazaridan testlash baribir kerak.'
+  },
+  q3: {
+    correct: '<strong>A\'lo!</strong> Bu haqiqiy Shift Left yondashuvi. Muammoni erta topish — prinsip 3. Shift Left + pair testing + DoD — professional yechim.',
+    incorrect: 'Bu yondashuv muammoni hal qilmaydi, faqat belgilarni yashiradi. Retrospektivda shaxslarni ayblash yoki faqat ish vaqtini uzaytirish — yomon yechim. Jarayonni o\'zgartirish kerak.'
+  },
+  q4: {
+    correct: '<strong>Ajoyib!</strong> Bu yondashuv bir nechta prinsiplarni birlashtiradi: Boundary Value Analysis (test texnikasi), kontekst (bank = yuqori xavf), exhaustive testing imkonsiz (lekin muhim stsenariylar tanlangan), security testing (bank uchun majburiy).',
+    incorrect: 'Bank ilovasida happy path yetarli emas — bu yuqori xavfli kontekst. Barcha kombinatsiyalar esa imkonsiz (Prinsip 2). To\'g\'ri yondashuv: tanlangan muhim stsenariylar va boundary testing.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+
+      if (!isCorrect) option.classList.add('incorrect');
+
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// === MATCHING GAME ===
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha juftlar topildi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// === CHART 1: COST CHART ===
+const costCtx = document.getElementById('costChart');
+new Chart(costCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Talablar', 'Dizayn', 'Kodlash', 'Testing', 'Production'],
+    datasets: [{
+      label: 'Bug tuzatish xarajati (nisbiy)',
+      data: [1, 5, 10, 50, 150],
+      backgroundColor: ['#3A5A40', '#C08838', '#D4803D', '#C05935', '#A03535'],
+      borderRadius: 6,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.parsed.y + 'x xarajat'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        ticks: { callback: (v) => v + 'x' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// === CHART 2: CLUSTER CHART ===
+const clusterCtx = document.getElementById('clusterChart');
+new Chart(clusterCtx, {
+  type: 'bar',
+  data: {
+    labels: ['To\'lov', 'Yetkazib berish', 'Ro\'yxatdan o\'tish', 'Savat', 'Mahsulotlar', 'Admin', 'Sharhlar', 'Bildirishnomalar', 'Tarix', 'Hisobotlar'],
+    datasets: [{
+      label: 'Buglar soni',
+      data: [420, 300, 80, 60, 40, 30, 25, 20, 15, 10],
+      backgroundColor: (ctx) => {
+        const i = ctx.dataIndex;
+        return i < 2 ? '#D64545' : '#C08838';
+      },
+      borderRadius: 6,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.parsed.x + ' ta bug'
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// === FADE IN ON SCROLL ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.principle-card, .quiz-card, .matching-game, .chart-wrapper, .retro-card').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
