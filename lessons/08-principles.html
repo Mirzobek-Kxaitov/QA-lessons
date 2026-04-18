@@ -26,6 +26,8 @@
   --forest-soft: #E8EFE9;
   --plum: #5B3A7A;
   --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
   --line: #E5DFD2;
   --line-dark: #D0C8B5;
 }
@@ -67,6 +69,8 @@ body {
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.5px;
+  text-decoration: none;
+  color: var(--ink);
 }
 
 .logo span { color: var(--accent); }
@@ -227,8 +231,8 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 40px;
-  margin-bottom: 32px;
+  padding: 36px;
+  margin-bottom: 28px;
   position: relative;
   transition: all 0.3s ease;
 }
@@ -242,26 +246,26 @@ body {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .principle-number {
   font-family: 'Fraunces', serif;
   font-weight: 600;
-  font-size: 56px;
+  font-size: 52px;
   line-height: 1;
   color: var(--accent);
   flex-shrink: 0;
   font-variant-numeric: oldstyle-nums;
 }
 
-.principle-title-wrap { flex: 1; padding-top: 8px; }
+.principle-title-wrap { flex: 1; padding-top: 6px; }
 
 .principle-title {
   font-family: 'Fraunces', serif;
   font-weight: 500;
-  font-size: 26px;
-  line-height: 1.2;
+  font-size: 24px;
+  line-height: 1.25;
   letter-spacing: -0.5px;
   margin-bottom: 6px;
 }
@@ -270,20 +274,21 @@ body {
   font-family: 'Fraunces', serif;
   font-style: italic;
   color: var(--ink-muted);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .principle-content { color: var(--ink-soft); line-height: 1.7; }
 
-.principle-content p { margin-bottom: 16px; }
+.principle-content p { margin-bottom: 14px; }
 
 .principle-content strong { color: var(--ink); font-weight: 600; }
 
+/* === EXAMPLE (O'zbekiston misoli) === */
 .example-box {
   background: var(--gold-soft);
   border-left: 3px solid var(--gold);
   padding: 20px 24px;
-  margin: 20px 0;
+  margin: 18px 0;
   border-radius: 0 8px 8px 0;
 }
 
@@ -297,52 +302,140 @@ body {
   font-weight: 500;
 }
 
+/* === ISTQB NOTE === */
+.istqb-note {
+  background: var(--blue-soft);
+  border-left: 3px solid var(--blue);
+  padding: 14px 20px;
+  margin: 16px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+
+.istqb-note-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--blue);
+  margin-bottom: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.istqb-note-title::before { content: "📚"; font-size: 13px; }
+
+.istqb-note p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+/* === TAKEAWAY === */
 .takeaway-box {
   background: var(--forest-soft);
   border-left: 3px solid var(--forest);
-  padding: 20px 24px;
-  margin: 20px 0;
+  padding: 16px 22px;
+  margin: 16px 0;
   border-radius: 0 8px 8px 0;
+  font-size: 15px;
 }
 
 .takeaway-box-title {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--forest);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-weight: 500;
 }
 
-.takeaway-box ul { padding-left: 20px; }
-.takeaway-box li { margin-bottom: 6px; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
 
-.warning-box {
-  background: var(--accent-soft);
-  border-left: 3px solid var(--accent);
-  padding: 20px 24px;
-  margin: 20px 0;
-  border-radius: 0 8px 8px 0;
+/* === INTERVIEW SECTION === */
+.interview-section {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 60px 0;
 }
 
-.warning-box-title {
+.interview-intro {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.interview-item {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.interview-item:hover { border-color: var(--plum); }
+
+.interview-question {
+  padding: 18px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: background 0.2s ease;
+}
+
+.interview-question:hover { background: var(--plum-soft); }
+
+.interview-q-num {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--accent);
-  margin-bottom: 10px;
-  font-weight: 500;
+  color: var(--plum);
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 30px;
 }
 
-/* === QUIZ === */
-.quiz-card {
-  background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%);
+.interview-toggle {
+  margin-left: auto;
+  color: var(--plum);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+
+.interview-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: var(--plum-soft);
+}
+
+.interview-item.open .interview-answer { max-height: 500px; }
+
+.interview-answer-inner {
+  padding: 20px 22px 22px 66px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  border-top: 1px solid var(--line);
+}
+
+.interview-answer-inner strong { color: var(--plum); }
+
+/* === MATCHING GAME === */
+.matching-game {
+  background: var(--bg-card);
   border: 2px solid var(--plum);
   border-radius: 20px;
   padding: 32px;
-  margin: 32px 0;
+  margin: 40px 0;
 }
 
 .quiz-label {
@@ -357,255 +450,6 @@ body {
   border-radius: 4px;
   margin-bottom: 16px;
   font-weight: 500;
-}
-
-.quiz-question {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  line-height: 1.3;
-  margin-bottom: 24px;
-  font-weight: 500;
-}
-
-.quiz-options { display: flex; flex-direction: column; gap: 10px; }
-
-.quiz-option {
-  background: white;
-  border: 2px solid var(--line);
-  border-radius: 12px;
-  padding: 16px 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
-  font-size: 16px;
-  font-family: inherit;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.quiz-option:hover:not(.disabled) {
-  border-color: var(--plum);
-  background: var(--plum-soft);
-}
-
-.quiz-option.correct {
-  background: var(--forest-soft);
-  border-color: var(--forest);
-  color: var(--forest);
-}
-
-.quiz-option.incorrect {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent-dark);
-}
-
-.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
-
-.quiz-marker {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--line-dark);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.quiz-option.correct .quiz-marker {
-  background: var(--forest);
-  border-color: var(--forest);
-  color: white;
-}
-
-.quiz-option.incorrect .quiz-marker {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
-
-.quiz-feedback {
-  margin-top: 20px;
-  padding: 16px 20px;
-  border-radius: 10px;
-  font-size: 15px;
-  display: none;
-  line-height: 1.55;
-}
-
-.quiz-feedback.show { display: block; }
-
-.quiz-feedback.correct {
-  background: var(--forest-soft);
-  color: var(--forest);
-  border: 1px solid var(--forest);
-}
-
-.quiz-feedback.incorrect {
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-  border: 1px solid var(--accent);
-}
-
-/* === CHART === */
-.chart-wrapper {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 28px;
-  margin: 24px 0;
-}
-
-.chart-title {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-.chart-subtitle { font-size: 14px; color: var(--ink-muted); margin-bottom: 24px; }
-
-/* === TABLE === */
-.table-wrapper {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 24px 0;
-}
-
-table { width: 100%; border-collapse: collapse; font-size: 15px; }
-
-th {
-  background: var(--bg-soft);
-  text-align: left;
-  padding: 14px 18px;
-  font-weight: 600;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--line);
-}
-
-td {
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line);
-  color: var(--ink-soft);
-}
-
-tr:last-child td { border-bottom: none; }
-
-tr:hover td { background: var(--bg-soft); }
-
-/* === PIPELINE === */
-.pipeline {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 32px 24px;
-  margin: 24px 0;
-  overflow-x: auto;
-}
-
-.pipeline-stages {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: min-content;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pipeline-stage {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  min-width: 110px;
-  transition: all 0.2s ease;
-  cursor: default;
-}
-
-.pipeline-stage:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  transform: scale(1.05);
-}
-
-.pipeline-stage.auto {
-  border-color: var(--forest);
-  background: var(--forest-soft);
-  color: var(--forest);
-}
-
-.pipeline-arrow { color: var(--ink-muted); font-size: 18px; }
-
-/* === RETRO FORMATS === */
-.retro-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
-}
-
-.retro-card {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 24px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.retro-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
-}
-
-.retro-card-title {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.retro-card-items { display: flex; flex-direction: column; gap: 8px; }
-
-.retro-item {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--ink-soft);
-}
-
-.retro-item-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-
-/* === MATCHING GAME === */
-.matching-game {
-  background: var(--bg-card);
-  border: 2px solid var(--plum);
-  border-radius: 20px;
-  padding: 32px;
-  margin: 32px 0;
 }
 
 .matching-instruction {
@@ -682,10 +526,7 @@ tr:hover td { background: var(--bg-soft); }
   color: var(--ink-muted);
 }
 
-.match-complete {
-  color: var(--forest);
-  font-weight: 500;
-}
+.match-complete { color: var(--forest); font-weight: 500; }
 
 /* === SUMMARY === */
 .summary-section {
@@ -791,14 +632,6 @@ h3 {
   letter-spacing: -0.3px;
 }
 
-h4 {
-  font-family: 'Fraunces', serif;
-  font-size: 19px;
-  font-weight: 500;
-  margin-top: 24px;
-  margin-bottom: 10px;
-}
-
 p { margin-bottom: 16px; }
 
 .container p, .container li { color: var(--ink-soft); }
@@ -807,26 +640,7 @@ ul, ol { padding-left: 24px; margin-bottom: 16px; }
 
 li { margin-bottom: 8px; color: var(--ink-soft); }
 
-blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 8px 0 8px 20px;
-  margin: 20px 0;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 19px;
-  color: var(--ink);
-}
-
-code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9em;
-  background: var(--bg-soft);
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: var(--accent-dark);
-}
-
-/* === COMPLETION MODAL === */
+/* === COMPLETION BADGE === */
 .completion-badge {
   position: fixed;
   bottom: 30px;
@@ -857,13 +671,15 @@ code {
   .section-title { font-size: 30px; }
   .principle-card { padding: 28px 24px; }
   .principle-number { font-size: 40px; }
-  .principle-title { font-size: 22px; }
+  .principle-title { font-size: 20px; }
   .matching-grid { grid-template-columns: 1fr; }
   .summary-section { padding: 40px 24px; }
   .summary-section h2 { font-size: 32px; }
+  .interview-section { padding: 28px 22px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
 }
 
-/* === ANIMATED FADE-IN === */
+/* === FADE IN === */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -878,7 +694,7 @@ code {
 <!-- HEADER -->
 <header class="header">
   <div class="header-inner">
-    <div class="logo">QA<span>.</span>Academy</div>
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
     <div class="progress-container">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
@@ -891,31 +707,28 @@ code {
 <!-- HERO -->
 <section class="hero">
   <div class="lesson-number">8-dars</div>
-  <h1>Testlashning 7 ta <em>prinsipi</em>, DevOps va retrospektivlar</h1>
-  <p class="hero-subtitle">50 yillik QA tajribasidan tug'ilgan fundamental qoidalar — ular nima uchun muhim va amaliyotda qanday ishlaydi.</p>
+  <h1>Testlashning 7 ta <em>prinsipi</em></h1>
+  <p class="hero-subtitle">50 yillik QA tajribasidan tug'ilgan 7 ta fundamental qoida — ularsiz siz professional testor bo'lolmaysiz. Har biri real misol bilan.</p>
   <div class="meta-pills">
-    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
-    <div class="pill"><span class="pill-dot"></span>ISTQB CTFL v4.0.1</div>
-    <div class="pill"><span class="pill-dot"></span>K2 darajasi</div>
-    <div class="pill"><span class="pill-dot"></span>4 ta interaktiv topshiriq</div>
+    <div class="pill"><span class="pill-dot"></span>60 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Fundamental mavzu</div>
+    <div class="pill"><span class="pill-dot"></span>Intervyuga tayyorlov</div>
   </div>
 </section>
 
-<!-- INTRO -->
 <div class="container">
 
+<!-- INTRO -->
 <section class="section" id="intro">
   <span class="section-label">Kirish</span>
   <h2 class="section-title">Nega bizga prinsiplar kerak?</h2>
   <p class="section-intro">Tasavvur qiling, siz yangi testor bo'lib ishga keldingiz. Sizga dasturiy mahsulot berildi va "tekshir" deyishdi. Qayerdan boshlaysiz? Qanday qilib hamma narsani sinab ko'rasiz? Qancha test yetarli?</p>
-  <p>Aynan shu savollarga javob berish uchun <strong>testlash prinsiplari</strong> yaratilgan. Bu prinsiplar so'nggi 50 yil davomida dasturiy ta'minot muhandisligi tajribasidan kelib chiqqan va har qanday loyihada, har qanday texnologiyada qo'llanadi.</p>
-  <p>Ko'pgina yangi testorlar bu prinsiplarni yodlaydi, lekin ma'nosini tushunmaydi. Natijada ishda xato qaror qabul qilishadi. Bu darsda biz har bir prinsipni <strong>real misol</strong> bilan o'rganamiz.</p>
-</section>
+  <p>Aynan shu savollarga javob berish uchun <strong>7 ta prinsip</strong> yaratilgan. Ular sizga to'g'ri fikrlash usulini beradi — "qayerdan boshlasam?" muammosini yechadi.</p>
 
-<!-- PART 1: PRINCIPLES -->
-<section class="section" id="principles">
-  <span class="section-label">1-qism</span>
-  <h2 class="section-title">Testlashning 7 ta prinsipi</h2>
+  <div class="istqb-note">
+    <div class="istqb-note-title">ISTQB eslatma</div>
+    <p>Bu prinsiplar ISTQB CTFL sertifikat imtihonida so'raladi. Intervyularda ham tez-tez so'ralgan mavzulardan biri. Yodlash emas, tushunish muhim.</p>
+  </div>
 </section>
 
 <!-- PRINCIPLE 1 -->
@@ -928,22 +741,16 @@ code {
     </div>
   </div>
   <div class="principle-content">
-    <p>Bu prinsipni 1969-yilda kompyuter olimi <strong>Edsger Dijkstra</strong> shunday ifodalagan:</p>
-    <blockquote>"Testing can be used to show the presence of bugs, but never to show their absence."</blockquote>
-    <p>Agar siz 100 ta test o'tkazdingiz va 5 ta bug topdingiz — bu 5 ta bug borligini tasdiqlaydi. Lekin qolgan 95 ta test muvaffaqiyatli o'tgani <strong>boshqa buglar yo'qligini anglatmaydi</strong>.</p>
+    <p>Siz 100 ta test o'tkazdingiz va hammasi muvaffaqiyatli o'tdi. Bu <strong>bug yo'q</strong> degani emas — balki <strong>siz sinagan joylarda bug yo'q</strong> degani. Qolgan yo'llarda bug bo'lishi mumkin.</p>
 
     <div class="example-box">
-      <div class="example-box-title">Real misol — Click.uz to'lov tizimi</div>
-      <p style="margin:0">Click to'lov tizimida 1000 ta test o'tkazdik, hammasi muvaffaqiyatli o'tdi. Keyin foydalanuvchi iPhone 15 Pro Max'da Safari orqali kirib, 999,999 so'm miqdorida to'lov qilmoqchi bo'ldi — tizim ishlamay qoldi. Biz bu aniq kombinatsiyani sinab ko'rmagan edik.</p>
+      <div class="example-box-title">Real misol — Click to'lov tizimi</div>
+      <p style="margin:0">Click jamoasi 1000 ta test o'tkazdi, hammasi muvaffaqiyatli. Keyin foydalanuvchi iPhone Safari'dan 999,999 so'm miqdorida to'lov qilmoqchi bo'ldi — tizim ishlamay qoldi. Bu aniq kombinatsiya sinalmagan edi.</p>
     </div>
 
     <div class="takeaway-box">
-      <div class="takeaway-box-title">Testor uchun amaliy xulosa</div>
-      <ul>
-        <li>Hech qachon "bu mahsulotda bug yo'q" demang</li>
-        <li>"100% testlar o'tdi" emas, "100% rejalashtirilgan testlar o'tdi" deb yozing</li>
-        <li>Buyurtmachiga sifat haqida ishonch bering, lekin kafolat bermang</li>
-      </ul>
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>Hech qachon "bu mahsulotda bug yo'q" demang. To'g'risi: "men sinagan joylarda bug topmadim". Bu kichkina farq — lekin professional testor tili.</p>
     </div>
   </div>
 </div>
@@ -958,45 +765,18 @@ code {
     </div>
   </div>
   <div class="principle-content">
-    <p>Matematik hisoblab ko'ramiz. Oddiy login formasi bor:</p>
-    <ul>
-      <li>Login: 20 ta belgigacha (har biri 95 ta mumkin bo'lgan belgi)</li>
-      <li>Parol: 20 ta belgigacha</li>
-    </ul>
-    <p>Umumiy kombinatsiyalar soni: <code>95²⁰ × 95²⁰ ≈ 10⁷⁹</code></p>
-    <p>Agar har bir testni 1 millisekundda o'tkazsak ham, bu testlarni bajarish <strong>Koinot yoshidan ko'p vaqt oladi</strong>.</p>
+    <p>Barcha mumkin bo'lgan kombinatsiyalarni sinab ko'rish imkonsiz. Oddiy login formasi uchun ham minglab, hatto millionlab variantlar mavjud.</p>
 
     <div class="example-box">
-      <div class="example-box-title">Real misol — Uzum Market qidiruv</div>
-      <p style="margin:0">Qidiruv maydoniga foydalanuvchi istalgan matnni kiritishi mumkin: "iPhone", "айфон", bo'sh joylar, emoji, SQL injection urinishlari, 10,000 belgi... Hammasini sinab ko'rish imkonsiz.</p>
+      <div class="example-box-title">Real misol — Uzum qidiruv</div>
+      <p style="margin:0">Uzum Market qidiruv maydoniga foydalanuvchi nima yozishi mumkin? "iPhone", "айфон", bo'sh joylar, emoji, 10,000 belgili matn, SQL injection urinishlari... Hammasini sinab ko'rish imkonsiz.</p>
     </div>
 
     <div class="takeaway-box">
-      <div class="takeaway-box-title">80/20 qoidasi</div>
-      <p style="margin:0">Tajribali testor <strong>20% test</strong> yordamida <strong>80% buglarni</strong> topadi, agar ularni to'g'ri tanlasa. Test texnikalari (14-19 darslar) bunga yordam beradi.</p>
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>"Hamma narsa"ni sinash o'rniga <strong>eng muhim</strong> joylarni tanlab sinang. Buni qanday qilishni 14-19 darslarda (test texnikalari) o'rganamiz.</p>
     </div>
   </div>
-</div>
-
-<!-- INTERACTIVE QUIZ 1 -->
-<div class="quiz-card">
-  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
-  <div class="quiz-question">Menejer sizdan so'radi: "Testing tugadimi? Production'ga chiqaramizmi?" Qaysi javob eng professional?</div>
-  <div class="quiz-options" data-quiz="q1">
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">A</div>
-      <div>Ha, barcha testlar o'tdi, bug yo'q — chiqarishimiz mumkin</div>
-    </button>
-    <button class="quiz-option" data-correct="true">
-      <div class="quiz-marker">B</div>
-      <div>Rejalashtirilgan testlar o'tdi. Qolgan xavflar ro'yxati mana, qaror qaror sizda</div>
-    </button>
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">C</div>
-      <div>Men hamma narsani sinab ko'rdim, mahsulot mukammal</div>
-    </button>
-  </div>
-  <div class="quiz-feedback" data-feedback="q1"></div>
 </div>
 
 <!-- PRINCIPLE 3 -->
@@ -1004,26 +784,23 @@ code {
   <div class="principle-header">
     <div class="principle-number">03</div>
     <div class="principle-title-wrap">
-      <div class="principle-title">Erta testlash vaqt va pulni tejaydi</div>
+      <div class="principle-title">Erta testlash — vaqt va pulni tejaydi</div>
       <div class="principle-original">Early testing saves time and money</div>
     </div>
   </div>
   <div class="principle-content">
-    <p>Dasturlash jarayoni (SDLC) qancha erta bosqichida bug topilsa, uni tuzatish shuncha arzon va tez bo'ladi. Bu <strong>Barri Bem tadqiqoti</strong> (1981) bilan tasdiqlangan:</p>
-
-    <div class="chart-wrapper">
-      <div class="chart-title">Bug tuzatish xarajati bosqichlar bo'yicha</div>
-      <div class="chart-subtitle">Nisbiy xarajat — talablar bosqichida topilgan bug = 1x</div>
-      <canvas id="costChart" height="240"></canvas>
-    </div>
+    <p>Bug qanchalik kech topilsa, shuncha qimmat bo'ladi. Talablarni o'qiyotganda topilgan muammo — 1 daqiqada tuzatiladi. Production'da topilsa — haftalab vaqt va millionlab zarar.</p>
 
     <div class="example-box">
       <div class="example-box-title">Real misol — Bank mobil ilova</div>
-      <p>Talablarda yozilgan edi: <em>"Foydalanuvchi pul o'tkazmasi qila olishi kerak"</em></p>
-      <p style="margin-bottom:0">Agar testor <strong>talablarni o'qish bosqichida</strong> "Maksimal summa qancha?", "Kunlik limit bormi?" deb so'rasa — 30 daqiqada yechiladi. Agar production'da foydalanuvchi 50 million so'mlik o'tkazma qilib, sistema qulagandan keyin so'rasa — kompaniyaga millionlab zarar.</p>
+      <p>Talablar hujjatida yozilgan: <em>"Foydalanuvchi pul o'tkaza oladi"</em>.</p>
+      <p style="margin-bottom:0">Agar testor <strong>shu paytda</strong> so'rasa: "Maksimal summa qancha? Limit bormi?" — muammo 10 daqiqada hal bo'ladi. Agar production'da foydalanuvchi 100 million so'm o'tkazma qilishga urinsa va tizim qulasa — kompaniyaga millionlab zarar.</p>
     </div>
 
-    <p>Bu prinsip <strong>Shift Left</strong> falsafasining asosidir (7-darsda ko'rdik). "Chapga siljitish" — testlash faoliyatini SDLC'ning oldingi bosqichlariga ko'chirish.</p>
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>Testorlik faqat tugmani bosish emas. Talablarni o'qiyotganda savol berish — allaqachon testlash. Bu <strong>Shift Left</strong> yondashuvi (7-darsda ko'rgan edik).</p>
+    </div>
   </div>
 </div>
 
@@ -1037,30 +814,16 @@ code {
     </div>
   </div>
   <div class="principle-content">
-    <p>Aksariyat buglar kam sonli modullarda to'planadi. Bu <strong>Pareto prinsipi</strong>ning (80/20 qoidasi) testlashdagi ko'rinishi.</p>
-
-    <div class="chart-wrapper">
-      <div class="chart-title">E-commerce loyihadagi buglar taqsimoti</div>
-      <div class="chart-subtitle">1000 ta bugning 72%'i atigi 2 ta modulda — To'lov va Yetkazib berish</div>
-      <canvas id="clusterChart" height="280"></canvas>
-    </div>
+    <p>Buglar tasodifiy tarqalmaydi. Ular ma'lum "xavfli" joylarda to'planadi. Bu <strong>80/20 qoidasi</strong> — 80% buglar 20% modullarda bo'ladi.</p>
 
     <div class="example-box">
-      <div class="example-box-title">Nega shunday?</div>
-      <ul style="margin:0">
-        <li>Ba'zi modullar murakkabroq (ko'proq mantiq, integratsiyalar)</li>
-        <li>Tashqi tizimlar bilan ishlovchi modullar xavfli (API, to'lov tizimlari)</li>
-        <li>Tez-tez o'zgartiriladigan modullarda ko'proq regression</li>
-      </ul>
+      <div class="example-box-title">Real misol — onlayn-do'kon</div>
+      <p style="margin:0">Bir O'zbek onlayn-do'konida 10 ta modul bor edi. 1000 ta bugning 720 tasi faqat ikkitasida: <strong>to'lov</strong> va <strong>yetkazib berish</strong>. Sababi — bu modullar tashqi tizimlarga (bank, taxi API) bog'langan va murakkab.</p>
     </div>
 
     <div class="takeaway-box">
       <div class="takeaway-box-title">Amaliy xulosa</div>
-      <ul>
-        <li>Bug ko'p topilgan joyda <strong>yana</strong> qidiring — u yerda ko'proq bor</li>
-        <li>Bug tarixi (bug history) — testor uchun oltin ma'lumot</li>
-        <li>Risk-based testingda (23-24 darslar) bu prinsip asosiy</li>
-      </ul>
+      <p>Agar bir joyda bug ko'p topilayotgan bo'lsa — <strong>yana</strong> qidiring. Bu yerda hali ko'p bug bor. Yangi dasturchi kodi va murakkab integratsiyalarga alohida e'tibor bering.</p>
     </div>
   </div>
 </div>
@@ -1070,23 +833,21 @@ code {
   <div class="principle-header">
     <div class="principle-number">05</div>
     <div class="principle-title-wrap">
-      <div class="principle-title">Testlar eskiradi (Pestitsid paradoksi)</div>
+      <div class="principle-title">Testlar eskiradi</div>
       <div class="principle-original">Tests wear out — Pesticide Paradox</div>
     </div>
   </div>
   <div class="principle-content">
-    <p>Bir xil testlar qayta-qayta takrorlanganda, <strong>yangi buglarni topishda samarasizlashadi</strong>.</p>
-    <p>Qishloq xo'jaligidan analogiya: agar dehqon bir xil pestitsidni doimiy ishlatsa, zararkunandalar unga moslashib, immunitet hosil qiladi. Pestitsid endi ishlamaydi. Shuning uchun pestitsidlar almashtirib turilishi kerak.</p>
+    <p>Bir xil testlarni qayta-qayta ishlatsangiz — ular <strong>yangi</strong> buglarni topmaydi. Dehqonchilikda bir xil pestitsidni qo'llash zararkunandalarga moslashish imkonini berishi kabi.</p>
 
     <div class="example-box">
-      <div class="example-box-title">Real misol — 2 yillik bir xil testlar</div>
-      <p>IT kompaniyada 2 yil davomida 500 ta regression test ishlatilgan. Har release'da barcha testlar yashil. Lekin foydalanuvchilar shikoyat qilmoqda: "Ilova sekin", "Kechqurun yopiladi", "Akkauntga kira olmayman".</p>
-      <p style="margin:0">Sababi: testlar faqat funksional narsalarni tekshirardi. Performance, reliability, concurrency muammolarni ko'rmas edi. <strong>Testlar eskirgan</strong> — dastur rivojlangan, testlar esa bir xil qolgan.</p>
+      <div class="example-box-title">Real misol — 2 yillik testlar</div>
+      <p style="margin:0">Bir IT kompaniyada 2 yil davomida 500 ta bir xil test ishlatilardi. Hammasi yashil. Lekin foydalanuvchilar shikoyat qilardi: "Ilova sekin", "Kechqurun yopiladi". Testlar <strong>funksional</strong> narsalarni tekshirardi, lekin tezlik va barqarorlikni emas.</p>
     </div>
 
-    <div class="warning-box">
-      <div class="warning-box-title">Istisno</div>
-      <p style="margin:0">Regression testingda bir xil testlar <strong>maqsadli</strong>. Bu prinsip <em>yangi buglarni topish</em> kontekstida tushuniladi, regression testing kontekstida emas.</p>
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>Test case'laringizni "tirik hujjat" deb biling. Har 3-6 oyda tahlil qiling: haligacha kerakli narsalarni tekshiryaptimi? Yangi senariylar qo'shing.</p>
     </div>
   </div>
 </div>
@@ -1101,32 +862,16 @@ code {
     </div>
   </div>
   <div class="principle-content">
-    <p>Bir xil usulda hamma narsani testlash mumkin emas. Har bir loyiha, mahsulot va sohada <strong>o'z yondashuvi</strong> kerak.</p>
+    <p>Bank ilovasini va o'yinni bir xil usulda test qilib bo'lmaydi. Har loyihaning o'z yondashuvi kerak.</p>
 
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>Mahsulot</th><th>Asosiy xavf</th><th>Yondashuv</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Bank tizimi</strong></td><td>Moliyaviy yo'qotish</td><td>Formal, ko'p hujjat, security, audit</td></tr>
-          <tr><td><strong>Ijtimoiy tarmoq</strong></td><td>Foydalanuvchi ketishi</td><td>Tezkor, exploratory, A/B testing</td></tr>
-          <tr><td><strong>Tibbiy qurilma</strong></td><td>Inson hayoti</td><td>O'ta qat'iy, 100% compliance</td></tr>
-        </tbody>
-      </table>
+    <div class="example-box">
+      <div class="example-box-title">Real misol — uch xil mahsulot</div>
+      <p style="margin:0"><strong>Payme</strong> — har tranzaksiya 3 xil tekshiruvdan o'tadi, hujjatlash to'liq. <strong>Mobil o'yin</strong> — tez release, exploratory testing ko'p. <strong>Tibbiy qurilma</strong> — 100% talablarga muvofiqlik, sertifikatlash shart.</p>
     </div>
 
-    <p>Agar bank tizimini ijtimoiy tarmoq kabi test qilsangiz — pul yo'qotasiz. Agar ijtimoiy tarmoqni bank kabi test qilsangiz — raqobatda yutqazasiz.</p>
-
     <div class="takeaway-box">
-      <div class="takeaway-box-title">Kontekstni belgilovchi omillar</div>
-      <ul>
-        <li>Biznes sohasi (bank, o'yin, tibbiyot)</li>
-        <li>Mahsulot turi (veb, mobil, embedded)</li>
-        <li>Jamoa tajribasi va o'lcham</li>
-        <li>Qonun-qoidalar (GDPR, PCI DSS)</li>
-        <li>SDLC modeli (Waterfall, Agile, DevOps)</li>
-      </ul>
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>"Eng yaxshi usul" yo'q. Sizning loyihangiz uchun nima yaxshi ekanini tushuning. Internetda o'qigan narsalarni ko'r-ko'rona qo'llamang.</p>
     </div>
   </div>
 </div>
@@ -1136,27 +881,21 @@ code {
   <div class="principle-header">
     <div class="principle-number">07</div>
     <div class="principle-title-wrap">
-      <div class="principle-title">Buglar yo'qligi — yanglish xulosa</div>
+      <div class="principle-title">Bug yo'qligi — yanglish xulosa</div>
       <div class="principle-original">Absence-of-defects fallacy</div>
     </div>
   </div>
   <div class="principle-content">
-    <p>Hatto agar siz dasturni mukammal test qilib, hamma buglarni tuzatgan bo'lsangiz ham, bu dastur <strong>foydalanuvchilarga kerak</strong> ekanini anglatmaydi.</p>
-
-    <p>Testlash ikki xil bo'ladi:</p>
-    <ul>
-      <li><strong>Verification (tekshirish)</strong> — "Dastur to'g'ri ishlayaptimi?" (talablarga muvofiqmi?)</li>
-      <li><strong>Validation (tasdiqlash)</strong> — "Dastur to'g'ri narsa'mi?" (foydalanuvchiga kerakmi?)</li>
-    </ul>
+    <p>Siz barcha bug'larni tuzatdingiz, testlar o'tdi — lekin bu dastur <strong>foydalanuvchiga kerak</strong> ekanini bildirmaydi. Mukammal ishlaydigan, lekin kerak bo'lmagan mahsulot — bekor urinish.</p>
 
     <div class="example-box">
-      <div class="example-box-title">Mashhur misol — Microsoft Clippy</div>
-      <p style="margin:0">Microsoft Office'da "Clippy" yordamchi bor edi. Jamoalar uni yaratgan, testlar yozgan, buglarni tuzatgan. Texnik jihatdan mukammal ishlardi. Lekin foydalanuvchilar uni <strong>yomon ko'rardi</strong>. Microsoft 2001-yilda Clippy'ni olib tashladi. Dastur <strong>ishladi</strong>, lekin <strong>kerak emas edi</strong>.</p>
+      <div class="example-box-title">Real misol — davlat tizimi</div>
+      <p style="margin:0">Bir davlat idorasi yangi elektron tizim yaratdi. Barcha talablar bajarildi, 0 ta critical bug, yuklamaga bardoshli. Lekin xodimlar foydalanmadi — interfeys noqulay, ish jarayoniga mos kelmaydi edi.</p>
     </div>
 
-    <div class="warning-box">
-      <div class="warning-box-title">Muhim</div>
-      <p style="margin:0">Testing ≠ Sifat kafolati. Testlash — bu faqat sifat <strong>nazorati</strong> (QC). Haqiqiy sifat <strong>kafolati</strong> (QA) — butun SDLC bo'ylab jarayonlarni to'g'ri yo'lga qo'yish.</p>
+    <div class="takeaway-box">
+      <div class="takeaway-box-title">Amaliy xulosa</div>
+      <p>"Talablarga muvofiqmi?" dan tashqari, "foydalanuvchiga kerakmi?" deb ham so'rang. Faqat texnik sifat emas — real foydalanuvchi tajribasi ham muhim.</p>
     </div>
   </div>
 </div>
@@ -1171,266 +910,165 @@ code {
     <div class="matching-column">
       <h4>Vaziyat</h4>
       <div class="match-item" data-side="left" data-pair="p1">
-        "500 ta testdan hammasi o'tdi, bu mahsulot mukammal" — menejer
+        Menejer: "500 ta testdan hammasi o'tdi, bu mahsulot mukammal"
       </div>
       <div class="match-item" data-side="left" data-pair="p4">
-        "Har safar yangi funksiya chiqaramiz, xuddi shu modulda bug"
+        "Har yangi funksiyada xuddi shu modulda bug chiqadi"
       </div>
       <div class="match-item" data-side="left" data-pair="p5">
-        "Biz 5 yildan beri bir xil test case'larni ishlatamiz"
+        "Biz 2 yildan beri bir xil test case'larni ishlatamiz"
       </div>
       <div class="match-item" data-side="left" data-pair="p6">
-        "Bank ilovasini ijtimoiy tarmoq kabi test qildim"
+        "Bank ilovasini o'yin kabi tez test qildim"
       </div>
       <div class="match-item" data-side="left" data-pair="p7">
-        "Dastur mukammal ishlaydi, lekin foydalanuvchilar shikoyat qilmoqda"
+        "Dastur mukammal ishlaydi, lekin foydalanuvchilar ishlatmayapti"
       </div>
     </div>
     <div class="matching-column">
       <h4>Prinsip</h4>
       <div class="match-item" data-side="right" data-pair="p6">
-        Testing is context dependent
+        6 · Kontekstga bog'liq
       </div>
       <div class="match-item" data-side="right" data-pair="p1">
-        Testing shows presence, not absence
+        1 · Testlar bug borligini ko'rsatadi
       </div>
       <div class="match-item" data-side="right" data-pair="p7">
-        Absence-of-defects fallacy
+        7 · Bug yo'qligi — yanglish xulosa
       </div>
       <div class="match-item" data-side="right" data-pair="p4">
-        Defects cluster together
+        4 · Buglar klasterlarda
       </div>
       <div class="match-item" data-side="right" data-pair="p5">
-        Tests wear out (Pesticide paradox)
+        5 · Testlar eskiradi
       </div>
     </div>
   </div>
   <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
 </div>
 
-<!-- PART 2: DEVOPS -->
-<section class="section" id="devops">
-  <span class="section-label">2-qism</span>
-  <h2 class="section-title">DevOps va Testing</h2>
-  <p class="section-intro"><strong>DevOps</strong> (Development + Operations) — bu tashkiliy yondashuv bo'lib, dasturlash (shu jumladan testlash) va operatsion jamoalarni birlashtirib, umumiy maqsadlarga erishish uchun mo'ljallangan.</p>
+<!-- INTERVIEW SECTION -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Bu savollar O'zbekistondagi IT kompaniyalarda (Click, Uzum, EPAM, Exadel) QA testor lavozimiga intervyularda tez-tez so'raladi. Har biriga javob tayyorlang — suhbat paytida ishonchli gapirasiz.</p>
 
-  <h3>DevOps pipeline — avtomatlashtirilgan yetkazib berish</h3>
-  <p>DevOps'ning yuragi — bu <strong>pipeline</strong>. Dasturchi kod yozadi, u avtomatik tarzda quyidagi bosqichlardan o'tadi:</p>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — tayyor javob va maslahatni ko'rasiz.</p>
 
-  <div class="pipeline">
-    <div class="pipeline-stages">
-      <div class="pipeline-stage">Kod yozish</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Build</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Unit testlar</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Statik tahlil</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Integration testlar</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Deploy to Test</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage">UAT</div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-stage auto">Production</div>
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Testlashning qanday prinsiplarini bilasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob shabloni:</strong> "Testlashning 7 ta fundamental prinsipi mavjud. Ular ISTQB tomonidan belgilangan va barcha QA testorlar ular haqida bilishi kerak. Bular: [sanab bering]..."</p>
+          <p><strong>Maslahat:</strong> Hamma 7 tasini yod ayting. Keyin intervyu oluvchi so'raydi: "Qaysi biri eng muhim?" — bu yerda o'z fikringizni aytish mumkin. Ko'pchilik "Early testing" va "Exhaustive testing impossible" ni tanlaydi.</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <p style="text-align:center;font-size:13px;color:var(--ink-muted);margin-top:-10px"><span style="color:var(--forest)">●</span> Yashil bosqichlar — avtomatik</p>
 
-  <h3>DevOps'ning asosiy tushunchalari</h3>
-
-  <div class="retro-grid">
-    <div class="retro-card">
-      <div class="retro-card-title">CI — Continuous Integration</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Dasturchilar kodni kuniga bir necha marta repozitoriyga yuklaydi. Har yuklovda avtomatik build + testlar ishga tushadi.</p>
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>"Testing shows presence, not absence of defects" nimani anglatadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Biz testlar orqali bug'lar borligini isbotlashimiz mumkin, lekin ularning yo'qligini isbotlay olmaymiz. Hatto 1000 ta test muvaffaqiyatli o'tsa ham, biz sinalmagan senariylarda bug bo'lishi mumkin."</p>
+          <p><strong>Qo'shimcha:</strong> Misol keltiring — "Masalan, Click'da 1000 ta test o'tgan, lekin iPhone Safari'da aniq kombinatsiya sinalmagani uchun bug chiqqan."</p>
+        </div>
+      </div>
     </div>
-    <div class="retro-card">
-      <div class="retro-card-title">CD — Continuous Delivery</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Kod doim release qilishga tayyor. Bir tugma bosish bilan production'ga chiqadi.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Nega to'liq testlash imkonsiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Barcha mumkin bo'lgan input kombinatsiyalarini sinab ko'rish matematik jihatdan imkonsiz. Oddiy login formasi uchun ham millionlab variantlar bor. Shuning uchun biz <strong>risk-based</strong> va <strong>test texnikalari</strong>dan foydalanamiz — eng muhim stsenariylarni tanlab sinaymiz."</p>
+          <p><strong>Professional qo'shimcha:</strong> "Misol uchun, Equivalence Partitioning va Boundary Value Analysis texnikalari yordamida biz 1000 ta testni 10 tagacha kamaytirishimiz mumkin — va shu bilan ham 90% bug'larni topamiz."</p>
+        </div>
+      </div>
     </div>
-    <div class="retro-card">
-      <div class="retro-card-title">Continuous Deployment</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Avtomatik — inson aralashuvi kerak emas. Testlardan o'tsa, o'zi production'ga chiqadi.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>"Early testing" nima va u nega muhim?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Early testing — bu testlash faoliyatini SDLC ning erta bosqichlarida boshlash. Bu <strong>Shift Left</strong> yondashuvining asosidir."</p>
+          <p><strong>Asoslash:</strong> "Bug'ni erta topish qancha arzon. Talablar hujjatida topilgan bug — bir necha daqiqada tuzatiladi. Production'da topilgan bug — minglab dollar va reputatsiya yo'qotish."</p>
+          <p><strong>Amaliy misol:</strong> "Men testor sifatida faqat dastur tayyor bo'lgandan keyin kutmay, talablarni o'qish bosqichida ham ishtirok etaman va savollar beraman."</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <h3>Foydalari va risklari</h3>
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>"Defects cluster together" degani nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bug'lar tasodifiy tarqalmaydi. Ular 'xavfli' joylarda to'planadi — odatda 80% bug'lar 20% modullarda bo'ladi (Pareto prinsipi)."</p>
+          <p><strong>Qayerda xavfli joylar?</strong></p>
+          <ul>
+            <li>Yangi funksiyalar</li>
+            <li>Tashqi API bilan integratsiya (to'lov, taxi, xarita)</li>
+            <li>Murakkab biznes logika</li>
+            <li>Tez-tez o'zgartirilgan modullar</li>
+          </ul>
+          <p><strong>Xulosa:</strong> "Agar men bir modulda ko'p bug topsam, o'sha yerda <strong>yana</strong> qidirma davom etaman — bu yerda hali ko'p bo'lishi mumkin."</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr><th style="color:var(--forest)">✓ Foydalari</th><th style="color:var(--accent)">⚠ Risklari</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Tezkor feedback — 5 daqiqada</td><td>Pipeline qurish vaqt oladi</td></tr>
-        <tr><td>Shift Left kuchayadi</td><td>CI/CD asboblari saqlash kerak</td></tr>
-        <tr><td>Barqaror test muhitlari</td><td>Avtomatlashtirish mutaxassislari kerak</td></tr>
-        <tr><td>Non-functional sifat ko'rinadi</td><td>Madaniy o'zgarish qiyin</td></tr>
-        <tr><td>Regression xavfi minimal</td><td>Boshlang'ich investitsiya katta</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>"Pesticide paradox" deb nima aytiladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Agar bir xil testlarni qayta-qayta ishlatsangiz, ular yangi bug'larni topmaydi. Dehqonchilikda bir xil pestitsid zararkunandalarga moslashish imkonini berishi kabi."</p>
+          <p><strong>Yechim:</strong> "Test case'larni muntazam yangilab turish, yangi senariylar qo'shish, boshqa texnikalardan foydalanish."</p>
+          <p><strong>Muhim eslatma:</strong> "Lekin <strong>regression testing</strong> uchun bir xil testlar — bu maqsadli va foydali. Chunki regression testning maqsadi — eski funksionallik ishlashda davom etayotganini tasdiqlash."</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="example-box">
-    <div class="example-box-title">Real misol — Uzcard DevOps'ga o'tish</div>
-    <p><strong>2020 (DevOps'siz):</strong> Release har 3 oyda, 2 hafta downtime, 50 kishilik testing jamoasi, production'da critical buglar</p>
-    <p style="margin:0"><strong>2023 (DevOps):</strong> Release har hafta (ba'zan har kuni), downtime — daqiqalar, 15 kishilik jamoa + 10,000+ avtomatik test, critical bug'lar deyarli yo'q</p>
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>"Absence of defects fallacy" qanday tushunasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bug'larning yo'qligi mahsulot muvaffaqiyatini kafolatlamaydi. Mukammal ishlaydigan, lekin foydalanuvchiga kerak bo'lmagan mahsulot — muvaffaqiyatsizlikdir."</p>
+          <p><strong>Verification vs Validation:</strong></p>
+          <ul>
+            <li><strong>Verification</strong> — "Dastur to'g'ri ishlayaptimi?" (talablarga muvofiqmi?)</li>
+            <li><strong>Validation</strong> — "Dastur to'g'ri narsa'mi?" (foydalanuvchiga kerakmi?)</li>
+          </ul>
+          <p><strong>Xulosa:</strong> "Testor faqat texnik buglarni emas, foydalanuvchi tajribasini ham kuzatishi kerak."</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- QUIZ 2 -->
-<div class="quiz-card">
-  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
-  <div class="quiz-question">Startup kompaniyasi DevOps'ga o'tmoqchi. Testor sifatida sizning roli qanday o'zgaradi?</div>
-  <div class="quiz-options" data-quiz="q2">
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">A</div>
-      <div>Men endi kerak emasman — hamma narsa avtomatlashtirilgan</div>
-    </button>
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">B</div>
-      <div>Men faqat Jenkins pipeline sozlayman, qo'lda testlash to'xtaydi</div>
-    </button>
-    <button class="quiz-option" data-correct="true">
-      <div class="quiz-marker">C</div>
-      <div>Dasturchilar bilan testlar yozishda hamkorlik, exploratory testing, pipeline'ga testlar integratsiyasi, sifat strategiyasi</div>
-    </button>
-  </div>
-  <div class="quiz-feedback" data-feedback="q2"></div>
-</div>
-
-<!-- PART 3: RETROSPECTIVES -->
-<section class="section" id="retro">
-  <span class="section-label">3-qism</span>
-  <h2 class="section-title">Retrospektivlar va jarayonni takomillashtirish</h2>
-  <p class="section-intro"><strong>Retrospektiv</strong> (lotincha <em>retrospicere</em> — "orqaga qarash") — bu jamoa tomonidan o'tkazilgan ish bosqichining tahlili bo'lib, unda jamoa o'rganilgan saboqlar va takomillashtirish imkoniyatlari haqida fikr yuritadi.</p>
-
-  <h3>3 ta asosiy savol</h3>
-  <p>Har qanday retrospektivda 3 savolga javob topiladi:</p>
-
-  <div class="retro-grid">
-    <div class="retro-card" style="border-color:var(--forest)">
-      <div class="retro-card-title" style="color:var(--forest)">✓ Nima yaxshi ketdi?</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Saqlab qolinadigan amaliyotlarni aniqlash</p>
-    </div>
-    <div class="retro-card" style="border-color:var(--accent)">
-      <div class="retro-card-title" style="color:var(--accent)">✗ Nima yaxshi ketmadi?</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Muammolarni ochiq aytish</p>
-    </div>
-    <div class="retro-card" style="border-color:var(--gold)">
-      <div class="retro-card-title" style="color:var(--gold)">→ Qanday yaxshilaymiz?</div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:0">Konkret harakatlar rejasi</p>
-    </div>
-  </div>
-
-  <h3>4 ta mashhur retrospektiv formati</h3>
-
-  <div class="retro-grid">
-    <div class="retro-card">
-      <div class="retro-card-title">Start–Stop–Continue</div>
-      <div class="retro-card-items">
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--forest)"></div><div><strong>Start:</strong> Nimani boshlash kerak?</div></div>
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--accent)"></div><div><strong>Stop:</strong> Nimani to'xtatish kerak?</div></div>
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--gold)"></div><div><strong>Continue:</strong> Davom ettirish?</div></div>
-      </div>
-    </div>
-
-    <div class="retro-card">
-      <div class="retro-card-title">Mad–Sad–Glad</div>
-      <div class="retro-card-items">
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--accent)"></div><div><strong>Mad:</strong> Nima g'azab keltirdi?</div></div>
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--plum)"></div><div><strong>Sad:</strong> Nima tushkun qildi?</div></div>
-        <div class="retro-item"><div class="retro-item-dot" style="background:var(--forest)"></div><div><strong>Glad:</strong> Nima xursand qildi?</div></div>
-      </div>
-    </div>
-
-    <div class="retro-card">
-      <div class="retro-card-title">4 L's</div>
-      <div class="retro-card-items">
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Liked:</strong> Nima yoqdi?</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Learned:</strong> Nima o'rgandim?</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Lacked:</strong> Nima yetishmadi?</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Longed for:</strong> Nima xohlardim?</div></div>
-      </div>
-    </div>
-
-    <div class="retro-card">
-      <div class="retro-card-title">Sailboat (yelkanli kema)</div>
-      <div class="retro-card-items">
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Shamol:</strong> Oldinga itaradi</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Langar:</strong> To'xtatib qo'yadi</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Qoya:</strong> Xavflar</div></div>
-        <div class="retro-item"><div class="retro-item-dot"></div><div><strong>Orol:</strong> Maqsadimiz</div></div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Samarali retrospektiv sirlari</h3>
-
-  <div class="takeaway-box">
-    <div class="takeaway-box-title">✓ To'g'ri amaliyotlar</div>
-    <ul>
-      <li>Hamma o'z fikrini bemalol aytishi uchun <strong>xavfsiz muhit</strong> yarating</li>
-      <li><strong>Aybsizlik qoidasi</strong> (blameless) — shaxslarni emas, jarayonlarni muhokama qiling</li>
-      <li>Har retrospektivdan <strong>3 ta konkret harakat</strong> chiqsin</li>
-      <li>Oldingi harakatlarni <strong>tekshiring</strong></li>
-      <li><strong>Time-box</strong> qo'ying (45-90 daqiqa)</li>
-    </ul>
-  </div>
-
-  <div class="warning-box">
-    <div class="warning-box-title">✗ Qilmaslik kerak</div>
-    <ul style="margin:0">
-      <li>Shaxsiy ayblovlar ("Siz buni qildingiz!")</li>
-      <li>Faqat shikoyatlar — yechim yo'q</li>
-      <li>Boshliq huzurida — xodimlar ochiq gapirmaydi</li>
-      <li>Harakat rejasisiz tugallash</li>
-    </ul>
-  </div>
-</section>
-
-<!-- QUIZ 3 -->
-<div class="quiz-card">
-  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
-  <div class="quiz-question">Retrospektivda jamoa "Testlar sprint oxiriga qolib ketyapti" deb shikoyat qildi. Qaysi javob eng yaxshi harakat rejasi?</div>
-  <div class="quiz-options" data-quiz="q3">
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">A</div>
-      <div>Testorlar kechgacha ishlashi kerak, sprint vaqtida ulgurish uchun</div>
-    </button>
-    <button class="quiz-option" data-correct="true">
-      <div class="quiz-marker">B</div>
-      <div>Shift Left qo'llash, Definition of Done'ga "testlar tugallangan" shartini qo'shish, pair testing</div>
-    </button>
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">C</div>
-      <div>Dasturchilarni ayblash, ular kechikyapti deb menejerga shikoyat qilish</div>
-    </button>
-  </div>
-  <div class="quiz-feedback" data-feedback="q3"></div>
-</div>
-
-<!-- FINAL COMPREHENSIVE QUIZ -->
-<div class="quiz-card" style="border-color:var(--gold);background:linear-gradient(135deg, var(--gold-soft) 0%, var(--bg-card) 100%)">
-  <div class="quiz-label" style="color:var(--gold);background:white">🏆 Yakuniy test</div>
-  <div class="quiz-question">Siz bank ilovasi uchun testor. Dasturchi yangi funksiya qo'shdi — "Tezkor o'tkazma" 500,000 so'mgacha. Qaysi yondashuv eng to'g'ri?</div>
-  <div class="quiz-options" data-quiz="q4">
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">A</div>
-      <div>Faqat happy path test — 100,000 so'm o'tkazma qilib ko'raman</div>
-    </button>
-    <button class="quiz-option" data-correct="false">
-      <div class="quiz-marker">B</div>
-      <div>500,000 dan ortiq barcha sonlarni ketma-ket sinab ko'raman (exhaustive)</div>
-    </button>
-    <button class="quiz-option" data-correct="true">
-      <div class="quiz-marker">C</div>
-      <div>Boundary values (0, 1, 499999, 500000, 500001), invalid inputlar, security (SQL injection), concurrency, context (bank — o'ta muhim)</div>
-    </button>
-  </div>
-  <div class="quiz-feedback" data-feedback="q4"></div>
-</div>
 
 </div><!-- /container -->
 
@@ -1438,23 +1076,23 @@ code {
 <div class="container">
 <div class="summary-section">
   <span class="section-label">Yakuniy</span>
-  <h2>3 ta muhim fikr</h2>
-  <p style="opacity:0.8;max-width:500px;margin:0 auto">Darsingizdan olib ketadigan eng asosiy g'oyalar</p>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Ushbu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
   <div class="summary-points">
     <div class="summary-point">
       <div class="summary-point-num">01</div>
-      <div class="summary-point-title">Prinsiplar — qonun emas, maslahat</div>
-      <div class="summary-point-text">Ular sizga to'g'ri fikrlash uslubini beradi. Yodlab qolmang — tushuning.</div>
+      <div class="summary-point-title">Prinsiplar — qoida emas, maslahat</div>
+      <div class="summary-point-text">Ular sizga to'g'ri fikrlash tarzini beradi. Yodlab qolmang — har birining ma'nosini tushuning.</div>
     </div>
     <div class="summary-point">
       <div class="summary-point-num">02</div>
-      <div class="summary-point-title">DevOps — texnologiya emas, madaniyat</div>
-      <div class="summary-point-text">Jenkins o'rnatish DevOps emas. Jamoalar birgalikda ishlashga o'tishi — DevOps.</div>
+      <div class="summary-point-title">Kontekst hamma narsa</div>
+      <div class="summary-point-text">"Eng yaxshi usul" yo'q. Sizning loyihangizga nima yaxshi ekanini tushuning va moslashing.</div>
     </div>
     <div class="summary-point">
       <div class="summary-point-num">03</div>
-      <div class="summary-point-title">Retrospektiv — vaqt tejash</div>
-      <div class="summary-point-text">Har retrospektiv — keyingi loyihangizda yaxshilanish imkoniyati.</div>
+      <div class="summary-point-title">Real ishda qo'llang</div>
+      <div class="summary-point-text">Bu prinsiplar akademik nazariya emas. Har kuni ishda ular asosida qaror qabul qilasiz.</div>
     </div>
   </div>
 </div>
@@ -1462,11 +1100,11 @@ code {
 
 <!-- NAV FOOTER -->
 <div class="nav-footer">
-  <a href="#" class="nav-btn">
+  <a href="07-bdd-shift-left.html" class="nav-btn">
     <div class="nav-btn-label">← Oldingi dars</div>
     <div>7-dars · BDD va Shift Left</div>
   </a>
-  <a href="#" class="nav-btn nav-btn-next">
+  <a href="09-test-levels.html" class="nav-btn nav-btn-next">
     <div class="nav-btn-label">Keyingi dars →</div>
     <div>9-dars · Test darajalari</div>
   </a>
@@ -1478,13 +1116,9 @@ code {
   <span>Darsni muvaffaqiyatli tugatdingiz!</span>
 </div>
 
-<!-- Chart.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-
 <script>
-// === PROGRESS TRACKING ===
 let completedActivities = new Set();
-const TOTAL_ACTIVITIES = 9; // 4 quizzes + 5 matching pairs
+const TOTAL_ACTIVITIES = 5;
 
 function updateProgress() {
   const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
@@ -1497,54 +1131,6 @@ function updateProgress() {
     setTimeout(() => badge.classList.remove('show'), 5000);
   }
 }
-
-// === QUIZ LOGIC ===
-const quizFeedback = {
-  q1: {
-    correct: '<strong>To\'g\'ri!</strong> Bu Prinsip 1 — Testing shows presence, not absence. Professional testor hech qachon "bug yo\'q" demaydi. To\'g\'ri yondashuv: rejalashtirilgan testlar natijalarini va qolgan xavflarni aniq ko\'rsatish.',
-    incorrect: 'Bu javob xavfli. Prinsip 1 (Testing shows presence, not absence) buni taqiqlaydi. Professional testor hech qachon "bug yo\'q" yoki "mukammal" degan gaplarni aytmaydi.'
-  },
-  q2: {
-    correct: '<strong>To\'g\'ri!</strong> DevOps testorni almashtirmaydi — uning rolini o\'zgartiradi. Avtomatlashtirish + inson tajribasi birgalikda kuchli. Whole Team Approach va exploratory testing muhim bo\'lib qoladi.',
-    incorrect: 'Noto\'g\'ri. DevOps testorni almashtirmaydi. Avtomatlashtirish qo\'lda testlashning bir qismini oladi, lekin exploratory testing, sifat strategiyasi va foydalanuvchi nuqtai nazaridan testlash baribir kerak.'
-  },
-  q3: {
-    correct: '<strong>A\'lo!</strong> Bu haqiqiy Shift Left yondashuvi. Muammoni erta topish — prinsip 3. Shift Left + pair testing + DoD — professional yechim.',
-    incorrect: 'Bu yondashuv muammoni hal qilmaydi, faqat belgilarni yashiradi. Retrospektivda shaxslarni ayblash yoki faqat ish vaqtini uzaytirish — yomon yechim. Jarayonni o\'zgartirish kerak.'
-  },
-  q4: {
-    correct: '<strong>Ajoyib!</strong> Bu yondashuv bir nechta prinsiplarni birlashtiradi: Boundary Value Analysis (test texnikasi), kontekst (bank = yuqori xavf), exhaustive testing imkonsiz (lekin muhim stsenariylar tanlangan), security testing (bank uchun majburiy).',
-    incorrect: 'Bank ilovasida happy path yetarli emas — bu yuqori xavfli kontekst. Barcha kombinatsiyalar esa imkonsiz (Prinsip 2). To\'g\'ri yondashuv: tanlangan muhim stsenariylar va boundary testing.'
-  }
-};
-
-document.querySelectorAll('.quiz-options').forEach(quiz => {
-  const quizId = quiz.dataset.quiz;
-  const options = quiz.querySelectorAll('.quiz-option');
-  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
-
-  options.forEach(option => {
-    option.addEventListener('click', () => {
-      if (quiz.classList.contains('answered')) return;
-
-      const isCorrect = option.dataset.correct === 'true';
-      options.forEach(opt => {
-        opt.classList.add('disabled');
-        if (opt.dataset.correct === 'true') opt.classList.add('correct');
-      });
-
-      if (!isCorrect) option.classList.add('incorrect');
-
-      feedback.classList.add('show');
-      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
-      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
-
-      quiz.classList.add('answered');
-      completedActivities.add(quizId);
-      updateProgress();
-    });
-  });
-});
 
 // === MATCHING GAME ===
 let selectedLeft = null;
@@ -1587,77 +1173,12 @@ document.querySelectorAll('.match-item').forEach(item => {
   });
 });
 
-// === CHART 1: COST CHART ===
-const costCtx = document.getElementById('costChart');
-new Chart(costCtx, {
-  type: 'bar',
-  data: {
-    labels: ['Talablar', 'Dizayn', 'Kodlash', 'Testing', 'Production'],
-    datasets: [{
-      label: 'Bug tuzatish xarajati (nisbiy)',
-      data: [1, 5, 10, 50, 150],
-      backgroundColor: ['#3A5A40', '#C08838', '#D4803D', '#C05935', '#A03535'],
-      borderRadius: 6,
-      borderSkipped: false
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: (ctx) => ctx.parsed.y + 'x xarajat'
-        }
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: { color: 'rgba(0,0,0,0.05)' },
-        ticks: { callback: (v) => v + 'x' }
-      },
-      x: { grid: { display: false } }
-    }
-  }
-});
-
-// === CHART 2: CLUSTER CHART ===
-const clusterCtx = document.getElementById('clusterChart');
-new Chart(clusterCtx, {
-  type: 'bar',
-  data: {
-    labels: ['To\'lov', 'Yetkazib berish', 'Ro\'yxatdan o\'tish', 'Savat', 'Mahsulotlar', 'Admin', 'Sharhlar', 'Bildirishnomalar', 'Tarix', 'Hisobotlar'],
-    datasets: [{
-      label: 'Buglar soni',
-      data: [420, 300, 80, 60, 40, 30, 25, 20, 15, 10],
-      backgroundColor: (ctx) => {
-        const i = ctx.dataIndex;
-        return i < 2 ? '#D64545' : '#C08838';
-      },
-      borderRadius: 6,
-      borderSkipped: false
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: (ctx) => ctx.parsed.x + ' ta bug'
-        }
-      }
-    },
-    scales: {
-      x: {
-        beginAtZero: true,
-        grid: { color: 'rgba(0,0,0,0.05)' }
-      },
-      y: { grid: { display: false } }
-    }
-  }
+// === INTERVIEW ACCORDION ===
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    item.classList.toggle('open');
+  });
 });
 
 // === FADE IN ON SCROLL ===
@@ -1667,7 +1188,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.principle-card, .quiz-card, .matching-game, .chart-wrapper, .retro-card').forEach(el => {
+document.querySelectorAll('.principle-card, .matching-game, .interview-section').forEach(el => {
   el.classList.add('fade-in');
   observer.observe(el);
 });
