@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-dars: Bug sabablari va Testware | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
+  --teal: #0F6E56;
+  --teal-soft: #E1F5EE;
+  --coral: #D85A30;
+  --coral-soft: #FAECE7;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+/* HEADER */
+.header { position: sticky; top: 0; background: rgba(251, 249, 244, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+/* HERO */
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+/* CONTAINER */
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+/* SECTION */
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+/* BOXES */
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* BUG SOURCES */
+.source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
+.source-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; transition: all 0.2s ease; }
+.source-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1); }
+.source-icon { width: 48px; height: 48px; background: var(--accent-soft); color: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; margin-bottom: 14px; }
+.source-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+.source-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.5; margin-bottom: 10px; }
+.source-example { font-size: 13px; color: var(--ink-soft); background: var(--bg-soft); padding: 10px 14px; border-radius: 8px; border-left: 3px solid var(--gold); }
+
+/* TESTWARE COMPONENTS */
+.testware-item { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; margin-bottom: 14px; transition: all 0.2s; }
+.testware-item:hover { border-color: var(--plum); }
+.testware-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
+.testware-num { width: 36px; height: 36px; background: var(--plum); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 600; flex-shrink: 0; }
+.testware-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.testware-original { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; }
+.testware-desc { color: var(--ink-soft); margin-bottom: 10px; font-size: 15px; margin-left: 52px; }
+.testware-example { margin-left: 52px; background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); }
+.testware-example strong { color: var(--gold); }
+
+/* TEST CASE TABLE */
+.tc-table-wrapper { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 20px 0; }
+.tc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tc-table th { background: var(--bg-soft); text-align: left; padding: 12px 14px; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+.tc-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+.tc-table tr:last-child td { border-bottom: none; }
+.tc-table .tc-id { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 500; }
+
+/* TOOLS */
+.tool-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 16px; }
+.tool-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.tool-logo { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: white; flex-shrink: 0; }
+.tool-logo.jira { background: #0052CC; }
+.tool-logo.testrail { background: #65B045; }
+.tool-logo.zephyr { background: #6B3FA0; }
+.tool-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; }
+.tool-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 10px; background: var(--bg-soft); color: var(--ink-muted); border-radius: 100px; text-transform: uppercase; letter-spacing: 1px; }
+.tool-card p { color: var(--ink-soft); margin-bottom: 10px; font-size: 15px; }
+.tool-features { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.tool-feature { padding: 8px 12px; background: var(--bg-soft); border-radius: 8px; font-size: 13px; color: var(--ink-soft); }
+.tool-feature::before { content: "✓ "; color: var(--forest); font-weight: 600; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s ease; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* DRAG AND DROP: TEST CASE BUILDER */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+
+.tc-builder { background: var(--bg-soft); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.tc-builder-slot { min-height: 50px; border: 2px dashed var(--line-dark); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; background: white; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
+.tc-builder-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.tc-builder-slot.filled { border-style: solid; }
+.tc-builder-slot.correct { border-color: var(--forest); background: var(--forest-soft); }
+.tc-builder-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.tc-builder-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; min-width: 120px; font-weight: 600; }
+
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 12px 16px; cursor: grab; font-size: 14px; font-weight: 500; transition: all 0.2s; user-select: none; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.dnd-reset-btn { display: block; margin: 16px auto 0; padding: 10px 20px; background: var(--plum); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; }
+.dnd-reset-btn:hover { background: var(--plum-soft); color: var(--plum); }
+
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* BUG CLASSIFIER */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: grab; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card:active { cursor: grabbing; }
+.classifier-card.dragging { opacity: 0.5; }
+.classifier-card.classified { opacity: 0.4; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 15px; }
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+.classifier-buckets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.classifier-bucket { min-height: 120px; padding: 16px; border: 2px dashed var(--line-dark); border-radius: 12px; text-align: center; transition: all 0.2s; background: var(--bg-soft); }
+.classifier-bucket.drag-over { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+
+/* QUALITY CHECK */
+.quality-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin: 20px 0; }
+.quality-tc-example { background: var(--bg-soft); padding: 16px 20px; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.8; white-space: pre-line; }
+.quality-options { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 800px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* NAV FOOTER */
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+/* TYPOGRAPHY */
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+/* COMPLETION */
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58, 90, 64, 0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .source-grid, .classifier-buckets { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card { padding: 24px 22px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .testware-desc, .testware-example { margin-left: 0; }
+  .tool-features { grid-template-columns: 1fr; }
+  .tc-builder-label { min-width: auto; }
+  .tc-builder-slot { flex-direction: column; align-items: flex-start; }
+}
+
+/* FADE IN */
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="lesson-number">4-dars</div>
+  <h1>Bug <em>sabablari</em> va Testware</h1>
+  <p class="hero-subtitle">Bug qayerdan kelib chiqadi? Testorlar qanday hujjatlar yaratadi? Jira, TestRail va boshqa professional asboblar bilan tanishamiz.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Asoslar va amaliyot</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section" id="intro">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Oldingi darslardan davom</h2>
+  <p class="section-intro">Siz allaqachon bilasiz: <strong>Error → Defect → Failure</strong> zanjiri. Ya'ni inson xatosi kodga o'tadi va foydalanuvchi muammoni ko'radi. Lekin <strong>nega</strong> insonlar xato qiladi? Nima uchun dastur uchun bug shunchalik keng tarqalgan?</p>
+  <p>Bu darsda ikki muhim mavzuni ko'rib chiqamiz:</p>
+  <ul>
+    <li><strong>Bug sabablari</strong> — real hayotda nega buglar paydo bo'ladi</li>
+    <li><strong>Testware</strong> — testorlar qanday hujjatlar va asboblar bilan ishlaydi</li>
+  </ul>
+  <p>Dars oxirida siz <strong>haqiqiy test case yoza oladigan</strong> va kundalik ishda ishlatiladigan asboblarni bilgan holatda bo'lasiz.</p>
+</section>
+
+<!-- SECTION 1: BUG SOURCES -->
+<section class="section" id="sources">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Bug qayerdan kelib chiqadi?</h2>
+  <p class="section-intro">Bug'lar osmondan tushmaydi — har birining <strong>aniq sababi</strong> bor. Professional testor bug topganda nafaqat uni qayd etadi, balki <strong>qayerdan kelib chiqqani</strong> ham aniqlaydi. Bu kelajakda shunga o'xshash bug'larni oldini olishga yordam beradi.</p>
+
+  <h3>Bug sabablarining 4 ta asosiy kategoriyasi</h3>
+
+  <div class="source-grid">
+    <div class="source-card">
+      <div class="source-icon">H</div>
+      <div class="source-title">Human Factors</div>
+      <div class="source-desc">Inson omillari — dasturchi, biznes analitik yoki dizayner qilgan xatolar.</div>
+      <div class="source-example">
+        <strong>Misol:</strong> Dasturchi charchagan, yarim tunda kod yozgan va <code>+</code> o'rniga <code>-</code> qo'yib yuborgan.
+      </div>
+    </div>
+
+    <div class="source-card">
+      <div class="source-icon">E</div>
+      <div class="source-title">Environmental Factors</div>
+      <div class="source-desc">Muhit omillari — kod ishlaydigan tizim, server, brauzer, operatsion tizim farqlari.</div>
+      <div class="source-example">
+        <strong>Misol:</strong> Sayt Chrome'da ishlaydi, lekin Safari'da tugmalar ko'rinmaydi — CSS moslashuvchan emas.
+      </div>
+    </div>
+
+    <div class="source-card">
+      <div class="source-icon">C</div>
+      <div class="source-title">Communication Gaps</div>
+      <div class="source-desc">Muloqot kamchiliklari — Product Owner, dasturchi va testor bir xil narsani turlicha tushunishadi.</div>
+      <div class="source-example">
+        <strong>Misol:</strong> PO: "Foydalanuvchi ro'yxatdan o'ta oladi". Dasturchi: faqat email orqali. PO: telefon orqali ham kerak edi.
+      </div>
+    </div>
+
+    <div class="source-card">
+      <div class="source-icon">T</div>
+      <div class="source-title">Technical Debt</div>
+      <div class="source-desc">Texnik qarzdorlik — eski, yomon yozilgan kod yangi o'zgarishlar bilan konflikt qiladi.</div>
+      <div class="source-example">
+        <strong>Misol:</strong> 3 yil oldin tez-tez yozilgan funksiya bor. Yangi funksiya qo'shildi — eski kod buzildi.
+      </div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Yangi atama</div>
+    <p><strong>Technical Debt (texnik qarzdorlik)</strong> — dasturlashda "tez ishlaydi" deb qilingan, lekin kelajakda muammo keltiradigan kod.</p>
+    <p><em>Oddiy qilib:</em> siz uyingizda tez ta'mir qilib qo'yasiz — hozir ishlaydi, lekin keyin butun devorni buzib qayta qilishga to'g'ri keladi. Kodda ham shunday: tezkor yechim — uzoq muddatda qimmat.</p>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">Avtomobil buzilishining sabablari</div>
+    <div class="analogy-text">
+      Mashina buzilishining ham 4 xil sababi bor: <strong>Human</strong> (haydovchi noto'g'ri foydalandi), <strong>Environmental</strong> (yomon yo'l, sovuq havo), <strong>Communication</strong> (ustaga muammo to'g'ri aytilmadi), <strong>Technical</strong> (eski qismlar). Dasturlashda ham bu xuddi shunday.
+    </div>
+  </div>
+
+  <h3>Keng tarqalgan misollar</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">Misol 1 — Human Factor</div>
+    <p style="margin:0">Dasturchi Click ilovasida "Summa" maydoni uchun <code>if (amount > 1000000)</code> yozgan, lekin aslida 10 million kerak edi. <strong>Bitta 0 ni unutish</strong> butun tizimni buzadi.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Misol 2 — Environmental Factor</div>
+    <p style="margin:0">Uzum Market developer'ning iPhone 15'da ishlaydi, lekin foydalanuvchining Samsung A14'da savat tugmasi joyida emas. Chunki ekran o'lchami boshqa — <strong>responsive dizayn</strong> to'g'ri qilinmagan.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Misol 3 — Communication Gap</div>
+    <p style="margin:0">PO dedi: "Login sahifasida parolni tiklash bo'lsin". Dasturchi SMS orqali qildi. Lekin PO email orqali nazarda tutgan edi. <strong>Aniq yozma talab bo'lmagani</strong> — bug'ga sabab.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Amaliy xulosa</div>
+    <p>Professional testor bug'ni topgandan so'ng <strong>sababini aniqlashga harakat qiladi</strong>: "Bu nega bo'ldi?" Bu savolni bergan testor kelajakdagi bug'larni <strong>oldindan</strong> taxmin qila oladi.</p>
+  </div>
+</section>
+
+<!-- BUG CLASSIFIER -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Bug sabablarini aniqlang</h3>
+  <p class="dnd-instruction">Quyidagi 4 ta bug'ni to'g'ri kategoriyaga sudrab olib boring.</p>
+
+  <div id="classifierCards">
+    <div class="classifier-card" draggable="true" data-category="human">
+      <div class="classifier-card-title">Dasturchi 50% chegirma uchun 0.05 o'rniga 5 yozgan</div>
+      <div class="classifier-card-desc">Natijada mahsulot 500% qimmatlashdi. Bosh sahifada hamma ko'rdi.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="environmental">
+      <div class="classifier-card-title">Sayt iPhone'da yaxshi ko'rinadi, Android'da buzilgan</div>
+      <div class="classifier-card-desc">Tugmalar bir-birini qoplab ketgan, matnlar chiqib turipti.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="communication">
+      <div class="classifier-card-title">PO "sovg'a qo'shish" dedi — dasturchi "promocode qo'shish" qildi</div>
+      <div class="classifier-card-desc">Funksiya ishlaydi, lekin kerak bo'lgan narsa emas. Talab noaniq edi.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="technical">
+      <div class="classifier-card-title">Yangi to'lov tizimi qo'shilgandan so'ng eski foydalanuvchilar kira olmay qoldi</div>
+      <div class="classifier-card-desc">2 yil oldin yozilgan authentikatsiya kodi yangi tizim bilan mos kelmadi.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="human">
+      <div class="classifier-bucket-label">Human Factor</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="environmental">
+      <div class="classifier-bucket-label">Environmental</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="communication">
+      <div class="classifier-bucket-label">Communication Gap</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="technical">
+      <div class="classifier-bucket-label">Technical Debt</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 4 to'g'ri</div>
+</div>
+
+<!-- SECTION 2: TESTWARE -->
+<section class="section" id="testware">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Testware nima?</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Testware</strong> — testorlar yaratgan barcha <strong>hujjatlar va ma'lumotlar</strong>. Software — dasturlash kodi, Testware — testlash uchun kerakli narsalar.</p>
+    <p><em>Oddiy qilib:</em> oshpaz uchun retsept kitobi, asboblar va xomashyo bor. Testor uchun ham shunga o'xshash "ish materiallari" bor — bu Testware.</p>
+  </div>
+
+  <h3>Testware'ning 4 ta asosiy komponenti</h3>
+
+  <div class="testware-item">
+    <div class="testware-header">
+      <div class="testware-num">1</div>
+      <div>
+        <div class="testware-title">Test Plan</div>
+        <div class="testware-original">TEST REJASI</div>
+      </div>
+    </div>
+    <div class="testware-desc">Butun loyiha uchun <strong>strategiya hujjati</strong>. Qanday testlaymiz, qancha vaqt kerak, qanday asboblar, kim nima qiladi.</div>
+    <div class="testware-example">
+      <strong>Nimani o'z ichiga oladi:</strong> Scope (doira), Objectives (maqsadlar), Resources (resurslar), Schedule (grafik), Risks (xavflar), Entry/Exit criteria (boshlash/tugallash shartlari).
+    </div>
+  </div>
+
+  <div class="testware-item">
+    <div class="testware-header">
+      <div class="testware-num">2</div>
+      <div>
+        <div class="testware-title">Test Case</div>
+        <div class="testware-original">TEST HOLATI</div>
+      </div>
+    </div>
+    <div class="testware-desc">Aniq <strong>bir funksiyani</strong> testlash uchun yozilgan qadamlar ro'yxati. "Qanday qilib sinab ko'rasiz?" degan savolga javob.</div>
+    <div class="testware-example">
+      <strong>Misol:</strong> TC-001 "Login: to'g'ri ma'lumotlar bilan kirish". Qadamlar: 1) Sahifani oching, 2) Email kiriting, 3) Parol kiriting, 4) Enter bosing. Kutilgan natija: Bosh sahifa ochiladi.
+    </div>
+  </div>
+
+  <div class="testware-item">
+    <div class="testware-header">
+      <div class="testware-num">3</div>
+      <div>
+        <div class="testware-title">Test Suite</div>
+        <div class="testware-original">TEST TO'PLAMI</div>
+      </div>
+    </div>
+    <div class="testware-desc">O'xshash test case'lar <strong>guruhi</strong>. Masalan, "Login Test Suite" ichida login bilan bog'liq barcha test case'lar.</div>
+    <div class="testware-example">
+      <strong>Misol:</strong> "Register Test Suite" = TC-001 (bo'sh forma), TC-002 (xato email), TC-003 (qisqa parol), TC-004 (muvaffaqiyatli ro'yxat) — hammasi birga.
+    </div>
+  </div>
+
+  <div class="testware-item">
+    <div class="testware-header">
+      <div class="testware-num">4</div>
+      <div>
+        <div class="testware-title">Test Data</div>
+        <div class="testware-original">TEST MA'LUMOTLARI</div>
+      </div>
+    </div>
+    <div class="testware-desc">Testlash uchun kerakli <strong>ma'lumotlar</strong>. Foydalanuvchi login/parollari, ta'rif matnlari, raqamlar, sanalar.</div>
+    <div class="testware-example">
+      <strong>Misol:</strong> valid_user@test.com, Test123!, 100000 so'm, 2024-01-15, +998901234567. Bu ma'lumotlar Excel faylda yoki maxsus bazada saqlanadi.
+    </div>
+  </div>
+
+  <h3>Test Case qanday yoziladi?</h3>
+  <p>Bu — testor kundalik ishining asosiy qismi. Professional test case quyidagi maydonlardan iborat:</p>
+
+  <div class="tc-table-wrapper">
+    <table class="tc-table">
+      <tr><th>Maydon</th><th>Ma'nosi</th></tr>
+      <tr><td class="tc-id">Test ID</td><td>TC-001 kabi unikal raqam</td></tr>
+      <tr><td class="tc-id">Title</td><td>Qisqa sarlavha (nima sinalmoqda)</td></tr>
+      <tr><td class="tc-id">Preconditions</td><td>Boshlashdan oldin nima kerak (akkount, ma'lumot)</td></tr>
+      <tr><td class="tc-id">Steps</td><td>Aniq qadamlar (1, 2, 3...)</td></tr>
+      <tr><td class="tc-id">Expected Result</td><td>Kutilgan natija</td></tr>
+      <tr><td class="tc-id">Actual Result</td><td>Amaliyotda nima bo'ldi</td></tr>
+      <tr><td class="tc-id">Status</td><td>Pass (o'tdi) / Fail (o'tmadi)</td></tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Haqiqiy test case misoli</div>
+    <p><strong>TC-001:</strong> "Login: bo'sh email bilan kirish urinishi"</p>
+    <p><strong>Preconditions:</strong> Foydalanuvchi saytda emas</p>
+    <p><strong>Steps:</strong></p>
+    <ol style="margin:0 0 10px 20px">
+      <li>Login sahifasini oching</li>
+      <li>Email maydonini bo'sh qoldiring</li>
+      <li>Parol maydoniga "test123" kiriting</li>
+      <li>"Kirish" tugmasini bosing</li>
+    </ol>
+    <p style="margin:0"><strong>Expected Result:</strong> "Email kiriting" xabari ko'rinishi kerak. Foydalanuvchi saytga kirmasligi kerak.</p>
+  </div>
+</section>
+
+<!-- TEST CASE BUILDER DND -->
+<div class="dnd-game" id="tcBuilderGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Test Case tuzing</h3>
+  <p class="dnd-instruction">Quyidagi qismlarni <strong>to'g'ri joylariga</strong> sudrab tashang. Bu TestShop uchun haqiqiy test case bo'ladi!</p>
+
+  <div class="tc-builder">
+    <div class="tc-builder-slot" data-slot="title">
+      <div class="tc-builder-label">Title:</div>
+    </div>
+    <div class="tc-builder-slot" data-slot="pre">
+      <div class="tc-builder-label">Preconditions:</div>
+    </div>
+    <div class="tc-builder-slot" data-slot="step1">
+      <div class="tc-builder-label">Step 1:</div>
+    </div>
+    <div class="tc-builder-slot" data-slot="step2">
+      <div class="tc-builder-label">Step 2:</div>
+    </div>
+    <div class="tc-builder-slot" data-slot="step3">
+      <div class="tc-builder-label">Step 3:</div>
+    </div>
+    <div class="tc-builder-slot" data-slot="expected">
+      <div class="tc-builder-label">Expected:</div>
+    </div>
+  </div>
+
+  <div class="dnd-items-pool" id="tcPool">
+    <div class="dnd-item" draggable="true" data-slot="step2">Email maydonini bo'sh qoldiring</div>
+    <div class="dnd-item" draggable="true" data-slot="title">Login: bo'sh email bilan kirish</div>
+    <div class="dnd-item" draggable="true" data-slot="expected">"Email kiriting" xato xabari chiqsin</div>
+    <div class="dnd-item" draggable="true" data-slot="step1">Login sahifasini oching</div>
+    <div class="dnd-item" draggable="true" data-slot="pre">Foydalanuvchi saytda emas</div>
+    <div class="dnd-item" draggable="true" data-slot="step3">"Kirish" tugmasini bosing</div>
+  </div>
+
+  <div class="dnd-score" id="tcScore">0 / 6 to'g'ri</div>
+  <button class="dnd-reset-btn" onclick="resetTcBuilder()">Qaytadan boshlash</button>
+</div>
+
+<!-- SECTION 3: PROFESSIONAL TOOLS -->
+<section class="section" id="tools">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Professional asboblar</h2>
+  <p class="section-intro">O'zbekistonda va dunyoda QA jamoalari aynan shu 3 ta asbobdan ko'p foydalanadi. Intervyuda <strong>albatta bilishingiz kerak bo'lgan</strong> asboblar.</p>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-logo jira">J</div>
+      <div>
+        <div class="tool-title">Jira</div>
+      </div>
+      <span class="tool-tag">Bug Tracking</span>
+    </div>
+    <p><strong>Nima uchun?</strong> Bug'lar va vazifalarni kuzatish. Click, Uzum, EPAM va boshqa barcha katta IT kompaniyalarda ishlatiladi.</p>
+    <p><strong>Kim ishlatadi?</strong> Butun jamoa — dasturchi, testor, menejer, Product Owner.</p>
+    <div class="tool-features">
+      <div class="tool-feature">Bug reportlar yaratish</div>
+      <div class="tool-feature">Vazifalarni kuzatish (Kanban/Scrum)</div>
+      <div class="tool-feature">Status: Open, In Progress, Fixed, Closed</div>
+      <div class="tool-feature">Sprint rejalashtirish</div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-logo testrail">T</div>
+      <div>
+        <div class="tool-title">TestRail</div>
+      </div>
+      <span class="tool-tag">Test Case Management</span>
+    </div>
+    <p><strong>Nima uchun?</strong> Test case'lar va Test Suite'larni saqlash, bajarish, hisobot olish.</p>
+    <p><strong>Kim ishlatadi?</strong> Asosan testorlar. Katta jamoalarda — QA menejer.</p>
+    <div class="tool-features">
+      <div class="tool-feature">Test case'larni yozish va saqlash</div>
+      <div class="tool-feature">Test Runs (bajarish sessiyalari)</div>
+      <div class="tool-feature">Pass/Fail statusi belgilash</div>
+      <div class="tool-feature">Hisobot va analitika</div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-logo zephyr">Z</div>
+      <div>
+        <div class="tool-title">Zephyr</div>
+      </div>
+      <span class="tool-tag">Jira Plugin</span>
+    </div>
+    <p><strong>Nima uchun?</strong> Jira ichida test management qilish imkoniyati. Jira va TestRail'ni bir joyga birlashtirdi.</p>
+    <p><strong>Kim ishlatadi?</strong> Jira faol ishlatadigan jamoalarda — testorlar.</p>
+    <div class="tool-features">
+      <div class="tool-feature">Jira ichidan chiqmaslik</div>
+      <div class="tool-feature">Test case va bug bir tizimda</div>
+      <div class="tool-feature">Avtomatik bog'lanish (test ↔ bug)</div>
+      <div class="tool-feature">Real-time hisobotlar</div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Qaysini o'rganish kerak?</div>
+    <p><strong>1-o'rinda:</strong> Jira — 95% kompaniyalar bu asbobni ishlatadi.</p>
+    <p><strong>2-o'rinda:</strong> TestRail yoki Zephyr — ishingizga qarab biri kerak bo'ladi.</p>
+    <p><em>Maslahat:</em> Jira'ning bepul versiyasi bor (10 foydalanuvchigacha). Amalda o'rganishingiz mumkin — keyingi darslarda qanday foydalanishni ko'rsatamiz.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Intervyu maslahati</div>
+    <p>Agar siz "Jira bilan ishlaganman" desangiz — intervyu oluvchi so'raydi: "Qanday? Qaysi status'lar bor? Sprint qanday rejalashtirdingiz?" <strong>Umumiy javob bering, lekin chuqur o'zingizni da'vo qilmang.</strong> "Asoslarini bilaman, lekin katta loyihalarda amalda ko'p ishlash kerak" deyish — halol va professional.</p>
+  </div>
+</section>
+
+<!-- QUALITY CHECK -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Test Case sifat tekshiruvi</div>
+  <div class="quiz-question">Quyidagi test case'ni o'qing — u <strong>sifatli</strong>mi?</div>
+
+  <div class="quality-tc-example">TC-042: Test savat
+Steps: Mahsulotni qo'shing, savatga boring
+Expected: Ishlaydi</div>
+
+  <div class="quiz-options" data-quiz="q-quality">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Ha, sifatli — hamma kerak bo'lgan narsa bor</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Yo'q — juda umumiy, aniq qadamlar yo'q, "Ishlaydi" noaniq natija</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Qisman — title yaxshi, lekin qolgan qismlar kerak emas</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q-quality"></div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Siz yangi testor bo'lib ishga kelgansiz...</div>
+
+  <div class="scenario-story">
+    <p><strong>Birinchi ish kuni, soat 10:00.</strong> Siz Click.uz'ga junior QA sifatida ishga keldingiz. Jamoa Jira'da ishlaydi.</p>
+    <p><strong>Team Lead sizga vazifa berdi:</strong> "Register sahifasi uchun 5 ta test case yozib, TestRail'ga joylang. Ertaga ko'rib chiqamiz."</p>
+    <p><strong>Siz Register sahifasini ochasiz</strong> — email, parol, telefon maydonlari bor. Endi nima qilasiz?</p>
+  </div>
+
+  <div class="scenario-question">Eng professional yondashuv qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Darhol test case'larni yoza boshlayman — vaqt kam</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Avval Product Owner bilan talablarni aniqlashtiraman (qanday email qabul qilinadi, parol talablari), keyin positive va negative testlar yozaman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Boshqa loyihadagi test case'larni nusxalab qo'shaman — vaqt tejaladi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop uchun test case yozing</h2>
+  <p class="section-intro">Endi nazariyani amaliyotda sinab ko'ramiz. TestShop'ga o'ting va real test case'lar yozing.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Testware amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Register sahifasi uchun professional test case'lar to'plamini yarating.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/register.html" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop Register sahifasi
+    </a>
+  </div>
+
+  <h3>Sizning vazifangiz: 5 ta test case yozing</h3>
+
+  <p>Google Docs yoki Notion'da yangi hujjat yarating va quyidagi 5 ta test case'ni professional formatda yozing:</p>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#D64545;flex-shrink:0;min-width:60px">TC-001</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Muvaffaqiyatli ro'yxatdan o'tish (Positive)</div>
+        <div style="color:#7A7A7A;font-size:14px">Barcha to'g'ri ma'lumotlar bilan — akkount yaratilishi kerak</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#D64545;flex-shrink:0;min-width:60px">TC-002</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Bo'sh email bilan urinish (Negative)</div>
+        <div style="color:#7A7A7A;font-size:14px">Email bo'sh bo'lsa — xato xabari chiqishi kerak</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#D64545;flex-shrink:0;min-width:60px">TC-003</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Noto'g'ri email format (Negative)</div>
+        <div style="color:#7A7A7A;font-size:14px">"abc" yoki "test@" kabi — @ yo'q yoki chala</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#D64545;flex-shrink:0;min-width:60px">TC-004</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Juda qisqa parol (Negative)</div>
+        <div style="color:#7A7A7A;font-size:14px">"1" yoki "a" — xavfli parollar rad etilishi kerak</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#D64545;flex-shrink:0;min-width:60px">TC-005</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Email va tasdiqlash mos kelmasligi (Negative)</div>
+        <div style="color:#7A7A7A;font-size:14px">Ikki email maydonida har xil email — xato xabari chiqishi kerak</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Pro maslahat</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Har test case'ning to'liq formatini ishlating: <strong>Title, Preconditions, Steps, Expected, Actual, Status</strong>. TestShop'ni brauzerda ochib, har test case'ni bajaring. Topilgan bug'larni qayd eting — bu <strong>haqiqiy QA ishi</strong> bo'ladi va intervyuda portfolio sifatida ishlatasiz!</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Bu savollar Click, Uzum, EPAM, Exadel kabi kompaniyalardagi QA intervyularida tez-tez so'raladi.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javob va maslahatni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Testware nima? Asosiy komponentlarini ayting.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Testware — testorlar yaratgan barcha hujjatlar va materiallar. 4 ta asosiy komponenti bor:"</p>
+          <ul>
+            <li><strong>Test Plan</strong> — umumiy strategiya hujjati</li>
+            <li><strong>Test Case</strong> — aniq qadamlar bilan sinov</li>
+            <li><strong>Test Suite</strong> — bog'liq test case'lar guruhi</li>
+            <li><strong>Test Data</strong> — sinov uchun ma'lumotlar</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Testware — bu tirik hujjatlar. Ular loyiha rivojlanishiga qarab yangilanib turadi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Test Case qanday maydonlardan iborat? Misol keltiring.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Professional Test Case quyidagi maydonlardan iborat:"</p>
+          <ul>
+            <li><strong>Test ID</strong> (TC-001)</li>
+            <li><strong>Title</strong> (qisqa tavsif)</li>
+            <li><strong>Preconditions</strong> (boshlashdan oldin nima kerak)</li>
+            <li><strong>Steps</strong> (1, 2, 3... aniq qadamlar)</li>
+            <li><strong>Expected Result</strong> (kutilgan natija)</li>
+            <li><strong>Actual Result</strong> (amaliyotda nima bo'ldi)</li>
+            <li><strong>Status</strong> (Pass / Fail)</li>
+          </ul>
+          <p><strong>Misol:</strong> "TC-001: Login - to'g'ri ma'lumotlar. Preconditions: akkount mavjud. Steps: (1) sahifani oching, (2) email kiriting, (3) parol kiriting, (4) kirish tugmasini bosing. Expected: bosh sahifa ochiladi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Test Case va Test Scenario farqi nimada?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Test Scenario</strong> — umumiy "nima sinash kerak" (high-level). Masalan: "Foydalanuvchi ro'yxatdan o'ta oladi".</li>
+            <li><strong>Test Case</strong> — aniq qadamlar bilan sinash usuli (detailed). Masalan: "Bo'sh email bilan urinish xato berishi kerak".</li>
+          </ul>
+          <p><strong>Bir scenario = bir necha test case.</strong> Scenario — "maqsad", Test Case — "qanday tekshirish".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Jira va TestRail o'rtasidagi farq?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Jira</strong> — bug va vazifalar kuzatish tizimi. Butun jamoa ishlatadi. Sprint, backlog, Kanban board.</li>
+            <li><strong>TestRail</strong> — test case management. Faqat testorlar ishlatadi. Test case'lar, test run'lar, hisobotlar.</li>
+          </ul>
+          <p><strong>Bog'liqligi:</strong> TestRail'dagi bug topilsa — Jira'ga report'i yuboriladi. Ikkala asbob birga ishlaydi.</p>
+          <p><strong>Muqobil:</strong> Zephyr — Jira ichida test management qilish imkoniyati beradi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Yangi loyihada birinchi qilgan ishingiz nima bo'ladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Men quyidagicha yondashaman:"</p>
+          <ul>
+            <li><strong>1-hafta:</strong> Mahsulotni tushunish — hujjatlar o'qish, Product Owner bilan suhbat, demo ko'rish</li>
+            <li><strong>2-hafta:</strong> Test Plan tayyorlash — nima test qilaman, qanday usullar, kerakli asboblar</li>
+            <li><strong>3-hafta:</strong> Asosiy funksiyalar uchun Test Case'lar yozish</li>
+            <li><strong>4-hafta:</strong> Execution — test bajarish, bug'lar topish</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Darhol test yozishga o'tish emas. Avval <strong>tushunish</strong>, keyin <strong>rejalashtirish</strong>, oxirida <strong>bajarish</strong>."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Bug'ning 4 ta asosiy sababi qanday?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bug'lar 4 ta asosiy kategoriyadan kelib chiqadi:"</p>
+          <ul>
+            <li><strong>Human Factors</strong> — inson xatosi (dasturchi, dizayner)</li>
+            <li><strong>Environmental</strong> — muhit farqlari (brauzer, OS, qurilma)</li>
+            <li><strong>Communication Gaps</strong> — muloqot kamchiliklari (talab noaniq)</li>
+            <li><strong>Technical Debt</strong> — eski yomon kod yangi bilan konflikt qiladi</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Har bug uchun sababni aniqlash muhim — bu oldini olishga yordam beradi. Masalan, Communication Gap ko'p bo'lsa — 3 Amigos meetings o'tkazish kerak."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Yaxshi Test Case'ning xususiyatlari qanday?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Yaxshi Test Case:</strong></p>
+          <ul>
+            <li><strong>Aniq (Clear)</strong> — har bir qadam tushunarli</li>
+            <li><strong>Qisqa (Concise)</strong> — ortiqcha so'zlar yo'q</li>
+            <li><strong>To'liq (Complete)</strong> — precondition, steps, expected — hammasi bor</li>
+            <li><strong>Mustaqil (Independent)</strong> — boshqa test case'ga bog'liq emas</li>
+            <li><strong>Qayta ishlatilishi mumkin (Reusable)</strong> — ko'p marta bajarish mumkin</li>
+            <li><strong>Aniq natija (Specific expected)</strong> — "ishlaydi" emas, "Bosh sahifa ochiladi"</li>
+          </ul>
+          <p><strong>Misol yomon:</strong> "Loginni tekshiring — ishlashi kerak"</p>
+          <p><strong>Misol yaxshi:</strong> "TC-001: To'g'ri login/parol bilan kirish. Steps: (1)... (2)... Expected: Dashboard sahifasi ochiladi va foydalanuvchi ismi yuqori o'ng burchakda ko'rinadi."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- SUMMARY -->
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Ushbu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Bug sabablari — 4 ta kategoriya</div>
+      <div class="summary-point-text">Human, Environmental, Communication, Technical. Har bug'ning sababini aniqlash — oldini olish uchun.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Testware — testorning asboblari</div>
+      <div class="summary-point-text">Test Plan, Test Case, Test Suite, Test Data. Bularsiz professional testlash imkonsiz.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Jira + TestRail = standart</div>
+      <div class="summary-point-text">95% IT kompaniyalarda shu ikki asbob ishlatiladi. Kamida Jira asoslarini bilish — majburiy.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <a href="03-sdlc-stlc.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>3-dars · SDLC va STLC</div>
+  </a>
+  <a href="05-roles-traceability.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>5-dars · Rollar va Traceability</div>
+  </a>
+</div>
+
+<!-- COMPLETION BADGE -->
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 10;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+// QUIZ
+const quizFeedback = {
+  'q-quality': {
+    correct: '<strong>To\'g\'ri!</strong> Yaxshi test case aniq qadamlar, aniq precondition va aniq natija bo\'lishi kerak. "Ishlaydi" noaniq — "Mahsulot savatga qo\'shilishi kerak va savat badge\'i +1 ko\'rsatishi kerak" — mana professional natija.',
+    incorrect: 'Yo\'q, bu test case sifatsiz. Qadamlar juda umumiy, precondition yo\'q, "Ishlaydi" — juda noaniq. Professional test case har qadamni aniq ko\'rsatadi.'
+  },
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Professional yondashuv — avval tushunish, keyin yozish. Talab aniq bo\'lmasa, test case\'laringiz noto\'g\'ri bo\'lishi mumkin. Product Owner bilan savol-javob — bu Shift Left yondashuvi.',
+    incorrect: 'Bu shoshqoloqlik. Darhol yozishni boshlash yoki boshqa loyihadan nusxalash — sifatsiz natija beradi. Professional testor avval tushunadi, keyin ishlaydi.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+
+      if (!isCorrect) option.classList.add('incorrect');
+
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// BUG CLASSIFIER
+let draggedItem = null;
+let classifierCorrect = 0;
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('dragstart', (e) => {
+    draggedItem = card;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  card.addEventListener('dragend', () => card.classList.remove('dragging'));
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    bucket.classList.add('drag-over');
+  });
+  bucket.addEventListener('dragleave', () => bucket.classList.remove('drag-over'));
+  bucket.addEventListener('drop', (e) => {
+    e.preventDefault();
+    bucket.classList.remove('drag-over');
+    if (!draggedItem || !draggedItem.classList.contains('classifier-card') || draggedItem.classList.contains('classified')) return;
+
+    if (draggedItem.dataset.category === bucket.dataset.bucket) {
+      draggedItem.classList.add('classified');
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 4 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+
+      if (classifierCorrect === 4) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Ajoyib! Barcha sabablarni to\'g\'ri aniqladingiz!</span>';
+      }
+    } else {
+      bucket.classList.add('wrong');
+      setTimeout(() => bucket.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// TEST CASE BUILDER
+let tcCorrect = 0;
+
+document.querySelectorAll('#tcPool .dnd-item').forEach(item => {
+  item.addEventListener('dragstart', (e) => {
+    draggedItem = item;
+    item.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  item.addEventListener('dragend', () => item.classList.remove('dragging'));
+});
+
+document.querySelectorAll('#tcBuilderGame .tc-builder-slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+  });
+  slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    if (slot.classList.contains('filled') || !draggedItem || !draggedItem.classList.contains('dnd-item')) return;
+
+    if (draggedItem.dataset.slot === slot.dataset.slot) {
+      const label = slot.querySelector('.tc-builder-label').textContent;
+      slot.innerHTML = `<div class="tc-builder-label">${label}</div><div style="flex:1;font-weight:500">${draggedItem.textContent}</div>`;
+      slot.classList.add('filled', 'correct');
+      draggedItem.classList.add('placed');
+      tcCorrect++;
+      document.getElementById('tcScore').textContent = `${tcCorrect} / 6 to'g'ri`;
+      completedActivities.add(`tc-${tcCorrect}`);
+      updateProgress();
+
+      if (tcCorrect === 6) {
+        document.getElementById('tcScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Mukammal! Professional test case tayyor!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+function resetTcBuilder() {
+  document.querySelectorAll('#tcBuilderGame .tc-builder-slot').forEach(slot => {
+    const slotKey = slot.dataset.slot;
+    const labels = {
+      title: 'Title:', pre: 'Preconditions:', step1: 'Step 1:',
+      step2: 'Step 2:', step3: 'Step 3:', expected: 'Expected:'
+    };
+    slot.innerHTML = `<div class="tc-builder-label">${labels[slotKey]}</div>`;
+    slot.classList.remove('filled', 'correct', 'wrong');
+  });
+  document.querySelectorAll('#tcPool .dnd-item').forEach(item => item.classList.remove('placed'));
+  tcCorrect = 0;
+  document.getElementById('tcScore').textContent = '0 / 6 to\'g\'ri';
+}
+
+// INTERVIEW ACCORDION
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => {
+    question.parentElement.classList.toggle('open');
+  });
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .source-card, .testware-item, .tool-card, .quality-card').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
