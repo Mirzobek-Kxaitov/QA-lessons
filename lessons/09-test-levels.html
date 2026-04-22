@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9-dars: Test darajalari va Regression | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* TEST LEVEL CARD */
+.level-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 16px; position: relative; overflow: hidden; transition: all 0.3s; }
+.level-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15); }
+.level-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.level-card.l1::before { background: var(--forest); }
+.level-card.l2::before { background: var(--blue); }
+.level-card.l3::before { background: var(--gold); }
+.level-card.l4::before { background: var(--accent); }
+
+.level-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.level-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: white; flex-shrink: 0; }
+.level-card.l1 .level-icon { background: var(--forest); }
+.level-card.l2 .level-icon { background: var(--blue); }
+.level-card.l3 .level-icon { background: var(--gold); }
+.level-card.l4 .level-icon { background: var(--accent); }
+
+.level-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; }
+.level-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+
+.level-desc { color: var(--ink-soft); margin-bottom: 14px; font-size: 15px; }
+
+.level-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 14px; }
+.level-detail { padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.level-detail-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); font-weight: 600; margin-bottom: 4px; }
+.level-detail-value { font-size: 14px; color: var(--ink); font-weight: 500; }
+
+.level-example { margin-top: 14px; padding: 12px 16px; background: var(--gold-soft); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); }
+.level-example strong { color: var(--gold); }
+
+/* PYRAMID */
+.pyramid-wrapper { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 40px 24px; margin: 28px 0; text-align: center; }
+.pyramid-visual { display: flex; flex-direction: column; align-items: center; gap: 6px; max-width: 500px; margin: 0 auto; }
+.pyramid-level { padding: 18px 24px; border-radius: 8px; color: white; font-weight: 500; text-align: center; position: relative; transition: all 0.3s; cursor: pointer; }
+.pyramid-level:hover { transform: scale(1.02); }
+.pyramid-level .level-num { font-family: 'Fraunces', serif; font-size: 14px; opacity: 0.8; display: block; margin-bottom: 4px; }
+.pyramid-level .level-name-small { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
+.pyramid-level .level-percent { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.9; display: block; margin-top: 4px; }
+.pyramid-l1 { width: 280px; background: var(--accent); }
+.pyramid-l2 { width: 340px; background: var(--gold); }
+.pyramid-l3 { width: 400px; background: var(--blue); }
+.pyramid-l4 { width: 460px; background: var(--forest); }
+.pyramid-note { margin-top: 24px; font-size: 14px; color: var(--ink-muted); font-style: italic; }
+
+/* ICE CREAM CONE (ANTI-PATTERN) */
+.icecream-wrapper { background: var(--accent-soft); border: 2px solid var(--accent); border-radius: 16px; padding: 30px 24px; margin: 24px 0; text-align: center; }
+.icecream-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--accent); margin-bottom: 12px; }
+.icecream-visual { display: flex; flex-direction: column; align-items: center; gap: 6px; max-width: 460px; margin: 0 auto; }
+.ice-l1 { width: 460px; padding: 14px; background: white; color: var(--accent); border: 2px solid var(--accent); border-radius: 8px; font-weight: 600; }
+.ice-l2 { width: 380px; padding: 12px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 8px; font-size: 14px; }
+.ice-l3 { width: 280px; padding: 12px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 8px; font-size: 14px; }
+.ice-l4 { width: 180px; padding: 10px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 8px; font-size: 13px; }
+.icecream-warning { margin-top: 16px; font-size: 14px; color: var(--accent-dark); font-weight: 500; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-container { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; }
+.dnd-slot { min-height: 70px; min-width: 160px; border: 2px dashed var(--line-dark); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 12px; transition: all 0.2s; background: var(--bg-soft); }
+.dnd-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-slot.filled { border-style: solid; }
+.dnd-slot.correct { background: var(--forest-soft); border-color: var(--forest); }
+.dnd-slot.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s ease; }
+.dnd-slot-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 12px 18px; cursor: grab; font-size: 14px; font-weight: 500; transition: all 0.2s; user-select: none; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.dnd-reset-btn { display: block; margin: 16px auto 0; padding: 10px 20px; background: var(--plum); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* BUG CLASSIFIER */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: grab; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card:active { cursor: grabbing; }
+.classifier-card.dragging { opacity: 0.5; }
+.classifier-card.classified { opacity: 0.4; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 15px; }
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+.classifier-buckets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.classifier-bucket { min-height: 120px; padding: 16px; border: 2px dashed var(--line-dark); border-radius: 12px; text-align: center; transition: all 0.2s; background: var(--bg-soft); }
+.classifier-bucket.drag-over { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* REGRESSION COMPARISON */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.compare-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.compare-card.smoke { border-top: 4px solid var(--coral); }
+.compare-card.regression { border-top: 4px solid var(--blue); }
+.compare-card h4 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+.compare-card.smoke h4 { color: var(--coral); }
+.compare-card.regression h4 { color: var(--blue); }
+.compare-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 10px; }
+.compare-list { list-style: none; padding: 0; margin: 0; }
+.compare-list li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+.compare-list li:last-child { border-bottom: none; }
+.compare-list li::before { content: "✓ "; color: var(--forest); font-weight: 600; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 900px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* NAV */
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .compare-grid, .classifier-buckets { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .pyramid-wrapper, .icecream-wrapper { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .pyramid-l1 { width: 180px; } .pyramid-l2 { width: 220px; }
+  .pyramid-l3 { width: 260px; } .pyramid-l4 { width: 300px; }
+  .ice-l1 { width: 300px; } .ice-l2 { width: 260px; }
+  .ice-l3 { width: 200px; } .ice-l4 { width: 150px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">9-dars</div>
+  <h1>Test <em>darajalari</em> va Regression</h1>
+  <p class="hero-subtitle">Test darajalari — qaysi bosqichda kim, nima test qiladi. Test piramidasi va Regression Testing — professional QA uchun asosiy tushunchalar.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Darajalar va strategiya</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Nega test darajalari kerak?</h2>
+  <p class="section-intro">Tasavvur qiling: siz 100 qavatli bino quryapsiz. Har qavatda bir xil tarzda tekshirasizmi? Albatta yo'q. <strong>Poydevorni</strong> — muhandislar, <strong>xonalarni</strong> — sozlovchilar, <strong>umumiy ko'rinishni</strong> — arxitektor tekshiradi.</p>
+  <p>Dasturlashda ham shunday. <strong>Kichik qismlarni</strong> dasturchilar, <strong>modullar orasidagi bog'liqlikni</strong> senior dasturchilar, <strong>butun tizimni</strong> QA'lar, <strong>yakuniy qabul</strong> qilishni biznes tomoni sinaydi.</p>
+  <p>Bu darsda 4 ta test darajasini, ular orasidagi balansni (Test Piramidasi) va Regression Testing'ni ko'rib chiqamiz.</p>
+</section>
+
+<!-- SECTION 1: TEST LEVELS -->
+<section class="section" id="levels">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">4 ta asosiy test darajasi</h2>
+  <p class="section-intro">Har bir test darajasi boshqacha maqsadga xizmat qiladi. Ularning har biri kim tomonidan, qachon va qanday asboblar bilan bajariladi — bilish kerak.</p>
+
+  <!-- LEVEL 1 -->
+  <div class="level-card l1">
+    <div class="level-header">
+      <div class="level-icon">1</div>
+      <div>
+        <div class="level-name">Component Testing</div>
+        <div class="level-subtitle">UNIT TESTING</div>
+      </div>
+    </div>
+    <div class="level-desc">Dasturning eng <strong>kichik qismi</strong> — bitta funksiya yoki metod testlanadi. Maqsad: kodning har birligi alohida to'g'ri ishlayotganini ta'minlash.</div>
+
+    <div class="level-details">
+      <div class="level-detail">
+        <div class="level-detail-label">Kim qiladi</div>
+        <div class="level-detail-value">Dasturchilar</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Qachon</div>
+        <div class="level-detail-value">Kod yozayotganda</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Asboblar</div>
+        <div class="level-detail-value">JUnit, Jest, pytest</div>
+      </div>
+    </div>
+
+    <div class="level-example">
+      <strong>Misol:</strong> Calculator ilovasida <code>qo'shish(2, 3)</code> funksiyasi 5 qaytarayaptimi? Agar ha — test Pass, agar yo'q — Fail. Foydalanuvchi bu testni ko'rmaydi, bu faqat kod darajasida.
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="level-card l2">
+    <div class="level-header">
+      <div class="level-icon">2</div>
+      <div>
+        <div class="level-name">Integration Testing</div>
+        <div class="level-subtitle">INTEGRATSIYA TESTLASH</div>
+      </div>
+    </div>
+    <div class="level-desc">Modullar yoki qismlar <strong>o'zaro bog'lanib ishlayaptimi</strong> tekshiriladi. Ikki yoki undan ko'p komponent birga to'g'ri ishlayaptimi?</div>
+
+    <div class="level-details">
+      <div class="level-detail">
+        <div class="level-detail-label">Kim qiladi</div>
+        <div class="level-detail-value">Dasturchilar + QA</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Qachon</div>
+        <div class="level-detail-value">Component'lar tayyor bo'lganda</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Asboblar</div>
+        <div class="level-detail-value">Postman, REST Assured</div>
+      </div>
+    </div>
+
+    <div class="level-example">
+      <strong>Misol:</strong> Login sahifasi (Frontend) → Server (Backend) → Database. Frontend'ga email/parol kiritiladi, backend'ga yuboriladi, database'dan tekshiriladi. <strong>3 ta komponent birga ishlayaptimi?</strong> — integration test.
+    </div>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div class="level-card l3">
+    <div class="level-header">
+      <div class="level-icon">3</div>
+      <div>
+        <div class="level-name">System Testing</div>
+        <div class="level-subtitle">TIZIM TESTLASHI</div>
+      </div>
+    </div>
+    <div class="level-desc">Butun tizim to'liq yig'ilgan holda testlash. <strong>Foydalanuvchi kabi</strong> tizimni ishlatib ko'rish — boshdan oxirigacha senariylar.</div>
+
+    <div class="level-details">
+      <div class="level-detail">
+        <div class="level-detail-label">Kim qiladi</div>
+        <div class="level-detail-value">QA'lar (sizning asosiy ishingiz!)</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Qachon</div>
+        <div class="level-detail-value">Butun tizim tayyor bo'lganda</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Asboblar</div>
+        <div class="level-detail-value">Selenium, Playwright, manual</div>
+      </div>
+    </div>
+
+    <div class="level-example">
+      <strong>Misol:</strong> Uzum Market'da: foydalanuvchi ro'yxatdan o'tadi → login qiladi → mahsulot qidiradi → savatga qo'shadi → to'lov qiladi → xarid tasdiqlangan xabarni oladi. <strong>Butun bu jarayonni</strong> QA sinab ko'radi.
+    </div>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div class="level-card l4">
+    <div class="level-header">
+      <div class="level-icon">4</div>
+      <div>
+        <div class="level-name">Acceptance Testing</div>
+        <div class="level-subtitle">QABUL TESTLASHI (UAT)</div>
+      </div>
+    </div>
+    <div class="level-desc">Biznes tomon yoki haqiqiy foydalanuvchi mahsulotni qabul qilish uchun tekshiradi. <strong>"Bu mening talablarimga javob beryaptimi?"</strong> savoliga javob.</div>
+
+    <div class="level-details">
+      <div class="level-detail">
+        <div class="level-detail-label">Kim qiladi</div>
+        <div class="level-detail-value">Product Owner, Mijoz</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Qachon</div>
+        <div class="level-detail-value">System Testing tugagandan so'ng</div>
+      </div>
+      <div class="level-detail">
+        <div class="level-detail-label">Asboblar</div>
+        <div class="level-detail-value">Manual, real ma'lumotlar</div>
+      </div>
+    </div>
+
+    <div class="level-example">
+      <strong>Misol:</strong> Click'ning mijozi (bank) tizimni o'zlari sinab ko'radi: "Pul o'tkazish bizning real shartnomalarga mos keladimi?". Agar ha — tizim production'ga chiqadi.
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">Pizza pishirish jarayoni</div>
+    <div class="analogy-text">
+      <strong>Component:</strong> Har ingredient alohida yaxshimi? (xamir, sos, pishloq) · <strong>Integration:</strong> Ular birga qo'shilganda mos keladimi? · <strong>System:</strong> Pishirilgan pizza yaxlit holda yaxshimi? · <strong>Acceptance:</strong> Mijoz ta'mi yoqadimi, buyurtmasiga mos keladimi?
+    </div>
+  </div>
+</section>
+
+<!-- DND: TEST LEVELS ORDER -->
+<div class="dnd-game" id="levelsGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Test darajalarini tartibga qo'ying</h3>
+  <p class="dnd-instruction">Darajalarni <strong>pastdan yuqoriga</strong> (boshlanishdan yakunigacha) tartibda sudrab joylashtiring.</p>
+
+  <div class="dnd-container">
+    <div class="dnd-slot" data-order="1"><span class="dnd-slot-num">1-daraja</span></div>
+    <div class="dnd-slot" data-order="2"><span class="dnd-slot-num">2-daraja</span></div>
+    <div class="dnd-slot" data-order="3"><span class="dnd-slot-num">3-daraja</span></div>
+    <div class="dnd-slot" data-order="4"><span class="dnd-slot-num">4-daraja</span></div>
+  </div>
+
+  <div class="dnd-items-pool" id="levelsPool">
+    <div class="dnd-item" draggable="true" data-correct="3">System Testing</div>
+    <div class="dnd-item" draggable="true" data-correct="1">Component Testing</div>
+    <div class="dnd-item" draggable="true" data-correct="4">Acceptance Testing</div>
+    <div class="dnd-item" draggable="true" data-correct="2">Integration Testing</div>
+  </div>
+
+  <div class="dnd-score" id="levelsScore">0 / 4 to'g'ri</div>
+  <button class="dnd-reset-btn" onclick="resetLevels()">Qaytadan boshlash</button>
+</div>
+
+<!-- MATCHING: LEVEL + WHO -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Test darajasi va uni kim bajaradi</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Chap tomonda darajani tanlang, o'ngdan kim bajarishini bog'lang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Test darajasi</h4>
+      <div class="match-item" data-side="left" data-pair="c">Component Testing</div>
+      <div class="match-item" data-side="left" data-pair="i">Integration Testing</div>
+      <div class="match-item" data-side="left" data-pair="s">System Testing</div>
+      <div class="match-item" data-side="left" data-pair="a">Acceptance Testing</div>
+    </div>
+    <div class="matching-column">
+      <h4>Kim bajaradi</h4>
+      <div class="match-item" data-side="right" data-pair="a">Product Owner yoki Mijoz</div>
+      <div class="match-item" data-side="right" data-pair="s">QA (sizning asosiy ishingiz)</div>
+      <div class="match-item" data-side="right" data-pair="c">Dasturchilar (o'zlari yozgan kod uchun)</div>
+      <div class="match-item" data-side="right" data-pair="i">Dasturchi + QA birga</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 4 juft topildi</div>
+</div>
+
+<!-- SECTION 2: TEST PYRAMID -->
+<section class="section" id="pyramid">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Test Piramidasi</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Test Piramidasi</strong> — test darajalari orasida <strong>qancha test bo'lishi kerakligi</strong> haqidagi nazariya. Mike Cohn tomonidan taklif qilingan.</p>
+    <p><em>Asosiy g'oya:</em> Ko'p sonli kichik (tez) testlar pastda, kam sonli katta (sekin) testlar yuqorida.</p>
+  </div>
+
+  <h3>Piramidaning ideal ko'rinishi</h3>
+
+  <div class="pyramid-wrapper">
+    <div class="pyramid-visual">
+      <div class="pyramid-level pyramid-l1">
+        <span class="level-num">Yuqorida</span>
+        <span class="level-name-small">UI / E2E Tests</span>
+        <span class="level-percent">~10%</span>
+      </div>
+      <div class="pyramid-level pyramid-l2">
+        <span class="level-num">3-daraja</span>
+        <span class="level-name-small">System Tests</span>
+        <span class="level-percent">~15%</span>
+      </div>
+      <div class="pyramid-level pyramid-l3">
+        <span class="level-num">2-daraja</span>
+        <span class="level-name-small">Integration Tests</span>
+        <span class="level-percent">~25%</span>
+      </div>
+      <div class="pyramid-level pyramid-l4">
+        <span class="level-num">1-daraja (eng pasti)</span>
+        <span class="level-name-small">Unit / Component Tests</span>
+        <span class="level-percent">~50%</span>
+      </div>
+    </div>
+    <div class="pyramid-note">↑ Tez, arzon, ko'p miqdor = pastda · Sekin, qimmat, kam miqdor = yuqorida ↓</div>
+  </div>
+
+  <h3>Nega bunday proporsiya?</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">Pastdagi testlar (Unit)</div>
+    <p style="margin:0"><strong>Afzalliklari:</strong> Juda tez bajariladi (millisekunddalarda), arzon yozish, ishonchli. Shuning uchun <strong>ko'p miqdor</strong> yozish mumkin va kerak.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Yuqoridagi testlar (E2E)</div>
+    <p style="margin:0"><strong>Kamchiliklari:</strong> Sekin (minutlarda), qimmat, ba'zida "flaky" (bir xil natija bermaydi). Shuning uchun <strong>kam, faqat eng muhim</strong> sahnalar uchun.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Amaliy xulosa</div>
+    <p>Agar sizning loyihangizda <strong>1000 ta Unit test va 10 ta E2E test</strong> bo'lsa — bu sog'lom piramida. Agar <strong>100 ta Unit va 500 ta E2E</strong> — bu muammo (Ice Cream Cone).</p>
+  </div>
+
+  <h3>Anti-pattern: Ice Cream Cone (muzqaymoq konus)</h3>
+  <p>Ba'zi loyihalarda piramida teskari bo'ladi — ko'p E2E testlar, kam Unit testlar. Bu <strong>yomon holat</strong>:</p>
+
+  <div class="icecream-wrapper">
+    <div class="icecream-title">⚠️ Ice Cream Cone Anti-Pattern</div>
+    <div class="icecream-visual">
+      <div class="ice-l1">Manual Testing ~40%</div>
+      <div class="ice-l2">E2E / UI Tests ~30%</div>
+      <div class="ice-l3">Integration ~20%</div>
+      <div class="ice-l4">Unit ~10%</div>
+    </div>
+    <div class="icecream-warning">Bu holat sekin, qimmat va nazorat qilish qiyin!</div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">Poydevor va tom</div>
+    <div class="analogy-text">
+      Bino qurayotganingizda <strong>kuchli poydevor</strong> va <strong>yengil tom</strong> kerak. Agar poydevor zaif, tom og'ir bo'lsa — bino yiqiladi. Xuddi shunday testlarda ham — <strong>ko'p Unit test</strong> va <strong>kam E2E test</strong> — bu kuchli strategiya.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: REGRESSION TESTING -->
+<section class="section" id="regression">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Regression Testing</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Regression Testing</strong> — dasturga yangi o'zgarish kiritilgandan so'ng, <strong>eski funksiyalar ishlayaptimi</strong>ni tekshirish.</p>
+    <p><em>Oddiy qilib:</em> yangi feature qo'shildi — qolgan narsalar yana ishlayaptimi? Regression Testing aynan shuni tekshiradi.</p>
+  </div>
+
+  <h3>Nima uchun kerak?</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">Real misol</div>
+    <p style="margin:0">Uzum Market'da yangi "Chegirma kodi" funksiyasi qo'shildi. Dasturchi kodni yozdi, yangi funksiya ishlayapti. Lekin... endi <strong>savat</strong> ham ishlamay qoldi! Chunki yangi kod eski savat kodiga ta'sir qilgan. <strong>Bu holatni oldini olish uchun — Regression Testing.</strong></p>
+  </div>
+
+  <h3>Qachon bajariladi?</h3>
+  <ul>
+    <li><strong>Yangi funksiya qo'shilgandan so'ng</strong> — boshqa narsalar buzilmaganligini tekshirish</li>
+    <li><strong>Bug tuzatilgandan so'ng</strong> — tuzatish boshqa joyni buzmaganmi?</li>
+    <li><strong>Har release'dan oldin</strong> — production'ga chiqishdan oldin</li>
+    <li><strong>Konfiguratsiya o'zgarganda</strong> — server, database sozlamalari o'zgarganda</li>
+  </ul>
+
+  <h3>Manual vs Automation</h3>
+  <p>Regression Testing <strong>juda ko'p marta</strong> takrorlanadigan ish. Shuning uchun u <strong>avtomatlashtirish uchun ideal</strong>. Keling qaraymiz:</p>
+
+  <div class="compare-grid">
+    <div class="compare-card smoke">
+      <h4>Manual Regression</h4>
+      <p>Yangi jamoalarda yoki kichik loyihalarda ishlatiladi.</p>
+      <ul class="compare-list">
+        <li>Asosiy senariylar qo'lda tekshiriladi</li>
+        <li>Har release oldidan 1-2 kun ketadi</li>
+        <li>Inson xatosi bo'lishi mumkin</li>
+        <li>Yangi boshlovchilar uchun yaxshi</li>
+      </ul>
+    </div>
+    <div class="compare-card regression">
+      <h4>Automation Regression</h4>
+      <p>Katta loyihalarda albatta kerak.</p>
+      <ul class="compare-list">
+        <li>Yuzlab testlar 30 daqiqada</li>
+        <li>Har night'da avtomatik ishga tushadi</li>
+        <li>Bug'larni darhol topadi</li>
+        <li>Senior QA yoki SDET yozadi</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Smoke Testing vs Regression Testing</h3>
+  <p>Bu ikkala atamani ko'pchilik aralashtirib yuboradi. Intervyu'da so'raydi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Smoke Testing</div>
+    <p><strong>Smoke</strong> — <em>"ishlayaptimi umuman?"</em> degan savolga javob. Eng asosiy funksiyalar ishlayaptimi? 15-30 daqiqalik tez tekshiruv.</p>
+    <p><em>Misol:</em> Sayt ochilayaptimi? Login ishlayaptimi? Bosh sahifa chiqayaptimi? Agar ha — keyingi testlarga o'tamiz.</p>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Regression Testing</div>
+    <p><strong>Regression</strong> — <em>"eski narsalar yana ishlayaptimi?"</em> degan savolga javob. Chuqurroq, batafsilroq tekshiruv. Bir necha soatdan bir necha kungacha.</p>
+    <p><em>Misol:</em> Barcha eski funksiyalarni bir-bir tekshirish. Login, ro'yxatdan o'tish, savat, to'lov, profil... hammasini.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Oddiy farqlash</div>
+    <p><strong>Smoke</strong> = <em>tez, yuzaki</em> ("ishlayaptimi?") · <strong>Regression</strong> = <em>sekin, chuqur</em> ("to'liq ishlayaptimi?")</p>
+  </div>
+</section>
+
+<!-- BUG CLASSIFIER -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Bug classifier</div>
+  <h3 style="margin-top:8px">Bug qaysi test darajasida topilishi kerak?</h3>
+  <p class="dnd-instruction">Har bir bug'ni o'qing va ideal holda <strong>qaysi darajada</strong> topilishi kerakligini tanlang.</p>
+
+  <div id="classifierCards">
+    <div class="classifier-card" draggable="true" data-category="component">
+      <div class="classifier-card-title">Qo'shish funksiyasi noto'g'ri natija qaytarmoqda</div>
+      <div class="classifier-card-desc">calculator.add(2, 3) = 6 qaytaryapti, 5 o'rniga. Bu faqat bitta funksiyaga tegishli.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="integration">
+      <div class="classifier-card-title">Frontend'dan ma'lumot Backend'ga yetib bormaydi</div>
+      <div class="classifier-card-desc">Forma to'ldiriladi, lekin server xato qaytaradi — ikki komponent orasidagi bog'liqlik buzilgan.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="system">
+      <div class="classifier-card-title">Mobil versiyada "Savatga qo'shish" tugmasi ko'rinmaydi</div>
+      <div class="classifier-card-desc">Butun tizim ishlayapti, lekin UI muammosi foydalanuvchi tajribasiga ta'sir qiladi.</div>
+    </div>
+    <div class="classifier-card" draggable="true" data-category="acceptance">
+      <div class="classifier-card-title">Mijoz: "Bu bizning brend ranglarga mos kelmaydi"</div>
+      <div class="classifier-card-desc">Texnik jihatdan hammasi to'g'ri ishlayapti, lekin biznes talablariga to'liq mos emas.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="component">
+      <div class="classifier-bucket-label" style="color:var(--forest)">Component / Unit</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="integration">
+      <div class="classifier-bucket-label" style="color:var(--blue)">Integration</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="system">
+      <div class="classifier-bucket-label" style="color:var(--gold)">System</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="acceptance">
+      <div class="classifier-bucket-label" style="color:var(--accent)">Acceptance</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 4 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Payme'da yangi feature qo'shildi</div>
+
+  <div class="scenario-story">
+    <p><strong>Juma, 14:00.</strong> Payme jamoasi yangi funksiya qo'shdi — <strong>"Do'stga pul yuborish"</strong>. Dasturchilar kodni yozdi, test server'ga joyladi.</p>
+    <p><strong>Sizning vazifangiz:</strong> Testorsiz. Bu yangi funksiyani test qilish kerak, lekin yana nima tekshirasiz?</p>
+  </div>
+
+  <div class="scenario-question">Eng to'g'ri strategiya qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Faqat "Do'stga pul yuborish" funksiyasini sinab ko'raman</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Yangi funksiyani test qilaman + Regression Testing qilaman — eski funksiyalar (to'lov, balans, tarix) hali ham ishlayaptimi?</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Barcha testlarni qayta bajaraman — butun sayt</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Sog'lom Test Piramida'da qaysi test ko'proq bo'lishi kerak?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>E2E (UI) Tests — ular real foydalanuvchi tajribasini tekshiradi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Unit/Component Tests — chunki ular tez, arzon va ishonchli</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Integration Tests — ular ikki turdagi testning o'rtasida</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop'da test darajalarini qo'llash</h2>
+  <p class="section-intro">Endi nazariyani TestShop'da amaliy sinab ko'ramiz. Har bir test darajasi uchun konkret vazifalar bor.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Test darajalari amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      System Testing va Regression Testing'ni amaliy bajaring.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning 3 bosqichli vazifangiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#C08838;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">System Testing — End-to-End senariy</div>
+        <div style="color:#4A4A4A;font-size:14px">Foydalanuvchi sifatida to'liq senariyni bajaring: Ro'yxatdan o'ting → Login qiling → Mahsulot tanlang → Savatga qo'shing → Checkout'ga boring. <strong>Har bosqichda nima ishlayapti, nima yo'q?</strong> Hisobot tuzing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Regression Test Suite tuzing</div>
+        <div style="color:#4A4A4A;font-size:14px">Tasavvur qiling: TestShop'da yangi funksiya qo'shildi. Qaysi 10 ta eski funksiyani albatta qayta sinash kerak? Google Sheets'da Regression Test Suite ro'yxatini tuzing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#D85A30;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Smoke Test ro'yxatini tuzing</div>
+        <div style="color:#4A4A4A;font-size:14px">Har ertalabki 15 daqiqali Smoke Test uchun 5 ta eng muhim tekshiruvni aniqlang. Masalan: sayt ochilayaptimi, login ishlayaptimi, bosh sahifa chiqayaptimi va hokazo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Pro maslahat</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Tuzilgan Regression va Smoke Test ro'yxatlaringizni saqlang. Intervyu'da: <strong>"Siz qanday Regression strategiyasi yaratasiz?"</strong> degan savolga konkret misol bilan javob bera olasiz. Bu sizni boshqa nomzodlardan ustun qiladi.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Test darajalari va Regression — intervyu'da eng ko'p so'raladigan mavzular. Javoblarni puxta o'rganing.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Test darajalarini sanab bering va kim bajarishini ayting.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "4 ta asosiy test darajasi bor:"</p>
+          <ul>
+            <li><strong>Component/Unit Testing</strong> — Dasturchilar bajaradi. Eng kichik qism — bir funksiya.</li>
+            <li><strong>Integration Testing</strong> — Dasturchi + QA. Modullar o'zaro ishlayaptimi.</li>
+            <li><strong>System Testing</strong> — QA'lar bajaradi. Butun tizim end-to-end.</li>
+            <li><strong>Acceptance Testing</strong> — Product Owner yoki mijoz. Biznes talablar bajarilganmi.</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Men aynan <strong>System Testing</strong>da ishlayman — bu QA'ning asosiy sohasi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Test Piramidasi nima va u nima uchun muhim?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Test Piramidasi — test darajalari orasida balans haqidagi nazariya. <strong>Ko'p Unit, o'rtacha Integration, kam E2E</strong>."</p>
+          <p><strong>Nima uchun?</strong></p>
+          <ul>
+            <li>Unit testlar <strong>tez</strong> (millisekund) va <strong>arzon</strong></li>
+            <li>E2E testlar <strong>sekin</strong> (minut) va <strong>qimmat</strong></li>
+            <li>Ko'p arzon test = tez feedback = pul tejash</li>
+          </ul>
+          <p><strong>Anti-pattern:</strong> Ice Cream Cone — ko'p E2E, kam Unit. Bu yomon — tez natija yo'q.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Regression Testing nima? Qachon bajariladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Regression Testing — dasturga <strong>yangi o'zgarish</strong> kiritilgandan so'ng, eski funksiyalar buzilmaganligini tekshirish."</p>
+          <p><strong>Qachon bajariladi:</strong></p>
+          <ul>
+            <li>Yangi funksiya qo'shilganda</li>
+            <li>Bug tuzatilgandan so'ng</li>
+            <li>Har release'dan oldin</li>
+            <li>Konfiguratsiya o'zgarganda</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Katta loyihalarda Regression Testing avtomatlashtirilishi kerak — chunki u har safar takrorlanadi. Manual qilish ko'p vaqt oladi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Smoke Testing va Regression Testing farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Smoke Testing</strong> — <em>"ishlayaptimi umuman?"</em>. Eng asosiy funksiyalar (login, bosh sahifa). 15-30 daqiqa.</li>
+            <li><strong>Regression Testing</strong> — <em>"barcha eski funksiyalar ishlayaptimi?"</em>. Chuqur, batafsil. Soatlar yoki kunlar.</li>
+          </ul>
+          <p><strong>Ketma-ketlik:</strong> "Build kelsa, avval <strong>Smoke</strong> qilamiz. Agar smoke o'tsa — keyin <strong>Regression</strong>ga o'tamiz. Smoke Fail bo'lsa — Regression'ga o'tmaymiz, build'ni qaytaramiz."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Unit Testing bilan Integration Testing farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Unit Testing</strong> — <strong>bitta komponent</strong> (masalan, bir funksiya) alohida test qilinadi. Boshqalardan ajratilgan.</li>
+            <li><strong>Integration Testing</strong> — <strong>2 yoki undan ko'p komponent</strong> birga ishlayaptimi tekshiriladi.</li>
+          </ul>
+          <p><strong>Misol:</strong></p>
+          <ul>
+            <li>Unit: <code>add(2, 3) = 5</code> — bitta funksiya</li>
+            <li>Integration: Login formasidan yuborilgan ma'lumot → server → database'ga yetib borayaptimi — 3 ta komponent birga</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Siz qaysi test darajasida ko'proq ishlaysiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob shabloni:</strong> "Men asosan <strong>System Testing</strong>da ishlayman — bu QA'ning asosiy sohasi. Butun tizimni end-to-end sinab ko'raman."</p>
+          <p><strong>Qo'shimcha:</strong></p>
+          <ul>
+            <li><strong>Integration Testing</strong>da ham qatnashaman — API testing uchun (Postman)</li>
+            <li><strong>Acceptance Testing</strong>da PO bilan birga ishlayman</li>
+            <li><strong>Unit Testing</strong> bilan to'g'ridan-to'g'ri ishlamayman — bu dasturchilarning sohasi</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Lekin Unit test natijalarini ko'rib boraman — agar unit test'larda muammo bo'lsa, bu kelgusida System darajasida ham chiqadi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Acceptance Testing'da QA qanday vazifa bajaradi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Acceptance Testing'ni asosan <strong>Product Owner yoki mijoz</strong> bajaradi. Lekin QA:"</p>
+          <ul>
+            <li>UAT muhitini tayyorlashda yordam beradi</li>
+            <li>Test ma'lumotlarini tayyorlaydi</li>
+            <li>PO'ga test senariylar tushuntiradi</li>
+            <li>UAT paytida topilgan bug'larni qabul qilib, developer'larga yuboradi</li>
+            <li>Tuzatilgan bug'larni qayta tekshiradi</li>
+          </ul>
+          <p><strong>Muhim:</strong> "UAT — QA'ning qaror qabul qilish sohasi emas. QA biznes emas, texnik mutaxassis."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolish kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">4 ta test darajasi</div>
+      <div class="summary-point-text">Component → Integration → System → Acceptance. Har biri boshqa maqsad va ishchi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Test Piramidasi — balans</div>
+      <div class="summary-point-text">Ko'p Unit (pastda), kam E2E (yuqorida). Ice Cream Cone — anti-pattern.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Regression — eski ham ishlashi kerak</div>
+      <div class="summary-point-text">Har yangilanishdan keyin eski funksiyalarni tekshirish. Automation uchun ideal.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="08-principles.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>8-dars · 7 prinsip</div>
+  </a>
+  <a href="10-test-types.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>10-dars · Test turlari</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 14;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Unit testlar piramida asosini tashkil etadi. Ular tez, arzon va ishonchli. Ko\'p Unit test = tez feedback = yaxshi sifat.',
+    incorrect: 'Yo\'q, bu noto\'g\'ri. Unit testlar eng ko\'p bo\'lishi kerak — chunki ular tez va arzon. E2E testlar kam bo\'lishi kerak — sekin va qimmat.'
+  },
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Bu professional yondashuv. Yangi feature + Regression Testing = hammasi ishlashining kafolati. "Do\'stga pul yuborish" to\'lov tizimini o\'zgartirdi — balans, tarix, boshqa to\'lovlar ham tekshirilishi kerak.',
+    incorrect: 'Bu to\'liq emas. Yangi funksiyani test qilish yetarli emas — eski funksiyalar ham ishlashi kerak. Barcha testlarni bajarish esa juda ko\'p vaqt oladi. Regression — aniq va samarali yondashuv.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// DND: LEVELS ORDER
+let draggedItem = null;
+let levelsCorrect = 0;
+
+document.querySelectorAll('#levelsPool .dnd-item').forEach(item => {
+  item.addEventListener('dragstart', (e) => {
+    draggedItem = item;
+    item.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  item.addEventListener('dragend', () => item.classList.remove('dragging'));
+});
+
+document.querySelectorAll('#levelsGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+  });
+  slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    if (slot.classList.contains('filled') || !draggedItem) return;
+    const correctOrder = parseInt(draggedItem.dataset.correct);
+    const slotOrder = parseInt(slot.dataset.order);
+    if (correctOrder === slotOrder) {
+      slot.innerHTML = `<span class="dnd-slot-num">${slotOrder}-daraja</span><div style="margin-top:4px;font-weight:600">${draggedItem.textContent}</div>`;
+      slot.classList.add('filled', 'correct');
+      draggedItem.classList.add('placed');
+      levelsCorrect++;
+      document.getElementById('levelsScore').textContent = `${levelsCorrect} / 4 to'g'ri`;
+      completedActivities.add(`levels-${levelsCorrect}`);
+      updateProgress();
+      if (levelsCorrect === 4) {
+        document.getElementById('levelsScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Mukammal! Barcha darajalar to\'g\'ri!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+function resetLevels() {
+  document.querySelectorAll('#levelsGame .dnd-slot').forEach(slot => {
+    const order = slot.dataset.order;
+    slot.innerHTML = `<span class="dnd-slot-num">${order}-daraja</span>`;
+    slot.classList.remove('filled', 'correct', 'wrong');
+  });
+  document.querySelectorAll('#levelsPool .dnd-item').forEach(item => item.classList.remove('placed'));
+  levelsCorrect = 0;
+  document.getElementById('levelsScore').textContent = '0 / 4 to\'g\'ri';
+}
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 4 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 4) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha bog\'lamlar topildi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// CLASSIFIER
+let classifierCorrect = 0;
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('dragstart', (e) => {
+    draggedItem = card;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  card.addEventListener('dragend', () => card.classList.remove('dragging'));
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    bucket.classList.add('drag-over');
+  });
+  bucket.addEventListener('dragleave', () => bucket.classList.remove('drag-over'));
+  bucket.addEventListener('drop', (e) => {
+    e.preventDefault();
+    bucket.classList.remove('drag-over');
+    if (!draggedItem || !draggedItem.classList.contains('classifier-card') || draggedItem.classList.contains('classified')) return;
+    if (draggedItem.dataset.category === bucket.dataset.bucket) {
+      draggedItem.classList.add('classified');
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 4 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 4) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 A\'lo! Bug darajalarini to\'g\'ri aniqladingiz!</span>';
+      }
+    } else {
+      bucket.classList.add('wrong');
+      setTimeout(() => bucket.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .level-card, .pyramid-wrapper, .icecream-wrapper, .compare-card').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
