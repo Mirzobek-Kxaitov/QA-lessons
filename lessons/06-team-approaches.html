@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-dars: Whole Team Approach va TDD/ATDD/BDD | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* COMPARE CARDS */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.compare-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.compare-card.old { border-top: 4px solid var(--accent); }
+.compare-card.new { border-top: 4px solid var(--forest); }
+.compare-card h4 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+.compare-card.old h4 { color: var(--accent); }
+.compare-card.new h4 { color: var(--forest); }
+.compare-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 10px; }
+.compare-list { list-style: none; padding: 0; margin: 0; }
+.compare-list li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+.compare-list li:last-child { border-bottom: none; }
+.compare-card.old .compare-list li::before { content: "✗ "; color: var(--accent); font-weight: 600; }
+.compare-card.new .compare-list li::before { content: "✓ "; color: var(--forest); font-weight: 600; }
+
+/* 3 AMIGOS */
+.amigos-wrapper { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 32px; margin: 24px 0; }
+.amigos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 20px; }
+.amigo-card { text-align: center; padding: 24px 16px; border-radius: 12px; transition: all 0.2s; }
+.amigo-card.po { background: var(--coral-soft); border: 2px solid var(--coral); }
+.amigo-card.dev { background: var(--plum-soft); border: 2px solid var(--plum); }
+.amigo-card.qa { background: var(--accent-soft); border: 2px solid var(--accent); }
+.amigo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1); }
+.amigo-icon { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: white; }
+.amigo-card.po .amigo-icon { background: var(--coral); }
+.amigo-card.dev .amigo-icon { background: var(--plum); }
+.amigo-card.qa .amigo-icon { background: var(--accent); }
+.amigo-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+.amigo-question { font-size: 13px; color: var(--ink-soft); font-style: italic; line-height: 1.4; }
+
+/* TDD CYCLE */
+.tdd-cycle { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 40px 24px; margin: 28px 0; text-align: center; }
+.tdd-visual { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.tdd-step { padding: 20px 24px; border-radius: 14px; color: white; font-weight: 500; min-width: 140px; position: relative; transition: transform 0.2s; }
+.tdd-step:hover { transform: scale(1.05); }
+.tdd-step.red { background: #C53030; }
+.tdd-step.green { background: #2F7D4F; }
+.tdd-step.refactor { background: #4A5568; }
+.tdd-step-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: 0.8; margin-bottom: 4px; }
+.tdd-step-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.tdd-step-desc { font-size: 13px; opacity: 0.9; }
+.tdd-arrow { font-size: 24px; color: var(--ink-muted); }
+.tdd-loop-note { margin-top: 20px; font-size: 14px; color: var(--ink-muted); font-style: italic; }
+
+/* BDD SCENARIO */
+.bdd-code { background: #1A1A1A; color: #E8E8E8; border-radius: 12px; padding: 24px 28px; margin: 20px 0; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.8; overflow-x: auto; }
+.bdd-feature { color: #F2D194; font-weight: 600; }
+.bdd-scenario { color: #A3DAD1; font-weight: 600; }
+.bdd-given { color: #FFB84D; }
+.bdd-when { color: #A3CFFF; }
+.bdd-then { color: #B5F4A5; }
+.bdd-and { color: #C8A3FF; }
+.bdd-comment { color: #7A7A7A; font-style: italic; }
+
+/* METHODOLOGY CARDS */
+.methodology-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 16px; transition: all 0.3s; position: relative; overflow: hidden; }
+.methodology-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.methodology-card.tdd::before { background: #C53030; }
+.methodology-card.atdd::before { background: var(--gold); }
+.methodology-card.bdd::before { background: var(--forest); }
+.methodology-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15); }
+
+.methodology-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.methodology-badge { padding: 6px 14px; border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: white; }
+.methodology-badge.tdd { background: #C53030; }
+.methodology-badge.atdd { background: var(--gold); }
+.methodology-badge.bdd { background: var(--forest); }
+.methodology-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; }
+.methodology-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 14px; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-container { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; }
+.dnd-slot { min-height: 70px; min-width: 140px; border: 2px dashed var(--line-dark); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 12px; transition: all 0.2s; background: var(--bg-soft); }
+.dnd-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-slot.filled { border-style: solid; }
+.dnd-slot.correct { background: var(--forest-soft); border-color: var(--forest); }
+.dnd-slot.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s ease; }
+.dnd-slot-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 12px 18px; cursor: grab; font-size: 14px; font-weight: 500; transition: all 0.2s; user-select: none; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.dnd-reset-btn { display: block; margin: 16px auto 0; padding: 10px 20px; background: var(--plum); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1000px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .compare-grid, .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .tdd-cycle, .amigos-wrapper { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .tdd-visual { flex-direction: column; }
+  .tdd-arrow { transform: rotate(90deg); }
+  .bdd-code { font-size: 12px; padding: 16px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">6-dars</div>
+  <h1>Whole Team Approach va <em>TDD/ATDD/BDD</em></h1>
+  <p class="hero-subtitle">Zamonaviy IT jamoalari qanday ishlaydi? Test birinchi, kod keyinmi? BDD nima va Given-When-Then sintaksisi qanday? Sodda misollar bilan o'rganamiz.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Zamonaviy metodologiyalar</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Zamonaviy yondashuv</h2>
+  <p class="section-intro">5-darsda siz IT jamoasidagi rollarni o'rgandingiz. Endi savol: <strong>bu odamlar qanday hamkorlik qiladi?</strong> Testor faqat oxirida bug topadimi yoki boshidanoq qatnashadimi?</p>
+  <p>Zamonaviy yondashuvda javob aniq: <strong>butun jamoa birga ishlaydi</strong>. Bu darsda 4 ta muhim tushunchani ko'rib chiqamiz: Whole Team Approach, TDD, ATDD va BDD. Barchasi — bugungi IT dunyosining asosiy praktikalari.</p>
+  <p>Bu darsdan keyin siz intervyuda bu atamalarni bemalol ishlata olasiz va "BDD ssenariysi" deb sizdan so'rashganda — aniq javob bera olasiz.</p>
+</section>
+
+<!-- SECTION 1: WHOLE TEAM APPROACH -->
+<section class="section" id="whole-team">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Whole Team Approach</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Whole Team Approach (Butun Jamoa Yondashuvi)</strong> — sifat uchun faqat testor emas, <strong>butun jamoa</strong> mas'ul bo'ladi degan falsafa.</p>
+    <p><em>Oddiy qilib:</em> dasturchi ham sifatni o'ylaydi, dizayner ham, biznes analitik ham. Testor yolg'iz "sifat qo'riqchisi" emas — u jamoaning bir qismi.</p>
+  </div>
+
+  <h3>Eski va yangi yondashuvlar</h3>
+
+  <div class="compare-grid">
+    <div class="compare-card old">
+      <h4>Eski (Siloed)</h4>
+      <p>Har bir mutaxassis o'z ishini alohida qiladi.</p>
+      <ul class="compare-list">
+        <li>Dasturchi kod yozadi — bu uning ishi</li>
+        <li>Testor bug topadi — bu uning ishi</li>
+        <li>Dizayner rasm chizadi — bu uning ishi</li>
+        <li>Bir-birini kutadilar (sekin)</li>
+        <li>"Meniki emas" deyish tez-tez</li>
+      </ul>
+    </div>
+    <div class="compare-card new">
+      <h4>Yangi (Whole Team)</h4>
+      <p>Butun jamoa birga ishlaydi, sifat umumiy mas'uliyat.</p>
+      <ul class="compare-list">
+        <li>Hamma sifatni o'ylaydi (dasturchi ham)</li>
+        <li>Testor boshidanoq qatnashadi</li>
+        <li>3 Amigos — PO, Dev, QA birga</li>
+        <li>Tezroq natija</li>
+        <li>"Biz birga yaratamiz"</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>"3 Amigos" meetings</h3>
+  <p>Whole Team yondashuvining eng muhim amaliyoti — <strong>3 Amigos meeting</strong> (3 do'st uchrashuvi). Bu — <strong>PO, Developer, QA</strong> birga o'tiradigan qisqa yig'ilish.</p>
+
+  <div class="amigos-wrapper">
+    <h4 style="text-align:center;margin-top:0">3 Amigos — har biri o'z savolini beradi</h4>
+    <div class="amigos-grid">
+      <div class="amigo-card po">
+        <div class="amigo-icon">PO</div>
+        <div class="amigo-name">Product Owner</div>
+        <div class="amigo-question">"Biznes uchun bu nima foyda?"</div>
+      </div>
+      <div class="amigo-card dev">
+        <div class="amigo-icon">D</div>
+        <div class="amigo-name">Developer</div>
+        <div class="amigo-question">"Buni qanday yaratsam bo'ladi?"</div>
+      </div>
+      <div class="amigo-card qa">
+        <div class="amigo-icon">QA</div>
+        <div class="amigo-name">QA / Testor</div>
+        <div class="amigo-question">"Qanday buzishim mumkin?"</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;margin-bottom:0;text-align:center;font-size:14px;color:var(--ink-muted)">Uchta nuqtai nazar birga = har bir funksiya to'liq o'ylangan</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Real misol: 3 Amigos meeting</div>
+    <p><strong>Mavzu:</strong> "Foydalanuvchi parolni tiklashi mumkin"</p>
+    <p><strong>PO:</strong> "Foydalanuvchi parolini unutsa — email orqali tiklay oladi. Bu oddiy narsa."</p>
+    <p><strong>Developer:</strong> "OK, email yuborish 5 daqiqa vaqt oladi. Kod yozish 2 soat."</p>
+    <p><strong>QA:</strong> "Bir daqiqa — agar email mavjud bo'lmasa nima bo'ladi? Noto'g'ri email kiritilsa? SMS orqali ham bo'ladimi? Qancha vaqt email ishlaydi? Havola 1 marta ishlatiladimi yoki qayta-qayta?"</p>
+    <p style="margin:0"><strong>Natija:</strong> 5 ta muhim savol ochildi. Agar QA bu yig'ilishda bo'lmaganda — keyin bug topar edi va kodni qayta yozish kerak bo'lar edi.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Amaliy xulosa</div>
+    <p>3 Amigos meeting <strong>15-30 daqiqa</strong> oladi, lekin keyinchalik <strong>soatlik ishlarni</strong> tejaydi. Sifat meeting'idan boshlanadi, kod yozishdan emas.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: TDD -->
+<section class="section" id="tdd">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">TDD — Test Driven Development</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>TDD (Test Driven Development)</strong> — avval <strong>test yoziladi</strong>, keyin <strong>kod</strong>. Test birinchi!</p>
+    <p><em>Oddiy qilib:</em> dasturchi awal "bu kod qanday ishlashi kerak" degan testni yozadi, keyin shu testga mos kod yozadi.</p>
+  </div>
+
+  <h3>Red-Green-Refactor sikli</h3>
+  <p>TDD doimiy 3 bosqichli sikl orqali ishlaydi. Har yangi funksiya shu bosqichlardan o'tadi:</p>
+
+  <div class="tdd-cycle">
+    <div class="tdd-visual">
+      <div class="tdd-step red">
+        <div class="tdd-step-num">01</div>
+        <div class="tdd-step-name">RED</div>
+        <div class="tdd-step-desc">Test yozing. U ishlamaydi (chunki kod yo'q)</div>
+      </div>
+      <div class="tdd-arrow">→</div>
+      <div class="tdd-step green">
+        <div class="tdd-step-num">02</div>
+        <div class="tdd-step-name">GREEN</div>
+        <div class="tdd-step-desc">Minimal kod yozing — test o'tsin</div>
+      </div>
+      <div class="tdd-arrow">→</div>
+      <div class="tdd-step refactor">
+        <div class="tdd-step-num">03</div>
+        <div class="tdd-step-name">REFACTOR</div>
+        <div class="tdd-step-desc">Kodni yaxshilang — test baribir o'tsin</div>
+      </div>
+    </div>
+    <div class="tdd-loop-note">↻ Sikl takrorlanadi: har yangi xususiyat uchun qaytadan Red → Green → Refactor</div>
+  </div>
+
+  <h3>Sodda misol: Kalkulyator</h3>
+  <p>Tasavvur qiling, dasturchi <code>qo'shish(a, b)</code> funksiyasini yozmoqchi. TDD bo'yicha qanday ishlaydi:</p>
+
+  <div class="example-box">
+    <div class="example-box-title">🔴 1-qadam: RED</div>
+    <p style="margin-bottom:8px">Dasturchi test yozadi:</p>
+    <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg-soft);padding:10px;border-radius:6px">
+      test('qo\'shish(2, 3) = 5 bo\'lishi kerak', () => {<br>
+      &nbsp;&nbsp;assert(qoshish(2, 3) === 5);<br>
+      });
+    </p>
+    <p style="margin-top:10px;margin-bottom:0;color:var(--accent-dark)"><strong>Natija:</strong> ❌ Test Fail (chunki <code>qoshish</code> funksiyasi hali yo'q)</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">🟢 2-qadam: GREEN</div>
+    <p style="margin-bottom:8px">Dasturchi eng oddiy kod yozadi:</p>
+    <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg-soft);padding:10px;border-radius:6px">
+      function qoshish(a, b) {<br>
+      &nbsp;&nbsp;return a + b;<br>
+      }
+    </p>
+    <p style="margin-top:10px;margin-bottom:0;color:var(--forest)"><strong>Natija:</strong> ✅ Test Pass</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">🔧 3-qadam: REFACTOR</div>
+    <p style="margin:0">Kod allaqachon yaxshi yozilgan — hech narsa o'zgartirmaymiz. Agar murakkabroq bo'lganida, bu bosqichda kodni tozalash mumkin edi. Test baribir Pass bo'lishi kerak.</p>
+  </div>
+
+  <h3>TDD'da QA roli nima?</h3>
+  <p>TDD asosan <strong>dasturchilar</strong> qiladigan ish. Lekin QA ham muhim:</p>
+  <ul>
+    <li><strong>3 Amigos'da qatnashadi</strong> — "qanday holatlarni test qilish kerak" degan ro'yxat beradi</li>
+    <li><strong>Code review qiladi</strong> — dasturchi yozgan testlar yetarli'mi tekshiradi</li>
+    <li><strong>Integration va System testlar yozadi</strong> — TDD faqat Unit testlar bilan ishlaydi, butun tizim uchun QA javobgar</li>
+  </ul>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">Uy qurish — avval reja chizing</div>
+    <div class="analogy-text">
+      Siz uy qurmoqchisiz. Normal odam avval <strong>chizma chizadi</strong> ("5 xonali, oshxona shu yerda"), keyin qurishga kirishadi. Hech kim g'ishtni birinchi qo'yib, keyin "qanday uy bo'ladi?" deb o'ylamaydi. TDD ham shunday — avval "qanday ishlashi kerak" (test), keyin "qanday ishlaydi" (kod).
+    </div>
+  </div>
+</section>
+
+<!-- DND: TDD CYCLE -->
+<div class="dnd-game" id="tddGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">TDD siklini tartibga qo'ying</h3>
+  <p class="dnd-instruction">TDD ning 3 bosqichini <strong>to'g'ri tartibda</strong> joylashtiring.</p>
+
+  <div class="dnd-container">
+    <div class="dnd-slot" data-order="1"><span class="dnd-slot-num">1-qadam</span></div>
+    <div class="dnd-slot" data-order="2"><span class="dnd-slot-num">2-qadam</span></div>
+    <div class="dnd-slot" data-order="3"><span class="dnd-slot-num">3-qadam</span></div>
+  </div>
+
+  <div class="dnd-items-pool" id="tddPool">
+    <div class="dnd-item" draggable="true" data-correct="2">🟢 GREEN — kod yozish, test o'tsin</div>
+    <div class="dnd-item" draggable="true" data-correct="1">🔴 RED — test yozish (u ishlamaydi)</div>
+    <div class="dnd-item" draggable="true" data-correct="3">🔧 REFACTOR — kodni yaxshilash</div>
+  </div>
+
+  <div class="dnd-score" id="tddScore">0 / 3 to'g'ri</div>
+  <button class="dnd-reset-btn" onclick="resetTdd()">Qaytadan boshlash</button>
+</div>
+
+<!-- SECTION 3: ATDD -->
+<section class="section" id="atdd">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">ATDD — Acceptance Test Driven Development</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>ATDD (Acceptance Test Driven Development)</strong> — TDD ning biznes versiyasi. Avval <strong>Acceptance Criteria</strong> (qabul shartlari) yoziladi, keyin shu asosda dasturlash boshlanadi.</p>
+    <p><em>Oddiy qilib:</em> "Bu funksiya qachon tayyor deb hisoblanadi?" savoliga <strong>oldindan</strong> aniq javob bermiladi.</p>
+  </div>
+
+  <h3>ATDD qanday ishlaydi?</h3>
+
+  <div class="methodology-card atdd">
+    <div class="methodology-header">
+      <span class="methodology-badge atdd">ATDD</span>
+      <div class="methodology-title">Acceptance Criteria bilan boshlanadi</div>
+    </div>
+    <div class="methodology-desc">
+      <strong>Acceptance Criteria</strong> — bu shartlar ro'yxati. Funksiya "tayyor" deb hisoblanishi uchun <strong>har bir shart</strong> bajarilishi kerak.
+    </div>
+  </div>
+
+  <h3>Sodda misol: Login funksiyasi</h3>
+  <p>Tasavvur qiling, siz yangi login sahifasi yaratmoqchisiz. ATDD bo'yicha avval <strong>qabul shartlari</strong> yoziladi:</p>
+
+  <div class="example-box">
+    <div class="example-box-title">User Story</div>
+    <p style="margin:0"><strong>Foydalanuvchi sifatida</strong> men email va parol orqali tizimga kirmoqchiman, shunda o'z akkountimdagi ma'lumotlarni ko'ra olaman.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Acceptance Criteria (qabul shartlari)</div>
+    <ol style="margin:0">
+      <li>Email va parol maydonlari bo'lishi kerak</li>
+      <li>Ikkisi ham majburiy — bo'sh bo'lsa xato xabari chiqsin</li>
+      <li>To'g'ri ma'lumotlar bilan — foydalanuvchi Dashboard sahifasiga o'tadi</li>
+      <li>Noto'g'ri parol bilan — "Email yoki parol noto'g'ri" xabari chiqsin</li>
+      <li>3 marta noto'g'ri urinishda — akkount 5 daqiqa bloklansin</li>
+      <li>"Parolni unutdim" havolasi bo'lishi kerak</li>
+    </ol>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Muhim</div>
+    <p>Bu shartlar <strong>3 Amigos meeting</strong>da tuziladi — PO, Dev, QA birga. Dasturchi faqat shulardan keyin kod yozishni boshlaydi. Testor esa shu shartlar asosida test case'lar yozadi.</p>
+  </div>
+
+  <h3>ATDD'ning afzalliklari</h3>
+  <ul>
+    <li><strong>Aniqlik</strong> — "tayyor" nima degani aniq</li>
+    <li><strong>Bir xil tushunish</strong> — hamma nima qilinishini biladi</li>
+    <li><strong>Oldindan test</strong> — QA test case'larni avvaldan yoza oladi</li>
+    <li><strong>Kam qayta ishlash</strong> — natija kutilganidek chiqadi</li>
+  </ul>
+</section>
+
+<!-- SECTION 4: BDD -->
+<section class="section" id="bdd">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">BDD — Behavior Driven Development</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>BDD (Behavior Driven Development)</strong> — mahsulotning <strong>xatti-harakati</strong> (behavior) asosida test yozish uslubi. Oddiy tilda yoziladi — hamma tushunadi.</p>
+    <p><em>Oddiy qilib:</em> ATDD'ning zamonaviy versiyasi. Acceptance Criteria'lar <strong>maxsus formatda</strong> (Given-When-Then) yoziladi.</p>
+  </div>
+
+  <h3>Given-When-Then — BDD'ning 3 so'zi</h3>
+  <p>BDD'da har bir ssenariy <strong>3 qismdan</strong> iborat bo'ladi:</p>
+
+  <ul>
+    <li><strong>Given</strong> (berilgan) — <em>boshlang'ich holat nima?</em></li>
+    <li><strong>When</strong> (qachon) — <em>qanday harakat bo'ladi?</em></li>
+    <li><strong>Then</strong> (u holda) — <em>natija nima bo'lishi kerak?</em></li>
+  </ul>
+
+  <h3>Sodda misol: Login BDD ssenariysi</h3>
+  <p>Endi yuqoridagi Login Acceptance Criteria'larni <strong>BDD formatida</strong> yozamiz:</p>
+
+  <div class="bdd-code">
+<span class="bdd-comment"># Login funksiyasi</span>
+<span class="bdd-feature">Feature:</span> Foydalanuvchi tizimga kirishi
+
+  <span class="bdd-scenario">Scenario:</span> Muvaffaqiyatli login
+    <span class="bdd-given">Given</span> men login sahifasidaman
+    <span class="bdd-and">And</span> to'g'ri akkount ma'lumotlarim bor
+    <span class="bdd-when">When</span> men email va parolni kiritaman
+    <span class="bdd-and">And</span> "Kirish" tugmasini bosaman
+    <span class="bdd-then">Then</span> men Dashboard sahifasiga o'taman
+
+  <span class="bdd-scenario">Scenario:</span> Noto'g'ri parol
+    <span class="bdd-given">Given</span> men login sahifasidaman
+    <span class="bdd-when">When</span> men email va noto'g'ri parolni kiritaman
+    <span class="bdd-and">And</span> "Kirish" tugmasini bosaman
+    <span class="bdd-then">Then</span> men "Email yoki parol noto'g'ri" xabarini ko'raman
+    <span class="bdd-and">And</span> men login sahifasida qolaman
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">E'tibor bering</div>
+    <p>Bu matn <strong>texnik emas</strong> — Product Owner ham, biznes direktor ham tushuna oladi. Lekin bu <strong>haqiqiy test</strong> — Cucumber kabi asboblar orqali avtomatik bajariladi.</p>
+  </div>
+
+  <h3>Gherkin syntax — BDD tili</h3>
+  <p><strong>Gherkin</strong> — bu BDD ssenariylari yoziladigan "til". Yuqoridagi misol Gherkin'da yozilgan. Asosiy kalit so'zlar:</p>
+
+  <ul>
+    <li><code>Feature:</code> — umumiy xususiyat nomi</li>
+    <li><code>Scenario:</code> — aniq holat</li>
+    <li><code>Given</code> — boshlang'ich sharoit</li>
+    <li><code>When</code> — harakat</li>
+    <li><code>Then</code> — kutilgan natija</li>
+    <li><code>And</code> — qo'shimcha qadam</li>
+  </ul>
+
+  <h3>BDD asboblari</h3>
+  <p>Gherkin ssenariylarini <strong>bajarib beradigan asboblar</strong>:</p>
+
+  <div class="methodology-card bdd">
+    <div class="methodology-header">
+      <span class="methodology-badge bdd">Cucumber</span>
+      <div class="methodology-title">Eng mashhur BDD asbobi</div>
+    </div>
+    <div class="methodology-desc">Java, JavaScript, Ruby tillarida ishlatiladi. Click, Uzum kabi kompaniyalarda ham uchraydi.</div>
+  </div>
+
+  <div class="methodology-card bdd">
+    <div class="methodology-header">
+      <span class="methodology-badge bdd">SpecFlow</span>
+      <div class="methodology-title">.NET uchun Cucumber</div>
+    </div>
+    <div class="methodology-desc">Microsoft texnologiyalari (C#) bilan ishlaydigan kompaniyalarda ishlatiladi.</div>
+  </div>
+
+  <div class="methodology-card bdd">
+    <div class="methodology-header">
+      <span class="methodology-badge bdd">Behave</span>
+      <div class="methodology-title">Python uchun</div>
+    </div>
+    <div class="methodology-desc">Python dasturchilari uchun BDD asbobi. Sodda va o'rganishi oson.</div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun</div>
+    <p>Hozir bu asboblarni chuqur o'rganish shart emas. Lekin <strong>Gherkin sintaksisni bilish</strong> va <strong>BDD ssenariysi yoza olish</strong> — bu Junior QA uchun katta afzallik.</p>
+  </div>
+</section>
+
+<!-- MATCHING -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Metodologiya va uning asosiy savoli</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har bir metodologiyani uning asosiy savoli bilan bog'lang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Metodologiya</h4>
+      <div class="match-item" data-side="left" data-pair="w">Whole Team Approach</div>
+      <div class="match-item" data-side="left" data-pair="t">TDD</div>
+      <div class="match-item" data-side="left" data-pair="a">ATDD</div>
+      <div class="match-item" data-side="left" data-pair="b">BDD</div>
+      <div class="match-item" data-side="left" data-pair="g">Given-When-Then</div>
+    </div>
+    <div class="matching-column">
+      <h4>Asosiy savoli / tavsifi</h4>
+      <div class="match-item" data-side="right" data-pair="b">Mahsulot xatti-harakatini tasvirlash</div>
+      <div class="match-item" data-side="right" data-pair="w">Sifat — hamma uchun umumiy mas'uliyat</div>
+      <div class="match-item" data-side="right" data-pair="g">BDD ssenariysining 3 qismi</div>
+      <div class="match-item" data-side="right" data-pair="t">Avval test, keyin kod</div>
+      <div class="match-item" data-side="right" data-pair="a">Acceptance Criteria birinchi</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- BDD QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ BDD ssenariy</div>
+  <div class="quiz-question">TestShop uchun BDD ssenariysi tuzing: "Foydalanuvchi savatga mahsulot qo'shadi". Qaysi variant to'g'ri?</div>
+  <div class="quiz-options" data-quiz="bdd">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Given mahsulotni bosaman. Then savatga qo'shiladi.</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Given men mahsulotlar sahifasidaman. When men "Savatga qo'shish" tugmasini bosaman. Then savat badge'i +1 ga o'zgaradi.</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>When bosaman. Given ishlaydi. Then natija bor.</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="bdd"></div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Uzum'da yangi feature</div>
+
+  <div class="scenario-story">
+    <p><strong>Dushanba, 10:00.</strong> Siz Uzum Market'da QA'siz. 3 Amigos meetingga keldingiz. Mavzu: <strong>"Chegirma kodi"</strong> funksiyasi.</p>
+    <p><strong>PO:</strong> "Foydalanuvchi checkout'da chegirma kodini kiritib, pul tejay olsin."</p>
+    <p><strong>Developer:</strong> "OK, oddiy narsa. 1 kunda yozib bo'laman."</p>
+    <p><strong>Savol:</strong> Siz QA sifatida qaysi savollarni berishingiz kerak?</p>
+  </div>
+
+  <div class="scenario-question">Eng professional yondashuv qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Hech qanday savol bermayman — Developer bilsin, kod tayyor bo'lgach test qilaman</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Savol beraman: Chegirma foizmi yoki aniq summa? 1 marta ishlatiladimi? Muddati bormi? Minimal xarid summasi kerakmi? Boshqa chegirma bilan birga ishlaydimi?</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>"Barchasi aniq" deb javob beraman — vaqtni tejash uchun</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop uchun BDD ssenariylari yozing</h2>
+  <p class="section-intro">Endi amaliyotga. TestShop uchun 3 ta BDD ssenariysini yozasiz. Bu sizning portfolio'ingiz uchun zo'r material bo'ladi.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — BDD amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Gherkin syntax bilan 3 ta professional ssenariy yozing.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning vazifangiz: 3 ta BDD ssenariy</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Muvaffaqiyatli ro'yxatdan o'tish</div>
+        <div style="color:#4A4A4A;font-size:14px">Given-When-Then formatida yozing. Kamida 3 ta Given va 2 ta Then bo'lsin.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Noto'g'ri login bilan kirish urinishi</div>
+        <div style="color:#4A4A4A;font-size:14px">Negative scenario — xatolik holatini qoplang. "Email yoki parol noto'g'ri" xabari chiqishi kerak.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Savatga mahsulot qo'shish va badge yangilash</div>
+        <div style="color:#4A4A4A;font-size:14px">Feature + Scenario + Given/When/Then'lar. Natija: savat badge'i +1.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Pro maslahat</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Ssenariylarni <strong>Google Docs</strong>'da yoki oddiy <strong>feature.txt</strong> faylida saqlang. Intervyuda "BDD ssenariy yoza olasizmi?" deb so'rashganda — darhol ko'rsatasiz. Bu <strong>Middle darajasi</strong> uchun ham katta afzallik.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">TDD, ATDD, BDD — zamonaviy intervyularning eng ko'p so'raladigan mavzularidan. Javoblarni puxta o'rganing.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Whole Team Approach nima? Nega muhim?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Whole Team Approach — sifat uchun faqat testor emas, <strong>butun jamoa</strong> mas'ul bo'ladi degan falsafa. Dasturchi ham, dizayner ham, PO ham sifatni o'ylaydi."</p>
+          <p><strong>Nega muhim?</strong></p>
+          <ul>
+            <li>Bug'lar ertaroq topiladi (arzon tuzatiladi)</li>
+            <li>Hamma "meniki emas" deyishdan voz kechadi</li>
+            <li>Jamoa birdamligi oshadi</li>
+            <li>Mahsulot sifati yaxshi bo'ladi</li>
+          </ul>
+          <p><strong>Amaliy yondashuv:</strong> "Men 3 Amigos meetingda doim qatnashaman — talablar aniqlashdan oldin savollar beraman."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>TDD, ATDD va BDD farqini tushuntiring.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>TDD (Test Driven Development)</strong> — <em>texnik</em> yondashuv. Avval Unit test, keyin kod. Red-Green-Refactor sikli. Asosan dasturchilar uchun.</li>
+            <li><strong>ATDD (Acceptance Test Driven)</strong> — <em>biznes</em> yondashuv. Avval Acceptance Criteria, keyin kod. 3 Amigos birga yozadi.</li>
+            <li><strong>BDD (Behavior Driven Development)</strong> — ATDD ning <em>zamonaviy</em> versiyasi. Given-When-Then formatida yoziladi. Biznes va texnik odamlar birga ishlashadi.</li>
+          </ul>
+          <p><strong>Qaysi biri qachon?</strong></p>
+          <ul>
+            <li>TDD — Unit testlar uchun (dasturchi)</li>
+            <li>ATDD — biznes talablar aniq emas holatda</li>
+            <li>BDD — zamonaviy Agile jamoalarda</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>TDD ning Red-Green-Refactor siklini tushuntiring.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "TDD 3 bosqichli sikl orqali ishlaydi:"</p>
+          <ul>
+            <li><strong>🔴 RED</strong> — Test yozasiz. U <strong>Fail</strong> bo'ladi (chunki kod hali yo'q). Bu normal.</li>
+            <li><strong>🟢 GREEN</strong> — <strong>Minimal</strong> kod yozasiz — faqat test o'tsin. Chiroyli emas, oddiy.</li>
+            <li><strong>🔧 REFACTOR</strong> — Kodni tozalaysiz, yaxshilaysiz. Test baribir o'tishi kerak.</li>
+          </ul>
+          <p><strong>Keyin sikl qaytadan</strong> — yangi funksiya uchun RED bosqichidan boshlaysiz.</p>
+          <p><strong>Nega shunday?</strong> "Oldindan test yozish — kodingiz <strong>albatta testlanadigan</strong> qilib yozilishini ta'minlaydi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>BDD da Given-When-Then nima? Misol bering.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Given-When-Then — BDD ssenariysining 3 qismi:"</p>
+          <ul>
+            <li><strong>Given</strong> — boshlang'ich holat (bu yerda tizim qanday?)</li>
+            <li><strong>When</strong> — foydalanuvchi nima qiladi?</li>
+            <li><strong>Then</strong> — natija nima bo'lishi kerak?</li>
+          </ul>
+          <p><strong>Misol:</strong></p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#1A1A1A;color:white;padding:12px;border-radius:6px">
+            Scenario: Muvaffaqiyatli login<br>
+            &nbsp;&nbsp;<span style="color:#FFB84D">Given</span> men login sahifasidaman<br>
+            &nbsp;&nbsp;<span style="color:#A3CFFF">When</span> men to'g'ri email va parolni kiritaman<br>
+            &nbsp;&nbsp;<span style="color:#B5F4A5">Then</span> men Dashboard'ga o'taman
+          </p>
+          <p><strong>Afzallik:</strong> Bu matnni <strong>PO ham tushunadi</strong> — texnik bilim kerak emas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>3 Amigos meeting nima? Kimlar qatnashadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "3 Amigos — bu 15-30 daqiqalik qisqa uchrashuv. 3 ta asosiy rol qatnashadi:"</p>
+          <ul>
+            <li><strong>Product Owner (PO)</strong> — "Biznes uchun bu nima foyda?"</li>
+            <li><strong>Developer</strong> — "Buni qanday yaratsam bo'ladi?"</li>
+            <li><strong>QA / Testor</strong> — "Qanday buzishim mumkin?"</li>
+          </ul>
+          <p><strong>Maqsadi:</strong> Kod yozishdan oldin, yangi funksiya <strong>3 xil nuqtai nazardan</strong> ko'rib chiqiladi. Bu keyinchalik soatlarcha qayta ishlashdan qutqaradi.</p>
+          <p><strong>Pro javob:</strong> "Bu meeting Whole Team Approach'ning asosiy amaliyoti. Men unda doim savollar beraman — masalan 'Noto'g'ri ma'lumot kiritilsa nima bo'ladi?' yoki 'Mobil versiyada qanday ishlaydi?'"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>QA TDD da qanday qatnashadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "TDD asosan dasturchilar ishi, lekin QA ham muhim rol o'ynaydi:"</p>
+          <ul>
+            <li><strong>Test senariylarini ro'yxatlash</strong> — dasturchi qaysi holatlarni Unit test qilishi kerakligini aytadi</li>
+            <li><strong>Code Review</strong> — dasturchi yozgan testlar yetarli'mi tekshiradi</li>
+            <li><strong>Integration/System testlar</strong> — TDD faqat Unit darajasida, yuqori darajalar QA zimmasida</li>
+            <li><strong>Edge case'lar</strong> — "Bu holatni ham test qildingizmi?" deb so'raydi</li>
+          </ul>
+          <p><strong>Muhim:</strong> "QA TDD'ni bilsada, o'zi Unit test yozmaydi. Lekin u — dasturchining eng yaxshi hamkori."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Cucumber nima? Qayerda ishlatiladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Cucumber — eng mashhur BDD asbobi. Gherkin sintaksisida yozilgan ssenariylarni <strong>avtomatik test</strong> sifatida bajaradi."</p>
+          <p><strong>Qanday ishlaydi?</strong></p>
+          <ul>
+            <li>QA yoki BA Gherkin ssenariysini yozadi</li>
+            <li>Dasturchi har bir Given/When/Then uchun kod yozadi</li>
+            <li>Cucumber avtomatik ravishda testlarni bajaradi</li>
+          </ul>
+          <p><strong>Qayerda ishlatiladi?</strong> Click, Uzum, EPAM, Exadel kabi kompaniyalarda. Asosan Java va JavaScript loyihalarda.</p>
+          <p><strong>Muqobillari:</strong></p>
+          <ul>
+            <li>SpecFlow — .NET uchun</li>
+            <li>Behave — Python uchun</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Sifat — umumiy mas'uliyat</div>
+      <div class="summary-point-text">Whole Team Approach: testor yolg'iz emas, butun jamoa sifatga mas'ul. 3 Amigos bu falsafaning amaliy ifodasi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Test birinchi, kod keyin</div>
+      <div class="summary-point-text">TDD: Red → Green → Refactor sikli. Bu dasturchi uchun, lekin QA — hamkor.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">BDD = Biznes tili bilan test</div>
+      <div class="summary-point-text">Given-When-Then — hamma tushunadi. Cucumber orqali avtomatlashtiriladi. Intervyuda so'raladi.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="05-roles-traceability.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>5-dars · Rollar va Traceability</div>
+  </a>
+  <a href="07-bdd-shift-left.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>7-dars · Shift Left Testing</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 10;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  bdd: {
+    correct: '<strong>To\'g\'ri!</strong> Bu professional BDD ssenariysi. Given — boshlang\'ich holat, When — harakat, Then — aniq natija. Badge\'ning +1 ga o\'zgarishi — o\'lchanishi mumkin bo\'lgan natija.',
+    incorrect: 'Bu noto\'g\'ri. BDD ssenariysida tartib Given → When → Then bo\'lishi va har biri aniq bo\'lishi kerak. Natija o\'lchanishi mumkin bo\'lishi muhim — "ishlaydi" emas, "badge +1".'
+  },
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Bu professional yondashuv. QA 3 Amigos\'da aynan shu tarzda qatnashishi kerak — savollar berib, Edge case\'larni aniqlashtirib. Bu bir oz vaqt oladi, lekin soatli qayta ishlashdan qutqaradi.',
+    incorrect: 'Bu noto\'g\'ri yondashuv. 3 Amigos meetingning butun maqsadi — savollar berish va edge case\'larni aniqlash. Agar siz savol bermasangiz, 2 hafta keyin bug\'larni topishingizga to\'g\'ri keladi.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// TDD DND
+let draggedItem = null;
+let tddCorrect = 0;
+
+document.querySelectorAll('#tddPool .dnd-item').forEach(item => {
+  item.addEventListener('dragstart', (e) => {
+    draggedItem = item;
+    item.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  item.addEventListener('dragend', () => item.classList.remove('dragging'));
+});
+
+document.querySelectorAll('#tddGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+  });
+  slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    if (slot.classList.contains('filled') || !draggedItem) return;
+    const correctOrder = parseInt(draggedItem.dataset.correct);
+    const slotOrder = parseInt(slot.dataset.order);
+    if (correctOrder === slotOrder) {
+      slot.innerHTML = `<span class="dnd-slot-num">${slotOrder}-qadam</span><div style="margin-top:4px;font-weight:600;font-size:13px">${draggedItem.textContent}</div>`;
+      slot.classList.add('filled', 'correct');
+      draggedItem.classList.add('placed');
+      tddCorrect++;
+      document.getElementById('tddScore').textContent = `${tddCorrect} / 3 to'g'ri`;
+      completedActivities.add(`tdd-${tddCorrect}`);
+      updateProgress();
+      if (tddCorrect === 3) {
+        document.getElementById('tddScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Mukammal! TDD sikli to\'g\'ri!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+function resetTdd() {
+  document.querySelectorAll('#tddGame .dnd-slot').forEach(slot => {
+    const order = slot.dataset.order;
+    slot.innerHTML = `<span class="dnd-slot-num">${order}-qadam</span>`;
+    slot.classList.remove('filled', 'correct', 'wrong');
+  });
+  document.querySelectorAll('#tddPool .dnd-item').forEach(item => item.classList.remove('placed'));
+  tddCorrect = 0;
+  document.getElementById('tddScore').textContent = '0 / 3 to\'g\'ri';
+}
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha juftlar topildi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .compare-card, .methodology-card, .amigos-wrapper, .tdd-cycle').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
