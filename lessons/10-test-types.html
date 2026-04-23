@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10-dars: Test turlari | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* BIG PICTURE - 2 main types */
+.main-types { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 30px 0; }
+.main-type { background: var(--bg-card); border: 2px solid var(--line); border-radius: 16px; padding: 28px; text-align: center; transition: all 0.2s; }
+.main-type:hover { transform: translateY(-3px); }
+.main-type.functional { border-color: var(--forest); background: var(--forest-soft); }
+.main-type.nonfunctional { border-color: var(--plum); background: var(--plum-soft); }
+.main-type-icon { font-size: 40px; margin-bottom: 12px; }
+.main-type h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.main-type.functional h3 { color: var(--forest); }
+.main-type.nonfunctional h3 { color: var(--plum); }
+.main-type p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* TYPE CARD */
+.type-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 16px; position: relative; overflow: hidden; transition: all 0.3s; }
+.type-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15); }
+.type-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.type-card.performance::before { background: var(--accent); }
+.type-card.security::before { background: var(--plum); }
+.type-card.usability::before { background: var(--gold); }
+.type-card.compatibility::before { background: var(--blue); }
+.type-card.blackbox::before { background: #1A1A1A; }
+.type-card.whitebox::before { background: #CCCCCC; }
+.type-card.graybox::before { background: #6B7280; }
+
+.type-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.type-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+.type-card.performance .type-icon { background: var(--accent-soft); }
+.type-card.security .type-icon { background: var(--plum-soft); }
+.type-card.usability .type-icon { background: var(--gold-soft); }
+.type-card.compatibility .type-icon { background: var(--blue-soft); }
+.type-card.blackbox .type-icon { background: #1A1A1A; color: white; }
+.type-card.whitebox .type-icon { background: #F5F5F5; border: 2px solid #CCCCCC; }
+.type-card.graybox .type-icon { background: #E5E7EB; }
+
+.type-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; }
+.type-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+
+.type-desc { color: var(--ink-soft); margin-bottom: 14px; font-size: 15px; }
+
+.type-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 14px; }
+.type-detail { padding: 12px 14px; background: var(--bg-soft); border-radius: 10px; }
+.type-detail-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); font-weight: 600; margin-bottom: 4px; }
+.type-detail-value { font-size: 13px; color: var(--ink); font-weight: 500; }
+
+.simple-example { margin-top: 14px; padding: 12px 16px; background: var(--gold-soft); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); }
+.simple-example strong { color: var(--gold); }
+
+/* PERFORMANCE SUBTYPES */
+.subtype-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+.subtype-card { padding: 16px; background: white; border: 1px solid var(--line); border-radius: 10px; }
+.subtype-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; color: var(--accent); margin-bottom: 6px; }
+.subtype-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.subtype-example { margin-top: 8px; font-size: 12px; color: var(--ink-muted); font-style: italic; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-pairs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dnd-pair { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: center; padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.dnd-pair-label { font-weight: 500; font-size: 15px; color: var(--ink); font-family: 'Fraunces', serif; }
+.dnd-slot { min-height: 50px; border: 2px dashed var(--line-dark); border-radius: 8px; padding: 10px 14px; background: white; transition: all 0.2s; font-size: 14px; color: var(--ink-muted); display: flex; align-items: center; }
+.dnd-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-slot.filled { border-style: solid; }
+.dnd-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.dnd-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: grab; font-size: 13px; font-weight: 500; transition: all 0.2s; user-select: none; max-width: 280px; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* BUG CLASSIFIER - TAP TO SELECT */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); box-shadow: 0 8px 20px -8px rgba(91,58,122,0.3); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 15px; padding-right: 100px; }
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+
+.classifier-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); display: none; }
+.classifier-hint.show { display: block; }
+
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
+.classifier-bucket { min-height: 80px; padding: 18px 14px; border: 2px solid var(--line); border-radius: 12px; text-align: center; transition: all 0.2s; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--ink); }
+.classifier-bucket-icon { font-size: 22px; margin-bottom: 2px; }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1200px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .main-types { grid-template-columns: 1fr; }
+  .dnd-pair { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">10-dars</div>
+  <h1>Test <em>turlari</em> — to'liq qo'llanma</h1>
+  <p class="hero-subtitle">Functional va Non-Functional testing. Performance, Security, Usability. Black Box, White Box, Gray Box. Barchasi oddiy misollar bilan.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>80 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Test turlari</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Test turlari nima uchun kerak?</h2>
+  <p class="section-intro">Avvalgi darsda test darajalarini ko'rdik (Component, Integration, System, Acceptance). Endi boshqa savol — <strong>nimani test qilamiz?</strong></p>
+  <p>Ko'pchilik o'ylaydi: "Testor faqat tugmalar ishlayaptimi tekshiradi". Aslida <strong>juda ko'p narsa test qilinadi</strong> — sayt qanchalik tez ochiladi, xavfsizmi, foydalanuvchi uchun qulaymi, turli brauzerlarda ishlaydimi.</p>
+  <p>Bu darsda siz <strong>test turlari</strong> tushunchasini o'rganasiz va intervyuda "Performance va Security testing farqi nima?" degan savolga aniq javob bera olasiz.</p>
+
+  <h3>Katta rasm: 2 ta asosiy guruh</h3>
+  <p>Barcha test turlari <strong>2 ta katta guruhga</strong> bo'linadi:</p>
+
+  <div class="main-types">
+    <div class="main-type functional">
+      <div class="main-type-icon">⚙️</div>
+      <h3>Functional Testing</h3>
+      <p>"<strong>NIMA</strong> qiladi?" — sayt/ilovaning <strong>vazifasini</strong> tekshirish</p>
+    </div>
+    <div class="main-type nonfunctional">
+      <div class="main-type-icon">🎯</div>
+      <h3>Non-Functional Testing</h3>
+      <p>"<strong>QANDAY</strong> qiladi?" — tezlik, xavfsizlik, qulaylik</p>
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy misol</div>
+    <div class="analogy-title">Restoranga borasiz</div>
+    <div class="analogy-text">
+      <strong>Functional:</strong> "Buyurtma qilgan ovqat keldi" — vazifa bajarildi. · <strong>Non-Functional:</strong> "Ovqat 10 daqiqada keldi (tez)", "mazasi yoqdi (sifat)", "ofitsant yaxshi xizmat qildi (qulaylik)". Ikkinchisi ham <strong>juda muhim</strong>, lekin boshqa narsa.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: FUNCTIONAL -->
+<section class="section" id="functional">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Functional Testing</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Functional Testing (Funksional Testlash)</strong> — sayt yoki ilova <strong>o'z vazifasini</strong> to'g'ri bajarayaptimi tekshirish.</p>
+    <p><em>Oddiy qilib:</em> "Tugma bosilganda mahsulot savatga qo'shiladimi?", "Login qilganda Dashboard ochiladimi?" degan savollarga javob.</p>
+  </div>
+
+  <h3>Nima tekshiriladi?</h3>
+  <ul>
+    <li><strong>Tugmalar</strong> — bosilganda nima bo'ladi?</li>
+    <li><strong>Formalar</strong> — ma'lumot to'g'ri yuborildimi?</li>
+    <li><strong>Linklar</strong> — to'g'ri sahifaga o'tadimi?</li>
+    <li><strong>Hisoblashlar</strong> — savatdagi umumiy summa to'g'rimi?</li>
+    <li><strong>Ma'lumotlar bazasi</strong> — ma'lumotlar saqlanayaptimi?</li>
+    <li><strong>Biznes mantiq</strong> — xarid qilganda chegirma qo'llanadimi?</li>
+  </ul>
+
+  <div class="example-box">
+    <div class="example-box-title">Uzum Market'da Functional test misollari</div>
+    <ul style="margin:0">
+      <li>Login tugmasini bosaman → Dashboard ochiladi ✅</li>
+      <li>Mahsulot qidiruv maydoniga "telefon" yozaman → telefon mahsulotlari chiqadi ✅</li>
+      <li>"Savatga qo'shish" tugmasini bosaman → savat badge'i +1 ga o'zgaradi ✅</li>
+      <li>2 ta mahsulotni savatga qo'shaman → umumiy summa to'g'ri hisoblanadi ✅</li>
+      <li>Noto'g'ri parol bilan kiraman → xato xabari chiqadi ✅</li>
+    </ul>
+  </div>
+
+  <h3>Kim va qanday bajaradi?</h3>
+  <ul>
+    <li><strong>Kim:</strong> QA (sizning asosiy ishingiz!) — 80% vaqtingiz shunga ketadi</li>
+    <li><strong>Qachon:</strong> System Testing darajasida</li>
+    <li><strong>Qanday:</strong> Manual yoki Automation (Selenium, Playwright)</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy nuqta</div>
+    <p>Functional testing — bu testorning kundalik ishi. Siz test case yozganda, ssenariy bajarayotganda, bug topganda — bu odatda Functional testing.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: NON-FUNCTIONAL -->
+<section class="section" id="nonfunctional">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Non-Functional Testing</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Non-Functional Testing (Nofunksional Testlash)</strong> — sayt o'z vazifasini <strong>QANCHALIK yaxshi</strong> bajarayaptimi tekshirish.</p>
+    <p><em>Oddiy qilib:</em> "Sayt tezmi?", "Xavfsizmi?", "Qulaymi?", "Turli qurilmalarda ishlaydimi?" kabi savollar.</p>
+  </div>
+
+  <p>Non-Functional testing bir nechta turga bo'linadi. 4 ta asosiysini ko'rib chiqamiz.</p>
+
+  <!-- PERFORMANCE -->
+  <div class="type-card performance">
+    <div class="type-header">
+      <div class="type-icon">⚡</div>
+      <div>
+        <div class="type-name">Performance Testing</div>
+        <div class="type-subtitle">UNUMDORLIK / TEZLIK</div>
+      </div>
+    </div>
+    <div class="type-desc">Saytning <strong>qanchalik tez va samarali</strong> ishlayotganligini tekshirish.</div>
+
+    <div class="simple-example">
+      <strong>Sodda savol:</strong> Sayt 2 soniyada ochiladimi? Yoki 10 soniya kutasizmi?
+    </div>
+
+    <h4 style="margin-top:20px">Performance Testing 3 turga bo'linadi:</h4>
+
+    <div class="subtype-grid">
+      <div class="subtype-card">
+        <div class="subtype-name">🏋️ Load Testing</div>
+        <div class="subtype-desc">Odatdagi yuk ostida sayt qanday ishlaydi?</div>
+        <div class="subtype-example">Misol: 1000 ta foydalanuvchi bir vaqtda — sayt sekin bo'ladimi?</div>
+      </div>
+      <div class="subtype-card">
+        <div class="subtype-name">💥 Stress Testing</div>
+        <div class="subtype-desc">Qachon sayt "yiqiladi"? Chegarasini topish.</div>
+        <div class="subtype-example">Misol: 10 000 ta foydalanuvchi — sayt o'chadimi yoki chidaydi?</div>
+      </div>
+      <div class="subtype-card">
+        <div class="subtype-name">📦 Volume Testing</div>
+        <div class="subtype-desc">Katta ma'lumot hajmi bilan ishlash.</div>
+        <div class="subtype-example">Misol: 1 million mahsulot bor — qidiruv tezmi?</div>
+      </div>
+    </div>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">Middle/Senior QA, Performance Engineer</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Asboblar</div>
+        <div class="type-detail-value">JMeter, LoadRunner, k6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="type-card security">
+    <div class="type-header">
+      <div class="type-icon">🔐</div>
+      <div>
+        <div class="type-name">Security Testing</div>
+        <div class="type-subtitle">XAVFSIZLIK TESTLASH</div>
+      </div>
+    </div>
+    <div class="type-desc">Saytning <strong>xavfsizligini</strong> tekshirish — ma'lumotlar o'g'irlanadimi, hakerlar kira oladimi.</div>
+
+    <div class="simple-example">
+      <strong>Sodda savol:</strong> Hakerlar mening karta ma'lumotlarimni ola oladimi? Mening parolim xavfsiz saqlanayaptimi?
+    </div>
+
+    <h4 style="margin-top:20px">Nima tekshiriladi?</h4>
+    <ul>
+      <li><strong>SQL Injection</strong> — login formalarga maxsus kod yuborish bilan ma'lumotlar bazasiga kirish</li>
+      <li><strong>XSS (Cross-Site Scripting)</strong> — saytga yomon JavaScript kod joylash</li>
+      <li><strong>Authentication</strong> — parol talablari kuchlimi?</li>
+      <li><strong>Authorization</strong> — oddiy foydalanuvchi admin sahifasiga kira oladimi?</li>
+      <li><strong>Data Encryption</strong> — ma'lumotlar shifrlanganmi?</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">Security Specialist, Senior QA</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Asboblar</div>
+        <div class="type-detail-value">OWASP ZAP, Burp Suite</div>
+      </div>
+    </div>
+
+    <div class="simple-example" style="margin-top:14px">
+      <strong>Sizning TestShop'ingizda:</strong> Login formaga SQL injection <code>' OR 1=1--</code> yozib ko'ring — agar kirgiza olsa, bu xavfsizlik bugi!
+    </div>
+  </div>
+
+  <!-- USABILITY -->
+  <div class="type-card usability">
+    <div class="type-header">
+      <div class="type-icon">🎨</div>
+      <div>
+        <div class="type-name">Usability Testing</div>
+        <div class="type-subtitle">QULAYLIK TESTLASH</div>
+      </div>
+    </div>
+    <div class="type-desc">Sayt foydalanuvchi uchun <strong>qanchalik qulay</strong> va tushunarli?</div>
+
+    <div class="simple-example">
+      <strong>Sodda savol:</strong> Oddiy odam 1 daqiqada savatga mahsulot qo'sha oladimi? Yoki 10 daqiqa qidirishi kerakmi?
+    </div>
+
+    <h4 style="margin-top:20px">Nima tekshiriladi?</h4>
+    <ul>
+      <li><strong>Intuitivlik</strong> — ko'rsatma o'qimasdan foydalanish mumkinmi?</li>
+      <li><strong>Navigatsiya</strong> — menyular aniq va oddiymi?</li>
+      <li><strong>Tezkor tushunish</strong> — birinchi 5 soniyada foydalanuvchi nima qilishini tushunadimi?</li>
+      <li><strong>Xato xabarlari</strong> — aniq va yordamchi'mi?</li>
+      <li><strong>Mobil qulaylik</strong> — telefonda ham oson'mi?</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">QA, UX Designer, Haqiqiy foydalanuvchilar</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Usul</div>
+        <div class="type-detail-value">Foydalanuvchi kuzatuv, A/B testing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPATIBILITY -->
+  <div class="type-card compatibility">
+    <div class="type-header">
+      <div class="type-icon">🌐</div>
+      <div>
+        <div class="type-name">Compatibility Testing</div>
+        <div class="type-subtitle">MOSLIK TESTLASHI</div>
+      </div>
+    </div>
+    <div class="type-desc">Sayt <strong>turli muhitlarda</strong> ishlaydimi? — brauzerlar, qurilmalar, OS.</div>
+
+    <div class="simple-example">
+      <strong>Sodda savol:</strong> Sayt Chrome'da ishlaydi. Safari'da ham ishlaydimi? iPhone'da qanday ko'rinadi?
+    </div>
+
+    <h4 style="margin-top:20px">Nima tekshiriladi?</h4>
+    <ul>
+      <li><strong>Brauzerlar:</strong> Chrome, Safari, Firefox, Edge</li>
+      <li><strong>Qurilmalar:</strong> Desktop, telefon, planshet</li>
+      <li><strong>Operatsion tizimlar:</strong> Windows, Mac, Android, iOS</li>
+      <li><strong>Ekran o'lchamlari:</strong> Kichik, o'rta, katta ekranlar</li>
+      <li><strong>Internet tezligi:</strong> 4G, 3G, Wi-Fi</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">QA (manual + automation)</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Asboblar</div>
+        <div class="type-detail-value">BrowserStack, LambdaTest</div>
+      </div>
+    </div>
+
+    <div class="simple-example" style="margin-top:14px">
+      <strong>Real muammo:</strong> Sayt Chrome'da chiroyli, lekin iPhone Safari'da tugmalar joyidan chiqib ketgan — bu Compatibility bug!
+    </div>
+  </div>
+</section>
+
+<!-- MATCHING GAME -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Test turi va uning misolini bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Chap tomonda test turini tanlang, o'ng tomondan mos misolni toping.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Test turi</h4>
+      <div class="match-item" data-side="left" data-pair="f">Functional Testing</div>
+      <div class="match-item" data-side="left" data-pair="p">Performance Testing</div>
+      <div class="match-item" data-side="left" data-pair="s">Security Testing</div>
+      <div class="match-item" data-side="left" data-pair="u">Usability Testing</div>
+      <div class="match-item" data-side="left" data-pair="c">Compatibility Testing</div>
+    </div>
+    <div class="matching-column">
+      <h4>Misol</h4>
+      <div class="match-item" data-side="right" data-pair="c">Sayt Safari va Chrome'da bir xil ko'rinadimi?</div>
+      <div class="match-item" data-side="right" data-pair="f">Login tugmasi bosilganda Dashboard ochiladimi?</div>
+      <div class="match-item" data-side="right" data-pair="u">Yangi foydalanuvchi 30 soniyada mahsulot topa oladimi?</div>
+      <div class="match-item" data-side="right" data-pair="s">SQL injection orqali kirish mumkinmi?</div>
+      <div class="match-item" data-side="right" data-pair="p">1000 ta foydalanuvchi bir vaqtda kirganda sayt sekinlashadimi?</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- SECTION 3: BOX TESTING -->
+<section class="section" id="box-testing">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Box Testing — 3 usul</h2>
+
+  <p class="section-intro">Test turlari uchun yana bir klassifikatsiya bor — <strong>testor kodni qanchalik biladi?</strong> degan savolga qarab.</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy misol</div>
+    <div class="analogy-title">Avtomobilni tekshirish</div>
+    <div class="analogy-text">
+      <strong>Black Box:</strong> Haydovchisiz — haydab ko'rasiz, motor ishlayaptimi, tormoz yaxshimi? Ichkarisini bilmaysiz. · <strong>White Box:</strong> Mexanik — kapotni ochadi, har bir detalni ko'radi. · <strong>Gray Box:</strong> Sizga umumiy texnik hujjat berilgan — asosiy qismlarni bilasiz, lekin har bir gayka emas.
+    </div>
+  </div>
+
+  <!-- BLACK BOX -->
+  <div class="type-card blackbox">
+    <div class="type-header">
+      <div class="type-icon">⬛</div>
+      <div>
+        <div class="type-name">Black Box Testing</div>
+        <div class="type-subtitle">QA NING ASOSIY USULI</div>
+      </div>
+    </div>
+    <div class="type-desc">Testor dasturning <strong>ichki kodini bilmaydi</strong>. Faqat "kirish va chiqish"ga qaraydi.</div>
+
+    <div class="simple-example">
+      <strong>Sodda misol:</strong> Login formaga email va parol kiritaman — Dashboard ochilishi kerak. Kod qanday yozilganini bilmayman, lekin natijani ko'raman.
+    </div>
+
+    <h4 style="margin-top:20px">Xususiyatlari:</h4>
+    <ul>
+      <li>✅ Dasturchilik bilimi <strong>shart emas</strong></li>
+      <li>✅ Haqiqiy foydalanuvchi nuqtai nazari</li>
+      <li>✅ System Testing darajasida keng qo'llaniladi</li>
+      <li>❌ Kodning ichki mantig'ini sinab bilmaysiz</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">QA (Junior/Middle/Senior)</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Daraja</div>
+        <div class="type-detail-value">System, Acceptance</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHITE BOX -->
+  <div class="type-card whitebox">
+    <div class="type-header">
+      <div class="type-icon">⬜</div>
+      <div>
+        <div class="type-name">White Box Testing</div>
+        <div class="type-subtitle">DASTURCHI USULI</div>
+      </div>
+    </div>
+    <div class="type-desc">Testor <strong>butun kodni ko'radi va tushunadi</strong>. Har bir qatorni test qiladi.</div>
+
+    <div class="simple-example">
+      <strong>Sodda misol:</strong> Dasturchi qo'shish funksiyasini yozdi. U kod ichiga kirib, har bir <code>if</code> va <code>else</code> shartini alohida sinab ko'radi.
+    </div>
+
+    <h4 style="margin-top:20px">Xususiyatlari:</h4>
+    <ul>
+      <li>✅ Chuqur analiz — har bir kod yo'lini sinab bilasiz</li>
+      <li>✅ Bug'larni ildizidan topish</li>
+      <li>✅ Unit va Component testing uchun asosiy</li>
+      <li>❌ Dasturlashni bilish <strong>shart</strong></li>
+      <li>❌ Juda ko'p vaqt oladi</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">Dasturchi, Senior QA</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Daraja</div>
+        <div class="type-detail-value">Unit, Component</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAY BOX -->
+  <div class="type-card graybox">
+    <div class="type-header">
+      <div class="type-icon">◐</div>
+      <div>
+        <div class="type-name">Gray Box Testing</div>
+        <div class="type-subtitle">ORALIQ USUL</div>
+      </div>
+    </div>
+    <div class="type-desc">Testor kodni <strong>qisman biladi</strong> — asosiy arxitekturani tushunadi, lekin har bir qatorni emas.</div>
+
+    <div class="simple-example">
+      <strong>Sodda misol:</strong> Testor ma'lumotlar bazasi strukturasini biladi va SQL so'rovlarini o'zi yozib, ma'lumotlar to'g'ri saqlanayaptimi tekshiradi.
+    </div>
+
+    <h4 style="margin-top:20px">Xususiyatlari:</h4>
+    <ul>
+      <li>✅ Black Box + White Box afzalliklari birga</li>
+      <li>✅ Integration Testing uchun ideal</li>
+      <li>✅ API testing'da ko'p ishlatiladi</li>
+      <li>✅ Middle/Senior QA'lar uchun standart</li>
+    </ul>
+
+    <div class="type-details">
+      <div class="type-detail">
+        <div class="type-detail-label">Kim bajaradi</div>
+        <div class="type-detail-value">Middle/Senior QA</div>
+      </div>
+      <div class="type-detail">
+        <div class="type-detail-label">Daraja</div>
+        <div class="type-detail-value">Integration, API</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Siz qaysi usulni ishlatasiz?</div>
+    <p>Junior QA asosan <strong>Black Box</strong>. Middle QA <strong>Black + Gray Box</strong> (API testing). Senior QA esa <strong>uchalasini ham</strong> ishlatishi mumkin. Dasturchilar esa <strong>White Box</strong>da ustalar.</p>
+  </div>
+</section>
+
+<!-- DND: TYPE TO DESCRIPTION -->
+<div class="dnd-game" id="typesGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Test turi va tavsifini bog'lang</h3>
+  <p class="dnd-instruction">Har bir test turi uchun to'g'ri tavsifni sudrab qo'ying.</p>
+
+  <div class="dnd-pairs">
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">⬛ Black Box</div>
+      <div class="dnd-slot" data-type="blackbox">Tavsif qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">⬜ White Box</div>
+      <div class="dnd-slot" data-type="whitebox">Tavsif qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">◐ Gray Box</div>
+      <div class="dnd-slot" data-type="graybox">Tavsif qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">⚡ Performance</div>
+      <div class="dnd-slot" data-type="performance">Tavsif qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">🔐 Security</div>
+      <div class="dnd-slot" data-type="security">Tavsif qo'ying</div>
+    </div>
+  </div>
+
+  <div class="dnd-items-pool" id="typesPool">
+    <div class="dnd-item" draggable="true" data-type="graybox">Kodni qisman biladi, API testing uchun</div>
+    <div class="dnd-item" draggable="true" data-type="security">SQL injection, XSS kabi hujumlarni tekshiradi</div>
+    <div class="dnd-item" draggable="true" data-type="blackbox">Kodni bilmaydi, faqat kirish-chiqishni ko'radi</div>
+    <div class="dnd-item" draggable="true" data-type="performance">Load, Stress, Volume - tezlik va chidamlilik</div>
+    <div class="dnd-item" draggable="true" data-type="whitebox">Butun kodni ko'radi, dasturchi usuli</div>
+  </div>
+
+  <div class="dnd-score" id="typesScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- BUG CLASSIFIER -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Bug classifier</div>
+  <h3 style="margin-top:8px">Bug qaysi test turida topiladi?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Pastdagi bug kartochkasini bosing. <strong>2-qadam:</strong> Mos keladigan test turi tugmasini bosing.</p>
+
+  <div class="classifier-hint" id="classifierHint">👆 Endi pastdagi test turi tugmalaridan birini tanlang</div>
+
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="functional">
+      <div class="classifier-card-title">"Savatga qo'shish" tugmasi bosilganda hech narsa bo'lmayapti</div>
+      <div class="classifier-card-desc">Funksiya ishlamayapti — tugmaning asosiy vazifasi bajarilmayapti.</div>
+    </div>
+    <div class="classifier-card" data-category="performance">
+      <div class="classifier-card-title">Sayt 15 soniyada ochiladi (juda sekin)</div>
+      <div class="classifier-card-desc">Ishlayapti, lekin tezligi juda past.</div>
+    </div>
+    <div class="classifier-card" data-category="security">
+      <div class="classifier-card-title">Login formaga SQL injection kod kiritganimda admin sahifasiga o'tdim</div>
+      <div class="classifier-card-desc">Xavfsizlik buzilgan — haker kirishi mumkin.</div>
+    </div>
+    <div class="classifier-card" data-category="usability">
+      <div class="classifier-card-title">Savat ikonkasi kichkina va topib bo'lmaydi</div>
+      <div class="classifier-card-desc">Sayt ishlaydi, lekin foydalanuvchi uchun noqulay.</div>
+    </div>
+    <div class="classifier-card" data-category="compatibility">
+      <div class="classifier-card-title">iPhone Safari'da tugmalar joyidan chiqib ketgan</div>
+      <div class="classifier-card-desc">Chrome'da normal, Safari'da esa noto'g'ri ko'rinadi.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="functional">
+      <div class="classifier-bucket-icon">⚙️</div>
+      <div class="classifier-bucket-label" style="color:var(--forest)">Functional</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="performance">
+      <div class="classifier-bucket-icon">⚡</div>
+      <div class="classifier-bucket-label" style="color:var(--accent)">Performance</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="security">
+      <div class="classifier-bucket-icon">🔐</div>
+      <div class="classifier-bucket-label" style="color:var(--plum)">Security</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="usability">
+      <div class="classifier-bucket-icon">🎨</div>
+      <div class="classifier-bucket-label" style="color:var(--gold)">Usability</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="compatibility">
+      <div class="classifier-bucket-icon">🌐</div>
+      <div class="classifier-bucket-label" style="color:var(--blue)">Compatibility</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click'da Black Friday — katta yuk</div>
+
+  <div class="scenario-story">
+    <p><strong>Juma, 23 noyabr, soat 00:00.</strong> Click Black Friday aksiyasini boshladi. Chegirmalar 70% gacha! Barcha foydalanuvchilar bir vaqtda saytga kirib, to'lovlar qilishmoqchi.</p>
+    <p><strong>Natija:</strong> Sayt 30 soniyada ochildi. Ba'zi to'lovlar "xatolik" xabarini berdi. Ko'p foydalanuvchilar norozi bo'lishdi.</p>
+    <p><strong>Savol:</strong> Bu muammoni oldini olish uchun qaysi test turi kerak edi?</p>
+  </div>
+
+  <div class="scenario-question">Eng to'g'ri javob qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Functional Testing — har tugmani alohida sinab ko'rish kerak edi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Performance Testing (Load + Stress) — oldindan 1 million foydalanuvchi yuki bilan sinab ko'rish kerak edi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Security Testing — hakerlar hujum qilgan bo'lishi mumkin</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Junior QA sifatida siz asosan qaysi usul bilan test qilasiz?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">A</div>
+      <div>Black Box — kodni bilmasdan, foydalanuvchi kabi sinab ko'raman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>White Box — har qator kodni o'rganib chiqaman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Performance Testing — saytning yuklanish tezligini o'lchayman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop'da test turlarini qo'llash</h2>
+  <p class="section-intro">Endi nazariyani amaliyotda sinab ko'ramiz. TestShop uchun 4 xil test turida ish bajarasiz.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Test turlari amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Functional, Security, Usability va Compatibility test qilib ko'ring.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning 4 ta vazifangiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Functional Testing</div>
+        <div style="color:#4A4A4A;font-size:14px">Login, Register, Savat — har 3 sahifa uchun 5 tadan Functional test case yozing. Jami 15 ta test case.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Security Testing</div>
+        <div style="color:#4A4A4A;font-size:14px">Login formasiga <code>' OR 1=1--</code> SQL injection kod kiritib ko'ring. Ishlaydimi? Kirgizadi yoki yo'q? Natijani hujjatlang.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#C08838;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Usability Testing</div>
+        <div style="color:#4A4A4A;font-size:14px">Do'stingizni TestShop'ga kiritib, u "mahsulot qo'shish" vazifasini qanday bajarishini kuzating. Qanday qiyinchiliklar duch keldi? 3 ta Usability muammoni yozing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">4</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Compatibility Testing</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop'ni Chrome, Safari va telefon brauzerida oching. Har brauzerda screenshot oling va farqlarni yozing. Kamida 2 ta Compatibility bug topishga harakat qiling.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">4 xil test turida bajarilgan ishni <strong>bir hisobotga</strong> yig'ing (Google Docs). Intervyu'da: "Men 4 xil test turida tajribam bor — functional, security, usability, compatibility" deb ayta olasiz. Bu Junior uchun <strong>katta afzallik</strong>.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Test turlari — intervyu'da eng ko'p so'raladigan mavzulardan. 8 ta muhim savolga professional javoblarni o'rganing.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Functional va Non-Functional testing farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Functional Testing</strong> — "<strong>NIMA</strong> qiladi?" savoliga javob. Dasturning asosiy vazifalarini tekshiradi (tugma, forma, hisoblash).</li>
+            <li><strong>Non-Functional Testing</strong> — "<strong>QANCHALIK yaxshi</strong> qiladi?" savoliga javob. Tezlik, xavfsizlik, qulaylik, moslik.</li>
+          </ul>
+          <p><strong>Misol:</strong> "Login ishlayaptimi?" — Functional. "Login 1 soniyada ochiladimi?" — Non-Functional (Performance).</p>
+          <p><strong>Pro javob:</strong> "Men asosan Functional testing bilan shug'ullanaman (80% vaqt), lekin Security va Usability test'larda ham qatnashaman."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Performance, Load va Stress testing farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Performance Testing — umumiy atama. Uning ichida 3 turi bor:"</p>
+          <ul>
+            <li><strong>Load Testing</strong> — <em>odatdagi</em> yuk ostida test. Misol: 1000 ta foydalanuvchi bir vaqtda.</li>
+            <li><strong>Stress Testing</strong> — <em>chegaraga yetkazib</em> test. Misol: 10 000 ta foydalanuvchi — qachon yiqiladi?</li>
+            <li><strong>Volume Testing</strong> — <em>katta ma'lumot hajmi</em> bilan test. Misol: 1 million mahsulot ustidan qidiruv.</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Black Friday kabi katta yuk oldidan Load Testing qilamiz — real yuk bilan sinab ko'ramiz. Stress bilan esa chegaralarni topamiz."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Black Box va White Box testing farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Black Box</strong> — testor kodni <strong>bilmaydi</strong>. Faqat kirish-chiqishga qaraydi. Foydalanuvchi nuqtai nazari.</li>
+            <li><strong>White Box</strong> — testor <strong>butun kodni ko'radi</strong>. Har qatorni sinab chiqadi. Dasturchi usuli.</li>
+          </ul>
+          <p><strong>Qachon qaysi biri?</strong></p>
+          <ul>
+            <li>Black Box — System va Acceptance testing. QA'larning asosiy usuli.</li>
+            <li>White Box — Unit va Component testing. Dasturchilar qiladi.</li>
+            <li>Gray Box — Integration/API testing. Middle QA'lar uchun.</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Men Junior QA sifatida asosan Black Box ishlayman, chunki dasturchilik bilimim chuqur emas."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Security testing qanday qilinadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Security testing — saytning xavfsizligini tekshirish. Asosiy 4 yo'nalish:"</p>
+          <ul>
+            <li><strong>SQL Injection</strong> — login formalarga maxsus kod kiritish (<code>' OR 1=1--</code>). Ma'lumotlar bazasiga ruxsatsiz kirishga urinish.</li>
+            <li><strong>XSS (Cross-Site Scripting)</strong> — saytga yomon JavaScript kod joylashtirish.</li>
+            <li><strong>Authentication</strong> — parol talablari, 2FA bor-yo'qligi.</li>
+            <li><strong>Authorization</strong> — oddiy foydalanuvchi admin sahifaga kira oladimi?</li>
+          </ul>
+          <p><strong>Asboblar:</strong> OWASP ZAP, Burp Suite. Lekin bu asosan <strong>Security Specialist</strong>ning ishi. Junior QA faqat asosiy tekshiruvlarni qiladi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Usability testing qanday o'tkaziladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Usability testing — sayt qanchalik qulay ekanligini tekshirish."</p>
+          <p><strong>Usullar:</strong></p>
+          <ul>
+            <li><strong>Haqiqiy foydalanuvchi kuzatuv</strong> — oddiy odamga vazifa beramiz, u qanday bajarishini kuzatamiz.</li>
+            <li><strong>A/B Testing</strong> — ikki variantni solishtirish. Qaysi yaxshiroq?</li>
+            <li><strong>Heuristic Evaluation</strong> — UX mutaxassislari saytni qoidalar bo'yicha baholaydi.</li>
+          </ul>
+          <p><strong>Nima tekshiriladi:</strong></p>
+          <ul>
+            <li>Birinchi 5 soniyada nima qilishini tushunadimi?</li>
+            <li>Xato xabarlari aniqmi?</li>
+            <li>Mobil versiyada oson'mi?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Compatibility testing'da nima tekshirasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Compatibility testing — sayt turli muhitlarda ishlayaptimi tekshirish."</p>
+          <p><strong>5 ta asosiy yo'nalish:</strong></p>
+          <ul>
+            <li><strong>Brauzerlar:</strong> Chrome, Safari, Firefox, Edge</li>
+            <li><strong>Qurilmalar:</strong> Desktop, telefon, planshet</li>
+            <li><strong>OS:</strong> Windows, Mac, iOS, Android</li>
+            <li><strong>Ekran o'lchamlari:</strong> 320px, 768px, 1920px</li>
+            <li><strong>Internet tezligi:</strong> Wi-Fi, 4G, 3G</li>
+          </ul>
+          <p><strong>Asboblar:</strong> BrowserStack, LambdaTest — cloud orqali 100+ brauzerda test qila olasiz.</p>
+          <p><strong>Pro javob:</strong> "Real misol — Chrome'da chiroyli ishlaydi, lekin Safari'da tugmalar joyidan chiqib ketgan. Bu Compatibility bug."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Siz qaysi test turlarida tajribangiz bor?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob shabloni (halol):</strong> "Men Junior QA sifatida asosan quyidagi test turlarida ishlaganman:"</p>
+          <ul>
+            <li>✅ <strong>Functional Testing</strong> — kundalik ishim</li>
+            <li>✅ <strong>Compatibility Testing</strong> — Chrome, Safari, mobil versiya</li>
+            <li>✅ <strong>Usability Testing</strong> — sodda tekshiruvlar</li>
+            <li>⚠️ <strong>Security Testing</strong> — asosiy darajada (SQL injection, XSS)</li>
+            <li>❌ <strong>Performance Testing</strong> — hali o'rganayapman, JMeter ishlataman</li>
+          </ul>
+          <p><strong>Muhim:</strong> Halol javob bering. "Men hamma narsani bilaman" — yolg'on deb tushuniladi. Aniq nimani bilishingizni va o'rganayotganingizni ayting.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q8</span>
+        <span>Katta e-commerce saytida qanday test turlari muhim?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Uzum, Click kabi katta e-commerce saytlarida 5 ta test turi muhim:"</p>
+          <ul>
+            <li><strong>1. Functional</strong> — savat, to'lov, buyurtma — asosiy biznes oqimi to'g'ri ishlashi kerak</li>
+            <li><strong>2. Performance</strong> — Black Friday, aksiyalar paytida sayt yiqilmasligi kerak</li>
+            <li><strong>3. Security</strong> — karta ma'lumotlari, foydalanuvchi ma'lumotlari himoyalangan bo'lishi kerak</li>
+            <li><strong>4. Usability</strong> — foydalanuvchi 3 qadamda xaridni yakunlay olishi kerak</li>
+            <li><strong>5. Compatibility</strong> — mobil versiya ideal ishlashi kerak (50%+ trafik mobil'dan)</li>
+          </ul>
+          <p><strong>Muhim xulosa:</strong> "Katta e-commerce sayt uchun to'liq test strategiya kerak — faqat Functional yetarli emas. Har bir test turini inobatga olish muhim."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">2 ta asosiy guruh</div>
+      <div class="summary-point-text">Functional ("NIMA qiladi?") va Non-Functional ("QANCHALIK yaxshi qiladi?"). Bu asosiy farqni biling.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">4 ta muhim Non-Functional</div>
+      <div class="summary-point-text">Performance (tezlik), Security (xavfsizlik), Usability (qulaylik), Compatibility (moslik).</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Box Testing — 3 usul</div>
+      <div class="summary-point-text">Black Box (QA asosiy), White Box (dasturchi), Gray Box (aralash). Siz asosan Black Box'da ishlaysiz.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="09-test-levels.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>9-dars · Test darajalari</div>
+  </a>
+  <a href="11-confirmation-regression.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>11-dars · Confirmation va Maintenance</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 17;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Junior QA asosan Black Box'da ishlaydi. Kodni bilishingiz shart emas, asosiysi — foydalanuvchi nuqtai nazaridan sayt ishlayaptimi tekshirish. Bu sizning asosiy ishingiz.',
+    incorrect: 'Yo\'q. White Box va Performance Testing — bu Middle/Senior darajalari uchun. Junior QA asosan Black Box ishlaydi — kodni bilmasdan, foydalanuvchi kabi sinab ko\'radi.'
+  },
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Bu to\'g\'ri javob. Black Friday kabi katta yuk oldindan bilingan — Performance Testing (ayniqsa Load va Stress) albatta qilinishi kerak edi. JMeter kabi asboblar bilan 1 million foydalanuvchi yukini simulyatsiya qilib, sayt chidaydimi tekshirish kerak edi.',
+    incorrect: 'Bu noto\'g\'ri. Sekin ochilish va to\'lov xatoliklari — bu yuk ostidagi muammolar. Bu Performance muammosi, Functional yoki Security emas.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha test turlari topildi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// DND TYPES
+let draggedItem = null;
+let typesCorrect = 0;
+
+document.querySelectorAll('#typesPool .dnd-item').forEach(item => {
+  item.addEventListener('dragstart', (e) => {
+    draggedItem = item;
+    item.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  item.addEventListener('dragend', () => item.classList.remove('dragging'));
+});
+
+document.querySelectorAll('#typesGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+  });
+  slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    if (slot.classList.contains('filled') || !draggedItem || !draggedItem.classList.contains('dnd-item')) return;
+    if (draggedItem.dataset.type === slot.dataset.type) {
+      slot.textContent = draggedItem.textContent;
+      slot.classList.add('filled', 'correct');
+      draggedItem.classList.add('placed');
+      typesCorrect++;
+      document.getElementById('typesScore').textContent = `${typesCorrect} / 5 to'g'ri`;
+      completedActivities.add(`types-${typesCorrect}`);
+      updateProgress();
+      if (typesCorrect === 5) {
+        document.getElementById('typesScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barcha test turlari to\'g\'ri!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// CLASSIFIER - TAP TO SELECT (mobile-friendly)
+let classifierCorrect = 0;
+let selectedCard = null;
+
+const bucketNames = {
+  functional: 'Functional',
+  performance: 'Performance',
+  security: 'Security',
+  usability: 'Usability',
+  compatibility: 'Compatibility'
+};
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    
+    // Remove selection from all cards
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    
+    // Select this card
+    card.classList.add('selected');
+    selectedCard = card;
+    
+    // Show hint and activate buckets
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) {
+      // No card selected - hint user
+      document.querySelectorAll('.classifier-card:not(.classified)').forEach(c => {
+        c.style.animation = 'shake 0.4s ease';
+        setTimeout(() => c.style.animation = '', 400);
+      });
+      return;
+    }
+    
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      // Correct answer
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 5 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      
+      if (classifierCorrect === 5) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barcha buglar to\'g\'ri tasniflandi!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      
+      // Reset
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      // Wrong answer
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .type-card, .main-type').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
