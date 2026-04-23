@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-dars: Rollar va Traceability | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ROLE CARDS */
+.role-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-bottom: 14px; transition: all 0.2s; }
+.role-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1); }
+.role-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+.role-avatar { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: white; flex-shrink: 0; }
+.role-avatar.po { background: var(--coral); }
+.role-avatar.sm { background: var(--forest); }
+.role-avatar.ba { background: var(--blue); }
+.role-avatar.dev { background: var(--plum); }
+.role-avatar.qa { background: var(--accent); }
+.role-avatar.des { background: var(--gold); }
+.role-avatar.ops { background: var(--teal); }
+.role-avatar.tl { background: #1A1A1A; }
+.role-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; }
+.role-original { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; display: block; margin-top: 2px; }
+.role-main-task { font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; }
+.role-tasks { background: var(--bg-soft); padding: 14px 18px; border-radius: 10px; font-size: 14px; }
+.role-tasks strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+.role-tasks ul { padding-left: 18px; margin: 0; }
+.role-tasks li { margin-bottom: 4px; color: var(--ink-soft); font-size: 13px; }
+
+/* QA LEVELS */
+.level-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-bottom: 14px; position: relative; overflow: hidden; }
+.level-card.junior { border-top: 4px solid var(--forest); }
+.level-card.middle { border-top: 4px solid var(--gold); }
+.level-card.senior { border-top: 4px solid var(--accent); }
+.level-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; flex-wrap: wrap; }
+.level-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; }
+.level-exp { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 10px; background: var(--bg-soft); color: var(--ink-muted); border-radius: 100px; letter-spacing: 0.5px; }
+.level-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 14px; }
+.level-skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.level-skill { padding: 8px 12px; background: var(--bg-soft); border-radius: 8px; font-size: 13px; color: var(--ink-soft); }
+.level-skill::before { content: "✓ "; color: var(--forest); font-weight: 600; }
+.level-salary { margin-top: 14px; padding: 12px 16px; background: var(--gold-soft); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); }
+.level-salary strong { color: var(--gold); }
+
+/* TRACEABILITY MATRIX */
+.trace-intro { background: var(--bg-soft); padding: 20px 24px; border-radius: 12px; margin: 20px 0; }
+.trace-table-wrapper { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; overflow-x: auto; margin: 20px 0; }
+.trace-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 500px; }
+.trace-table th { background: var(--bg-soft); text-align: left; padding: 14px 16px; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+.trace-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+.trace-table tr:last-child td { border-bottom: none; }
+.trace-table .req-id, .trace-table .tc-id { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.trace-table .req-id { color: var(--blue); }
+.trace-table .tc-id { color: var(--accent); }
+.trace-table .status-pass { color: var(--forest); font-weight: 500; }
+.trace-table .status-fail { color: var(--accent); font-weight: 500; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* DND TRACEABILITY */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.trace-builder { background: var(--bg-soft); border-radius: 12px; padding: 20px; margin-bottom: 20px; overflow-x: auto; }
+.trace-builder-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+.trace-builder-table th { background: white; padding: 10px 14px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-muted); font-weight: 600; border-bottom: 1px solid var(--line); }
+.trace-builder-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.trace-slot { min-height: 40px; border: 2px dashed var(--line-dark); border-radius: 8px; padding: 8px 12px; background: white; transition: all 0.2s; font-size: 13px; color: var(--ink-muted); }
+.trace-slot.drag-over { border-color: var(--plum); background: var(--plum-soft); }
+.trace-slot.filled { border-style: solid; }
+.trace-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.trace-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: grab; font-size: 13px; font-weight: 500; transition: all 0.2s; user-select: none; font-family: 'JetBrains Mono', monospace; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item:active { cursor: grabbing; }
+.dnd-item.dragging { opacity: 0.5; }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.dnd-reset-btn { display: block; margin: 16px auto 0; padding: 10px 20px; background: var(--plum); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 900px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* NAV */
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+/* TYPO */
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card { padding: 24px 22px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">5-dars</div>
+  <h1>Jamoadagi <em>rollar</em> va Traceability</h1>
+  <p class="hero-subtitle">IT jamoasida kim qanday vazifani bajaradi? Testor qaysi odamlar bilan muloqotda bo'ladi? Traceability matrix nima uchun kerak?</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Jamoa va karyera</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Siz yolg'iz ishlamaysiz</h2>
+  <p class="section-intro">Ko'pchilik QA'ga kirganda o'ylaydi: "Men faqat dasturni sinayman, bug topaman, shu!" Aslida esa testor <strong>juda ko'p odamlar bilan muloqotda</strong> bo'ladi.</p>
+  <p>Bir kunda siz: Product Owner'dan talablarni so'raysiz, Developer bilan bug muhokama qilasiz, Designer bilan UX haqida gaplashasiz, DevOps bilan test muhiti haqida kelishasiz. <strong>Har biri bilan qanday tilda gaplashishni bilish — professional QA belgisi.</strong></p>
+  <p>Bu darsda ikki narsani ko'ramiz: <strong>jamoa a'zolari kim</strong> va <strong>ular orasidagi aloqani qanday kuzatish mumkin</strong> (Traceability Matrix).</p>
+</section>
+
+<!-- SECTION 1: TEAM ROLES -->
+<section class="section" id="roles">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">IT jamoasidagi rollar</h2>
+  <p class="section-intro">O'rtacha IT loyihada 8-12 xil rol bor. Har biri loyiha hayot siklining ma'lum qismi uchun mas'ul. Keling har biri bilan tanishamiz.</p>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar po">PO</div>
+      <div>
+        <div class="role-name">Product Owner</div>
+        <span class="role-original">MAHSULOT EGASI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Mahsulot nima bo'lishi kerakligini aniqlaydi — "nima" va "nega" savollariga javob beradi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Backlog'ni boshqaradi — qaysi vazifa muhim, qaysi keyinroq</li>
+        <li>Biznes talablarini jamoaga tushuntiradi</li>
+        <li>Mijoz/foydalanuvchi ovozini jamoaga yetkazadi</li>
+        <li>User Story'larni yozadi</li>
+        <li>Sprint Planning'da prioritetlarni belgilaydi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar sm">SM</div>
+      <div>
+        <div class="role-name">Scrum Master</div>
+        <span class="role-original">SCRUM MENTORI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Jamoaning samarali ishlashiga yordam beradi — to'siqlarni olib tashlaydi va jarayonni nazorat qiladi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Daily Standup'larni olib boradi</li>
+        <li>Jamoa uchun to'siqlarni hal qiladi</li>
+        <li>Retrospective'larda jarayonlarni yaxshilaydi</li>
+        <li>Scrum/Agile prinsiplarini himoya qiladi</li>
+        <li>Jamoani tashqi buzilishlardan himoya qiladi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar ba">BA</div>
+      <div>
+        <div class="role-name">Business Analyst</div>
+        <span class="role-original">BIZNES ANALITIK</span>
+      </div>
+    </div>
+    <div class="role-main-task">Biznes va texnik jamoa orasidagi "tarjimon" — biznes talablarini texnik talablarga aylantiradi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Talablarni yig'adi va hujjatlashtiradi</li>
+        <li>User Story va Acceptance Criteria yozadi</li>
+        <li>Process diagrammalar chizadi</li>
+        <li>Stakeholder'lar bilan uchrashadi</li>
+        <li>Texnik va biznes tomonlarini birlashtiradi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar des">UX</div>
+      <div>
+        <div class="role-name">UI/UX Designer</div>
+        <span class="role-original">DIZAYNER</span>
+      </div>
+    </div>
+    <div class="role-main-task">Mahsulotni <strong>qanday ko'rinishi</strong> va <strong>qanday ishlashini</strong> loyihalaydi. Foydalanuvchi tajribasiga e'tibor beradi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Figma yoki Sketch'da dizayn yaratadi</li>
+        <li>Wireframe'lar va prototiplar tuzadi</li>
+        <li>Foydalanuvchi tadqiqotlarini o'tkazadi</li>
+        <li>Design System'ni boshqaradi</li>
+        <li>Developer'lar bilan dizaynni muhokama qiladi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar dev">FE</div>
+      <div>
+        <div class="role-name">Frontend Developer</div>
+        <span class="role-original">FRONTEND DASTURCHI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Foydalanuvchi ko'radigan qismni yaratadi — tugmalar, formalar, animatsiyalar.</div>
+    <div class="role-tasks">
+      <strong>Ishlatadigan texnologiyalar:</strong>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>React, Vue, Angular (framework'lar)</li>
+        <li>Figma dizaynini kodga o'tkazadi</li>
+        <li>Browser'larda testlash</li>
+        <li>Responsive dizayn (mobil/desktop)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar dev">BE</div>
+      <div>
+        <div class="role-name">Backend Developer</div>
+        <span class="role-original">BACKEND DASTURCHI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Ko'rinmaydigan qismni yaratadi — ma'lumotlar bazasi, API, mantiq, xavfsizlik.</div>
+    <div class="role-tasks">
+      <strong>Ishlatadigan texnologiyalar:</strong>
+      <ul>
+        <li>Python, Java, Node.js, PHP, C#</li>
+        <li>Database (PostgreSQL, MySQL, MongoDB)</li>
+        <li>REST API, GraphQL</li>
+        <li>Authentication, xavfsizlik</li>
+        <li>Server boshqaruvi (qisman)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar qa">QA</div>
+      <div>
+        <div class="role-name">QA Engineer</div>
+        <span class="role-original">TESTOR (SIZ!)</span>
+      </div>
+    </div>
+    <div class="role-main-task">Mahsulot sifatini nazorat qiladi — buglarni topadi, test case'lar yozadi, hisobot beradi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Test case'lar yozadi va bajaradi</li>
+        <li>Bug'larni topadi va Jira'ga yozadi</li>
+        <li>Talablarni tekshiradi</li>
+        <li>Regression testing qiladi</li>
+        <li>Automation test yozadi (Middle/Senior)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar ops">DO</div>
+      <div>
+        <div class="role-name">DevOps Engineer</div>
+        <span class="role-original">DEVOPS MUHANDIS</span>
+      </div>
+    </div>
+    <div class="role-main-task">Kodni server'ga yetkazadi — dastur qanday ishga tushadi, qanday yangilanadi shu bilan shug'ullanadi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>CI/CD pipeline'larni sozlaydi</li>
+        <li>Test va production server'lar</li>
+        <li>Docker, Kubernetes</li>
+        <li>Monitoring va loglar</li>
+        <li>Release jarayonini avtomatlashtiradi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-header">
+      <div class="role-avatar tl">TL</div>
+      <div>
+        <div class="role-name">Team Lead</div>
+        <span class="role-original">JAMOA RAHBARI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Jamoaning texnik rahbari — kod sifatini nazorat qiladi va jamoaning rivojlanishiga yordam beradi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Code Review qiladi</li>
+        <li>Texnik qarorlar qabul qiladi</li>
+        <li>Jamoa a'zolarini o'qitadi</li>
+        <li>Arxitektura masalalari</li>
+        <li>Stakeholder'lar bilan muloqot</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Hayotiy misol</div>
+    <div class="analogy-title">IT jamoasi — bu film ishlab chiqarish</div>
+    <div class="analogy-text">
+      <strong>Product Owner</strong> = Rejissyor (nima film olamiz?) · <strong>Scrum Master</strong> = Ijrochi prodyuser · <strong>Designer</strong> = Rassom · <strong>Developer</strong> = Aktyor va operator · <strong>QA</strong> = Montaj va sifat nazoratchi · <strong>DevOps</strong> = Kinoteatrga yetkazuvchi · <strong>Team Lead</strong> = Bosh operator.
+    </div>
+  </div>
+
+  <!-- EXTRA ROLES SECTION -->
+  <h3 style="margin-top:50px">Qo'shimcha rollar — kamroq uchraydi, lekin bilish muhim</h3>
+  <p>Quyidagi rollar bilan QA <strong>kundalik</strong> ishlamaydi, lekin intervyuda va yirik meetinglarda duch keladi. Qisqacha bilib qo'ying.</p>
+
+  <div class="role-card" style="border-left:4px solid #0F6E56">
+    <div class="role-header">
+      <div class="role-avatar" style="background:#0F6E56">PM</div>
+      <div>
+        <div class="role-name">Project Manager</div>
+        <span class="role-original">LOYIHA MENEJERI</span>
+      </div>
+    </div>
+    <div class="role-main-task">Loyihaning <strong>vaqti, byudjeti va resurslari</strong>ni boshqaradi. Asosan <strong>Waterfall</strong> yoki traditional kompaniyalarda uchraydi.</div>
+    <div class="role-tasks">
+      <strong>Kundalik vazifalari:</strong>
+      <ul>
+        <li>Loyiha rejasini tuzish (Gantt chart)</li>
+        <li>Vaqt va byudjet nazorati</li>
+        <li>Stakeholder'lar bilan muloqot</li>
+        <li>Risklarni boshqarish</li>
+        <li>Hisobotlar tayyorlash (status reports)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PO vs PM CRITICAL -->
+  <div class="example-box" style="margin-top:20px">
+    <div class="example-box-title">⚠️ Muhim: PO va PM farqi</div>
+    <p>Bu ikki rolni ko'pchilik aralashtirib yuboradi. Intervyuda <strong>albatta</strong> so'raladi. Farqni aniq biling:</p>
+    <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:14px">
+      <tr style="background:var(--bg-soft)">
+        <th style="padding:10px;text-align:left;border:1px solid var(--line);color:var(--ink)">Xususiyat</th>
+        <th style="padding:10px;text-align:left;border:1px solid var(--line);color:var(--coral)">Product Owner (PO)</th>
+        <th style="padding:10px;text-align:left;border:1px solid var(--line);color:var(--teal)">Project Manager (PM)</th>
+      </tr>
+      <tr>
+        <td style="padding:10px;border:1px solid var(--line);font-weight:500">Asosiy savol</td>
+        <td style="padding:10px;border:1px solid var(--line)">"<strong>Nima</strong> yaratamiz?"</td>
+        <td style="padding:10px;border:1px solid var(--line)">"<strong>Qachon</strong> yakunlanadi?"</td>
+      </tr>
+      <tr style="background:var(--bg-soft)">
+        <td style="padding:10px;border:1px solid var(--line);font-weight:500">E'tibor</td>
+        <td style="padding:10px;border:1px solid var(--line)">Mahsulot va foydalanuvchi</td>
+        <td style="padding:10px;border:1px solid var(--line)">Vaqt, byudjet, resurslar</td>
+      </tr>
+      <tr>
+        <td style="padding:10px;border:1px solid var(--line);font-weight:500">Metodologiya</td>
+        <td style="padding:10px;border:1px solid var(--line)">Agile/Scrum (zamonaviy)</td>
+        <td style="padding:10px;border:1px solid var(--line)">Waterfall (traditional)</td>
+      </tr>
+      <tr style="background:var(--bg-soft)">
+        <td style="padding:10px;border:1px solid var(--line);font-weight:500">Qaror qabul qilish</td>
+        <td style="padding:10px;border:1px solid var(--line)">Backlog prioriteti</td>
+        <td style="padding:10px;border:1px solid var(--line)">Loyiha reja bo'yicha</td>
+      </tr>
+      <tr>
+        <td style="padding:10px;border:1px solid var(--line);font-weight:500">Kompaniya misoli</td>
+        <td style="padding:10px;border:1px solid var(--line)">Uzum, Click (startup)</td>
+        <td style="padding:10px;border:1px solid var(--line)">Davlat loyihalari, bank</td>
+      </tr>
+    </table>
+    <p style="margin-top:12px;margin-bottom:0"><strong>Oddiy yodlash:</strong> PO = <em>Mahsulot</em>, PM = <em>Loyiha</em>. Ba'zida bitta odam ikkala rolni bajaradi (kichik kompaniyalarda).</p>
+  </div>
+
+  <div class="role-card" style="border-left:4px solid #5B3A7A;margin-top:24px">
+    <div class="role-header">
+      <div class="role-avatar" style="background:#5B3A7A">CTO</div>
+      <div>
+        <div class="role-name">Chief Technology Officer</div>
+        <span class="role-original">BOSH TEXNIK RAHBAR</span>
+      </div>
+    </div>
+    <div class="role-main-task">Kompaniyaning <strong>butun texnik strategiyasi</strong>ga mas'ul. Junior QA u bilan kam uchrashadi — odatda katta meetinglarda.</div>
+    <div class="role-tasks">
+      <strong>Asosiy vazifalari:</strong>
+      <ul>
+        <li>Texnik qarorlar (qaysi texnologiya, qaysi arxitektura)</li>
+        <li>Katta byudjet qarorlari</li>
+        <li>Texnik jamoa rahbarligi (100+ kishi bo'lishi mumkin)</li>
+        <li>Tashqi hamkorlik (partnerlar, vendorlar)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card" style="border-left:4px solid #1A1A1A;margin-top:14px">
+    <div class="role-header">
+      <div class="role-avatar" style="background:#1A1A1A">CEO</div>
+      <div>
+        <div class="role-name">Chief Executive Officer</div>
+        <span class="role-original">BOSH IJROCHI RAHBAR</span>
+      </div>
+    </div>
+    <div class="role-main-task"><strong>Butun kompaniya</strong> rahbari. QA bilan deyarli bevosita ishlamaydi, lekin biznes strategiyasi orqali ta'sir qiladi.</div>
+    <div class="role-tasks">
+      <strong>Asosiy vazifalari:</strong>
+      <ul>
+        <li>Kompaniya strategiyasi va maqsadlari</li>
+        <li>Investorlar va rahbariyat bilan aloqa</li>
+        <li>Eng muhim qarorlar (yangi bozor, katta investitsiya)</li>
+        <li>Brend va kompaniya imidji</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="role-card" style="border-left:4px solid #D85A30;margin-top:14px">
+    <div class="role-header">
+      <div class="role-avatar" style="background:#D85A30">TS</div>
+      <div>
+        <div class="role-name">Tech Support</div>
+        <span class="role-original">TEXNIK YORDAM</span>
+      </div>
+    </div>
+    <div class="role-main-task">Foydalanuvchilardan <strong>shikoyat va muammolar</strong>ni qabul qiladi. QA uchun muhim — buglarning 30-40%'i shu yo'l orqali keladi.</div>
+    <div class="role-tasks">
+      <strong>QA bilan aloqasi:</strong>
+      <ul>
+        <li>Foydalanuvchi muammolarini QA jamoasiga yuboradi</li>
+        <li>Bug reproduction qadamlarini aniqlashtiradi</li>
+        <li>Tuzatilgandan keyin mijozlarga xabar beradi</li>
+        <li>Umumiy muammolar statistikasini beradi (ko'p uchraydigan buglar)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Amaliy eslatma</div>
+    <p>Junior QA odatda <strong>PM va Tech Support</strong> bilan haftada bir necha bor ishlaydi. <strong>CTO va CEO</strong> bilan — kvartalda bir marta yoki yirik meetinglarda. Lekin bu rollarni bilish — professional QA belgisi.</p>
+  </div>
+</section>
+
+<!-- MATCHING GAME -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Rol va vazifani to'g'ri bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Chap tomondagi rolni bosing, keyin o'ng tomondan mos vazifani tanlang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Rol</h4>
+      <div class="match-item" data-side="left" data-pair="a">Product Owner</div>
+      <div class="match-item" data-side="left" data-pair="b">Scrum Master</div>
+      <div class="match-item" data-side="left" data-pair="c">Designer</div>
+      <div class="match-item" data-side="left" data-pair="d">Developer</div>
+      <div class="match-item" data-side="left" data-pair="e">QA Engineer</div>
+      <div class="match-item" data-side="left" data-pair="f">DevOps</div>
+    </div>
+    <div class="matching-column">
+      <h4>Asosiy vazifa</h4>
+      <div class="match-item" data-side="right" data-pair="e">Bug'larni topadi va test case yozadi</div>
+      <div class="match-item" data-side="right" data-pair="a">Nima yaratishni aniqlaydi, prioritet qo'yadi</div>
+      <div class="match-item" data-side="right" data-pair="f">Kodni server'ga yetkazadi, CI/CD sozlaydi</div>
+      <div class="match-item" data-side="right" data-pair="c">Figma'da mahsulotning ko'rinishini loyihalaydi</div>
+      <div class="match-item" data-side="right" data-pair="b">Jarayonni yaxshilaydi, to'siqlarni olib tashlaydi</div>
+      <div class="match-item" data-side="right" data-pair="d">Kod yozadi — frontend yoki backend</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 6 juft topildi</div>
+</div>
+
+<!-- SECTION 2: QA CAREER LEVELS -->
+<section class="section" id="levels">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">QA karyerasi: Junior → Senior</h2>
+  <p class="section-intro">QA ichida ham <strong>3 ta asosiy daraja</strong> bor. Ularning vazifalari, maoshi va mas'uliyati farqlanadi. Bu sizning yo'l xaritangiz.</p>
+
+  <div class="level-card junior">
+    <div class="level-header">
+      <div>
+        <div class="level-title">Junior QA</div>
+        <div style="color:var(--ink-muted);font-size:14px;margin-top:4px">"Endi boshlayotgan testor"</div>
+      </div>
+      <span class="level-exp">0-1 yil tajriba</span>
+    </div>
+    <div class="level-desc">Yangi testor. Asosan <strong>tayyor test case'larni bajaradi</strong>, senior'lar yo'lida buglarni qayd etadi. O'rganish bosqichida.</div>
+    <div class="level-skills">
+      <div class="level-skill">Manual testing asoslari</div>
+      <div class="level-skill">Bug report yozish</div>
+      <div class="level-skill">Jira foydalanish</div>
+      <div class="level-skill">Test case bajarish</div>
+      <div class="level-skill">SDLC/STLC tushunish</div>
+      <div class="level-skill">Ingliz tili - asosiy</div>
+    </div>
+    <div class="level-salary">
+      <strong>O'rtacha maosh (O'zbekistonda):</strong> 4-7 mln so'm/oy · <strong>Dunyoda:</strong> $500-1200/oy
+    </div>
+  </div>
+
+  <div class="level-card middle">
+    <div class="level-header">
+      <div>
+        <div class="level-title">Middle QA</div>
+        <div style="color:var(--ink-muted);font-size:14px;margin-top:4px">"Mustaqil testor"</div>
+      </div>
+      <span class="level-exp">2-4 yil tajriba</span>
+    </div>
+    <div class="level-desc">Mustaqil ishlaydi. <strong>Test case'larni yozadi</strong>, test strategiyasini belgilaydi, Junior'larga yordam beradi. Automation'ga qadam tashlashi mumkin.</div>
+    <div class="level-skills">
+      <div class="level-skill">Test strategy yaratish</div>
+      <div class="level-skill">Test plan yozish</div>
+      <div class="level-skill">API testing (Postman)</div>
+      <div class="level-skill">Database testing (SQL)</div>
+      <div class="level-skill">Automation - asoslari</div>
+      <div class="level-skill">Junior'larga mentorlik</div>
+    </div>
+    <div class="level-salary">
+      <strong>O'rtacha maosh (O'zbekistonda):</strong> 8-15 mln so'm/oy · <strong>Dunyoda:</strong> $1500-3000/oy
+    </div>
+  </div>
+
+  <div class="level-card senior">
+    <div class="level-header">
+      <div>
+        <div class="level-title">Senior QA / QA Lead</div>
+        <div style="color:var(--ink-muted);font-size:14px;margin-top:4px">"Sifat bo'yicha ekspert"</div>
+      </div>
+      <span class="level-exp">5+ yil tajriba</span>
+    </div>
+    <div class="level-desc">Butun QA jamoasining rahbari. <strong>Test strategiyasini belgilaydi</strong>, metodologiyalarni tanlaydi, biznes bilan muloqot qiladi. Katta loyihalar bo'yicha mas'ul.</div>
+    <div class="level-skills">
+      <div class="level-skill">QA strategy yaratish</div>
+      <div class="level-skill">Automation framework'lar</div>
+      <div class="level-skill">Performance testing</div>
+      <div class="level-skill">Security testing asoslari</div>
+      <div class="level-skill">Jamoa boshqarish</div>
+      <div class="level-skill">Stakeholder muloqot</div>
+    </div>
+    <div class="level-salary">
+      <strong>O'rtacha maosh (O'zbekistonda):</strong> 15-30 mln so'm/oy · <strong>Dunyoda:</strong> $3000-6000+/oy
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Karyera maslahati</div>
+    <p>Junior'dan Middle'ga o'tish uchun odatda <strong>2 yil</strong> kerak. Middle'dan Senior'ga — yana <strong>3 yil</strong>. Lekin bu tezlashish mumkin — agar siz doimiy o'rganasiz, amaliyot qilasiz va portfolio yig'asiz.</p>
+  </div>
+</section>
+
+<!-- QUIZ 1 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Siz bug topdingiz: login sahifasi umuman ochilmayapti. Birinchi navbatda kim bilan gaplashasiz?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Product Owner bilan — u qaror qabul qilsin</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Avval Jira'ga bug yozaman, keyin Developer (Frontend) bilan gaplashaman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>DevOps bilan — balki server muammosi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- SECTION 3: TRACEABILITY -->
+<section class="section" id="trace">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Traceability Matrix</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Traceability Matrix (Kuzatuv Matritsasi)</strong> — <strong>talablar</strong> va <strong>test case'lar</strong> orasidagi bog'liqlikni ko'rsatadigan jadval.</p>
+    <p><em>Oddiy qilib:</em> har bir talab kamida bitta test case bilan tekshirilganini isbotlaydigan hujjat. "Siz hamma talablarni test qildingizmi?" savoliga javob beradi.</p>
+  </div>
+
+  <h3>Nega kerak?</h3>
+  <div class="trace-intro">
+    <p style="margin:0">Tasavvur qiling: sizning loyihangizda <strong>100 ta talab</strong> va <strong>200 ta test case</strong> bor. Endi savol — har bir talab test qilindimi? Agar bitta talab test qilinmay qolsa — bu <strong>katta muammo</strong>: production'ga bug chiqishi mumkin.</p>
+    <p style="margin-top:10px;margin-bottom:0"><strong>Traceability Matrix</strong> aynan shu muammoni hal qiladi — hamma talab test qilinganini kafolatlaydi.</p>
+  </div>
+
+  <h3>Traceability Matrix qanday ko'rinadi?</h3>
+
+  <div class="trace-table-wrapper">
+    <table class="trace-table">
+      <tr>
+        <th>Talab ID</th>
+        <th>Talab tavsifi</th>
+        <th>Test Case ID</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td class="req-id">REQ-001</td>
+        <td>Foydalanuvchi email + parol bilan kirishi mumkin</td>
+        <td class="tc-id">TC-001, TC-002</td>
+        <td class="status-pass">✓ Pass</td>
+      </tr>
+      <tr>
+        <td class="req-id">REQ-002</td>
+        <td>Parol kamida 8 belgidan iborat bo'lishi kerak</td>
+        <td class="tc-id">TC-003, TC-004</td>
+        <td class="status-fail">✗ Fail</td>
+      </tr>
+      <tr>
+        <td class="req-id">REQ-003</td>
+        <td>Email noto'g'ri bo'lsa, xato xabari chiqishi kerak</td>
+        <td class="tc-id">TC-005</td>
+        <td class="status-pass">✓ Pass</td>
+      </tr>
+      <tr>
+        <td class="req-id">REQ-004</td>
+        <td>"Parolni unutdim" funksiyasi ishlashi kerak</td>
+        <td class="tc-id">TC-006, TC-007</td>
+        <td class="status-pass">✓ Pass</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Nima foydali?</div>
+    <p>Bu jadvaldan bir qarashda ko'rinadi: <strong>REQ-002 fail bo'lgan</strong> — parol uzunligi tekshiruvi ishlamayapti. Demak bu talab production'ga chiqishdan oldin tuzatilishi kerak. Traceability Matrix — sifat nazorati uchun eng kuchli asboblardan biri.</p>
+  </div>
+
+  <h3>Qanday tuziladi?</h3>
+  <p>Middle va Senior QA lar bu matritsani tuzadi. Odatda:</p>
+  <ol>
+    <li><strong>Talablar hujjatidan</strong> har bir talabga ID beriladi (REQ-001, REQ-002...)</li>
+    <li><strong>Test case'lar</strong> yoziladi va ularga ID beriladi (TC-001, TC-002...)</li>
+    <li><strong>Excel yoki TestRail</strong>da matritsa tuziladi</li>
+    <li><strong>Har sprint'da</strong> yangilanadi</li>
+  </ol>
+</section>
+
+<!-- DND TRACEABILITY -->
+<div class="dnd-game" id="traceGame">
+  <div class="quiz-label">🎯 Amaliy topshiriq</div>
+  <h3 style="margin-top:8px">Traceability Matrix tuzing</h3>
+  <p class="dnd-instruction">Quyida talablar va test case'lar bor. Har talab uchun <strong>to'g'ri test case ID</strong>ni sudrab qo'ying.</p>
+
+  <div class="trace-builder">
+    <table class="trace-builder-table">
+      <thead>
+        <tr>
+          <th>Talab</th>
+          <th>Tavsif</th>
+          <th style="min-width:150px">Test Case ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="req-id" style="color:var(--blue);font-family:'JetBrains Mono',monospace">REQ-101</td>
+          <td>Ro'yxatdan o'tish: email majburiy</td>
+          <td><div class="trace-slot" data-req="REQ-101">TC qo'ying</div></td>
+        </tr>
+        <tr>
+          <td class="req-id" style="color:var(--blue);font-family:'JetBrains Mono',monospace">REQ-102</td>
+          <td>Login: parol xato bo'lsa xato chiqsin</td>
+          <td><div class="trace-slot" data-req="REQ-102">TC qo'ying</div></td>
+        </tr>
+        <tr>
+          <td class="req-id" style="color:var(--blue);font-family:'JetBrains Mono',monospace">REQ-103</td>
+          <td>Savat: mahsulotni qo'shish</td>
+          <td><div class="trace-slot" data-req="REQ-103">TC qo'ying</div></td>
+        </tr>
+        <tr>
+          <td class="req-id" style="color:var(--blue);font-family:'JetBrains Mono',monospace">REQ-104</td>
+          <td>Checkout: to'lov ma'lumotlari</td>
+          <td><div class="trace-slot" data-req="REQ-104">TC qo'ying</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dnd-items-pool" id="tracePool">
+    <div class="dnd-item" draggable="true" data-req="REQ-103">TC-301: Savat toldirish testi</div>
+    <div class="dnd-item" draggable="true" data-req="REQ-101">TC-201: Bosh email ro'yxat</div>
+    <div class="dnd-item" draggable="true" data-req="REQ-104">TC-401: Karta ma'lumotlari</div>
+    <div class="dnd-item" draggable="true" data-req="REQ-102">TC-205: Notugri parol xato</div>
+  </div>
+
+  <div class="dnd-score" id="traceScore">0 / 4 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Bug topdingiz — kim bilan gaplashasiz?</div>
+
+  <div class="scenario-story">
+    <p><strong>Payshanba, 15:30.</strong> Siz Click.uz'da ishlayapsiz. Bosh sahifada yangi to'lov funksiyasini test qilayotibsiz.</p>
+    <p><strong>Bug:</strong> Foydalanuvchi kartani kiritadi, "To'lash" tugmasini bosadi — 5 soniya yuklash, keyin xato chiqadi: <em>"Tizim xatosi, qayta urinib ko'ring"</em>. Bu xato <strong>faqat chorak million so'mdan yuqori summalar</strong>da chiqadi.</p>
+    <p><strong>Savol:</strong> Kim bilan birinchi gaplashasiz va nima qilasiz?</p>
+  </div>
+
+  <div class="scenario-question">Eng professional harakat qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Darhol Team Lead'ga borib aytaman</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Jira'ga to'liq bug yozaman (reproduktsiya qadamlari, screenshot), Critical severity belgilayman, keyin Slack'da Backend Developer bilan gaplashaman — to'lov tizimi uning sohasi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Product Owner'ga yozaman, u bilsin</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop uchun Traceability yarating</h2>
+  <p class="section-intro">Endi o'zingiz Traceability Matrix tuzing. TestShop sahifalari uchun talablar va test case'lar bog'liqligini ko'rsatadigan hujjat tuzing.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Traceability amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Login sahifasi uchun to'liq Traceability Matrix tuzing — intervyu portfoliyasiga qo'yish mumkin.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/login.html" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop Login sahifasi
+    </a>
+  </div>
+
+  <h3>Sizning vazifangiz: 3 bosqich</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Login sahifasining talablarini aniqlang</div>
+        <div style="color:#4A4A4A;font-size:14px">Masalan: REQ-01 "Email va parol kiritish", REQ-02 "Bo'sh maydonlar qabul qilinmasligi", REQ-03 "Xato parolga xato xabari chiqishi", va hokazo. Kamida 5 ta talab yozing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Har talab uchun test case'lar yozing</div>
+        <div style="color:#4A4A4A;font-size:14px">4-darsda o'rganingiz test case formatini ishlating: TC-001, TC-002... Har talab uchun kamida 1 ta test case. Jami 5-10 ta test case bo'ladi.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Google Sheets'da Traceability Matrix tuzing</div>
+        <div style="color:#4A4A4A;font-size:14px">Ustunlar: Req ID | Req tavsif | TC ID | TC tavsif | Status. TestShop'ni brauzerda ochib, har test case'ni bajaring va Pass/Fail belgilang.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Tuzilgan Traceability Matrix'ingizni <strong>Google Sheets link</strong>i bilan saqlang. Bu sizning CV/portfolio'ingizning muhim qismi bo'ladi. Intervyuda "Men bunday loyiha ustida ishlaganman" deb ko'rsata olasiz. Bu Junior darajadagi ko'p nomzodlarda yo'q bo'lgan <strong>katta afzallik</strong>.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Rollar va jamoa haqidagi savollar intervyuda albatta so'raladi. Javoblarni puxta tayyorlang.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Product Owner va Scrum Master farqi nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Product Owner</strong> — "NIMA qilamiz?" savoliga javob beradi. Backlog'ni boshqaradi, biznes talablarni jamoaga yetkazadi, prioritetlarni belgilaydi.</li>
+            <li><strong>Scrum Master</strong> — "QANDAY qilamiz?" savoliga javob beradi. Jarayonni samarali qiladi, to'siqlarni olib tashlaydi, Scrum amaliyotlarini himoya qiladi.</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Product Owner mahsulotga mas'ul, Scrum Master esa jarayonga mas'ul. Ular bir-birini to'ldiradi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Product Owner va Project Manager farqi nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bu ikki rol tez-tez aralashtirib yuboriladi, lekin ular har xil savollarga javob beradi:"</p>
+          <ul>
+            <li><strong>Product Owner (PO)</strong> — "<strong>NIMA</strong> yaratamiz?" savoliga javob beradi. Mahsulot va foydalanuvchiga e'tibor. Agile/Scrum metodologiyasida ishlaydi.</li>
+            <li><strong>Project Manager (PM)</strong> — "<strong>QACHON</strong> yakunlanadi?" savoliga javob beradi. Vaqt, byudjet, resurslarga e'tibor. Ko'pincha Waterfall metodologiyasida.</li>
+          </ul>
+          <p><strong>Oddiy yodlash:</strong> PO = <em>Mahsulot</em>, PM = <em>Loyiha</em>.</p>
+          <p><strong>Kompaniya misollari:</strong></p>
+          <ul>
+            <li>Uzum, Click (startup, Agile) — odatda faqat <strong>PO</strong> bor</li>
+            <li>Bank, davlat loyihalari (Waterfall) — odatda faqat <strong>PM</strong> bor</li>
+            <li>Katta korxonalar — ikkalasi ham bo'lishi mumkin</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Kichik kompaniyalarda bitta odam ikkala rolni bajarishi mumkin."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>QA Engineer kim bilan eng ko'p muloqot qiladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "QA Engineer eng ko'p <strong>Developer</strong>lar bilan muloqot qiladi — buglarni ko'rsatadi, tuzatilganini tekshiradi."</p>
+          <p><strong>Ikkinchi o'rinda:</strong></p>
+          <ul>
+            <li><strong>Product Owner</strong> — talablarni aniqlashtirish uchun</li>
+            <li><strong>Business Analyst</strong> — Acceptance Criteria muhokama qilish</li>
+            <li><strong>Scrum Master</strong> — to'siqlarni hal qilish</li>
+            <li><strong>DevOps</strong> — test muhiti va deployment uchun</li>
+            <li><strong>Boshqa QA'lar</strong> — test strategiya va bilim almashish</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Traceability Matrix nima va nima uchun kerak?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Traceability Matrix — talablar va test case'lar orasidagi bog'liqlikni ko'rsatadigan jadval."</p>
+          <p><strong>Nima uchun kerak?</strong></p>
+          <ul>
+            <li><strong>Coverage ni tekshirish</strong> — har talab test qilinganmi?</li>
+            <li><strong>Gap'larni aniqlash</strong> — qaysi talab test qilinmagan?</li>
+            <li><strong>Impact analysis</strong> — talab o'zgarsa, qaysi test case'lar o'zgaradi?</li>
+            <li><strong>Hisobot</strong> — stakeholder'larga progress ko'rsatish</li>
+          </ul>
+          <p><strong>Misol:</strong> "Agar loyihada 100 ta talab bo'lsa va matritsa 95% coverage ko'rsatsa — 5 ta talab test qilinmagan degani. Uni tezda tuzatish kerak."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Junior QA va Middle QA orasidagi farq?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Junior QA</strong> — tayyor test case'larni bajaradi, bug qayd etadi, ko'rsatmalar bilan ishlaydi</li>
+            <li><strong>Middle QA</strong> — test strategiyani o'zi ishlab chiqadi, test case'lar yozadi, mustaqil qarorlar qabul qiladi, API/DB testing qila oladi</li>
+          </ul>
+          <p><strong>Asosiy farq:</strong> "Mustaqillik darajasi. Junior ko'rsatma kutadi, Middle esa o'z boshiga fikrlay oladi va bashqalariga yo'l ko'rsata oladi."</p>
+          <p><strong>Pro javob:</strong> "Junior'dan Middle'ga o'tish uchun men API testing (Postman), SQL, automation asoslari va test strategiya yaratishni o'rganishim kerak."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>DevOps kim va QA bilan aloqasi qanday?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "DevOps — kodni serverga yetkazuvchi muhandis. U CI/CD pipeline'lar, Docker, monitoring bilan shug'ullanadi."</p>
+          <p><strong>QA bilan aloqasi:</strong></p>
+          <ul>
+            <li><strong>Test muhiti</strong> — DevOps dev, test, staging server'larni yaratadi</li>
+            <li><strong>Deployment</strong> — QA Pass bergandan so'ng DevOps production'ga chiqaradi</li>
+            <li><strong>Automation</strong> — QA avtomatlashtirgan testlarni DevOps CI/CD'ga integratsiya qiladi</li>
+            <li><strong>Monitoring</strong> — production'da muammo bo'lsa, DevOps loglar berib QA'ga yordam beradi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Siz kelajak 3 yilda qayerda ko'rasiz o'zingizni?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob shabloni:</strong> "Men 3 yilda <strong>Middle QA</strong> darajasiga yetib, automation testing bilan shug'ullanishni rejalashtiryapman."</p>
+          <p><strong>Qadamlar:</strong></p>
+          <ul>
+            <li><strong>Yil 1:</strong> Junior — manual testing asoslarini mustahkamlash</li>
+            <li><strong>Yil 2:</strong> API testing (Postman), SQL, test strategy yaratish</li>
+            <li><strong>Yil 3:</strong> Middle QA — automation asoslari (Selenium/Playwright)</li>
+          </ul>
+          <p><strong>Maslahat:</strong> Aniq, realistik reja ko'rsating. "Men 1 yilda Senior bo'laman" — noto'g'ri javob. "Men 5 yilda Senior/Lead bo'lishni xohlayman" — to'g'ri va halol javob.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q8</span>
+        <span>Agar Developer sizning bugingizni "Won't Fix" deb yopsa, nima qilasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Men darhol uning bilan janjal qilmayman. Balki uning aniq sababi bor."</p>
+          <p><strong>Qadamlar:</strong></p>
+          <ul>
+            <li><strong>1.</strong> Developer'dan sabab so'rayman (Jira'da comment orqali)</li>
+            <li><strong>2.</strong> Agar sababdan rozi bo'lmasam — Product Owner'ga escalate qilaman</li>
+            <li><strong>3.</strong> PO va Developer bilan uchrashib, biznes tomonidan muhokama qilamiz</li>
+            <li><strong>4.</strong> Qaror qabul qilinadi — Fix bo'ladi yoki haqiqatan "Won't Fix"da qoladi</li>
+          </ul>
+          <p><strong>Muhim:</strong> "QA Developer bilan raqib emas — biz hamkorlar. Hurmat bilan, dalillar bilan gaplashamiz."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Testor yolg'iz emas</div>
+      <div class="summary-point-text">QA 8-10 xil rol bilan muloqotda bo'ladi. Har birining tili va talabini bilish muhim.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Karyera yo'li aniq</div>
+      <div class="summary-point-text">Junior → Middle → Senior. Har bosqich uchun aniq skill'lar talab qilinadi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Traceability — sifat kafolati</div>
+      <div class="summary-point-text">Har talab test qilingani to'g'risidagi hujjat. Middle+ QA darajasidagi asosiy ko'nikma.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="04-bug-testware.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>4-dars · Bug va Testware</div>
+  </a>
+  <a href="06-whole-team.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>6-dars · Whole Team Approach</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 12;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+// QUIZ
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Professional yondashuv — avval Jira\'ga rasmiy bug yozish, keyin tegishli Developer bilan to\'g\'ridan-to\'g\'ri gaplashish. Frontend muammo esa Frontend Developer, login mantiqi bo\'lsa Backend Developer bilan.',
+    incorrect: 'Bu yondashuv eng samarali emas. To\'g\'ri yo\'l: avval bug\'ni rasmiy hujjatlashtirish (Jira), keyin tegishli mutaxassis bilan gaplashish. PO emas, DevOps emas — bu texnik muammo, Developer\'larniki.'
+  },
+  scenario: {
+    correct: '<strong>A\'lo!</strong> Bu mukammal professional yondashuv. Bug birinchi navbatda rasmiy hujjatda qayd etilishi kerak (Jira), keyin tegishli mutaxassis (Backend Developer — to\'lov tizimi) bilan to\'g\'ridan-to\'g\'ri aloqa qilish. Team Lead keyin xabardor bo\'ladi — bug katta bo\'lsa.',
+    incorrect: 'Bu yondashuv noto\'g\'ri. To\'lov bug\'i — bu texnik muammo. PO yoki Team Lead\'ga borishdan oldin, avval Jira\'ga rasmiy bug yozing va to\'g\'ridan-to\'g\'ri Backend Developer bilan gaplashing. Bu hammani vaqtini tejaydi.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 6 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 6) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha rollar bog\'landi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// TRACEABILITY DND
+let draggedItem = null;
+let traceCorrect = 0;
+
+document.querySelectorAll('#tracePool .dnd-item').forEach(item => {
+  item.addEventListener('dragstart', (e) => {
+    draggedItem = item;
+    item.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  item.addEventListener('dragend', () => item.classList.remove('dragging'));
+});
+
+document.querySelectorAll('#traceGame .trace-slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!slot.classList.contains('filled')) slot.classList.add('drag-over');
+  });
+  slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    if (slot.classList.contains('filled') || !draggedItem) return;
+    if (draggedItem.dataset.req === slot.dataset.req) {
+      slot.textContent = draggedItem.textContent;
+      slot.classList.add('filled', 'correct');
+      draggedItem.classList.add('placed');
+      traceCorrect++;
+      document.getElementById('traceScore').textContent = `${traceCorrect} / 4 to'g'ri`;
+      completedActivities.add(`trace-${traceCorrect}`);
+      updateProgress();
+      if (traceCorrect === 4) {
+        document.getElementById('traceScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Mukammal! Traceability Matrix tuzildi!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .role-card, .level-card').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
