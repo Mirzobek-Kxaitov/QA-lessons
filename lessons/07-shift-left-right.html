@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-dars: Shift Left va Shift Right Testing | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* SHIFT VISUAL */
+.shift-visual { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 32px 24px; margin: 28px 0; text-align: center; }
+.shift-visual h4 { margin-top: 0; margin-bottom: 20px; }
+.shift-timeline { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 20px 0; position: relative; flex-wrap: wrap; }
+.shift-phase { flex: 1; min-width: 80px; padding: 12px 8px; border-radius: 10px; font-size: 12px; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.shift-phase.left { background: var(--forest-soft); color: var(--forest); border: 2px solid var(--forest); }
+.shift-phase.center { background: var(--bg-soft); color: var(--ink-muted); border: 2px solid var(--line); }
+.shift-phase.right { background: var(--plum-soft); color: var(--plum); border: 2px solid var(--plum); }
+.shift-arrow { color: var(--ink-muted); font-size: 16px; flex-shrink: 0; }
+.shift-label-row { display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: var(--ink-muted); font-style: italic; padding: 0 8px; }
+
+/* BUG COST CHART */
+.cost-chart { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 32px 24px; margin: 28px 0; }
+.cost-chart h4 { margin-top: 0; text-align: center; margin-bottom: 20px; }
+.cost-bars { display: flex; flex-direction: column; gap: 14px; }
+.cost-bar-row { display: grid; grid-template-columns: 120px 1fr 80px; gap: 12px; align-items: center; }
+.cost-phase { font-weight: 500; font-size: 14px; font-family: 'Fraunces', serif; }
+.cost-bar-wrapper { background: var(--bg-soft); border-radius: 8px; height: 32px; position: relative; overflow: hidden; }
+.cost-bar { height: 100%; border-radius: 8px; transition: width 1s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-weight: 600; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.cost-bar.small { background: linear-gradient(90deg, #4A7C59, #3A5A40); }
+.cost-bar.medium { background: linear-gradient(90deg, #D4A24E, #C08838); }
+.cost-bar.large { background: linear-gradient(90deg, #E15A5A, #D64545); }
+.cost-bar.huge { background: linear-gradient(90deg, #A03535, #6B1F1F); }
+.cost-price { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; text-align: right; }
+.cost-note { margin-top: 20px; padding: 14px 18px; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--accent-dark); }
+.cost-note strong { color: var(--accent-dark); }
+
+/* COMPARE CARDS */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.compare-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.compare-card.old { border-top: 4px solid var(--accent); }
+.compare-card.new { border-top: 4px solid var(--forest); }
+.compare-card h4 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-bottom: 10px; margin-top: 0; }
+.compare-card.old h4 { color: var(--accent); }
+.compare-card.new h4 { color: var(--forest); }
+.compare-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 10px; }
+.compare-list { list-style: none; padding: 0; margin: 0; }
+.compare-list li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+.compare-list li:last-child { border-bottom: none; }
+.compare-card.old .compare-list li::before { content: "✗ "; color: var(--accent); font-weight: 600; }
+.compare-card.new .compare-list li::before { content: "✓ "; color: var(--forest); font-weight: 600; }
+
+/* PRACTICE CARD */
+.practice-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 12px; transition: all 0.2s; border-left: 4px solid var(--forest); }
+.practice-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1); }
+.practice-card.right { border-left-color: var(--plum); }
+.practice-header { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+.practice-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.practice-card .practice-icon { background: var(--forest-soft); }
+.practice-card.right .practice-icon { background: var(--plum-soft); }
+.practice-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; }
+.practice-desc { color: var(--ink-soft); font-size: 14px; margin-bottom: 10px; }
+.practice-example { padding: 10px 14px; background: var(--bg-soft); border-radius: 8px; font-size: 13px; color: var(--ink-soft); font-style: italic; }
+.practice-example strong { color: var(--ink); font-style: normal; }
+
+/* TIMELINE INTERACTIVE */
+.timeline-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.timeline-toggle { display: flex; gap: 8px; margin-bottom: 20px; background: var(--bg-soft); padding: 6px; border-radius: 12px; }
+.timeline-btn { flex: 1; padding: 10px 16px; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 500; font-size: 14px; background: transparent; color: var(--ink-muted); transition: all 0.2s; }
+.timeline-btn.active { background: white; color: var(--ink); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.timeline-display { background: var(--bg-soft); border-radius: 12px; padding: 24px; min-height: 240px; position: relative; }
+.timeline-track { display: flex; flex-direction: column; gap: 14px; }
+.timeline-stage { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 10px; font-size: 14px; position: relative; transition: all 0.3s; }
+.timeline-stage-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; flex-shrink: 0; color: white; }
+.timeline-stage.qa-here { border: 2px solid var(--accent); background: var(--accent-soft); }
+.timeline-stage.qa-here::after { content: "👁️ QA"; position: absolute; right: 16px; font-size: 12px; color: var(--accent); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.timeline-stage-num.gray { background: #9CA3AF; }
+.timeline-stage-num.red { background: var(--accent); }
+.timeline-stage-num.green { background: var(--forest); }
+.timeline-stage-num.plum { background: var(--plum); }
+.timeline-stage-text { flex: 1; padding-right: 60px; }
+.timeline-stage-text strong { display: block; font-size: 13px; margin-bottom: 2px; }
+.timeline-stage-desc { font-size: 12px; color: var(--ink-muted); }
+.timeline-summary { margin-top: 20px; padding: 14px 18px; border-radius: 10px; font-size: 14px; }
+.timeline-summary.traditional { background: var(--accent-soft); color: var(--accent-dark); border-left: 3px solid var(--accent); }
+.timeline-summary.modern { background: var(--forest-soft); color: var(--forest); border-left: 3px solid var(--forest); }
+
+/* DND - BUG STAGE */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.stage-bucket { padding: 16px; border: 2px solid var(--line); border-radius: 12px; background: white; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+.stage-bucket:hover { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.stage-bucket.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.stage-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.stage-bucket-icon { font-size: 24px; }
+.stage-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
+.stage-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 16px; }
+.bug-scenario { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; }
+.bug-scenario:hover:not(.classified) { border-color: var(--plum); }
+.bug-scenario.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.01); box-shadow: 0 8px 20px -8px rgba(91,58,122,0.3); }
+.bug-scenario.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.bug-scenario.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 10px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.bug-title { font-weight: 500; font-size: 14px; padding-right: 100px; }
+.bug-cost { font-size: 12px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1000px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+/* SUMMARY */
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .compare-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .cost-chart, .shift-visual { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .cost-bar-row { grid-template-columns: 90px 1fr 60px; gap: 8px; font-size: 13px; }
+  .cost-phase { font-size: 13px; }
+  .bug-title { padding-right: 10px; }
+  .bug-scenario.classified::after { position: static; display: block; margin-top: 8px; }
+  .shift-phase { font-size: 11px; padding: 8px 4px; min-width: 60px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">7-dars</div>
+  <h1><em>Shift Left</em> va <em>Shift Right</em> Testing</h1>
+  <p class="hero-subtitle">Zamonaviy QA testorning 2 qanoti. Bug'larni eng arzon topish va real foydalanuvchilardan o'rganish. Middle/Senior darajasiga ko'tariladigan asosiy tushunchalar.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>80 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Zamonaviy strategiya</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Nega "siljish" deymiz?</h2>
+  <p class="section-intro">Tasavvur qiling: loyiha hayoti — bu bir chiziq. Chap tomonda <strong>talablar yig'ish</strong>, o'ng tomonda <strong>production (foydalanuvchi)</strong>. O'rtasida esa — dasturlash va testing.</p>
+  <p>Traditional yondashuvda QA <strong>o'rta-oxirida</strong> turadi — dasturchilar kodni yozadi, keyin QA test qiladi. Lekin zamonaviy QA <strong>ikki tomonga ham</strong> siljiydi:</p>
+  <ul>
+    <li><strong>Chap tomonga (Shift Left)</strong> — talablar bosqichidan boshlab qatnashadi</li>
+    <li><strong>O'ng tomonga (Shift Right)</strong> — production'dan keyin ham monitoring qiladi</li>
+  </ul>
+
+  <div class="shift-visual">
+    <h4>Loyiha hayot sikli — QA qayerda turadi?</h4>
+    <div class="shift-timeline">
+      <div class="shift-phase left">← SHIFT LEFT</div>
+      <div class="shift-arrow">·</div>
+      <div class="shift-phase left">Talablar</div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-phase left">Design</div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-phase center">Dev</div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-phase center">Test</div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-phase right">Release</div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-phase right">Production</div>
+      <div class="shift-arrow">·</div>
+      <div class="shift-phase right">SHIFT RIGHT →</div>
+    </div>
+    <div class="shift-label-row">
+      <span>Loyiha boshlanishi</span>
+      <span>Loyiha yakunlanishi</span>
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy misol</div>
+    <div class="analogy-title">Uy qurish</div>
+    <div class="analogy-text">
+      <strong>Shift Left:</strong> Chizma bosqichida muhandis noto'g'ri o'lchovni topadi — chizmani tuzatish <strong>1 daqiqa</strong>. · <strong>Traditional:</strong> Devor qurilgandan keyin topadi — qayta qurish <strong>3 kun</strong>. · <strong>Shift Right:</strong> Uy qurilib, oila ko'chib kirgandan keyin sezadi — <strong>3 oy</strong> ta'mirlash.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: SHIFT LEFT -->
+<section class="section" id="shift-left">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Shift Left Testing</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Shift Left Testing</strong> — testorni <strong>chap tomonga</strong> siljitish. Ya'ni testor dasturlash boshlanishidan <strong>oldin</strong> qatnashadi — talablar, design, architectura bosqichlarida.</p>
+    <p><em>Oddiy qilib:</em> Bug'larni kod yozilishidan oldin topishga urinish. Eng arzon va oson.</p>
+  </div>
+
+  <h3>Traditional vs Shift Left</h3>
+
+  <div class="compare-grid">
+    <div class="compare-card old">
+      <h4>Traditional</h4>
+      <p>QA oxirida keladi, kod tayyor bo'lgach.</p>
+      <ul class="compare-list">
+        <li>Talablarni faqat dasturchi ko'radi</li>
+        <li>Kod yozilgandan keyin test</li>
+        <li>Bug topsa — qayta yozish</li>
+        <li>QA "sifat qo'riqchisi"</li>
+        <li>Bug'lar qimmat</li>
+      </ul>
+    </div>
+    <div class="compare-card new">
+      <h4>Shift Left</h4>
+      <p>QA birinchi kundan qatnashadi.</p>
+      <ul class="compare-list">
+        <li>Talablarni QA ham ko'radi, savollar beradi</li>
+        <li>Test case'lar kod yozilishidan oldin</li>
+        <li>Bug oldini olish — oldindan</li>
+        <li>QA "sifat sherigi"</li>
+        <li>Bug'lar arzon topiladi</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Bug narxi — erta vs kech</h3>
+  <p>Bu Shift Left'ning asosiy iqtisodiy dalili. Bug qayerda topilsa, shuncha kam pul ketadi:</p>
+
+  <div class="cost-chart">
+    <h4>📊 Bug narxi turli bosqichlarda</h4>
+    <div class="cost-bars">
+      <div class="cost-bar-row">
+        <div class="cost-phase">Talablar</div>
+        <div class="cost-bar-wrapper"><div class="cost-bar small" style="width: 5%">1×</div></div>
+        <div class="cost-price">$100</div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-phase">Design</div>
+        <div class="cost-bar-wrapper"><div class="cost-bar small" style="width: 12%">5×</div></div>
+        <div class="cost-price">$500</div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-phase">Dasturlash</div>
+        <div class="cost-bar-wrapper"><div class="cost-bar medium" style="width: 25%">10×</div></div>
+        <div class="cost-price">$1,000</div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-phase">Testing</div>
+        <div class="cost-bar-wrapper"><div class="cost-bar large" style="width: 50%">25×</div></div>
+        <div class="cost-price">$2,500</div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-phase">Production</div>
+        <div class="cost-bar-wrapper"><div class="cost-bar huge" style="width: 100%">100×</div></div>
+        <div class="cost-price">$10,000</div>
+      </div>
+    </div>
+    <div class="cost-note">
+      <strong>💡 Hisob:</strong> Talablar bosqichida topilgan bug $100 turadi. Production'da topilgan <strong>shu bug $10,000</strong> turadi — 100 baravar qimmat! Shuning uchun Shift Left juda foydali.
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy xulosa</div>
+    <p>Agar siz Junior QA sifatida 3 Amigos meeting'da qatnashib, talablardagi muammoni topsangiz — kompaniyaga <strong>ming dollar tejagandirsiz</strong>. Bu sizning qimmatingizni 10 barobarga oshiradi.</p>
+  </div>
+
+  <h3>Shift Left amaliyotlari</h3>
+  <p>QA qanday Shift Left qiladi? 5 ta asosiy amaliyot:</p>
+
+  <div class="practice-card">
+    <div class="practice-header">
+      <div class="practice-icon">📝</div>
+      <div class="practice-name">1. Requirement Review</div>
+    </div>
+    <div class="practice-desc">Talablarni o'qib, <strong>savol berish</strong>. Noaniq joylarni aniqlashtirish.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> PO yozgan — "Foydalanuvchi parolni tiklay oladi". Siz savol berasiz: "Email orqali'mi SMS orqali'mi? Havola qancha vaqt ishlaydi? Bir marta yoki qayta-qayta?"
+    </div>
+  </div>
+
+  <div class="practice-card">
+    <div class="practice-header">
+      <div class="practice-icon">👥</div>
+      <div class="practice-name">2. 3 Amigos Meetings</div>
+    </div>
+    <div class="practice-desc">PO + Developer + QA birga uchrashuv. Har birining nuqtai nazari.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> 6-darsda ko'rganingiz 3 Amigos — bu Shift Left ning eng asosiy amaliyoti. QA: "Qanday buzishim mumkin?" degan savolni darhol beradi.
+    </div>
+  </div>
+
+  <div class="practice-card">
+    <div class="practice-header">
+      <div class="practice-icon">✅</div>
+      <div class="practice-name">3. Acceptance Criteria yozish</div>
+    </div>
+    <div class="practice-desc">Kod yozilishidan oldin <strong>"tayyor" nima degani</strong>ni aniqlashtirish.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> "Login ishlashi kerak" — yetarli emas. "1. Email + parol. 2. Bo'sh bo'lsa xato. 3. To'g'ri bo'lsa Dashboard. 4. 3 marta xato — 5 daqiqa blok." — aniq.
+    </div>
+  </div>
+
+  <div class="practice-card">
+    <div class="practice-header">
+      <div class="practice-icon">🔍</div>
+      <div class="practice-name">4. Static Testing (kod ko'rmay)</div>
+    </div>
+    <div class="practice-desc">Kod ishga tushmasdan oldin <strong>hujjatlar, dizayn, diagrammalar</strong>ni tekshirish.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Figma'dagi dizaynni ko'rib, "Bu tugma mobile'da kichik ko'rinadi" deb aytish. Hali kod yo'q, lekin muammo aniqlangan.
+    </div>
+  </div>
+
+  <div class="practice-card">
+    <div class="practice-header">
+      <div class="practice-icon">🤝</div>
+      <div class="practice-name">5. Pair Programming (dasturchi bilan)</div>
+    </div>
+    <div class="practice-desc">Middle/Senior QA dasturchi bilan <strong>birga kod yozadi</strong> — testlanishni o'ylab.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Dasturchi funksiya yozayotganda QA yonida o'tirib, "Bu yerda null bo'lishi mumkin, tekshirish kerak" deb aytadi.
+    </div>
+  </div>
+</section>
+
+<!-- MATCHING -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Amaliyot Shift Left yoki Shift Right?</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har bir amaliyotni to'g'ri siljish turi bilan bog'lang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Amaliyot</h4>
+      <div class="match-item" data-side="left" data-pair="1">Requirement Review</div>
+      <div class="match-item" data-side="left" data-pair="2">A/B Testing production'da</div>
+      <div class="match-item" data-side="left" data-pair="3">3 Amigos Meeting</div>
+      <div class="match-item" data-side="left" data-pair="4">Production Monitoring</div>
+      <div class="match-item" data-side="left" data-pair="5">Acceptance Criteria yozish</div>
+      <div class="match-item" data-side="left" data-pair="6">Canary Deployment</div>
+    </div>
+    <div class="matching-column">
+      <h4>Siljish turi</h4>
+      <div class="match-item" data-side="right" data-pair="1">← Shift Left (erta bosqich)</div>
+      <div class="match-item" data-side="right" data-pair="4">→ Shift Right (kech bosqich)</div>
+      <div class="match-item" data-side="right" data-pair="3">← Shift Left (erta bosqich)</div>
+      <div class="match-item" data-side="right" data-pair="2">→ Shift Right (kech bosqich)</div>
+      <div class="match-item" data-side="right" data-pair="6">→ Shift Right (kech bosqich)</div>
+      <div class="match-item" data-side="right" data-pair="5">← Shift Left (erta bosqich)</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 6 juft topildi</div>
+</div>
+
+<!-- SECTION 2: SHIFT RIGHT -->
+<section class="section" id="shift-right">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Shift Right Testing</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Shift Right Testing</strong> — testorni <strong>o'ng tomonga</strong> siljitish. Ya'ni test production'ga chiqqandan keyin ham davom etadi — real foydalanuvchilar bilan.</p>
+    <p><em>Oddiy qilib:</em> "Test labda tugadi, endi real dunyoda kuzatamiz" degan falsafa.</p>
+  </div>
+
+  <h3>Nega Shift Right kerak?</h3>
+  <p>Qanchalik ko'p test qilsak ham, <strong>real foydalanuvchilar har doim kutilmagan</strong> narsalar qiladi:</p>
+  <ul>
+    <li>Siz test qilmagan telefon modellarida ishlatishadi</li>
+    <li>Kutilmagan usullarda tugmalarni bosishadi</li>
+    <li>Real internet tezligi va yuklama — test muhitida simulyatsiya qilish qiyin</li>
+    <li>Minglab foydalanuvchilar bir vaqtda kiradi</li>
+  </ul>
+
+  <h3>Shift Right amaliyotlari</h3>
+
+  <div class="practice-card right">
+    <div class="practice-header">
+      <div class="practice-icon">📊</div>
+      <div class="practice-name">1. Production Monitoring</div>
+    </div>
+    <div class="practice-desc">Real vaqtda saytning ishlashini kuzatish — xatolar, tezlik, foydalanuvchi harakati.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Sentry, DataDog kabi asboblar bilan. "Bugun Login sahifasida 50 ta JavaScript xato bo'ldi" — darhol xabar keladi, QA tekshiradi.
+    </div>
+  </div>
+
+  <div class="practice-card right">
+    <div class="practice-header">
+      <div class="practice-icon">🔀</div>
+      <div class="practice-name">2. A/B Testing</div>
+    </div>
+    <div class="practice-desc">2 ta variantni bir vaqtda sinash — qaysi biri yaxshiroq?</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Uzum yangi "Savatga qo'shish" tugmasini test qilmoqchi. Foydalanuvchilarning 50% ga eski variant, 50% ga yangi ko'rsatiladi. Qaysi biri ko'proq bosiladi? — shu g'olib.
+    </div>
+  </div>
+
+  <div class="practice-card right">
+    <div class="practice-header">
+      <div class="practice-icon">🐤</div>
+      <div class="practice-name">3. Canary Deployment</div>
+    </div>
+    <div class="practice-desc">Yangi versiyani avval <strong>5% foydalanuvchilarga</strong> chiqarish, muammo bo'lmasa — hammaga.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Click yangi to'lov tizimini chiqaryapti. Avval faqat Toshkentdagi 100 ta foydalanuvchiga. 1 kun ishladi — OK. Keyin O'zbekiston bo'ylab. "Canary" = "sariq qush" (koni-kondagi gaz detektori).
+    </div>
+  </div>
+
+  <div class="practice-card right">
+    <div class="practice-header">
+      <div class="practice-icon">💬</div>
+      <div class="practice-name">4. User Feedback</div>
+    </div>
+    <div class="practice-desc">Foydalanuvchi sharhlari, shikoyatlari, taklif va baholarini tahlil qilish.</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> App Store'da ilova 3⭐ baho oldi. Sharhlarda: "Savatdan mahsulot olib tashlash qiyin". Bu — QA ishi uchun signal.
+    </div>
+  </div>
+
+  <div class="practice-card right">
+    <div class="practice-header">
+      <div class="practice-icon">🔥</div>
+      <div class="practice-name">5. Chaos Engineering (qisqa eslatma)</div>
+    </div>
+    <div class="practice-desc">Qasddan tizimga "zarar berish" — server o'chirish, internet uzish. Tizim chidaydimi?</div>
+    <div class="practice-example">
+      <strong>Misol:</strong> Netflix mashhur "Chaos Monkey" asbobi bor — random server'larni o'chiradi. Agar tizim chidasa — u chidamli. Bu faqat yirik kompaniyalar (Netflix, Uzum, Yandex) uchun.
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Muhim eslatma</div>
+    <p>Junior QA odatda <strong>Monitoring va User Feedback</strong>da qatnashadi. Middle QA A/B testingni tashkil qiladi. Canary va Chaos esa Senior/Principal QA darajasidagi ishlar.</p>
+  </div>
+</section>
+
+<!-- TIMELINE INTERACTIVE -->
+<div class="timeline-game">
+  <div class="quiz-label">🎯 Taqqoslang</div>
+  <h3 style="margin-top:8px">Traditional vs Modern — QA qayerda qatnashadi?</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px">Ikkala yondashuvni solishtiring. QA qaysi bosqichlarda ishlaydi?</p>
+
+  <div class="timeline-toggle">
+    <button class="timeline-btn active" data-view="traditional">Traditional yondashuv</button>
+    <button class="timeline-btn" data-view="modern">Modern (Shift Left + Right)</button>
+  </div>
+
+  <div class="timeline-display">
+    <div class="timeline-track" id="timelineTrack"></div>
+    <div class="timeline-summary" id="timelineSummary"></div>
+  </div>
+</div>
+
+<!-- SECTION 3: COMBINED -->
+<section class="section" id="combined">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Ikkisini birga qo'llash</h2>
+  <p class="section-intro">Zamonaviy QA <strong>ikkala strategiyani ham</strong> ishlatadi. Bu — "full-cycle QA" deb ataladi.</p>
+
+  <h3>Real kompaniya misoli: Uzum Market</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">Uzum yangi "Tez yetkazib berish" funksiyasini chiqaryapti</div>
+    <p style="margin-bottom:12px"><strong>← Shift Left bosqichi:</strong></p>
+    <ul style="margin-top:0;margin-bottom:12px">
+      <li>QA 3 Amigos meeting'da: "30 daqiqada yetkazish — qanday joylarga? Faqat Toshkent shahri'mi?"</li>
+      <li>Acceptance Criteria tuzadi: kuryer qo'shilishi, narx ko'rsatilishi, status yangilanishi</li>
+      <li>Static testing: Figma dizayni tekshiriladi</li>
+    </ul>
+    <p style="margin-bottom:12px"><strong>↓ Traditional testing:</strong></p>
+    <ul style="margin-top:0;margin-bottom:12px">
+      <li>Test case'lar yoziladi va bajariladi</li>
+      <li>Manual + automation testlari</li>
+      <li>Bug'lar topilib, tuzatiladi</li>
+    </ul>
+    <p style="margin-bottom:12px"><strong>→ Shift Right bosqichi:</strong></p>
+    <ul style="margin:0">
+      <li>Avval faqat Sergeli tumanida ishga tushiriladi (Canary)</li>
+      <li>1 hafta monitoring — muammo yo'q</li>
+      <li>A/B test: 50% ga yangi funksiya, 50% ga eski. Natija 15% ko'proq sotuv — g'olib!</li>
+      <li>Butun Toshkent bo'ylab chiqariladi</li>
+      <li>User feedback'lar yig'iladi — "soatlarini ham ko'rsating"</li>
+    </ul>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">To'liq rasm</div>
+    <p>Shift Left + Traditional + Shift Right = <strong>to'liq sifat strategiya</strong>. Har bosqichda buglarni topish va foydalanuvchi tajribasini yaxshilash.</p>
+  </div>
+</section>
+
+<!-- DND: BUG STAGE CLASSIFIER -->
+<div class="dnd-game" id="stageGame">
+  <div class="quiz-label">🎯 Bug qaysi bosqichda topildi?</div>
+  <h3 style="margin-top:8px">Bug'ni to'g'ri bosqichga joylashtiring</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Bug kartochkasini bosing. <strong>2-qadam:</strong> Qaysi bosqichda topilganini tanlang.</p>
+
+  <div class="dnd-hint" id="stageHint">👆 Endi bosqichlardan birini tanlang</div>
+
+  <div id="bugScenarios">
+    <div class="bug-scenario" data-stage="left">
+      <div class="bug-title">PO talabda yozgan: "Foydalanuvchi parolni tiklasin". QA so'radi: "Email yoki SMS orqali?"</div>
+      <div class="bug-cost">📖 Talablar bosqichida — 1× narx</div>
+    </div>
+    <div class="bug-scenario" data-stage="left">
+      <div class="bug-title">Figma dizaynda "Savatga qo'shish" tugmasi mobil'da kichik ko'rinadi — QA statik testda topdi</div>
+      <div class="bug-cost">🎨 Design bosqichida — 5× narx</div>
+    </div>
+    <div class="bug-scenario" data-stage="center">
+      <div class="bug-title">Test muhitida login ishlayapti, lekin xato xabari ko'rsatilmayapti</div>
+      <div class="bug-cost">🧪 Testing bosqichida — 25× narx</div>
+    </div>
+    <div class="bug-scenario" data-stage="right">
+      <div class="bug-title">Production'da ilova 3⭐ baho oldi — foydalanuvchilar "savat chalkashadi" deb yozishmoqda</div>
+      <div class="bug-cost">🌐 Production'da — 100× narx</div>
+    </div>
+    <div class="bug-scenario" data-stage="right">
+      <div class="bug-title">Monitoring: bugun 50 ta JavaScript xato ro'yxatga olindi</div>
+      <div class="bug-cost">📊 Production monitoring — 100× narx</div>
+    </div>
+  </div>
+
+  <div class="stage-buckets">
+    <div class="stage-bucket" data-bucket="left">
+      <div class="stage-bucket-icon">←</div>
+      <div class="stage-bucket-label" style="color:var(--forest)">Shift Left<br>(Talablar, Design)</div>
+    </div>
+    <div class="stage-bucket" data-bucket="center">
+      <div class="stage-bucket-icon">⬇</div>
+      <div class="stage-bucket-label" style="color:var(--ink-muted)">Traditional<br>(Testing)</div>
+    </div>
+    <div class="stage-bucket" data-bucket="right">
+      <div class="stage-bucket-icon">→</div>
+      <div class="stage-bucket-label" style="color:var(--plum)">Shift Right<br>(Production)</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="stageScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click'da yangi P2P to'lov</div>
+
+  <div class="scenario-story">
+    <p><strong>Dushanba, 10:00.</strong> Click yangi "Do'stga pul yuborish" (P2P) funksiyasini boshlamoqchi. Siz QA Lead sizsiz. PO sizga keldi: "2 haftadan keyin chiqaramiz!"</p>
+    <p><strong>Savol:</strong> Qanday strategiya tanlaysiz — to'liq sifat uchun?</p>
+  </div>
+
+  <div class="scenario-question">Professional QA qanday yondashish kerak?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Dasturchilar kod yozsin, keyin men test qilaman. 2 hafta yetarli</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Shift Left: 3 Amigos'da qatnashaman, talablarda savollar beraman, Acceptance Criteria tuzaman. Traditional: test case'lar, avtomatlash. Shift Right: avval 100 foydalanuvchiga (canary), monitoring, A/B test. Bu to'liq strategiya</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Chiqargandan keyin monitoring qilaman — foydalanuvchilar muammo topishsa tuzataman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Bug production'da topilsa, talablar bosqichida topilganiga nisbatan qancha qimmat?</div>
+  <div class="quiz-options" data-quiz="cost">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>2-3 barobar qimmat</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>10-15 barobar qimmat</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">C</div>
+      <div>100 barobar qimmat (yoki undan ham ko'p)</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="cost"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop'da Shift Left amaliyoti</h2>
+  <p class="section-intro">Endi amaliyotda sinab ko'ramiz. TestShop uchun 3 ta Shift Left topshirig'i bor.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Shift Left amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Bu safar kod yozilishidan oldin ish qilasiz — xuddi haqiqiy jamoa kabi.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning 3 ta vazifangiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Requirement Review — TestShop uchun yangi funksiya</div>
+        <div style="color:#4A4A4A;font-size:14px">Tasavvur qiling: TestShop'ga "Sevimlilar" (Wishlist) funksiyasi qo'shilmoqchi. Kamida <strong>10 ta savol</strong> yozing — PO ga beriladigan savollar. Misollar: "Qurilma o'zgarganda sevimlilar saqlanadimi?", "Sevimliga qo'shish limiti bormi?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Acceptance Criteria tuzish</div>
+        <div style="color:#4A4A4A;font-size:14px">Sevimlilar funksiyasi uchun <strong>8-10 ta Acceptance Criteria</strong> yozing (Google Docs'da). Misol: "Foydalanuvchi mahsulot sahifasida ❤️ tugmasini bosadi — mahsulot Sevimlilar ro'yxatiga qo'shiladi". 6-darsda o'rgangan format ishlatilsin.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Monitoring rejasi tuzish (Shift Right)</div>
+        <div style="color:#4A4A4A;font-size:14px">Tasavvur qiling: Sevimlilar funksiyasi production'ga chiqdi. Qanday <strong>5 ta metrikani</strong> kuzatasiz? Misollar: "Kuniga necha marta ❤️ bosiladi?", "Qancha foydalanuvchi ishlatadi?", "Xatolik chiqadimi?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun oltin material</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Bu 3 ta vazifa — <strong>Middle QA darajasidagi ish</strong>. Ularni Google Docs'da to'plab, intervyuda: "Men Shift Left va Shift Right strategiyalarini amaliyotda ishlatganman" deb ayta olasiz. Bu <strong>Junior'dan ajralib turish</strong> uchun kuchli afzallik.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Shift Left/Right — zamonaviy intervyulardagi eng muhim mavzular. 7 ta professional javob.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Shift Left Testing nima va nega muhim?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Shift Left Testing — testorni loyihaning <strong>erta bosqichlariga</strong> siljitish. Talablar, design bosqichlarida qatnashish."</p>
+          <p><strong>Nega muhim?</strong></p>
+          <ul>
+            <li><strong>Iqtisodiy:</strong> Talablar bosqichidagi bug 1×, production'dagi 100× — 100 baravar arzon</li>
+            <li><strong>Vaqt tejash:</strong> Qayta kod yozishdan qutuladi</li>
+            <li><strong>Sifat:</strong> Bug oldini olish — topishdan afzal</li>
+            <li><strong>Jamoa:</strong> QA "sifat sherigi" bo'ladi, "qo'riqchi" emas</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Men 3 Amigos meetinglarda doim qatnashaman va talablarda savollar beraman — bu Shift Left'ning eng asosiy amaliyoti."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Shift Right Testing nima? Misollar bering.</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Shift Right Testing — test production'dan keyin ham davom etadi. Real foydalanuvchilar bilan o'rganish."</p>
+          <p><strong>5 ta asosiy amaliyot:</strong></p>
+          <ul>
+            <li><strong>Production Monitoring</strong> — Sentry, DataDog bilan xatolarni kuzatish</li>
+            <li><strong>A/B Testing</strong> — 2 variantni real foydalanuvchilarda sinash</li>
+            <li><strong>Canary Deployment</strong> — avval 5% foydalanuvchilarga chiqarish</li>
+            <li><strong>User Feedback</strong> — sharhlar, baholar tahlili</li>
+            <li><strong>Chaos Engineering</strong> — qasddan nosoz vaziyatlar yaratish (Senior)</li>
+          </ul>
+          <p><strong>Misol:</strong> "Uzum yangi funksiyani avval Sergeli tumanida test qiladi (canary), monitoring qiladi, keyin butun shaharga chiqaradi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Bug narxi haqida — qancha farq bor?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bug turli bosqichlarda boshqa narx turadi — juda katta farq."</p>
+          <p><strong>Aniq raqamlar (Boehm's Law):</strong></p>
+          <ul>
+            <li>Talablar bosqichi — <strong>1×</strong> (masalan, $100)</li>
+            <li>Design bosqichi — <strong>5×</strong> ($500)</li>
+            <li>Dasturlash — <strong>10×</strong> ($1,000)</li>
+            <li>Testing — <strong>25×</strong> ($2,500)</li>
+            <li>Production — <strong>100×</strong> ($10,000)</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Shuning uchun Shift Left juda foydali. Har erta topilgan bug — kompaniyaga katta tejamkorlik. Men requirement review'da bitta muammoni topsam, kompaniyaga minglab dollar tejadim."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>A/B Testing va Canary Deployment farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>A/B Testing</strong> — 2 ta variantni <strong>bir vaqtda</strong> foydalanuvchilarda sinash. Maqsad: qaysi biri yaxshiroq?</li>
+            <li><strong>Canary Deployment</strong> — yangi versiyani <strong>asta-sekin</strong> chiqarish. Maqsad: muammo bo'lsa oldindan topish.</li>
+          </ul>
+          <p><strong>Farqi:</strong></p>
+          <ul>
+            <li>A/B — <em>variantlarni solishtirish</em> (qaysi yaxshi?)</li>
+            <li>Canary — <em>xavfsizlikni kamaytirish</em> (muammo bo'lsa cheklangan foydalanuvchilarga)</li>
+          </ul>
+          <p><strong>Misol:</strong> "Uzum'da A/B — eski va yangi tugmani solishtirish. Canary — yangi to'lov tizimini avval 5% foydalanuvchilarga chiqarish."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Junior QA qanday Shift Left qila oladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Junior QA ham Shift Left ishtirok eta oladi, faqat boshlang'ich darajada:"</p>
+          <ul>
+            <li><strong>Requirement Review</strong> — talablarni o'qib savollar berish</li>
+            <li><strong>3 Amigos</strong> — meetingda qatnashib nuqtai nazarini bildirish</li>
+            <li><strong>Edge case'lar</strong> — "Agar X bo'lsa-chi?" degan savollar berish</li>
+            <li><strong>Figma'dagi dizaynni tekshirish</strong> — static testing sodda darajada</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Pair programming yoki Chaos Engineering — Middle/Senior darajasi. Junior faqat asosiy savollar berish bilan ham Shift Left qila oladi."</p>
+          <p><strong>Pro javob:</strong> "Shu usullar orqali men bir necha marta talablarda muammo topgan edim — dasturchilar hatto 'rahmat' deb aytishgan."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Chaos Engineering nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Chaos Engineering — tizimga <strong>qasddan zarar berib</strong>, uning chidamliligini sinash. Netflix tomonidan mashhur qilingan."</p>
+          <p><strong>Misollar:</strong></p>
+          <ul>
+            <li>Tasodifiy server'ni o'chirish — sayt ishlaydimi?</li>
+            <li>Internet aloqasini uzish — "No connection" xabari to'g'ri chiqadimi?</li>
+            <li>Database'ni sekinlatish — sayt javob beradimi yoki yiqilgami?</li>
+          </ul>
+          <p><strong>Asboblar:</strong> Netflix Chaos Monkey, Gremlin.</p>
+          <p><strong>Muhim:</strong> "Bu faqat yirik kompaniyalar uchun (Uzum, Click). Kichik loyihalarda kerak emas. Junior QA faqat atamani biladi, amalda ishlamaydi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Siz qaysi Shift Left/Right amaliyotlarida tajribangiz bor?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob shabloni (halol):</strong> "Men Junior QA sifatida quyidagi amaliyotlar bilan tanishman:"</p>
+          <ul>
+            <li>✅ <strong>Requirement Review</strong> — har sprint boshida qatnashaman</li>
+            <li>✅ <strong>3 Amigos</strong> — haftada 1-2 marta</li>
+            <li>✅ <strong>Acceptance Criteria</strong> — Given-When-Then formatida yozaman</li>
+            <li>✅ <strong>Production Monitoring</strong> — Sentry orqali xatolarni kuzataman</li>
+            <li>✅ <strong>User Feedback</strong> — App Store/Google Play sharhlarini ko'raman</li>
+            <li>⚠️ <strong>A/B Testing</strong> — asosi bilan tanishman, lekin amaliyotim kam</li>
+            <li>❌ <strong>Canary Deployment</strong> — hali ishlamaganman, DevOps bilan</li>
+            <li>❌ <strong>Chaos Engineering</strong> — faqat nazariyasini bilaman</li>
+          </ul>
+          <p><strong>Muhim:</strong> Halol bo'ling. "Men hamma narsani bilaman" — yolg'on. "Bunisini bilaman, bunisini o'rganayapman" — professional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Bug erta topilsa, arzon</div>
+      <div class="summary-point-text">Talablar bosqichida 1×, production'da 100×. Shuning uchun Shift Left — tejamkorlik strategiyasi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Shift Left = oldin ishtirok</div>
+      <div class="summary-point-text">Requirement review, 3 Amigos, Acceptance Criteria, Static Testing. Junior ham qila oladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Shift Right = keyin kuzatish</div>
+      <div class="summary-point-text">Production monitoring, A/B test, Canary deployment, User feedback. Real dunyodan o'rganish.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="06-team-approaches.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>6-dars · Whole Team Approach</div>
+  </a>
+  <a href="08-principles.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>8-dars · 7 prinsip</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 15;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Bu Senior darajasidagi javob. Siz to\'liq strategiyani tushunasiz — Shift Left + Traditional + Shift Right. Bu Click kabi katta kompaniyalarda aynan shunday ishlaydi. P2P to\'lov juda muhim funksiya — har bosqichda sifat kafolati kerak.',
+    incorrect: 'Bu to\'liq emas. Katta P2P to\'lov funksiyasini shunchaki "kod yozilsin, men test qilaman" deyish — Traditional yondashuv. Zamonaviy QA ikkala tomonga ham siljiydi. Shift Left (oldin) va Shift Right (keyin) — ikkalasini birga ishlatish to\'liq strategiya.'
+  },
+  cost: {
+    correct: '<strong>To\'g\'ri!</strong> Bu Barry Boehm\'ning mashhur qoidasi. Production\'dagi bug — 100 baravar (yoki undan ham) qimmat. Shuning uchun Shift Left — kompaniyaga pul tejaydigan strategiya.',
+    incorrect: 'Yo\'q, juda katta farq bor. Bug production\'da topilsa, talablar bosqichidagi bug\'ga nisbatan 100 baravar qimmat. Bu — Boehm\'ning qoidasi. Shuning uchun QA erta qatnashishi juda muhim.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 6 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 6) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Barcha amaliyotlar bog\'landi!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// TIMELINE INTERACTIVE
+const timelineData = {
+  traditional: {
+    stages: [
+      { text: 'Talablar yig\'ish', desc: 'Faqat PO va BA qatnashadi', color: 'gray', here: false },
+      { text: 'Design bosqichi', desc: 'Dizayner ishlaydi', color: 'gray', here: false },
+      { text: 'Dasturlash', desc: 'Dasturchilar kod yozadi', color: 'gray', here: false },
+      { text: 'Testing', desc: 'QA birinchi marta ishga kiradi', color: 'red', here: true },
+      { text: 'Release', desc: 'Production\'ga chiqarish', color: 'gray', here: false },
+      { text: 'Production', desc: 'Ishga tushdi, tugadi', color: 'gray', here: false }
+    ],
+    summary: '❌ QA faqat 1 bosqichda (Testing). Bug\'lar kech topiladi, qimmat chiqadi.'
+  },
+  modern: {
+    stages: [
+      { text: 'Talablar yig\'ish', desc: 'QA savol beradi, edge case\'larni topadi', color: 'green', here: true },
+      { text: 'Design bosqichi', desc: 'QA Figma dizaynni tekshiradi (static testing)', color: 'green', here: true },
+      { text: 'Dasturlash', desc: 'QA Acceptance Criteria tuzgan, pair programming', color: 'green', here: true },
+      { text: 'Testing', desc: 'QA manual + automation testing', color: 'red', here: true },
+      { text: 'Release', desc: 'Canary deployment — avval 5% foydalanuvchilarga', color: 'plum', here: true },
+      { text: 'Production', desc: 'Monitoring, A/B testing, user feedback', color: 'plum', here: true }
+    ],
+    summary: '✅ QA barcha bosqichlarda. Bug\'lar erta topiladi, Canary + Monitoring bilan xavfsiz.'
+  }
+};
+
+function renderTimeline(view) {
+  const data = timelineData[view];
+  const track = document.getElementById('timelineTrack');
+  const summary = document.getElementById('timelineSummary');
+  
+  track.innerHTML = data.stages.map((stage, i) => `
+    <div class="timeline-stage ${stage.here ? 'qa-here' : ''}">
+      <div class="timeline-stage-num ${stage.color}">${i+1}</div>
+      <div class="timeline-stage-text">
+        <strong>${stage.text}</strong>
+        <div class="timeline-stage-desc">${stage.desc}</div>
+      </div>
+    </div>
+  `).join('');
+  
+  summary.className = 'timeline-summary ' + (view === 'traditional' ? 'traditional' : 'modern');
+  summary.innerHTML = data.summary;
+  completedActivities.add(`timeline-${view}`);
+  updateProgress();
+}
+
+document.querySelectorAll('.timeline-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.timeline-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTimeline(btn.dataset.view);
+  });
+});
+
+renderTimeline('traditional');
+
+// STAGE CLASSIFIER (tap-to-select)
+let stageCorrect = 0;
+let selectedBug = null;
+const stageNames = {
+  left: 'Shift Left',
+  center: 'Traditional',
+  right: 'Shift Right'
+};
+
+document.querySelectorAll('.bug-scenario').forEach(bug => {
+  bug.addEventListener('click', () => {
+    if (bug.classList.contains('classified')) return;
+    document.querySelectorAll('.bug-scenario').forEach(b => b.classList.remove('selected'));
+    bug.classList.add('selected');
+    selectedBug = bug;
+    document.getElementById('stageHint').classList.add('show');
+    document.querySelectorAll('.stage-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.stage-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedBug) return;
+    if (selectedBug.dataset.stage === bucket.dataset.bucket) {
+      selectedBug.classList.add('classified');
+      selectedBug.classList.remove('selected');
+      selectedBug.setAttribute('data-placed-in', stageNames[bucket.dataset.bucket]);
+      stageCorrect++;
+      document.getElementById('stageScore').textContent = `${stageCorrect} / 5 to'g'ri`;
+      completedActivities.add(`stage-${stageCorrect}`);
+      updateProgress();
+      if (stageCorrect === 5) {
+        document.getElementById('stageScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barcha buglar to\'g\'ri tasniflandi!</span>';
+        document.querySelectorAll('.stage-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedBug = null;
+      document.getElementById('stageHint').classList.remove('show');
+      document.querySelectorAll('.stage-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// ANIMATE COST BARS
+const costObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.cost-bar').forEach((bar, i) => {
+        const target = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = target; }, i * 150);
+      });
+      costObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const costChart = document.querySelector('.cost-chart');
+if (costChart) costObserver.observe(costChart);
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .compare-card, .practice-card, .shift-visual, .cost-chart, .timeline-game').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
