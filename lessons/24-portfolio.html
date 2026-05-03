@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24-dars: Portfolio yaratish | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5;
+  --github:#24292E;--linkedin:#0A66C2;--linkedin-soft:#E8F1FB
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.analogy-card{background:var(--bg-card);border:2px dashed var(--gold);border-radius:16px;padding:28px;margin:28px 0;text-align:center}
+.analogy-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:12px;font-weight:500}
+.analogy-title{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin-bottom:12px}
+.analogy-text{font-size:16px;color:var(--ink-soft);line-height:1.6}
+.portfolio-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0}
+.portfolio-item{background:var(--bg-card);border:2px solid var(--line);border-radius:14px;padding:20px;transition:all .2s}
+.portfolio-item:hover{transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(0,0,0,.1)}
+.portfolio-item-icon{font-size:32px;margin-bottom:10px;display:block}
+.portfolio-item h4{font-family:'Fraunces',serif;font-size:16px;font-weight:600;margin-bottom:6px;color:var(--plum)}
+.portfolio-item p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.4}
+.portfolio-item .badge{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.badge-gold{background:var(--gold-soft);color:var(--gold)}
+.badge-plum{background:var(--plum-soft);color:var(--plum)}
+.badge-forest{background:var(--forest-soft);color:var(--forest)}
+.github-mock{background:var(--github);border-radius:14px;overflow:hidden;margin:24px 0;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.github-topbar{background:#161B22;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #30363D}
+.github-logo{color:white;font-size:18px;font-weight:700}
+.github-body{padding:20px}
+.github-profile{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.github-avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2C5F8D,#5B3A7A);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.github-info{flex:1}
+.github-name{color:white;font-weight:600;font-size:16px;margin-bottom:4px}
+.github-bio{color:#8B949E;font-size:13px;margin-bottom:8px;line-height:1.4}
+.github-tags{display:flex;gap:6px;flex-wrap:wrap}
+.github-tag{background:#21262D;color:#58A6FF;padding:3px 8px;border-radius:100px;font-size:11px;border:1px solid #30363D}
+.github-repos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.github-repo{background:#161B22;border:1px solid #30363D;border-radius:8px;padding:14px}
+.github-repo-name{color:#58A6FF;font-size:13px;font-weight:600;margin-bottom:4px}
+.github-repo-desc{color:#8B949E;font-size:11px;margin-bottom:8px;line-height:1.3}
+.github-repo-meta{display:flex;gap:10px;font-size:11px;color:#8B949E}
+.github-repo-lang{display:flex;align-items:center;gap:4px}
+.lang-dot{width:8px;height:8px;border-radius:50%;background:#3776AB}
+.linkedin-mock{background:white;border-radius:14px;overflow:hidden;margin:24px 0;box-shadow:0 4px 12px rgba(0,0,0,.1);border:1px solid #E0E0E0}
+.linkedin-header{background:var(--linkedin);height:80px;position:relative}
+.linkedin-avatar{width:70px;height:70px;border-radius:50%;background:var(--plum);border:3px solid white;position:absolute;bottom:-20px;left:16px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.linkedin-body{padding:28px 16px 16px}
+.linkedin-name{font-weight:700;font-size:18px;margin-bottom:4px}
+.linkedin-title{color:var(--ink-soft);font-size:14px;margin-bottom:4px}
+.linkedin-location{color:var(--ink-muted);font-size:12px;margin-bottom:12px}
+.linkedin-badge{display:inline-block;background:var(--linkedin-soft);color:var(--linkedin);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:10px}
+.linkedin-section-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin:14px 0 6px;border-top:1px solid #E0E0E0;padding-top:10px}
+.linkedin-item{font-size:13px;color:var(--ink-soft);margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.ba-panel{border-radius:14px;padding:20px;border:2px solid}
+.ba-panel.bad{background:#FFF5F5;border-color:var(--accent)}
+.ba-panel.good{background:var(--forest-soft);border-color:var(--forest)}
+.ba-panel-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.ba-panel.bad .ba-panel-title{color:var(--accent)}
+.ba-panel.good .ba-panel-title{color:var(--forest)}
+.ba-item{font-size:13px;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.ba-item-icon{flex-shrink:0;font-size:14px;margin-top:1px}
+.ba-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.ba-tab{padding:8px 18px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.ba-tab.active{background:var(--plum);color:white;border-color:var(--plum)}
+.ba-section{display:none}
+.ba-section.show{display:block}
+.checker-game{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.checker-categories{display:flex;flex-direction:column;gap:18px;margin:20px 0}
+.checker-category{background:var(--bg-soft);border-radius:12px;padding:18px}
+.checker-cat-title{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--plum);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.checker-items{display:flex;flex-direction:column;gap:8px}
+.checker-item{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:white;border-radius:8px;cursor:pointer;transition:all .2s}
+.checker-item:hover .chk{border-color:var(--forest)}
+.chk{width:22px;height:22px;border-radius:5px;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s;margin-top:1px}
+.chk.done{background:var(--forest);border-color:var(--forest);color:white}
+.checker-item-text{font-size:14px;color:var(--ink-soft);line-height:1.4}
+.checker-item-text.done{text-decoration:line-through;opacity:.6}
+.checker-result{margin-top:24px;padding:20px;border-radius:14px;text-align:center;display:none}
+.checker-result.show{display:block}
+.checker-score-big{font-family:'Fraunces',serif;font-size:56px;font-weight:600;line-height:1;margin-bottom:8px}
+.checker-level{font-size:18px;font-weight:600;margin-bottom:8px;font-family:'Fraunces',serif}
+.checker-advice{font-size:14px;line-height:1.6}
+.checker-bar-wrap{height:12px;background:rgba(0,0,0,.1);border-radius:6px;overflow:hidden;margin:12px 0}
+.checker-bar-fill{height:100%;border-radius:6px;transition:width .5s ease}
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.interview-section{background:linear-gradient(135deg,#FFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform .3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height .4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+h4{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-top:24px;margin-bottom:10px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .portfolio-items,.ba-compare,.github-repos,.summary-points{grid-template-columns:1fr}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.checker-game{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">24-dars</div>
+  <h1>Portfolio <em>yaratish</em></h1>
+  <p class="hero-subtitle">Bilimingizni recruiter'larga qanday ko'rsatasiz? GitHub va LinkedIn'da professional portfolio — birinchi ish uchun asosiy qurol.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>70 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>GitHub + LinkedIn</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Portfolio nima uchun kerak?</h2>
+  <p class="section-intro">"Men QA bilimini oldim" — bu yetarli emas. Recruiter sizga ishonishi uchun <strong>ko'rsata olishingiz kerak</strong>. Portfolio — sizning "ish namunangiz".</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Usta-shogird misoli</div>
+    <div class="analogy-title">Gapirish vs Ko'rsatish</div>
+    <div class="analogy-text">
+      Usta: "Men uy qura olaman." <br>
+      Recruiter: "Ko'rsating." <br><br>
+      <strong>Portfolio</strong> — siz qurgan uylar to'plami. Gapirish emas, <strong>ko'rsatish</strong>.
+    </div>
+  </div>
+
+  <h3>Junior QA'lar qiladigan asosiy xato</h3>
+  <ul>
+    <li>❌ <strong>"Tajribam yo'q"</strong> deyish — holbuki kursda ko'p narsa qilishgan</li>
+    <li>❌ <strong>Bo'sh GitHub</strong> — hech narsa upload qilinmagan</li>
+    <li>❌ <strong>LinkedIn'da faqat ism</strong> — bio, skills, projects yo'q</li>
+    <li>❌ <strong>Hamma narsa bor, lekin tarqoq</strong> — recruiter 10 sekund ko'radi, topa olmaydi</li>
+    <li>✅ <strong>Kursda qilgan ishlar ham portfolio</strong> — TestShop buglar, test caselar, skriptlar</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Haqiqat</div>
+    <p>Bu kursni tugatgan o'quvchi allaqachon <strong>portfolio materiallari</strong>ga ega. Buglar, test caselar, Selenium skriptlar, JMeter test, Postman collection — hammasini to'g'ri joylashtirish kerak.</p>
+  </div>
+</section>
+
+<section class="section" id="items">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Portfolio nimalardan iborat?</h2>
+  <p class="section-intro">Junior QA portfoliosining 6 ta asosiy qismi. Hammasi bo'lmasa ham — qanchalik ko'p bo'lsa shunchalik yaxshi.</p>
+
+  <div class="portfolio-items">
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">🐞</span>
+      <h4>Bug Reportlar</h4>
+      <p>Jira screenshot yoki Google Sheet'da. Title, Steps, Expected/Actual, Severity. TestShop da toppgan buglar.</p>
+      <span class="badge badge-gold">⭐ Eng muhim</span>
+    </div>
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">📋</span>
+      <h4>Test Caselar</h4>
+      <p>Excel, TestRail yoki Qase.io dan export. Login, mahsulot, savat funksiyalari uchun.</p>
+      <span class="badge badge-gold">⭐ Eng muhim</span>
+    </div>
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">📨</span>
+      <h4>Postman Collection</h4>
+      <p>TestShop API uchun GET, POST, PUT, DELETE. Tests yozilgan. Export JSON sifatida.</p>
+      <span class="badge badge-plum">💎 Middle darajasi</span>
+    </div>
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">🤖</span>
+      <h4>Automation Skriptlar</h4>
+      <p>Python + Selenium yoki Playwright. Login, mahsulot, savat testlari. POM strukturasi.</p>
+      <span class="badge badge-plum">💎 Middle darajasi</span>
+    </div>
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">⚗️</span>
+      <h4>Performance Test</h4>
+      <p>JMeter .jmx fayli + Summary Report screenshot. Load test natijasi tahlili.</p>
+      <span class="badge badge-forest">🚀 Senior ko'nikmasi</span>
+    </div>
+    <div class="portfolio-item">
+      <span class="portfolio-item-icon">📱</span>
+      <h4>Mobile Test Hisobot</h4>
+      <p>Android/iOS qurilmada test. Screenshot va video bilan. Checklist to'ldirilgan.</p>
+      <span class="badge badge-forest">🚀 Differentiator</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="github">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">GitHub portfolio</h2>
+  <p class="section-intro">GitHub — QA portfoliosining uy bazasi. Recruiterlar birinchi GitHub'ni ko'radi.</p>
+
+  <h3>Ideal GitHub profili</h3>
+  <div class="github-mock">
+    <div class="github-topbar">
+      <span class="github-logo">⊙ GitHub</span>
+      <span style="color:#8B949E;font-size:12px;margin-left:auto">mirzobek-kxaitov</span>
+    </div>
+    <div class="github-body">
+      <div class="github-profile">
+        <div class="github-avatar">👨‍💻</div>
+        <div class="github-info">
+          <div class="github-name">Mirzobek Khaitov</div>
+          <div class="github-bio">QA Engineer | Manual + Automation | Python, Selenium, Playwright | ISTQB CTFL</div>
+          <div class="github-tags">
+            <span class="github-tag">qa-testing</span>
+            <span class="github-tag">selenium</span>
+            <span class="github-tag">playwright</span>
+            <span class="github-tag">python</span>
+          </div>
+        </div>
+      </div>
+      <div class="github-repos">
+        <div class="github-repo">
+          <div class="github-repo-name">📋 testshop-test-cases</div>
+          <div class="github-repo-desc">TestShop saytining login, mahsulot va savat funksiyalari uchun 50+ test case</div>
+          <div class="github-repo-meta">
+            <span class="github-repo-lang"><span class="lang-dot" style="background:#FFD43B"></span> Excel</span>
+            <span>⭐ 3</span>
+          </div>
+        </div>
+        <div class="github-repo">
+          <div class="github-repo-name">🤖 testshop-automation</div>
+          <div class="github-repo-desc">Python + Playwright + Pytest. POM pattern. Login, mahsulot, savat testlari.</div>
+          <div class="github-repo-meta">
+            <span class="github-repo-lang"><span class="lang-dot"></span> Python</span>
+            <span>⭐ 7</span>
+          </div>
+        </div>
+        <div class="github-repo">
+          <div class="github-repo-name">📨 testshop-api-tests</div>
+          <div class="github-repo-desc">Postman Collection. TestShop REST API. CRUD testlar + Newman report.</div>
+          <div class="github-repo-meta">
+            <span class="github-repo-lang"><span class="lang-dot" style="background:#FF6C37"></span> JSON</span>
+            <span>⭐ 5</span>
+          </div>
+        </div>
+        <div class="github-repo">
+          <div class="github-repo-name">🐞 testshop-bug-reports</div>
+          <div class="github-repo-desc">20+ bug report. Jira format. Screenshot va qadam-baqadam tavsilot bilan.</div>
+          <div class="github-repo-meta">
+            <span class="github-repo-lang"><span class="lang-dot" style="background:#e34c26"></span> Markdown</span>
+            <span>⭐ 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>GitHub README.md — birinchi taassurot</h3>
+  <div class="example-box">
+    <div class="example-box-title">Yaxshi README shabloni (testshop-automation)</div>
+    <div style="background:var(--code-bg);color:var(--code-text);border-radius:8px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;margin-top:8px">
+      <span style="color:#FFA657"># TestShop Automation Framework</span><br><br>
+      Python + Playwright + Pytest bilan yozilgan automation test framework.<br><br>
+      <span style="color:#79C0FF">## Texnologiyalar</span><br>
+      - Python 3.11 | Playwright | Pytest | POM pattern<br><br>
+      <span style="color:#79C0FF">## Loyiha strukturasi</span><br>
+      pages/ — Page Objects | tests/ — test fayllar | conftest.py<br><br>
+      <span style="color:#79C0FF">## Ishga tushirish</span><br>
+      <span style="color:#A5D6FF">pip install -r requirements.txt</span><br>
+      <span style="color:#A5D6FF">pytest --headed -v</span><br><br>
+      <span style="color:#79C0FF">## Test natijalari</span><br>
+      15/15 test PASSED | Coverage: Login, Products, Cart
+    </div>
+  </div>
+</section>
+
+<section class="section" id="linkedin">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">LinkedIn — professional taqdimot</h2>
+  <p class="section-intro">Recruiterlarning <strong>90%+</strong> LinkedIn orqali qidiradi. To'liq va professional profil — katta ustunlik.</p>
+
+  <h3>Ideal LinkedIn profili (QA)</h3>
+  <div class="linkedin-mock">
+    <div class="linkedin-header"></div>
+    <div class="linkedin-avatar">👨‍💻</div>
+    <div class="linkedin-body">
+      <div class="linkedin-name">Mirzobek Khaitov</div>
+      <div class="linkedin-title">Junior QA Engineer | Manual + Automation Testing</div>
+      <div class="linkedin-location">📍 Toshkent, O'zbekiston</div>
+      <div class="linkedin-badge">🔗 Bog'lanishga tayyorman</div>
+      <div style="font-size:13px;color:var(--ink-soft);line-height:1.5;margin-bottom:8px">
+        QA Engineer bo'lishga tayyorlanayotgan mutaxassis. Manual testing, API testing (Postman), va automation (Selenium/Playwright Python) bo'yicha bilimga egaman. ISTQB CTFL davom etmoqda.
+      </div>
+      <div class="linkedin-section-title">🎓 Ta'lim va sertifikatlar</div>
+      <div class="linkedin-item">🎓 <span>QA Academy kursi (28 dars) — 2024-2025</span></div>
+      <div class="linkedin-item">📜 <span>ISTQB CTFL (tayyorlanmoqda)</span></div>
+      <div class="linkedin-section-title">💼 Loyihalar</div>
+      <div class="linkedin-item">📋 <span>TestShop: 50+ test case, 20+ bug report, Automation framework</span></div>
+      <div class="linkedin-section-title">🛠 Ko'nikmalar</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Manual Testing</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">API Testing</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Selenium</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Playwright</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Postman</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Jira</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">Python</span>
+        <span style="background:#F0F0F0;padding:3px 8px;border-radius:4px;font-size:12px">JMeter</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>LinkedIn'da nima qilish kerak</h3>
+  <ul>
+    <li><strong>Sarlavha (Headline)</strong> — "Junior QA Engineer | Manual + Automation | Selenium, Playwright" — kalit so'zlar bilan</li>
+    <li><strong>Bio (About)</strong> — 3-4 jumlada: kim ekaniz, nima bilardirsiz, nima qidiraysiz</li>
+    <li><strong>Skills</strong> — kamida 10 ta: Manual Testing, API Testing, Selenium, Playwright, Postman, Jira, Python...</li>
+    <li><strong>Projects</strong> — TestShop loyihasini qo'shing, GitHub linki bilan</li>
+    <li><strong>Featured</strong> — eng yaxshi GitHub repo yoki portfolio linkini pin qiling</li>
+    <li><strong>Connections</strong> — QA mutaxassislar, recruiterlar bilan bog'laning</li>
+  </ul>
+</section>
+
+<div style="background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0">
+  <div class="quiz-label">🔄 Before / After</div>
+  <h3 style="margin-top:8px">Yaxshi va yomon portfolio — farqni ko'ring</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px">Mavzuni tanlang va taqqoshlang:</p>
+  <div class="ba-tabs">
+    <button class="ba-tab active" onclick="showBA('github')">GitHub profil</button>
+    <button class="ba-tab" onclick="showBA('linkedin')">LinkedIn sarlavha</button>
+    <button class="ba-tab" onclick="showBA('readme')">README.md</button>
+    <button class="ba-tab" onclick="showBA('bug)">Bug Report</button>
+  </div>
+
+  <div id="ba-github" class="ba-section show">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon GitHub</div>
+        <div class="ba-item"><span class="ba-item-icon">😶</span><span>Hech qanday bio yo'q</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📁</span><span>Faqat 1 ta repo: "test123"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📄</span><span>README yo'q yoki bo'sh</span></div>
+        <div class="ba-item"><span class="ba-item-icon">💾</span><span>1 ta commit: "initial"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🔒</span><span>Repoilar private</span></div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi GitHub</div>
+        <div class="ba-item"><span class="ba-item-icon">✍️</span><span>Bio: "QA Engineer | Python | Selenium | ISTQB"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📁</span><span>4-5 ta pinned repo (testshop-*)</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📖</span><span>Har repoda batafsil README</span></div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span><span>Muntazam commitlar tarixi</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🌐</span><span>Repoilar public + LinkedIn linki</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-linkedin" class="ba-section">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon sarlavha</div>
+        <div class="ba-item"><span class="ba-item-icon">😶</span><span>"Student at Tashkent"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">😶</span><span>"Looking for job"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">😶</span><span>"QA" (faqat 2 harf)</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🔍</span><span>Recruiter "QA" deb qidirsa topa olmaydi</span></div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi sarlavha</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span><span>"Junior QA Engineer | Manual + Automation"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span><span>"Selenium | Playwright | Postman | Python"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🔍</span><span>Kalit so'zlar → Recruiter topadi</span></div>
+        <div class="ba-item"><span class="ba-item-icon">💡</span><span>Nima bilishingiz darhol ko'rinadi</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-readme" class="ba-section">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon README</div>
+        <div class="ba-item"><span class="ba-item-icon">📄</span><span>Bo'sh fayl yoki faqat repo nomi</span></div>
+        <div class="ba-item"><span class="ba-item-icon">❓</span><span>Loyiha nima uchun ekanini tushuntirmaydi</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🤷</span><span>Qanday ishlatish — yo'q</span></div>
+        <div class="ba-item"><span class="ba-item-icon">😕</span><span>Recruiter tushunmaydi va yopadi</span></div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi README</div>
+        <div class="ba-item"><span class="ba-item-icon">📝</span><span>Loyiha tavsifi (2-3 jumla)</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🛠</span><span>Texnologiyalar ro'yxati</span></div>
+        <div class="ba-item"><span class="ba-item-icon">▶️</span><span>Ishga tushirish buyruqlari</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📊</span><span>Test natijalari (15/15 PASSED)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-bug" class="ba-section">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon Bug Report</div>
+        <div class="ba-item"><span class="ba-item-icon">📝</span><span>Title: "Login ishlamaydi"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📝</span><span>Steps: "Login qildim, xato chiqdi"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span><span>Expected/Actual yo'q</span></div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span><span>Screenshot yo'q</span></div>
+        <div class="ba-item"><span class="ba-item-icon">😕</span><span>Recruiter: "Bu ish emas"</span></div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi Bug Report</div>
+        <div class="ba-item"><span class="ba-item-icon">📝</span><span>Title: "[Login] Noto'g'ri parol 500 xato beradi"</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📋</span><span>Steps: 3 ta aniq qadam</span></div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span><span>Expected: 401 · Actual: 500</span></div>
+        <div class="ba-item"><span class="ba-item-icon">📸</span><span>Screenshot bilan</span></div>
+        <div class="ba-item"><span class="ba-item-icon">🏷</span><span>Severity: High · Priority: High</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="checker-game">
+  <div class="quiz-label">✅ Portfolio Checker</div>
+  <h3 style="margin-top:8px">Portfoliongizdagi narsalarni belgilang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:4px">Har birini bosing — ballingiz chiqadi:</p>
+
+  <div class="checker-categories">
+    <div class="checker-category">
+      <div class="checker-cat-title">🐞 Manual Testing (Asosiy)</div>
+      <div class="checker-items">
+        <div class="checker-item" onclick="toggleChecker(this,3)">
+          <div class="chk"></div>
+          <div class="checker-item-text">10+ bug report (title, steps, expected/actual, severity, screenshot)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,3)">
+          <div class="chk"></div>
+          <div class="checker-item-text">20+ test case (Excel, TestRail, yoki Qase.io)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,2)">
+          <div class="chk"></div>
+          <div class="checker-item-text">1 ta Test Plan hujjati</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checker-category">
+      <div class="checker-cat-title">📨 API Testing</div>
+      <div class="checker-items">
+        <div class="checker-item" onclick="toggleChecker(this,4)">
+          <div class="chk"></div>
+          <div class="checker-item-text">Postman Collection (5+ request, Tests yozilgan, export JSON)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,2)">
+          <div class="chk"></div>
+          <div class="checker-item-text">API test natijasi screenshoti</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checker-category">
+      <div class="checker-cat-title">🤖 Automation</div>
+      <div class="checker-items">
+        <div class="checker-item" onclick="toggleChecker(this,5)">
+          <div class="chk"></div>
+          <div class="checker-item-text">Python + Selenium yoki Playwright skriptlar (GitHub'da)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,4)">
+          <div class="chk"></div>
+          <div class="checker-item-text">POM strukturali loyiha (pages/, tests/, conftest.py)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,3)">
+          <div class="chk"></div>
+          <div class="checker-item-text">Pytest testlar va natija (X/Y PASSED)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checker-category">
+      <div class="checker-cat-title">🌐 GitHub va LinkedIn</div>
+      <div class="checker-items">
+        <div class="checker-item" onclick="toggleChecker(this,3)">
+          <div class="chk"></div>
+          <div class="checker-item-text">GitHub bio (QA kalit so'zlar bilan) va pinned repoilar</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,4)">
+          <div class="chk"></div>
+          <div class="checker-item-text">LinkedIn to'liq (sarlavha, bio, skills, projects, GitHub link)</div>
+        </div>
+        <div class="checker-item" onclick="toggleChecker(this,2)">
+          <div class="chk"></div>
+          <div class="checker-item-text">Har loyihada README.md bor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button onclick="calcScore()" style="padding:12px 28px;background:var(--plum);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:500;margin-top:8px">📊 Balimni ko'rish</button>
+
+  <div class="checker-result" id="checkerResult">
+    <div class="checker-score-big" id="checkerScoreNum"></div>
+    <div class="checker-bar-wrap"><div class="checker-bar-fill" id="checkerBarFill"></div></div>
+    <div class="checker-level" id="checkerLevel"></div>
+    <div class="checker-advice" id="checkerAdvice"></div>
+  </div>
+</div>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Recruiter siz haqingizda qidirmoqda</div>
+  <div class="scenario-story">
+    <p><strong>Payme kompaniyasi.</strong> HR Mohira opa LinkedIn'da "Junior QA Engineer Tashkent" deb qidirmoqda. Ikkita nomzod chiqdi.</p>
+    <p><strong>A nomzod:</strong> LinkedIn'da "Student. Looking for job." Hech qanday ko'nikma yo'q. GitHub'da 1 ta bo'sh repo.</p>
+    <p><strong>B nomzod:</strong> "Junior QA | Manual + Automation | Selenium | Postman". GitHub'da 4 ta repo, README bor. LinkedIn'da TestShop loyihasi pinlangan, 8 ta skill.</p>
+    <p>Ikkalasi ham bir xil kursni bitirgan, hech qaysi biri real ish tajribasiga ega emas.</p>
+  </div>
+  <div class="scenario-question">Mohira opa kimni chaqiradi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Ikkisini ham chaqiradi — tajriba yo'q, farqi yo'q</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>B nomzodni</strong> — kalit so'zlar bor (qidiruv natijasida yuqorida), ko'nikmalar ko'rsatilgan, GitHub loyiha bor. Recruiter o'rtacha 10 sekund sarflaydi — B nomzod 10 sekundda ishontiradi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>A nomzodni — kamtarlik yaxshi, ko'p narsani da'vo qilmagan</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">GitHub'da "testshop-automation" repoyingiz bor, lekin README bo'sh. Recruiter uni ochdi. Nima bo'ladi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Kod ko'radi va tushunadi — README muhim emas</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>10 sekund ichida yopadi.</strong> Recruiter texnik emas — kod o'qimaydi. README — birinchi va oxirgi taassurot. Nima qilgansiz, nima texnologiya, qanday ishlatiladi — shu 10 sekundda ko'rinmasa, siz yo'qsilasiz</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Muhim emas — GitHub linki bo'lishining o'zi yetarli</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="action">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot</span>
+  <h2 class="section-title">Bu hafta nima qilish kerak</h2>
+  <p class="section-intro">5 ta qadam — portfolio yig'ish uchun. Har biri 30-60 daqiqa.</p>
+
+  <div style="display:flex;flex-direction:column;gap:12px;margin:20px 0">
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--github);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:16px">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">GitHub profil to'ldiring</div>
+        <div style="color:#4A4A4A;font-size:14px">Bio yozing (kalit so'zlar: QA, Python, Selenium...). 4-5 ta repo yarating: testshop-bug-reports, testshop-test-cases, testshop-automation, testshop-api. Pinned qiling.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--linkedin);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:16px">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">LinkedIn profil yarating/yangilang</div>
+        <div style="color:#4A4A4A;font-size:14px">Sarlavha (kalit so'zlar), Bio (3-4 jumla), Skills (10+), Projects (TestShop), Featured (GitHub link). Rasm — professional.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--plum);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:16px">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Har loyihaga README yozing</div>
+        <div style="color:#4A4A4A;font-size:14px">Tavsif, texnologiyalar, ishga tushirish, natijalar. Shablondan foydalaning (yuqorida). 15-20 daqiqa har bir README.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--forest);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:16px">4</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Bug reportlarni GitHub'ga joylang</div>
+        <div style="color:#4A4A4A;font-size:14px">Markdown formatda yozing. Title, Steps, Expected, Actual, Screenshot. 10-15 ta bug — yaxshi namuna bo'ladi.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:16px">5</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Recruiter ko'zi bilan tekshiring</div>
+        <div style="color:#4A4A4A;font-size:14px">Do'stingizga yoki oila a'zongizga GitHub va LinkedIn'ingizni 10 sekund ko'rsating. "Nima bilasiz?" deb so'rang. Tushunmasa — README aniqroq yozing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>O'zingiz haqingizda gapirib bering (elevator pitch)</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob (60 sekund):</strong></p>
+        <p>"Men Mirzobek, Junior QA Engineer bo'lishga tayyorlanayotgan mutaxassisман. QA Academy kursi davomida manual testing, API testing va automation asoslarini o'rgandim."</p>
+        <p>"TestShop loyihasida 50+ test case yozdim, 20+ bug topib hujjatlashdim. Postman bilan API testlar va Python + Playwright bilan automation framework yaratdim."</p>
+        <p>"Hozir birinchi real loyihada ishlashga tayyorman. Jamoada ish ustida bilimlarimni amalda qo'llashni va professional o'sishni xohlayman."</p>
+        <p><strong>Vaqt:</strong> ~45-60 sekund. <strong>Kalit:</strong> Konkret misol (TestShop), konkret raqam (50+, 20+).</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Portfoliongizdagi eng qiziqarli loyiha?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong> "Eng qiziqarli — TestShop Automation Framework."</p>
+        <ul>
+          <li><strong>Nima qilganman:</strong> Python + Playwright + Pytest bilan POM pattern ishlatdim</li>
+          <li><strong>Struktura:</strong> pages/, tests/, conftest.py — professional tartib</li>
+          <li><strong>Natija:</strong> 15 ta test, hammasi PASSED. Login, mahsulot va savat funksiyalari</li>
+          <li><strong>Qiyin qismi:</strong> Auto-wait va Playwright'ni o'rganish — lekin Selenium'dan kam kod yozildi</li>
+          <li><strong>GitHub:</strong> README bilan, ishlatish buyruqlari yozilgan</li>
+        </ul>
+        <p>Bu — mening birinchi professional automation tajribam.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Nega sizni olishlari kerak? (Real tajriba yo'q)</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Xato javob:</strong> "Bilmayman, sizga bog'liq..." yoki "Men harakat qilaman..."</p>
+        <p><strong>Pro javob:</strong></p>
+        <p>"Menda real ish tajribasi yo'q — lekin portfolio bor. Ko'rsatishim mumkin:"</p>
+        <ul>
+          <li><strong>Manual:</strong> 50+ test case, 20+ bug report — sifatli hujjatlar</li>
+          <li><strong>API:</strong> Postman collection, Tests yozilgan</li>
+          <li><strong>Automation:</strong> Playwright + POM — zamonaviy yondashuv</li>
+          <li><strong>O'rganish tezligi:</strong> Bu kursda 28 ta mavzuni o'rgandim, kichik vaqtda</li>
+        </ul>
+        <p>"Men tezda o'rganuvchiman va qo'shsam bo'ladigan bilimlarim bor. Birinchi 3 oyda isbot qilaman."</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>GitHub'ingizdagi eng yaxshi repo qaysi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong> "testshop-automation — Python + Playwright + Pytest, POM pattern. Link: github.com/sizningnomingiz/testshop-automation"</p>
+        <p><strong>Nima borligini bir jumla bilan:</strong></p>
+        <ul>
+          <li>15 ta pytest, 100% PASSED</li>
+          <li>POM: LoginPage, ProductPage, CartPage</li>
+          <li>README: o'rnatish va ishlatish batafsil</li>
+        </ul>
+        <p><strong>Tayyorgarlik:</strong> Intervyu oldidan GitHub'ingizni bir marta tekshiring — hamma narsa ishlayotganini, README to'liq ekanini tekshiring.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>5 yil keyin o'zingizni qayerda ko'rasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <p>"5 yil ichida Senior QA Engineer yoki QA Lead bo'lishni maqsad qilganman."</p>
+        <ul>
+          <li><strong>1 yil:</strong> Junior — manual + API testing, birinchi automation tajriba</li>
+          <li><strong>2-3 yil:</strong> Middle — mustaqil automation framework, CI/CD integratsiya</li>
+          <li><strong>5 yil:</strong> Senior — jamoa boshqarish, test strategiyasini belgilash</li>
+        </ul>
+        <p>Bunday maqsadli javob — sizning professional ekanligingizni ko'rsatadi.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Kuchli va kuchsiz tomonlaringiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Kuchli tomonlar (konkret):</strong></p>
+        <ul>
+          <li>Tafsilotlarga e'tibor — bug reportlarimda Steps aniq, Expected/Actual to'liq</li>
+          <li>O'rganish tezligi — 28 ta QA mavzusini qisqa vaqtda o'rgandim</li>
+          <li>Hujjatlashtirish — test case va bug reportlar professional formatda</li>
+        </ul>
+        <p><strong>Kuchsiz tomonlar (dushman emas, o'sish maydoni):</strong></p>
+        <ul>
+          <li>Hali real loyiha tajribam yo'q — lekin portfolio buni qoplaydi</li>
+          <li>Java bilmayman — Python'da ishlayman, Java o'rganmoqchiman</li>
+        </ul>
+        <p><strong>Muhim:</strong> Kuchsiz tomonni "Men qanday hal qilyapman" bilan yakunlang.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Maosh kutishingiz qancha?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Tayyorgarlik:</strong> Intervyu oldidan bozorni o'rganing — hh.uz, LinkedIn'da Junior QA maoshlari qancha.</p>
+        <p><strong>Pro javob:</strong></p>
+        <p>"Men bozorni o'rgandim. Toshkentda Junior QA uchun X-Y million so'm. Men shu doirada kutaman. Lekin eng muhimi — birinchi real tajriba olish va professional o'sish imkoniyati."</p>
+        <p><strong>Xato:</strong> "Qancha bersangiz" deyish — o'z qiymatini bilmaslik belgisi.</p>
+        <p><strong>Xato:</strong> Juda yuqori raqam — "Men Senior darajasida ishlayman deb o'ylayapman" taassurot qoldiradi.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Ko'rsatish, gapirish emas</div>
+      <div class="summary-point-text">GitHub + LinkedIn = ko'rsatish. "Men bilaman" degandan — "Mana ko'ring" deyish kuchli. Recruiter 10 sekundda qaror qiladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">README — birinchi taassurot</div>
+      <div class="summary-point-text">Kod emas, README o'qiladi. Nima, nima uchun, qanday — shu 3 savolga javob bering. Bo'sh README = yo'q repo.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Kalit so'zlar = Topilish</div>
+      <div class="summary-point-text">LinkedIn sarlavhasida: QA, Manual, Automation, Selenium, Playwright, Postman. Bular bilan recruiter siz haqingizda qidirganda topadi.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="23-mobile-testing.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>23-dars · Mobile Testing</div>
+  </a>
+  <a href="25-cv-linkedin.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>25-dars · CV va LinkedIn</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 13;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// Quiz
+const fbData = {
+  scenario: {
+    c: '<strong>To\'g\'ri!</strong> Recruiter 10 sekund sarflaydi. B nomzod o\'sha 10 sekundda: kalit so\'zlar (qidiruv natijasida yuqori), ko\'nikmalar ko\'rsatilgan, GitHub loyiha bor. A nomzodda ko\'rinadigan hech narsa yo\'q. Portfolio = birinchi filtr.',
+    w: 'Tajriba yo\'q bo\'lsa ham, portfolio farq qiladi. Recruiter 10 sekund ichida qaror qiladi. B nomzodning kalit so\'zlari bor — qidiruv natijasida yuqoriroq chiqadi. LinkedIn to\'liq — ishonch beradi. A nomzodda esa hech narsa ko\'rinmaydi.'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> Recruiter texnik emas — kod o\'qimaydi. README yopiq bo\'lsa, 10 sekund ichida yopadi. Kodni ko\'rishidan oldin nima qilganingizni tushunishi kerak. Har reposida README bo\'lishi — portfolio sifatining asosi.',
+    w: 'Recruiter HR bo\'lishi mumkin — kod o\'qimaydi. README — kommunikatsiya. "Nima qilganman, nima texnologiya, qanday ishlatiladi" — shu 10 sekundda ko\'rinmasa, repo bekor. GitHub linki borligining o\'zi yetarli emas.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const fbEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      fbEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      fbEl.innerHTML = ok ? fbData[qId].c : fbData[qId].w;
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// Before/After tabs
+function showBA(id) {
+  document.querySelectorAll('.ba-section').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.ba-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ba-' + id).classList.add('show');
+  event.target.classList.add('active');
+  done.add('ba-' + id); upd();
+}
+
+// Portfolio Checker
+let totalScore = 0, maxScore = 35;
+let scores = {};
+
+function toggleChecker(item, pts) {
+  const chk = item.querySelector('.chk');
+  const txt = item.querySelector('.checker-item-text');
+  const key = item.textContent.trim().slice(0, 20);
+  if (chk.classList.contains('done')) {
+    chk.classList.remove('done'); txt.classList.remove('done');
+    totalScore -= pts; delete scores[key];
+  } else {
+    chk.classList.add('done'); txt.classList.add('done');
+    totalScore += pts; scores[key] = pts;
+  }
+  done.add('checker'); upd();
+}
+
+function calcScore() {
+  const pct = Math.round(totalScore / maxScore * 100);
+  const res = document.getElementById('checkerResult');
+  document.getElementById('checkerScoreNum').textContent = pct + '%';
+  document.getElementById('checkerBarFill').style.width = pct + '%';
+
+  let color, level, advice;
+  if (pct >= 80) {
+    color = 'var(--forest-soft)'; res.style.borderColor = 'var(--forest)'; res.style.background = color;
+    document.getElementById('checkerScoreNum').style.color = 'var(--forest)';
+    level = '🏆 Intervyuga tayyor!';
+    advice = 'Ajoyib portfolio! Recruiter siz haqingizda qidirganda topadi va ishonch hosil qiladi. Endi CV va intervyu tayyorgarligiga o\'ting.';
+  } else if (pct >= 50) {
+    color = 'var(--gold-soft)'; res.style.borderColor = 'var(--gold)'; res.style.background = color;
+    document.getElementById('checkerScoreNum').style.color = 'var(--gold)';
+    level = '📈 Yaxshi boshlanish!';
+    advice = 'Asosiy qismlar bor. README yozing, GitHub/LinkedIn'ni to\'ldiring. Automation yoki API qismini kuchaytiring.';
+  } else {
+    color = 'var(--accent-soft)'; res.style.borderColor = 'var(--accent)'; res.style.background = color;
+    document.getElementById('checkerScoreNum').style.color = 'var(--accent)';
+    level = '🚧 Ko\'p ish qoldi';
+    advice = 'Asosiy qismlari to\'ldirish kerak. Bug reportlar va test caselardan boshlang. GitHub va LinkedIn o\'rnatish — bu hafta.';
+  }
+  document.getElementById('checkerBarFill').style.background = pct >= 80 ? 'var(--forest)' : pct >= 50 ? 'var(--gold)' : 'var(--accent)';
+  document.getElementById('checkerLevel').textContent = level;
+  document.getElementById('checkerLevel').style.color = pct >= 80 ? 'var(--forest)' : pct >= 50 ? 'var(--gold)' : 'var(--accent)';
+  document.getElementById('checkerAdvice').textContent = advice;
+  res.classList.add('show');
+  done.add('checkerDone'); upd();
+}
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

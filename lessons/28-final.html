@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>28-dars: Yakuniy dars | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+/* HERO — maxsus */
+.hero-final{background:linear-gradient(135deg,#1A1A1A 0%,#2E1A4A 60%,#1A3A2A 100%);min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative;overflow:hidden}
+.hero-stars{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(192,136,56,.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(91,58,122,.2) 0%, transparent 50%)}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero-badge{display:inline-block;background:var(--gold);color:white;padding:8px 20px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.hero-final h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(42px,7vw,80px);line-height:1.0;letter-spacing:-2px;margin-bottom:24px;color:white}
+.hero-final h1 em{font-style:italic;color:var(--gold)}
+.hero-subtitle-final{font-size:20px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto 40px;line-height:1.5}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Fraunces',serif;font-size:40px;font-weight:600;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+/* Main */
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+/* Summary blocks */
+.blocks-summary{display:flex;flex-direction:column;gap:12px;margin:24px 0}
+.block-summary{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:all .2s}
+.block-summary:hover{border-color:var(--plum);transform:translateX(4px)}
+.block-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.block-info h4{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:4px}
+.block-info p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.4}
+.block-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.b-tag{background:var(--plum-soft);color:var(--plum);padding:2px 7px;border-radius:100px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+/* Roadmap */
+.roadmap{margin:32px 0}
+.roadmap-phase{background:var(--bg-card);border:2px solid var(--line);border-radius:16px;padding:24px;margin-bottom:14px;position:relative;overflow:hidden}
+.roadmap-phase::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+.roadmap-phase.junior::before{background:var(--blue)}
+.roadmap-phase.middle::before{background:var(--forest)}
+.roadmap-phase.senior::before{background:var(--gold)}
+.roadmap-phase-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;cursor:pointer}
+.roadmap-phase-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;display:flex;align-items:center;gap:10px}
+.roadmap-phase.junior .roadmap-phase-title{color:var(--blue)}
+.roadmap-phase.middle .roadmap-phase-title{color:var(--forest)}
+.roadmap-phase.senior .roadmap-phase-title{color:var(--gold)}
+.roadmap-phase-time{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);padding:4px 12px;border-radius:100px;background:var(--bg-soft)}
+.roadmap-skills{display:flex;flex-wrap:wrap;gap:8px}
+.r-skill{padding:6px 14px;border-radius:100px;font-size:13px;font-weight:500;border:2px solid}
+.r-skill.done{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.r-skill.next{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.r-skill.future{background:var(--bg-soft);border-color:var(--line);color:var(--ink-muted)}
+/* Quiz */
+.final-quiz{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);border-radius:20px;padding:32px;margin:32px 0;color:white}
+.fq-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(255,255,255,.1);padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.fq-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.fq-prog-bar{flex:1;height:6px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.fq-prog-fill{height:100%;background:var(--gold);transition:width .4s}
+.fq-prog-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.6);min-width:44px}
+.fq-question{font-family:'Fraunces',serif;font-size:20px;line-height:1.3;margin-bottom:20px;color:white}
+.fq-options{display:flex;flex-direction:column;gap:8px}
+.fq-opt{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 18px;cursor:pointer;text-align:left;font-size:15px;font-family:inherit;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:12px;transition:all .2s}
+.fq-opt:hover:not(.fq-disabled){border-color:var(--gold);background:rgba(192,136,56,.15)}
+.fq-opt.fq-correct{border-color:var(--forest);background:rgba(58,90,64,.3);color:#7ACA8A}
+.fq-opt.fq-wrong{border-color:var(--accent);background:rgba(214,69,69,.2);color:#F08080}
+.fq-opt.fq-disabled{cursor:not-allowed;opacity:.6}
+.fq-marker{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.fq-opt.fq-correct .fq-marker{background:var(--forest);border-color:var(--forest);color:white}
+.fq-opt.fq-wrong .fq-marker{background:var(--accent);border-color:var(--accent);color:white}
+.fq-feedback{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:14px;display:none;line-height:1.5}
+.fq-feedback.show{display:block}
+.fq-feedback.c{background:rgba(58,90,64,.4);color:#7ACA8A;border:1px solid rgba(58,90,64,.6)}
+.fq-feedback.w{background:rgba(214,69,69,.3);color:#F08080;border:1px solid rgba(214,69,69,.5)}
+.fq-next{padding:10px 22px;background:var(--gold);color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;margin-top:12px;display:none}
+.fq-next.show{display:inline-block}
+.fq-result{text-align:center;padding:24px;display:none}
+.fq-result.show{display:block}
+.fq-result-score{font-family:'Fraunces',serif;font-size:60px;font-weight:600;color:var(--gold);line-height:1}
+.fq-result-text{font-size:16px;color:rgba(255,255,255,.75);margin-top:8px}
+/* Resources */
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:24px 0}
+.resource-card{background:var(--bg-card);border:2px solid var(--line);border-radius:14px;padding:20px;transition:all .2s;text-decoration:none;display:block;color:var(--ink)}
+.resource-card:hover{border-color:var(--plum);transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(0,0,0,.1)}
+.resource-icon{font-size:28px;margin-bottom:8px;display:block}
+.resource-card h4{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--plum);margin-bottom:4px}
+.resource-card p{font-size:12px;color:var(--ink-muted);margin:0;line-height:1.3}
+.resource-free{display:inline-block;background:var(--forest-soft);color:var(--forest);padding:1px 7px;border-radius:100px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;margin-top:6px}
+/* Certificate */
+.cert-wrap{margin:32px 0}
+.cert{background:var(--bg-card);border:3px solid var(--gold);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.cert::before,.cert::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;opacity:.04}
+.cert::before{background:var(--gold);top:-80px;left:-80px}
+.cert::after{background:var(--plum);bottom:-80px;right:-80px}
+.cert-inner{position:relative;z-index:1}
+.cert-header{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:16px}
+.cert-title{font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.1}
+.cert-sub{font-size:15px;color:var(--ink-soft);margin-bottom:24px}
+.cert-name-input{font-family:'Fraunces',serif;font-size:28px;font-weight:500;color:var(--plum);border:none;border-bottom:2px solid var(--gold);padding:8px 16px;text-align:center;background:transparent;margin-bottom:20px;width:100%;max-width:400px;outline:none}
+.cert-name-input::placeholder{color:var(--ink-muted);font-size:20px}
+.cert-skills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+.cert-skill{background:var(--plum-soft);color:var(--plum);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+.cert-date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);margin-top:16px}
+.cert-sign{margin-top:20px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.cert-sign-line{text-align:center}
+.cert-sign-text{font-family:'Fraunces',serif;font-size:16px;font-style:italic;color:var(--ink);border-top:1px solid var(--line-dark);padding-top:6px;margin-top:24px}
+.cert-sign-role{font-size:11px;color:var(--ink-muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+.cert-print-btn{padding:12px 28px;background:var(--gold);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600;margin-top:20px}
+.cert-print-btn:hover{background:var(--gold-soft);color:var(--gold)}
+/* Final CTA */
+.final-cta{background:linear-gradient(135deg,var(--plum) 0%,var(--blue) 100%);border-radius:24px;padding:60px 40px;text-align:center;color:white;margin:60px 0}
+.final-cta h2{font-family:'Fraunces',serif;font-size:40px;font-weight:500;margin-bottom:16px;line-height:1.1}
+.final-cta p{font-size:18px;opacity:.85;max-width:500px;margin:0 auto 32px;line-height:1.5}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.cta-btn{padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;display:inline-block;transition:all .2s}
+.cta-btn-primary{background:var(--gold);color:white}
+.cta-btn-primary:hover{background:#D4982A}
+.cta-btn-secondary{background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.3)}
+.cta-btn-secondary:hover{background:rgba(255,255,255,.25)}
+/* nav */
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:flex-start;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px;max-width:360px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+@media print{
+  .header,.nav-footer,.final-cta,.final-quiz,.cert-print-btn,.cert-name-input{display:none!important}
+  .cert{border-width:2px;page-break-inside:avoid}
+  body{background:white}
+}
+@media(max-width:640px){
+  .hero-stats{gap:20px}.hero-stat-num{font-size:30px}
+  .final-cta{padding:40px 24px}.final-cta h2{font-size:30px}
+  .cert{padding:24px 16px}.cert-title{font-size:24px}
+  .cert-sign{gap:20px}.resources-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:100%"></div></div>
+      <div class="progress-text">100%</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-final">
+  <div class="hero-stars"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🏆 28-dars — Yakuniy</div>
+    <h1>Siz <em>QA Engineer</em> siz!</h1>
+    <p class="hero-subtitle-final">28 ta dars, 200+ soat material, 100+ interaktiv topshiriq. Bu — boshlanish, oxir emas.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">28</div><div class="hero-stat-label">Dars</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">100+</div><div class="hero-stat-label">Interaktiv</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Blok</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">∞</div><div class="hero-stat-label">Imkoniyat</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kurs xulosasi</span>
+  <h2 class="section-title">28 darsda nima o'rgandingiz?</h2>
+  <p class="section-intro">Har blokda muhim bilimlar — ularni eslab qolish uchun qisqa ko'rib chiqamiz.</p>
+
+  <div class="blocks-summary">
+    <div class="block-summary">
+      <div class="block-icon">🎯</div>
+      <div class="block-info">
+        <h4>Blok 1 — QA Asoslari (1-4 dars)</h4>
+        <p>QA nima, nima uchun kerak. SDLC/STLC. Bug nima, Bug Life Cycle. Test Case, Test Plan, Traceability Matrix.</p>
+        <div class="block-tags"><span class="b-tag">Bug</span><span class="b-tag">Test Case</span><span class="b-tag">SDLC</span><span class="b-tag">STLC</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">🔬</div>
+      <div class="block-info">
+        <h4>Blok 2 — Testing Jarayoni (5-11 dars)</h4>
+        <p>Testing turlari (smoke, regression, sanity). Roles. 7 ta Principle. Test Level va Types. Confirmation va Maintenance testing.</p>
+        <div class="block-tags"><span class="b-tag">Smoke</span><span class="b-tag">Regression</span><span class="b-tag">7 Principles</span><span class="b-tag">Test Levels</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">📋</div>
+      <div class="block-info">
+        <h4>Blok 3 — Test Texnikalar (12-14 dars)</h4>
+        <p>Boundary Value Analysis, Equivalence Partitioning. Test Analysis va Design. Test Plan yozish.</p>
+        <div class="block-tags"><span class="b-tag">BVA</span><span class="b-tag">EP</span><span class="b-tag">Test Plan</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">🛠️</div>
+      <div class="block-info">
+        <h4>Blok 4 — Asboblar (15-17 dars)</h4>
+        <p>Jira — bug tracking, Kanban, JQL. TestRail — test management. Postman + API testing, CRUD, Status Codes, JSON.</p>
+        <div class="block-tags"><span class="b-tag">Jira</span><span class="b-tag">TestRail</span><span class="b-tag">Postman</span><span class="b-tag">API</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">🤖</div>
+      <div class="block-info">
+        <h4>Blok 5 — Automation (18-21 dars)</h4>
+        <p>Automation asoslari, Test Pyramid. Selenium WebDriver Python. Playwright auto-wait. POM + Pytest framework.</p>
+        <div class="block-tags"><span class="b-tag">Selenium</span><span class="b-tag">Playwright</span><span class="b-tag">POM</span><span class="b-tag">Pytest</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">⚡</div>
+      <div class="block-info">
+        <h4>Blok 6 — Maxsus Testing (22-23 dars)</h4>
+        <p>Performance Testing JMeter — Load, Stress, Spike, Soak. Mobile Testing Android+iOS, Emulator vs Real.</p>
+        <div class="block-tags"><span class="b-tag">JMeter</span><span class="b-tag">Android</span><span class="b-tag">iOS</span><span class="b-tag">p95</span></div>
+      </div>
+    </div>
+    <div class="block-summary">
+      <div class="block-icon">💼</div>
+      <div class="block-info">
+        <h4>Blok 7 — Karyera (24-28 dars)</h4>
+        <p>Portfolio (GitHub+LinkedIn). CV yozish (ATS, raqamlar). Intervyu (Mock, FAQ). Real loyihada QA (0-3 oy).</p>
+        <div class="block-tags"><span class="b-tag">Portfolio</span><span class="b-tag">CV</span><span class="b-tag">Intervyu</span><span class="b-tag">Ish</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL QUIZ -->
+<div class="final-quiz">
+  <div class="fq-label">⚡ Yakuniy Quiz — 20 savol</div>
+  <p style="color:rgba(255,255,255,.65);font-size:14px;margin-bottom:20px">Kurs davomida o'rganganlarni tekshiramiz. Har savol — asosiy bilim.</p>
+  <div class="fq-progress">
+    <div class="fq-prog-bar"><div class="fq-prog-fill" id="fqProgFill" style="width:0%"></div></div>
+    <div class="fq-prog-text" id="fqProgText">1/20</div>
+  </div>
+  <div id="fqActive">
+    <div class="fq-question" id="fqQ"></div>
+    <div class="fq-options" id="fqOpts"></div>
+    <div class="fq-feedback" id="fqFb"></div>
+    <button class="fq-next" id="fqNext" onclick="fqNext()">Keyingi →</button>
+  </div>
+  <div class="fq-result" id="fqResult">
+    <div class="fq-result-score" id="fqScore"></div>
+    <div class="fq-result-text" id="fqResultText"></div>
+    <button style="margin-top:16px;padding:10px 24px;background:var(--gold);color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600" onclick="fqRestart()">🔄 Qaytadan</button>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <span class="section-label">Keyingi qadamlar</span>
+  <h2 class="section-title">Junior → Middle yo'l xaritasi</h2>
+  <p class="section-intro">Kurs tugadi — lekin o'rganish davom etadi. Har bosqichda nima kerak — aniq maqsadlar.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-phase junior">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-title">🟦 Junior QA Engineer</div>
+        <div class="roadmap-phase-time">Hozir — siz!</div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:12px">Bu kursni tugatib, Junior darajasiga tayyorsiz. Quyidagi ko'nikmalar sizda bor:</p>
+      <div class="roadmap-skills">
+        <span class="r-skill done">✅ Manual Testing</span>
+        <span class="r-skill done">✅ Bug Reporting</span>
+        <span class="r-skill done">✅ Test Case</span>
+        <span class="r-skill done">✅ API Testing</span>
+        <span class="r-skill done">✅ Jira & TestRail</span>
+        <span class="r-skill done">✅ Selenium asoslari</span>
+        <span class="r-skill done">✅ Playwright asoslari</span>
+        <span class="r-skill done">✅ Portfolio & CV</span>
+        <span class="r-skill done">✅ ISTQB bilimi</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:8px 0;font-size:24px;color:var(--ink-muted)">↓ 6-18 oy ish tajribasi</div>
+
+    <div class="roadmap-phase middle">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-title">🟩 Middle QA Engineer</div>
+        <div class="roadmap-phase-time">1-2 yil</div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:12px">Middle darajasiga o'tish uchun qo'shimcha ko'nikmalar:</p>
+      <div class="roadmap-skills">
+        <span class="r-skill next">→ Automation Framework (mustaqil)</span>
+        <span class="r-skill next">→ CI/CD (Jenkins, GitHub Actions)</span>
+        <span class="r-skill next">→ SQL chuqurroq</span>
+        <span class="r-skill next">→ ISTQB CTFL sertifikat</span>
+        <span class="r-skill next">→ Test strategiyasi</span>
+        <span class="r-skill next">→ Junior'larga mentor</span>
+        <span class="r-skill next">→ Performance optimallashtirish</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:8px 0;font-size:24px;color:var(--ink-muted)">↓ 3-5 yil ish tajribasi</div>
+
+    <div class="roadmap-phase senior">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-title">🟨 Senior QA / QA Lead</div>
+        <div class="roadmap-phase-time">3-5 yil</div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:12px">Uzoq muddatli maqsad:</p>
+      <div class="roadmap-skills">
+        <span class="r-skill future">○ Test strategiyasini belgilash</span>
+        <span class="r-skill future">○ Jamoa boshqarish</span>
+        <span class="r-skill future">○ QA jarayonlarini yaratish</span>
+        <span class="r-skill future">○ Yuqori texnik bilim</span>
+        <span class="r-skill future">○ Biznes tushunish</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Eng muhim qadam — 1-ish topish</div>
+    <p>Junior'dan Middle'ga yo'l uzun ko'rinadi. Lekin eng muhim qadam — <strong>birinchi ishni topish</strong>. Real loyihada 6 oy ishlash — kursdan ko'ra ko'p narsani o'rgatadi. Boshlang!</p>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="section" id="resources">
+  <span class="section-label">Keyingi o'rganish</span>
+  <h2 class="section-title">Foydali resurslar</h2>
+  <p class="section-intro">QA sohasida davom etish uchun eng yaxshi bepul resurslar.</p>
+
+  <div class="resources-grid">
+    <a href="https://www.istqb.org" target="_blank" class="resource-card">
+      <span class="resource-icon">📜</span>
+      <h4>ISTQB</h4>
+      <p>Xalqaro QA sertifikati. CTFL — Junior uchun eng muhim.</p>
+      <span class="resource-free">Muhim</span>
+    </a>
+    <a href="https://playwright.dev/python/docs/intro" target="_blank" class="resource-card">
+      <span class="resource-icon">🎭</span>
+      <h4>Playwright Docs</h4>
+      <p>Rasmiy hujjatlar. Python uchun to'liq qo'llanma.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+    <a href="https://selenium-python.readthedocs.io" target="_blank" class="resource-card">
+      <span class="resource-icon">🌐</span>
+      <h4>Selenium Python</h4>
+      <p>Rasmiy Selenium Python hujjatlari.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+    <a href="https://jmeter.apache.org/usermanual/index.html" target="_blank" class="resource-card">
+      <span class="resource-icon">⚗️</span>
+      <h4>JMeter Docs</h4>
+      <p>Performance testing bo'yicha to'liq qo'llanma.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+    <a href="https://www.ministryoftesting.com" target="_blank" class="resource-card">
+      <span class="resource-icon">🏫</span>
+      <h4>Ministry of Testing</h4>
+      <p>QA community. Maqolalar, kurslar, forum.</p>
+      <span class="resource-free">Ko'p bepul</span>
+    </a>
+    <a href="https://testautomationu.applitools.com" target="_blank" class="resource-card">
+      <span class="resource-icon">🤖</span>
+      <h4>Test Automation U</h4>
+      <p>Applitools'dan bepul automation kurslar.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+    <a href="https://reqres.in" target="_blank" class="resource-card">
+      <span class="resource-icon">📨</span>
+      <h4>Reqres.in</h4>
+      <p>API testing uchun bepul test server.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+    <a href="https://owasp.org/www-project-juice-shop/" target="_blank" class="resource-card">
+      <span class="resource-icon">🛡️</span>
+      <h4>OWASP Juice Shop</h4>
+      <p>Security testing o'rganish uchun qasdan zaif ilova.</p>
+      <span class="resource-free">Bepul</span>
+    </a>
+  </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section class="section" id="certificate">
+  <span class="section-label">🎓 Sertifikat</span>
+  <h2 class="section-title">Kurs sertifikatingiz</h2>
+  <p class="section-intro">Ismingizni kiriting va sertifikatingizni chop eting. LinkedIn'ga qo'shing!</p>
+
+  <div class="cert-wrap">
+    <div class="cert">
+      <div class="cert-inner">
+        <div class="cert-header">QA Academy — O'zbekiston</div>
+        <div class="cert-title">Kurs Sertifikati</div>
+        <div class="cert-sub">Quyidagi shaxs QA Academy kursini muvaffaqiyatli tamomladi</div>
+        <div style="margin:16px 0">
+          <input class="cert-name-input" id="certName" type="text" placeholder="Ismingizni kiriting..." oninput="updateCert()">
+        </div>
+        <div style="font-family:'Fraunces',serif;font-size:16px;color:var(--ink-soft);margin-bottom:12px">
+          <strong>QA Engineering asoslari</strong> — 28 ta dars, 200+ soat
+        </div>
+        <div class="cert-skills">
+          <span class="cert-skill">Manual Testing</span>
+          <span class="cert-skill">API Testing</span>
+          <span class="cert-skill">Selenium WebDriver</span>
+          <span class="cert-skill">Playwright</span>
+          <span class="cert-skill">Postman</span>
+          <span class="cert-skill">Jira & TestRail</span>
+          <span class="cert-skill">Performance Testing</span>
+          <span class="cert-skill">Mobile Testing</span>
+        </div>
+        <div class="cert-sign">
+          <div class="cert-sign-line">
+            <div class="cert-sign-text">Mirzobek Khaitov</div>
+            <div class="cert-sign-role">Kurs yaratuvchisi</div>
+          </div>
+          <div class="cert-sign-line">
+            <div class="cert-sign-text">QA Academy</div>
+            <div class="cert-sign-role">O'zbekiston</div>
+          </div>
+        </div>
+        <div class="cert-date" id="certDate"></div>
+        <button class="cert-print-btn" onclick="printCert()">🖨️ Chop etish / PDF saqlash</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Endi — harakat vaqti!</h2>
+  <p>Bilim oldingiz. Portfolio tayyor. CV yozilgan. Intervyuga tayyorsiz. Keyingi qadam — <strong>ish qidirish</strong>.</p>
+  <div class="cta-actions">
+    <a href="https://www.linkedin.com/jobs/search/?keywords=QA+Engineer+Tashkent" target="_blank" class="cta-btn cta-btn-primary">💼 LinkedIn'da ish izlash</a>
+    <a href="https://hh.uz/search/vacancy?text=QA+engineer" target="_blank" class="cta-btn cta-btn-secondary">🔍 HH.uz</a>
+    <a href="../index.html" class="cta-btn cta-btn-secondary">📚 Darslarga qaytish</a>
+  </div>
+</div>
+
+</div>
+
+<div class="nav-footer">
+  <a href="27-real-project.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>27-dars · Real loyihada QA</div>
+  </a>
+</div>
+<script>
+// Certificate
+function updateCert() {
+  const n = document.getElementById('certName').value || 'Ismingiz';
+}
+function printCert() { window.print(); }
+document.getElementById('certDate').textContent = 'Sana: ' + new Date().toLocaleDateString('uz-UZ', {year:'numeric',month:'long',day:'numeric'});
+
+// FINAL QUIZ DATA
+const fqQuestions = [
+  {q:'Bug nima?', opts:['Faqat dasturda bo\'ladigan sintaksis xato','Kutilgan va haqiqiy xulq-atvor o\'rtasidagi farq','Dasturchi qilgan xato','Test topilmagan narsa'], ans:1, fb:'Bug — Expected vs Actual farqi. Foydalanuvchi nuqtai nazaridan: dastur kutilganidan boshqacha ishlayapti.'},
+  {q:'SDLC va STLC farqi?', opts:['Ikkalasi bir xil','SDLC — dasturlash, STLC — testing jarayoni','SDLC — barcha rivojlantirish tsikli, STLC — testing tsikli','STLC SDLC ichida bo\'lmaydi'], ans:2, fb:'SDLC — butun dasturlash jarayoni. STLC — faqat testing bosqichlari (talablardan yopishgacha). STLC SDLC ichida.'},
+  {q:'Smoke Testing nima?', opts:['Barcha funksiyalarni chuqur test qilish','Yangi build\'ning asosiy funksiyalari ishlayaptimi — tez tekshirish','Faqat security tekshirish','O\'chirilgan bug\'ni qayta tekshirish'], ans:1, fb:'Smoke — "Bu build umuman ishlayaptimi?" degan savol. Tez, sayoz. Keng qamrov, lekin sayoz.'},
+  {q:'Severity va Priority — qaysi biri biznes muhimligini ko\'rsatadi?', opts:['Severity','Priority','Ikkalasi ham','Hech biri'], ans:1, fb:'Priority — biznes muhimligi (qachon tuzatish kerak). Severity — texnik ta\'sir. Sarlavhadagi imlo: Severity Low, Priority High.'},
+  {q:'Boundary Value Analysis — test qilinadigan qiymatlar?', opts:['Faqat o\'rta qiymatlar','Faqat chegaradagi qiymatlar','Chegaralar va chegaradan ±1 qiymatlar','Tasodifiy qiymatlar'], ans:2, fb:'BVA: chegaradagi qiymatlar (18, 65) va ulardan 1 kam/ko\'p (17, 66, 19, 64). Chegarada ko\'proq bug bo\'ladi.'},
+  {q:'HTTP GET va POST asosiy farqi?', opts:['GET tezroq, POST sekinroq','GET ma\'lumot olish (URL\'da ko\'rinadi), POST ma\'lumot yuborish (body\'da)','Farqi yo\'q, ikkalasi ham bir xil','GET faqat login uchun'], ans:1, fb:'GET — Read (o\'qish), URL\'da parametrlar ko\'rinadi. POST — Create (yaratish), ma\'lumotlar body\'da yuboriladi, URL\'da ko\'rinmaydi.'},
+  {q:'HTTP 401 va 403 farqi?', opts:['Ikkalasi ham server xatosi','401 — autentifikatsiya yo\'q; 403 — ruxsat yo\'q (autentifikatsiya bor)','401 — ruxsat yo\'q; 403 — server xatosi','Farqi yo\'q'], ans:1, fb:'401 Unauthorized — login qilmagan, token yo\'q. 403 Forbidden — login bor, lekin bu sahifaga ruxsat yo\'q.'},
+  {q:'Test Pyramid\'da eng ko\'p qism qaysi?', opts:['UI/E2E testlar — 70%','API testlar — 50%','Unit testlar — 70%','Manual testlar — 80%'], ans:2, fb:'Test Pyramid: Unit 70%, API 20%, UI/E2E 10%. Unit testlar eng tez va ko\'p. UI testlar qimmat va kam bo\'lishi kerak.'},
+  {q:'Page Object Model (POM) nima?', opts:['Playwright\'ning maxsus funksiyasi','Har sahifa uchun alohida Python class — locatorlar va metodlar shu yerda','Pytest\'ning bir qismi','Bug hujjatlash usuli'], ans:1, fb:'POM — har sahifa uchun alohida class. LoginPage, ProductPage. Locator o\'zgansa — faqat 1 joyda o\'zgartirish. Test kodi toza.'},
+  {q:'Playwright\'ning Selenium\'dan asosiy afzalligi?', opts:['Bepuллиги','Auto-wait — element tayyor bo\'lgunicha o\'zi kutadi','Ko\'p til qo\'llab-quvvatlash','Eski brauzer qo\'llab-quvvatlash'], ans:1, fb:'Playwright\'ning asosiy farqi — Auto-wait. Har buyruqdan oldin element tayyor ekanligini o\'zi tekshiradi. Selenium\'da WebDriverWait yozish kerak edi.'},
+  {q:'JMeter\'da Thread Group nima?', opts:['Test natijalari ko\'rsatuvchi grafik','Virtual foydalanuvchilar guruhi','HTTP so\'rov sozlamalari','Test rejasi ildiz elementi'], ans:1, fb:'Thread Group — virtual foydalanuvchilar guruhi. 100 thread = 100 foydalanuvchi. Number of Threads, Ramp-Up, Loop Count sozlanadi.'},
+  {q:'p95 = 1.8s degani?', opts:['Barcha so\'rovlar 1.8 sekunddan tez','100 so\'rovdan 95 tasi 1.8 sekunddan tez, 5 tasi sekinroq','O\'rtacha vaqt 1.8 sekund','Server 95% vaqt ishlaydi'], ans:1, fb:'p95 — percentile. 95 ta so\'rov shu vaqtdan tez. O\'rtacha aldaydi — p95/p99 haqiqiy holat.'},
+  {q:'Android Emulator vs Real qurilma — GPS test uchun qaysi?', opts:['Emulator — arzon va qulay','Real qurilma — GPS sensor haqiqiy','Ikkalasi ham bir xil','GPS test qilish shart emas'], ans:1, fb:'GPS, kamera, barmoq izi kabi sensorlar uchun — real qurilma kerak. Emulator sensorlarni to\'liq simulyatsiya qila olmaydi.'},
+  {q:'CV\'da ATS nima?', opts:['CV formati','Applicant Tracking System — CV\'larni avtomatik saralovchi dastur','LinkedIn\'ning bir qismi','Intervyu baholash tizimi'], ans:1, fb:'ATS — ko\'p kompaniyalar ishlatadigan dastur. Kalit so\'zlar bo\'lmasa CV recruiterga yetmaydi. Shuning uchun Skills bo\'limida QA kalit so\'zlari muhim.'},
+  {q:'Daily Standup\'da nima deyiladi?', opts:['Faqat ish haqida gap','Kecha / Bugun / To\'siq — 3 ta qism','Faqat muammolar','Kecha qilgan ishlar batafsil'],ans:1,fb:'Standup formula: Kecha nima qildim + Bugun nima qilaman + To\'siq bormi? Qisqa va aniq — 15 daqiqa jamoa uchun.'},
+  {q:'Bug report\'da eng muhim qism?', opts:['Title','Steps to Reproduce (qadam-baqadam)','Severity','Tarikh'], ans:1, fb:'Steps to Reproduce — bu eng muhim. Dasturchi bug\'ni takrorlolmasa tuzata olmaydi. Aniq qadam-baqadam — professional bug report belgisi.'},
+  {q:'Regression testing qachon qilinadi?', opts:['Faqat birinchi release oldidan','Har yangi o\'zgartirish eski funksiyalarni buzmadimi deb tekshirish uchun','Faqat performance muammosi bo\'lganda','Har kuni ertalab'], ans:1, fb:'Regression — har yangi release oldidan. Yangi kod eski funksiyalarni buzmadimikin? Automation bilan ideal — tez va ishonchli.'},
+  {q:'Selenium IDE vs WebDriver farqi?', opts:['Ikkalasi bir xil','IDE — kodsiz Record/Play; WebDriver — kod yozish kerak, kuchli','IDE kuchliroq','WebDriver bepul emas'], ans:1, fb:'Selenium IDE — brauzer extension, Record/Play, kodsiz. Boshlovchilar uchun. WebDriver — real kod (Python/Java), kuchli, professional.'},
+  {q:'Portfolioda eng muhim narsa qaysi?', opts:['Ko\'p skill yozish','GitHub va LinkedIn bo\'sh bo\'lsa ham havola berish','Konkret loyihalar + raqamlar (50+ test case, 20+ bug)','Sertifikatlar soni'], ans:2, fb:'Portfolio = Ko\'rsatish. Raqamlar: "50+ test case", "15 ta Playwright testi — 100% PASSED". Bo\'sh GitHub emas — README bilan to\'liq loyihalar.'},
+  {q:'Junior QA\'ning asosiy vazifasi?', opts:['Mustaqil test strategiyasi yaratish','Test case yozish, bug topish va hujjatlash, QA Lead rahbarligida ishlash','Jamoa boshqarish','CI/CD pipeline yaratish'], ans:1, fb:'Junior QA: test case yozish, bug hujjatlash, manual test bajarish, QA Lead yo\'riqnomasi bilan. Mustaqil qarorlar — Middle darajasida.'}
+];
+
+let fqIdx = 0, fqScore = 0;
+function fqRender() {
+  const q = fqQuestions[fqIdx];
+  document.getElementById('fqQ').textContent = q.q;
+  document.getElementById('fqProgFill').style.width = (fqIdx/fqQuestions.length*100)+'%';
+  document.getElementById('fqProgText').textContent = `${fqIdx+1}/20`;
+  document.getElementById('fqFb').className = 'fq-feedback';
+  document.getElementById('fqFb').textContent = '';
+  document.getElementById('fqNext').className = 'fq-next';
+  const opts = document.getElementById('fqOpts');
+  opts.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.opts.forEach((o,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'fq-opt';
+    btn.innerHTML = `<span class="fq-marker">${letters[i]}</span>${o}`;
+    btn.onclick = () => fqAnswer(i, q.ans, q.fb);
+    opts.appendChild(btn);
+  });
+}
+function fqAnswer(chosen, correct, fb) {
+  document.querySelectorAll('.fq-opt').forEach((b,i) => {
+    b.classList.add('fq-disabled');
+    if(i===correct) b.classList.add('fq-correct');
+  });
+  if(chosen!==correct) document.querySelectorAll('.fq-opt')[chosen].classList.add('fq-wrong');
+  if(chosen===correct) fqScore++;
+  const fbEl = document.getElementById('fqFb');
+  fbEl.textContent = fb;
+  fbEl.className = 'fq-feedback show ' + (chosen===correct?'c':'w');
+  document.getElementById('fqNext').className = 'fq-next show';
+}
+function fqNext() {
+  fqIdx++;
+  if(fqIdx>=fqQuestions.length) {
+    document.getElementById('fqActive').style.display='none';
+    const pct = Math.round(fqScore/fqQuestions.length*100);
+    document.getElementById('fqScore').textContent = `${fqScore}/20`;
+    document.getElementById('fqResultText').textContent = pct>=80 ? '🏆 Ajoyib! Kursni a\'lo o\'zlashtirdingiz.' : pct>=60 ? '✅ Yaxshi natija! Kuchsiz joylarni takrorlang.' : '📚 Ko\'proq takrorlash kerak. Takror darslarni o\'ting.';
+    document.getElementById('fqResult').classList.add('show');
+  } else { fqRender(); }
+}
+function fqRestart() {
+  fqIdx=0; fqScore=0;
+  document.getElementById('fqActive').style.display='block';
+  document.getElementById('fqResult').classList.remove('show');
+  fqRender();
+}
+fqRender();
+</script>
+</body>
+</html>

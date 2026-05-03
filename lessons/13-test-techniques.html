@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13-dars: Test Case texnikalari (chuqur) | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* PARTITIONS VISUAL */
+.partitions-visual { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px 24px; margin: 24px 0; }
+.partition-line { position: relative; height: 60px; background: var(--bg-soft); border-radius: 12px; margin: 20px 0; overflow: hidden; }
+.partition-segment { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: white; padding: 0 14px; }
+.partition-segment.invalid-low { background: var(--accent); left: 0; width: 25%; }
+.partition-segment.valid { background: var(--forest); left: 25%; width: 50%; }
+.partition-segment.invalid-high { background: var(--accent); right: 0; width: 25%; }
+.partition-marks { display: flex; justify-content: space-between; margin-top: 8px; padding: 0 5%; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); }
+.partition-marks span { padding: 4px 10px; background: var(--bg-soft); border-radius: 6px; }
+.partition-arrow { display: flex; justify-content: space-around; margin-top: 16px; }
+.partition-arrow-item { text-align: center; flex: 1; }
+.partition-arrow-icon { font-size: 24px; }
+.partition-arrow-text { font-size: 12px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
+
+/* BOUNDARY VISUAL */
+.boundary-visual { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px 24px; margin: 24px 0; }
+.boundary-numbers { display: flex; justify-content: center; align-items: flex-end; gap: 6px; margin: 24px 0; flex-wrap: wrap; }
+.boundary-num { padding: 16px 14px; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 16px; min-width: 50px; text-align: center; transition: transform 0.2s; cursor: pointer; }
+.boundary-num:hover { transform: translateY(-3px); }
+.boundary-num.invalid { background: var(--accent-soft); color: var(--accent-dark); border: 2px solid var(--accent); }
+.boundary-num.boundary { background: var(--gold-soft); color: var(--gold); border: 3px solid var(--gold); transform: scale(1.1); }
+.boundary-num.valid { background: var(--forest-soft); color: var(--forest); border: 2px solid var(--forest); }
+.boundary-num.dots { background: transparent; border: none; cursor: default; color: var(--ink-muted); }
+.boundary-labels { display: flex; justify-content: center; gap: 20px; margin-top: 16px; font-size: 13px; flex-wrap: wrap; }
+.boundary-label-item { display: flex; align-items: center; gap: 6px; }
+.boundary-label-dot { width: 14px; height: 14px; border-radius: 50%; }
+.boundary-label-dot.invalid { background: var(--accent); }
+.boundary-label-dot.boundary { background: var(--gold); }
+.boundary-label-dot.valid { background: var(--forest); }
+
+/* DECISION TABLE BUILDER */
+.dt-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dt-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.dt-control { padding: 8px 16px; background: var(--bg-soft); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 13px; transition: all 0.2s; }
+.dt-control:hover { border-color: var(--plum); }
+.dt-control.active { background: var(--plum); color: white; border-color: var(--plum); }
+.dt-table-wrapper { overflow-x: auto; margin: 16px 0; }
+.dt-table { width: 100%; min-width: 500px; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.dt-table th { padding: 12px; background: var(--plum-soft); color: var(--plum); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; border: 1px solid var(--line); }
+.dt-table th:first-child { background: var(--bg-soft); color: var(--ink); text-align: left; }
+.dt-table td { padding: 12px; text-align: center; border: 1px solid var(--line); font-size: 14px; }
+.dt-table td:first-child { background: var(--bg-soft); font-weight: 500; text-align: left; }
+.dt-table .yes { color: var(--forest); font-weight: 600; }
+.dt-table .no { color: var(--accent); font-weight: 600; }
+.dt-table .result-yes { background: var(--forest-soft); color: var(--forest); font-weight: 600; }
+.dt-table .result-no { background: var(--accent-soft); color: var(--accent-dark); font-weight: 600; }
+.dt-explanation { padding: 14px 18px; background: var(--gold-soft); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); margin-top: 16px; }
+.dt-explanation strong { color: var(--gold); }
+
+/* PRACTICE STEPS */
+.steps-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 14px; }
+.steps-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.steps-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-weight: 600; color: white; background: var(--plum); flex-shrink: 0; }
+.steps-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; }
+.steps-content { padding: 14px; background: var(--bg-soft); border-radius: 10px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+
+/* TC TABLE */
+.tc-table { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 20px 0; }
+.tc-table table { width: 100%; border-collapse: collapse; }
+.tc-table th { padding: 12px 14px; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); font-weight: 600; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.tc-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); vertical-align: top; }
+.tc-table tr:last-child td { border-bottom: none; }
+.tc-table .tc-id { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+.tc-table .tc-valid { color: var(--forest); font-weight: 500; }
+.tc-table .tc-invalid { color: var(--accent); font-weight: 500; }
+.tc-table .tc-boundary { color: var(--gold); font-weight: 500; }
+
+/* TEST CASE BUILDER */
+.tc-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.tc-builder h3 { margin-top: 0; }
+.tc-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.tc-field { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; }
+.tc-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; }
+.tc-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; }
+.tc-input:focus { outline: none; border-color: var(--plum); }
+.tc-textarea { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; min-height: 60px; resize: vertical; }
+.tc-textarea:focus { outline: none; border-color: var(--plum); }
+.tc-preview-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; margin-top: 16px; transition: all 0.2s; }
+.tc-preview-btn:hover { background: var(--plum-soft); color: var(--plum); transform: translateY(-2px); }
+.tc-preview { background: var(--forest-soft); border: 2px solid var(--forest); border-radius: 12px; padding: 20px; margin-top: 16px; display: none; }
+.tc-preview.show { display: block; }
+.tc-preview-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--forest); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }
+.tc-preview-row { display: flex; gap: 8px; margin-bottom: 8px; font-size: 14px; }
+.tc-preview-key { font-weight: 600; min-width: 110px; color: var(--ink); }
+.tc-preview-value { color: var(--ink-soft); }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-pairs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dnd-pair { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: center; padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.dnd-pair-label { font-weight: 500; font-size: 15px; color: var(--ink); font-family: 'Fraunces', serif; }
+.dnd-slot { min-height: 50px; border: 2px solid var(--line); border-radius: 8px; padding: 10px 14px; background: white; transition: all 0.2s; font-size: 14px; color: var(--ink-muted); display: flex; align-items: center; cursor: pointer; }
+.dnd-slot:hover:not(.filled) { border-color: var(--plum); }
+.dnd-slot.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.dnd-slot.filled { border-style: solid; cursor: default; }
+.dnd-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.dnd-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; user-select: none; max-width: 280px; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.05); }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* CLASSIFIER */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); box-shadow: 0 8px 20px -8px rgba(91,58,122,0.3); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 15px; padding-right: 100px; }
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
+.classifier-bucket { min-height: 80px; padding: 18px 14px; border: 2px solid var(--line); border-radius: 12px; text-align: center; transition: all 0.2s; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); }
+.classifier-bucket-icon { font-size: 22px; margin-bottom: 2px; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1200px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .tc-builder, .dt-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .tc-field { grid-template-columns: 1fr; gap: 6px; }
+  .dnd-pair { grid-template-columns: 1fr; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+  .boundary-num { padding: 12px 8px; min-width: 38px; font-size: 14px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">13-dars</div>
+  <h1>Test Case <em>texnikalari</em> — chuqur</h1>
+  <p class="hero-subtitle">Equivalence va Boundary Value chuqur. Decision Table amaliy. Pairwise eslatma. Sodda misollar bilan, bosqichma-bosqich.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Amaliy texnikalar</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Nega texnikalar muhim?</h2>
+  <p class="section-intro">12-darsda 4 ta texnikani tanishtirgan edik. Endi <strong>chuqur o'rganamiz</strong> — chunki bu sizning kundalik ishingiz uchun zarur.</p>
+  <p>Tasavvur qiling: PO sizga vazifa berdi — "Ro'yxatdan o'tish formasini test qiling". Siz qancha test case yozasiz? <strong>1000 ta? 100 ta? 10 ta?</strong></p>
+  <p>To'g'ri javob — <strong>texnikalardan foydalanish</strong>. Ular bilan siz <strong>eng kam test bilan eng ko'p coverage</strong> ga erishasiz. Bu darsdan keyin siz aniq biluvchi bo'lasiz.</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy misol</div>
+    <div class="analogy-title">Sho'rva tatib ko'rish</div>
+    <div class="analogy-text">
+      Onangiz katta qozonda sho'rva pishirayapti. Mazasini bilish uchun butun qozonni ichish kerakmi? <strong>Yo'q</strong> — bitta qoshiq yetadi! Texnikalar ham xuddi shunday — har "guruh"dan bir-ikkita test bilan butun tizim sifati aniqlanadi.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: EQUIVALENCE PARTITIONING -->
+<section class="section" id="equivalence">
+  <span class="section-label">1-qism — chuqur</span>
+  <h2 class="section-title">Equivalence Partitioning</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Eslatma</div>
+    <p><strong>Equivalence Partitioning</strong> — ma'lumotlarni <strong>guruhlarga</strong> bo'lish va har guruhdan <strong>1 ta</strong> qiymat bilan test qilish.</p>
+    <p><em>Asosiy g'oya:</em> Bir guruhdagi ma'lumotlar bir xil natija beradi.</p>
+  </div>
+
+  <h3>Vizual: yosh maydoni (18-65)</h3>
+
+  <div class="partitions-visual">
+    <div style="text-align:center;font-size:14px;color:var(--ink-soft);margin-bottom:8px">Yosh maydoniga kiritiladigan barcha qiymatlar:</div>
+    <div class="partition-line">
+      <div class="partition-segment invalid-low">Yosh (&lt;18)</div>
+      <div class="partition-segment valid">To'g'ri (18-65)</div>
+      <div class="partition-segment invalid-high">Katta (&gt;65)</div>
+    </div>
+    <div class="partition-marks">
+      <span>0</span>
+      <span>17</span>
+      <span>18</span>
+      <span>65</span>
+      <span>66</span>
+      <span>120</span>
+    </div>
+    <div class="partition-arrow">
+      <div class="partition-arrow-item">
+        <div class="partition-arrow-icon" style="color:var(--accent)">❌</div>
+        <div class="partition-arrow-text">1 ta sinash:<br><strong>15</strong></div>
+      </div>
+      <div class="partition-arrow-item">
+        <div class="partition-arrow-icon" style="color:var(--forest)">✅</div>
+        <div class="partition-arrow-text">1 ta sinash:<br><strong>30</strong></div>
+      </div>
+      <div class="partition-arrow-item">
+        <div class="partition-arrow-icon" style="color:var(--accent)">❌</div>
+        <div class="partition-arrow-text">1 ta sinash:<br><strong>70</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Valid va Invalid bo'limlar</h3>
+  <p>Har masaladan kamida <strong>2 turdagi guruh</strong> bo'ladi:</p>
+
+  <ul>
+    <li><strong>Valid (to'g'ri) bo'limlar</strong> — qabul qilinishi kerak bo'lgan qiymatlar. <em>Yashil rang.</em></li>
+    <li><strong>Invalid (noto'g'ri) bo'limlar</strong> — rad etilishi kerak bo'lgan qiymatlar. <em>Qizil rang.</em></li>
+  </ul>
+
+  <div class="example-box">
+    <div class="example-box-title">Murakkabroq misol: Email maydoni</div>
+    <p style="margin-bottom:8px"><strong>Talab:</strong> "Email format <code>name@domain.com</code> ko'rinishida bo'lishi kerak"</p>
+    <p style="margin-bottom:8px"><strong>Bo'limlar:</strong></p>
+    <ul style="margin:0">
+      <li>✅ <strong>Valid:</strong> <code>test@uzum.uz</code></li>
+      <li>❌ <strong>Invalid (@ yo'q):</strong> <code>testuzum.uz</code></li>
+      <li>❌ <strong>Invalid (domen yo'q):</strong> <code>test@</code></li>
+      <li>❌ <strong>Invalid (.com yo'q):</strong> <code>test@uzum</code></li>
+      <li>❌ <strong>Invalid (bo'sh):</strong> <code>[empty]</code></li>
+    </ul>
+    <p style="margin-top:8px;margin-bottom:0"><strong>Natija:</strong> 5 ta guruh = 5 ta test case (faqat har biridan 1 ta misol bilan).</p>
+  </div>
+
+  <h3>Qachon ishlatiladi?</h3>
+  <ul>
+    <li><strong>Sonli maydonlar</strong> — yosh, summa, miqdor</li>
+    <li><strong>Matn maydonlar</strong> — ism, sharh (uzunlik bo'yicha)</li>
+    <li><strong>Format maydonlar</strong> — email, telefon raqami</li>
+    <li><strong>Tanlov ro'yxatlari</strong> — radio button, dropdown</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Qoida</div>
+    <p>Har bir Valid va Invalid bo'limdan <strong>kamida 1 ta</strong> qiymat bilan test qiling. 100 ta o'rniga 5-7 ta yetadi.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: BOUNDARY VALUE -->
+<section class="section" id="boundary">
+  <span class="section-label">2-qism — chuqur</span>
+  <h2 class="section-title">Boundary Value Analysis</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Eslatma</div>
+    <p><strong>Boundary Value Analysis</strong> — <strong>chegara qiymatlari</strong>ni alohida sinash. <strong>80%</strong> bug aynan chegaralarda topiladi!</p>
+    <p><em>Asosiy g'oya:</em> Dasturchilar tez-tez <code>&gt;</code> va <code>&gt;=</code> ni adashtirishadi.</p>
+  </div>
+
+  <h3>2-point va 3-point usullari</h3>
+
+  <h4>📍 2-point usuli (oddiy)</h4>
+  <p>Har chegara uchun <strong>2 ta qiymat</strong>: chegara va undan oldin/keyin.</p>
+
+  <div class="boundary-visual">
+    <div style="text-align:center;font-size:14px;color:var(--ink-soft);margin-bottom:12px">Yosh: 18-65 oralig'i (2-point usuli)</div>
+    <div class="boundary-numbers">
+      <div class="boundary-num invalid">17</div>
+      <div class="boundary-num boundary">18</div>
+      <div class="boundary-num valid">...</div>
+      <div class="boundary-num valid">30</div>
+      <div class="boundary-num valid">...</div>
+      <div class="boundary-num boundary">65</div>
+      <div class="boundary-num invalid">66</div>
+    </div>
+    <div class="boundary-labels">
+      <div class="boundary-label-item"><div class="boundary-label-dot invalid"></div>Invalid</div>
+      <div class="boundary-label-item"><div class="boundary-label-dot boundary"></div>Chegara</div>
+      <div class="boundary-label-item"><div class="boundary-label-dot valid"></div>Valid</div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:var(--bg-soft);border-radius:8px;font-size:13px;text-align:center">
+      <strong>4 ta test:</strong> 17 (oldin), 18 (chegara), 65 (chegara), 66 (keyin)
+    </div>
+  </div>
+
+  <h4>📍 3-point usuli (chuqurroq)</h4>
+  <p>Har chegara uchun <strong>3 ta qiymat</strong>: chegaradan oldin, chegara, chegaradan keyin.</p>
+
+  <div class="boundary-visual">
+    <div style="text-align:center;font-size:14px;color:var(--ink-soft);margin-bottom:12px">Yosh: 18-65 oralig'i (3-point usuli)</div>
+    <div class="boundary-numbers">
+      <div class="boundary-num invalid">17</div>
+      <div class="boundary-num boundary">18</div>
+      <div class="boundary-num valid">19</div>
+      <div class="boundary-num valid">...</div>
+      <div class="boundary-num valid">64</div>
+      <div class="boundary-num boundary">65</div>
+      <div class="boundary-num invalid">66</div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:var(--bg-soft);border-radius:8px;font-size:13px;text-align:center">
+      <strong>6 ta test:</strong> 17, 18, 19, 64, 65, 66 — eng aniq!
+    </div>
+  </div>
+
+  <h3>Off-by-one xato — eng mashhur bug</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">Real misol: Parol uzunligi</div>
+    <p style="margin-bottom:8px"><strong>Talab:</strong> Parol 8 dan 20 belgi orasida bo'lishi kerak</p>
+    <p style="margin-bottom:8px"><strong>Dasturchi yozdi:</strong> <code>if (parol.length &gt; 8)</code></p>
+    <p style="margin-bottom:8px"><strong>Lekin to'g'risi:</strong> <code>if (parol.length &gt;= 8)</code></p>
+    <p style="margin:0;color:var(--accent-dark)"><strong>Bug:</strong> 8 belgili parol qabul qilinmaydi! Off-by-one xato. Boundary Value testi shu bugni topadi.</p>
+  </div>
+
+  <h3>Test Case'lar jadvali (Login formasi)</h3>
+
+  <div class="tc-table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:80px">ID</th>
+          <th>Tavsif</th>
+          <th style="width:100px">Kiritilgan</th>
+          <th style="width:120px">Natija</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tc-id">TC-001</td>
+          <td>Parol chegaradan kichik</td>
+          <td><code>1234567</code> (7)</td>
+          <td class="tc-invalid">❌ Xato</td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC-002</td>
+          <td>Parol pastki chegara</td>
+          <td><code>12345678</code> (8)</td>
+          <td class="tc-valid">✅ Qabul</td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC-003</td>
+          <td>Parol o'rta qiymat</td>
+          <td><code>password</code> (8)</td>
+          <td class="tc-valid">✅ Qabul</td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC-004</td>
+          <td>Parol yuqori chegara</td>
+          <td>20 belgi parol</td>
+          <td class="tc-valid">✅ Qabul</td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC-005</td>
+          <td>Parol chegaradan katta</td>
+          <td>21 belgi parol</td>
+          <td class="tc-invalid">❌ Xato</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Pro maslahat</div>
+    <p>Equivalence + Boundary <strong>birga</strong> ishlatiladi. Equivalence — guruhlar uchun, Boundary — chegaralar uchun. Bu kombinatsiya — eng samarali test strategiyasi!</p>
+  </div>
+</section>
+
+<!-- TEST CASE BUILDER -->
+<div class="tc-builder">
+  <div class="quiz-label">🛠 Amaliy mashq</div>
+  <h3 style="margin-top:8px">Boundary Value bilan Test Case yarating</h3>
+  <p style="font-size:15px;color:var(--ink-soft)">Vazifa: TestShop'da promo kod 6-12 belgili bo'lishi kerak. Sizning Boundary Value test case'ingiz qaysi?</p>
+
+  <div class="tc-fields">
+    <div class="tc-field">
+      <label class="tc-field-label">Test ID</label>
+      <input type="text" class="tc-input" id="tcId" placeholder="TC-001" value="TC-001">
+    </div>
+    <div class="tc-field">
+      <label class="tc-field-label">Sarlavha</label>
+      <input type="text" class="tc-input" id="tcTitle" placeholder="Promo kod chegaradan kichik">
+    </div>
+    <div class="tc-field">
+      <label class="tc-field-label">Test Data</label>
+      <input type="text" class="tc-input" id="tcData" placeholder="Promo: AB123 (5 belgi - chegaradan kichik)">
+    </div>
+    <div class="tc-field">
+      <label class="tc-field-label">Qadamlar</label>
+      <textarea class="tc-textarea" id="tcSteps" placeholder="1. Promo kod maydoniga 5 belgili kod kiritish&#10;2. 'Tasdiqlash' tugmasini bosish"></textarea>
+    </div>
+    <div class="tc-field">
+      <label class="tc-field-label">Kutilgan natija</label>
+      <input type="text" class="tc-input" id="tcExpected" placeholder="Xato xabari: 'Promo kod 6-12 belgi bo'lishi kerak'">
+    </div>
+  </div>
+
+  <button class="tc-preview-btn" onclick="showTestCase()">📋 Test Case'ni ko'rish</button>
+
+  <div class="tc-preview" id="tcPreview">
+    <div class="tc-preview-title">✅ Sizning Test Case'ingiz</div>
+    <div id="tcPreviewContent"></div>
+  </div>
+</div>
+
+<!-- SECTION 3: DECISION TABLE -->
+<section class="section" id="decision">
+  <span class="section-label">3-qism — oraliq</span>
+  <h2 class="section-title">Decision Table — amaliy</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Eslatma</div>
+    <p><strong>Decision Table</strong> — bir nechta shartlar birlashganda har xil natijalar bo'lganda ishlatiladi.</p>
+    <p><em>Asosiy g'oya:</em> Murakkab logikani <strong>jadval ko'rinishida</strong> aniq ko'rsatish.</p>
+  </div>
+
+  <h3>Qanday yaratiladi? — 4 qadam</h3>
+
+  <div class="steps-card">
+    <div class="steps-header">
+      <div class="steps-num">1</div>
+      <div class="steps-title">Shartlarni aniqlang</div>
+    </div>
+    <div class="steps-content">
+      Sayt qachon X qiladi? Hamma <strong>qaror shartlarini</strong> ro'yxatga oling. Misol: VIP foydalanuvchi, savatda 5+ mahsulot, promo kod ishlatilgan.
+    </div>
+  </div>
+
+  <div class="steps-card">
+    <div class="steps-header">
+      <div class="steps-num">2</div>
+      <div class="steps-title">Kombinatsiyalarni hisoblang</div>
+    </div>
+    <div class="steps-content">
+      Har shart uchun Ha/Yo'q (2 holat). Agar 3 shart bor bo'lsa: <code>2 × 2 × 2 = 8 kombinatsiya</code>. Har biri alohida test.
+    </div>
+  </div>
+
+  <div class="steps-card">
+    <div class="steps-header">
+      <div class="steps-num">3</div>
+      <div class="steps-title">Jadval tuzing</div>
+    </div>
+    <div class="steps-content">
+      Har ustun = bir kombinatsiya. Har qator = bitta shart yoki natija. Ha/Yo'q yoki ✅/❌ belgilarini ishlating.
+    </div>
+  </div>
+
+  <div class="steps-card">
+    <div class="steps-header">
+      <div class="steps-num">4</div>
+      <div class="steps-title">Test case'larga aylantiring</div>
+    </div>
+    <div class="steps-content">
+      Har ustun = 1 ta test case. Misol: TC-001 = "VIP + 5+ mahsulot + promo kod" → 25% chegirma.
+    </div>
+  </div>
+
+  <h3>Real misol: TestShop chegirma logikasi</h3>
+
+  <div class="dt-builder">
+    <div class="dt-controls">
+      <span style="font-weight:500;font-size:14px">Shartlar:</span>
+      <span class="dt-control active">VIP</span>
+      <span class="dt-control active">5+ mahsulot</span>
+      <span class="dt-control active">Promo kod</span>
+    </div>
+
+    <div class="dt-table-wrapper">
+      <table class="dt-table">
+        <tr>
+          <th>Shart / Natija</th>
+          <th>TC1</th>
+          <th>TC2</th>
+          <th>TC3</th>
+          <th>TC4</th>
+          <th>TC5</th>
+          <th>TC6</th>
+          <th>TC7</th>
+          <th>TC8</th>
+        </tr>
+        <tr>
+          <td>VIP</td>
+          <td class="yes">Ha</td>
+          <td class="yes">Ha</td>
+          <td class="yes">Ha</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="no">Yo'q</td>
+          <td class="no">Yo'q</td>
+          <td class="no">Yo'q</td>
+        </tr>
+        <tr>
+          <td>5+ mahsulot</td>
+          <td class="yes">Ha</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="no">Yo'q</td>
+          <td class="yes">Ha</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="no">Yo'q</td>
+        </tr>
+        <tr>
+          <td>Promo kod</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+          <td class="yes">Ha</td>
+          <td class="no">Yo'q</td>
+        </tr>
+        <tr>
+          <td><strong>Chegirma</strong></td>
+          <td class="result-yes">25%</td>
+          <td class="result-yes">15%</td>
+          <td class="result-yes">20%</td>
+          <td class="result-yes">10%</td>
+          <td class="result-yes">15%</td>
+          <td class="result-yes">5%</td>
+          <td class="result-yes">10%</td>
+          <td class="result-no">0%</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="dt-explanation">
+      <strong>💡 Tushuntirish:</strong> 3 shart × 2 holat = <strong>8 ta test case</strong>. Har biri bitta kombinatsiyani sinaydi. Bu jadval bilan biror holat o'tkazib yuborilmaydi — Murakkab biznes logikasini sinash uchun ideal!
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Qachon ishlatiladi?</div>
+    <p>Decision Table — biznes qoidalari murakkab bo'lganda. To'lov tizimlari, chegirma logikasi, foydalanuvchi ruxsatlari uchun.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: PAIRWISE -->
+<section class="section" id="pairwise">
+  <span class="section-label">4-qism — qisqacha</span>
+  <h2 class="section-title">Pairwise Testing (eslatma)</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Pairwise Testing</strong> — ko'p variantli kombinatsiyalarni <strong>aqilli kamaytirish</strong> texnikasi. Senior darajasi.</p>
+    <p><em>Asosiy g'oya:</em> Bug'larning aksariyati <strong>2 parametrning kombinatsiyasidan</strong> kelib chiqadi, hammasi emas.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">Sodda misol</div>
+    <p style="margin-bottom:8px"><strong>Vaziyat:</strong> 4 ta brauzer × 3 ta OS × 2 ta til = <strong>24 ta kombinatsiya</strong></p>
+    <p style="margin-bottom:8px"><strong>To'liq test:</strong> 24 ta test case</p>
+    <p style="margin-bottom:8px"><strong>Pairwise Testing:</strong> faqat <strong>12 ta test case</strong> — lekin har 2 parametr juftligi qoplanadi</p>
+    <p style="margin:0;color:var(--forest)"><strong>Natija:</strong> 50% kam test, lekin 95%+ bug topish darajasi.</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun</div>
+    <p>Hozir bu texnikani amalda ishlatish shart emas. Faqat <strong>atamani biling</strong> — intervyuda so'ralsa: "Ko'p variantli testlarni aqlli kamaytirish texnikasi" deb ayta olasiz. Maxsus asboblar bor: <code>PICT</code>, <code>Hexawise</code>.</p>
+  </div>
+</section>
+
+<!-- MATCHING -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Texnika va misolni bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har misol qaysi texnika bilan bog'liq?</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Misol</h4>
+      <div class="match-item" data-side="left" data-pair="ep">Yosh: 15, 30, 70 (3 ta guruh)</div>
+      <div class="match-item" data-side="left" data-pair="bv">Parol: 7, 8, 20, 21 belgi</div>
+      <div class="match-item" data-side="left" data-pair="dt">VIP + Promo + 5+ mahsulot = 8 holat</div>
+      <div class="match-item" data-side="left" data-pair="pw">12 brauzer × 5 OS = 12 ta test (60 emas)</div>
+      <div class="match-item" data-side="left" data-pair="ep2">Email format: 1 ta valid + 4 ta invalid</div>
+    </div>
+    <div class="matching-column">
+      <h4>Texnika</h4>
+      <div class="match-item" data-side="right" data-pair="dt">Decision Table</div>
+      <div class="match-item" data-side="right" data-pair="ep">Equivalence Partitioning</div>
+      <div class="match-item" data-side="right" data-pair="pw">Pairwise Testing</div>
+      <div class="match-item" data-side="right" data-pair="bv">Boundary Value Analysis</div>
+      <div class="match-item" data-side="right" data-pair="ep2">Equivalence Partitioning</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- DND -->
+<div class="dnd-game" id="techGame">
+  <div class="quiz-label">🎯 Tartibga qo'ying</div>
+  <h3 style="margin-top:8px">Test Case ni texnika bilan bog'lang</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Pastdagi test case'ni bosing. <strong>2-qadam:</strong> Mos texnikani tanlang.</p>
+
+  <div class="dnd-hint" id="techHint">👆 Endi to'g'ri texnikani tanlang</div>
+
+  <div class="dnd-pairs">
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">📊 Equivalence</div>
+      <div class="dnd-slot" data-tech="ep">Test case'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">📍 Boundary</div>
+      <div class="dnd-slot" data-tech="bv">Test case'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">📋 Decision Table</div>
+      <div class="dnd-slot" data-tech="dt">Test case'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">🔀 Pairwise</div>
+      <div class="dnd-slot" data-tech="pw">Test case'ni qo'ying</div>
+    </div>
+  </div>
+
+  <div class="dnd-items-pool" id="techPool">
+    <div class="dnd-item" data-tech="bv">Yosh: 17, 18, 65, 66 sinash</div>
+    <div class="dnd-item" data-tech="ep">Email: 5 turdagi format sinash</div>
+    <div class="dnd-item" data-tech="pw">3 brauzer × 4 OS dan kam test bilan</div>
+    <div class="dnd-item" data-tech="dt">VIP + Hudud + Mahsulot turi → narx</div>
+  </div>
+
+  <div class="dnd-score" id="techScore">0 / 4 to'g'ri</div>
+</div>
+
+<!-- CLASSIFIER -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Classifier</div>
+  <h3 style="margin-top:8px">Bug qaysi texnika orqali topildi?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Bug holatini bosing. <strong>2-qadam:</strong> Qaysi texnika topganini tanlang.</p>
+
+  <div class="dnd-hint" id="classifierHint">👆 Endi pastdagi texnika tugmalaridan birini tanlang</div>
+
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="bv">
+      <div class="classifier-card-title">Parol 8 belgili — qabul qilinmadi (lekin 9 belgili qabul qilinadi)</div>
+      <div class="classifier-card-desc">Off-by-one xato chegarada.</div>
+    </div>
+    <div class="classifier-card" data-category="ep">
+      <div class="classifier-card-title">Email <code>test@uzum</code> formatida — qabul qilindi</div>
+      <div class="classifier-card-desc">Invalid format guruhi to'g'ri ishlamayapti.</div>
+    </div>
+    <div class="classifier-card" data-category="dt">
+      <div class="classifier-card-title">VIP + 10+ mahsulot bo'lsa chegirma 30% emas, 25% beriladi</div>
+      <div class="classifier-card-desc">Murakkab shartlar kombinatsiyasida xato.</div>
+    </div>
+    <div class="classifier-card" data-category="bv">
+      <div class="classifier-card-title">Yosh 17 — qabul qilindi (talab: 18+)</div>
+      <div class="classifier-card-desc">Chegara qiymatida xato.</div>
+    </div>
+    <div class="classifier-card" data-category="ep">
+      <div class="classifier-card-title">Telefon raqami harflar bilan — sayt qabul qildi</div>
+      <div class="classifier-card-desc">Invalid guruh tekshirilmagan.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="ep">
+      <div class="classifier-bucket-icon">📊</div>
+      <div class="classifier-bucket-label" style="color:var(--blue)">Equivalence</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="bv">
+      <div class="classifier-bucket-icon">📍</div>
+      <div class="classifier-bucket-label" style="color:var(--gold)">Boundary</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="dt">
+      <div class="classifier-bucket-icon">📋</div>
+      <div class="classifier-bucket-label" style="color:var(--plum)">Decision</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click yangi vazifa</div>
+
+  <div class="scenario-story">
+    <p><strong>Dushanba, 10:00.</strong> Click jamoasidan PO sizga keldi. "Yangi feature: <strong>Pul o'tkazish limiti</strong>".</p>
+    <p><strong>Talablar:</strong></p>
+    <ul style="margin:8px 0">
+      <li>Bir martalik o'tkazma: 1,000 - 50,000,000 so'm</li>
+      <li>Kunlik limit: 100,000,000 so'm</li>
+      <li>Oylik limit: 500,000,000 so'm</li>
+    </ul>
+    <p><strong>Sizdagi vaqt:</strong> 1 soat. Qaysi texnika bilan boshlaysiz?</p>
+  </div>
+
+  <div class="scenario-question">Eng samarali yondashuv qaysi?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Har summa uchun alohida test yozaman: 1000, 1001, 1002... (1000+ test case)</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Boundary Value Analysis: 999, 1000, 50000000, 50000001 (4 ta chegara) + Equivalence: 25 mln (valid), 60 mln (invalid). Jami 6-8 ta test case yetadi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Faqat 1 ta test: 25 mln so'm jo'natish — agar ishlasa, hammasi yaxshi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Login formada parol 8-20 belgi bo'lishi kerak. Boundary Value 2-point usuli bilan necha test kerak?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>2 ta test: 8 va 20 belgi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>4 ta test: 7, 8, 20, 21 belgi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>13 ta test: har uzunlik uchun (8, 9, 10... 20)</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop'da texnikalarni qo'llang</h2>
+  <p class="section-intro">Endi nazariyani amaliyotda sinab ko'ramiz. 3 ta vazifa — har biri boshqa texnika.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Texnikalar amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Real loyihada ishlatadigan ko'nikmalarni rivojlantiring.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning 3 ta vazifangiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Equivalence Partitioning: Email maydoni</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop register sahifasidagi email maydoni uchun 5-7 ta guruh aniqlang (valid + invalid). Har biri uchun 1 ta test case yozing (Google Sheets).</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#C08838;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Boundary Value: Parol uzunligi</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop'da parol 6-20 belgi orasida bo'lishi kerak. 2-point usuli bilan 4 ta test case yozing: 5, 6, 20, 21 belgi.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Decision Table: Yetkazib berish narxi</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop yetkazib berish: <strong>Toshkent ichida</strong> (ha/yo'q) + <strong>Buyurtma 100k+</strong> (ha/yo'q) + <strong>VIP foydalanuvchi</strong> (ha/yo'q) → 8 ta kombinatsiya. Decision Table tuzing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Bu 3 ta vazifa <strong>Middle QA darajasi</strong>. Intervyu'da: "Men Equivalence va Boundary Value qo'llayman, Decision Table tuza olaman" — deb ayta olasiz. Bu Junior'lar orasida juda kam ko'nikma.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Test Design Texnikalari — har Middle QA intervyusining asosiy mavzusi. 7 ta professional javob.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Equivalence Partitioning va Boundary Value Analysis qanday ishlatiladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bu ikkala texnika <strong>birga</strong> ishlatiladi — ular bir-birini to'ldiradi:"</p>
+          <ul>
+            <li><strong>Equivalence Partitioning</strong> — ma'lumotlarni guruhlarga bo'lish (valid/invalid). Har guruhdan 1 ta misol bilan test.</li>
+            <li><strong>Boundary Value Analysis</strong> — chegara qiymatlarini alohida sinash. Eng ko'p bug aynan chegaralarda.</li>
+          </ul>
+          <p><strong>Misol:</strong> Yosh 18-65 oralig'i</p>
+          <ul>
+            <li>EP: 15 (yosh), 30 (to'g'ri), 70 (katta) — 3 guruh</li>
+            <li>BV: 17, 18, 65, 66 — chegara qiymatlari</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Men har formada ikkala texnikani ishlataman. EP — guruhlar uchun, BV — chegaralar uchun. 5-8 ta test case bilan to'liq coverage."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Off-by-one xato nima va qanday topiladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Off-by-one xato — dasturchining <strong>1 ta qiymat farq</strong> qiluvchi xatosi. Eng mashhur bug turi."</p>
+          <p><strong>Sabablari:</strong></p>
+          <ul>
+            <li><code>&gt;</code> va <code>&gt;=</code> ni adashtirish</li>
+            <li><code>&lt;</code> va <code>&lt;=</code> ni almashtirish</li>
+            <li>Loop'da chegarani noto'g'ri yozish</li>
+          </ul>
+          <p><strong>Misol:</strong> "Parol 8+ belgi" talabida dasturchi <code>length &gt; 8</code> yozsa — 8 belgili parol qabul qilinmaydi (lekin 9 qabul qilinadi).</p>
+          <p><strong>Qanday topiladi?</strong> <strong>Boundary Value Analysis</strong> bilan. 2-point yoki 3-point usul.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>2-point va 3-point Boundary Value farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>2-point:</strong> har chegara uchun 2 ta qiymat (chegara va undan oldin/keyin). Tezroq.</li>
+            <li><strong>3-point:</strong> har chegara uchun 3 ta qiymat (oldin, chegara, keyin). Aniqroq.</li>
+          </ul>
+          <p><strong>Misol:</strong> Yosh 18-65</p>
+          <ul>
+            <li>2-point: 17, 18, 65, 66 (4 ta test)</li>
+            <li>3-point: 17, 18, 19, 64, 65, 66 (6 ta test)</li>
+          </ul>
+          <p><strong>Qachon qaysi biri?</strong> Junior odatda 2-point ishlatadi (tez). Senior 3-point ishlatadi (aniq). Critical loyihalarda — har doim 3-point.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Decision Table qachon ishlatiladi va qanday tuziladi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Decision Table — bir nechta shartlar birlashganda, har xil natija bo'lganda ishlatiladi."</p>
+          <p><strong>Qachon kerak?</strong></p>
+          <ul>
+            <li>Chegirma qoidalari (VIP + summa + promo)</li>
+            <li>Foydalanuvchi ruxsatlari (admin/oddiy/mehmon)</li>
+            <li>Pul o'tkazish (valyuta + summa + foydalanuvchi turi)</li>
+          </ul>
+          <p><strong>4 qadam:</strong></p>
+          <ul>
+            <li>1. Shartlarni aniqlash</li>
+            <li>2. Kombinatsiyalarni hisoblash (2 shart = 4 holat, 3 shart = 8 holat)</li>
+            <li>3. Jadval tuzish</li>
+            <li>4. Test case'larga aylantirish</li>
+          </ul>
+          <p><strong>Afzallik:</strong> Hech bir holat o'tkazib yuborilmaydi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Login formasi uchun qancha test case yozasiz va nima uchun?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Texnikalar bilan 12-15 ta test case yetadi. Mana qanday:"</p>
+          <p><strong>Email maydoni (Equivalence):</strong></p>
+          <ul>
+            <li>Valid: <code>test@uzum.uz</code></li>
+            <li>Invalid: format yo'q (<code>test</code>)</li>
+            <li>Invalid: @ yo'q (<code>testuzum.uz</code>)</li>
+            <li>Invalid: bo'sh maydon</li>
+          </ul>
+          <p><strong>Parol maydoni (Boundary 2-point):</strong></p>
+          <ul>
+            <li>7 belgi (xato)</li>
+            <li>8 belgi (chegara)</li>
+            <li>20 belgi (chegara)</li>
+            <li>21 belgi (xato)</li>
+          </ul>
+          <p><strong>Bloklash logikasi (Decision Table):</strong> 3 marta xato → blok</p>
+          <p><strong>Pro javob:</strong> "100 ta test yozish vaqt isrofi. Texnikalar bilan 12-15 ta yetadi va to'liq coverage."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Pairwise Testing nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Pairwise Testing — ko'p variantli kombinatsiyalarni <strong>aqlli kamaytirish</strong> texnikasi."</p>
+          <p><strong>Asosiy g'oya:</strong> Bug'larning aksariyati 2 parametrning kombinatsiyasidan kelib chiqadi, hammasi emas. Demak — har 2 parametr juftligi qoplansa yetadi.</p>
+          <p><strong>Misol:</strong> 4 brauzer × 3 OS × 2 til = 24 kombinatsiya</p>
+          <ul>
+            <li>To'liq test: 24 ta test case</li>
+            <li>Pairwise: 12 ta test case (50% kam, lekin 95%+ bug topish)</li>
+          </ul>
+          <p><strong>Asboblar:</strong> PICT (Microsoft), Hexawise.</p>
+          <p><strong>Junior darajasi:</strong> "Hozir amalda ishlatmayman, lekin atamani bilaman. Bu Senior darajasidagi texnika."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Qaysi texnikani qaysi vaziyatda tanlaysiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Equivalence Partitioning</strong> — ma'lumot guruhlarga bo'linsa (email format, telefon format, valyuta turi)</li>
+            <li><strong>Boundary Value Analysis</strong> — sonli oraliq bo'lsa (yosh, parol uzunligi, summa)</li>
+            <li><strong>Decision Table</strong> — bir nechta shartlar birga ishlasa (chegirma qoidalari, ruxsatlar)</li>
+            <li><strong>State Transition</strong> — tizim turli holatlardan o'tsa (buyurtma statusi)</li>
+            <li><strong>Pairwise</strong> — ko'p variantli kombinatsiyalar (brauzer × OS × til)</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Odatda 2-3 ta texnikani birga ishlataman. EP + BV — har formada. DT — biznes logikasida. Bu kombinatsiya — eng samarali."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">EP + BV birga</div>
+      <div class="summary-point-text">Equivalence guruhlar uchun, Boundary chegaralar uchun. Birga - eng samarali strategiya.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Off-by-one xato</div>
+      <div class="summary-point-text">Eng mashhur bug — 1 ta qiymat farq. Boundary Value bilan 95% holatda topiladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Decision Table — biznes logikasi</div>
+      <div class="summary-point-text">Murakkab shartlar birlashganda - jadval tuzing. Hech bir holat o'tkazib yuborilmaydi.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="12-test-analysis-design.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>12-dars · Test Analysis va Design</div>
+  </a>
+  <a href="14-test-plan.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>14-dars · Test Plan tuzish</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 16;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> 2-point Boundary Value bilan 4 ta test kerak: 7 (chegaradan oldin), 8 (pastki chegara), 20 (yuqori chegara), 21 (chegaradan keyin). Off-by-one xatolarni topish uchun aynan shu test\'lar yetadi.',
+    incorrect: 'Yo\'q. 2 ta yetarli emas - chegaradan tashqaridagi qiymatlar (7 va 21) ham kerak. 13 ta esa juda ko\'p - har bir uzunlik o\'rtasidagi qiymatlar bir xil ishlaydi (Equivalence). To\'g\'risi - 4 ta test (7, 8, 20, 21).'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Bu Middle QA darajasidagi yondashuv. Boundary Value (chegaralar) + Equivalence (guruhlar) bilan 6-8 test yetadi. 1000 ta test - vaqt isrofi. 1 ta test - juda yetarsiz. Sizning yondashuvingiz - eng professional.',
+    incorrect: 'Bu yondashuv noto\'g\'ri. 1000 ta test - vaqt isrofi (Equivalence aytadi: bir guruhda bir xil natija). 1 ta test - juda yetarsiz (chegara qiymatlari sinab ko\'rilmaydi). To\'g\'ri yondashuv - BV + EP birga.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Texnikalarni topdingiz!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// TEST CASE BUILDER
+function showTestCase() {
+  const id = document.getElementById('tcId').value || 'TC-XXX';
+  const title = document.getElementById('tcTitle').value || '(sarlavha yo\'q)';
+  const data = document.getElementById('tcData').value || '(yo\'q)';
+  const steps = document.getElementById('tcSteps').value || '(qadamlar yo\'q)';
+  const expected = document.getElementById('tcExpected').value || '(natija yo\'q)';
+
+  document.getElementById('tcPreviewContent').innerHTML = `
+    <div class="tc-preview-row"><span class="tc-preview-key">ID:</span><span class="tc-preview-value">${id}</span></div>
+    <div class="tc-preview-row"><span class="tc-preview-key">Title:</span><span class="tc-preview-value">${title}</span></div>
+    <div class="tc-preview-row"><span class="tc-preview-key">Test Data:</span><span class="tc-preview-value">${data}</span></div>
+    <div class="tc-preview-row"><span class="tc-preview-key">Steps:</span><span class="tc-preview-value" style="white-space:pre-line">${steps}</span></div>
+    <div class="tc-preview-row"><span class="tc-preview-key">Expected:</span><span class="tc-preview-value">${expected}</span></div>
+  `;
+  document.getElementById('tcPreview').classList.add('show');
+  completedActivities.add('tcBuilder');
+  updateProgress();
+}
+
+// TECH DND (tap-to-select)
+let selectedItem = null;
+let techCorrect = 0;
+
+document.querySelectorAll('#techPool .dnd-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('placed')) return;
+    document.querySelectorAll('#techPool .dnd-item').forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+    selectedItem = item;
+    document.getElementById('techHint').classList.add('show');
+    document.querySelectorAll('#techGame .dnd-slot').forEach(s => {
+      if (!s.classList.contains('filled')) s.classList.add('active');
+    });
+  });
+});
+
+document.querySelectorAll('#techGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if (slot.classList.contains('filled') || !selectedItem) return;
+    if (selectedItem.dataset.tech === slot.dataset.tech) {
+      slot.textContent = selectedItem.textContent;
+      slot.classList.add('filled', 'correct');
+      slot.classList.remove('active');
+      selectedItem.classList.add('placed');
+      techCorrect++;
+      document.getElementById('techScore').textContent = `${techCorrect} / 4 to'g'ri`;
+      completedActivities.add(`tech-${techCorrect}`);
+      updateProgress();
+      selectedItem = null;
+      document.getElementById('techHint').classList.remove('show');
+      document.querySelectorAll('#techGame .dnd-slot').forEach(s => s.classList.remove('active'));
+      if (techCorrect === 4) {
+        document.getElementById('techScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barchasi to\'g\'ri!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// CLASSIFIER (tap-to-select)
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { ep: 'Equivalence', bv: 'Boundary', dt: 'Decision' };
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 5 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 5) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barchasi tasniflandi!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .partitions-visual, .boundary-visual, .dt-builder, .tc-builder, .steps-card, .tc-table').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

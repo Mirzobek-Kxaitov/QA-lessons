@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20-dars: Playwright (Python) | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+  --selenium: #43B02A; --playwright: #2EAD33; --playwright-dark: #232323;
+  --code-bg: #1E1E1E; --code-text: #D4D4D4;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; }
+.progress-text { font-size: 13px; color: var(--ink-muted); min-width: 45px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; }
+.term-box-title::before { content: "📖 "; }
+.term-box strong { color: var(--blue); }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+.code-block { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; position: relative; }
+.code-block .keyword { color: #FF7B72; }
+.code-block .string { color: #A5D6FF; }
+.code-block .comment { color: #8B949E; font-style: italic; }
+.code-block .var { color: #79C0FF; }
+.code-block .func { color: #D2A8FF; }
+.code-block .number { color: #FFA657; }
+.code-block .class { color: #FFA657; }
+.code-tag { position: absolute; top: 8px; right: 12px; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: white; }
+.code-tag.python { background: #3776AB; }
+.code-tag.terminal { background: #232323; }
+.code-tag.playwright { background: var(--playwright); }
+.code-tag.selenium { background: var(--selenium); }
+.compare-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.compare-card-tool { padding: 24px; border-radius: 16px; border: 2px solid; }
+.compare-card-tool.selenium { background: var(--forest-soft); border-color: var(--selenium); }
+.compare-card-tool.playwright { background: var(--blue-soft); border-color: var(--blue); }
+.compare-card-tool h4 { font-family: 'Fraunces', serif; font-size: 22px; margin-bottom: 8px; }
+.compare-card-tool.selenium h4 { color: var(--selenium); }
+.compare-card-tool.playwright h4 { color: var(--blue); }
+.compare-card-tool .meta { font-size: 12px; color: var(--ink-muted); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+.compare-card-tool ul { padding-left: 18px; margin: 0; font-size: 14px; }
+.compare-card-tool li { margin-bottom: 6px; }
+.compare-table { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+.compare-table table { width: 100%; border-collapse: collapse; }
+.compare-table th { padding: 14px; text-align: left; font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.compare-table th:nth-child(2) { background: var(--forest-soft); color: var(--selenium); }
+.compare-table th:nth-child(3) { background: var(--blue-soft); color: var(--blue); }
+.compare-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); vertical-align: top; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { font-weight: 500; color: var(--ink); background: var(--bg-soft); }
+.code-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+.code-side { background: var(--code-bg); border-radius: 10px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.6; color: var(--code-text); position: relative; overflow-x: auto; }
+.code-side-header { font-family: 'Instrument Sans', sans-serif; font-size: 11px; padding: 4px 10px; border-radius: 4px; color: white; display: inline-block; font-weight: 600; margin-bottom: 8px; }
+.code-side-header.selenium { background: var(--selenium); }
+.code-side-header.playwright { background: var(--blue); }
+.code-side .lines-num { font-size: 10px; color: #888; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #444; font-family: 'Instrument Sans', sans-serif; }
+.autowait-demo { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin: 24px 0; }
+.demo-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.demo-side { padding: 16px; border-radius: 12px; border: 2px solid; }
+.demo-side.selenium-side { background: var(--forest-soft); border-color: var(--selenium); }
+.demo-side.playwright-side { background: var(--blue-soft); border-color: var(--blue); }
+.demo-side h5 { font-family: 'Fraunces', serif; margin-bottom: 8px; font-size: 14px; }
+.demo-side.selenium-side h5 { color: var(--selenium); }
+.demo-side.playwright-side h5 { color: var(--blue); }
+.demo-status { padding: 10px; background: white; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.5; min-height: 80px; }
+.demo-status.error { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.demo-status.success { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.demo-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 500; margin-top: 8px; width: 100%; }
+.demo-btn:hover { background: var(--plum-soft); color: var(--plum); }
+.demo-counter { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); }
+.code-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.cb-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.cb-field { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; }
+.cb-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; }
+.cb-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; background: white; }
+.cb-select { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; background: white; cursor: pointer; }
+.cb-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; font-weight: 500; margin-top: 16px; }
+.cb-preview { margin-top: 16px; display: none; }
+.cb-preview.show { display: block; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; text-align: left; font-size: 16px; font-family: inherit; display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1500px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; }
+.completion-badge.show { display: flex; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .compare-cards, .code-comparison, .demo-stage { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .code-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .cb-field { grid-template-columns: 1fr; gap: 6px; }
+  .compare-table th, .compare-table td { padding: 8px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">20-dars</div>
+  <h1>Playwright — <em>zamonaviy</em> automation</h1>
+  <p class="hero-subtitle">Microsoft'ning kuchli javobi Selenium'ga. Auto-wait, kam kod, ko'p brauzer. 2-3x tezroq. Yangi loyihalarda #1.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Python kod</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Playwright nima?</h2>
+  <p class="section-intro">19-darsda Selenium WebDriver o'rgandik. U zo'r — lekin 2004 yilda yaratilgan. 2020 yilda Microsoft yangi asbob chiqardi: <strong>Playwright</strong>. Zamonaviy, tez, aqlli.</p>
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Playwright</strong> — Microsoft tomonidan 2020 yilda yaratilgan zamonaviy automation framework. Python, JavaScript, Java, C# bilan ishlaydi.</p>
+    <p><em>Oddiy qilib:</em> Playwright — Selenium'ning "o'g'li". Kamchiliklarni bartaraf etib yaratilgan. Ayniqsa <strong>auto-wait</strong> — eng katta farqi.</p>
+  </div>
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Sodda misol</div>
+    <div class="analogy-title">Eski telefon vs Smartphone</div>
+    <div class="analogy-text">
+      Selenium — <strong>Nokia 3310</strong>. Ishonchli, ko'pchilik biladi, lekin eski. Playwright — <strong>zamonaviy smartphone</strong>. Tez, aqlli, ko'p narsa o'zi qiladi. Ikkalasi ham qo'ng'iroq qiladi — lekin smartphone ko'proq narsani qiladi!
+    </div>
+  </div>
+  <h3>Playwright afzalliklari</h3>
+  <ul>
+    <li><strong>Auto-wait</strong> — element yuklanishini o'zi kutadi. Wait yozish kerak emas!</li>
+    <li><strong>Tez</strong> — Selenium'dan 2-3x tezroq ishlaydi</li>
+    <li><strong>Multi-browser</strong> — Chrome, Firefox, Safari — bitta kod bilan</li>
+    <li><strong>Codegen</strong> — harakatlaringizni yozib, kod chiqaradi</li>
+    <li><strong>Trace Viewer</strong> — test muvaffaqiyatsiz bo'lsa, video ko'rasiz</li>
+    <li><strong>Ishonchli</strong> — "flaky test" muammosi kam</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Savol: Selenium o'rgandim, endi Playwright ham kerakmi?</div>
+    <p><strong>Ha!</strong> Eski loyihalar Selenium'da. Yangi loyihalar Playwright'ga o'tyapti. Ikkalasini bilish — Middle QA darajasi. Intervyu'da juda kuchli javob berish imkoniyati!</p>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Selenium vs Playwright</h2>
+  <p class="section-intro">Asosiy farqlarni bilib olaylik. Ikkisi ham brauzer automation — lekin yondashuvlari farq qiladi.</p>
+  <div class="compare-cards">
+    <div class="compare-card-tool selenium">
+      <h4>🌐 Selenium</h4>
+      <div class="meta">2004 · WebDriver Protocol</div>
+      <ul>
+        <li>Eng mashhur, ko'p loyihada</li>
+        <li>Java, Python, JS, C# hammasi</li>
+        <li>Wait o'zingiz yozasiz</li>
+        <li>Sekinroq</li>
+        <li>Ko'p eski dokumentatsiya</li>
+      </ul>
+    </div>
+    <div class="compare-card-tool playwright">
+      <h4>🎭 Playwright</h4>
+      <div class="meta">2020 · Microsoft · CDP</div>
+      <ul>
+        <li>Yangi loyihalarda ommabop</li>
+        <li>Python, JS, Java, C#</li>
+        <li>Auto-wait o'zi kutadi</li>
+        <li>2-3x tezroq</li>
+        <li>Codegen, Trace Viewer bor</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Batafsil taqqoslash</h3>
+  <div class="compare-table">
+    <table>
+      <thead>
+        <tr><th>Xususiyat</th><th>🌐 Selenium</th><th>🎭 Playwright</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chiqarilgan yil</td><td>2004</td><td>2020</td></tr>
+        <tr><td>Wait (kutish)</td><td>O'zingiz yozasiz</td><td>Auto-wait o'zi qiladi</td></tr>
+        <tr><td>Tezlik</td><td>Normal</td><td>2-3x tezroq</td></tr>
+        <tr><td>Flaky tests</td><td>Ko'p bo'ladi</td><td>Kam bo'ladi</td></tr>
+        <tr><td>Multi-browser</td><td>Har biri alohida driver</td><td>Bir kodda hammasi</td></tr>
+        <tr><td>Codegen (Record)</td><td>Selenium IDE (alohida)</td><td>O'zi bor</td></tr>
+        <tr><td>Debug (Trace)</td><td>Yo'q</td><td>Trace Viewer bor</td></tr>
+        <tr><td>O'rnatish</td><td>Driver alohida</td><td>Hammasi birgalikda</td></tr>
+        <tr><td>Eski loyihalarda</td><td>Ko'p uchraydi</td><td>Yangi loyihalarda</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Qaysi birini tanlash?</div>
+    <p><strong>Eski loyiha + Selenium mavjud</strong> → Selenium davom. <strong>Yangi loyiha boshlayapsiz</strong> → Playwright. <strong>Intervyu</strong> → Ikkalasini bilish + "Yangi loyihada Playwright tavsiya qilaman" deyish.</p>
+  </div>
+</section>
+
+<section class="section" id="setup">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">O'rnatish va birinchi skript</h2>
+  <p class="section-intro">O'rnatish Selenium'dan oson — hamma narsa bitta buyruqda keladi.</p>
+  <h3>O'rnatish (3 qadam)</h3>
+  <div class="code-block">
+<span class="code-tag terminal">terminal</span>
+<span class="comment"># 1. Playwright Python kutubxonasi</span>
+pip install playwright
+
+<span class="comment"># 2. Brauzerlarni yuklab olish (Chrome, Firefox, Safari)</span>
+playwright install
+
+<span class="comment"># 3. Tayyor! Tekshirish:</span>
+python -c "from playwright.sync_api import sync_playwright; print('OK')"</div>
+  <p style="font-size:14px;color:var(--ink-soft)">"OK" deb chiqsa — muvaffaqiyatli o'rnatildi!</p>
+
+  <h3>Birinchi skript — "Hello Playwright"</h3>
+  <div class="code-block">
+<span class="code-tag playwright">hello.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    <span class="comment"># Brauzer ochish</span>
+    browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+
+    <span class="comment"># Yangi sahifa ochish</span>
+    page = browser.<span class="func">new_page</span>()
+
+    <span class="comment"># URL'ga o'tish</span>
+    page.<span class="func">goto</span>(<span class="string">"https://google.com"</span>)
+
+    <span class="comment"># Sahifa nomini olish</span>
+    <span class="func">print</span>(page.<span class="var">title</span>())   <span class="comment"># → "Google"</span>
+
+    browser.<span class="func">close</span>()</div>
+
+  <h3>Codegen — kodsiz yozish (bonuse!)</h3>
+  <p>Playwright'ning eng zo'r xususiyati: harakatlaringizni yozib, <strong>kod chiqaradi</strong>!</p>
+  <div class="code-block">
+<span class="code-tag terminal">terminal</span>
+<span class="comment"># Codegen ishga tushirish</span>
+playwright codegen testshop.uz</div>
+  <p style="font-size:14px;color:var(--ink-soft)">Brauzer ochiladi — siz harakat qilasiz, o'ng tomonda <strong>Python kodi</strong> paydo bo'ladi. Selenium IDE kabi, lekin to'g'ridan-to'g'ri Playwright kodi!</p>
+</section>
+
+<section class="section" id="commands">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Asosiy buyruqlar</h2>
+  <p class="section-intro">Playwright buyruqlari Selenium'ga o'xshash — lekin qisqaroq va tozaroq.</p>
+
+  <h3>Asosiy harakatlar</h3>
+  <div class="code-block">
+<span class="code-tag playwright">commands.py</span>
+<span class="comment"># Sahifaga o'tish</span>
+page.<span class="func">goto</span>(<span class="string">"https://testshop.uz"</span>)
+
+<span class="comment"># Bosish — CSS, text, role bilan</span>
+page.<span class="func">click</span>(<span class="string">"#login-btn"</span>)
+page.<span class="func">click</span>(<span class="string">"text=Kirish"</span>)
+page.<span class="func">get_by_role</span>(<span class="string">"button"</span>, name=<span class="string">"Kirish"</span>).<span class="func">click</span>()
+
+<span class="comment"># Matn yozish</span>
+page.<span class="func">fill</span>(<span class="string">"#email"</span>, <span class="string">"test@uzum.uz"</span>)
+
+<span class="comment"># Tekshirish (assert)</span>
+page.<span class="func">wait_for_url</span>(<span class="string">"**/dashboard"</span>)
+<span class="keyword">assert</span> page.<span class="func">is_visible</span>(<span class="string">"text=Welcome"</span>)
+
+<span class="comment"># Screenshot (otladka uchun)</span>
+page.<span class="func">screenshot</span>(path=<span class="string">"result.png"</span>)
+
+<span class="comment"># Brauzer yopish</span>
+browser.<span class="func">close</span>()</div>
+
+  <h3>Zamonaviy locator'lar</h3>
+  <p>Playwright Selenium'dan kuchli locator'larga ega:</p>
+  <div class="code-block">
+<span class="code-tag playwright">locators.py</span>
+<span class="comment"># CSS (Selenium'dagi kabi)</span>
+page.<span class="func">click</span>(<span class="string">"#login-btn"</span>)
+
+<span class="comment"># Matn bo'yicha — juda qulay!</span>
+page.<span class="func">click</span>(<span class="string">"text=Kirish"</span>)
+
+<span class="comment"># Role bo'yicha — eng professional</span>
+page.<span class="func">get_by_role</span>(<span class="string">"button"</span>, name=<span class="string">"Yuborish"</span>).<span class="func">click</span>()
+
+<span class="comment"># Label bo'yicha (form uchun)</span>
+page.<span class="func">get_by_label</span>(<span class="string">"Email"</span>).<span class="func">fill</span>(<span class="string">"test@test.com"</span>)
+
+<span class="comment"># Placeholder bo'yicha</span>
+page.<span class="func">get_by_placeholder</span>(<span class="string">"Email kiriting"</span>).<span class="func">fill</span>(<span class="string">"test@test.com"</span>)</div>
+
+  <h3>To'liq Login testi</h3>
+  <div class="code-block">
+<span class="code-tag playwright">login_test.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">def</span> <span class="func">test_login</span>():
+    <span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+        browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+        page = browser.<span class="func">new_page</span>()
+
+        page.<span class="func">goto</span>(<span class="string">"https://testshop.uz/login"</span>)
+
+        <span class="comment"># Email va parol — Wait kerak emas, o'zi kutadi!</span>
+        page.<span class="func">fill</span>(<span class="string">"#email"</span>, <span class="string">"test@uzum.uz"</span>)
+        page.<span class="func">fill</span>(<span class="string">"#password"</span>, <span class="string">"Pass123!"</span>)
+        page.<span class="func">click</span>(<span class="string">"#login-btn"</span>)
+
+        <span class="comment"># Dashboard ochilishini kutish</span>
+        page.<span class="func">wait_for_url</span>(<span class="string">"**/dashboard"</span>)
+
+        <span class="comment"># Tekshirish</span>
+        <span class="keyword">assert</span> page.<span class="func">is_visible</span>(<span class="string">"text=Welcome"</span>)
+        <span class="func">print</span>(<span class="string">"✅ Login test PASSED"</span>)
+
+        browser.<span class="func">close</span>()
+
+<span class="func">test_login</span>()</div>
+  <p style="font-size:14px;color:var(--ink-soft)">Selenium'dagi kabi — lekin <strong>WebDriverWait yo'q</strong>. Playwright o'zi kutadi!</p>
+</section>
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Playwright buyrug'i va vazifasini bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har buyruq nima qiladi?</p>
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Playwright buyruq</h4>
+      <div class="match-item" data-side="left" data-pair="goto"><code>page.goto(url)</code></div>
+      <div class="match-item" data-side="left" data-pair="fill"><code>page.fill(sel, text)</code></div>
+      <div class="match-item" data-side="left" data-pair="click"><code>page.click(sel)</code></div>
+      <div class="match-item" data-side="left" data-pair="shot"><code>page.screenshot()</code></div>
+      <div class="match-item" data-side="left" data-pair="vis"><code>page.is_visible(sel)</code></div>
+    </div>
+    <div class="matching-column">
+      <h4>Vazifa</h4>
+      <div class="match-item" data-side="right" data-pair="shot">Ekran rasmini saqlash</div>
+      <div class="match-item" data-side="right" data-pair="goto">Sahifaga o'tish</div>
+      <div class="match-item" data-side="right" data-pair="vis">Element ko'rinishini tekshirish</div>
+      <div class="match-item" data-side="right" data-pair="fill">Maydonga matn yozish</div>
+      <div class="match-item" data-side="right" data-pair="click">Elementni bosish</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft</div>
+</div>
+
+<section class="section" id="autowait">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">Auto-wait — Playwright sehri</h2>
+  <p class="section-intro">Selenium'dagi eng katta muammo: element yuklanmagan paytda kod ishlaydi va xato beradi. Playwright bu muammoni <strong>yo'q qildi</strong>.</p>
+  <h3>Muammo: Nima bu "flaky test"?</h3>
+  <div class="example-box">
+    <div class="example-box-title">Flaky test nima?</div>
+    <p style="margin:0"><strong>Flaky test</strong> — ba'zan o'tadi, ba'zan o'tmaydi. Kod o'zgartirilmagan, lekin natija turli xil. Eng asosiy sabab: <strong>sahifa hali yuklanmagan</strong>, kod esa darhol element izlaydi.</p>
+  </div>
+  <h3>Selenium'da muammo</h3>
+  <div class="code-block">
+<span class="code-tag selenium">selenium_problem.py</span>
+driver.<span class="func">get</span>(<span class="string">"https://testshop.uz/products"</span>)
+
+<span class="comment"># ❌ Sahifa hali yuklanmagan — element topilmadi xatosi!</span>
+button = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"add-to-cart"</span>)
+button.<span class="func">click</span>()
+
+<span class="comment"># ✅ To'g'ri: Wait qo'shish kerak edi</span>
+button = <span class="class">WebDriverWait</span>(driver, <span class="number">10</span>).<span class="func">until</span>(
+    EC.<span class="func">element_to_be_clickable</span>((<span class="class">By</span>.ID, <span class="string">"add-to-cart"</span>))
+)
+button.<span class="func">click</span>()</div>
+
+  <h3>Playwright'da yechim: Auto-wait</h3>
+  <div class="code-block">
+<span class="code-tag playwright">playwright_solution.py</span>
+page.<span class="func">goto</span>(<span class="string">"https://testshop.uz/products"</span>)
+
+<span class="comment"># ✅ Playwright o'zi kutadi — xato bo'lmaydi!</span>
+page.<span class="func">click</span>(<span class="string">"#add-to-cart"</span>)
+
+<span class="comment"># WebDriverWait yozish KERAK EMAS
+# Playwright element tayyor bo'lgunicha o'zi kutadi (30 sek max)</span></div>
+  <p style="font-size:14px;color:var(--ink-soft)">Playwright har <code>click()</code>, <code>fill()</code> oldidan element <strong>ko'rinishini</strong>, <strong>bosish mumkinligini</strong> va <strong>harakatlanmayotganini</strong> o'zi tekshiradi.</p>
+</section>
+
+<div class="autowait-demo">
+  <div class="quiz-label">🎮 Auto-wait Demo</div>
+  <h3 style="margin-top:8px">Sahifa kech yuklanmoqda — nima bo'ladi?</h3>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px">Selenium va Playwright'ning farqini simulyatsiya orqali ko'ring. "Test ishga tushirish" tugmasini bosing:</p>
+  <div class="demo-stage">
+    <div class="demo-side selenium-side">
+      <h5>🌐 Selenium (Wait yozilmagan)</h5>
+      <div class="demo-status" id="seleniumStatus">Kutilmoqda...</div>
+      <div class="demo-counter" id="seleniumCounter"></div>
+    </div>
+    <div class="demo-side playwright-side">
+      <h5>🎭 Playwright (Auto-wait)</h5>
+      <div class="demo-status" id="playwrightStatus">Kutilmoqda...</div>
+      <div class="demo-counter" id="playwrightCounter"></div>
+    </div>
+  </div>
+  <button class="demo-btn" id="demoBtn" onclick="runDemo()">▶ Test ishga tushirish</button>
+</div>
+
+<section class="section" id="code-comp">
+  <span class="section-label">5-qism</span>
+  <h2 class="section-title">Yon-yonga taqqoslash</h2>
+  <p class="section-intro">Xuddi shu test — Selenium va Playwright'da. Farqni o'z ko'zingiz bilan ko'ring.</p>
+  <h3>Login testi</h3>
+  <div class="code-comparison">
+    <div class="code-side">
+      <div class="code-side-header selenium">🌐 Selenium (Python)</div>
+      <span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver<br>
+      <span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By<br>
+      <span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait<br>
+      <span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC<br>
+      <br>
+      driver = webdriver.Chrome()<br>
+      driver.get(<span class="string">"https://testshop.uz/login"</span>)<br>
+      <br>
+      <span class="comment"># Email — wait kerak</span><br>
+      WebDriverWait(driver, 10).until(<br>
+      &nbsp;&nbsp;EC.visibility_of_element_located((By.ID, <span class="string">"email"</span>))<br>
+      ).send_keys(<span class="string">"test@test.com"</span>)<br>
+      <br>
+      driver.find_element(By.ID, <span class="string">"password"</span>).send_keys(<span class="string">"Pass123!"</span>)<br>
+      <br>
+      <span class="comment"># Tugma — wait kerak</span><br>
+      WebDriverWait(driver, 10).until(<br>
+      &nbsp;&nbsp;EC.element_to_be_clickable((By.ID, <span class="string">"login-btn"</span>))<br>
+      ).click()<br>
+      <br>
+      driver.quit()<br>
+      <div class="lines-num">📏 15 qator</div>
+    </div>
+    <div class="code-side">
+      <div class="code-side-header playwright">🎭 Playwright (Python)</div>
+      <span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:<br>
+      &nbsp;&nbsp;browser = p.chromium.launch()<br>
+      &nbsp;&nbsp;page = browser.new_page()<br>
+      &nbsp;&nbsp;page.goto(<span class="string">"https://testshop.uz/login"</span>)<br>
+      <br>
+      &nbsp;&nbsp;<span class="comment"># Auto-wait — Wait kerak emas!</span><br>
+      &nbsp;&nbsp;page.fill(<span class="string">"#email"</span>, <span class="string">"test@test.com"</span>)<br>
+      <br>
+      &nbsp;&nbsp;page.fill(<span class="string">"#password"</span>, <span class="string">"Pass123!"</span>)<br>
+      <br>
+      &nbsp;&nbsp;<span class="comment"># Shu ham auto-wait!</span><br>
+      &nbsp;&nbsp;page.click(<span class="string">"#login-btn"</span>)<br>
+      <br>
+      &nbsp;&nbsp;browser.close()<br>
+      <div class="lines-num">📏 9 qator — 40% kam!</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:14px;color:var(--ink-muted);margin-top:8px">Xuddi shu test — Playwright'da 40% kam kod. <strong>Wait yozish kerak emas.</strong></p>
+</section>
+
+<div class="code-builder">
+  <div class="quiz-label">🛠 Code Builder</div>
+  <h3 style="margin-top:8px">Playwright kod yarating</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">Vazifani tanlang va Playwright kodini ko'ring:</p>
+  <div class="cb-fields">
+    <div class="cb-field">
+      <label class="cb-field-label">Vazifa</label>
+      <select class="cb-select" id="cbAction">
+        <option value="open">Sahifa ochish</option>
+        <option value="click">Elementni bosish</option>
+        <option value="fill">Matn yozish</option>
+        <option value="assert">Tekshirish (assert)</option>
+        <option value="screenshot">Screenshot olish</option>
+        <option value="full">To'liq Login skript</option>
+      </select>
+    </div>
+    <div class="cb-field">
+      <label class="cb-field-label">URL</label>
+      <input type="text" class="cb-input" id="cbUrl" value="https://testshop.uz">
+    </div>
+    <div class="cb-field">
+      <label class="cb-field-label">Selector</label>
+      <input type="text" class="cb-input" id="cbSel" value="#login-btn">
+    </div>
+  </div>
+  <button class="cb-btn" onclick="generateCode()">⚡ Kodni ko'rish</button>
+  <div class="cb-preview" id="cbPreview">
+    <div class="code-block" style="margin-top:16px" id="cbPreviewContent"></div>
+  </div>
+</div>
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Yangi loyihada framework tanlash</div>
+  <div class="scenario-story">
+    <p><strong>Seshanba, 10:00.</strong> Payme startupida Tech Lead Jasur aka murojaat qildi: "Yangi loyiha boshlanmoqda. Automation framework tanlaymiz. Sizning fikringiz: <strong>Selenium mi, Playwright mi?</strong>"</p>
+    <p>Loyiha ma'lumotlari: <strong>Yangi</strong> e-commerce sayt. Jamoa: 3 ta QA. Brauzer talabi: Chrome, Firefox, Safari. Vaqt: 2 oy ichida testlar tayyor bo'lishi kerak.</p>
+  </div>
+  <div class="scenario-question">Eng professional tavsiya qaysi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Selenium — eng mashhur, hamma biladi, xavfsiz tanlov</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">B</div>
+      <div>Hech birini bilmayman, siz tanlang</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">C</div>
+      <div><strong>Playwright tavsiya qilaman:</strong> Yangi loyiha, ya'ni Selenium migratsiyasi yo'q. Auto-wait — flaky testlar yo'q. Chrome, Firefox, Safari — bitta kod bilan. Codegen bilan tez boshlash. Jamoa 2 oyda ko'proq test yoza oladi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Playwright'da <code>page.click("#btn")</code> ishlaydi, lekin sayt AJAX bilan yuklanmoqda. Nima qilasiz?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div><code>time.sleep(5)</code> qo'shaman — 5 sekund kutaman</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Hech narsa qilmayman — Playwright auto-wait o'zi kutadi. Element bosish mumkin bo'lgunicha kutib, keyin click qiladi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>WebDriverWait yozaman — Selenium'dagi kabi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">Birinchi Playwright skripti</h2>
+  <p class="section-intro">3 ta vazifa — Selenium'dan Playwright'ga o'tish.</p>
+  <div style="background:linear-gradient(135deg,#1A1A1A 0%,#2E2E2E 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🎭</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Playwright Bepul</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">pip install playwright + playwright install. Hammasi tayyor!</p>
+    <a href="https://playwright.dev/python/" target="_blank" style="display:inline-block;background:white;color:#1A1A1A;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">📖 Playwright docs</a>
+  </div>
+  <h3>Sizning vazifalaringiz:</h3>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#1A1A1A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Playwright o'rnatish va "Hello" skripti</div>
+        <div style="color:#4A4A4A;font-size:14px"><code>pip install playwright</code> + <code>playwright install</code>. hello.py yozing: Google'ni oching, sarlavhani print qiling.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Codegen bilan skript yarating</div>
+        <div style="color:#4A4A4A;font-size:14px"><code>playwright codegen testshop.uz</code> — Brauzer ochiladi. TestShop'da login harakatini bajaring. Kod oynasidan Python kodini ko'chiring va ishga tushiring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Selenium skriptini Playwright'ga aylantiring</div>
+        <div style="color:#4A4A4A;font-size:14px">19-darsda yozgan Login skriptingizni Playwright'da qayta yozing. WebDriverWait'larni olib tashlang — auto-wait ishlashini ko'ring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">GitHub'da ikkita repo: <strong>selenium-tests</strong> va <strong>playwright-tests</strong>. Intervyu'da: "Ikkalasini ham bilaman, yangi loyihada Playwright tavsiya qilaman" — bu <strong>Middle darajasidagi</strong> javob!</p>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Playwright — zamonaviy kompaniyalar intervyusida tez-tez so'raladigan mavzu.</p>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Playwright nima va Selenium'dan farqi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Playwright — Microsoft tomonidan 2020 yilda yaratilgan zamonaviy automation framework."</p>
+        <p><strong>Asosiy farqlar:</strong></p>
+        <ul>
+          <li><strong>Auto-wait</strong> — har buyruqdan oldin element tayyor bo'lishini o'zi kutadi. Selenium'da WebDriverWait kerak edi.</li>
+          <li><strong>Tezlik</strong> — 2-3x tezroq ishlaydi</li>
+          <li><strong>Flaky tests</strong> — Playwright'da kamroq bo'ladi</li>
+          <li><strong>Codegen</strong> — harakatlarni yozib, kod chiqaradi</li>
+          <li><strong>Trace Viewer</strong> — xato bo'lsa video ko'rasiz</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Eski loyihalarda Selenium keng tarqalgan. Yangi loyihalarda Playwright tavsiya qilaman — kam kod, ishonchli, tez."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Auto-wait nima va nima uchun muhim?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Auto-wait — Playwright'ning eng katta afzalligi. Har buyruq (click, fill, vsh.) bajarilishidan oldin Playwright o'zi kutadi:"</p>
+        <ul>
+          <li>Element sahifada ko'rinadimi?</li>
+          <li>Element bosish mumkinmi?</li>
+          <li>Element harakatlanmayaptimi?</li>
+        </ul>
+        <p><strong>Ahamiyati:</strong> Selenium'da bu tekshiruvlarni WebDriverWait bilan o'zingiz yozardingiz. Ko'p kod + ko'p imkoniyat unutish. Playwright bu muammoni yo'q qildi.</p>
+        <p><strong>Natija:</strong> Flaky testlar kamayadi. Kod qisqaradi. Testlar ishonchli bo'ladi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Playwright'da locatorlar qanday?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Playwright'da Selenium'dan kuchli locatorlar bor:"</p>
+        <ul>
+          <li><strong>CSS</strong> — <code>page.click("#id")</code> — oddiy va tez</li>
+          <li><strong>text=</strong> — <code>page.click("text=Kirish")</code> — matn bo'yicha</li>
+          <li><strong>get_by_role</strong> — <code>page.get_by_role("button", name="Submit")</code> — eng professional</li>
+          <li><strong>get_by_label</strong> — form'lar uchun ideal</li>
+          <li><strong>get_by_placeholder</strong> — input maydoni uchun</li>
+        </ul>
+        <p><strong>Pro maslahat:</strong> <code>get_by_role</code> — eng yaxshi tanlov. Accessibility'ni ham test qiladi. Veb standartlariga mos.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Codegen nima va qanday ishlatasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Codegen — Playwright'ning yozib olish xususiyati. Selenium IDE'ga o'xshaydi, lekin bevosita Playwright kodi chiqaradi."</p>
+        <p><strong>Ishlatish:</strong></p>
+        <ul>
+          <li><code>playwright codegen https://sayt.uz</code> — terminalda yozing</li>
+          <li>Brauzer ochiladi — siz harakat qilasiz</li>
+          <li>O'ng tomonda Python kodi paydo bo'ladi</li>
+          <li>Kodni ko'chiring, baziylab, ishga tushiring</li>
+        </ul>
+        <p><strong>Foydasi:</strong> Yangi sahifada tez prototip yaratish. Locatorni bilmasangiz — Codegen o'zi topadi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>Trace Viewer nima?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Trace Viewer — Playwright'ning debug uchun kuchli xususiyati. Test muvaffaqiyatsiz bo'lsa, qadam-baqadam video ko'rasiz."</p>
+        <p><strong>Yoqish:</strong></p>
+        <ul>
+          <li><code>browser.new_context(record_video_dir="videos/")</code></li>
+          <li>yoki <code>pytest --tracing=on</code></li>
+        </ul>
+        <p><strong>Ko'rish:</strong> <code>playwright show-trace trace.zip</code></p>
+        <p><strong>Foydasi:</strong> Xato qayerda bo'lganini aniq ko'rasiz. Screenshot, network, console — hammasi bir joyda.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Yangi loyihada Selenium yoki Playwright?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Qaror loyihaga bog'liq:"</p>
+        <ul>
+          <li><strong>Yangi loyiha</strong> → Playwright. Auto-wait, tez, zamonaviy.</li>
+          <li><strong>Eski Selenium loyiha</strong> → Selenium davom. Migration qimmat.</li>
+          <li><strong>Mobil test kerak</strong> → Appium (Selenium asosida).</li>
+          <li><strong>Jamoa Java biladi</strong> → Selenium yoki Playwright (Java'da ham bor).</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Men ikkalasini ham bilaman. Yangi loyihada Playwright tavsiya qilaman — kam kod, ishonchli testlar, tez ishlaydi. Eski loyiha bo'lsa, Selenium bilan davom etamiz."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Playwright'da multi-browser testing qanday?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Playwright'ning kuchli tomoni — bitta kod bilan Chrome, Firefox, Safari'da test qilish:"</p>
+        <div style="background:var(--code-bg);color:var(--code-text);padding:12px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;margin:8px 0">
+          for browser_type in [p.chromium, p.firefox, p.webkit]:<br>
+          &nbsp;&nbsp;browser = browser_type.launch()<br>
+          &nbsp;&nbsp;page = browser.new_page()<br>
+          &nbsp;&nbsp;# ... test kodingiz
+        </div>
+        <p><strong>Selenium'da</strong> har brauzer uchun alohida Driver sozlash kerak edi. <strong>Playwright'da</strong> — bitta kod, 3 ta brauzer.</p>
+        <p><strong>Pytest bilan:</strong> <code>pytest --browser=chromium --browser=firefox</code></p>
+      </div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Auto-wait sehri</div>
+      <div class="summary-point-text">Playwright har buyruqdan oldin o'zi kutadi. WebDriverWait yozish kerak emas. Flaky testlar yo'qoladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Kam kod, ko'p natija</div>
+      <div class="summary-point-text">Selenium'dagi 15 qator = Playwright'da 9 qator. Codegen bilan yana tezroq. Yangi loyihalarda #1.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Ikkalasini biling</div>
+      <div class="summary-point-text">Selenium — eski loyihalarda. Playwright — yangi loyihalarda. Ikkalasini bilish = Middle QA darajasi.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="19-selenium.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>19-dars · Selenium WebDriver</div>
+  </a>
+  <a href="21-automation-strategy.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>21-dars · Automation strategiyasi</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 14;
+
+function updateProgress() {
+  const pct = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '%';
+  if (pct >= 90) {
+    const b = document.getElementById('completionBadge');
+    b.classList.add('show');
+    setTimeout(() => b.classList.remove('show'), 5000);
+  }
+}
+
+// Quiz
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Playwright\'ning eng katta afzalligi — auto-wait. <code>page.click()</code> bosishdan oldin element tayyor bo\'lishini o\'zi tekshiradi. time.sleep() — vaqt isrofi. WebDriverWait — bu Selenium\'da edi.',
+    incorrect: 'Playwright\'da <strong>auto-wait</strong> mavjud. time.sleep() ortiqcha va sekin. WebDriverWait — bu Selenium buyrug\'i. Playwright\'da hech narsa qo\'shish kerak emas — o\'zi kutadi.'
+  },
+  scenario: {
+    correct: '<strong>Ajoyib!</strong> Bu Middle QA javobi. Yangi loyiha + multi-browser + tez ishlash kerak = Playwright. Sabablarni sanab berish — bu professional yondashuv. "Selenium xavfsizroq" emas, ayniqsa yangi loyihada.',
+    incorrect: 'Selenium eski va mashhur — bu haqiqat. Lekin yangi loyihada Playwright ustunlik beradi: auto-wait, tez, kam kod. "Bilmayman" — bu intervyu\'da eng yomon javob. Pro QA asosli tavsiya bera oladi!'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const qId = quiz.dataset.quiz;
+  const opts = quiz.querySelectorAll('.quiz-option');
+  const fb = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => {
+        o.classList.add('disabled');
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+      });
+      if (!ok) opt.classList.add('incorrect');
+      fb.classList.add('show', ok ? 'correct' : 'incorrect');
+      fb.innerHTML = ok ? quizFeedback[qId].correct : quizFeedback[qId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(qId);
+      updateProgress();
+    });
+  });
+});
+
+// Matching
+let selLeft = null, matched = 0;
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selLeft = item;
+    } else if (selLeft) {
+      if (item.dataset.pair === selLeft.dataset.pair) {
+        item.classList.add('matched'); selLeft.classList.add('matched'); selLeft.classList.remove('selected');
+        selLeft = null; matched++;
+        document.getElementById('matchScore').textContent = `${matched} / 5 juft`;
+        completedActivities.add(`match${matched}`); updateProgress();
+        if (matched === 5) document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Playwright buyruqlari!</span>';
+      } else {
+        item.classList.add('wrong'); selLeft.classList.add('wrong');
+        const wl = selLeft;
+        setTimeout(() => { item.classList.remove('wrong'); wl.classList.remove('wrong','selected'); }, 600);
+        selLeft = null;
+      }
+    }
+  });
+});
+
+// Auto-wait Demo
+let demoRunning = false;
+function runDemo() {
+  if (demoRunning) return;
+  demoRunning = true;
+  document.getElementById('demoBtn').disabled = true;
+
+  const selEl = document.getElementById('seleniumStatus');
+  const playEl = document.getElementById('playwrightStatus');
+  const selCnt = document.getElementById('seleniumCounter');
+  const playCnt = document.getElementById('playwrightCounter');
+
+  selEl.className = 'demo-status';
+  playEl.className = 'demo-status';
+  selEl.textContent = '⏳ Sahifa yuklanmoqda...';
+  playEl.textContent = '⏳ Sahifa yuklanmoqda...';
+
+  let t = 0;
+  const timer = setInterval(() => {
+    t += 0.5;
+    selCnt.textContent = `${t.toFixed(1)} sekund`;
+    playCnt.textContent = `${t.toFixed(1)} sekund`;
+
+    // Selenium - 1 sekundda xato beradi
+    if (t === 1.0) {
+      selEl.className = 'demo-status error';
+      selEl.textContent = '❌ NoSuchElementException!\nElement topilmadi!\nSahifa hali yuklanmagan edi.';
+      selCnt.textContent = '';
+    }
+
+    // Playwright - 2.5 sekundda element tayyor bo'ladi
+    if (t === 2.5) {
+      playEl.className = 'demo-status success';
+      playEl.textContent = '✅ Muvaffaqiyat!\nPlaywright kutdi — element tayyor bo\'lganda click() bajardi.\nXato yo\'q!';
+      playCnt.textContent = '';
+    }
+
+    if (t >= 3.0) {
+      clearInterval(timer);
+      document.getElementById('demoBtn').disabled = false;
+      document.getElementById('demoBtn').textContent = '🔄 Qayta ko\'rish';
+      demoRunning = false;
+      completedActivities.add('demo'); updateProgress();
+    }
+  }, 500);
+}
+
+// Code Builder
+function generateCode() {
+  const action = document.getElementById('cbAction').value;
+  const url = document.getElementById('cbUrl').value || 'https://testshop.uz';
+  const sel = document.getElementById('cbSel').value || '#login-btn';
+
+  const codes = {
+    open: `<span class="code-tag playwright">open.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}"</span>)
+    <span class="func">print</span>(page.<span class="var">title</span>())
+    browser.<span class="func">close</span>()`,
+
+    click: `<span class="code-tag playwright">click.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}"</span>)
+    <span class="comment"># Auto-wait — element tayyor bo'lgunicha kutadi</span>
+    page.<span class="func">click</span>(<span class="string">"${sel}"</span>)
+    browser.<span class="func">close</span>()`,
+
+    fill: `<span class="code-tag playwright">fill.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}"</span>)
+    <span class="comment"># fill() — clear + type birgalikda</span>
+    page.<span class="func">fill</span>(<span class="string">"${sel}"</span>, <span class="string">"test@uzum.uz"</span>)
+    browser.<span class="func">close</span>()`,
+
+    assert: `<span class="code-tag playwright">assert.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>()
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}"</span>)
+    <span class="comment"># Element ko'rinishini tekshirish</span>
+    <span class="keyword">assert</span> page.<span class="func">is_visible</span>(<span class="string">"${sel}"</span>)
+    <span class="func">print</span>(<span class="string">"✅ PASSED"</span>)
+    browser.<span class="func">close</span>()`,
+
+    screenshot: `<span class="code-tag playwright">screenshot.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>()
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}"</span>)
+    <span class="comment"># Screenshot saqlash</span>
+    page.<span class="func">screenshot</span>(path=<span class="string">"screenshot.png"</span>)
+    <span class="func">print</span>(<span class="string">"📸 screenshot.png saqlandi"</span>)
+    browser.<span class="func">close</span>()`,
+
+    full: `<span class="code-tag playwright">login_test.py</span>
+<span class="keyword">from</span> playwright.sync_api <span class="keyword">import</span> sync_playwright
+
+<span class="keyword">with</span> sync_playwright() <span class="keyword">as</span> p:
+    browser = p.chromium.<span class="func">launch</span>(headless=<span class="keyword">False</span>)
+    page = browser.<span class="func">new_page</span>()
+    page.<span class="func">goto</span>(<span class="string">"${url}/login"</span>)
+    <span class="comment"># Auto-wait — Wait yozish shart emas!</span>
+    page.<span class="func">fill</span>(<span class="string">"#email"</span>, <span class="string">"test@uzum.uz"</span>)
+    page.<span class="func">fill</span>(<span class="string">"#password"</span>, <span class="string">"Pass123!"</span>)
+    page.<span class="func">click</span>(<span class="string">"#login-btn"</span>)
+    page.<span class="func">wait_for_url</span>(<span class="string">"**/dashboard"</span>)
+    <span class="keyword">assert</span> page.<span class="func">is_visible</span>(<span class="string">"text=Welcome"</span>)
+    <span class="func">print</span>(<span class="string">"✅ Login PASSED"</span>)
+    browser.<span class="func">close</span>()`
+  };
+
+  document.getElementById('cbPreviewContent').innerHTML = codes[action];
+  document.getElementById('cbPreview').classList.add('show');
+  completedActivities.add('builder'); updateProgress();
+}
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

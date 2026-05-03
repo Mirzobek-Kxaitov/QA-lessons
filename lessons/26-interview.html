@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>26-dars: Intervyu tayyorgarlik | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.prep-stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
+.prep-stage{background:var(--bg-card);border:2px solid var(--line);border-radius:14px;padding:20px;text-align:center;transition:all .2s}
+.prep-stage:hover{transform:translateY(-2px)}
+.prep-stage-icon{font-size:32px;margin-bottom:8px;display:block}
+.prep-stage h4{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--plum);margin-bottom:4px}
+.prep-stage p{font-size:12px;color:var(--ink-muted);margin:0;line-height:1.3}
+/* Mock Interview */
+.mock-interview{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.mock-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.mock-progress-wrap{display:flex;align-items:center;gap:10px;flex:1;min-width:160px}
+.mock-prog-bar{flex:1;height:8px;background:var(--bg-soft);border-radius:4px;overflow:hidden}
+.mock-prog-fill{height:100%;background:linear-gradient(90deg,var(--plum),var(--blue));width:0%;transition:width .4s}
+.mock-prog-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);min-width:44px}
+.mock-category{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:100px;font-weight:600}
+.cat-manual{background:var(--blue-soft);color:var(--blue)}
+.cat-api{background:var(--gold-soft);color:var(--gold)}
+.cat-auto{background:var(--forest-soft);color:var(--forest)}
+.cat-process{background:var(--plum-soft);color:var(--plum)}
+.mock-question-area{background:var(--bg-soft);border-radius:14px;padding:24px;margin-bottom:16px}
+.mock-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);margin-bottom:8px}
+.mock-question{font-family:'Fraunces',serif;font-size:20px;font-weight:500;line-height:1.3;color:var(--ink)}
+.mock-answer-area{margin-bottom:16px}
+.mock-textarea{width:100%;min-height:90px;padding:12px 16px;border:2px solid var(--line);border-radius:10px;font-family:inherit;font-size:14px;resize:vertical;transition:border-color .2s}
+.mock-textarea:focus{outline:none;border-color:var(--plum)}
+.mock-btns{display:flex;gap:10px;flex-wrap:wrap}
+.mock-btn{padding:10px 20px;border-radius:10px;border:2px solid;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s;font-family:inherit}
+.mock-btn-show{background:var(--plum);border-color:var(--plum);color:white}
+.mock-btn-show:hover{background:var(--plum-soft);color:var(--plum)}
+.mock-btn-next{background:var(--forest);border-color:var(--forest);color:white}
+.mock-btn-next:hover{background:var(--forest-soft);color:var(--forest)}
+.mock-btn-skip{background:white;border-color:var(--line);color:var(--ink-muted)}
+.mock-btn-skip:hover{border-color:var(--ink-muted)}
+.mock-pro-answer{background:var(--forest-soft);border:1px solid var(--forest);border-radius:10px;padding:16px 20px;margin-top:14px;display:none;font-size:14px;color:var(--ink-soft);line-height:1.6}
+.mock-pro-answer.show{display:block}
+.mock-pro-answer strong{color:var(--forest)}
+.mock-pro-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--forest);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.mock-done{text-align:center;padding:32px;display:none}
+.mock-done.show{display:block}
+.mock-done-score{font-family:'Fraunces',serif;font-size:64px;font-weight:600;color:var(--forest);line-height:1}
+.mock-done-msg{font-size:18px;color:var(--ink-soft);margin:12px 0}
+/* BA */
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.ba-panel{border-radius:14px;padding:20px;border:2px solid}
+.ba-panel.bad{background:#FFF5F5;border-color:var(--accent)}
+.ba-panel.good{background:var(--forest-soft);border-color:var(--forest)}
+.ba-panel-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.ba-panel.bad .ba-panel-title{color:var(--accent)}
+.ba-panel.good .ba-panel-title{color:var(--forest)}
+.ba-item{font-size:13px;margin-bottom:6px;color:var(--ink-soft);line-height:1.4;display:flex;gap:8px}
+.ba-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ba-tab{padding:7px 14px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:12px;font-weight:500;transition:all .2s}
+.ba-tab.active{background:var(--plum);color:white;border-color:var(--plum)}
+.ba-sec{display:none}
+.ba-sec.show{display:block}
+/* Quiz */
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.faq-section{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:32px;margin:32px 0}
+.faq-item{border-bottom:1px solid var(--line);padding:14px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:15px;gap:12px}
+.faq-q:hover{color:var(--plum)}
+.faq-toggle{color:var(--plum);font-size:18px;flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s;font-size:14px;color:var(--ink-soft);line-height:1.6}
+.faq-item.open .faq-a{max-height:800px}
+.faq-a-inner{padding:12px 0 4px}
+.faq-a-inner ul{padding-left:18px;margin-top:6px}
+.faq-a-inner strong{color:var(--plum)}
+.interview-section{background:linear-gradient(135deg,#FFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform .3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height .4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .prep-stages,.ba-compare,.summary-points{grid-template-columns:1fr}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.mock-interview,.faq-section{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+  .mock-btns{flex-direction:column}
+  .mock-btn{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">26-dars</div>
+  <h1>Intervyu <em>tayyorgarlik</em></h1>
+  <p class="hero-subtitle">20 ta real texnik savol. Pro javoblar. Mock interview. Xato va to'g'ri javob taqqoslamalari. Bu dars — birinchi ishingiz uchun.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>80 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>20 ta Mock savol</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Intervyuga qanday tayyorlanish kerak?</h2>
+  <p class="section-intro">Intervyu — imtihon emas, suhbat. Recruiter siz haqingizda bilib olmoqchi. Bilimingizni aniq va ishonchli ifoda eta olsangiz — yutasiz.</p>
+  <div class="prep-stages">
+    <div class="prep-stage"><span class="prep-stage-icon">📚</span><h4>1-hafta oldin</h4><p>Asosiy tushunchalarni takrorla. Mock Interview o'tka.</p></div>
+    <div class="prep-stage"><span class="prep-stage-icon">💼</span><h4>2-kun oldin</h4><p>GitHub, LinkedIn, CV'ni tekshir. Portfolio ishlayaptimi?</p></div>
+    <div class="prep-stage"><span class="prep-stage-icon">🗣️</span><h4>1-kun oldin</h4><p>Javoblarni ovoz chiqarib mashq qil. Vaqtni o'lcha.</p></div>
+    <div class="prep-stage"><span class="prep-stage-icon">🌅</span><h4>Kuni</h4><p>CV + portfolio havola, kompaniyani o'rgan, tinch bo'l.</p></div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy qoida</div>
+    <p><strong>Bilmasangiz — ayt!</strong> "Bilmayman, lekin o'rgangan bo'lardim" yaxshi javob. Noto'g'ri javob berish — yomon. Recruiter dushman emas, u siz uchun eng to'g'ri nomzodmi deb bilmoqchi.</p>
+  </div>
+
+  <h3>Intervyuda nimalar so'raladi?</h3>
+  <ul>
+    <li><strong>QA asoslari</strong> — bug, test case, SDLC, testing turlari</li>
+    <li><strong>Manual testing</strong> — tekshiruv turlari, prioritetlash</li>
+    <li><strong>API testing</strong> — HTTP methods, status codes, Postman</li>
+    <li><strong>Automation</strong> — Selenium/Playwright asoslari, POM</li>
+    <li><strong>Asboblar</strong> — Jira, TestRail, Git</li>
+    <li><strong>Amaliy vazifalar</strong> — test case yoz, bug hujjatla, skript tushuntir</li>
+  </ul>
+</section>
+
+<!-- MOCK INTERVIEW -->
+<div class="mock-interview">
+  <div class="quiz-label">🎤 Mock Interview</div>
+  <h3 style="margin-top:8px">20 ta real intervyu savoli</h3>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px">Javobingizni yozing → "Pro javobni ko'rish" → O'zingiznikini solishtiring. Har savol — real intervyuda so'raladigan savol.</p>
+
+  <div class="mock-header">
+    <div id="mockCat"></div>
+    <div class="mock-progress-wrap">
+      <div class="mock-prog-bar"><div class="mock-prog-fill" id="mockProgFill"></div></div>
+      <div class="mock-prog-text" id="mockProgText">1 / 20</div>
+    </div>
+  </div>
+
+  <div id="mockActive">
+    <div class="mock-question-area">
+      <div class="mock-q-num" id="mockQNum">Savol 1 / 20</div>
+      <div class="mock-question" id="mockQ"></div>
+    </div>
+    <div class="mock-answer-area">
+      <textarea class="mock-textarea" id="mockAnswer" placeholder="Javobingizni bu yerga yozing..."></textarea>
+    </div>
+    <div class="mock-pro-answer" id="mockProAnswer">
+      <div class="mock-pro-label">✅ Pro javob</div>
+      <div id="mockProText"></div>
+    </div>
+    <div class="mock-btns">
+      <button class="mock-btn mock-btn-show" onclick="showProAnswer()">💡 Pro javobni ko'rish</button>
+      <button class="mock-btn mock-btn-next" onclick="nextQ()">Keyingi →</button>
+      <button class="mock-btn mock-btn-skip" onclick="nextQ()">O'tkazib yuborish</button>
+    </div>
+  </div>
+  <div class="mock-done" id="mockDone">
+    <div class="mock-done-score">🏆</div>
+    <div class="mock-done-msg">Mock interview tugadi!</div>
+    <p style="color:var(--ink-soft);font-size:15px;max-width:420px;margin:0 auto">20 ta savol ko'rib chiqdingiz. Noaniq javoblaringizni qayta o'qing va amalda mashq qiling.</p>
+    <button class="mock-btn mock-btn-next" style="margin-top:20px" onclick="restartMock()">🔄 Qaytadan boshlash</button>
+  </div>
+</div>
+
+<!-- BEFORE/AFTER -->
+<section class="section" id="ba">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Xato va to'g'ri javoblar</h2>
+  <p class="section-intro">Amalda ko'p nomzod bir xil xato qiladi. Har mavzuni ko'ring — farqni his eting.</p>
+
+  <div style="background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:28px;margin:24px 0">
+    <div class="ba-tabs">
+      <button class="ba-tab active" onclick="showBA('bug)">Bug nima</button>
+      <button class="ba-tab" onclick="showBA('tc')">Test case</button>
+      <button class="ba-tab" onclick="showBA('api')">API status</button>
+      <button class="ba-tab" onclick="showBA('auto')">Automation</button>
+      <button class="ba-tab" onclick="showBA('tj')">Tajriba yo'q</button>
+    </div>
+
+    <div id="ba-bug" class="ba-sec show">
+      <p style="font-size:14px;color:var(--ink-muted);margin-bottom:12px"><strong>Savol:</strong> "Bug nima? Misollar bilan tushuntiring."</p>
+      <div class="ba-compare">
+        <div class="ba-panel bad"><div class="ba-panel-title">❌ Xato javob</div>
+          <div class="ba-item">"Bug — dasturlarda bo'ladigan xato."</div>
+          <div class="ba-item" style="margin-top:8px;font-style:italic;color:var(--accent-dark)">Muammo: juda qisqa, misol yo'q, professional emas.</div>
+        </div>
+        <div class="ba-panel good"><div class="ba-panel-title">✅ Pro javob</div>
+          <div class="ba-item">"Bug — dasturning kutilgan va haqiqiy xulq-atvori o'rtasidagi farq. Masalan: TestShop'da login qilganda to'g'ri parol bilan ham 'Noto'g'ri parol' xatosi chiqsa — bu bug. Expected: muvaffaqiyatli kirish. Actual: xato xabari."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ba-tc" class="ba-sec">
+      <p style="font-size:14px;color:var(--ink-muted);margin-bottom:12px"><strong>Savol:</strong> "Test case yozish qanday amalga oshiriladi?"</p>
+      <div class="ba-compare">
+        <div class="ba-panel bad"><div class="ba-panel-title">❌ Xato javob</div>
+          <div class="ba-item">"Test case — test qilinayotgan narsa. Men yozaman."</div>
+          <div class="ba-item" style="margin-top:8px;font-style:italic;color:var(--accent-dark)">Muammo: Test case tarkibi yo'q, qanday yozilishini bilmaydigandek.</div>
+        </div>
+        <div class="ba-panel good"><div class="ba-panel-title">✅ Pro javob</div>
+          <div class="ba-item">"Test case — qanday sinovni o'tkazishni aniq tasvirlovchi hujjat. Asosiy qismlari: ID, Title, Precondition, Steps, Expected Result, Actual Result, Status. Masalan, Login funksiyasi uchun: to'g'ri email+parol → Dashboard ochilishi kerak."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ba-api" class="ba-sec">
+      <p style="font-size:14px;color:var(--ink-muted);margin-bottom:12px"><strong>Savol:</strong> "HTTP 401 va 403 farqi nima?"</p>
+      <div class="ba-compare">
+        <div class="ba-panel bad"><div class="ba-panel-title">❌ Xato javob</div>
+          <div class="ba-item">"401 va 403 ikkalasi ham xato. Aniq bilmayman."</div>
+          <div class="ba-item" style="margin-top:8px;font-style:italic;color:var(--accent-dark)">Muammo: API testing bilmaydi taassurot qoldiradi.</div>
+        </div>
+        <div class="ba-panel good"><div class="ba-panel-title">✅ Pro javob</div>
+          <div class="ba-item">"401 Unauthorized — foydalanuvchi autentifikatsiya qilinmagan, ya'ni login qilmagan yoki token yo'q. 403 Forbidden — autentifikatsiya bor, lekin ruxsat yo'q. Masalan: oddiy foydalanuvchi admin panelga kirmoqchi — 403."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ba-auto" class="ba-sec">
+      <p style="font-size:14px;color:var(--ink-muted);margin-bottom:12px"><strong>Savol:</strong> "Automation testing tajribangiz bormi?"</p>
+      <div class="ba-compare">
+        <div class="ba-panel bad"><div class="ba-panel-title">❌ Xato javob</div>
+          <div class="ba-item">"Men hali automation bilmayman, o'rganmoqchiman."</div>
+          <div class="ba-item" style="margin-top:8px;font-style:italic;color:var(--accent-dark)">Muammo: Portfolio bor holda bu javob — zaiflik.</div>
+        </div>
+        <div class="ba-panel good"><div class="ba-panel-title">✅ Pro javob</div>
+          <div class="ba-item">"Ha! Python + Playwright + Pytest bilan TestShop loyihasida 15 ta automation testi yozdim. POM pattern ishlatdim — LoginPage, ProductPage, CartPage. Testlar 100% PASSED. GitHub'da ko'rishingiz mumkin."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ba-tj" class="ba-sec">
+      <p style="font-size:14px;color:var(--ink-muted);margin-bottom:12px"><strong>Savol:</strong> "Real loyihada ishlaganmisiz?"</p>
+      <div class="ba-compare">
+        <div class="ba-panel bad"><div class="ba-panel-title">❌ Xato javob</div>
+          <div class="ba-item">"Yo'q, tajribam yo'q. Faqat kurs o'tdim."</div>
+          <div class="ba-item" style="margin-top:8px;font-style:italic;color:var(--accent-dark)">Muammo: O'z qiymatini past ko'rsatish — recruiter ham shundoq qabul qiladi.</div>
+        </div>
+        <div class="ba-panel good"><div class="ba-panel-title">✅ Pro javob</div>
+          <div class="ba-item">"Kurs loyihasida qo'l kirdim — TestShop e-commerce saytini to'liq test qildim. 50+ test case, 20+ bug report, automation framework, API va performance testlari. Real loyihaga o'xshash to'liq tsikl — GitHub'da bor."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click'da texnik intervyu</div>
+  <div class="scenario-story">
+    <p><strong>10:00.</strong> Click HQ. Texnik intervyu — QA Lead Sardor aka bilan. U sizga hujjat uzatdi: "Mana TestShop login sahifasining mock-up'i. <strong>5 ta test case yozing. 5 daqiqa.</strong>"</p>
+    <p>Login sahifasi: Email field, Password field, "Kirish" tugmasi, "Parolni unutdim?" link.</p>
+    <p>Siz hozir nima yozasiz?</p>
+  </div>
+  <div class="scenario-question">Eng professional yondashuv qaysi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Faqat 1 ta test case: to'g'ri email va parol bilan login — bu asosiy.</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>5 ta test case:</strong> 1) To'g'ri login (Happy path) 2) Xato parol (negative) 3) Bo'sh email (validation) 4) Mavjud bo'lmagan email (negative) 5) "Parolni unutdim" ishlashi. Har birida Steps, Expected Result yozaman.</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>5 daqiqa oz — avval tushuntirish so'rayman, keyin yozaman.</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Intervyuda so'raladigan savolni bilmadingiz. Nima qilasiz?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Biror narsa o'ylab topaman — sukut saqlagandan yaxshiroq</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>Halol javob:</strong> "Hozir aniq javob bera olmayman, lekin bu mavzuni o'rganishga tayyor man. Bilganim — [mavzuga yaqin narsani ayt]." Recruiter noto'g'ri javobdan ko'ra halollikni qadrlaydi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Intervyuni to'xtatib, telefondan qidiraman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="faq">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Tez-tez so'raladigan savollar</h2>
+  <p class="section-intro">Intervyuda albatta so'raladigan 15 ta savol va qisqa pro javoblar. Bosib ko'ring.</p>
+  <div class="faq-section">
+    <div class="faq-item">
+      <div class="faq-q">Bug va Error farqi nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Bug</strong> — dastur kutilganidan boshqa ishlayotganda (test topadi). <strong>Error</strong> — ishga tushirishni to'sqinlovchi xato (sintaksis, runtime). Bug — funksional muammo, Error — texnik muammo.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Smoke va Sanity testing farqi? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Smoke</strong> — yangi build'ning asosiy funksiyalari ishlayaptimi? (Keng, sayoz). <strong>Sanity</strong> — bug fix'dan keyin faqat o'sha modul to'g'rilandimikin? (Tor, chuqur).</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Severity va Priority farqi? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Severity</strong> — bug dasturga qanchalik zarar yetkazadi (texnik ta'sir). <strong>Priority</strong> — tuzatish qanchalik tez kerak (biznes muhimligi). Misol: Sarlavhadagi imlo xatosi — Severity Low, lekin Priority High (bosh sahifada ko'rinadi).</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Black box va White box testing? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Black box</strong> — ichki kodni bilmasdan test qilish. Foydalanuvchi ko'zi bilan. QA asosan shu. <strong>White box</strong> — kod ko'rinadi, ichki mantiqni test qilish. Dasturchi qiladi.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Regression testing nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yangi o'zgartirish eski funksiyalarni buzmadimi? — tekshirish. Har yangi release'dan oldin eski funksiyalar qayta test qilinadi. Automation uchun ideal.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Agile va Scrum nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Agile</strong> — iterativ rivojlantirish metodologiyasi. Qisqa tsikllar, moslashuvchanlik. <strong>Scrum</strong> — Agile'ning bir framework'i. Sprint (1-2 hafta), Daily standup, Sprint review. QA Sprint davomida test qiladi.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">SDLC va STLC nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>SDLC</strong> — Software Development Life Cycle: Talablar → Dizayn → Rivojlantirish → Test → Deploy → Qo'llab-quvvatlash. <strong>STLC</strong> — Software Testing Life Cycle: Talablarni tahlil → Test rejasi → Test case → Test muhit → Test bajarish → Test yopish.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">POM nima va nima uchun kerak? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Page Object Model</strong> — har sahifa uchun alohida class. Locatorlar va metodlar shu classda. Afzalligi: locator o'zgansa — 1 joyda o'zgartirish yetarli, test kodi toza va tushunarli.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">GET va POST farqi? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>GET</strong> — ma'lumot olish, URL'da ko'rinadi, xavfsiz. <strong>POST</strong> — ma'lumot yaratish, body'da yuboriladi, URL'da ko'rinmaydi. GET — o'qish, POST — yozish.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">p95 nimani anglatadi? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">p95 = 1.8s degani: 100 ta so'rovdan 95 tasi 1.8 sekunddan tez bajarildi. Faqat 5 tasi sekinroq. O'rtacha aldashi mumkin — p95/p99 haqiqiy holat.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Test Pyramid nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Automation strategiyasi: <strong>Unit 70%</strong> (tez, ko'p), <strong>API 20%</strong> (o'rta), <strong>UI/E2E 10%</strong> (sekin, kam). Ko'p tez testlar + oz sekin testlar = ishonchli va samarali.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Boundary Value Analysis nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Chegaraviy qiymatlarni test qilish. Misol: yosh 18-65 oralig'ida qabul qilinadi → 17, 18, 65, 66 test qilinadi. Chegarada ko'proq bug bo'ladi.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Exploratory testing nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Oldindan yozilgan test case'siz, erkin tekshirish. QA o'zi fikrlaydi, sinaydi, yangi yo'llar izlaydi. Yangi funksiya yoki vaqt kam bo'lganda yaxshi. Tajriba va intuitsiya muhim.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Defect Life Cycle nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Bug'ning hayot tsikli: New → Assigned → Open → Fixed → Retest → Closed (yoki Reopened). QA New qiladi, dasturchi Fix qiladi, QA Retest qiladi va Close yoki Reopen qiladi.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Equivalent Partitioning nima? <span class="faq-toggle">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Kiritish qiymatlarini guruhlarga bo'lish — har guruhdan 1 ta test yetarli. Yosh field: 0-17 (yaroqsiz), 18-65 (yaroqli), 66+ (yaroqsiz). Har guruhdan 1 ta test qilish — hammani tekshirgandek.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">Intervyu kuniga tayyorgarlik</h2>
+  <div class="example-box">
+    <div class="example-box-title">Kuni uchun cheklista</div>
+    <ul style="margin:0">
+      <li><strong>Kompaniyani o'rganing</strong> — nima qilishadi, qanday mahsulot, texnologiya stack</li>
+      <li><strong>CV yangilangan</strong> — GitHub link ishlayapti, LinkedIn to'liq</li>
+      <li><strong>Portfolio ishlayapti</strong> — GitHub repoilar ochiq, README bor</li>
+      <li><strong>Savollar tayyorlang</strong> — "Jamoa qancha? Test strategyasi qanday? Onboarding?"</li>
+      <li><strong>Vaqt</strong> — 15 daqiqa oldin online bo'ling (remote) yoki yeting (office)</li>
+      <li><strong>Qurilma</strong> — internet yaxshi, mikrofon ishlayapti, fon toza</li>
+    </ul>
+  </div>
+
+  <h3>Siz ham savollar berishingiz kerak!</h3>
+  <p>Intervyu oxirida "Savollaringiz bormi?" deyishadi. Bu — muhim. Javob: "Ha, bor!"</p>
+  <ul>
+    <li>"QA jamoasida necha kishi? Manual va Auto qanday taqsimlangan?"</li>
+    <li>"Onboarding qanday o'tadi? Birinchi oyda nima kutiladi?"</li>
+    <li>"Ishlatadigan asboblar: Jira, TestRail — boshqa nima?"</li>
+    <li>"Loyiha qanday — Agile? Sprint qancha davom etadi?"</li>
+    <li>"QA Engineer uchun o'sish yo'li qanday — Middle, Senior?"</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Savol berish — kuchlilik belgisi</div>
+    <p>Savol bermaslik — "Bu ish menga muhim emas" deyish. <strong>2-3 ta savol</strong> — eng optimal. Kompaniyaga qiziqasiz va professional ekanligingizni ko'rsatadi.</p>
+  </div>
+</section>
+
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Misollar bilan javob</div>
+      <div class="summary-point-text">Har javobda — TestShop misoli. "Bug nima? — TestShop login'ida..." Abstrakt emas, konkret. Recruiter tekshira oladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Bilmasang — ayt</div>
+      <div class="summary-point-text">"Bilmayman, lekin o'rganishga tayyorman" — halol va kuchli javob. Noto'g'ri gapirish — yomon. Halollik — ishonch.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Siz ham savol bering</div>
+      <div class="summary-point-text">2-3 ta savol tayyorlang. Jamoa, onboarding, asboblar. Savol berish — qiziqasiz va professionalligingizni ko'rsatadi.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="25-cv.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>25-dars · CV yozish</div>
+  </a>
+  <a href="27-real-project.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>27-dars · Real loyihada QA</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 14;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// MOCK INTERVIEW DATA
+const questions = [
+  { cat:'manual', catLabel:'Manual Testing', q:'Bug nima? Misol bilan tushuntiring.', a:'Bug — dasturning kutilgan va haqiqiy xulq-atvori o\'rtasidagi farq. Masalan: TestShop\'da to\'g\'ri parol bilan login qilganda "Noto\'g\'ri parol" xatosi chiqsa — bug. <strong>Expected:</strong> Dashboard. <strong>Actual:</strong> xato xabari.' },
+  { cat:'manual', catLabel:'Manual Testing', q:'Smoke va Regression testing farqi?', a:'<strong>Smoke</strong> — yangi build\'ning asosiy funksiyalari ishlayaptimi? Tez, sayoz. <strong>Regression</strong> — yangi o\'zgartirish eski funksiyalarni buzmadimi? Har release oldidan. Smoke kichik, Regression katta.' },
+  { cat:'manual', catLabel:'Manual Testing', q:'Severity va Priority qanday belgilanadi?', a:'<strong>Severity</strong> — bug dasturga texnik ta\'siri (Critical/High/Medium/Low). <strong>Priority</strong> — tuzatish tezligi (biznes muhimligi). Bosh sahifadagi imlo xatosi: Severity Low, Priority High — ko\'p odam ko\'radi.' },
+  { cat:'manual', catLabel:'Manual Testing', q:'Equivalence Partitioning nima? Misol bering.', a:'Kiritish qiymatlarini guruhlarga bo\'lish — har guruhdan 1 ta test yetarli. Yosh 18-65: 17 (yaroqsiz), 18 (yaroqli), 65 (yaroqli), 66 (yaroqsiz) — 4 ta test 4 ta guruhni qoplaydi.' },
+  { cat:'manual', catLabel:'Manual Testing', q:'Test case\'ning asosiy qismlari qaysilar?', a:'Test Case ID, Title, Precondition (shart), Steps (qadamlar), Expected Result, Actual Result, Status (Pass/Fail), Priority, Severity. Har qism muhim — Steps aniq bo\'lsa, har kim bajarishi mumkin.' },
+  { cat:'process', catLabel:'Jarayon', q:'SDLC bosqichlarini sanab bering.', a:'Requirements → Design → Development → Testing → Deployment → Maintenance. QA asosan Testing bosqichida, lekin Shift Left bilan Requirements bosqichidan ishtirok etadi — talablarni erta tekshirish.' },
+  { cat:'process', catLabel:'Jarayon', q:'Agile muhitda QA qanday ishlaydi?', a:'Sprint (1-2 hafta) davomida: Sprint Planning\'da QA talablarni tekshiradi → Dasturchi yozadi → QA test qiladi → Daily standup\'da status → Sprint Review\'da demo. Tez tsikllar, moslashuvchan.' },
+  { cat:'process', catLabel:'Jarayon', q:'Bug Life Cycle\'ni tushuntiring.', a:'New → Assigned → Open (dasturchi ishlaydi) → Fixed → Retest (QA qayta test) → Closed. Agar hali ishlasa: Reopened. QA "New" qiladi, "Retest" va "Close/Reopen" qiladi.' },
+  { cat:'api', catLabel:'API Testing', q:'GET, POST, PUT, DELETE — har biri nima uchun?', a:'<strong>GET</strong> — ma\'lumot olish (Read). <strong>POST</strong> — yangi yaratish (Create). <strong>PUT</strong> — to\'liq yangilash (Update). <strong>DELETE</strong> — o\'chirish. Bu CRUD — har REST API\'ning asosi.' },
+  { cat:'api', catLabel:'API Testing', q:'401 va 403 status kod farqi?', a:'<strong>401 Unauthorized</strong> — autentifikatsiya yo\'q (login qilmagan, token yo\'q). <strong>403 Forbidden</strong> — autentifikatsiya bor, lekin ruxsat yo\'q. Oddiy foydalanuvchi admin panelga: 403.' },
+  { cat:'api', catLabel:'API Testing', q:'Postman\'da qanday test yoziladi?', a:'Tests bo\'limida JavaScript: <code>pm.test("Status 200", () => pm.response.to.have.status(200));</code> — status tekshirish. Response time, body validation ham yoziladi. Har so\'rovda avtomatik bajariladi.' },
+  { cat:'api', catLabel:'API Testing', q:'REST API va JSON haqida nima bilasiz?', a:'<strong>REST API</strong> — URL + HTTP method + JSON. Har resurs uchun aniq URL. <strong>JSON</strong> — {"key": "value"} — eng mashhur format. API\'lar JSON orqali ma\'lumot almashadi. Postman bilan test qilaman.' },
+  { cat:'auto', catLabel:'Automation', q:'POM (Page Object Model) nima va nima uchun kerak?', a:'Har sahifa uchun alohida Python class. LoginPage, ProductPage, CartPage. Locatorlar classda — test fayllar faqat metodlarni chaqiradi. Afzalligi: locator o\'zgansa 1 joyda o\'zgartirish yetarli.' },
+  { cat:'auto', catLabel:'Automation', q:'Selenium vs Playwright — qaysi birini tanlaysiz?', a:'<strong>Selenium</strong> — 2004, eski va mashhur, ko\'p loyihada. <strong>Playwright</strong> — 2020, auto-wait, tezroq, zamonaviy. Yangi loyiha uchun Playwright tavsiya qilaman — kam kod, flaky testlar yo\'q. Men ikkalasini ham bilaman.' },
+  { cat:'auto', catLabel:'Automation', q:'Test Pyramid nima? Nima uchun muhim?', a:'Unit 70%, API 20%, UI/E2E 10%. Ko\'p tez testlar + oz sekin testlar. UI testlar qimmat va sekin — faqat critical yo\'llar uchun. Pyramid — balanced automation strategiyasi.' },
+  { cat:'auto', catLabel:'Automation', q:'Pytest\'da fixture nima?', a:'Har testdan oldin bajariladigan tayyorgarlik. <code>@pytest.fixture def page(): ...</code> — brauzer ochadi, test ishlaydi, yopadi. Conftest.py\'da saqlanadi — barcha test fayllariga ishlaydi.' },
+  { cat:'manual', catLabel:'Manual Testing', q:'Exploratory testing nima va qachon ishlatiladi?', a:'Oldindan yozilgan test case\'siz erkin tekshirish. QA o\'z intuitsiyasi bilan yangi yo\'llar izlaydi. Yangi funksiya, vaqt kam, yoki maxsus bug hunt uchun. Tajriba va kreativlik muhim.' },
+  { cat:'process', catLabel:'Jarayon', q:'Shift Left testing nima?', a:'Testing jarayonini qanchalik erta boshlash. Talablarni dastlab tekshirish, dizayn bosqichida ishtrok etish. Erta topilgan bug arzonroq tuzatiladi. CI/CD pipeline\'da automation — bu Shift Left.' },
+  { cat:'api', catLabel:'API Testing', q:'p95 va p99 nima anglatadi?', a:'p95 = 1.8s — 100 so\'rovdan 95 tasi 1.8 sekunddan tez. p99 = 3s — 99 tasi 3 sekunddan tez. O\'rtacha aldaydi — 1 ta juda sekin so\'rov natijani buzmaydi. p95/p99 haqiqiy holat.' },
+  { cat:'auto', catLabel:'Automation', q:'Automation qachon kerak emas?', a:'Yangi funksiya (tez o\'zgaradi), UX tekshirish, 1-2 marta bajariladigan test, Captcha/OTP. Qoida: 5+ marta takrorlanadigan testlar — automation uchun. Yangi feature avval manual, keyin auto.' }
+];
+
+const catColors = { manual:'cat-manual', api:'cat-api', auto:'cat-auto', process:'cat-process' };
+let qIdx = 0, answered = 0;
+
+function renderQ() {
+  const q = questions[qIdx];
+  document.getElementById('mockCat').innerHTML = `<span class="mock-category ${catColors[q.cat]}">${q.catLabel}</span>`;
+  document.getElementById('mockQNum').textContent = `Savol ${qIdx + 1} / ${questions.length}`;
+  document.getElementById('mockQ').textContent = q.q;
+  document.getElementById('mockAnswer').value = '';
+  document.getElementById('mockProAnswer').classList.remove('show');
+  document.getElementById('mockProAnswer').style.display = 'none';
+  document.getElementById('mockProgFill').style.width = ((qIdx) / questions.length * 100) + '%';
+  document.getElementById('mockProgText').textContent = `${qIdx + 1} / ${questions.length}`;
+}
+
+function showProAnswer() {
+  const q = questions[qIdx];
+  document.getElementById('mockProText').innerHTML = q.a;
+  const pa = document.getElementById('mockProAnswer');
+  pa.style.display = 'block';
+  pa.classList.add('show');
+  answered++;
+  done.add('mock' + qIdx); upd();
+}
+
+function nextQ() {
+  qIdx++;
+  if (qIdx >= questions.length) {
+    document.getElementById('mockActive').style.display = 'none';
+    document.getElementById('mockDone').classList.add('show');
+    done.add('mockDone'); upd();
+  } else { renderQ(); }
+}
+
+function restartMock() {
+  qIdx = 0; answered = 0;
+  document.getElementById('mockActive').style.display = 'block';
+  document.getElementById('mockDone').classList.remove('show');
+  renderQ();
+}
+
+renderQ();
+
+// Quiz
+const fbData = {
+  scenario: {
+    c: '<strong>Mukammal!</strong> 5 ta test case = happy path + negative + validation + edge case. Bu professional QA yondashuvi. Recruiter siz testing turlari haqida bilishingizni ko\'radi. Happy path + negative + validation — minimal professional to\'plam.',
+    w: 'Faqat 1 ta test case — Junior darajasi. Professional QA turli scenariylarni ko\'radi: to\'g\'ri login, xato parol, bo\'sh maydon, mavjud bo\'lmagan account. 5 daqiqada 5 ta yozish — bu skills ko\'rsatadi.'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> Halollik — intervyuda eng kuchli xususiyat. Recruiter noto\'g\'ri gapirganingizni keyinroq sezadi — bu yomonroq. "Bilmayman, lekin o\'rganaman" + mavzuга yaqin narsani bilishingizni ko\'rsatish — professional.',
+    w: 'O\'ylab topilgan javob — recruiter sezadi. Telefondan qidirish — to\'liq noto\'g\'ri. Halol javob: "Hozir aniq bilmayman, lekin shu mavzu bilan bog\'liq [narsa] bilaman. O\'rganishga tayyorman." Bu — kuchlilik.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const fbEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      fbEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      fbEl.innerHTML = ok ? fbData[qId].c : fbData[qId].w;
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// BA tabs
+function showBA(id) {
+  document.querySelectorAll('.ba-sec').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.ba-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ba-' + id).classList.add('show');
+  event.target.classList.add('active');
+  done.add('ba' + id); upd();
+}
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    item.classList.toggle('open');
+    done.add('faq' + q.textContent.slice(0,10)); upd();
+  });
+});
+</script>
+</body>
+</html>

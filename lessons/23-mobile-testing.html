@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23-dars: Mobile Testing | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5;
+  --android:#3DDC84;--android-dark:#00A550;
+  --ios:#007AFF;--ios-dark:#0051A8;
+  --code-bg:#1E1E1E;--code-text:#D4D4D4
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.analogy-card{background:var(--bg-card);border:2px dashed var(--gold);border-radius:16px;padding:28px;margin:28px 0;text-align:center}
+.analogy-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:12px;font-weight:500}
+.analogy-title{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin-bottom:12px}
+.analogy-text{font-size:16px;color:var(--ink-soft);line-height:1.6}
+.platform-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.platform-card{padding:24px;border-radius:16px;border:2px solid}
+.platform-card.android{background:#F0FFF5;border-color:var(--android)}
+.platform-card.ios{background:#F0F7FF;border-color:var(--ios)}
+.platform-card h4{font-family:'Fraunces',serif;font-size:20px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.platform-card.android h4{color:var(--android-dark)}
+.platform-card.ios h4{color:var(--ios-dark)}
+.platform-card ul{padding-left:18px;margin:0;font-size:14px}
+.platform-card li{margin-bottom:5px;color:var(--ink-soft)}
+.test-area-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:24px 0}
+.test-area-card{background:var(--bg-card);border:2px solid var(--line);border-radius:14px;padding:20px;transition:all .2s}
+.test-area-card:hover{transform:translateY(-2px);box-shadow:0 8px 16px -8px rgba(0,0,0,.1)}
+.test-area-icon{font-size:32px;margin-bottom:10px;display:block}
+.test-area-card h4{font-family:'Fraunces',serif;font-size:16px;font-weight:600;margin-bottom:6px;color:var(--plum)}
+.test-area-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.4}
+.checklist-section{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;margin:24px 0}
+.checklist-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-muted);margin-bottom:16px;font-weight:500}
+.checklist-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.checklist-item:last-child{border-bottom:none}
+.check-box{width:22px;height:22px;border-radius:5px;border:2px solid var(--line-dark);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s;margin-top:2px}
+.check-box:hover{border-color:var(--forest)}
+.check-box.checked{background:var(--forest);border-color:var(--forest);color:white}
+.check-text{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.check-text.checked{text-decoration:line-through;opacity:.6}
+.checklist-progress{margin-top:14px;display:flex;align-items:center;gap:10px}
+.checklist-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.checklist-bar-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s}
+.checklist-count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted)}
+.phone-mockup{display:flex;justify-content:center;margin:24px 0;gap:24px;flex-wrap:wrap}
+.phone{width:180px;background:#1A1A1A;border-radius:32px;padding:12px;box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.phone-screen{background:white;border-radius:22px;overflow:hidden}
+.phone-header{background:#F8F8F8;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#666;border-bottom:1px solid #EEE}
+.phone-content{padding:14px}
+.phone-content p{font-size:11px;color:#333;margin-bottom:8px;line-height:1.4}
+.phone-btn{background:var(--accent);color:white;border:none;border-radius:8px;padding:8px 12px;font-size:10px;width:100%;cursor:pointer}
+.phone-label{text-align:center;margin-top:8px;font-size:11px;color:#999;font-family:'JetBrains Mono',monospace}
+.device-compare-table{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:24px 0}
+.device-compare-table table{width:100%;border-collapse:collapse}
+.device-compare-table th{padding:12px 14px;text-align:left;font-family:'Fraunces',serif;font-size:15px;font-weight:500;background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.device-compare-table th:nth-child(2){color:var(--forest);background:var(--forest-soft)}
+.device-compare-table th:nth-child(3){color:var(--blue);background:var(--blue-soft)}
+.device-compare-table td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+.device-compare-table tr:last-child td{border-bottom:none}
+.device-compare-table td:first-child{font-weight:500;color:var(--ink);background:var(--bg-soft)}
+.matching-game{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.matching-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.matching-column h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-muted);margin-bottom:12px}
+.match-item{background:var(--bg-soft);border:2px solid transparent;border-radius:10px;padding:14px 16px;margin-bottom:10px;cursor:pointer;font-size:14px;line-height:1.4}
+.match-item:hover:not(.matched):not(.selected){background:var(--plum-soft);border-color:var(--plum)}
+.match-item.selected{background:var(--plum-soft);border-color:var(--plum);color:var(--plum);font-weight:500}
+.match-item.matched{background:var(--forest-soft);border-color:var(--forest);color:var(--forest);cursor:default;opacity:.7}
+.match-item.wrong{background:var(--accent-soft);border-color:var(--accent);animation:shake .4s}
+.match-score{margin-top:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-muted)}
+.match-complete{color:var(--forest);font-weight:500}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.classifier-game{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.clf-card{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;cursor:pointer;user-select:none;transition:all .2s}
+.clf-card:hover:not(.classified){border-color:var(--plum);transform:translateY(-1px)}
+.clf-card.selected{border-color:var(--plum);background:var(--plum-soft)}
+.clf-card.classified{opacity:.5;pointer-events:none;background:var(--forest-soft);border-color:var(--forest);position:relative}
+.clf-card.classified::after{content:"✓ " attr(data-placed-in);position:absolute;top:10px;right:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--forest);font-weight:600}
+.clf-card-title{font-weight:500;font-size:14px;margin-bottom:4px;padding-right:90px}
+.clf-card-desc{font-size:12px;color:var(--ink-muted);line-height:1.4}
+.clf-buckets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.clf-bucket{min-height:75px;padding:14px;border:2px solid var(--line);border-radius:12px;text-align:center;background:white;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;transition:all .2s}
+.clf-bucket:hover{border-color:var(--plum);background:var(--plum-soft)}
+.clf-bucket.active{border-color:var(--plum);background:var(--plum-soft)}
+.clf-bucket.disabled{opacity:.5;pointer-events:none}
+.clf-bucket-icon{font-size:22px}
+.clf-bucket-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
+.clf-hint{background:var(--gold-soft);border-left:3px solid var(--gold);padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:13px;display:none;color:var(--ink-soft)}
+.clf-hint.show{display:block}
+.clf-score{margin-top:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-muted)}
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.interview-section{background:linear-gradient(135deg,#FFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform .3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height .4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+h4{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-top:24px;margin-bottom:10px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .platform-compare,.matching-grid,.clf-buckets,.test-area-cards{grid-template-columns:1fr}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.classifier-game{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+  .clf-card.classified::after{position:static;display:block;margin-top:6px}
+  .clf-card-title{padding-right:0}
+  .device-compare-table th,.device-compare-table td{padding:8px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">23-dars</div>
+  <h1>Mobile <em>Testing</em></h1>
+  <p class="hero-subtitle">Dunyo trafigining 60%+ mobil qurilmalardan. Android va iOS — ikkalasini test qilish qanday farq qiladi?</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>70 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Android + iOS</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Nima uchun Mobile Testing muhim?</h2>
+  <p class="section-intro">Uzum, Payme, Click — bu ilovalarni foydalanuvchilarning <strong>80%+ mobil telefonda</strong> ishlatadi. Siz QA sifatida faqat web saytni emas, mobil ilovani ham sinab ko'rishingiz kerak.</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Sodda misol</div>
+    <div class="analogy-title">Bir xil do'kon — ikki xil eshik</div>
+    <div class="analogy-text">
+      Web sayt — asosiy eshik. Mobil ilova — yon eshik. <strong>Ikkalasini ham tekshirish kerak!</strong> Asosiy eshik yaxshi bo'lsa ham, yon eshik buziq bo'lishi mumkin.
+    </div>
+  </div>
+
+  <h3>Mobil va Web testing farqi</h3>
+  <ul>
+    <li><strong>Ekran o'lchami</strong> — 5" telefon, 10" planshet, 27" monitor — hammasi boshqacha</li>
+    <li><strong>Sensorli ekran</strong> — sichqon yo'q, barmaq bilan ishlash</li>
+    <li><strong>Tarmoq</strong> — Wi-Fi, 4G, 3G, hatto 2G da ishlashi kerak</li>
+    <li><strong>Batareya</strong> — ilova batareyani ko'p sarflayaptimi?</li>
+    <li><strong>Notifikatsiya</strong> — keldi, ilova qanday reaksiya qiladi?</li>
+    <li><strong>Ko'p qurilma</strong> — Samsung, Xiaomi, iPhone, iPad — hammasi boshqacha</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Bozor ulushi (2024)</div>
+    <p>Android — <strong>72%</strong> global bozor. iOS — <strong>27%</strong>. O'zbekistonda Android ancha ko'p (arzonroq telefonlar). Ikkalasi ham muhim!</p>
+  </div>
+</section>
+
+<section class="section" id="platforms">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Android va iOS — asosiy farqlar</h2>
+  <p class="section-intro">QA sifatida ikki platformaning xususiyatlarini bilish kerak. Test yondashuvi bir xil, lekin nuanslar bor.</p>
+
+  <div class="platform-compare">
+    <div class="platform-card android">
+      <h4>🤖 Android</h4>
+      <ul>
+        <li>Google tomonidan</li>
+        <li>Ko'p ishlab chiqaruvchi (Samsung, Xiaomi, Oppo...)</li>
+        <li>Ochiq platforma — ko'proq moslashuvchan</li>
+        <li>Fragmentatsiya — 1000+ qurilma turi</li>
+        <li>APK fayl — o'rnatish oson</li>
+        <li>Emulator: Android Studio (bepul)</li>
+        <li>Bug tracking: koʻp qurilma turida ko'proq</li>
+      </ul>
+    </div>
+    <div class="platform-card ios">
+      <h4>🍎 iOS</h4>
+      <ul>
+        <li>Apple tomonidan</li>
+        <li>Faqat Apple qurilmalar (iPhone, iPad)</li>
+        <li>Yopiq platforma — qattiqroq qoidalar</li>
+        <li>Kam qurilma turi — test osonroq</li>
+        <li>IPA fayl — App Store kerak yoki TestFlight</li>
+        <li>Simulator: Xcode (Mac'da)</li>
+        <li>App Store qoidalari qattiq</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Real qurilma vs Emulator/Simulator</h3>
+  <div class="device-compare-table">
+    <table>
+      <thead>
+        <tr><th>Xususiyat</th><th>✅ Real qurilma</th><th>💻 Emulator/Simulator</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Narxi</td><td>Qimmat (50$-1000$+)</td><td>Bepul</td></tr>
+        <tr><td>Tezlik</td><td>Haqiqiy tezlik</td><td>Kompyuterga bog'liq</td></tr>
+        <tr><td>Kamera</td><td>Ishlaydi</td><td>Ishlam aydi</td></tr>
+        <tr><td>Sensorlar</td><td>GPS, akselerometr bor</td><td>Cheklangan</td></tr>
+        <tr><td>Tarmoq</td><td>Real 4G/Wi-Fi</td><td>Kompyuter tarmog'i</td></tr>
+        <tr><td>Ishonchlilik</td><td>Yuqori</td><td>O'rta</td></tr>
+        <tr><td>Qachon</td><td>Release oldidan</td><td>Dastlabki testlar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phone-mockup">
+    <div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <span>9:41</span>
+            <span>📶 🔋</span>
+          </div>
+          <div class="phone-content">
+            <p style="font-weight:600;font-size:12px;margin-bottom:6px">TestShop 🛒</p>
+            <p>iPhone 15 Pro — 12,000,000 so'm</p>
+            <button class="phone-btn">Savatga qo'shish</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">📱 Real iPhone</div>
+    </div>
+    <div>
+      <div class="phone" style="background:#2A4A2A">
+        <div class="phone-screen">
+          <div class="phone-header" style="background:#E8F5E8">
+            <span>9:41</span>
+            <span>📶 🔋</span>
+          </div>
+          <div class="phone-content">
+            <p style="font-weight:600;font-size:12px;margin-bottom:6px">TestShop 🛒</p>
+            <p>iPhone 15 Pro — 12,000,000 so'm</p>
+            <button class="phone-btn" style="background:var(--android-dark)">Savatga qo'shish</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">🤖 Android Emulator</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="test-areas">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Mobile testning asosiy sohalari</h2>
+  <p class="section-intro">Mobil ilovani test qilishda 6 ta asosiy soha bor. Har birida o'ziga xos tekshiruvlar.</p>
+
+  <div class="test-area-cards">
+    <div class="test-area-card">
+      <span class="test-area-icon">🖥️</span>
+      <h4>Functional</h4>
+      <p>Ilova to'g'ri ishlayaptimi? Login, ro'yxatdan o'tish, buyurtma — har funksiya tekshiriladi.</p>
+    </div>
+    <div class="test-area-card">
+      <span class="test-area-icon">🎨</span>
+      <h4>UI / UX</h4>
+      <p>Dizayn to'g'rimi? Tugmalar bosishga qulaymi? Matn o'qiladimi? Barcha ekran o'lchamida.</p>
+    </div>
+    <div class="test-area-card">
+      <span class="test-area-icon">⚡</span>
+      <h4>Performance</h4>
+      <p>Ilova tez ochilydimi? Sekin tarmoqda ishlayaptimi? Batareya sarfi qanchalik?</p>
+    </div>
+    <div class="test-area-card">
+      <span class="test-area-icon">🔄</span>
+      <h4>Interrupt Testing</h4>
+      <p>Qo'ng'iroq keldi, SMS keldi, bildirishnoma — ilova to'g'ri reaksiya beradi?</p>
+    </div>
+    <div class="test-area-card">
+      <span class="test-area-icon">📶</span>
+      <h4>Network</h4>
+      <p>Wi-Fi dan 4G'ga o'tganda? Tarmoq yo'q bo'lganda? Sekin internet (2G) da?</p>
+    </div>
+    <div class="test-area-card">
+      <span class="test-area-icon">🔧</span>
+      <h4>Installation</h4>
+      <p>O'rnatish, yangilash, o'chirish — hammasi to'g'ri bajariladi? Ma'lumotlar saqlanadimi?</p>
+    </div>
+  </div>
+
+  <h3>Muhim: Interrupt Testing</h3>
+  <p>Bu Web testingda yo'q, faqat mobilda bor! Ilova ishlayotganda:</p>
+  <div class="example-box">
+    <div class="example-box-title">Interrupt Test scenariylari</div>
+    <ul style="margin:0">
+      <li><strong>Qo'ng'iroq keldi</strong> → Ilova to'xtatildi → Qo'ng'iroq tugatildi → Ilova davom etdi. Ma'lumot yo'qolmadimikin?</li>
+      <li><strong>SMS yoki bildirishnoma keldi</strong> → Ekran yuqorida banner ko'rsatdi → Banner bosildi → Ilova qanday reaksiya berdi?</li>
+      <li><strong>Ilova foniga tushdi</strong> (Home tugma) → Qaytib keldim → Holat saqlandimikin?</li>
+      <li><strong>Batareya qizidi</strong> → Tizim ilovani chekladi → Ilova xato bermadimi?</li>
+    </ul>
+  </div>
+
+  <h3>Mobile Test Checklist</h3>
+  <div class="checklist-section">
+    <div class="checklist-title">📋 Asosiy tekshiruvlar — har release oldidan</div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Login / Logout to'g'ri ishlayapti (Android va iOS)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Portrait (tik) va Landscape (yotiq) rejimda UI buzilmayapti</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Sekin tarmoqda (3G simulyatsiya) ilova ishlayapti</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Tarmoq yo'q bo'lganda xato xabari chiqyapti (crash emas)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Qo'ng'iroq kelganda ilova to'g'ri to'xtaydi va davom etadi</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Ilova foniga tushib, qaytganda holat saqlanadi</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Turli ekran o'lchamida (5", 6.5", tablet) UI to'g'ri ko'rinadi</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Bildirishnomalar (push notification) keladi va bosilganda to'g'ri sahifa ochiladi</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Yangi versiyaga yangilanganda eski ma'lumotlar saqlanadi</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-text">Ilova minimal tizim talablaridagi eski qurilmada ishlaydi</div>
+    </div>
+    <div class="checklist-progress">
+      <div class="checklist-bar"><div class="checklist-bar-fill" id="checklistFill" style="width:0%"></div></div>
+      <div class="checklist-count" id="checklistCount">0 / 10</div>
+    </div>
+  </div>
+</section>
+
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Mobile test turi va ta'rifini bog'lang</h3>
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Test turi</h4>
+      <div class="match-item" data-side="left" data-pair="int">🔄 Interrupt Testing</div>
+      <div class="match-item" data-side="left" data-pair="net">📶 Network Testing</div>
+      <div class="match-item" data-side="left" data-pair="ui">🎨 UI/UX Testing</div>
+      <div class="match-item" data-side="left" data-pair="inst">🔧 Installation Testing</div>
+      <div class="match-item" data-side="left" data-pair="perf">⚡ Performance Testing</div>
+    </div>
+    <div class="matching-column">
+      <h4>Ta'rif</h4>
+      <div class="match-item" data-side="right" data-pair="inst">O'rnatish, yangilash, o'chirishni tekshirish</div>
+      <div class="match-item" data-side="right" data-pair="int">Qo'ng'iroq va SMS kelganda ilova reaksiyasi</div>
+      <div class="match-item" data-side="right" data-pair="perf">Ochilish tezligi va batareya sarfi</div>
+      <div class="match-item" data-side="right" data-pair="net">Wi-Fi dan 4G'ga o'tganda ishlash</div>
+      <div class="match-item" data-side="right" data-pair="ui">Turli ekran o'lchamida chiroyli ko'rinish</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft</div>
+</div>
+
+<div class="classifier-game">
+  <div class="quiz-label">🎯 Real yoki Emulator?</div>
+  <h3 style="margin-top:8px">Qaysi test uchun real qurilma kerak?</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px"><strong>1-qadam:</strong> Vaziyatni tanlang. <strong>2-qadam:</strong> Real qurilma yoki Emulator ekanini belgilang.</p>
+  <div class="clf-hint" id="clfHint">👆 Endi pastdagi tugmalardan birini tanlang</div>
+  <div id="clfCards">
+    <div class="clf-card" data-category="emulator">
+      <div class="clf-card-title">Yangi login UI'ni tekshirish — dastlabki bosqich</div>
+      <div class="clf-card-desc">Hali development bosqichida, tez-tez o'zgaradi.</div>
+    </div>
+    <div class="clf-card" data-category="real">
+      <div class="clf-card-title">GPS lokatsiyani aniqlash funksiyasini tekshirish</div>
+      <div class="clf-card-desc">Haqiqiy joylashuv kerak.</div>
+    </div>
+    <div class="clf-card" data-category="real">
+      <div class="clf-card-title">Kamera bilan QR kod o'qishni tekshirish</div>
+      <div class="clf-card-desc">Haqiqiy kamera kerak.</div>
+    </div>
+    <div class="clf-card" data-category="emulator">
+      <div class="clf-card-title">Regression test — 50 ta eski funksiyani tez tekshirish</div>
+      <div class="clf-card-desc">Tez va ko'p qurilma paralleli kerak.</div>
+    </div>
+    <div class="clf-card" data-category="real">
+      <div class="clf-card-title">Release oldidan final acceptance test</div>
+      <div class="clf-card-desc">Haqiqiy foydalanuvchi tajribasi kerak.</div>
+    </div>
+    <div class="clf-card" data-category="emulator">
+      <div class="clf-card-title">Turli ekran o'lchamlarida UI tekshirish (5", 6", 7")</div>
+      <div class="clf-card-desc">Ko'p o'lcham, virtual sozlash oson.</div>
+    </div>
+  </div>
+  <div class="clf-buckets">
+    <div class="clf-bucket" data-bucket="real">
+      <div class="clf-bucket-icon">📱</div>
+      <div class="clf-bucket-label" style="color:var(--forest)">Real qurilma</div>
+    </div>
+    <div class="clf-bucket" data-bucket="emulator">
+      <div class="clf-bucket-icon">💻</div>
+      <div class="clf-bucket-label" style="color:var(--blue)">Emulator / Simulator</div>
+    </div>
+  </div>
+  <div class="clf-score" id="clfScore">0 / 6 to'g'ri</div>
+</div>
+
+<section class="section" id="tools">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Mobile testing asboblari</h2>
+  <p class="section-intro">Manual testdan tashqari, mobil ilovalarni tekshirishga yordam beradigan asboblar.</p>
+
+  <h3>Android Developer Options</h3>
+  <p>Android qurilmada yashirin sozlamalar bor — QA uchun juda foydali:</p>
+  <ul>
+    <li><strong>Yoqish:</strong> Sozlamalar → Telefon haqida → "Build number"'ni 7 marta bosing</li>
+    <li><strong>USB Debugging</strong> — kompyuter bilan ulash, ADB buyruqlari</li>
+    <li><strong>Show Touches</strong> — barmoq tegishlarini ko'rsatadi (video uchun)</li>
+    <li><strong>GPU Rendering</strong> — animatsiya muammolarini ko'rish</li>
+    <li><strong>Background process limit</strong> — kam RAM sharoitini simulyatsiya</li>
+  </ul>
+
+  <h3>Android Studio Emulator</h3>
+  <div class="term-box">
+    <div class="term-box-title">Android Studio Emulator</div>
+    <p><strong>Bepul.</strong> Google tomonidan. Mac, Windows, Linux. Turli Android versiya va qurilmalarni simulyatsiya qiladi.</p>
+    <p><em>Afzalligi:</em> Ko'p qurilma o'rnatmasdan turli ekran va Android versiyalarini sinash mumkin. Tarmoq tezligini ham kamaytirish mumkin (2G, 3G simulyatsiya).</p>
+  </div>
+
+  <h3>iOS Simulator (Xcode)</h3>
+  <div class="term-box">
+    <div class="term-box-title">Xcode Simulator</div>
+    <p><strong>Bepul, faqat Mac'da.</strong> Apple tomonidan. iPhone va iPad turlarini simulyatsiya qiladi.</p>
+    <p><em>Muhim:</em> Simulator — haqiqiy telefon emas. GPS, kamera, push notification — cheklangan. Release oldidan real iPhone kerak.</p>
+  </div>
+
+  <h3>BrowserStack va Sauce Labs</h3>
+  <p>Agar ko'p real qurilmada test kerak bo'lsa — bulutdagi qurilmalar:</p>
+  <ul>
+    <li><strong>BrowserStack</strong> — 3000+ real qurilma bulutda. Pullik (bepul trial bor)</li>
+    <li><strong>Sauce Labs</strong> — shunga o'xshash, enterprise uchun</li>
+    <li><strong>Firebase Test Lab</strong> — Google'ning bepul testi (cheklangan)</li>
+  </ul>
+
+  <h3>ADB — Android Debug Bridge</h3>
+  <p>Terminal orqali Android qurilmani boshqarish:</p>
+  <div style="background:var(--code-bg);color:var(--code-text);border-radius:10px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;margin:12px 0">
+    <span style="color:#8B949E;font-style:italic"># Ulangan qurilmalar ro'yxati</span><br>
+    adb devices<br><br>
+    <span style="color:#8B949E;font-style:italic"># Screenshot olish</span><br>
+    adb shell screencap /sdcard/screen.png<br><br>
+    <span style="color:#8B949E;font-style:italic"># APK o'rnatish</span><br>
+    adb install app.apk<br><br>
+    <span style="color:#8B949E;font-style:italic"># Log ko'rish (crash topsangiz)</span><br>
+    adb logcat
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun boshlash tartibi</div>
+    <p>1) Android Studio Emulator o'rnatish (bepul). 2) TestShop ilovasini emulator'da sinash. 3) ADB bilan screenshot olish. 4) Real Android qurilmada yakuniy test. iOS uchun — Mac kerak yoki BrowserStack trial.</p>
+  </div>
+</section>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click ilovasida release testiga tayyorgarlik</div>
+  <div class="scenario-story">
+    <p><strong>Release 2 kun keyin.</strong> Click mobil ilovasining yangi versiyasi chiqmoqda. Qo'shilgan funksiya: <strong>biometrik autentifikatsiya</strong> (barmoq izi va Face ID). Siz QA sifatida nima tekshirasiz?</p>
+    <p>Sizda bor: Android emulator, 1 ta Samsung Galaxy (Android 13), 1 ta iPhone 12 (iOS 16).</p>
+  </div>
+  <div class="scenario-question">Test rejasi qanday bo'lishi kerak?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Faqat emulator'da Samsung'ni tekshiraman — tez va yetarli</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>Kompleks test:</strong> Emulator'da dastlab funksional test → Samsung real qurilmada barmoq izi ishlashini tekshirish → iPhone 12'da Face ID ishlashini tekshirish → Biometrik o'chirilgan qurilmada fallback (parol) ishlashini tekshirish → Interrupt test (qo'ng'iroq kelganda autentifikatsiya)</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Biometrik testing — bu qurilma ishlab chiqaruvchi ishi, bizga tegishli emas</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Ilova Wi-Fi'dan 4G'ga o'tganda to'xtab qoldi va qaytadan ulanganda blank ekran ko'rsatdi. Bu qaysi test turi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Functional testing — ilova ishlayotganmi deb tekshiryapmiz</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>Network testing</strong> — tarmoq o'zgarganda ilova qanday reaksiya berishi tekshirilmoqda. Bu mobil testingning muhim qismi, web testingda kamroq uchraydi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Performance testing — tezlik tekshirilmoqda</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">Birinchi mobile test</h2>
+  <p class="section-intro">3 ta qadam — emulator o'rnatishdan real qurilmada testgacha.</p>
+
+  <div style="background:linear-gradient(135deg,var(--android-dark) 0%,#006630 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🤖</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Android Studio Bepul</h3>
+    <p style="opacity:.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">Mac, Windows, Linux. Emulator ichida. Ko'p qurilma turi.</p>
+    <a href="https://developer.android.com/studio" target="_blank" style="display:inline-block;background:white;color:var(--android-dark);padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">🚀 Android Studio</a>
+  </div>
+
+  <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:var(--android-dark);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Android Emulator yarating</div>
+        <div style="color:#4A4A4A;font-size:14px">Android Studio → Virtual Device Manager → New Device. Pixel 7 + Android 13 tanlang. Emulatorni ishga tushiring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">TestShop'ni emulator'da sinang</div>
+        <div style="color:#4A4A4A;font-size:14px">Emulator'dagi brauzer'da testshop.uz ochish. Checklist bo'yicha: Portrait/Landscape, sekin tarmoq, login/logout, mahsulot ko'rish va savatga qo'shish.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:var(--forest);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Interrupt testni sinang</div>
+        <div style="color:#4A4A4A;font-size:14px">Real Android telefoningizda: TestShop'da xarid qilish jarayonida qo'ng'iroq keling (birovdan so'rang). Qo'ng'iroq tugagach, ilova to'g'ri davom ettimi? Savat saqlandimikin?</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px"><strong>Mobile test hisoboti</strong> (PDF) — qaysi qurilmalarda, qaysi funksiyalar, topilgan buglar, screenshot — bu Junior portfoliongizda ajralib chiqadi. Ko'pchilik faqat web testing hujjat qiladi!</p>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Mobile va Web testing farqi qanday?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Mobile testingda web'da bo'lmagan qo'shimcha sohalar bor:"</p>
+        <ul>
+          <li><strong>Qurilma fragmentatsiyasi</strong> — yuzlab telefon turi, har xil ekran, Android versiya</li>
+          <li><strong>Interrupt testing</strong> — qo'ng'iroq, SMS, bildirishnoma — ilovaga ta'siri</li>
+          <li><strong>Sensorlar</strong> — GPS, kamera, akselerometr, barmoq izi</li>
+          <li><strong>Tarmoq o'tish</strong> — Wi-Fi → 4G → 3G → tarmoqsiz</li>
+          <li><strong>Batareya va resurslar</strong> — ilova RAM va batareyani nechta iste'mol qiladi</li>
+          <li><strong>Ekran yo'nalishi</strong> — Portrait/Landscape</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Android va iOS testingda qanday farqlar bor?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <ul>
+          <li><strong>Fragmentatsiya:</strong> Android'da 1000+ qurilma, iOS'da faqat Apple qurilmalar</li>
+          <li><strong>Emulator/Simulator:</strong> Android Studio (Windows/Mac/Linux), Xcode Simulator (faqat Mac)</li>
+          <li><strong>O'rnatish:</strong> Android — APK to'g'ridan-to'g'ri, iOS — TestFlight yoki App Store</li>
+          <li><strong>Test osonligi:</strong> iOS qurilmalar oz → test osonroq. Android ko'p → ko'p tekshiruv</li>
+          <li><strong>Back tugmasi:</strong> Android'da fizik yoki virtual "orqaga" tugma — iOS'da yo'q</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Real qurilma va emulator qachon ishlatiladi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Emulator/Simulator:</strong></p>
+        <ul>
+          <li>Dastlabki va doimiy testlar — tez va arzon</li>
+          <li>Ko'p versiya va ekran o'lchamini parallel test qilish</li>
+          <li>CI/CD pipeline'da automation</li>
+        </ul>
+        <p><strong>Real qurilma:</strong></p>
+        <ul>
+          <li>GPS, kamera, barmoq izi kabi sensor testlar</li>
+          <li>Haqiqiy performance (batareya, tezlik)</li>
+          <li>Release oldidan final acceptance test</li>
+          <li>Foydalanuvchi tajribasini to'liq tekshirish</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Ikkala yondashuv birgalikda ishlatiladi. Emulator tez va arzon, real qurilma ishonchli."</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Interrupt testing nima va misollar?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Interrupt testing — ilova ishlayotganda tashqi voqea bo'lganda qanday reaksiya berishi."</p>
+        <p><strong>Scenariylar:</strong></p>
+        <ul>
+          <li>Qo'ng'iroq keldi → ilova to'xtatildi → tugatildi → davom etdi</li>
+          <li>SMS/bildirishnoma keldi → banner bosib ko'rish → ilova holati</li>
+          <li>Ilova background'ga tushdi va uzoq kutib turdi → session muddati</li>
+          <li>Batareya qizidi → tizim resurslarni chekladi → ilova ishlayaptimi</li>
+          <li>Ekran o'chdi → yondi → ilova holati saqlandimikin</li>
+        </ul>
+        <p><strong>Bu nima uchun muhim:</strong> Real foydalanuvchilar doim faqat bir ilovada bo'lmaydi. Bu realistik holatlar.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>Mobile bug topildi — qanday hujjatlashtirmasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Mobile bug hujjatida qo'shimcha ma'lumotlar bo'ladi:"</p>
+        <ul>
+          <li><strong>Qurilma:</strong> Samsung Galaxy S23, Android 13</li>
+          <li><strong>Ilova versiyasi:</strong> v2.1.4 (build 124)</li>
+          <li><strong>Tarmoq:</strong> Wi-Fi / 4G / Offline</li>
+          <li><strong>Qadam-baqadam:</strong> Portrait rejimda login → ...</li>
+          <li><strong>Screenshot yoki video</strong> — mobil bug uchun video juda muhim</li>
+          <li><strong>Qayta takrorlash:</strong> Faqat bu qurilmadami yoki boshqalarda ham?</li>
+        </ul>
+        <p><strong>Pro maslahat:</strong> ADB bilan <code>adb logcat</code> — crash log'ini ham qo'shing. Dasturchiga juda yordam qiladi.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Mobile testing tajribangiz bormi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <p>"Ha, Android va iOS ilova testini o'tkazganman. TestShop loyihasida:"</p>
+        <ul>
+          <li><strong>Android Studio Emulator</strong> — dastlabki funksional testlar</li>
+          <li><strong>Real Samsung qurilma</strong> — yakuniy test, interrupt testing</li>
+          <li><strong>iOS Simulator (Mac)</strong> — asosiy UI tekshiruv</li>
+          <li><strong>Checklist:</strong> Portrait/Landscape, tarmoq o'tish, bildirishnoma, yangilash</li>
+          <li><strong>Bug hujjat:</strong> Qurilma nomi, OS versiya, video bilan</li>
+        </ul>
+        <p>Bu — Junior darajasida zo'r tajriba. Emulator va real qurilmada ikkalasida ham ishlaganman.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Appium nima va nima uchun kerak?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Appium — mobil ilovalar uchun automation testing framework. Selenium'ning mobil versiyasi desak ham bo'ladi."</p>
+        <ul>
+          <li><strong>Android ham iOS</strong> — bitta framework bilan ikkalasi</li>
+          <li><strong>Python, Java, JS</strong> — tanlagan tilda yozish mumkin</li>
+          <li><strong>Native, Hybrid, Web</strong> — har xil ilova turini qo'llab-quvvatlaydi</li>
+        </ul>
+        <p><strong>Junior uchun:</strong> Hozircha manual mobile testing yetarli. Appium — Middle/Senior QA uchun. Lekin <em>nima ekanini</em> bilish intervyuda foydali.</p>
+        <p><strong>Pro javob:</strong> "Appium haqida bilaman — mobile automation uchun. Hozircha manual testga e'tiborim ko'p, keyingi qadam Appium o'rganish."</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Mobile = Web + qo'shimcha</div>
+      <div class="summary-point-text">Interrupt, Network, Sensor, Orientation — bular faqat mobilda. Web testingga shu qo'shimchalar qo'shiladi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Emulator + Real = To'liq</div>
+      <div class="summary-point-text">Emulator — tez va arzon, dastlabki test uchun. Real qurilma — sensor, performance, yakuniy test uchun. Ikkalasi kerak.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Android + iOS farqlari</div>
+      <div class="summary-point-text">Android — ko'p qurilma, fragmentatsiya. iOS — oz qurilma, Mac kerak. Ikkalasini bilish — market'ning 99%'ini qoplaydi.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="22-performance-testing.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>22-dars · Performance Testing</div>
+  </a>
+  <a href="24-portfolio.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>24-dars · Portfolio yaratish</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 14;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// Checklist
+let checked = 0;
+function toggleCheck(box) {
+  box.classList.toggle('checked');
+  const text = box.nextElementSibling;
+  text.classList.toggle('checked');
+  checked = document.querySelectorAll('.check-box.checked').length;
+  const total = document.querySelectorAll('.check-box').length;
+  document.getElementById('checklistFill').style.width = (checked / total * 100) + '%';
+  document.getElementById('checklistCount').textContent = `${checked} / ${total}`;
+  done.add('check' + checked); upd();
+}
+
+// Quiz
+const fbData = {
+  scenario: {
+    c: '<strong>Mukammal test rejasi!</strong> Biometrik — real sensor, emulator\'da to\'liq tekshirib bo\'lmaydi. Android va iOS uchun alohida (barmoq izi vs Face ID). Fallback (parol) ham muhim. Interrupt test — real foydalanuvchi holati.',
+    w: 'Emulator\'da biometrik to\'liq tekshirib bo\'lmaydi — real sensor kerak. Faqat Android sinash yetarli emas — iOS ham ko\'p ishlatiladi. C — noto\'g\'ri, biometrik funksiyasi ilova kodida, QA testlashi shart.'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> Bu — Network Testing. Wi-Fi → 4G o\'tishida ilova to\'g\'ri handle qilishi kerak. Blank ekran = bug. Bu mobil testingning muhim qismi — real foydalanuvchilar doim tarmoq o\'zgarishini boshdan kechiradi.',
+    w: 'Functional testing emas — bu aniq tarmoq o\'zgarishi holati. Performance emas — tezlik emas, ulanish o\'zgarishi. Bu <strong>Network Testing</strong> — Wi-Fi dan 4G\'ga o\'tishda ilova holati tekshirilmoqda.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const fbEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      fbEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      fbEl.innerHTML = ok ? fbData[qId].c : fbData[qId].w;
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// Matching
+let selL = null, mCnt = 0;
+document.querySelectorAll('.match-item').forEach(it => {
+  it.addEventListener('click', () => {
+    if (it.classList.contains('matched')) return;
+    if (it.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      it.classList.add('selected'); selL = it;
+    } else if (selL) {
+      if (it.dataset.pair === selL.dataset.pair) {
+        it.classList.add('matched'); selL.classList.add('matched'); selL.classList.remove('selected');
+        selL = null; mCnt++;
+        document.getElementById('matchScore').textContent = `${mCnt} / 5 juft`;
+        done.add('m' + mCnt); upd();
+        if (mCnt === 5) document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Mobile test turlari!</span>';
+      } else {
+        it.classList.add('wrong'); selL.classList.add('wrong');
+        const wl = selL;
+        setTimeout(() => { it.classList.remove('wrong'); wl.classList.remove('wrong', 'selected'); }, 600);
+        selL = null;
+      }
+    }
+  });
+});
+
+// Classifier
+let selCard = null, clfOk = 0;
+const bNames = { real: 'Real qurilma', emulator: 'Emulator' };
+document.querySelectorAll('.clf-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.clf-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected'); selCard = card;
+    document.getElementById('clfHint').classList.add('show');
+    document.querySelectorAll('.clf-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+document.querySelectorAll('.clf-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selCard) return;
+    if (selCard.dataset.category === bucket.dataset.bucket) {
+      selCard.classList.add('classified'); selCard.classList.remove('selected');
+      selCard.setAttribute('data-placed-in', bNames[bucket.dataset.bucket]);
+      clfOk++;
+      document.getElementById('clfScore').textContent = `${clfOk} / 6 to'g'ri`;
+      done.add('clf' + clfOk); upd();
+      if (clfOk === 6) {
+        document.getElementById('clfScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 To\'g\'ri tanlash!</span>';
+        document.querySelectorAll('.clf-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selCard = null;
+      document.getElementById('clfHint').classList.remove('show');
+      document.querySelectorAll('.clf-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      setTimeout(() => { bucket.style.borderColor = ''; bucket.style.background = ''; }, 600);
+    }
+  });
+});
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

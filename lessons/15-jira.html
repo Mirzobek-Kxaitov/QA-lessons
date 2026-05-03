@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15-dars: Jira'da to'liq ishlash | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+  --jira-blue: #0052CC; --jira-blue-light: #DEEBFF; --jira-bg: #F4F5F7;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+/* JIRA MOCK INTERFACE */
+.jira-mock { background: var(--jira-bg); border-radius: 12px; padding: 0; margin: 24px 0; border: 1px solid #DFE1E6; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.jira-topbar { background: white; border-bottom: 1px solid #DFE1E6; padding: 10px 16px; display: flex; align-items: center; gap: 16px; }
+.jira-logo { font-weight: 700; color: var(--jira-blue); font-size: 16px; }
+.jira-search { background: var(--jira-bg); border: 1px solid #DFE1E6; border-radius: 4px; padding: 4px 12px; font-size: 13px; color: var(--ink-muted); flex: 1; max-width: 200px; }
+.jira-content { padding: 16px; background: white; }
+.jira-breadcrumb { font-size: 12px; color: var(--ink-muted); margin-bottom: 8px; }
+.jira-breadcrumb span { color: var(--jira-blue); cursor: pointer; }
+.jira-issue-key { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-muted); font-weight: 500; margin-bottom: 8px; }
+.jira-issue-title { font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+.jira-issue-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.jira-status { padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.jira-status.open { background: #DFE1E6; color: #42526E; }
+.jira-status.in-progress { background: #DEEBFF; color: var(--jira-blue); }
+.jira-status.fixed { background: #FFF0B3; color: #974F0C; }
+.jira-status.closed { background: #E3FCEF; color: #006644; }
+.jira-status.reopen { background: #FFEBE6; color: #BF2600; }
+.jira-priority { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; }
+.jira-priority.high { background: #FFEBE6; color: #BF2600; }
+.jira-priority.medium { background: #FFF0B3; color: #974F0C; }
+.jira-priority.low { background: #E3FCEF; color: #006644; }
+.jira-fields { display: grid; grid-template-columns: 120px 1fr; gap: 8px 16px; padding: 16px; background: var(--jira-bg); border-radius: 6px; margin: 12px 0; font-size: 13px; }
+.jira-fields .label { color: var(--ink-muted); font-weight: 500; }
+.jira-fields .value { color: var(--ink); }
+.jira-section { margin-top: 16px; }
+.jira-section-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #DFE1E6; }
+.jira-description { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.jira-description ul { padding-left: 18px; margin: 6px 0; }
+.jira-comment { padding: 12px; background: var(--jira-bg); border-radius: 6px; margin-top: 8px; font-size: 13px; }
+.jira-comment-author { font-weight: 600; color: var(--jira-blue); margin-bottom: 4px; }
+
+/* JIRA BOARD */
+.jira-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 16px; background: var(--jira-bg); }
+.jira-column { background: var(--jira-bg); border-radius: 6px; padding: 8px; min-height: 200px; }
+.jira-column-header { font-family: 'Instrument Sans', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-muted); padding: 4px 8px; margin-bottom: 8px; }
+.jira-card { background: white; border-radius: 4px; padding: 10px; margin-bottom: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.2s; border-left: 3px solid var(--jira-blue); }
+.jira-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.jira-card.bug { border-left-color: var(--accent); }
+.jira-card.story { border-left-color: var(--forest); }
+.jira-card.task { border-left-color: var(--jira-blue); }
+.jira-card-title { font-size: 12px; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+.jira-card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--ink-muted); }
+.jira-card-key { font-family: 'JetBrains Mono', monospace; }
+
+/* ISSUE TYPE CARDS */
+.type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+.type-card-jira { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; transition: all 0.2s; }
+.type-card-jira:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1); }
+.type-card-jira .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.type-card-jira h4 { font-family: 'Fraunces', serif; font-size: 16px; margin: 0 0 6px 0; }
+.type-card-jira.bug h4 { color: var(--accent); }
+.type-card-jira.story h4 { color: var(--forest); }
+.type-card-jira.task h4 { color: var(--jira-blue); }
+.type-card-jira.epic h4 { color: var(--plum); }
+.type-card-jira p { font-size: 12px; color: var(--ink-muted); margin: 0; line-height: 1.4; }
+
+/* SEVERITY VS PRIORITY */
+.sev-pri-table { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 20px 0; }
+.sev-pri-table table { width: 100%; border-collapse: collapse; }
+.sev-pri-table th { padding: 14px; text-align: left; font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.sev-pri-table th:nth-child(2) { background: var(--accent-soft); color: var(--accent-dark); }
+.sev-pri-table th:nth-child(3) { background: var(--gold-soft); color: var(--gold); }
+.sev-pri-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); vertical-align: top; }
+.sev-pri-table tr:last-child td { border-bottom: none; }
+.sev-pri-table td:first-child { font-weight: 500; color: var(--ink); background: var(--bg-soft); }
+
+/* WORKFLOW STEPS */
+.workflow-track { display: flex; align-items: center; gap: 6px; padding: 16px; background: var(--bg-soft); border-radius: 12px; flex-wrap: wrap; justify-content: center; margin: 20px 0; }
+.workflow-step { background: white; border: 2px solid; border-radius: 8px; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.workflow-step.open { border-color: #42526E; color: #42526E; }
+.workflow-step.in-progress { border-color: var(--jira-blue); color: var(--jira-blue); }
+.workflow-step.fixed { border-color: #974F0C; color: #974F0C; }
+.workflow-step.testing { border-color: var(--plum); color: var(--plum); }
+.workflow-step.closed { border-color: #006644; color: #006644; }
+.workflow-arrow { color: var(--ink-muted); font-size: 18px; }
+
+/* JQL EXAMPLE */
+.jql-block { background: #1A1A1A; color: #F5F5F5; border-radius: 10px; padding: 16px 20px; margin: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; overflow-x: auto; }
+.jql-block .keyword { color: #FF7B72; }
+.jql-block .string { color: #A5D6FF; }
+.jql-block .operator { color: #FFA657; }
+.jql-block .comment { color: #8B949E; font-style: italic; }
+.jql-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+.jql-card-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; margin-bottom: 6px; color: var(--ink); }
+.jql-card-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 8px; }
+
+/* BUG BUILDER */
+.bug-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.bug-builder h3 { margin-top: 0; }
+.bb-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.bb-field { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: start; }
+.bb-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; padding-top: 12px; }
+.bb-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; }
+.bb-input:focus { outline: none; border-color: var(--plum); }
+.bb-textarea { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; min-height: 80px; resize: vertical; }
+.bb-textarea:focus { outline: none; border-color: var(--plum); }
+.bb-select { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; cursor: pointer; }
+.bb-preview-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; margin-top: 16px; transition: all 0.2s; }
+.bb-preview-btn:hover { background: var(--plum-soft); color: var(--plum); transform: translateY(-2px); }
+.bb-preview { margin-top: 16px; display: none; }
+.bb-preview.show { display: block; }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-pairs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dnd-pair { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: center; padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.dnd-pair-label { font-weight: 500; font-size: 15px; color: var(--ink); font-family: 'Fraunces', serif; }
+.dnd-slot { min-height: 50px; border: 2px solid var(--line); border-radius: 8px; padding: 10px 14px; background: white; transition: all 0.2s; font-size: 14px; color: var(--ink-muted); display: flex; align-items: center; cursor: pointer; }
+.dnd-slot:hover:not(.filled) { border-color: var(--plum); }
+.dnd-slot.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.dnd-slot.filled { border-style: solid; cursor: default; }
+.dnd-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.dnd-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; user-select: none; max-width: 280px; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.05); }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* CLASSIFIER */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); box-shadow: 0 8px 20px -8px rgba(91,58,122,0.3); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 14px; padding-right: 100px; }
+.classifier-card-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 18px; }
+.classifier-bucket { min-height: 70px; padding: 14px 12px; border: 2px solid var(--line); border-radius: 12px; text-align: center; transition: all 0.2s; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--ink); }
+.classifier-bucket-icon { font-size: 20px; margin-bottom: 2px; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1500px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .bug-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .bb-field, .jira-fields { grid-template-columns: 1fr; gap: 6px; }
+  .dnd-pair { grid-template-columns: 1fr; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+  .jira-board { grid-template-columns: 1fr; }
+  .sev-pri-table th, .sev-pri-table td { padding: 8px; font-size: 12px; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">15-dars</div>
+  <h1>Jira'da to'liq <em>ishlash</em></h1>
+  <p class="hero-subtitle">90% IT kompaniyalari Jira ishlatadi. Har QA kuniga 5+ soat shu yerda. Bu darsdan keyin Jira sizning uyingiz!</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Asbob amaliyoti</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Jira nima va nega muhim?</h2>
+  <p class="section-intro">Tasavvur qiling: 50 ta dasturchi, 10 ta QA, 5 ta menejer bir loyihada ishlaydi. Har kim 20 ta vazifa olgan. Hammasi qog'ozda yoki Excel'da bo'lsa — <strong>chalkashlik!</strong></p>
+  <p>Atlassian kompaniyasi shu muammoni hal qilish uchun <strong>Jira</strong>'ni yaratdi. Hozir bu — <strong>dunyodagi eng mashhur</strong> bug tracking va project management asbobi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Jira</strong> — Atlassian kompaniyasining bug tracking va loyiha boshqaruv tizimi. QA, dasturchi, PM, menejerlar bitta yerda ishlashi uchun.</p>
+    <p><em>Oddiy qilib:</em> "Loyiha jamoasining digital ofisi". Hamma vazifalar, buglar, yangiliklar shu yerda.</p>
+  </div>
+
+  <h3>Statistika — nima uchun o'rganish kerak?</h3>
+  <ul>
+    <li><strong>90% IT kompaniyalari</strong> Jira ishlatadi (Uzum, Click, Yandex, Google)</li>
+    <li><strong>180,000+ kompaniyalar</strong> dunyoda</li>
+    <li><strong>Har QA intervyu'da</strong> Jira haqida so'raladi</li>
+    <li><strong>Bilmasangiz — ishga olishmaydi</strong></li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun muhim</div>
+    <p>Bu darsdan keyin siz Jira'da o'zingizni <strong>uyingizdek</strong> his qilasiz. Bu — Junior'dan Middle'ga o'tishdagi <strong>asosiy ko'nikma</strong>.</p>
+  </div>
+</section>
+
+<!-- SECTION 1: BASICS -->
+<section class="section" id="basics">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Jira asoslari</h2>
+  <p class="section-intro">Avval 3 ta asosiy tushunchani bilamiz: <strong>Workspace, Project, Issue</strong>.</p>
+
+  <h3>📦 Hierarchy: Workspace → Project → Issue</h3>
+  <ul>
+    <li><strong>Workspace</strong> — kompaniyaning Jira makoni. Misol: <code>uzum.atlassian.net</code></li>
+    <li><strong>Project</strong> — alohida loyiha. Misol: "Mobile App", "Web Site", "Admin Panel"</li>
+    <li><strong>Issue</strong> — har bir vazifa, bug, yoki ish birligi. Misol: <code>UZ-1234</code></li>
+  </ul>
+
+  <h3>Issue Types — 4 ta asosiy tur</h3>
+  <p>Jira'da har vazifa <strong>tur</strong>i bilan belgilanadi. Junior QA uchun 4 ta asosiy tur muhim:</p>
+
+  <div class="type-grid">
+    <div class="type-card-jira bug">
+      <span class="icon">🐛</span>
+      <h4>Bug</h4>
+      <p>Mahsulotdagi xato. QA topadi va yozadi.</p>
+    </div>
+    <div class="type-card-jira story">
+      <span class="icon">📝</span>
+      <h4>Story</h4>
+      <p>Foydalanuvchi uchun yangi xususiyat. PO yozadi.</p>
+    </div>
+    <div class="type-card-jira task">
+      <span class="icon">✅</span>
+      <h4>Task</h4>
+      <p>Texnik vazifa. Misol: "Database optimizatsiya".</p>
+    </div>
+    <div class="type-card-jira epic">
+      <span class="icon">🎯</span>
+      <h4>Epic</h4>
+      <p>Katta xususiyat (5+ Story). Misol: "Yangi to'lov tizimi".</p>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">QA roli</div>
+    <p>Sizning asosiy faoliyatingiz <strong>Bug</strong> turi bilan. Lekin Story va Task ham ko'rasiz — chunki ularni test qilasiz.</p>
+  </div>
+
+  <h3>Jira interfeysi (vizual)</h3>
+  <p>Quyida Jira'ning haqiqiy ko'rinishi:</p>
+
+  <div class="jira-mock">
+    <div class="jira-topbar">
+      <div class="jira-logo">Jira</div>
+      <div class="jira-search">🔍 Search...</div>
+    </div>
+    <div class="jira-content">
+      <div class="jira-breadcrumb">
+        <span>TestShop</span> / <span>Issues</span>
+      </div>
+      <div class="jira-issue-key">TS-123</div>
+      <div class="jira-issue-title">Login tugmasi mobil versiyada ko'rinmaydi</div>
+      <div class="jira-issue-meta">
+        <span class="jira-status open">Open</span>
+        <span class="jira-priority high">⬆️ High</span>
+      </div>
+      <div class="jira-fields">
+        <span class="label">Type:</span><span class="value">🐛 Bug</span>
+        <span class="label">Assignee:</span><span class="value">Mirzobek (QA)</span>
+        <span class="label">Reporter:</span><span class="value">Mirzobek (QA)</span>
+        <span class="label">Severity:</span><span class="value">Major</span>
+        <span class="label">Sprint:</span><span class="value">Sprint 24</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Diqqat!</div>
+    <p>Har Jira issue'ning <strong>unikal kalit</strong>i bor. Misol: <code>TS-123</code> = "TestShop" loyihasi, 123-vazifa. Bu — issuening <strong>ID</strong>'si.</p>
+  </div>
+
+  <h3>Jira Board (Kanban / Scrum)</h3>
+  <p>Jamoa ishini kuzatish uchun <strong>Board</strong> ishlatiladi. Kartochkalar status bo'yicha ustunlarda joylashadi:</p>
+
+  <div class="jira-mock">
+    <div class="jira-board">
+      <div class="jira-column">
+        <div class="jira-column-header">📋 To Do (5)</div>
+        <div class="jira-card story">
+          <div class="jira-card-title">Profile sahifasi yaratish</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-201</span><span>📝</span></div>
+        </div>
+        <div class="jira-card task">
+          <div class="jira-card-title">Database optimizatsiya</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-205</span><span>✅</span></div>
+        </div>
+      </div>
+      <div class="jira-column">
+        <div class="jira-column-header">🔄 In Progress (3)</div>
+        <div class="jira-card bug">
+          <div class="jira-card-title">Login mobil bug</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-123</span><span>🐛</span></div>
+        </div>
+        <div class="jira-card story">
+          <div class="jira-card-title">Search funksiyasi</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-198</span><span>📝</span></div>
+        </div>
+      </div>
+      <div class="jira-column">
+        <div class="jira-column-header">🧪 Testing (2)</div>
+        <div class="jira-card bug">
+          <div class="jira-card-title">Savat hisoblash xato</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-145</span><span>🐛</span></div>
+        </div>
+      </div>
+      <div class="jira-column">
+        <div class="jira-column-header">✅ Done (12)</div>
+        <div class="jira-card story">
+          <div class="jira-card-title">Login funksiyasi</div>
+          <div class="jira-card-footer"><span class="jira-card-key">TS-100</span><span>📝</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATCHING -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Status va tavsifini bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har Jira status'ni to'g'ri tavsif bilan bog'lang.</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Status</h4>
+      <div class="match-item" data-side="left" data-pair="open">📋 Open</div>
+      <div class="match-item" data-side="left" data-pair="progress">🔄 In Progress</div>
+      <div class="match-item" data-side="left" data-pair="fixed">✏️ Fixed</div>
+      <div class="match-item" data-side="left" data-pair="closed">✅ Closed</div>
+      <div class="match-item" data-side="left" data-pair="reopen">🔁 Reopen</div>
+    </div>
+    <div class="matching-column">
+      <h4>Tavsif</h4>
+      <div class="match-item" data-side="right" data-pair="closed">QA Confirmation qildi - bug yo'q</div>
+      <div class="match-item" data-side="right" data-pair="open">Yangi yozilgan, hali ishlanmaydi</div>
+      <div class="match-item" data-side="right" data-pair="reopen">QA tekshirgandan keyin bug hali bor</div>
+      <div class="match-item" data-side="right" data-pair="progress">Dasturchi hozir kod yozayapti</div>
+      <div class="match-item" data-side="right" data-pair="fixed">Dasturchi tuzatdi, QA tekshirishi kerak</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- SECTION 2: BUG WRITING -->
+<section class="section" id="bug-writing">
+  <span class="section-label">2-qism — eng muhim!</span>
+  <h2 class="section-title">Bug yozish</h2>
+  <p class="section-intro">Bu — QA ning <strong>asosiy mahsuli</strong>. Yaxshi yozilgan bug — dasturchi tezda tushunadi va tuzatadi. Yomon bug — uzoq vaqt qaytib keladi.</p>
+
+  <h3>Bug template — 7 ta majburiy maydon</h3>
+
+  <div class="jira-mock">
+    <div class="jira-content" style="padding:20px">
+      <div class="jira-issue-key">TS-123 · 🐛 Bug</div>
+      <div class="jira-issue-title">[Mobile] Login tugmasi iPhone Safari'da ko'rinmaydi</div>
+      
+      <div class="jira-section">
+        <div class="jira-section-title">📋 1. Summary (sarlavha)</div>
+        <div class="jira-description">Aniq, qisqa: "[Komponent] Nima xato + Qayerda"</div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">🎯 2. Steps to Reproduce (qadamlar)</div>
+        <div class="jira-description">
+          <ol style="padding-left:20px;margin:6px 0">
+            <li>iPhone'da Safari'ni oching</li>
+            <li>https://testshop.uz ga kiring</li>
+            <li>"Kirish" tugmasini qidiring</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">✅ 3. Expected Result (kutilgan natija)</div>
+        <div class="jira-description">Login tugmasi ekranning yuqori o'ng burchagida ko'rinadi</div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">❌ 4. Actual Result (haqiqiy natija)</div>
+        <div class="jira-description">Login tugmasi umuman ko'rinmaydi - ekrandan tashqarida</div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">📱 5. Environment (muhit)</div>
+        <div class="jira-description">iPhone 14 Pro, iOS 18.2, Safari 18.0</div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">📸 6. Attachments (qo'shimchalar)</div>
+        <div class="jira-description">Screenshot.png, Screen recording.mp4</div>
+      </div>
+
+      <div class="jira-section">
+        <div class="jira-section-title">⚠️ 7. Severity & Priority</div>
+        <div class="jira-description">Severity: Major | Priority: High</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Severity vs Priority — eng tez-tez chalkashtiriladigan!</h3>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy farq</div>
+    <p><strong>Severity</strong> — bugning <strong>texnik ta'siri</strong>. Qancha katta zarar?</p>
+    <p><strong>Priority</strong> — bugni <strong>qachon tuzatish</strong> kerak. Biznes muhimligi.</p>
+  </div>
+
+  <div class="sev-pri-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Holat</th>
+          <th>Severity</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Login sahifasidagi typo</td>
+          <td>Low (kichik)</td>
+          <td>High (tezkor — bosh sahifa!)</td>
+        </tr>
+        <tr>
+          <td>Admin panelda kamdan-kam ishlatuvchi xususiyatdagi crash</td>
+          <td>High (katta)</td>
+          <td>Low (admin ko'p ishlatmaydi)</td>
+        </tr>
+        <tr>
+          <td>To'lov tizimi ishlamayapti (production'da)</td>
+          <td>Critical</td>
+          <td>Critical (darhol!)</td>
+        </tr>
+        <tr>
+          <td>Eski feature'da kichik UI muammo</td>
+          <td>Low</td>
+          <td>Low</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Oddiy yodlash</div>
+    <p><strong>Severity</strong> = <em>Texnik</em> ("Qancha katta zarar?") — QA aniqlaydi. <strong>Priority</strong> = <em>Biznes</em> ("Qachon tuzatish?") — PM aniqlaydi.</p>
+  </div>
+</section>
+
+<!-- BUG BUILDER -->
+<div class="bug-builder">
+  <div class="quiz-label">🛠 Amaliy mashq</div>
+  <h3 style="margin-top:8px">O'zingiz Bug yozing</h3>
+  <p style="font-size:15px;color:var(--ink-soft)">Quyidagi maydonlarni to'ldiring va Jira ko'rinishida bugingizni ko'ring:</p>
+
+  <div class="bb-fields">
+    <div class="bb-field">
+      <label class="bb-field-label">Summary</label>
+      <input type="text" class="bb-input" id="bbSummary" placeholder="[Mobile] Savatga qo'shish tugmasi ishlamaydi">
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Steps</label>
+      <textarea class="bb-textarea" id="bbSteps" placeholder="1. TestShop'ga kirish&#10;2. Mahsulot tanlash&#10;3. 'Savatga qo'shish' bosish"></textarea>
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Expected</label>
+      <input type="text" class="bb-input" id="bbExpected" placeholder="Mahsulot savatga qo'shiladi">
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Actual</label>
+      <input type="text" class="bb-input" id="bbActual" placeholder="Hech narsa bo'lmaydi, savat bo'sh">
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Environment</label>
+      <input type="text" class="bb-input" id="bbEnv" placeholder="iPhone 14, iOS 18, Safari">
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Severity</label>
+      <select class="bb-select" id="bbSeverity">
+        <option>Critical</option>
+        <option selected>Major</option>
+        <option>Minor</option>
+        <option>Trivial</option>
+      </select>
+    </div>
+    <div class="bb-field">
+      <label class="bb-field-label">Priority</label>
+      <select class="bb-select" id="bbPriority">
+        <option>Highest</option>
+        <option selected>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="bb-preview-btn" onclick="showBug()">🐛 Bug ni ko'rish (Jira ko'rinishida)</button>
+
+  <div class="bb-preview" id="bbPreview">
+    <div class="jira-mock" style="margin-top:20px">
+      <div class="jira-content" id="bbPreviewContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CLASSIFIER: SEVERITY VS PRIORITY -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Classifier</div>
+  <h3 style="margin-top:8px">Severity yoki Priority muhim?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Holatni bosing. <strong>2-qadam:</strong> Severity yoki Priority qaysi <strong>yuqori</strong> ekanini tanlang.</p>
+
+  <div class="dnd-hint" id="classifierHint">👆 Endi pastdagi tugmalardan birini tanlang</div>
+
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="priority">
+      <div class="classifier-card-title">Bosh sahifadagi typo: "Welkome" yozilgan</div>
+      <div class="classifier-card-desc">Kichik xato, lekin har kim ko'radi - tez tuzatish kerak.</div>
+    </div>
+    <div class="classifier-card" data-category="severity">
+      <div class="classifier-card-title">Admin panelda kamdan-kam ishlatuvchi sahifa crash bo'lyapti</div>
+      <div class="classifier-card-desc">Katta texnik muammo, lekin ko'p odam ishlatmaydi.</div>
+    </div>
+    <div class="classifier-card" data-category="priority">
+      <div class="classifier-card-title">Mobil saytda Login tugmasi ko'rinmaydi</div>
+      <div class="classifier-card-desc">Foydalanuvchilar kira olmaydi - tez tuzatish.</div>
+    </div>
+    <div class="classifier-card" data-category="severity">
+      <div class="classifier-card-title">Database ma'lumotlar yo'qolayapti (kamdan-kam holatda)</div>
+      <div class="classifier-card-desc">Juda jiddiy texnik muammo.</div>
+    </div>
+    <div class="classifier-card" data-category="priority">
+      <div class="classifier-card-title">Black Friday'gacha 1 kun, savatda kichik UI bug</div>
+      <div class="classifier-card-desc">Kichik bug, lekin Black Friday vaqtida hammasini ko'radi.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="severity">
+      <div class="classifier-bucket-icon">⚠️</div>
+      <div class="classifier-bucket-label" style="color:var(--accent)">Severity yuqori</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="priority">
+      <div class="classifier-bucket-icon">🔥</div>
+      <div class="classifier-bucket-label" style="color:var(--gold)">Priority yuqori</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SECTION 3: WORKFLOW -->
+<section class="section" id="workflow">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Workflow va Status</h2>
+  <p class="section-intro">Har Jira issue <strong>workflow</strong> bo'yicha harakat qiladi. Boshlanishidan tugashigacha. Bu siz uchun <strong>kundalik harakat</strong>.</p>
+
+  <h3>Bug Fix Workflow — to'liq</h3>
+
+  <div class="workflow-track">
+    <div class="workflow-step open">Open</div>
+    <span class="workflow-arrow">→</span>
+    <div class="workflow-step in-progress">In Progress</div>
+    <span class="workflow-arrow">→</span>
+    <div class="workflow-step fixed">Fixed</div>
+    <span class="workflow-arrow">→</span>
+    <div class="workflow-step testing">Testing</div>
+    <span class="workflow-arrow">→</span>
+    <div class="workflow-step closed">Closed</div>
+  </div>
+
+  <h4>Har bosqichda kim nima qiladi?</h4>
+  <ul>
+    <li><strong>Open</strong> — Siz (QA) yangi bug yozdingiz</li>
+    <li><strong>In Progress</strong> — Dasturchi kod yozayapti</li>
+    <li><strong>Fixed</strong> — Dasturchi "tuzatdim" deb belgiladi</li>
+    <li><strong>Testing</strong> — Siz Confirmation Testing qilasiz (11-darsdan)</li>
+    <li><strong>Closed</strong> — Bug to'liq tuzatildi, yopildi</li>
+  </ul>
+
+  <h3>Sub-tasks va Linking</h3>
+  <p>Katta vazifalarni <strong>sub-task</strong>'larga bo'lish mumkin:</p>
+
+  <div class="example-box">
+    <div class="example-box-title">Misol: Login funksiyasi</div>
+    <p style="margin-bottom:6px"><strong>Asosiy issue (Story):</strong> TS-100 — "Login funksiyasi yaratish"</p>
+    <p style="margin-bottom:0"><strong>Sub-tasks:</strong></p>
+    <ul style="margin-top:4px;margin-bottom:0">
+      <li>TS-100.1 — Frontend (UI yaratish)</li>
+      <li>TS-100.2 — Backend (API yozish)</li>
+      <li>TS-100.3 — Database (jadval qo'shish)</li>
+      <li>TS-100.4 — Test Cases (QA tomonidan)</li>
+    </ul>
+  </div>
+
+  <h4>Issue Linking turlari:</h4>
+  <ul>
+    <li><strong>Blocks</strong> — bu issue hal bo'lmaguncha boshqa ishlamaydi</li>
+    <li><strong>Relates to</strong> — bog'liq, lekin block emas</li>
+    <li><strong>Duplicates</strong> — xuddi shu bug ilgari yozilgan</li>
+    <li><strong>Is caused by</strong> — boshqa bug sababi shu</li>
+  </ul>
+
+  <h3>Comments va @mentions</h3>
+  <p>Issue ostida kommentlar yozish mumkin. <strong>@mention</strong> bilan boshqa odamlarga signal berasiz:</p>
+
+  <div class="jira-mock">
+    <div class="jira-content" style="padding:16px">
+      <div class="jira-comment">
+        <div class="jira-comment-author">Mirzobek (QA) · 2 soat oldin</div>
+        <div>@dasturchi_jasur Bu bug hali ham qaytmoqda. Screenshot biriktirdim. iPhone Safari'da ham, Chrome'da ham bor.</div>
+      </div>
+      <div class="jira-comment">
+        <div class="jira-comment-author">Jasur (Dev) · 1 soat oldin</div>
+        <div>@Mirzobek Rahmat! Tekshiraman. @PO Akmal bu sprint oxirida bo'ladimi yoki keyingi sprintga olamizmi?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DND WORKFLOW -->
+<div class="dnd-game" id="workflowGame">
+  <div class="quiz-label">🎯 Tartibga qo'ying</div>
+  <h3 style="margin-top:8px">Bug Fix Workflow tartibini tuzing</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Pastdagi status'ni bosing. <strong>2-qadam:</strong> To'g'ri tartibdagi joyni tanlang (1-5).</p>
+
+  <div class="dnd-hint" id="workflowHint">👆 Endi yuqoridagi raqamlardan birini tanlang</div>
+
+  <div class="dnd-pairs">
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">1-bosqich</div>
+      <div class="dnd-slot" data-order="1">Status'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">2-bosqich</div>
+      <div class="dnd-slot" data-order="2">Status'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">3-bosqich</div>
+      <div class="dnd-slot" data-order="3">Status'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">4-bosqich</div>
+      <div class="dnd-slot" data-order="4">Status'ni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">5-bosqich</div>
+      <div class="dnd-slot" data-order="5">Status'ni qo'ying</div>
+    </div>
+  </div>
+
+  <div class="dnd-items-pool" id="workflowPool">
+    <div class="dnd-item" data-order="3">✏️ Fixed</div>
+    <div class="dnd-item" data-order="1">📋 Open</div>
+    <div class="dnd-item" data-order="5">✅ Closed</div>
+    <div class="dnd-item" data-order="2">🔄 In Progress</div>
+    <div class="dnd-item" data-order="4">🧪 Testing</div>
+  </div>
+
+  <div class="dnd-score" id="workflowScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SECTION 4: JQL -->
+<section class="section" id="jql">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">JQL — Jira Query Language</h2>
+  <p class="section-intro">Jira'da minglab issue bor. Sizga keraklilarini topish uchun <strong>JQL</strong> ishlatamiz — Jira'ning maxsus qidiruv tili.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">JQL nima?</div>
+    <p><strong>JQL (Jira Query Language)</strong> — Jira'da kerakli issue'larni topish uchun maxsus til. SQL'ga o'xshash, lekin sodda.</p>
+    <p><em>Asosiy g'oya:</em> Filter yarating va istalgan vaqtda ishlatib turing.</p>
+  </div>
+
+  <h3>5 ta eng kerakli JQL so'rovi</h3>
+
+  <div class="jql-card">
+    <div class="jql-card-title">1. Mening vazifalarim</div>
+    <div class="jql-card-desc">Faqat sizga tayinlangan issue'larni ko'rish:</div>
+    <div class="jql-block">
+<span class="keyword">assignee</span> <span class="operator">=</span> <span class="keyword">currentUser()</span>
+    </div>
+  </div>
+
+  <div class="jql-card">
+    <div class="jql-card-title">2. Faol buglarim</div>
+    <div class="jql-card-desc">Yopilmagan, men yozgan barcha buglar:</div>
+    <div class="jql-block">
+<span class="keyword">reporter</span> <span class="operator">=</span> <span class="keyword">currentUser()</span> <span class="keyword">AND</span> <span class="keyword">type</span> <span class="operator">=</span> <span class="string">"Bug"</span> <span class="keyword">AND</span> <span class="keyword">status</span> <span class="operator">!=</span> <span class="string">"Closed"</span>
+    </div>
+  </div>
+
+  <div class="jql-card">
+    <div class="jql-card-title">3. Tezkor (High Priority) issue'lar</div>
+    <div class="jql-card-desc">Tez tuzatish kerak bo'lgan vazifalar:</div>
+    <div class="jql-block">
+<span class="keyword">priority</span> <span class="keyword">in</span> (<span class="string">"Highest"</span>, <span class="string">"High"</span>) <span class="keyword">AND</span> <span class="keyword">status</span> <span class="operator">!=</span> <span class="string">"Closed"</span>
+    </div>
+  </div>
+
+  <div class="jql-card">
+    <div class="jql-card-title">4. Bugun yangi yozilgan</div>
+    <div class="jql-card-desc">Oxirgi 1 kunda yaratilgan issue'lar:</div>
+    <div class="jql-block">
+<span class="keyword">created</span> <span class="operator">&gt;=</span> <span class="string">-1d</span>
+    </div>
+  </div>
+
+  <div class="jql-card">
+    <div class="jql-card-title">5. Confirmation kutayotgan</div>
+    <div class="jql-card-desc">QA tekshiruvi kerak — siz tezda ishlashingiz kerak:</div>
+    <div class="jql-block">
+<span class="keyword">status</span> <span class="operator">=</span> <span class="string">"Ready for Testing"</span> <span class="keyword">AND</span> <span class="keyword">assignee</span> <span class="operator">=</span> <span class="keyword">currentUser()</span>
+    </div>
+  </div>
+
+  <h3>Filter yaratish va saqlash</h3>
+  <ol>
+    <li>Yuqoridagi JQL'larni "Issues" sahifasida yozing</li>
+    <li>Natija ko'rgach, "Save as" bosing</li>
+    <li>Nom bering: "Mening Bug'larim", "Tezkor Vazifalar"</li>
+    <li>Endi har kuni shu filter'ni ishlatasiz</li>
+  </ol>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun maslahat</div>
+    <p>Avval shu 5 ta JQL'ni yodlang. Qolgan murakkabroqlari kelib chiqadigan zarurat bo'yicha o'rganasiz. <strong>"Mening vazifalarim"</strong> — eng birinchi yarating!</p>
+  </div>
+</section>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click'da Black Friday yaqinlashmoqda</div>
+
+  <div class="scenario-story">
+    <p><strong>Payshanba, 14:00.</strong> Black Friday'gacha 2 kun qoldi. Click QA jamoasiga sizdan signal keldi:</p>
+    <p><strong>Topilgan bug:</strong> "Mobil versiyada 'Aksiyalar' sahifasidagi tugma bosilmaydi"</p>
+    <p><strong>Texnik tahlil:</strong> Bug faqat ba'zi Android telefonlarda. iOS'da yo'q. Chrome'da ham ishlamaydi.</p>
+    <p>Siz Jira'ga bug yozmoqchisiz. Severity va Priority'ni qanday belgilaysiz?</p>
+  </div>
+
+  <div class="scenario-question">Eng to'g'ri tanlov?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Severity: Critical, Priority: Critical (chunki Black Friday)</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Severity: Major (faqat ba'zi qurilmalarda - to'liq buzilish emas), Priority: Highest (Black Friday'gacha 2 kun!)</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Severity: Minor, Priority: Medium (faqat Android'da, hammasi emas)</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Yangi ish kuni boshlandi. Birinchi nima qilasiz Jira'da?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Barcha buglarni ko'rib chiqaman (1000+ ta)</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>"Mening vazifalarim" filterini ochaman: <code>assignee = currentUser()</code> va status'lar bo'yicha tartiblayman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Slack'da menejerdan so'rayman: "Bugun nima qilay?"</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop'da Jira tajribasi</h2>
+  <p class="section-intro">Jira'ni o'rganish uchun bepul akkount yarating va TestShop buglarni real Jira'da yozing.</p>
+
+  <div style="background:linear-gradient(135deg,#0052CC 0%,#003D99 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">📋</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Jira Bepul Akkount</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Atlassian 10 odamgacha bepul. O'zingizning workspace yarating!
+    </p>
+    <a href="https://www.atlassian.com/software/jira/free" target="_blank" style="display:inline-block;background:white;color:#0052CC;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 Jira Free olish
+    </a>
+  </div>
+
+  <h3>Sizning vazifalaringiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#0052CC;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Jira Free akkount yarating</div>
+        <div style="color:#4A4A4A;font-size:14px">atlassian.com/software/jira/free → "Get it free". Project: "TestShop QA". Project type: Scrum yoki Kanban.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#D64545;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">10 ta TestShop bug yozing</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop Bug Hunt sahifasidagi 10 ta bug uchun professional bug report yozing. Har birida: Summary, Steps, Expected, Actual, Severity, Priority, Screenshot.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">5 ta JQL filter yarating</div>
+        <div style="color:#4A4A4A;font-size:14px">"Mening Bug'larim", "Tezkor", "Open", "Yangi (1 hafta)", "Closed bu oyda" — filterlarni saqlang va dashboard'ga qo'shing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun zo'r material</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Sizning Jira workspace'ingizdagi 10 ta bug + 5 ta filter — <strong>portfoliongizdagi eng kuchli dalil</strong>. Intervyu'da: "Mana mening Jira workspace'im, qarang!" — deb ko'rsatasiz. Junior'lar orasida juda kam.</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Jira — har QA intervyu'sining asosiy mavzusi. 7 ta professional javob.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Severity va Priority farqi nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Severity</strong> — bugning <strong>texnik ta'siri</strong>. "Qancha katta zarar?" — QA aniqlaydi.</li>
+            <li><strong>Priority</strong> — bugni <strong>qachon tuzatish</strong> kerak. "Biznes muhimligi" — PM aniqlaydi.</li>
+          </ul>
+          <p><strong>Misollar:</strong></p>
+          <ul>
+            <li>Bosh sahifadagi typo: Severity Low (kichik), lekin Priority High (har kim ko'radi)</li>
+            <li>Admin panel'dagi crash: Severity High, lekin Priority Low (kam ishlatuvchi)</li>
+            <li>Production'dagi to'lov muammosi: ikkalasi ham Critical</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Men har bugda ikkalasini alohida baholaymiz. Severity'ni o'zim, Priority'ni PM bilan kelishaman."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Yaxshi bug report nimadan iborat?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Yaxshi bug report 7 ta majburiy maydondan iborat:"</p>
+          <ul>
+            <li><strong>1. Summary</strong> — qisqa va aniq sarlavha "[Komponent] Nima xato"</li>
+            <li><strong>2. Steps to Reproduce</strong> — qadamma-qadam ko'rsatma (1, 2, 3...)</li>
+            <li><strong>3. Expected Result</strong> — kutilgan natija</li>
+            <li><strong>4. Actual Result</strong> — haqiqiy natija</li>
+            <li><strong>5. Environment</strong> — qurilma, OS, brauzer (iPhone 14, iOS 18, Safari)</li>
+            <li><strong>6. Attachments</strong> — screenshot, video, log</li>
+            <li><strong>7. Severity & Priority</strong> — texnik ta'sir va biznes muhimligi</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Yaxshi bug — dasturchi 30 soniyada tushunadigan. Yomon bug — 3 marta savol-javob bilan vaqt yo'qotadi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Issue Type'lar qaysilar?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Jira'da 4 ta asosiy Issue Type:"</p>
+          <ul>
+            <li><strong>🐛 Bug</strong> — mahsulotdagi xato. QA yozadi.</li>
+            <li><strong>📝 Story</strong> — foydalanuvchi uchun yangi xususiyat. PO yozadi.</li>
+            <li><strong>✅ Task</strong> — texnik vazifa. Misol: "Database optimizatsiya".</li>
+            <li><strong>🎯 Epic</strong> — katta xususiyat (5+ Story). Misol: "Yangi to'lov tizimi".</li>
+          </ul>
+          <p><strong>Hierarchy:</strong> Epic &gt; Story &gt; Task &gt; Sub-task</p>
+          <p><strong>QA roli:</strong> "Men asosan Bug yozaman. Lekin Story va Task'larni ham ko'raman — chunki ularni test qilaman."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Bug Workflow'ni tushuntiring</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bug Fix Workflow 5 qadamdan iborat:"</p>
+          <ul>
+            <li><strong>1. Open</strong> — QA yangi bug yozdi (status default)</li>
+            <li><strong>2. In Progress</strong> — Dasturchi kod yozayapti</li>
+            <li><strong>3. Fixed</strong> — Dasturchi "tuzatdim" deb belgiladi</li>
+            <li><strong>4. Testing</strong> — QA Confirmation Testing qilayapti</li>
+            <li><strong>5. Closed</strong> yoki <strong>Reopen</strong> — natija</li>
+          </ul>
+          <p><strong>QA roli:</strong> "Men 1 va 4 qadamlarda ishlayman — bug yozish va Confirmation."</p>
+          <p><strong>Pro javob:</strong> "Har kompaniya o'zicha workflow qiladi. Ba'zilar 5 status, ba'zilar 8-10. Lekin asosiy mantiq bir xil."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>JQL nima va qanday ishlatasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "JQL — Jira Query Language, kerakli issue'larni topish uchun maxsus til. SQL'ga o'xshash."</p>
+          <p><strong>Kundalik 5 ta JQL:</strong></p>
+          <ul>
+            <li><code>assignee = currentUser()</code> — meniki</li>
+            <li><code>status = "In Progress"</code> — ishlanyapti</li>
+            <li><code>priority in (High, Highest)</code> — tezkor</li>
+            <li><code>created &gt;= -1d</code> — bugun yozilgan</li>
+            <li><code>type = Bug AND status = "Ready for Testing"</code> — tekshirish kerak</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Men 5-7 ta filter saqlab, har kuni ishlatib turaman. Bu vaqt tejaydi va to'g'ri vazifaga e'tibor beraman."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Sub-task va Linking nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Sub-task:</strong> "Katta vazifani kichik bo'laklarga bo'lish."</p>
+          <p><strong>Misol:</strong> "Login funksiyasi" Story uchun:</p>
+          <ul>
+            <li>Sub-task 1: Frontend (UI)</li>
+            <li>Sub-task 2: Backend (API)</li>
+            <li>Sub-task 3: Database</li>
+            <li>Sub-task 4: Test Cases</li>
+          </ul>
+          <p><strong>Linking:</strong> "Issue'lar o'rtasidagi bog'lanish. 4 turi:"</p>
+          <ul>
+            <li><strong>Blocks</strong> — bu issue hal bo'lmaguncha boshqa ishlamaydi</li>
+            <li><strong>Relates to</strong> — bog'liq, lekin block emas</li>
+            <li><strong>Duplicates</strong> — xuddi shu bug ilgari yozilgan</li>
+            <li><strong>Is caused by</strong> — sababi shu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Jira'da ish kuningiz qanday boshlanadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Mening kundalik Jira workflow'im quyidagicha:"</p>
+          <ul>
+            <li><strong>1.</strong> "Mening vazifalarim" filter'ini ochaman</li>
+            <li><strong>2.</strong> "Ready for Testing" status'ida nima bor — Confirmation Testing</li>
+            <li><strong>3.</strong> Yangi buglarni tekshiraman — kelgan kommentlarga javob</li>
+            <li><strong>4.</strong> @mention bo'lgan joylarni ko'raman</li>
+            <li><strong>5.</strong> Sprint board'ga qarayman — o'z vazifalarim qanday</li>
+            <li><strong>6.</strong> Yangi test bajarish, bug yozish</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Men har kuni ertalab Jira'ni ochaman va 30 daqiqada hamma narsani ko'rib chiqaman. Bu — professional QA ning kundalik odat."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Bug yozish - san'at</div>
+      <div class="summary-point-text">7 ta majburiy maydon: Summary, Steps, Expected, Actual, Environment, Attachments, Severity/Priority.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Severity ≠ Priority</div>
+      <div class="summary-point-text">Severity - texnik ta'sir (QA). Priority - biznes muhimligi (PM). Ikkisi alohida.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">JQL - tezlik</div>
+      <div class="summary-point-text">5 ta asosiy filter saqlang. Har kuni ishlatib, vaqt tejang. Professional QA ning belgisi.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="14-test-plan.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>14-dars · Test Plan</div>
+  </a>
+  <a href="16-testrail.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>16-dars · TestRail</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 17;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Professional QA har kuni "Mening vazifalarim" filter\'ini ochadi. JQL <code>assignee = currentUser()</code> - eng birinchi yaratiladigan filter. Bu vaqt tejaydi va to\'g\'ri vazifaga e\'tibor berishingizga yordam beradi.',
+    incorrect: '1000+ bug ko\'rib chiqish - vaqt isrofi. Menejerdan har kun so\'rash - mustaqil emas. To\'g\'ri yo\'l - JQL filter saqlash va o\'z vazifalaringizni darhol ko\'rish.'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Bu professional yondashuv. Severity Major - chunki faqat ba\'zi qurilmalarda (to\'liq buzilish emas). Priority Highest - chunki Black Friday\'gacha 2 kun, bu vaqtda hammasini ko\'radi. Severity va Priority har doim alohida tahlil qilinadi.',
+    incorrect: 'Bu noto\'g\'ri tahlil. "Critical" - bu hammasi to\'xtagan holat. Bu yerda esa faqat ba\'zi Android qurilmalarda. Lekin Black Friday yaqinligi tufayli Priority yuqori bo\'lishi kerak. Severity (texnik) va Priority (biznes) - alohida.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Status\'larni topdingiz!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// BUG BUILDER
+function showBug() {
+  const summary = document.getElementById('bbSummary').value || '(yo\'q)';
+  const steps = document.getElementById('bbSteps').value || '(qadamlar yo\'q)';
+  const expected = document.getElementById('bbExpected').value || '(yo\'q)';
+  const actual = document.getElementById('bbActual').value || '(yo\'q)';
+  const env = document.getElementById('bbEnv').value || '(yo\'q)';
+  const severity = document.getElementById('bbSeverity').value;
+  const priority = document.getElementById('bbPriority').value;
+  
+  const priorityColors = {Highest: '#BF2600', High: '#BF2600', Medium: '#974F0C', Low: '#006644'};
+  const priorityIcons = {Highest: '⏫', High: '⬆️', Medium: '➡️', Low: '⬇️'};
+  
+  document.getElementById('bbPreviewContent').innerHTML = `
+    <div class="jira-issue-key">YOUR-BUG · 🐛 Bug</div>
+    <div class="jira-issue-title">${summary}</div>
+    <div class="jira-issue-meta">
+      <span class="jira-status open">Open</span>
+      <span class="jira-priority high" style="background:${priorityColors[priority]+'20'};color:${priorityColors[priority]}">${priorityIcons[priority]} ${priority}</span>
+    </div>
+    <div class="jira-fields">
+      <span class="label">Severity:</span><span class="value">${severity}</span>
+      <span class="label">Priority:</span><span class="value">${priority}</span>
+      <span class="label">Environment:</span><span class="value">${env}</span>
+      <span class="label">Reporter:</span><span class="value">Siz (QA)</span>
+    </div>
+    <div class="jira-section">
+      <div class="jira-section-title">🎯 Steps to Reproduce</div>
+      <div class="jira-description" style="white-space:pre-line">${steps}</div>
+    </div>
+    <div class="jira-section">
+      <div class="jira-section-title">✅ Expected Result</div>
+      <div class="jira-description">${expected}</div>
+    </div>
+    <div class="jira-section">
+      <div class="jira-section-title">❌ Actual Result</div>
+      <div class="jira-description">${actual}</div>
+    </div>
+  `;
+  document.getElementById('bbPreview').classList.add('show');
+  completedActivities.add('bbBuilder');
+  updateProgress();
+}
+
+// CLASSIFIER
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { severity: 'Severity yuqori', priority: 'Priority yuqori' };
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 5 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 5) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barchasi tasniflandi!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+// WORKFLOW DND
+let selectedItem = null;
+let workflowCorrect = 0;
+
+document.querySelectorAll('#workflowPool .dnd-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('placed')) return;
+    document.querySelectorAll('#workflowPool .dnd-item').forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+    selectedItem = item;
+    document.getElementById('workflowHint').classList.add('show');
+    document.querySelectorAll('#workflowGame .dnd-slot').forEach(s => {
+      if (!s.classList.contains('filled')) s.classList.add('active');
+    });
+  });
+});
+
+document.querySelectorAll('#workflowGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if (slot.classList.contains('filled') || !selectedItem) return;
+    if (selectedItem.dataset.order === slot.dataset.order) {
+      slot.textContent = selectedItem.textContent;
+      slot.classList.add('filled', 'correct');
+      slot.classList.remove('active');
+      selectedItem.classList.add('placed');
+      workflowCorrect++;
+      document.getElementById('workflowScore').textContent = `${workflowCorrect} / 5 to'g'ri`;
+      completedActivities.add(`workflow-${workflowCorrect}`);
+      updateProgress();
+      selectedItem = null;
+      document.getElementById('workflowHint').classList.remove('show');
+      document.querySelectorAll('#workflowGame .dnd-slot').forEach(s => s.classList.remove('active'));
+      if (workflowCorrect === 5) {
+        document.getElementById('workflowScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Workflow to\'g\'ri tuzildi!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .term-box, .example-box, .takeaway-box, .jira-mock, .bug-builder, .jql-card, .sev-pri-table').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>25-dars: CV yozish | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.cv-sections{display:flex;flex-direction:column;gap:12px;margin:24px 0}
+.cv-section-card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start}
+.cv-section-num{width:36px;height:36px;border-radius:50%;background:var(--plum);color:white;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:16px;flex-shrink:0}
+.cv-section-content h4{font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin-bottom:4px}
+.cv-section-content p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.5}
+.cv-section-content .tag{display:inline-block;background:var(--plum-soft);color:var(--plum);padding:1px 8px;border-radius:100px;font-size:11px;font-family:'JetBrains Mono',monospace;margin-top:4px;font-weight:600}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.ba-panel{border-radius:14px;padding:20px;border:2px solid}
+.ba-panel.bad{background:#FFF5F5;border-color:var(--accent)}
+.ba-panel.good{background:var(--forest-soft);border-color:var(--forest)}
+.ba-panel-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.ba-panel.bad .ba-panel-title{color:var(--accent)}
+.ba-panel.good .ba-panel-title{color:var(--forest)}
+.ba-item{font-size:13px;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;line-height:1.4;color:var(--ink-soft)}
+.ba-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.ba-tab{padding:8px 16px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.ba-tab.active{background:var(--plum);color:white;border-color:var(--plum)}
+.ba-section-content{display:none}
+.ba-section-content.show{display:block}
+.cv-builder{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.cvb-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.cvb-field{display:flex;flex-direction:column;gap:6px}
+.cvb-field.full{grid-column:1/-1}
+.cvb-label{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--plum);text-transform:uppercase;letter-spacing:1px}
+.cvb-input,.cvb-textarea{padding:10px 14px;border:2px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;background:white;transition:border-color .2s}
+.cvb-input:focus,.cvb-textarea:focus{outline:none;border-color:var(--plum)}
+.cvb-textarea{min-height:70px;resize:vertical}
+.cvb-btn{padding:12px 28px;background:var(--plum);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:500;margin-top:16px}
+.cvb-preview{display:none;margin-top:24px}
+.cvb-preview.show{display:block}
+/* CV Preview */
+.cv-doc{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08);max-width:640px;margin:0 auto}
+.cv-doc-header{background:var(--plum);padding:28px 32px;color:white}
+.cv-doc-name{font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin-bottom:4px}
+.cv-doc-title{font-size:15px;opacity:.85;margin-bottom:10px}
+.cv-doc-contacts{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;opacity:.8}
+.cv-doc-contact{display:flex;align-items:center;gap:5px}
+.cv-doc-body{padding:24px 32px}
+.cv-doc-section{margin-bottom:20px}
+.cv-doc-section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--plum);border-bottom:2px solid var(--plum);padding-bottom:4px;margin-bottom:12px}
+.cv-doc-item{margin-bottom:10px}
+.cv-doc-item-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px}
+.cv-doc-item-title{font-weight:600;font-size:14px;color:var(--ink)}
+.cv-doc-item-date{font-size:12px;color:var(--ink-muted);font-family:'JetBrains Mono',monospace}
+.cv-doc-item-sub{font-size:13px;color:var(--ink-muted);margin-bottom:4px}
+.cv-doc-item-desc{font-size:13px;color:var(--ink-soft);line-height:1.5}
+.cv-doc-skills{display:flex;flex-wrap:wrap;gap:6px}
+.cv-doc-skill{background:var(--plum-soft);color:var(--plum);padding:4px 10px;border-radius:100px;font-size:12px;font-weight:500}
+.cv-print-btn{display:block;text-align:center;padding:12px;background:var(--forest);color:white;border:none;border-radius:0 0 12px 12px;cursor:pointer;font-size:14px;font-weight:500;width:100%}
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.interview-section{background:linear-gradient(135deg,#FFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform .3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height .4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+h4{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-top:24px;margin-bottom:10px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .ba-compare,.cvb-grid,.summary-points{grid-template-columns:1fr}
+  .cvb-field.full{grid-column:auto}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.cv-builder{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+  .cv-doc-header,.cv-doc-body{padding:20px}
+  .cv-doc-contacts{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">25-dars</div>
+  <h1>CV <em>yozish</em></h1>
+  <p class="hero-subtitle">Recruiter CV'ingizni 7-10 sekund ko'radi. O'sha 10 sekundda nimani ko'rishi kerak? ATS tizimi, kalit so'zlar, raqamlar — hammasi shu darsda.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>60 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>CV Builder</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">CV — birinchi filtr</h2>
+  <p class="section-intro">Siz 3 oy qattiq o'qidingiz. Portfolio to'ldirdingiz. Endi ish topish vaqti. Birinchi qadam — <strong>CV</strong>. Bu yerda ko'pchilik xato qiladi.</p>
+  <ul>
+    <li>Recruiter CV'ni o'rtacha <strong>7 sekund</strong> ko'radi — chiroyli va aniq bo'lmasa, keyingisi</li>
+    <li><strong>ATS tizimi</strong> (Applicant Tracking System) ko'p kompaniyalarda CV'ni avtomatik saralaydi — kalit so'z yo'q bo'lsa, recruiterga yetib bormaydi</li>
+    <li><strong>1 sahifa</strong> — Junior uchun 1 sahifa yetarli va tavsiya etiladi</li>
+    <li><strong>PDF</strong> — har kompyuterda bir xil ko'rinadi, Word emas</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">ATS nima?</div>
+    <p><strong>ATS (Applicant Tracking System)</strong> — Payme, Uzum, Click kabi katta kompaniyalar CV'larni avtomatik saralovchi dastur ishlatadi. "QA", "Selenium", "Postman" kabi kalit so'zlar bo'lmasa — CV odam ko'rmaydi. Shuning uchun kalit so'zlar muhim!</p>
+  </div>
+</section>
+
+<section class="section" id="structure">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">CV tarkibi — 6 bo'lim</h2>
+  <p class="section-intro">Junior QA CV'si uchun ideal tarkib. Tartib muhim — rekruter eng yuqorisini avval ko'radi.</p>
+  <div class="cv-sections">
+    <div class="cv-section-card">
+      <div class="cv-section-num">1</div>
+      <div class="cv-section-content">
+        <h4>Sarlavha (Header)</h4>
+        <p>Ism-familiya, lavozim, kontakt: telefon, email, LinkedIn, GitHub. Joylashuv (shahar). Rasm — ixtiyoriy, lekin professional bo'lsa yaxshi.</p>
+        <span class="tag">⭐ Eng ko'p ko'rish</span>
+      </div>
+    </div>
+    <div class="cv-section-card">
+      <div class="cv-section-num">2</div>
+      <div class="cv-section-content">
+        <h4>Professional Summary</h4>
+        <p>3-4 jumlada: kim ekaniz, nima bilardirsiz, nima qidiraysiz. Kalit so'zlar bo'lsin! Junior uchun maqsad ifodalash muhim.</p>
+        <span class="tag">🎯 ATS uchun muhim</span>
+      </div>
+    </div>
+    <div class="cv-section-card">
+      <div class="cv-section-num">3</div>
+      <div class="cv-section-content">
+        <h4>Ko'nikmalar (Skills)</h4>
+        <p>Manual Testing, API Testing, Selenium, Playwright, Postman, Jira, TestRail, Python, SQL asoslari, Git. Kalit so'zlar — ATS uchun.</p>
+        <span class="tag">🔍 ATS kalit so'zlar</span>
+      </div>
+    </div>
+    <div class="cv-section-card">
+      <div class="cv-section-num">4</div>
+      <div class="cv-section-content">
+        <h4>Loyihalar (Projects)</h4>
+        <p>TestShop loyihasi — nima qilgansiz, qaysi texnologiyalar, qanday natija (raqamlar bilan!). GitHub linki. Bu — tajribansizlarning asosiy qismi.</p>
+        <span class="tag">💼 Eng muhim junior uchun</span>
+      </div>
+    </div>
+    <div class="cv-section-card">
+      <div class="cv-section-num">5</div>
+      <div class="cv-section-content">
+        <h4>Ta'lim va Sertifikatlar</h4>
+        <p>Oliy ta'lim (agar bor bo'lsa), QA Academy kursi, ISTQB (o'qiyotgan bo'lsa ham yozing — "In Progress"). Online kurslar.</p>
+        <span class="tag">📜 Ishonch bildiradi</span>
+      </div>
+    </div>
+    <div class="cv-section-card">
+      <div class="cv-section-num">6</div>
+      <div class="cv-section-content">
+        <h4>Ish tajribasi (agar bor)</h4>
+        <p>Boshqa sohadan tajriba bo'lsa ham yozing — tashkilotchilik, muloqot ko'nikmalarini ko'rsatadi. QA bog'liq bo'lsa — mukammal.</p>
+        <span class="tag">📋 Ixtiyoriy (Junior)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tips">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">CV yozishning 5 ta qoidasi</h2>
+
+  <h3>1. Raqamlar ishlating</h3>
+  <div class="ba-compare" style="margin-top:12px">
+    <div class="ba-panel bad"><div class="ba-panel-title">❌ Yomon</div>
+      <div class="ba-item"><span>Ko'p test case yozdim</span></div>
+      <div class="ba-item"><span>Bir necha bug topdim</span></div>
+      <div class="ba-item"><span>Selenium bilan ishladim</span></div>
+    </div>
+    <div class="ba-panel good"><div class="ba-panel-title">✅ Yaxshi</div>
+      <div class="ba-item"><span>50+ test case yozdim</span></div>
+      <div class="ba-item"><span>20+ bug topdim va hujjatlashdim</span></div>
+      <div class="ba-item"><span>15 ta Selenium testi: 100% PASSED</span></div>
+    </div>
+  </div>
+
+  <h3>2. Kalit so'zlar</h3>
+  <p>Ish e'lonidagi so'zlarni CV'ingizga qo'ying. Agar e'londa "Jira", "TestRail", "API testing" bo'lsa — CV'da ham bo'lsin.</p>
+  <div class="example-box">
+    <div class="example-box-title">Skills bo'limi uchun kalit so'zlar</div>
+    <p style="margin:0">Manual Testing · API Testing · Selenium WebDriver · Playwright · Pytest · Postman · Jira · TestRail · Python · SQL (asoslar) · Git · Android/iOS Testing · Performance Testing · Agile/Scrum</p>
+  </div>
+
+  <h3>3. Qisqa va aniq</h3>
+  <ul>
+    <li><strong>1 sahifa</strong> — Junior uchun qat'iy qoida</li>
+    <li><strong>Font 10-12pt</strong> — kichik emas, katta emas</li>
+    <li><strong>Tozalik</strong> — bo'sh joy, sarlavhalar, tartib</li>
+    <li><strong>PDF</strong> — har qanday kompyuterda bir xil</li>
+  </ul>
+
+  <h3>4. Tajribasizlikni to'g'ri taqdim eting</h3>
+  <div class="ba-compare">
+    <div class="ba-panel bad"><div class="ba-panel-title">❌ Yomon</div>
+      <div class="ba-item"><span>"Tajribam yo'q, boshlovchiman"</span></div>
+      <div class="ba-item"><span>Loyihalar bo'limi bo'sh</span></div>
+      <div class="ba-item"><span>Faqat kurs nomi</span></div>
+    </div>
+    <div class="ba-panel good"><div class="ba-panel-title">✅ Yaxshi</div>
+      <div class="ba-item"><span>"QA Academy kursida amaliy loyiha"</span></div>
+      <div class="ba-item"><span>TestShop: 50+ test case, 20+ bug</span></div>
+      <div class="ba-item"><span>GitHub link + Texnologiyalar ro'yxati</span></div>
+    </div>
+  </div>
+
+  <h3>5. Aloqa ma'lumotlari to'liq</h3>
+  <ul>
+    <li>✅ Telefon (Telegram bor bo'lsa)</li>
+    <li>✅ Professional email (ism.familiya@gmail.com — nafis.95@mail.ru emas)</li>
+    <li>✅ LinkedIn URL (qisqartirilgan: linkedin.com/in/sizningnomingiz)</li>
+    <li>✅ GitHub URL (github.com/sizningnomingiz)</li>
+    <li>✅ Shahar (Toshkent, O'zbekiston)</li>
+  </ul>
+</section>
+</section>
+
+<!-- BEFORE/AFTER GAME -->
+<div style="background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0">
+  <div class="quiz-label">🔄 Before / After</div>
+  <h3 style="margin-top:8px">Yaxshi va yomon CV bo'limlari</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px">Har bo'limni bosib taqqoslang:</p>
+  <div class="ba-tabs">
+    <button class="ba-tab active" onclick="showBA('summary')">Summary</button>
+    <button class="ba-tab" onclick="showBA('project')">Loyiha</button>
+    <button class="ba-tab" onclick="showBA('skills')">Skills</button>
+    <button class="ba-tab" onclick="showBA('format')">Format</button>
+  </div>
+
+  <div id="ba-summary" class="ba-section-content show">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon Summary</div>
+        <div class="ba-item">Men QA bo'lishni xohlayman. Hali tajribam ko'p emas lekin o'rganishga tayyor.</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--accent-dark);font-style:italic">Muammo: Kalit so'z yo'q. Noaniq. ATS o'tkazib yuboradi.</div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi Summary</div>
+        <div class="ba-item">Junior QA Engineer. Manual va automation testing bo'yicha bilimim bor. Python + Playwright + Pytest bilan TestShop loyihasida 50+ test case va 20+ bug report yaratganman. ISTQB CTFL o'rganmoqdaman.</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--forest);font-style:italic">Yaxshi: Kalit so'zlar bor. Raqamlar bor. Konkret.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-project" class="ba-section-content">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon Loyiha</div>
+        <div class="ba-item"><strong>TestShop</strong></div>
+        <div class="ba-item">Saytni test qildim. Selenium ishlatdim.</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--accent-dark);font-style:italic">Muammo: Nima qilgansiz? Necha ta? Qanday natija?</div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi Loyiha</div>
+        <div class="ba-item"><strong>TestShop QA Loyihasi</strong> | Python, Playwright, Pytest</div>
+        <div class="ba-item">50+ test case (Login, Savat, To'lov). 20+ bug topib hujjatlashdim. 15 ta Playwright testi yaratdim — 100% PASSED. POM pattern, CI ready.</div>
+        <div class="ba-item">🔗 github.com/username/testshop-automation</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--forest);font-style:italic">Yaxshi: Raqamlar, texnologiyalar, GitHub link.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-skills" class="ba-section-content">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon Skills</div>
+        <div class="ba-item">Testing, Kompyuter, Internet, Excel, Word, Ingliz tili (o'rta)</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--accent-dark);font-style:italic">Muammo: QA kalit so'zlar yo'q. ATS topmaydi.</div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi Skills</div>
+        <div class="ba-item">Manual Testing · API Testing (Postman) · Selenium WebDriver · Playwright · Pytest · Python · Jira · TestRail · Git · SQL (asoslar) · Android/iOS Testing</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--forest);font-style:italic">Yaxshi: Har so'z ATS kalit so'zi. Recruiter topadi.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-format" class="ba-section-content">
+    <div class="ba-compare">
+      <div class="ba-panel bad">
+        <div class="ba-panel-title">❌ Yomon Format</div>
+        <div class="ba-item">🎨 Rangli fon, ko'p dizayn</div>
+        <div class="ba-item">📏 2-3 sahifa</div>
+        <div class="ba-item">🔤 Ko'p xil font (4-5 ta)</div>
+        <div class="ba-item">📎 Word (.docx) formatda</div>
+        <div class="ba-item">📸 Katta rasm, ko'p bo'sh joy</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--accent-dark);font-style:italic">ATS ko'p dizaynli CV'ni o'qiy olmaydi!</div>
+      </div>
+      <div class="ba-panel good">
+        <div class="ba-panel-title">✅ Yaxshi Format</div>
+        <div class="ba-item">⬜ Oq fon, toza dizayn</div>
+        <div class="ba-item">📏 1 sahifa (Junior uchun)</div>
+        <div class="ba-item">🔤 1-2 font (Calibri, Arial, Lato)</div>
+        <div class="ba-item">📄 PDF formatda yuborish</div>
+        <div class="ba-item">📐 Aniq bo'limlar, sarlavhalar</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--forest);font-style:italic">ATS oson o'qiydi. Recruiter tez tushunadi.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV BUILDER -->
+<div class="cv-builder">
+  <div class="quiz-label">🛠 CV Builder</div>
+  <h3 style="margin-top:8px">O'z CV'ingizni yarating</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">Ma'lumotlarni kiriting — professional CV ko'rinishida chiqadi:</p>
+  <div class="cvb-grid">
+    <div class="cvb-field">
+      <label class="cvb-label">Ism-Familiya</label>
+      <input class="cvb-input" id="cvName" placeholder="Mirzobek Khaitov" value="Mirzobek Khaitov">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">Lavozim</label>
+      <input class="cvb-input" id="cvTitle" placeholder="Junior QA Engineer" value="Junior QA Engineer">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">Email</label>
+      <input class="cvb-input" id="cvEmail" placeholder="ism@gmail.com" value="mirzobek@gmail.com">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">Telefon</label>
+      <input class="cvb-input" id="cvPhone" placeholder="+998 90 123 45 67" value="+998 90 123 45 67">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">LinkedIn</label>
+      <input class="cvb-input" id="cvLinkedin" placeholder="linkedin.com/in/username" value="linkedin.com/in/mirzobek-kxaitov">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">GitHub</label>
+      <input class="cvb-input" id="cvGithub" placeholder="github.com/username" value="github.com/mirzobek-kxaitov">
+    </div>
+    <div class="cvb-field full">
+      <label class="cvb-label">Professional Summary</label>
+      <textarea class="cvb-textarea" id="cvSummary">Junior QA Engineer. Manual va automation testing bo'yicha bilimim bor. Python + Playwright + Pytest bilan TestShop loyihasida 50+ test case va 20+ bug report yaratganman. API testing (Postman), Performance testing (JMeter) tajribam bor. ISTQB CTFL o'rganmoqdaman.</textarea>
+    </div>
+    <div class="cvb-field full">
+      <label class="cvb-label">Ko'nikmalar (vergul bilan)</label>
+      <input class="cvb-input" id="cvSkills" value="Manual Testing, API Testing, Selenium WebDriver, Playwright, Pytest, Postman, Jira, TestRail, Python, Git, SQL asoslar, Android/iOS Testing">
+    </div>
+    <div class="cvb-field full">
+      <label class="cvb-label">Loyiha nomi</label>
+      <input class="cvb-input" id="cvProjName" value="TestShop QA Loyihasi">
+    </div>
+    <div class="cvb-field full">
+      <label class="cvb-label">Loyiha tavsifi</label>
+      <textarea class="cvb-textarea" id="cvProjDesc">Python, Playwright, Pytest, Postman, JMeter, Jira. 50+ test case yozdim, 20+ bug hujjatlashdim. 15 ta Playwright testi (100% PASSED). POM pattern ishlatilgan. TestShop e-commerce saytini to'liq test qildim.</textarea>
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">GitHub linki</label>
+      <input class="cvb-input" id="cvProjLink" value="github.com/mirzobek-kxaitov/testshop-automation">
+    </div>
+    <div class="cvb-field">
+      <label class="cvb-label">Ta'lim</label>
+      <input class="cvb-input" id="cvEdu" value="QA Academy — 2024-2025">
+    </div>
+  </div>
+  <button class="cvb-btn" onclick="buildCV()">📄 CV'ni ko'rish</button>
+  <div class="cvb-preview" id="cvPreview">
+    <div class="cv-doc" id="cvDoc"></div>
+  </div>
+</div>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Payme'da Junior QA o'rni ochildi</div>
+  <div class="scenario-story">
+    <p><strong>Payme.</strong> Junior QA Engineer — E'lon talablari: "Manual testing tajribasi. Postman va Jira bilan ishlagan. Python bilimi afzallik. Agile/Scrum muhitida ishlash."</p>
+    <p>Siz CV yuborishdan oldin <strong>ish e'lonini o'qib, CV'ingizni moslashtirishingiz</strong> kerak.</p>
+    <p>Hozirgi CV'da: Skills bo'limida faqat "Testing, Selenium, Python" yozilgan.</p>
+  </div>
+  <div class="scenario-question">CV'ni e'longa moslashtirish uchun nima qilasiz?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>CV'ni o'zgartirmayman — barcha joylarga bir xil CV yuboring</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>E'londagi <strong>"Postman", "Jira", "Agile", "Scrum"</strong> so'zlarini Skills bo'limiga qo'shaman. Summary'da "Agile muhitda ishlashga tayyorman" deb yozaman. Loyiha tavsifida Jira va Postman ishlatganligimni ta'kidlayman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Barcha bilgan narsalarimni yozaman — ko'p bo'lsa yaxshi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">CV'ingizni Word (.docx) formatda yubordingiz. Kompaniya ATS tizimidan foydalanadi. Nima muammo bo'lishi mumkin?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Hech qanday muammo yo'q — Word ham qabul qilinadi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>ATS Word formatni to'liq o'qiy olmaydi</strong> — jadvallar, ustunlar, maxsus belgilar aralashib ketadi. PDF har qanday tizimda to'g'ri ko'rinadi. Shuning uchun doim <strong>PDF</strong> yuborish kerak</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Word yangirog'i bo'lgani uchun PDF'dan yaxshiroq</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="action">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot</span>
+  <h2 class="section-title">CV'ingizni bu hafta tayyorlang</h2>
+  <p class="section-intro">3 ta qadam — professional CV yaratish uchun.</p>
+  <div style="display:flex;flex-direction:column;gap:12px;margin:20px 0">
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--plum);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Google Docs yoki Canva'da shablon oling</div>
+        <div style="color:#4A4A4A;font-size:14px">Google Docs: "File → New → From template → Resume". Canva: bepul "Simple Resume" shablonlari bor. Toza, oq fondagi, 1 sahifali shablonni tanlang.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">Builder'dagi ma'lumotlar bilan to'ldiring</div>
+        <div style="color:#4A4A4A;font-size:14px">Yuqoridagi CV Builder'dan foydalaning. Har bo'limni to'ldiring. Raqamlarni unutmang: 50+, 20+, 15 ta, 100%. ATS kalit so'zlari: Selenium, Playwright, Postman, Jira, Pytest, Python.</div>
+      </div>
+    </div>
+    <div style="background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--forest);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:4px">PDF sifatida saqlang va tekshiring</div>
+        <div style="color:#4A4A4A;font-size:14px">Google Docs: File → Download → PDF. Telefonda oching — to'g'ri ko'rinadimi? Do'stingizga yuboring — 10 sekundda nima tushundi? ATS tekshirish: resume.io yoki jobscan.co'da skan qiling.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:8px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Muhim maslahat</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Har ish joyiga <strong>bir xil CV yubormayin</strong>. Har e'londa 2-3 kalit so'z o'zgartiring — o'sha kompaniya/lavozimga mos. Bu ATS o'tish ehtimolini sezilarli oshiradi.</p>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>CV'ingizda tajribangiz yo'q — qanday yozgansiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong> "Ish tajribam bo'lmasa ham, kurs loyihasini professional tarzda taqdim etdim."</p>
+        <ul>
+          <li>Projects bo'limida TestShop loyihasini batafsil yozdim</li>
+          <li>Raqamlar: 50+ test case, 20+ bug report, 15 ta Playwright testi</li>
+          <li>Texnologiyalar: Python, Playwright, Pytest, Postman, Jira</li>
+          <li>GitHub link — ko'rishingiz mumkin</li>
+        </ul>
+        <p><strong>Asosiy g'oya:</strong> "Tajriba yo'q" deyish emas — kursda qilgan ishlarni "kurs loyihasi" sifatida professional taqdim etish.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>ATS nima va nega muhim?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "ATS — Applicant Tracking System. Katta kompaniyalar CV'larni avtomatik saralovchi dastur. Kalit so'zlar bo'lmasa — recruiterga yetib bormaydi."</p>
+        <p><strong>Nega muhim:</strong></p>
+        <ul>
+          <li>Payme, Uzum, Click kabi kompaniyalar ATS ishlatadi</li>
+          <li>ATS kalit so'zlarni izlaydi: "Selenium", "Postman", "Jira"</li>
+          <li>CV'imda ish e'lonidagi kalit so'zlarni ishlataman</li>
+        </ul>
+        <p><strong>Pro maslahat:</strong> "Men har CV yuborishdan oldin ish e'lonini o'qib, CV'imni moslashtirarman."</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>CV'ingizda eng muhim qism qaysi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Junior uchun:</strong> Projects bo'limi — eng muhim.</p>
+        <ul>
+          <li>Ish tajribam yo'q → Projects bo'limi tajribani ko'rsatadi</li>
+          <li>TestShop loyihasi — real amaliy ish</li>
+          <li>GitHub link — recruiter tekshira oladi</li>
+        </ul>
+        <p><strong>Ikkinchi muhim:</strong> Skills bo'limi — ATS uchun.</p>
+        <p><strong>Uchunchi:</strong> Summary — birinchi 3-4 jumlada kim ekanligingiz.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>CV'ingiz qancha sahifa?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "1 sahifa — Junior uchun optimal."</p>
+        <p><strong>Sabablar:</strong></p>
+        <ul>
+          <li>Recruiter 7-10 sekund ko'radi — 2-3 sahifani to'liq o'qimaydi</li>
+          <li>1 sahifaga siqiш — eng muhim ma'lumotni tanlashga majbur qiladi</li>
+          <li>Qisqa = aniq = professional</li>
+        </ul>
+        <p><strong>Istisno:</strong> 5+ yil tajriba bo'lsa 2 sahifa maqbul. Junior uchun — 1 sahifa.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>CV'ni qaysi formatda yuborasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Doim PDF — istisnosiz."</p>
+        <ul>
+          <li>PDF har kompyuterda, telefonda bir xil ko'rinadi</li>
+          <li>Word (.docx) boshqa kompyuterda formatlanishi buzilishi mumkin</li>
+          <li>ATS PDF'ni yaxshiroq o'qiydi (Word'dan jadvallar bilan emas)</li>
+        </ul>
+        <p><strong>Fayl nomi:</strong> CV_Mirzobek_Khaitov_QA.pdf — ism bilan. "CV.pdf" yoki "resume_final_v3.pdf" emas.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Summary (About me) bo'limida nima yozasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Shablon (3-4 jumla):</strong></p>
+        <p><em>"[Lavozim]. [Nima bilardirsiz — kalit so'zlar bilan]. [Konkret natija — raqam bilan]. [Maqsad]."</em></p>
+        <p><strong>Misol:</strong></p>
+        <p>"Junior QA Engineer. Manual testing, API testing (Postman) va automation (Playwright/Pytest) bo'yicha bilimim bor. TestShop kurs loyihasida 50+ test case, 20+ bug report va 15 ta automation testi yaratdim. Birinchi real loyihada professional o'sishni maqsad qilaman."</p>
+        <p><strong>Xato:</strong> "Menga ish kerak, o'rganaman" — bu professional emas.</p>
+      </div></div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Har ish uchun alohida CV zarurmi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Har CV bir xil bo'lmaydi — lekin kattalik o'zgartirishlar emas, kalit so'zlarni moslashtirish."</p>
+        <p><strong>Nima o'zgartiraman:</strong></p>
+        <ul>
+          <li>Skills bo'limida ish e'lonidagi texnologiyalar bor bo'lsin</li>
+          <li>Summary'da o'sha kompaniya/lavozimga mos so'zlar</li>
+          <li>Loyiha tavsifida e'londagi texnologiyalarga urg'u</li>
+        </ul>
+        <p><strong>Nima o'zgartirmayman:</strong> Raqamlar, ism, aloqa ma'lumotlari, asosiy loyiha.</p>
+        <p><strong>Vaqt:</strong> Har CV moslashtirish 5-10 daqiqa — intervyu oldida ketadigan vaqtga arziydi.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Raqamlar ishontiradi</div>
+      <div class="summary-point-text">"Ko'p test case" emas — "50+ test case". "Bir necha bug" emas — "20+ bug". Raqamlar konkretlik va ishonch bildiradi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">ATS = Kalit so'zlar</div>
+      <div class="summary-point-text">Har ish e'lonini o'qing. Unda ishlatilgan texnologiya nomlarini CV'ingizga qo'shing. ATS shu so'zlarni izlaydi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">1 sahifa PDF</div>
+      <div class="summary-point-text">Junior uchun 1 sahifa — qat'iy qoida. Doim PDF yuborish. Fayl nomida ismingiz bo'lsin. Oq fon, toza dizayn.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="24-portfolio.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>24-dars · Portfolio yaratish</div>
+  </a>
+  <a href="26-interview.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>26-dars · Intervyu tayyorgarlik</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 12;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// Quiz
+const fbData = {
+  scenario: {
+    c: '<strong>Professional yondashuv!</strong> Har ish e\'loniga moslashtirilgan CV — ATS o\'tish ehtimolini 40-60% oshiradi. "Postman", "Jira", "Agile" kalit so\'zlarni qo\'shish — 5 daqiqa ish, lekin katta farq.',
+    w: 'Bir xil CV barcha joylarga yuborish — ATS o\'tkazib yuboradi. Kompaniya "Postman" so\'zini izlaydi, CV\'ingizda yo\'q — o\'tkazib yuboriladi. Har e\'longa 5 daqiqada moslashtirish — investitsiya!'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> ATS Word formatini jadvallar va ustunlar sababli to\'liq o\'qiy olmaydi. PDF universal — har tizimda bir xil ko\'rinadi. Har doim PDF yuborish — CV yozishning oltin qoidasi.',
+    w: 'Word ATS tizimida muammo yaratadi: jadvallar, ustunlar, maxsus belgilar — barchasi aralashib ketishi mumkin. PDF har qanday tizimda bir xil. Har doim PDF yuborish shart.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const fbEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      fbEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      fbEl.innerHTML = ok ? fbData[qId].c : fbData[qId].w;
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// BA tabs
+function showBA(id) {
+  document.querySelectorAll('.ba-section-content').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.ba-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ba-' + id).classList.add('show');
+  event.target.classList.add('active');
+  done.add('ba' + id); upd();
+}
+
+// CV Builder
+function buildCV() {
+  const name = document.getElementById('cvName').value || 'Ism Familiya';
+  const title = document.getElementById('cvTitle').value || 'Junior QA Engineer';
+  const email = document.getElementById('cvEmail').value || 'email@gmail.com';
+  const phone = document.getElementById('cvPhone').value || '+998 90 000 00 00';
+  const linkedin = document.getElementById('cvLinkedin').value || '';
+  const github = document.getElementById('cvGithub').value || '';
+  const summary = document.getElementById('cvSummary').value || '';
+  const skillsRaw = document.getElementById('cvSkills').value || '';
+  const projName = document.getElementById('cvProjName').value || 'Loyiha';
+  const projDesc = document.getElementById('cvProjDesc').value || '';
+  const projLink = document.getElementById('cvProjLink').value || '';
+  const edu = document.getElementById('cvEdu').value || '';
+
+  const skills = skillsRaw.split(',').map(s => s.trim()).filter(Boolean);
+  const skillsHtml = skills.map(s => `<span class="cv-doc-skill">${s}</span>`).join('');
+
+  document.getElementById('cvDoc').innerHTML = `
+    <div class="cv-doc-header">
+      <div class="cv-doc-name">${name}</div>
+      <div class="cv-doc-title">${title}</div>
+      <div class="cv-doc-contacts">
+        <span class="cv-doc-contact">📧 ${email}</span>
+        <span class="cv-doc-contact">📱 ${phone}</span>
+        ${linkedin ? `<span class="cv-doc-contact">💼 ${linkedin}</span>` : ''}
+        ${github ? `<span class="cv-doc-contact">⌨️ ${github}</span>` : ''}
+        <span class="cv-doc-contact">📍 Toshkent, O'zbekiston</span>
+      </div>
+    </div>
+    <div class="cv-doc-body">
+      ${summary ? `<div class="cv-doc-section">
+        <div class="cv-doc-section-title">Professional Summary</div>
+        <div class="cv-doc-item"><div class="cv-doc-item-desc">${summary}</div></div>
+      </div>` : ''}
+      ${skills.length ? `<div class="cv-doc-section">
+        <div class="cv-doc-section-title">Ko'nikmalar</div>
+        <div class="cv-doc-skills">${skillsHtml}</div>
+      </div>` : ''}
+      <div class="cv-doc-section">
+        <div class="cv-doc-section-title">Loyihalar</div>
+        <div class="cv-doc-item">
+          <div class="cv-doc-item-header">
+            <div class="cv-doc-item-title">${projName}</div>
+            <div class="cv-doc-item-date">2024–2025</div>
+          </div>
+          ${projLink ? `<div class="cv-doc-item-sub">🔗 ${projLink}</div>` : ''}
+          <div class="cv-doc-item-desc">${projDesc}</div>
+        </div>
+      </div>
+      ${edu ? `<div class="cv-doc-section">
+        <div class="cv-doc-section-title">Ta'lim va Sertifikatlar</div>
+        <div class="cv-doc-item"><div class="cv-doc-item-desc">${edu}</div></div>
+      </div>` : ''}
+    </div>
+    <button class="cv-print-btn" onclick="window.print()">🖨️ Chop etish / PDF saqlash</button>
+  `;
+  document.getElementById('cvPreview').classList.add('show');
+  done.add('cvBuilt'); upd();
+  document.getElementById('cvPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

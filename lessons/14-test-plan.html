@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14-dars: Test Plan tuzish | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; border-radius: 3px; }
+.progress-text { font-size: 13px; color: var(--ink-muted); font-variant-numeric: tabular-nums; min-width: 45px; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.term-box-title::before { content: "📖"; font-size: 14px; }
+.term-box strong { color: var(--blue); font-weight: 600; }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+/* COMPONENT CARDS */
+.tp-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-bottom: 16px; transition: all 0.2s; position: relative; overflow: hidden; }
+.tp-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15); }
+.tp-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.tp-card.scope::before { background: var(--blue); }
+.tp-card.strategy::before { background: var(--accent); }
+.tp-card.resources::before { background: var(--gold); }
+.tp-card.risk::before { background: var(--coral); }
+.tp-card.criteria::before { background: var(--forest); }
+.tp-card.deliverables::before { background: var(--plum); }
+
+.tp-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.tp-num { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: white; flex-shrink: 0; }
+.tp-card.scope .tp-num { background: var(--blue); }
+.tp-card.strategy .tp-num { background: var(--accent); }
+.tp-card.resources .tp-num { background: var(--gold); }
+.tp-card.risk .tp-num { background: var(--coral); }
+.tp-card.criteria .tp-num { background: var(--forest); }
+.tp-card.deliverables .tp-num { background: var(--plum); }
+.tp-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; }
+.tp-question { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; display: block; margin-top: 3px; }
+.tp-desc { color: var(--ink-soft); margin-bottom: 14px; font-size: 15px; }
+.tp-example { padding: 14px 18px; background: var(--bg-soft); border-radius: 10px; font-size: 14px; line-height: 1.6; }
+.tp-example-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); font-weight: 600; margin-bottom: 8px; }
+.tp-example-content { color: var(--ink-soft); }
+.tp-example-content strong { color: var(--ink); }
+
+/* MINI TEST PLAN */
+.mini-tp { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin: 24px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; }
+.mini-tp h4 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); margin-top: 0; }
+.mini-tp h5 { font-family: 'Fraunces', serif; font-size: 15px; margin-top: 16px; margin-bottom: 6px; color: var(--accent); }
+.mini-tp p, .mini-tp ul { font-size: 13px; color: var(--ink-soft); }
+.mini-tp ul { padding-left: 18px; }
+.mini-tp li { margin-bottom: 4px; }
+.mini-tp .doc-meta { font-family: 'Instrument Sans', sans-serif; padding: 10px 14px; background: var(--bg-soft); border-radius: 8px; font-size: 12px; color: var(--ink-muted); margin-bottom: 16px; }
+
+/* TEST PLAN BUILDER */
+.tp-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.tp-builder h3 { margin-top: 0; }
+.tp-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.tp-field { display: grid; grid-template-columns: 160px 1fr; gap: 12px; align-items: start; }
+.tp-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; padding-top: 12px; }
+.tp-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; }
+.tp-input:focus { outline: none; border-color: var(--plum); }
+.tp-textarea { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; color: var(--ink); background: white; transition: border-color 0.2s; min-height: 60px; resize: vertical; }
+.tp-textarea:focus { outline: none; border-color: var(--plum); }
+.tp-preview-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; margin-top: 16px; transition: all 0.2s; }
+.tp-preview-btn:hover { background: var(--plum-soft); color: var(--plum); transform: translateY(-2px); }
+.tp-preview { background: var(--forest-soft); border: 2px solid var(--forest); border-radius: 12px; padding: 24px; margin-top: 16px; display: none; }
+.tp-preview.show { display: block; }
+.tp-preview-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--forest); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--forest); }
+.tp-preview-section { margin-bottom: 14px; }
+.tp-preview-key { font-family: 'Fraunces', serif; font-weight: 600; color: var(--forest); font-size: 15px; margin-bottom: 4px; display: block; }
+.tp-preview-value { color: var(--ink-soft); font-size: 14px; white-space: pre-line; }
+
+/* RISK BOX */
+.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+.risk-card { padding: 18px; border-radius: 12px; border: 2px solid; }
+.risk-card.product { border-color: var(--coral); background: var(--coral-soft); }
+.risk-card.project { border-color: var(--blue); background: var(--blue-soft); }
+.risk-card h5 { font-family: 'Fraunces', serif; margin-top: 0; margin-bottom: 8px; font-size: 16px; }
+.risk-card.product h5 { color: var(--coral); }
+.risk-card.project h5 { color: var(--blue); }
+.risk-card ul { padding-left: 18px; margin: 0; font-size: 13px; }
+.risk-card li { margin-bottom: 4px; }
+
+/* DND */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-pairs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dnd-pair { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: center; padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.dnd-pair-label { font-weight: 500; font-size: 15px; color: var(--ink); font-family: 'Fraunces', serif; }
+.dnd-slot { min-height: 50px; border: 2px solid var(--line); border-radius: 8px; padding: 10px 14px; background: white; transition: all 0.2s; font-size: 14px; color: var(--ink-muted); display: flex; align-items: center; cursor: pointer; }
+.dnd-slot:hover:not(.filled) { border-color: var(--plum); }
+.dnd-slot.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.dnd-slot.filled { border-style: solid; cursor: default; }
+.dnd-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.dnd-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s ease; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; user-select: none; max-width: 280px; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.dnd-item.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.05); }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-soft); display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* MATCHING */
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); animation: shake 0.4s ease; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+
+/* CLASSIFIER */
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); transform: translateY(-2px); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); box-shadow: 0 8px 20px -8px rgba(91,58,122,0.3); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 15px; padding-right: 100px; }
+.classifier-card-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
+.classifier-bucket { min-height: 80px; padding: 18px 14px; border: 2px solid var(--line); border-radius: 12px; text-align: center; transition: all 0.2s; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); transform: translateY(-2px); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); box-shadow: 0 0 0 3px rgba(91,58,122,0.2); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); }
+.classifier-bucket-icon { font-size: 22px; margin-bottom: 2px; }
+
+/* QUIZ */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 16px; font-family: inherit; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+/* SCENARIO */
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; line-height: 1.2; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* INTERVIEW */
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; transition: background 0.2s; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1200px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; letter-spacing: -0.3px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; animation: slideUp 0.5s ease; }
+.completion-badge.show { display: flex; }
+@keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .risk-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .tp-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .tp-field { grid-template-columns: 1fr; gap: 6px; }
+  .dnd-pair { grid-template-columns: 1fr; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lesson-number">14-dars</div>
+  <h1>Test <em>Plan</em> tuzish</h1>
+  <p class="hero-subtitle">Yangi loyihaga qanday yondashasiz? Test'ni rejalashtirish — Middle QA ko'nikmasi. Sodda misollar bilan to'liq qo'llanma.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Loyiha menejmenti</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv topshiriq</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Test Plan nima?</h2>
+  <p class="section-intro">Tasavvur qiling: PO sizga keldi va dedi: "Yangi loyiha boshlanmoqda. Sen QA Lead'sen. 2 oydan keyin chiqaramiz." Siz nima qilasiz?</p>
+  <p>Junior QA: <strong>"Test case yozaman"</strong> deydi. Lekin bu noto'g'ri. <strong>Avval reja</strong> kerak — qanday testlar, qancha vaqt, qancha odam, qaysi resurslar. Bu — <strong>Test Plan</strong>.</p>
+  <p>Test Plan — sizning loyihangizdagi <strong>QA strategiyangizning hujjati</strong>. Uni o'qiganda hamma tushunadi: <em>"Bu loyihada QA qanday ishlaydi"</em>.</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy misol</div>
+    <div class="analogy-title">Uy qurish</div>
+    <div class="analogy-text">
+      Quruvchi to'g'ridan-to'g'ri g'isht terib boshlaydimi? <strong>Yo'q!</strong> Avval <strong>chizma</strong>: necha xona, qancha pul, necha ish kuni, qaysi materiallar. Test Plan ham xuddi shunday — <strong>QA chizmasi</strong>. Reja bilan ish — chiroyli va aniq. Reja'siz — chalkash.
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Test Plan</strong> — loyihada <strong>nimani, qanday va qachon</strong> testlash haqidagi rasmiy hujjat. Odatda Google Docs yoki Confluence'da yoziladi.</p>
+    <p><em>Oddiy qilib:</em> "QA ning loyiha rejasi" — testor jamoasining ish strategiyasi.</p>
+  </div>
+
+  <h3>Kim yozadi?</h3>
+  <ul>
+    <li><strong>Test Lead / QA Lead</strong> — odatda ular yozadi</li>
+    <li><strong>Senior QA</strong> — kichik loyihalarda</li>
+    <li><strong>Middle QA</strong> — kichik feature'lar uchun mini Test Plan</li>
+    <li><strong>Junior QA</strong> — odatda yozmaydi, lekin <strong>o'qishi va tushunishi shart</strong></li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun muhim</div>
+    <p>Siz Junior bo'lsangiz ham, Test Plan'ni <strong>tushunishingiz kerak</strong>. Yangi loyihaga kelganda — birinchi navbatda Test Plan'ni so'rang va o'qing. Bu — sizning <strong>"yo'l xaritangiz"</strong>.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: COMPONENTS -->
+<section class="section" id="components">
+  <span class="section-label">Asosiy qism</span>
+  <h2 class="section-title">Test Plan komponentlari</h2>
+  <p class="section-intro">Standart Test Plan <strong>6 ta asosiy bo'limdan</strong> iborat. Har biri loyihaning bir tomonini yoritadi.</p>
+
+  <!-- 1. SCOPE -->
+  <div class="tp-card scope">
+    <div class="tp-header">
+      <div class="tp-num">1</div>
+      <div>
+        <div class="tp-name">Scope (Qamrov)</div>
+        <span class="tp-question">"NIMANI test qilamiz?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Loyihaning <strong>chegaralari</strong>ni belgilash. Nima ichida, nima tashqarida.</div>
+    <div class="tp-example">
+      <div class="tp-example-title">Misol: TestShop loyihasi</div>
+      <div class="tp-example-content">
+        <strong>✅ Test qilinadi (In Scope):</strong>
+        <ul style="margin:6px 0 8px 0;padding-left:18px;font-size:13px">
+          <li>Bosh sahifa, Login, Register</li>
+          <li>Mahsulot katalogi, Savat</li>
+          <li>To'lov sahifasi</li>
+          <li>Mobil va Desktop versiyalar</li>
+        </ul>
+        <strong>❌ Test qilinmaydi (Out of Scope):</strong>
+        <ul style="margin:6px 0 0 0;padding-left:18px;font-size:13px">
+          <li>Admin panel (alohida loyiha)</li>
+          <li>3-tomon to'lov shlyuzi (boshqa jamoa)</li>
+          <li>Email yuborish tizimi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. STRATEGY -->
+  <div class="tp-card strategy">
+    <div class="tp-header">
+      <div class="tp-num">2</div>
+      <div>
+        <div class="tp-name">Test Strategy</div>
+        <span class="tp-question">"QANDAY test qilamiz?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Qaysi turdagi testlar, qaysi darajalar, qaysi yondashuvlar. <strong>10-darsda</strong> ko'rgan turlar shu yerda qo'llaniladi.</div>
+    <div class="tp-example">
+      <div class="tp-example-title">Misol: TestShop strategiyasi</div>
+      <div class="tp-example-content">
+        <ul style="margin:0;padding-left:18px;font-size:13px">
+          <li><strong>Functional Testing</strong> — Manual + Avtomatlash (Selenium)</li>
+          <li><strong>UI Testing</strong> — Manual</li>
+          <li><strong>Performance Testing</strong> — JMeter (Senior QA)</li>
+          <li><strong>Security Testing</strong> — Asosiy darajada (SQL injection)</li>
+          <li><strong>Compatibility</strong> — Chrome, Safari, Firefox + iOS, Android</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RESOURCES -->
+  <div class="tp-card resources">
+    <div class="tp-header">
+      <div class="tp-num">3</div>
+      <div>
+        <div class="tp-name">Resources & Schedule</div>
+        <span class="tp-question">"KIM va QACHON?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Jamoangiz, vaqt jadvali, kerakli asboblar.</div>
+    <div class="tp-example">
+      <div class="tp-example-title">Misol: TestShop resurslari</div>
+      <div class="tp-example-content">
+        <strong>👥 Jamoa:</strong>
+        <ul style="margin:6px 0 8px 0;padding-left:18px;font-size:13px">
+          <li>1 QA Lead (Test Plan + Strategy)</li>
+          <li>2 Manual QA (test bajarish)</li>
+          <li>1 Automation QA (Selenium scripts)</li>
+        </ul>
+        <strong>📅 Jadval:</strong>
+        <ul style="margin:6px 0 8px 0;padding-left:18px;font-size:13px">
+          <li>1-hafta: Test Analysis va Design</li>
+          <li>2-3 hafta: Test bajarish</li>
+          <li>4-hafta: Regression + UAT</li>
+        </ul>
+        <strong>🛠 Asboblar:</strong>
+        <ul style="margin:0;padding-left:18px;font-size:13px">
+          <li>Jira (bug tracking), TestRail (test management)</li>
+          <li>Selenium, Postman, BrowserStack</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. RISKS -->
+  <div class="tp-card risk">
+    <div class="tp-header">
+      <div class="tp-num">4</div>
+      <div>
+        <div class="tp-name">Risks & Mitigation</div>
+        <span class="tp-question">"NIMA xato bo'lishi mumkin?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Mumkin bo'lgan muammolar va ularning yechimi. Risklar 2 turga bo'linadi.</div>
+
+    <div class="risk-grid">
+      <div class="risk-card product">
+        <h5>🛒 Product Risk</h5>
+        <p style="font-size:12px;color:var(--ink-muted);margin-bottom:6px"><strong>Mahsulot bilan bog'liq</strong></p>
+        <ul>
+          <li>To'lov tizimi ishlamasligi</li>
+          <li>Sayt sekinligi</li>
+          <li>Foydalanuvchi ma'lumotlari yo'qolishi</li>
+        </ul>
+      </div>
+      <div class="risk-card project">
+        <h5>📅 Project Risk</h5>
+        <p style="font-size:12px;color:var(--ink-muted);margin-bottom:6px"><strong>Loyiha bilan bog'liq</strong></p>
+        <ul>
+          <li>Vaqt yetmasligi</li>
+          <li>QA jamoa kasallikka chiqishi</li>
+          <li>Talablar o'zgarishi</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tp-example">
+      <div class="tp-example-title">Mitigation (yechim) misoli</div>
+      <div class="tp-example-content">
+        <strong>Risk:</strong> "QA jamoasi 1 hafta kech qoladi"<br>
+        <strong>Mitigation:</strong> "Eng muhim funksiyalarni avval test qilamiz (Risk-based testing). Critical bo'lmaganlarni keyingi sprintga o'tkazamiz."
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CRITERIA -->
+  <div class="tp-card criteria">
+    <div class="tp-header">
+      <div class="tp-num">5</div>
+      <div>
+        <div class="tp-name">Entry / Exit Criteria</div>
+        <span class="tp-question">"QACHON BOSHLAYMIZ va TUGATAMIZ?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Test boshlash va tugatish uchun aniq <strong>shartlar</strong>.</div>
+
+    <div class="tp-example">
+      <div class="tp-example-title">Entry Criteria — boshlash uchun</div>
+      <div class="tp-example-content">
+        <ul style="margin:0;padding-left:18px;font-size:13px">
+          <li>✅ Build dasturchidan kelgan va deploy qilingan</li>
+          <li>✅ Test environment tayyor</li>
+          <li>✅ Test data tayyorlangan</li>
+          <li>✅ Test case'lar yozilgan va review qilingan</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tp-example" style="margin-top:10px">
+      <div class="tp-example-title">Exit Criteria — tugatish uchun</div>
+      <div class="tp-example-content">
+        <ul style="margin:0;padding-left:18px;font-size:13px">
+          <li>✅ Barcha P1/P2 buglar tuzatilgan</li>
+          <li>✅ 95% test case Pass holatida</li>
+          <li>✅ Regression Testing bajarilgan</li>
+          <li>✅ Test Summary Report tayyor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. DELIVERABLES -->
+  <div class="tp-card deliverables">
+    <div class="tp-header">
+      <div class="tp-num">6</div>
+      <div>
+        <div class="tp-name">Deliverables</div>
+        <span class="tp-question">"NIMA TOPSHIRAMIZ?"</span>
+      </div>
+    </div>
+    <div class="tp-desc">Test natijasida QA jamoa beradigan <strong>hujjatlar va materiallar</strong>.</div>
+    <div class="tp-example">
+      <div class="tp-example-title">Misol: TestShop deliverables</div>
+      <div class="tp-example-content">
+        <ul style="margin:0;padding-left:18px;font-size:13px">
+          <li>📄 <strong>Test Plan</strong> (bu hujjat)</li>
+          <li>📋 <strong>Test Cases</strong> — TestRail'da 200+ ta</li>
+          <li>🐛 <strong>Bug Reports</strong> — Jira'da</li>
+          <li>📊 <strong>Test Summary Report</strong> — natijalar va statistika</li>
+          <li>🤖 <strong>Automation scripts</strong> — Git repository'da</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI TEST PLAN -->
+<section class="section" id="example">
+  <span class="section-label">Real misol</span>
+  <h2 class="section-title">TestShop uchun qisqa Test Plan</h2>
+  <p class="section-intro">Endi haqiqiy hujjat ko'rinishida ko'ramiz. Bu — Middle QA tomonidan yoziladigan <strong>1 sahifalik mini Test Plan</strong>.</p>
+
+  <div class="mini-tp">
+    <h4>📄 Test Plan: TestShop v1.0</h4>
+    <div class="doc-meta">
+      <strong>Author:</strong> Mirzobek (QA Lead) · <strong>Version:</strong> 1.0 · <strong>Date:</strong> 2025-11-15
+    </div>
+
+    <h5>1. Scope</h5>
+    <p><strong>In Scope:</strong> Login, Register, Product catalog, Cart, Checkout (mobil + desktop)</p>
+    <p><strong>Out of Scope:</strong> Admin panel, Email service, Payment gateway</p>
+
+    <h5>2. Test Strategy</h5>
+    <ul>
+      <li>Functional Testing - Manual (P1/P2 cases)</li>
+      <li>UI Testing - Manual va screenshot taqqoslash</li>
+      <li>Compatibility - Chrome, Safari, iOS, Android</li>
+      <li>Security - SQL Injection, XSS asosiy testlar</li>
+    </ul>
+
+    <h5>3. Resources & Schedule</h5>
+    <p><strong>Team:</strong> 2 Manual QA + 1 Automation QA</p>
+    <p><strong>Schedule:</strong> 4 hafta (Test Design - 1, Execution - 2, Regression - 1)</p>
+    <p><strong>Tools:</strong> Jira, TestRail, Postman, BrowserStack</p>
+
+    <h5>4. Risks & Mitigation</h5>
+    <ul>
+      <li><strong>Risk:</strong> Talablar o'zgarishi → <strong>Mitigation:</strong> Sprint review'larda QA qatnashadi</li>
+      <li><strong>Risk:</strong> 3-tomon API sekinligi → <strong>Mitigation:</strong> Mock API ishlatamiz</li>
+    </ul>
+
+    <h5>5. Entry / Exit Criteria</h5>
+    <p><strong>Entry:</strong> Build deploy qilingan, test data tayyor</p>
+    <p><strong>Exit:</strong> 95% test case Pass, P1/P2 bug yo'q, Regression bajarilgan</p>
+
+    <h5>6. Deliverables</h5>
+    <p>Test Plan, 150+ Test Case, Bug Reports, Test Summary Report</p>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Diqqat!</div>
+    <p>Bu <strong>1 sahifalik mini versiya</strong>. Real loyihada Test Plan 5-15 sahifa bo'lishi mumkin. Lekin <strong>asosiy struktura — bir xil</strong>.</p>
+  </div>
+</section>
+
+<!-- DND COMPONENTS -->
+<div class="dnd-game" id="componentsGame">
+  <div class="quiz-label">🎯 Tartibga qo'ying</div>
+  <h3 style="margin-top:8px">Test Plan komponentini bog'lang</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Pastdagi yozuvni bosing. <strong>2-qadam:</strong> Mos komponent maydonini tanlang.</p>
+
+  <div class="dnd-hint" id="componentsHint">👆 Endi komponent maydonini tanlang</div>
+
+  <div class="dnd-pairs">
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">📍 Scope</div>
+      <div class="dnd-slot" data-component="scope">Mos yozuvni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">⚡ Test Strategy</div>
+      <div class="dnd-slot" data-component="strategy">Mos yozuvni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">👥 Resources</div>
+      <div class="dnd-slot" data-component="resources">Mos yozuvni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">⚠️ Risks</div>
+      <div class="dnd-slot" data-component="risk">Mos yozuvni qo'ying</div>
+    </div>
+    <div class="dnd-pair">
+      <div class="dnd-pair-label">✅ Exit Criteria</div>
+      <div class="dnd-slot" data-component="criteria">Mos yozuvni qo'ying</div>
+    </div>
+  </div>
+
+  <div class="dnd-items-pool" id="componentsPool">
+    <div class="dnd-item" data-component="strategy">Functional + UI + Security testlar</div>
+    <div class="dnd-item" data-component="risk">Vaqt yetmasligi yoki talab o'zgarishi</div>
+    <div class="dnd-item" data-component="scope">Login, Savat, To'lov sahifalari</div>
+    <div class="dnd-item" data-component="criteria">95% test Pass va P1 bug yo'q</div>
+    <div class="dnd-item" data-component="resources">2 Manual QA + 1 Automation QA, 4 hafta</div>
+  </div>
+
+  <div class="dnd-score" id="componentsScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- TEST PLAN BUILDER -->
+<div class="tp-builder">
+  <div class="quiz-label">🛠 Amaliy mashq</div>
+  <h3 style="margin-top:8px">O'zingiz Test Plan yarating</h3>
+  <p style="font-size:15px;color:var(--ink-soft)">TestShop'ga "Sevimlilar" (Wishlist) funksiyasi qo'shilmoqchi. Mini Test Plan yozing:</p>
+
+  <div class="tp-fields">
+    <div class="tp-field">
+      <label class="tp-field-label">📍 Scope</label>
+      <input type="text" class="tp-input" id="tpScope" placeholder="Wishlist sahifasi, qo'shish/o'chirish, mobil + desktop">
+    </div>
+    <div class="tp-field">
+      <label class="tp-field-label">⚡ Strategy</label>
+      <input type="text" class="tp-input" id="tpStrategy" placeholder="Functional manual, UI, Compatibility">
+    </div>
+    <div class="tp-field">
+      <label class="tp-field-label">👥 Resources</label>
+      <input type="text" class="tp-input" id="tpResources" placeholder="1 Manual QA, 2 hafta">
+    </div>
+    <div class="tp-field">
+      <label class="tp-field-label">⚠️ Riskni</label>
+      <input type="text" class="tp-input" id="tpRisk" placeholder="Database optimizatsiya kerak bo'lishi mumkin">
+    </div>
+    <div class="tp-field">
+      <label class="tp-field-label">✅ Exit Criteria</label>
+      <input type="text" class="tp-input" id="tpExit" placeholder="100% test Pass, P1 bug yo'q">
+    </div>
+  </div>
+
+  <button class="tp-preview-btn" onclick="showTestPlan()">📄 Test Plan'ni ko'rish</button>
+
+  <div class="tp-preview" id="tpPreview">
+    <div class="tp-preview-title">📄 Sizning Test Plan'ingiz: Wishlist Feature</div>
+    <div id="tpPreviewContent"></div>
+  </div>
+</div>
+
+<!-- MATCHING -->
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Komponent va savolni bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har komponent qaysi savolga javob beradi?</p>
+
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Komponent</h4>
+      <div class="match-item" data-side="left" data-pair="sc">Scope</div>
+      <div class="match-item" data-side="left" data-pair="st">Test Strategy</div>
+      <div class="match-item" data-side="left" data-pair="re">Resources & Schedule</div>
+      <div class="match-item" data-side="left" data-pair="ri">Risks</div>
+      <div class="match-item" data-side="left" data-pair="cr">Exit Criteria</div>
+    </div>
+    <div class="matching-column">
+      <h4>Savol</h4>
+      <div class="match-item" data-side="right" data-pair="cr">Qachon test tugaydi?</div>
+      <div class="match-item" data-side="right" data-pair="sc">Nimani test qilamiz?</div>
+      <div class="match-item" data-side="right" data-pair="ri">Nima xato bo'lishi mumkin?</div>
+      <div class="match-item" data-side="right" data-pair="st">Qanday test qilamiz?</div>
+      <div class="match-item" data-side="right" data-pair="re">Kim va qancha vaqt?</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft topildi</div>
+</div>
+
+<!-- CLASSIFIER -->
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Classifier</div>
+  <h3 style="margin-top:8px">Risk turi qaysi?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Risk holatini bosing. <strong>2-qadam:</strong> Product yoki Project Risk ekanini tanlang.</p>
+
+  <div class="dnd-hint" id="classifierHint">👆 Endi pastdagi tugmalardan birini tanlang</div>
+
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="product">
+      <div class="classifier-card-title">To'lov tizimi katta yuk ostida ishlamayapti</div>
+      <div class="classifier-card-desc">Mahsulot funksiyasi bilan bog'liq muammo.</div>
+    </div>
+    <div class="classifier-card" data-category="project">
+      <div class="classifier-card-title">QA jamoasidan 1 odam kasallikka chiqdi</div>
+      <div class="classifier-card-desc">Loyiha jadvaliga ta'sir qiluvchi muammo.</div>
+    </div>
+    <div class="classifier-card" data-category="product">
+      <div class="classifier-card-title">Database juda sekin javob beradi</div>
+      <div class="classifier-card-desc">Mahsulotning ishlash sifatiga ta'sir.</div>
+    </div>
+    <div class="classifier-card" data-category="project">
+      <div class="classifier-card-title">PO talablarni 3 marta o'zgartirdi</div>
+      <div class="classifier-card-desc">Loyiha rejasiga ta'sir.</div>
+    </div>
+    <div class="classifier-card" data-category="product">
+      <div class="classifier-card-title">Mobil versiyada login tugmasi ko'rinmaydi</div>
+      <div class="classifier-card-desc">Mahsulot UI muammosi.</div>
+    </div>
+  </div>
+
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="product">
+      <div class="classifier-bucket-icon">🛒</div>
+      <div class="classifier-bucket-label" style="color:var(--coral)">Product Risk</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="project">
+      <div class="classifier-bucket-icon">📅</div>
+      <div class="classifier-bucket-label" style="color:var(--blue)">Project Risk</div>
+    </div>
+  </div>
+
+  <div class="dnd-score" id="classifierScore">0 / 5 to'g'ri</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click yangi loyihaga sizni QA Lead qildi</div>
+
+  <div class="scenario-story">
+    <p><strong>Dushanba, 09:00.</strong> Click jamoasidan menejer sizni chaqirdi: "Tabriklaymiz! Yangi loyiha — <strong>P2P pul o'tkazish</strong>. Sen QA Lead'sen. 3 oy keyin chiqaramiz. 3 ta QA bilan ishlaysan."</p>
+    <p>Sizdan birinchi narsa kutilmoqda — <strong>Test Plan</strong>. Boshlovchi sizga keldi: "Akam, men birinchi nima qilay?"</p>
+    <p><strong>Sizning javobingiz nima?</strong></p>
+  </div>
+
+  <div class="scenario-question">Yangi QA'ga eng to'g'ri ko'rsatma?</div>
+
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>"Darhol Test Case yozishni boshla. Login formasi uchun 50 ta yoz"</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>"Avval Test Plan'ni o'qib chiq — Scope, Strategy, Schedule. Keyin 3 Amigos meeting'da qatnash. Test Case yozishga keyinroq o'tasan — bu ish uchun reja kerak"</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>"Hozircha hech narsa qilma, men ko'rsatma berguncha kuting"</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Yangi loyihada Test Plan qachon tuziladi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Loyiha tugagandan keyin — natijalarni hujjatlashtirish uchun</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Loyiha boshlanishidan oldin — testlarni rejalashtirib olish uchun</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Test Plan kerak emas, asosiysi Test Case yozish</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- TESTSHOP PRACTICE -->
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop uchun Test Plan yozing</h2>
+  <p class="section-intro">Endi siz Test Plan'ni o'zingiz yozasiz. Bu Middle QA darajasidagi vazifa — Junior'lar orasida bunday ko'nikma kam.</p>
+
+  <div style="background:linear-gradient(135deg,#0F6E56 0%,#064E3A 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">TestShop — Test Plan amaliyoti</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">
+      Real loyiha rejalash mahoratini sinab ko'ring.
+    </p>
+    <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;background:white;color:#0F6E56;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">
+      🚀 TestShop'ga o'tish
+    </a>
+  </div>
+
+  <h3>Sizning vazifalaringiz:</h3>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Mini Test Plan: TestShop v1.0</div>
+        <div style="color:#4A4A4A;font-size:14px">Google Docs'da 1-2 sahifalik Test Plan yozing. Kerakli 6 ta bo'lim bo'lishi shart: Scope, Strategy, Resources, Risks, Entry/Exit, Deliverables.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#D85A30;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">5 ta Risk va Mitigation</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop loyihasi uchun 5 ta risk aniqlang (3 ta Product + 2 ta Project) va har biri uchun yechim (mitigation) yozing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3A5A40;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Entry/Exit Criteria batafsil</div>
+        <div style="color:#4A4A4A;font-size:14px">TestShop release uchun aniq Entry Criteria (5 ta shart) va Exit Criteria (5 ta shart) yozing. Har biri o'lchanadigan bo'lsin.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun Oltin material</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">Bu Test Plan — <strong>portfoliongizdagi eng kuchli hujjat</strong>. Intervyu'da: "Men o'zim Test Plan tuzganman, Risk Management qila olaman" — deb ayta olasiz. Bu darhol <strong>Middle QA darajasiga ko'tarish</strong> signali!</p>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Test Plan — Middle QA intervyusining asosiy mavzusi. 7 ta professional javob.</p>
+
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q1</span>
+        <span>Test Plan nima va nega kerak?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Test Plan — loyihada nimani, qanday va qachon testlash haqidagi rasmiy hujjat. QA strategiyasining asosi."</p>
+          <p><strong>Nega kerak?</strong></p>
+          <ul>
+            <li><strong>Reja:</strong> Jamoaga aniq yo'l beradi</li>
+            <li><strong>Resurs:</strong> Vaqt va odamni rejalashtirish</li>
+            <li><strong>Risk:</strong> Muammolarni oldindan ko'rish</li>
+            <li><strong>Hujjat:</strong> Stakeholder'lar uchun</li>
+          </ul>
+          <p><strong>Pro javob:</strong> "Test Plan — bu QA jamoasining biznes plani. U bo'lmasa — chalkashlik, vaqt yo'qotish, sifat past bo'ladi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q2</span>
+        <span>Test Plan komponentlari qaysilar?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Standart Test Plan 6 ta asosiy bo'limdan iborat:"</p>
+          <ul>
+            <li><strong>1. Scope</strong> — nima testlanadi (in/out of scope)</li>
+            <li><strong>2. Test Strategy</strong> — qaysi turlardagi testlar</li>
+            <li><strong>3. Resources & Schedule</strong> — kim, qachon, qaysi asboblar</li>
+            <li><strong>4. Risks & Mitigation</strong> — mumkin bo'lgan muammolar</li>
+            <li><strong>5. Entry/Exit Criteria</strong> — boshlanish va tugatish shartlari</li>
+            <li><strong>6. Deliverables</strong> — yakunda nima topshirasiz</li>
+          </ul>
+          <p><strong>Standart:</strong> IEEE 829 — bu xalqaro standart. Lekin har kompaniya o'zicha o'zgartiradi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q3</span>
+        <span>Entry va Exit Criteria nima farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Entry Criteria</strong> — test <strong>boshlash</strong> uchun shartlar. "Qachon biz testni boshlashimiz mumkin?"</li>
+            <li><strong>Exit Criteria</strong> — test <strong>tugatish</strong> uchun shartlar. "Qachon biz testni tugatamiz?"</li>
+          </ul>
+          <p><strong>Misollar:</strong></p>
+          <ul>
+            <li><strong>Entry:</strong> Build deploy qilingan, test environment tayyor, test cases yozilgan</li>
+            <li><strong>Exit:</strong> 95% test Pass, P1/P2 bug yo'q, Regression bajarilgan</li>
+          </ul>
+          <p><strong>Muhim:</strong> Har ikkisi <strong>o'lchanadigan</strong> bo'lishi kerak. "Yaxshi sifat" emas — "95% test Pass".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q4</span>
+        <span>Product Risk va Project Risk farqi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong></p>
+          <ul>
+            <li><strong>Product Risk</strong> — <em>mahsulot bilan bog'liq</em> risklar. Foydalanuvchiga ta'sir qiluvchi.</li>
+            <li><strong>Project Risk</strong> — <em>loyiha bilan bog'liq</em> risklar. Jadvalga ta'sir qiluvchi.</li>
+          </ul>
+          <p><strong>Product Risk misollari:</strong></p>
+          <ul>
+            <li>To'lov tizimi ishlamasligi</li>
+            <li>Foydalanuvchi ma'lumotlari yo'qolishi</li>
+            <li>Sayt sekinligi</li>
+          </ul>
+          <p><strong>Project Risk misollari:</strong></p>
+          <ul>
+            <li>Vaqt yetmasligi</li>
+            <li>Jamoa kasalligi</li>
+            <li>Talablar o'zgarishi</li>
+          </ul>
+          <p><strong>QA roli:</strong> "Men Product Risk'larga e'tibor beraman. Project Risk asosan PM ishi, lekin QA Lead ham qatnashadi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q5</span>
+        <span>Risk-based testing nima?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Risk-based testing — eng <strong>xavfli funksiyalarni avval</strong> testlash strategiyasi."</p>
+          <p><strong>Asosiy g'oya:</strong> Vaqt cheklangan — barcha narsani test qilib bo'lmaydi. Demak — eng muhim joylarni avval.</p>
+          <p><strong>Qanday aniqlanadi?</strong></p>
+          <ul>
+            <li>Foydalanuvchi uchun muhimligi (to'lov vs profil)</li>
+            <li>Bug ehtimolligi (yangi kod vs eski)</li>
+            <li>Bug ta'siri (critical vs minor)</li>
+          </ul>
+          <p><strong>Misol:</strong> "Click loyihasida pul o'tkazish — yuqori risk. Profil rasmini o'zgartirish — past risk. Avval pul o'tkazishni test qilamiz."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q6</span>
+        <span>Test Plan'ni kim yozadi?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Bu kompaniya hajmi va loyiha murakkabligiga bog'liq:"</p>
+          <ul>
+            <li><strong>Test Lead / QA Lead</strong> — katta loyihalarda asosiy mualif</li>
+            <li><strong>Senior QA</strong> — kichik loyihalarda</li>
+            <li><strong>Middle QA</strong> — kichik feature'lar uchun mini Test Plan</li>
+            <li><strong>Junior QA</strong> — odatda yozmaydi, lekin <strong>o'qishi shart</strong></li>
+          </ul>
+          <p><strong>Junior'lar uchun maslahat:</strong> "Men Test Plan'ni kuzatib boraman, savol beraman. Bu mening Middle'ga o'tish yo'lim."</p>
+          <p><strong>Pro javob:</strong> "Birinchi loyihamda men kichik feature uchun mini Test Plan yozdim — QA Lead yordam berdi. Bu juda foydali tajriba edi."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-question">
+        <span class="interview-q-num">Q7</span>
+        <span>Yangi loyihaga kelganda birinchi nima qilasiz?</span>
+        <span class="interview-toggle">+</span>
+      </div>
+      <div class="interview-answer">
+        <div class="interview-answer-inner">
+          <p><strong>Javob:</strong> "Junior darajada javob: 'Test Case yozaman'. Lekin to'g'ri javob — boshqacha:"</p>
+          <ul>
+            <li><strong>1.</strong> <strong>Test Plan</strong>'ni so'rayman va o'qib chiqaman</li>
+            <li><strong>2.</strong> Loyiha hujjatlari (PRD, BRD)'ni o'rganaman</li>
+            <li><strong>3.</strong> 3 Amigos meeting'larda qatnashaman</li>
+            <li><strong>4.</strong> Talablardagi noaniq joylarni aniqlash uchun savol beraman</li>
+            <li><strong>5.</strong> Test Strategy ga muvofiq Test Cases yozishni boshlayman</li>
+          </ul>
+          <p><strong>Muhim:</strong> "Reja'siz ish — chalkashlik. Reja bilan ish — professional natija."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">6 ta komponent</div>
+      <div class="summary-point-text">Scope, Strategy, Resources, Risks, Entry/Exit, Deliverables — har biri muhim.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Reja - asos</div>
+      <div class="summary-point-text">Test Case yozishdan oldin Test Plan o'qing. Bu yo'l xaritasi - vaqt va sifat kafolati.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Risk - oldindan</div>
+      <div class="summary-point-text">Product Risk va Project Risk - ikkalasini ham hisoblang. Mitigation reja - professional yondashuv.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="nav-footer">
+  <a href="13-test-techniques.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>13-dars · Test texnikalari</div>
+  </a>
+  <a href="15-jira.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>15-dars · Jira'da to'liq ishlash</div>
+  </a>
+</div>
+
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 16;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Test Plan loyiha boshlanishidan oldin tuziladi - bu reja. Loyiha tugagandan keyin Test Summary Report yoziladi (boshqa hujjat). Reja\'siz ish - chalkashlik. Reja bilan ish - professional natija.',
+    incorrect: 'Yo\'q. Test Plan loyiha boshlanishidan oldin tuziladi - bu reja. Reja\'siz ishlasangiz, vaqt yo\'qotasiz va chalkashlik bo\'ladi. Loyiha tugagandan keyin yoziladigan hujjat Test Summary Report deyiladi.'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Bu QA Lead darajasidagi javob. Yangi QA\'ga avval Test Plan\'ni o\'qib, jamoa rejasini tushunib olishni aytish - to\'g\'ri yondashuv. To\'g\'ridan-to\'g\'ri Test Case yozish - chalkashlik. "Hech narsa qilma" - QA Lead vazifasini bajarmagani.',
+    incorrect: 'Bu yondashuv noto\'g\'ri. Yangi QA\'ga to\'g\'ridan-to\'g\'ri Test Case yozishni aytish - chalkashlik. "Hech narsa qilma" - QA Lead sifatida sizning vazifangizni bajarmaganingiz. Eng yaxshisi - reja bilan tanishtirish.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// MATCHING
+let selectedLeft = null;
+let matchedPairs = 0;
+
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft topildi`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Ajoyib! Komponentlarni topdingiz!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+// COMPONENTS DND
+let selectedItem = null;
+let componentsCorrect = 0;
+
+document.querySelectorAll('#componentsPool .dnd-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('placed')) return;
+    document.querySelectorAll('#componentsPool .dnd-item').forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+    selectedItem = item;
+    document.getElementById('componentsHint').classList.add('show');
+    document.querySelectorAll('#componentsGame .dnd-slot').forEach(s => {
+      if (!s.classList.contains('filled')) s.classList.add('active');
+    });
+  });
+});
+
+document.querySelectorAll('#componentsGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if (slot.classList.contains('filled') || !selectedItem) return;
+    if (selectedItem.dataset.component === slot.dataset.component) {
+      slot.textContent = selectedItem.textContent;
+      slot.classList.add('filled', 'correct');
+      slot.classList.remove('active');
+      selectedItem.classList.add('placed');
+      componentsCorrect++;
+      document.getElementById('componentsScore').textContent = `${componentsCorrect} / 5 to'g'ri`;
+      completedActivities.add(`comp-${componentsCorrect}`);
+      updateProgress();
+      selectedItem = null;
+      document.getElementById('componentsHint').classList.remove('show');
+      document.querySelectorAll('#componentsGame .dnd-slot').forEach(s => s.classList.remove('active'));
+      if (componentsCorrect === 5) {
+        document.getElementById('componentsScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Test Plan tuzildi!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+// TEST PLAN BUILDER
+function showTestPlan() {
+  const scope = document.getElementById('tpScope').value || '(yo\'q)';
+  const strategy = document.getElementById('tpStrategy').value || '(yo\'q)';
+  const resources = document.getElementById('tpResources').value || '(yo\'q)';
+  const risk = document.getElementById('tpRisk').value || '(yo\'q)';
+  const exit = document.getElementById('tpExit').value || '(yo\'q)';
+
+  document.getElementById('tpPreviewContent').innerHTML = `
+    <div class="tp-preview-section"><span class="tp-preview-key">📍 Scope:</span><div class="tp-preview-value">${scope}</div></div>
+    <div class="tp-preview-section"><span class="tp-preview-key">⚡ Strategy:</span><div class="tp-preview-value">${strategy}</div></div>
+    <div class="tp-preview-section"><span class="tp-preview-key">👥 Resources:</span><div class="tp-preview-value">${resources}</div></div>
+    <div class="tp-preview-section"><span class="tp-preview-key">⚠️ Risks:</span><div class="tp-preview-value">${risk}</div></div>
+    <div class="tp-preview-section"><span class="tp-preview-key">✅ Exit Criteria:</span><div class="tp-preview-value">${exit}</div></div>
+  `;
+  document.getElementById('tpPreview').classList.add('show');
+  completedActivities.add('tpBuilder');
+  updateProgress();
+}
+
+// CLASSIFIER
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { product: 'Product Risk', project: 'Project Risk' };
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 5 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 5) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Barcha risklar tasniflandi!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+// INTERVIEW
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .dnd-game, .matching-game, .interview-section, .scenario-card, .analogy-card, .term-box, .example-box, .takeaway-box, .tp-card, .mini-tp, .tp-builder').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

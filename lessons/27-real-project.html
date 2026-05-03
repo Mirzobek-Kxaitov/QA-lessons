@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27-dars: Real loyihada QA | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.timeline{display:flex;flex-direction:column;gap:0;margin:24px 0;position:relative}
+.timeline::before{content:"";position:absolute;left:20px;top:24px;bottom:24px;width:2px;background:var(--line)}
+.timeline-item{display:flex;gap:20px;padding:0 0 28px 0;position:relative}
+.timeline-dot{width:40px;height:40px;border-radius:50%;border:3px solid var(--plum);background:white;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;z-index:1}
+.timeline-content{flex:1;background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.timeline-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--plum);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.timeline-title{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:8px}
+.timeline-desc{font-size:14px;color:var(--ink-soft);line-height:1.5;margin:0}
+.timeline-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.t-tag{background:var(--plum-soft);color:var(--plum);padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.ba-panel{border-radius:14px;padding:20px;border:2px solid}
+.ba-panel.bad{background:#FFF5F5;border-color:var(--accent)}
+.ba-panel.good{background:var(--forest-soft);border-color:var(--forest)}
+.ba-panel-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.ba-panel.bad .ba-panel-title{color:var(--accent)}
+.ba-panel.good .ba-panel-title{color:var(--forest)}
+.ba-item{font-size:13px;margin-bottom:7px;color:var(--ink-soft);line-height:1.4;display:flex;gap:8px}
+.ba-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ba-tab{padding:7px 14px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.ba-tab.active{background:var(--plum);color:white;border-color:var(--plum)}
+.ba-sec{display:none}
+.ba-sec.show{display:block}
+.workflow-sim{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.ws-header{background:var(--plum);color:white;border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ws-time{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600}
+.ws-day{font-size:13px;opacity:.8}
+.ws-scene{background:var(--bg-soft);border-radius:14px;padding:20px;margin-bottom:16px;min-height:100px}
+.ws-scene-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-muted);margin-bottom:8px;font-weight:500}
+.ws-scene-title{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:8px;color:var(--ink)}
+.ws-scene-desc{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.ws-choices{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.ws-choice{padding:12px 16px;border:2px solid var(--line);border-radius:10px;cursor:pointer;font-size:14px;transition:all .2s;background:white;display:flex;align-items:flex-start;gap:10px}
+.ws-choice:hover{border-color:var(--plum);background:var(--plum-soft)}
+.ws-choice.selected-good{border-color:var(--forest);background:var(--forest-soft);color:var(--forest)}
+.ws-choice.selected-bad{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
+.ws-choice.disabled{pointer-events:none;opacity:.6}
+.ws-feedback{margin-top:12px;padding:14px 18px;border-radius:10px;font-size:14px;display:none;line-height:1.5}
+.ws-feedback.show{display:block}
+.ws-feedback.good{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.ws-feedback.bad{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.ws-next-btn{padding:12px 24px;background:var(--plum);color:white;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;margin-top:12px;display:none}
+.ws-next-btn.show{display:inline-block}
+.ws-progress{display:flex;align-items:center;gap:10px}
+.ws-prog-bar{flex:1;height:6px;background:rgba(255,255,255,.3);border-radius:3px;overflow:hidden}
+.ws-prog-fill{height:100%;background:white;border-radius:3px;transition:width .4s}
+.ws-prog-text{font-size:12px;opacity:.8;min-width:36px}
+.ws-done{text-align:center;padding:24px;display:none}
+.ws-done.show{display:block}
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.interview-section{background:linear-gradient(135deg,#FFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform .3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height .4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .ba-compare,.summary-points{grid-template-columns:1fr}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.workflow-sim{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+  .timeline::before{left:16px}
+  .timeline-dot{width:32px;height:32px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">27-dars</div>
+  <h1>Real loyihada <em>QA</em></h1>
+  <p class="hero-subtitle">Birinchi ish kuningizdan 3 oygacha. Kunlik routine, jamoa bilan ishlash, o'sish yo'li. Kurs oxirgisi — amaliy va muhim.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>70 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>0–3 oy yo'l xaritasi</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Ish — kurs emas</h2>
+  <p class="section-intro">Kursda hamma narsa aniq edi. Ish joyida — hamma narsa noaniq. Kim kimga aytadi? Qaysi Jira'da? Bug qanday yoziladi bu kompaniyada? — Bularning javobi har joyda boshqacha.</p>
+  <ul>
+    <li><strong>Birinchi hafta</strong> — tushunish: mahsulot, jamoa, jarayon</li>
+    <li><strong>Birinchi oy</strong> — qo'shilish: mustaqil testlar, bug reportlar</li>
+    <li><strong>3 oy</strong> — ko'nikmalar: release tsiklida to'liq ishtiroki</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Eng muhim qoida</div>
+    <p><strong>Savol berish — kuchlilik belgisi.</strong> Yangi xodim savol berishi kerak. "Bilmayman, o'rganaman" emas — "Bu qanday amalga oshiriladi bu jamoada?" deyish — professional.</p>
+  </div>
+</section>
+
+<section class="section" id="first-days">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Birinchi ish kunidan 3 oygacha</h2>
+  <p class="section-intro">Har bosqichda nimalar kutiladi va siz nima qilishingiz kerak.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">1️⃣</div>
+      <div class="timeline-content">
+        <div class="timeline-time">1-kun</div>
+        <div class="timeline-title">Onboarding — tushunish</div>
+        <div class="timeline-desc">Jamoani tanishing. Mahsulotni ko'ring. Jira, TestRail, Slack ga kiring. Asboblarni o'rnating. Savollar yozing — hamma narsani eslab qolish shart emas.</div>
+        <div class="timeline-tags"><span class="t-tag">Onboarding</span><span class="t-tag">Asboblar</span><span class="t-tag">Savol bering</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">📅</div>
+      <div class="timeline-content">
+        <div class="timeline-time">1-hafta</div>
+        <div class="timeline-title">Mahsulotni o'rganish</div>
+        <div class="timeline-desc">Mahsulotni foydalanuvchi sifatida ishlatib ko'ring. Eski bug reportlarni o'qing. Test caselarni ko'rib chiqing. Daily standup'da qatnashing — gapirmasa ham tinglang. QA Lead rahbarligida birinchi testlar.</div>
+        <div class="timeline-tags"><span class="t-tag">Mahsulot</span><span class="t-tag">Daily standup</span><span class="t-tag">Birinchi test</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">📆</div>
+      <div class="timeline-content">
+        <div class="timeline-time">1-oy</div>
+        <div class="timeline-title">Mustaqil testlar va bug reportlar</div>
+        <div class="timeline-desc">Mustaqil test caselar yozing. Buglarni Jira'da hujjatlashtirib yuboring. Dasturchilarga savol berib, muloqot o'rnating. Sprint Review'da ishtiroki. QA Lead tekshirib, feedback beradi.</div>
+        <div class="timeline-tags"><span class="t-tag">Mustaqil</span><span class="t-tag">Bug report</span><span class="t-tag">Sprint Review</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">🚀</div>
+      <div class="timeline-content">
+        <div class="timeline-time">3-oy</div>
+        <div class="timeline-title">To'liq ishtiroki va o'sish</div>
+        <div class="timeline-desc">Release tsiklida to'liq ishtiroki. Automation boshlash (agar kerak). Yangi xodimga yordam berish. Performance review. Keyingi maqsad: Middle QA yo'lida birinchi qadam.</div>
+        <div class="timeline-tags"><span class="t-tag">Release</span><span class="t-tag">Automation</span><span class="t-tag">O'sish</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="daily">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">QA'ning kundalik ishi</h2>
+  <p class="section-intro">Agile muhitida oddiy ish kuni qanday o'tadi?</p>
+
+  <div class="example-box">
+    <div class="example-box-title">Kundalik routine (Agile/Scrum)</div>
+    <ol style="margin:0;font-size:14px">
+      <li><strong>09:00 — Daily Standup (15 daqiqa):</strong> Kecha nima qildim, bugun nima qilaman, to'siq bormi?</li>
+      <li><strong>09:15 — Test caselar yozish:</strong> Yangi feature uchun test caselar tayyorlash</li>
+      <li><strong>10:30 — Test bajarish:</strong> Yangi build'ni test qilish, buglarni topish</li>
+      <li><strong>12:00 — Tushlik 🍽️</strong></li>
+      <li><strong>13:00 — Bug hujjatlash:</strong> Topilgan buglarni Jira'da yozish, dasturchiga assign</li>
+      <li><strong>14:00 — Retest:</strong> "Fixed" deb belgilangan buglarni qayta tekshirish</li>
+      <li><strong>15:00 — Automation yoki API test:</strong> Agar sprint'da bor bo'lsa</li>
+      <li><strong>17:00 — Status update:</strong> Jira'da vazifalar holati yangilash</li>
+    </ol>
+  </div>
+
+  <h3>Jamoa bilan muloqot</h3>
+  <ul>
+    <li><strong>Dasturchiga bug topganingizda:</strong> "X sahifada Y qilganda Z xatosi chiqadi, Jira'da #456 — tekshirib ko'ra olasizmi?"</li>
+    <li><strong>Talabni tushunmasangiz:</strong> "Bu funksiya qanday ishlashi kerak? Test qilishim uchun aniqlashtirish mumkinmi?"</li>
+    <li><strong>Bug muhimmi-yo'qmi:</strong> "Bu Critical deb belgilasam to'g'rimi, yoki biznes uchun qanchalik muhim?"</li>
+    <li><strong>Yordam kerak bo'lsa:</strong> "Bu texnik momentni tushunishimda yordam bera olasizmi?"</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Dasturchiga xabar yozish qoidasi</div>
+    <p>Har doim: <strong>Bug ID</strong> + <strong>qisqa tavsif</strong> + <strong>qadam-baqadam</strong>. "Login ishlamaydi" emas — "Jira #456: Login'da to'g'ri parol bilan 500 xato. Steps: email ⟶ parol ⟶ kirish. Chrome 120."</p>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<div style="background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:28px;margin:32px 0">
+  <div class="quiz-label">🔄 Before / After</div>
+  <h3 style="margin-top:8px">Yangi va tajribali QA — farqni ko'ring</h3>
+  <div class="ba-tabs">
+    <button class="ba-tab active" onclick="showBA('bug)">Bug topganda</button>
+    <button class="ba-tab" onclick="showBA('ask')">Savol berishda</button>
+    <button class="ba-tab" onclick="showBA('daily')">Daily standup</button>
+    <button class="ba-tab" onclick="showBA('pressure')">Deadline bosimi</button>
+  </div>
+
+  <div id="ba-bug" class="ba-sec show">
+    <p style="font-size:13px;color:var(--ink-muted);margin-bottom:12px"><strong>Holat:</strong> Login'da jiddiy bug topdingiz — release ertaga.</p>
+    <div class="ba-compare">
+      <div class="ba-panel bad"><div class="ba-panel-title">❌ Yangi QA</div>
+        <div class="ba-item">Jira'da bug yozdi — faqat "Login ishlamaydi"</div>
+        <div class="ba-item">Priority o'ylamadi — Normal qoldirib ketdi</div>
+        <div class="ba-item">Dasturchiga aytmadi — o'zi biladi deb o'yladi</div>
+        <div class="ba-item">Release'ni to'xtatish kerakligini aytmadi</div>
+      </div>
+      <div class="ba-panel good"><div class="ba-panel-title">✅ Tajribali QA</div>
+        <div class="ba-item">Jira'da batafsil — steps, expected, actual, screenshot</div>
+        <div class="ba-item">Priority: Critical, Severity: High — to'g'ri belgiladi</div>
+        <div class="ba-item">Dasturchiga Slack'da darhol xabar — "#789 Critical, release oldidan fix kerak"</div>
+        <div class="ba-item">QA Lead'ga ham xabar — qaror qabul qilish uchun</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-ask" class="ba-sec">
+    <p style="font-size:13px;color:var(--ink-muted);margin-bottom:12px"><strong>Holat:</strong> Yangi feature'ni tushunmadingiz.</p>
+    <div class="ba-compare">
+      <div class="ba-panel bad"><div class="ba-panel-title">❌ Yangi QA</div>
+        <div class="ba-item">2 soat tushunmay kutdi — savol berishdan uyaldi</div>
+        <div class="ba-item">Taxmin bilan test qildi — noto'g'ri test case</div>
+        <div class="ba-item">Bug topdi, lekin u bug emas edi — vaqt yo'qotildi</div>
+      </div>
+      <div class="ba-panel good"><div class="ba-panel-title">✅ Tajribali QA</div>
+        <div class="ba-item">Darhol PO yoki dasturchi'dan so'radi — "Bu feature qanday ishlashi kerak?"</div>
+        <div class="ba-item">Talablar hujjatini so'radi — Confluence, Jira ticket</div>
+        <div class="ba-item">Aniq tushunib test qildi — to'g'ri test caselar</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-daily" class="ba-sec">
+    <p style="font-size:13px;color:var(--ink-muted);margin-bottom:12px"><strong>Holat:</strong> Daily standup — sizning navbatingiz.</p>
+    <div class="ba-compare">
+      <div class="ba-panel bad"><div class="ba-panel-title">❌ Yangi QA</div>
+        <div class="ba-item">"Kecha... um... Login'ni test qildim. Bugun ham shuni davom ettiraman."</div>
+        <div class="ba-item">Noaniq, qanday progress — ma'lum emas</div>
+        <div class="ba-item">To'siq bormi — so'ralmadi, aytilmadi</div>
+      </div>
+      <div class="ba-panel good"><div class="ba-panel-title">✅ Tajribali QA</div>
+        <div class="ba-item">"Kecha: Login, Registration, Forgot Password — 3 ta test case yozdim. 2 ta bug topdim (#788, #789)."</div>
+        <div class="ba-item">"Bugun: Mahsulot sahifasini test qilaman."</div>
+        <div class="ba-item">"To'siq: #789 uchun staging muhit kerak — kimdan so'rasam bo'ladi?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ba-pressure" class="ba-sec">
+    <p style="font-size:13px;color:var(--ink-muted);margin-bottom:12px"><strong>Holat:</strong> PM: "Release bugun, test qilinmagan narsalar bormi?"</p>
+    <div class="ba-compare">
+      <div class="ba-panel bad"><div class="ba-panel-title">❌ Yangi QA</div>
+        <div class="ba-item">"Hammasi yaxshi" — aslida 30% test qilinmagan</div>
+        <div class="ba-item">Release'ga ruxsat berdi — bug chiqdi, foydalanuvchilar ziyoni ko'rdi</div>
+        <div class="ba-item">Keyin: "Men aytdim hammasi yaxshi deb..."</div>
+      </div>
+      <div class="ba-panel good"><div class="ba-panel-title">✅ Tajribali QA</div>
+        <div class="ba-item">"Login va Savat test qilindi — OK. Checkout'ning 2 ta scenario hali testlanmagan."</div>
+        <div class="ba-item">"Risk: Checkout'ni skip qilsak, to'lov muammosi bo'lishi mumkin."</div>
+        <div class="ba-item">"Qaror PMda — men riskni aytdim." — Halollik + Javobgarlik</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKFLOW SIMULATOR -->
+<div class="workflow-sim">
+  <div class="quiz-label">🎮 Workflow Simulator</div>
+  <h3 style="margin-top:8px;margin-bottom:4px">Oddiy ish kuni — to'g'ri qarorni tanlang</h3>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px">Click kompaniyasida sizning birinchi Sprint'ingiz. 6 ta qaror qabul qilasiz.</p>
+  <div class="ws-header">
+    <div>
+      <div class="ws-time" id="wsTime">09:00</div>
+      <div class="ws-day">Dushanba — Sprint 1, 1-kun</div>
+    </div>
+    <div class="ws-progress">
+      <div class="ws-prog-bar"><div class="ws-prog-fill" id="wsProgFill" style="width:0%"></div></div>
+      <div class="ws-prog-text" id="wsProgText">1/6</div>
+    </div>
+  </div>
+
+  <div id="wsActive">
+    <div class="ws-scene">
+      <div class="ws-scene-label" id="wsLabel"></div>
+      <div class="ws-scene-title" id="wsTitle"></div>
+      <div class="ws-scene-desc" id="wsDesc"></div>
+    </div>
+    <div class="ws-choices" id="wsChoices"></div>
+    <div class="ws-feedback" id="wsFeedback"></div>
+    <button class="ws-next-btn" id="wsNextBtn" onclick="wsNext()">Davom etish →</button>
+  </div>
+
+  <div class="ws-done" id="wsDone">
+    <div style="font-size:48px;margin-bottom:12px">🏆</div>
+    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:8px">Sprint 1, 1-kun tugadi!</div>
+    <p style="color:var(--ink-soft);font-size:15px">Siz birinchi ish kunini muvaffaqiyatli o'tdingiz. Professional QA sifatida!</p>
+    <button class="mock-btn" style="margin-top:16px;padding:10px 24px;background:var(--plum);color:white;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500" onclick="wsRestart()">🔄 Qaytadan</button>
+  </div>
+</div>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Birinchi haftada jiddiy bug</div>
+  <div class="scenario-story">
+    <p><strong>Chorshanba, 14:30. Birinchi hafta.</strong> Uzum kompaniyasida Junior QA sifatida ishlamoqdasiz. Mahsulot sahifasini test qilyapsiz. Kutilmagan narsa topdingiz: <strong>Narx maydoni manfiy son qabul qilyapti</strong> — "-5000 so'm" kiritsa ham, savatga qo'shiladi.</p>
+    <p>Bu <strong>Critical bug</strong> — to'lov tizimida zarar yetkazishi mumkin. Release ertaga.</p>
+    <p>Siz birinchi haftadasiz. Jira'ni endigina o'rgandingiz.</p>
+  </div>
+  <div class="scenario-question">Nima qilasiz?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Bir hafta bo'ldi — bu muhim qarorni men qilmayman, QA Lead hal qilsin. Aytmayman.</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>Darhol harakat:</strong> Jira'da Critical bug yozaman (steps, expected, actual, screenshot). QA Lead va dasturchiga Slack'da xabar. "Yangi boshladim, lekin bu Critical ko'rinyapti — tekshirib berasizmi?" — halol va tezkor.</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Ertaga aytaman — bugun release emas, shoshilmasa ham bo'ladi.</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Daily standup'da nima deyish kerak?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>"Hammasi yaxshi, ishlamoqdaman" — qisqa va aniq</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>3 ta qism:</strong> "Kecha: [nima qildim]. Bugun: [nima qilaman]. To'siq: [muammo bor yoki yo'q]." — Konkret, raqamli, qisqa. Butun jamoa tushunadi.</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Daily standupda so'z olmayman — yangi xodimman, birinchi gapirmayman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Birinchi ish kuni nima qilasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <ul>
+          <li>Jamoani tanishaman — QA Lead, dasturchilar, PM</li>
+          <li>Mahsulotni foydalanuvchi sifatida o'rganaman</li>
+          <li>Asboblar: Jira, TestRail, Slack, Git — kiraman va o'rganaman</li>
+          <li>Eski bug reportlar va test caselarni o'qiyman</li>
+          <li>Savollar ro'yxati yozaman — hamma narsani eslab qolish kerak emas</li>
+        </ul>
+        <p><strong>Muhim:</strong> "Ko'raman va tushunaman" emas — "Ko'raman, savol beraman, yozaman."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Jamoada qanday ishlaysiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <ul>
+          <li>Daily standup'da kecha/bugun/to'siq — aniq va qisqa</li>
+          <li>Bug topganda dasturchiga Jira ID + qisqa tavsif bilan xabar</li>
+          <li>Talablar noaniq bo'lsa — PO'dan so'rayman, taxmin qilmayman</li>
+          <li>Release qaroriga hissa — "Bu risk bor" deb aytaman</li>
+          <li>Jamoa maqsadi uchun — o'z ishi bilan birga boshqalarga ham yordam</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Deadline bosimida qanday qaror qabul qilasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <p>"Deadline bosimida eng muhim qaror — halol bo'lish."</p>
+        <ul>
+          <li>Nima test qilingan, nima qilinmagan — aniq aytaman</li>
+          <li>Risk baholash: "Bu qismni skip qilsak qanday xavf bor?"</li>
+          <li>Qaror PMda — men ma'lumot beraman, qaror qabul qilmay</li>
+          <li>"Hammasi yaxshi" deyish — bu yolg'on va xavfli</li>
+        </ul>
+        <p><strong>Formula:</strong> "Nima qilingan + nima qilinmagan + xavf = PM qaror qabul qiladi."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Dasturchiga bug qanday etkaziladi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <ul>
+          <li>Jira'da to'liq yozaman: Title, Steps, Expected, Actual, Screenshot, Severity</li>
+          <li>Slack'da Jira ID bilan xabar: "Hey, #456 — Login'da Critical bug, tekshira olasizmi?"</li>
+          <li>Conflict emas — hamkorlik: "Bu bug haqida gaplashamizmi?"</li>
+          <li>Fix qilingan deyilganda — doim Retest qilaman, yopmayman</li>
+        </ul>
+        <p><strong>Muhim:</strong> Bug topish — dasturchiga hujum emas. Mahsulot uchun birgalikda ishlash.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>3 oy ichida nima o'rganmoqchisiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob:</strong></p>
+        <ul>
+          <li><strong>1-oy:</strong> Mahsulotni tushunish, jarayon va asboblarni o'rganish, mustaqil test caselar</li>
+          <li><strong>2-oy:</strong> Release tsiklida to'liq ishtiroki, API testing kuchaytirish</li>
+          <li><strong>3-oy:</strong> Automation boshlash, birinchi Playwright skriptlar, CI/CD bilan tanishish</li>
+        </ul>
+        <p>Bu — recruiter uchun: "Siz faqat ish emas, o'sishni ham o'ylayapsiz" taassurotini qoldiradi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Junior va Middle QA farqi nima?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Junior QA:</strong></p>
+        <ul>
+          <li>Berilgan vazifalarni bajaradi</li>
+          <li>Test caselar va bug reportlar yozadi</li>
+          <li>QA Lead rahbarligida ishlaydi</li>
+          <li>Manual testing asosiy</li>
+        </ul>
+        <p><strong>Middle QA:</strong></p>
+        <ul>
+          <li>Mustaqil qarorlar qabul qiladi</li>
+          <li>Automation framework yaratadi</li>
+          <li>Test strategiyasini belgilaydi</li>
+          <li>Junior'larga mentor bo'ladi</li>
+          <li>API, performance, mobile — barcha yo'nalishlar</li>
+        </ul>
+        <p><strong>O'tish:</strong> 1-2 yil ish + automation bilimi + leadership ko'nikmalari.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Savol bering</div>
+      <div class="summary-point-text">Yangi xodim savol berishi kerak. Taxmin qilish — xato testlar. "Bu qanday ishlashi kerak?" — professional.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Halol bo'ling</div>
+      <div class="summary-point-text">Nima test qilingan, nima qilinmagan — aniq aytish. "Hammasi yaxshi" deyish — xavfli. Risk aytish — professonalizm.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">O'sishni rejalashtiring</div>
+      <div class="summary-point-text">1 oy → 3 oy → 1 yil. Har bosqichda maqsad. Automation — Middle'ga yo'l. Junior'liкdan chiqish — rejalangan o'sish.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="26-interview.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>26-dars · Intervyu tayyorgarlik</div>
+  </a>
+  <a href="28-final.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>28-dars · Yakuniy dars 🏆</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 13;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// Quiz
+const fbData = {
+  scenario: {
+    c: '<strong>Professional yondashuv!</strong> Birinchi hafta bo\'lsa ham — Critical bug topganda darhol harakat qilish kerak. "Yangi boshladim, lekin bu muhim ko\'rinyapti" — halol va professional. QA Lead tekshirib qaror qabul qiladi. Siz vazifangizni bajardinigiz.',
+    w: 'Critical bug — hech qachon kutilmaydi. Birinchi hafta bo\'lsa ham. "Aytmayman" — foydalanuvchilar zarar ko\'radi. "Ertaga aytaman" — release bo\'lib qoladi. Darhol harakat — professional QA.'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> 3 ta qism — Daily standup standarti. Kecha + Bugun + To\'siq. Konkret raqamlar va Jira ID bilan. "Hammasi yaxshi" — hech narsa aytmagan bilan bir xil. Jamoa siz haqingizda tushunishi kerak.',
+    w: '"Hammasi yaxshi" — hech narsa bermaydi. Daily standupda o\'z fikringizni aytmaslik — jamoa bilan ishlashni bilmaslik. 3 ta qism: Kecha / Bugun / To\'siq — bu standar, barcha Agile jamoada shunday.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const fbEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      fbEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      fbEl.innerHTML = ok ? fbData[qId].c : fbData[qId].w;
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// BA
+function showBA(id) {
+  document.querySelectorAll('.ba-sec').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.ba-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ba-' + id).classList.add('show');
+  event.target.classList.add('active');
+  done.add('ba' + id); upd();
+}
+
+// WORKFLOW SIMULATOR
+const wsScenes = [
+  {
+    time: '09:00', label: '📅 Daily Standup',
+    title: 'Daily standup — sizning navbatingiz',
+    desc: 'QA Lead: "Mirzobek, sizning navbatingiz." Kecha birinchi kuni edi — mahsulotni ko\'rdingiz, Jira'ga kirdingiz. Nima deyasiz?',
+    choices: [
+      { text: '"Hammasi yaxshi, o\'rganyapman."', good: false },
+      { text: '"Kecha: Mahsulotni o\'rgandim, Jira'ga kirdim. Bugun: Login feature\'ni test qilaman. To\'siq: Staging muhit URL kerak — kimdan olsam bo\'ladi?"', good: true }
+    ],
+    goodFb: '✅ Mukammal! 3 ta qism — Kecha/Bugun/To\'siq. Konkret va qisqa. Jamoa tushundi va staging URL'ni beradi.',
+    badFb: '⚠️ "Hammasi yaxshi" — hech narsa bermaydi. Daily standup uchun 3 ta qism: Kecha nima qildim + Bugun nima qilaman + To\'siq bormi.'
+  },
+  {
+    time: '10:30', label: '🧪 Test bajarish',
+    title: 'Login feature — test qilish paytida',
+    desc: 'Login sahifasini test qilyapsiz. To\'g\'ri email/parol bilan kirish ishlayapti. Lekin to\'liq bo\'sh parol bilan kirsa ham kirvolyapti! Jiddiy bug.',
+    choices: [
+      { text: 'Hozir aytmayman — belki feature shunday ishlashi kerakdir.', good: false },
+      { text: 'Jira\'da bug yozaman: "Login: Bo\'sh parol bilan kirish mumkin — Security issue". Steps, Expected, Actual, Screenshot. Priority: Critical. Keyin QA Lead\'ga Slack\'da xabar.', good: true }
+    ],
+    goodFb: '✅ Professional! Security bug — Critical. Darhol hujjatlab, QA Lead\'ga xabar. "Belki shunday" deb taxmin qilmaslik.',
+    badFb: '❌ Hech qachon taxmin qilmaslik. Bo\'sh parol bilan kirish — bu Security Critical bug. Jira\'da yozib, QA Lead\'ga xabar bering.'
+  },
+  {
+    time: '12:30', label: '💬 Dasturchi bilan muloqot',
+    title: 'Dasturchi: "Bu bug emas, feature shunday"',
+    desc: 'Dasturchi Jasur: "Bo\'sh parol — bu test muhitida intentional, production\'da yo\'q." Siz birinchi haftadasiz. Nima qilasiz?',
+    choices: [
+      { text: '"Kechirasiz, men noto\'g\'ri tushundim. Bug\'ni yopaman."', good: false },
+      { text: '"Tushundim! Lekin bu Jira\'da yozilganmi? Test muhit va production farqini hujjatlab qo\'ysak, keyingi QA ham chalkashmasin." — QA Lead\'ga ham so\'rayman.', good: true }
+    ],
+    goodFb: '✅ Zo\'r! Feature bo\'lsa ham — hujjatlab qo\'yish kerak. Keyingi QA uchun. Bu — professional dokumentatsiya yondashuvi.',
+    badFb: '⚠️ "Kechirasiz" deyish emas. Feature bo\'lsa ham — Jira\'da yozilishi kerak. QA Lead\'ga so\'rash — to\'g\'ri qaror.'
+  },
+  {
+    time: '15:00', label: '📊 Test natijasi',
+    title: 'PM: "Sprint tugaydi, release bo\'ladimi?"',
+    desc: 'PM Sherzod: "Login feature release bo\'ladimi?" Siz 10 ta test case\'dan 8 tasini test qildingiz. 2 tasi "Forgot Password" — hali testlanmagan.',
+    choices: [
+      { text: '"Ha, tayyor!" — ertaga o\'sha 2 tasini ham qilaman deb.', good: false },
+      { text: '"Login va Registration — OK. Forgot Password — 2 ta scenario hali testlanmagan. Risk: parol tiklash muammosi bo\'lishi mumkin. Qaror sizda."', good: true }
+    ],
+    goodFb: '✅ Professional halollik! Nima qilingan, nima qilinmagan — aniq. Risk aytish — PMning ishi. Yolg\'on aytib release qilish — foydalanuvchilar zarar ko\'radi.',
+    badFb: '❌ "Ha tayyor" — yolg\'on. Testlanmagan qism bor. PM bilmay release qiladi va bug chiqadi. Halol bo\'ling: nima qilinmagan va risk qanday — aytish.'
+  },
+  {
+    time: '16:30', label: '📝 Kunlik yakunlash',
+    title: 'Ish kuni tugayapti — nima qilasiz?',
+    desc: 'Soat 17:00 bo\'lmoqda. Bugungi testlar tugadi. Jira\'da vazifalar bor. Ertaga Daily standup.',
+    choices: [
+      { text: 'Hamma narsani eslayman — yopib ketaman.', good: false },
+      { text: 'Jira\'da vazifalar holatini yangilayman: "In Progress" → "Done" yoki "Blocked". Ertaga Daily standup uchun qisqa eslatma yozaman: "Kecha nima qildim"', good: true }
+    ],
+    goodFb: '✅ Zo\'r! Jira\'ni yangilash — jamoa uchun. Ertaga standupga tayyorgarlik — o\'z vaqtingizni hurmat qilish. Kunlik yakunlash — professional odati.',
+    badFb: '⚠️ Jira yangilanmasa — jamoa bilmaydi. Ertaga standup uchun eslatma yozmasa — "Um, kecha nima qildim" bo\'ladi. 5 daqiqa — katta farq.'
+  },
+  {
+    time: '17:00', label: '🎉 Birinchi kun yakunlandi!',
+    title: 'Sprint 1, 1-kun — natija',
+    desc: 'Birinchi ish kunini muvaffaqiyatli o\'tdingiz! Login feature test qilindi, 1 ta Critical bug topildi, PM'ga halol status berildi.',
+    choices: [
+      { text: '🎉 Uy burchagini tabriklang — siz real QA!', good: true }
+    ],
+    goodFb: '🏆 Professional QA sifatida birinchi kuningizni muvaffaqiyatli o\'tdingiz! Savollar berdingiz, halol bo\'ldingiz, bug topdingiz. Ertaga ham shunday!',
+    badFb: ''
+  }
+];
+
+let wsIdx = 0, wsScore = 0;
+
+function wsRender() {
+  const s = wsScenes[wsIdx];
+  document.getElementById('wsTime').textContent = s.time;
+  document.getElementById('wsLabel').textContent = s.label;
+  document.getElementById('wsTitle').textContent = s.title;
+  document.getElementById('wsDesc').textContent = s.desc;
+  document.getElementById('wsFeedback').className = 'ws-feedback';
+  document.getElementById('wsFeedback').textContent = '';
+  document.getElementById('wsNextBtn').className = 'ws-next-btn';
+  document.getElementById('wsProgFill').style.width = (wsIdx / wsScenes.length * 100) + '%';
+  document.getElementById('wsProgText').textContent = `${wsIdx + 1}/${wsScenes.length}`;
+
+  const ch = document.getElementById('wsChoices');
+  ch.innerHTML = '';
+  s.choices.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'ws-choice';
+    btn.innerHTML = `<span>${i === 0 ? 'A' : 'B'})</span> ${c.text}`;
+    btn.onclick = () => wsChoose(c.good, s.goodFb, s.badFb);
+    ch.appendChild(btn);
+  });
+}
+
+function wsChoose(isGood, goodFb, badFb) {
+  document.querySelectorAll('.ws-choice').forEach(b => b.classList.add('disabled'));
+  const fb = document.getElementById('wsFeedback');
+  fb.textContent = isGood ? goodFb : badFb;
+  fb.className = 'ws-feedback show ' + (isGood ? 'good' : 'bad');
+  if (isGood) wsScore++;
+  done.add('ws' + wsIdx); upd();
+  document.getElementById('wsNextBtn').className = 'ws-next-btn show';
+}
+
+function wsNext() {
+  wsIdx++;
+  if (wsIdx >= wsScenes.length) {
+    document.getElementById('wsActive').style.display = 'none';
+    document.getElementById('wsDone').classList.add('show');
+    done.add('wsDone'); upd();
+  } else { wsRender(); }
+}
+
+function wsRestart() {
+  wsIdx = 0; wsScore = 0;
+  document.getElementById('wsActive').style.display = 'block';
+  document.getElementById('wsDone').classList.remove('show');
+  wsRender();
+}
+
+wsRender();
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

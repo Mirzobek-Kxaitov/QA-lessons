@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21-dars: Automation Strategiyasi | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF9F4;--bg-card:#FFFFFF;--bg-soft:#F2EEE4;
+  --ink:#1A1A1A;--ink-soft:#4A4A4A;--ink-muted:#7A7A7A;
+  --accent:#D64545;--accent-dark:#A03535;--accent-soft:#FDEDED;
+  --gold:#C08838;--gold-soft:#FAF2E0;
+  --forest:#3A5A40;--forest-soft:#E8EFE9;
+  --plum:#5B3A7A;--plum-soft:#F0EAF6;
+  --blue:#2C5F8D;--blue-soft:#E6EEF5;
+  --teal:#0F6E56;--teal-soft:#E1F5EE;
+  --line:#E5DFD2;--line-dark:#D0C8B5;
+  --code-bg:#1E1E1E;--code-text:#D4D4D4
+}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+.header{position:sticky;top:0;background:rgba(251,249,244,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:100;padding:14px 0}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.progress-container{flex:1;max-width:400px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:6px;background:var(--bg-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width 0.4s ease}
+.progress-text{font-size:13px;color:var(--ink-muted);min-width:45px}
+.hero{max-width:900px;margin:0 auto;padding:80px 24px 60px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--accent)}
+.lesson-number{font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:19px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;line-height:1.5}
+.meta-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.container{max-width:780px;margin:0 auto;padding:0 24px}
+.section{margin:80px 0;scroll-margin-top:80px}
+.section-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-intro{font-size:18px;color:var(--ink-soft);line-height:1.6;margin-bottom:32px}
+.term-box{background:var(--blue-soft);border-left:3px solid var(--blue);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0}
+.term-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:8px;font-weight:500}
+.term-box-title::before{content:"📖 "}
+.term-box strong{color:var(--blue)}
+.term-box p{margin-bottom:8px;color:var(--ink-soft)}
+.term-box p:last-child{margin-bottom:0}
+.example-box{background:var(--gold-soft);border-left:3px solid var(--gold);padding:20px 24px;margin:20px 0;border-radius:0 8px 8px 0}
+.example-box-title{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:500}
+.takeaway-box{background:var(--forest-soft);border-left:3px solid var(--forest);padding:16px 22px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}
+.takeaway-box-title{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--forest);margin-bottom:6px;font-weight:500}
+.takeaway-box p{margin:0;color:var(--ink-soft)}
+.analogy-card{background:var(--bg-card);border:2px dashed var(--gold);border-radius:16px;padding:28px;margin:28px 0;text-align:center}
+.analogy-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:12px;font-weight:500}
+.analogy-title{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin-bottom:12px}
+.analogy-text{font-size:16px;color:var(--ink-soft);line-height:1.6}
+.code-block{background:var(--code-bg);color:var(--code-text);border-radius:10px;padding:16px 20px;margin:12px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow-x:auto;position:relative}
+.code-block .kw{color:#FF7B72}
+.code-block .st{color:#A5D6FF}
+.code-block .cm{color:#8B949E;font-style:italic}
+.code-block .vr{color:#79C0FF}
+.code-block .fn{color:#D2A8FF}
+.code-block .nm{color:#FFA657}
+.code-block .cl{color:#FFA657}
+.ctag{position:absolute;top:8px;right:12px;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600;color:white}
+.ctag.py{background:#3776AB}
+.ctag.bad{background:#A03535}
+.ctag.good{background:#3A5A40}
+.ctag.term{background:#232323}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.ba-side{border-radius:14px;padding:20px;border:2px solid}
+.ba-side.before{background:#FFF5F5;border-color:var(--accent)}
+.ba-side.after{background:var(--forest-soft);border-color:var(--forest)}
+.ba-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.ba-side.before .ba-label{color:var(--accent)}
+.ba-side.after .ba-label{color:var(--forest)}
+.ba-side p{font-size:14px;color:var(--ink-soft);line-height:1.5;margin-bottom:0}
+.folder-tree{background:var(--code-bg);color:var(--code-text);border-radius:10px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8}
+.folder-tree .folder{color:#FFA657}
+.folder-tree .file{color:#A5D6FF}
+.folder-tree .comment{color:#8B949E;font-style:italic}
+.step-cards{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.step-card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--plum);color:white;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:18px;font-weight:600;flex-shrink:0}
+.step-content h4{font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin-bottom:6px}
+.step-content p{font-size:14px;color:var(--ink-soft);margin:0}
+.matching-game{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.matching-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.matching-column h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-muted);margin-bottom:12px}
+.match-item{background:var(--bg-soft);border:2px solid transparent;border-radius:10px;padding:14px 16px;margin-bottom:10px;cursor:pointer;font-size:14px;line-height:1.4}
+.match-item:hover:not(.matched):not(.selected){background:var(--plum-soft);border-color:var(--plum)}
+.match-item.selected{background:var(--plum-soft);border-color:var(--plum);color:var(--plum);font-weight:500}
+.match-item.matched{background:var(--forest-soft);border-color:var(--forest);color:var(--forest);cursor:default;opacity:0.7}
+.match-item.wrong{background:var(--accent-soft);border-color:var(--accent);animation:shake 0.4s}
+.match-score{margin-top:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-muted)}
+.match-complete{color:var(--forest);font-weight:500}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ba-game{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.ba-panel{border-radius:12px;padding:18px;border:2px solid}
+.ba-panel.bad-panel{background:#FFF5F5;border-color:var(--accent)}
+.ba-panel.good-panel{background:var(--forest-soft);border-color:var(--forest)}
+.ba-panel-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.ba-panel.bad-panel .ba-panel-title{color:var(--accent)}
+.ba-panel.good-panel .ba-panel-title{color:var(--forest)}
+.ba-panel .code-block{font-size:11px;padding:10px 12px;margin:0}
+.ba-panel-note{font-size:12px;margin-top:8px;color:var(--ink-muted);font-style:italic}
+.code-builder{background:var(--bg-card);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.cb-fields{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+.cb-field{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center}
+.cb-label{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--plum);text-transform:uppercase;letter-spacing:1px}
+.cb-select{padding:10px 14px;border:2px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;background:white;cursor:pointer}
+.cb-btn{padding:12px 24px;background:var(--plum);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:500;margin-top:16px}
+.cb-preview{margin-top:16px;display:none}
+.cb-preview.show{display:block}
+.quiz-card{background:linear-gradient(135deg,var(--plum-soft) 0%,var(--bg-card) 100%);border:2px solid var(--plum);border-radius:20px;padding:32px;margin:32px 0}
+.quiz-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.quiz-question{font-family:'Fraunces',serif;font-size:22px;line-height:1.3;margin-bottom:24px;font-weight:500}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:white;border:2px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:left;font-size:16px;font-family:inherit;display:flex;align-items:center;gap:12px}
+.quiz-option:hover:not(.disabled){border-color:var(--plum);background:var(--plum-soft)}
+.quiz-option.correct{background:var(--forest-soft);border-color:var(--forest);color:var(--forest)}
+.quiz-option.incorrect{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.quiz-option.disabled{cursor:not-allowed;opacity:0.7}
+.quiz-marker{width:28px;height:28px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.quiz-option.correct .quiz-marker{background:var(--forest);border-color:var(--forest);color:white}
+.quiz-option.incorrect .quiz-marker{background:var(--accent);border-color:var(--accent);color:white}
+.quiz-feedback{margin-top:20px;padding:16px 20px;border-radius:10px;font-size:15px;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--forest-soft);color:var(--forest);border:1px solid var(--forest)}
+.quiz-feedback.incorrect{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--accent)}
+.scenario-card{background:linear-gradient(135deg,var(--teal-soft) 0%,var(--bg-card) 100%);border:2px solid var(--teal);border-radius:20px;padding:32px;margin:40px 0}
+.scenario-label{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:white;padding:6px 12px;border-radius:4px;margin-bottom:16px;font-weight:500}
+.scenario-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px}
+.scenario-story{background:white;border-left:3px solid var(--teal);padding:18px 22px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:15px;color:var(--ink-soft);line-height:1.6;font-style:italic}
+.scenario-story strong{color:var(--ink);font-style:normal}
+.scenario-question{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:16px}
+.interview-section{background:linear-gradient(135deg,#FFFFFF 0%,var(--plum-soft) 100%);border:2px solid var(--plum);border-radius:20px;padding:40px;margin:60px 0}
+.interview-intro{font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+.interview-item{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.interview-item:hover{border-color:var(--plum)}
+.interview-question{padding:18px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;font-weight:500;font-size:15px;line-height:1.4}
+.interview-question:hover{background:var(--plum-soft)}
+.interview-q-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--plum);font-weight:600;flex-shrink:0;min-width:30px}
+.interview-toggle{margin-left:auto;color:var(--plum);font-size:18px;transition:transform 0.3s;flex-shrink:0}
+.interview-item.open .interview-toggle{transform:rotate(45deg)}
+.interview-answer{max-height:0;overflow:hidden;transition:max-height 0.4s;background:var(--plum-soft)}
+.interview-item.open .interview-answer{max-height:1500px}
+.interview-answer-inner{padding:20px 22px 22px 66px;font-size:14px;color:var(--ink-soft);line-height:1.6;border-top:1px solid var(--line)}
+.interview-answer-inner strong{color:var(--plum)}
+.interview-answer-inner ul{padding-left:18px;margin-top:8px}
+.summary-section{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);color:white;border-radius:24px;padding:60px 40px;margin:80px 0;text-align:center}
+.summary-section .section-label{background:rgba(255,255,255,0.1);color:var(--gold)}
+.summary-section h2{font-family:'Fraunces',serif;font-size:42px;font-weight:500;margin-bottom:20px}
+.summary-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px;text-align:left}
+.summary-point{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px}
+.summary-point-num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:12px}
+.summary-point-title{font-family:'Fraunces',serif;font-size:18px;margin-bottom:8px}
+.summary-point-text{font-size:14px;opacity:0.8;line-height:1.5}
+.nav-footer{max-width:780px;margin:60px auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav-btn{padding:18px 28px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;flex:1;min-width:240px}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.nav-btn-label{font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nav-btn-next{text-align:right;border-color:var(--accent);background:var(--accent);color:white}
+.nav-btn-next:hover{background:var(--accent-dark)}
+.nav-btn-next .nav-btn-label{color:rgba(255,255,255,0.7)}
+h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-top:40px;margin-bottom:14px}
+h4{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-top:24px;margin-bottom:10px}
+p{margin-bottom:16px}
+.container p,.container li{color:var(--ink-soft)}
+ul,ol{padding-left:24px;margin-bottom:16px}
+li{margin-bottom:8px;color:var(--ink-soft)}
+strong{color:var(--ink);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:0.9em;background:var(--bg-soft);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.completion-badge{position:fixed;bottom:30px;right:30px;background:var(--forest);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 12px 30px -8px rgba(58,90,64,0.5);font-weight:500;display:none;align-items:center;gap:12px;z-index:200}
+.completion-badge.show{display:flex}
+@media(max-width:640px){
+  .hero h1{font-size:38px}.section-title{font-size:30px}
+  .matching-grid,.ba-compare,.before-after,.cb-field{grid-template-columns:1fr}
+  .summary-section{padding:40px 24px}.summary-section h2{font-size:32px}
+  .interview-section,.scenario-card,.code-builder,.ba-game{padding:24px 18px}
+  .interview-answer-inner{padding:16px 18px 20px 50px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">21-dars</div>
+  <h1>Automation <em>Strategiyasi</em></h1>
+  <p class="hero-subtitle">POM, Pytest, loyiha strukturasi — testlaringizni tartibga solish. Senior'lar foydalanayotgan yondashuv, sodda tushuntirilgan.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Python kod</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Muammo: tartibsiz testlar</h2>
+  <p class="section-intro">19 va 20-darslarda Selenium va Playwright o'rgandik. Bitta skript yozish oson. Lekin <strong>50 ta test</strong> bo'lganda nima bo'ladi?</p>
+  <p>Tasavvur qiling: Login tugmasi IDsi o'zgardi. Sizda 50 ta test fayl bor, hammasida <code>find_element(By.ID, "old-login")</code> yozilgan. <strong>50 ta joyda o'zgartirish kerak!</strong> Bu — tartibsiz testlarning muammosi.</p>
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Uy analogi</div>
+    <div class="analogy-title">Tartibli uy vs tartibsiz uy</div>
+    <div class="analogy-text">
+      Tartibsiz uyda kiyimlar hamma joyda. Bir kiyim izlash — 10 daqiqa. <strong>Tartibli uyda</strong> — har narsa o'z joyida, 10 sekund. Automation ham xuddi shunday: <strong>kod tartibli bo'lsa — o'zgartirish oson, topish oson.</strong>
+    </div>
+  </div>
+  <h3>Yechim: Strategiya</h3>
+  <p>Bu darsda 3 ta asosiy tushuncha o'rganamiz:</p>
+  <div class="step-cards">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Page Object Model (POM)</h4>
+        <p>Har sahifa uchun alohida "papka". Login tugmasi o'zgarsа — faqat 1 joyda o'zgartirasiz.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Pytest Framework</h4>
+        <p>Testlarni tartibli yozish va ishga tushirish uchun asbob. Terminal'dan barcha testlar bir buyruqda.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Loyiha Strukturasi</h4>
+        <p>Fayllarni qayerda saqlash — pages/, tests/, conftest.py. Har narsa o'z joyida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pom">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Page Object Model (POM)</h2>
+  <p class="section-intro">POM — eng mashhur automation pattern. Google'dan tortib barcha katta kompaniyalar foydalanadi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">POM nima?</div>
+    <p><strong>Page Object Model</strong> — har bir sahifa uchun alohida Python class. Sayt elementlari (locatorlar) va ular bilan ishlash metodlari shu classdа yig'iladi.</p>
+    <p><em>Oddiy qilib:</em> LoginPage degan class — login sahifasining hamma narsasini biladi. Test fayllar bu classni ishlatadi, lekin locatorlarni bilmaydi.</p>
+  </div>
+
+  <h3>POM'siz (muammo)</h3>
+  <div class="code-block">
+<span class="ctag bad">❌ Yomon</span>
+<span class="cm"># test_login.py</span>
+driver.find_element(By.ID, <span class="st">"email"</span>).send_keys(<span class="st">"test@test.com"</span>)
+driver.find_element(By.ID, <span class="st">"password"</span>).send_keys(<span class="st">"123"</span>)
+driver.find_element(By.ID, <span class="st">"login-btn"</span>).click()
+
+<span class="cm"># test_checkout.py — xuddi shu locatorlar qayta!</span>
+driver.find_element(By.ID, <span class="st">"email"</span>).send_keys(<span class="st">"buyer@test.com"</span>)
+driver.find_element(By.ID, <span class="st">"password"</span>).send_keys(<span class="st">"456"</span>)
+driver.find_element(By.ID, <span class="st">"login-btn"</span>).click()
+
+<span class="cm"># "login-btn" → "btn-login" o'zgarse: 20 ta faylda o'zgartiramiz!</span></div>
+
+  <h3>POM bilan (yechim)</h3>
+  <div class="code-block">
+<span class="ctag good">✅ Yaxshi</span>
+<span class="cm"># pages/login_page.py — LoginPage class</span>
+<span class="kw">class</span> <span class="cl">LoginPage</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="vr">self</span>, page):
+        <span class="vr">self</span>.page = page
+
+    <span class="kw">def</span> <span class="fn">login</span>(<span class="vr">self</span>, email, password):
+        <span class="vr">self</span>.page.fill(<span class="st">"#email"</span>, email)
+        <span class="vr">self</span>.page.fill(<span class="st">"#password"</span>, password)
+        <span class="vr">self</span>.page.click(<span class="st">"#login-btn"</span>)
+
+<span class="cm"># test_login.py — faqat 1 qator!</span>
+LoginPage(page).login(<span class="st">"test@test.com"</span>, <span class="st">"123"</span>)
+
+<span class="cm"># "login-btn" o'zgarse: FAQAT login_page.py da o'zgartiramiz!</span></div>
+
+  <h3>POM afzalliklari</h3>
+  <ul>
+    <li><strong>O'zgartirish oson</strong> — locator 1 joyda, 50 ta testni emas</li>
+    <li><strong>O'qish oson</strong> — <code>LoginPage.login()</code> — nima qilayotgani aniq</li>
+    <li><strong>Qayta ishlatish</strong> — login logikasi har qaysi testda tayyor</li>
+    <li><strong>Jamoa bilan ishlash</strong> — har developer o'z sahifasini yozadi</li>
+  </ul>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy qoida</div>
+    <p><strong>1 sahifa = 1 class.</strong> LoginPage, ProductPage, CartPage, CheckoutPage. Test fayllar faqat bu classlarni chaqiradi, locatorlarni bilmaydi.</p>
+  </div>
+</section>
+
+<div class="ba-game">
+  <div class="quiz-label">🔄 Before / After</div>
+  <h3 style="margin-top:8px">POM'siz vs POM bilan — farqni ko'ring</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Bir xil vazifa — 2 xil yondashuv. Qaysi biri yaxshiroq ekanini o'zingiz baholang:</p>
+  <div id="baScenario1" class="ba-compare">
+    <div class="ba-panel bad-panel">
+      <div class="ba-panel-title">❌ POM'siz (10 ta test faylda)</div>
+      <div class="code-block">driver.find_element(
+  By.ID, <span class="st">"login-btn"</span>
+).click()</div>
+      <div class="ba-panel-note">10 ta faylda xuddi shu kod takrorlanmoqda. "login-btn" o'zgarse — 10 ta faylda qidirasan!</div>
+    </div>
+    <div class="ba-panel good-panel">
+      <div class="ba-panel-title">✅ POM bilan (1 joyda)</div>
+      <div class="code-block">LoginPage(page).<span class="fn">login</span>(
+  email, password
+)</div>
+      <div class="ba-panel-note">"login-btn" o'zgarse — faqat LoginPage classida 1 qator o'zgartirish. Hammasi tayyor!</div>
+    </div>
+  </div>
+  <div id="baScenario2" class="ba-compare" style="display:none">
+    <div class="ba-panel bad-panel">
+      <div class="ba-panel-title">❌ POM'siz (test faylda)</div>
+      <div class="code-block">driver.find_element(
+  By.CLASS_NAME, <span class="st">"add-cart"</span>
+).click()
+driver.find_element(
+  By.ID, <span class="st">"cart-count"</span>
+).text</div>
+      <div class="ba-panel-note">Locatorlar test faylida. Sayt o'zgarsa — hamma test fayllarni tekshirish kerak.</div>
+    </div>
+    <div class="ba-panel good-panel">
+      <div class="ba-panel-title">✅ POM bilan</div>
+      <div class="code-block">product = <span class="cl">ProductPage</span>(page)
+product.<span class="fn">add_to_cart</span>()
+count = product.<span class="fn">get_cart_count</span>()</div>
+      <div class="ba-panel-note">Locatorlar ProductPage classida. Test kodi toza va tushunarli.</div>
+    </div>
+  </div>
+  <div id="baScenario3" class="ba-compare" style="display:none">
+    <div class="ba-panel bad-panel">
+      <div class="ba-panel-title">❌ POM'siz (5 oy keyin)</div>
+      <div class="code-block"><span class="cm"># Bu nima qilyapti?</span>
+driver.find_element(
+  By.XPATH,
+  <span class="st">"//div[@class='hdr']//a[2]"</span>
+).click()</div>
+      <div class="ba-panel-note">XPath nima ekanini tushunish qiyin. 5 oy keyin o'zing ham unutasan!</div>
+    </div>
+    <div class="ba-panel good-panel">
+      <div class="ba-panel-title">✅ POM bilan</div>
+      <div class="code-block">nav = <span class="cl">NavPage</span>(page)
+nav.<span class="fn">go_to_profile</span>()</div>
+      <div class="ba-panel-note">Metod nomi — nima qilayotgani aniq. O'qish oson, tushunish oson.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:16px;justify-content:center">
+    <button onclick="showBA(1)" id="baBtn1" style="padding:8px 18px;border-radius:8px;border:2px solid var(--plum);background:var(--plum);color:white;cursor:pointer;font-size:13px;font-weight:500">Login</button>
+    <button onclick="showBA(2)" id="baBtn2" style="padding:8px 18px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:13px">Savat</button>
+    <button onclick="showBA(3)" id="baBtn3" style="padding:8px 18px;border-radius:8px;border:2px solid var(--line);background:white;cursor:pointer;font-size:13px">Navigatsiya</button>
+  </div>
+</div>
+
+<section class="section" id="pytest">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Pytest — testlarni ishlatish</h2>
+  <p class="section-intro">Testlarni qo'lda ishlatish — <code>python test_login.py</code>. Lekin 50 ta test bo'lsa? <strong>Pytest</strong> — hammasini bir buyruqda ishlatadi.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Pytest nima?</div>
+    <p><strong>Pytest</strong> — Python'da eng mashhur test framework. Testlarni topadi, ishlatadi, natijani chiroyli ko'rsatadi.</p>
+    <p><em>O'rnatish:</em> <code>pip install pytest pytest-playwright</code></p>
+  </div>
+
+  <h3>Pytest qoidalari (3 ta)</h3>
+  <div class="code-block">
+<span class="ctag py">test_rules.py</span>
+<span class="cm"># Qoida 1: Fayl nomi test_ bilan boshlanishi kerak</span>
+<span class="cm"># test_login.py ✅ — login.py ❌</span>
+
+<span class="cm"># Qoida 2: Funksiya nomi test_ bilan boshlanishi kerak</span>
+<span class="kw">def</span> <span class="fn">test_login_success</span>():    <span class="cm"># ✅</span>
+    ...
+
+<span class="kw">def</span> <span class="fn">check_login</span>():           <span class="cm"># ❌ pytest topa olmaydi</span>
+    ...
+
+<span class="cm"># Qoida 3: assert bilan tekshirish</span>
+<span class="kw">assert</span> page.title() == <span class="st">"TestShop"</span>   <span class="cm"># ✅</span>
+<span class="kw">assert</span> page.is_visible(<span class="st">"text=Welcome"</span>)  <span class="cm"># ✅</span></div>
+
+  <h3>Birinchi Pytest testi</h3>
+  <div class="code-block">
+<span class="ctag py">test_login.py</span>
+<span class="kw">from</span> playwright.sync_api <span class="kw">import</span> Page
+
+<span class="kw">def</span> <span class="fn">test_login_success</span>(page: Page):
+    page.goto(<span class="st">"https://testshop.uz/login"</span>)
+    page.fill(<span class="st">"#email"</span>, <span class="st">"test@uzum.uz"</span>)
+    page.fill(<span class="st">"#password"</span>, <span class="st">"Pass123!"</span>)
+    page.click(<span class="st">"#login-btn"</span>)
+    <span class="kw">assert</span> page.is_visible(<span class="st">"text=Welcome"</span>)
+
+<span class="kw">def</span> <span class="fn">test_login_wrong_password</span>(page: Page):
+    page.goto(<span class="st">"https://testshop.uz/login"</span>)
+    page.fill(<span class="st">"#email"</span>, <span class="st">"test@uzum.uz"</span>)
+    page.fill(<span class="st">"#password"</span>, <span class="st">"XATO123"</span>)
+    page.click(<span class="st">"#login-btn"</span>)
+    <span class="kw">assert</span> page.is_visible(<span class="st">"text=Noto'g'ri parol"</span>)</div>
+
+  <h3>Ishlatish — terminal</h3>
+  <div class="code-block">
+<span class="ctag term">terminal</span>
+<span class="cm"># Barcha testlarni ishlatish</span>
+pytest
+
+<span class="cm"># Bitta faylni</span>
+pytest test_login.py
+
+<span class="cm"># Natijani batafsil ko'rish</span>
+pytest -v
+
+<span class="cm"># Playwright bilan (brauzer ko'rinadigan)</span>
+pytest --headed</div>
+
+  <h3>Fixture — brauzer setup</h3>
+  <p>Fixture — har test oldidan bajariladigan tayyorgarlik. Masalan: brauzer ochish, login qilish.</p>
+  <div class="code-block">
+<span class="ctag py">conftest.py</span>
+<span class="kw">import</span> pytest
+<span class="kw">from</span> playwright.sync_api <span class="kw">import</span> sync_playwright
+
+<span class="cm"># Bu fixture har testdan oldin brauzer ochadi</span>
+@pytest.fixture
+<span class="kw">def</span> <span class="fn">page</span>():
+    <span class="kw">with</span> sync_playwright() <span class="kw">as</span> p:
+        browser = p.chromium.launch(headless=<span class="kw">False</span>)
+        page = browser.new_page()
+        <span class="kw">yield</span> page        <span class="cm"># Test shu yerda ishlaydi</span>
+        browser.close()   <span class="cm"># Test tugagach yopiladi</span></div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Sodda qoida</div>
+    <p><strong>test_ bilan boshla</strong> (fayl va funksiya). <strong>assert</strong> bilan tekshir. <strong>pytest</strong> bilan ishga tushir. Shu 3 ta narsa yetarli!</p>
+  </div>
+</section>
+
+<section class="section" id="structure">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Loyiha Strukturasi</h2>
+  <p class="section-intro">Fayllarni qayerga saqlash? Professional automation loyihasi qanday ko'rinadi?</p>
+
+  <div class="folder-tree">
+<span class="folder">testshop-automation/</span>          <span class="comment"># Loyiha papkasi</span>
+│
+├── <span class="folder">pages/</span>                        <span class="comment"># Page Object'lar</span>
+│   ├── <span class="file">login_page.py</span>            <span class="comment"># LoginPage class</span>
+│   ├── <span class="file">product_page.py</span>          <span class="comment"># ProductPage class</span>
+│   └── <span class="file">cart_page.py</span>             <span class="comment"># CartPage class</span>
+│
+├── <span class="folder">tests/</span>                        <span class="comment"># Test fayllar</span>
+│   ├── <span class="file">test_login.py</span>            <span class="comment"># Login testlari</span>
+│   ├── <span class="file">test_products.py</span>         <span class="comment"># Mahsulot testlari</span>
+│   └── <span class="file">test_cart.py</span>             <span class="comment"># Savat testlari</span>
+│
+├── <span class="file">conftest.py</span>                  <span class="comment"># Fixture'lar (brauzer setup)</span>
+├── <span class="file">pytest.ini</span>                   <span class="comment"># Pytest sozlamalari</span>
+└── <span class="file">requirements.txt</span>             <span class="comment"># pip install -r requirements.txt</span>
+  </div>
+
+  <h3>Har fayl nima qiladi?</h3>
+  <ul>
+    <li><strong>pages/login_page.py</strong> — LoginPage class: locatorlar va metodlar</li>
+    <li><strong>tests/test_login.py</strong> — Login testlari: faqat assert va LoginPage chaqiradi</li>
+    <li><strong>conftest.py</strong> — Brauzer ochish/yopish fixture'lari</li>
+    <li><strong>requirements.txt</strong> — <code>selenium</code>, <code>playwright</code>, <code>pytest</code> — boshqa kompyuterda ham o'rnatish uchun</li>
+  </ul>
+</section>
+
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Tushuncha va ta'rifni bog'lang</h3>
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Tushuncha</h4>
+      <div class="match-item" data-side="left" data-pair="pom">📄 Page Object Model</div>
+      <div class="match-item" data-side="left" data-pair="pytest">🧪 Pytest</div>
+      <div class="match-item" data-side="left" data-pair="fix">🔧 Fixture</div>
+      <div class="match-item" data-side="left" data-pair="conf">⚙️ conftest.py</div>
+      <div class="match-item" data-side="left" data-pair="assert">✅ assert</div>
+    </div>
+    <div class="matching-column">
+      <h4>Ta'rif</h4>
+      <div class="match-item" data-side="right" data-pair="fix">Har testdan oldin bajariladigan tayyorgarlik (brauzer ochish)</div>
+      <div class="match-item" data-side="right" data-pair="pom">Har sahifa uchun alohida class — locatorlar shu yerda</div>
+      <div class="match-item" data-side="right" data-pair="assert">Natijani tekshirish — to'g'ri bo'lmasa test muvaffaqiyatsiz</div>
+      <div class="match-item" data-side="right" data-pair="conf">Fixture'lar saqlanadigan maxsus fayl</div>
+      <div class="match-item" data-side="right" data-pair="pytest">Test fayllarni topib, ishga tushiradigan Python framework</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft</div>
+</div>
+
+<div class="code-builder">
+  <div class="quiz-label">🛠 Code Builder</div>
+  <h3 style="margin-top:8px">POM + Pytest kod yarating</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">Sahifani tanlang — tayyor Page Object class va test ko'ring:</p>
+  <div class="cb-fields">
+    <div class="cb-field">
+      <label class="cb-label">Sahifa</label>
+      <select class="cb-select" id="cbPage">
+        <option value="login">Login sahifasi</option>
+        <option value="product">Mahsulot sahifasi</option>
+        <option value="cart">Savat sahifasi</option>
+        <option value="search">Qidiruv sahifasi</option>
+      </select>
+    </div>
+    <div class="cb-field">
+      <label class="cb-label">Ko'rish</label>
+      <select class="cb-select" id="cbView">
+        <option value="page">Page Object class</option>
+        <option value="test">Test fayl</option>
+        <option value="both">Ikkalasi</option>
+      </select>
+    </div>
+  </div>
+  <button class="cb-btn" onclick="generateCode()">⚡ Kodni ko'rish</button>
+  <div class="cb-preview" id="cbPreview">
+    <div id="cbPreviewContent"></div>
+  </div>
+</div>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Uzum loyihasida testlar buzildi</div>
+  <div class="scenario-story">
+    <p><strong>Juma kuni, 16:00.</strong> Uzum saytida dizayn yangilandi. Barcha tugmalar ID'si o'zgardi: <code>login-btn</code> → <code>btn-login-v2</code>. Sizda <strong>80 ta automation test</strong> bor.</p>
+    <p>POM'siz yozilgan testlar: har faylda <code>By.ID, "login-btn"</code> bor. <br>POM bilan yozilgan testlar: faqat <code>LoginPage</code> classida.</p>
+    <p>Hozir soat 16:00 — release 18:00 da. Qancha vaqt ketadi?</p>
+  </div>
+  <div class="scenario-question">To'g'ri tahlil qaysi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>POM'siz ham POM bilan ham bir xil — ikkalasida ham o'zgartirish kerak</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><strong>POM'siz:</strong> 80 ta faylda qidirish, soatlab ish. <strong>POM bilan:</strong> LoginPage.py'da faqat 1 qator o'zgartirish — 5 daqiqa. Release vaqtida ulgurish mumkin!</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Testlarni o'chiraman va qaytadan yozaman — tezroq bo'ladi</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Pytest ishga tushirildi — <code>test_search.py</code> fayl ichidagi <code>check_results()</code> funksiyasi topilmadi. Sababi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Pytest buzilgan — qayta o'rnatish kerak</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Funksiya nomi <code>test_</code> bilan boshlanmagan. Pytest faqat <code>test_</code> bilan boshlanadigan funksiyalarni topadi. <code>check_results</code> → <code>test_check_results</code> qilish kerak</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Fayl nomi xato — <code>tests_search.py</code> bo'lishi kerak</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">POM loyiha yarating</h2>
+  <p class="section-intro">3 ta qadam — professionallar kabi tartibli automation loyiha.</p>
+  <div class="step-cards">
+    <div class="step-card">
+      <div class="step-num" style="background:var(--blue)">1</div>
+      <div class="step-content">
+        <h4>Papka strukturasini yarating</h4>
+        <p><code>testshop-automation/</code> papkasi. Ichida <code>pages/</code> va <code>tests/</code> papkalar. <code>conftest.py</code> va <code>requirements.txt</code> fayllar.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="background:var(--forest)">2</div>
+      <div class="step-content">
+        <h4>LoginPage class yozing</h4>
+        <p><code>pages/login_page.py</code> — <code>LoginPage</code> class. <code>login(email, password)</code> metodi. 19 va 20-darsda yozgan locatorlarni shu yerga ko'chiring.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="background:var(--plum)">3</div>
+      <div class="step-content">
+        <h4>Pytest testlar yozing</h4>
+        <p><code>tests/test_login.py</code> — 3 ta test: muvaffaqiyatli login, xato parol, bo'sh maydon. <code>pytest -v</code> bilan ishga tushiring.</p>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun OLTIN</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">GitHub'da <strong>POM strukturali Pytest loyiha</strong> — bu Junior'larning 95%ida yo'q! Intervyu'da: "Mana pages/, tests/, conftest.py — POM pattern bilan yozganman" — bu <strong>Middle darajasidagi</strong> ko'nikmani ko'rsatadi.</p>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — professional javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Page Object Model nima va nima uchun kerak?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "POM — har sahifa uchun alohida Python class. Sahifaning locatorlari va metodlari shu classda to'planadi."</p>
+        <p><strong>Nima uchun kerak:</strong></p>
+        <ul>
+          <li><strong>O'zgartirish oson</strong> — locator 1 joyda, 50 ta testda emas</li>
+          <li><strong>Qayta ishlatish</strong> — LoginPage.login() har yerda</li>
+          <li><strong>O'qish oson</strong> — test kodi toza</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Amalda ishlatganman. Testshop loyihasida LoginPage, ProductPage, CartPage class yaratdim. Locator o'zganda — faqat 1 faylda o'zgartirdim."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Pytest nima va qanday ishlatiladi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Pytest — Python'da eng mashhur test framework. Test fayllarni topadi, ishlatadi, natijani ko'rsatadi."</p>
+        <p><strong>Qoidalar:</strong></p>
+        <ul>
+          <li>Fayl: <code>test_*.py</code> yoki <code>*_test.py</code></li>
+          <li>Funksiya: <code>test_</code> bilan boshlanadi</li>
+          <li>Tekshirish: <code>assert</code> bilan</li>
+        </ul>
+        <p><strong>Buyruqlar:</strong> <code>pytest</code> — hammasi, <code>pytest -v</code> — batafsil, <code>pytest --headed</code> — Playwright bilan brauzer ko'rinadigan.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Fixture nima?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Fixture — har testdan oldin bajariladigan tayyorgarlik. Masalan, brauzer ochish, test bazasiga ulanish, login qilish."</p>
+        <p><strong>Misol:</strong> <code>conftest.py</code>'da <code>@pytest.fixture def page():</code> — har test funksiyasi <code>page</code> parametrini oladi, brauzer tayyor holda keladi.</p>
+        <p><strong>Afzalligi:</strong> Har test faylida brauzer ochish kodi yozilmaydi — 1 joyda yoziladi, hammaga ishlaydi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Automation loyiha strukturasi qanday bo'lishi kerak?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong></p>
+        <ul>
+          <li><strong>pages/</strong> — Page Object classlar (login_page.py, product_page.py)</li>
+          <li><strong>tests/</strong> — test fayllar (test_login.py, test_checkout.py)</li>
+          <li><strong>conftest.py</strong> — fixture'lar (brauzer setup)</li>
+          <li><strong>requirements.txt</strong> — kutubxonalar ro'yxati</li>
+          <li><strong>pytest.ini</strong> — Pytest sozlamalari</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Men shu strukturani ishlataman. Yangi developer loyihaga kirsa — 5 daqiqada tushunadi."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>Test muvaffaqiyatsiz bo'lganda nima qilasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Test xato berganda ketma-ket tekshiraman:"</p>
+        <ul>
+          <li><strong>Screenshot</strong> — Playwright'da <code>page.screenshot()</code> — test paytida nima ko'ringanini tekshiraman</li>
+          <li><strong>Xato matni</strong> — <code>AssertionError</code> qaysi qatorda ekani</li>
+          <li><strong>Locator</strong> — element hali ham sahifada bormi? ID o'zgarganmi?</li>
+          <li><strong>Wait</strong> — element yuklanishini kutish yetarlimikin?</li>
+          <li><strong>Playwright Trace</strong> — qadam-baqadam videoni ko'rish</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Automation tajribangizni aytib bering</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob (to'liq):</strong></p>
+        <p>"Men Python + Playwright + Pytest bilan ishlashni o'rgandim. TestShop loyihasida automation framework yaratdim:"</p>
+        <ul>
+          <li><strong>Framework:</strong> Playwright (Python), Pytest</li>
+          <li><strong>Pattern:</strong> Page Object Model — LoginPage, ProductPage, CartPage</li>
+          <li><strong>Struktura:</strong> pages/, tests/, conftest.py</li>
+          <li><strong>Testlar:</strong> Login, mahsulot ko'rish, savatga qo'shish</li>
+          <li><strong>GitHub:</strong> Loyiha GitHub'da, README bilan</li>
+        </ul>
+        <p>Bu — mening birinchi POM loyiham. Hozir Selenium bilan ham ishlashni bilaman, yangi loyihada Playwright tavsiya qilaman.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>POM'siz testlar bilan POM'li testlar farqi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Amaliy farq — locator o'zganda:"</p>
+        <ul>
+          <li><strong>POM'siz:</strong> <code>#login-btn</code> 50 ta faylda bor. O'zgansa — 50 ta faylda qidirish. 1-2 soat ish.</li>
+          <li><strong>POM bilan:</strong> <code>#login-btn</code> faqat <code>LoginPage</code> classida. O'zgansa — 1 qator. 1 daqiqa.</li>
+        </ul>
+        <p><strong>Ko'rinadigan farq (test fayl):</strong></p>
+        <ul>
+          <li>POM'siz: <code>driver.find_element(By.ID, "login-btn").click()</code></li>
+          <li>POM bilan: <code>LoginPage(page).login(email, password)</code></li>
+        </ul>
+        <p>POM bilan test kodi <strong>nima qilayotganini</strong> ko'rsatadi, <strong>qanday qilayotganini</strong> emas.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">POM = 1 joyda</div>
+      <div class="summary-point-text">Locator o'zgansa — 1 faylda o'zgartirish. 50 ta faylda emas. Bu — POM'ning asosiy qiymati.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Pytest = test_ prefix</div>
+      <div class="summary-point-text">Fayl va funksiya test_ bilan boshlanadi. assert bilan tekshiradi. pytest buyrug'i hammani ishlatadi.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Tartib = Professionalizm</div>
+      <div class="summary-point-text">pages/, tests/, conftest.py. Har narsa o'z joyida. Bu — Junior va Middle'ni farqlovchi belgi.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="20-playwright.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>20-dars · Playwright</div>
+  </a>
+  <a href="22-performance-testing.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>22-dars · Performance Testing</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let done = new Set();
+const TOTAL = 15;
+function upd() {
+  const p = Math.round(done.size / TOTAL * 100);
+  document.getElementById('progressFill').style.width = p + '%';
+  document.getElementById('progressText').textContent = p + '%';
+  if (p >= 90) { const b = document.getElementById('completionBadge'); b.classList.add('show'); setTimeout(() => b.classList.remove('show'), 5000); }
+}
+
+// Quiz
+const fb = {
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> POM bilan — LoginPage.py\'da 1 qatorni o\'zgartirish yetarli, 5 daqiqa. POM\'siz — 80 ta faylda qidirish, soatlab ish. Release vaqtida ulgurish mumkin!',
+    w: 'POM\'siz yondashuvda har test faylida locator takrorlanadi. O\'zgartirishda barcha fayllarni qo\'lda izlash kerak — 80 ta fayl, juda ko\'p vaqt. POM bilan — faqat 1 joyda!'
+  },
+  q1: {
+    c: '<strong>To\'g\'ri!</strong> Pytest faqat <code>test_</code> bilan boshlanadigan funksiyalarni topadi. Bu — Pytest qoidasi. <code>check_results</code> → <code>test_check_results</code> qilish kerak.',
+    w: 'Fayl nomi to\'g\'ri — <code>test_search.py</code>. Pytest muammosi — funksiya nomi. <code>check_results()</code> → <code>test_check_results()</code> bo\'lishi kerak. Pytest faqat <code>test_</code> prefix bilan topadi.'
+  }
+};
+const fbScenario = {
+  c: '<strong>Mukammal!</strong> Bu POM\'ning asosiy qiymati. Locator o\'zganda — faqat 1 class faylida o\'zgartirish. 80 ta test avtomatik yangilanadi. Release vaqtida ulgurish mumkin!',
+  w: 'POM\'siz va POM bilan — katta farq! POM\'siz har test faylida locator bor = ko\'p o\'zgartirish. POM bilan — faqat 1 classda. POM ni aynan shu muammo uchun icat qilishgan!'
+};
+
+document.querySelectorAll('.quiz-options').forEach(qz => {
+  const qId = qz.dataset.quiz;
+  const opts = qz.querySelectorAll('.quiz-option');
+  const feedEl = document.querySelector(`[data-feedback="${qId}"]`);
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (qz.classList.contains('answered')) return;
+      const ok = opt.dataset.correct === 'true';
+      opts.forEach(o => { o.classList.add('disabled'); if (o.dataset.correct === 'true') o.classList.add('correct'); });
+      if (!ok) opt.classList.add('incorrect');
+      feedEl.classList.add('show', ok ? 'correct' : 'incorrect');
+      const isScenario = qId === 'scenario';
+      feedEl.innerHTML = ok ? (isScenario ? fbScenario.c : '<strong>To\'g\'ri!</strong> Pytest faqat <code>test_</code> bilan boshlanadigan funksiyalarni topadi. <code>check_results</code> → <code>test_check_results</code> qilish kerak.') : (isScenario ? fbScenario.w : 'Fayl nomi to\'g\'ri. Muammo — funksiya nomi <code>test_</code> bilan boshlanmagan. <code>check_results()</code> → <code>test_check_results()</code>.');
+      qz.classList.add('answered'); done.add(qId); upd();
+    });
+  });
+});
+
+// Matching
+let selL = null, mCount = 0;
+document.querySelectorAll('.match-item').forEach(it => {
+  it.addEventListener('click', () => {
+    if (it.classList.contains('matched')) return;
+    if (it.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      it.classList.add('selected'); selL = it;
+    } else if (selL) {
+      if (it.dataset.pair === selL.dataset.pair) {
+        it.classList.add('matched'); selL.classList.add('matched'); selL.classList.remove('selected');
+        selL = null; mCount++;
+        document.getElementById('matchScore').textContent = `${mCount} / 5 juft`;
+        done.add('m' + mCount); upd();
+        if (mCount === 5) document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Strategiya tushunchalari!</span>';
+      } else {
+        it.classList.add('wrong'); selL.classList.add('wrong');
+        const wl = selL;
+        setTimeout(() => { it.classList.remove('wrong'); wl.classList.remove('wrong', 'selected'); }, 600);
+        selL = null;
+      }
+    }
+  });
+});
+
+// Before/After tabs
+function showBA(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('baScenario'+i).style.display = i===n ? 'grid' : 'none';
+    const btn = document.getElementById('baBtn'+i);
+    btn.style.background = i===n ? 'var(--plum)' : 'white';
+    btn.style.color = i===n ? 'white' : 'var(--ink)';
+    btn.style.borderColor = i===n ? 'var(--plum)' : 'var(--line)';
+  });
+  done.add('ba' + n); upd();
+}
+
+// Code Builder
+const pages = {
+  login: {
+    page: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">pages/login_page.py</span>
+<span class="cm"># LoginPage — Login sahifasining Page Object</span>
+<span class="kw">class</span> <span class="cl">LoginPage</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="vr">self</span>, page):
+        <span class="vr">self</span>.page = page
+
+    <span class="kw">def</span> <span class="fn">open</span>(<span class="vr">self</span>):
+        <span class="vr">self</span>.page.goto(<span class="st">"https://testshop.uz/login"</span>)
+
+    <span class="kw">def</span> <span class="fn">login</span>(<span class="vr">self</span>, email, password):
+        <span class="vr">self</span>.page.fill(<span class="st">"#email"</span>, email)
+        <span class="vr">self</span>.page.fill(<span class="st">"#password"</span>, password)
+        <span class="vr">self</span>.page.click(<span class="st">"#login-btn"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_error</span>(<span class="vr">self</span>):
+        <span class="kw">return</span> <span class="vr">self</span>.page.inner_text(<span class="st">".error-msg"</span>)`,
+    test: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">tests/test_login.py</span>
+<span class="kw">from</span> pages.login_page <span class="kw">import</span> <span class="cl">LoginPage</span>
+
+<span class="kw">def</span> <span class="fn">test_login_success</span>(page):
+    login = <span class="cl">LoginPage</span>(page)
+    login.open()
+    login.login(<span class="st">"test@uzum.uz"</span>, <span class="st">"Pass123!"</span>)
+    <span class="kw">assert</span> page.is_visible(<span class="st">"text=Welcome"</span>)
+
+<span class="kw">def</span> <span class="fn">test_login_wrong_pass</span>(page):
+    login = <span class="cl">LoginPage</span>(page)
+    login.open()
+    login.login(<span class="st">"test@uzum.uz"</span>, <span class="st">"XATO"</span>)
+    <span class="kw">assert</span> <span class="st">"Noto'g'ri"</span> <span class="kw">in</span> login.get_error()`
+  },
+  product: {
+    page: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">pages/product_page.py</span>
+<span class="kw">class</span> <span class="cl">ProductPage</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="vr">self</span>, page):
+        <span class="vr">self</span>.page = page
+
+    <span class="kw">def</span> <span class="fn">open</span>(<span class="vr">self</span>, product_id):
+        <span class="vr">self</span>.page.goto(f<span class="st">"https://testshop.uz/p/{product_id}"</span>)
+
+    <span class="kw">def</span> <span class="fn">add_to_cart</span>(<span class="vr">self</span>):
+        <span class="vr">self</span>.page.click(<span class="st">"#add-cart-btn"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="vr">self</span>):
+        <span class="kw">return</span> <span class="vr">self</span>.page.inner_text(<span class="st">".price"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_title</span>(<span class="vr">self</span>):
+        <span class="kw">return</span> <span class="vr">self</span>.page.inner_text(<span class="st">"h1.product-title"</span>)`,
+    test: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">tests/test_products.py</span>
+<span class="kw">from</span> pages.product_page <span class="kw">import</span> <span class="cl">ProductPage</span>
+
+<span class="kw">def</span> <span class="fn">test_product_has_price</span>(page):
+    product = <span class="cl">ProductPage</span>(page)
+    product.open(<span class="nm">1</span>)
+    price = product.get_price()
+    <span class="kw">assert</span> price != <span class="st">""</span>
+
+<span class="kw">def</span> <span class="fn">test_add_to_cart</span>(page):
+    product = <span class="cl">ProductPage</span>(page)
+    product.open(<span class="nm">1</span>)
+    product.add_to_cart()
+    <span class="kw">assert</span> page.is_visible(<span class="st">"text=Savatga qo'shildi"</span>)`
+  },
+  cart: {
+    page: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">pages/cart_page.py</span>
+<span class="kw">class</span> <span class="cl">CartPage</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="vr">self</span>, page):
+        <span class="vr">self</span>.page = page
+
+    <span class="kw">def</span> <span class="fn">open</span>(<span class="vr">self</span>):
+        <span class="vr">self</span>.page.goto(<span class="st">"https://testshop.uz/cart"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_item_count</span>(<span class="vr">self</span>):
+        items = <span class="vr">self</span>.page.query_selector_all(<span class="st">".cart-item"</span>)
+        <span class="kw">return</span> len(items)
+
+    <span class="kw">def</span> <span class="fn">remove_item</span>(<span class="vr">self</span>, index=<span class="nm">0</span>):
+        btns = <span class="vr">self</span>.page.query_selector_all(<span class="st">".remove-btn"</span>)
+        btns[index].click()`,
+    test: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">tests/test_cart.py</span>
+<span class="kw">from</span> pages.cart_page <span class="kw">import</span> <span class="cl">CartPage</span>
+
+<span class="kw">def</span> <span class="fn">test_cart_empty</span>(page):
+    cart = <span class="cl">CartPage</span>(page)
+    cart.open()
+    <span class="kw">assert</span> cart.get_item_count() == <span class="nm">0</span>
+
+<span class="kw">def</span> <span class="fn">test_remove_item</span>(page):
+    cart = <span class="cl">CartPage</span>(page)
+    cart.open()
+    cart.remove_item(<span class="nm">0</span>)
+    <span class="kw">assert</span> cart.get_item_count() == <span class="nm">0</span>`
+  },
+  search: {
+    page: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">pages/search_page.py</span>
+<span class="kw">class</span> <span class="cl">SearchPage</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="vr">self</span>, page):
+        <span class="vr">self</span>.page = page
+
+    <span class="kw">def</span> <span class="fn">search</span>(<span class="vr">self</span>, query):
+        <span class="vr">self</span>.page.fill(<span class="st">"#search-input"</span>, query)
+        <span class="vr">self</span>.page.press(<span class="st">"#search-input"</span>, <span class="st">"Enter"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_results_count</span>(<span class="vr">self</span>):
+        results = <span class="vr">self</span>.page.query_selector_all(<span class="st">".search-result"</span>)
+        <span class="kw">return</span> len(results)`,
+    test: `<span style="position:absolute;top:8px;right:12px;background:#3776AB;color:white;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600">tests/test_search.py</span>
+<span class="kw">from</span> pages.search_page <span class="kw">import</span> <span class="cl">SearchPage</span>
+
+<span class="kw">def</span> <span class="fn">test_search_found</span>(page):
+    s = <span class="cl">SearchPage</span>(page)
+    s.search(<span class="st">"iPhone"</span>)
+    <span class="kw">assert</span> s.get_results_count() > <span class="nm">0</span>
+
+<span class="kw">def</span> <span class="fn">test_search_empty</span>(page):
+    s = <span class="cl">SearchPage</span>(page)
+    s.search(<span class="st">"xyzxyzxyz123"</span>)
+    <span class="kw">assert</span> page.is_visible(<span class="st">"text=Natija topilmadi"</span>)`
+  }
+};
+
+function generateCode() {
+  const pg = document.getElementById('cbPage').value;
+  const vw = document.getElementById('cbView').value;
+  const d = pages[pg];
+  let html = '';
+  if (vw === 'page' || vw === 'both') html += `<div class="code-block" style="margin-bottom:12px">${d.page}</div>`;
+  if (vw === 'test' || vw === 'both') html += `<div class="code-block">${d.test}</div>`;
+  document.getElementById('cbPreviewContent').innerHTML = html;
+  document.getElementById('cbPreview').classList.add('show');
+  done.add('builder'); upd();
+}
+
+document.querySelectorAll('.interview-question').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

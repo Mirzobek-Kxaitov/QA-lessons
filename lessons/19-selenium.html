@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>19-dars: Selenium WebDriver (Python) | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+  --selenium: #43B02A; --python-blue: #3776AB; --python-yellow: #FFD43B;
+  --code-bg: #1E1E1E; --code-text: #D4D4D4;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; }
+.progress-text { font-size: 13px; color: var(--ink-muted); min-width: 45px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; }
+.term-box-title::before { content: "📖 "; }
+.term-box strong { color: var(--blue); }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+.code-block { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; position: relative; }
+.code-block .keyword { color: #FF7B72; }
+.code-block .string { color: #A5D6FF; }
+.code-block .comment { color: #8B949E; font-style: italic; }
+.code-block .var { color: #79C0FF; }
+.code-block .func { color: #D2A8FF; }
+.code-block .number { color: #FFA657; }
+.code-block .class { color: #FFA657; }
+.code-tag { position: absolute; top: 8px; right: 12px; background: var(--python-blue); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+.installation-step { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 14px; }
+.installation-step-num { display: inline-block; width: 36px; height: 36px; border-radius: 50%; background: var(--selenium); color: white; text-align: center; line-height: 36px; font-family: 'Fraunces', serif; font-weight: 600; margin-right: 12px; }
+.installation-step-title { display: inline-block; font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; vertical-align: middle; }
+.locator-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; margin-bottom: 12px; transition: all 0.2s; position: relative; overflow: hidden; }
+.locator-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--selenium); }
+.locator-card:hover { transform: translateY(-2px); box-shadow: 0 8px 16px -8px rgba(0,0,0,0.1); }
+.locator-name { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--selenium); font-weight: 600; margin-bottom: 6px; display: inline-block; padding: 3px 10px; background: var(--forest-soft); border-radius: 4px; }
+.locator-desc { color: var(--ink-soft); font-size: 14px; margin-top: 8px; }
+.locator-priority { font-size: 11px; color: var(--ink-muted); font-family: 'JetBrains Mono', monospace; margin-top: 6px; }
+.locator-priority.best { color: var(--forest); font-weight: 600; }
+.locator-priority.warn { color: var(--gold); font-weight: 600; }
+.locator-priority.bad { color: var(--accent); font-weight: 600; }
+.code-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.cb-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.cb-field { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; }
+.cb-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; }
+.cb-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; background: white; }
+.cb-select { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; background: white; cursor: pointer; }
+.cb-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; font-weight: 500; margin-top: 16px; }
+.cb-preview { margin-top: 16px; display: none; }
+.cb-preview.show { display: block; }
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 14px; padding-right: 100px; font-family: 'JetBrains Mono', monospace; }
+.classifier-card-desc { font-size: 12px; color: var(--ink-muted); }
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 18px; }
+.classifier-bucket { min-height: 80px; padding: 14px 12px; border: 2px solid var(--line); border-radius: 12px; text-align: center; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
+.classifier-bucket-icon { font-size: 22px; margin-bottom: 2px; }
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; text-align: left; font-size: 16px; font-family: inherit; display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1500px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; }
+.completion-badge.show { display: flex; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .code-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .cb-field { grid-template-columns: 1fr; gap: 6px; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">19-dars</div>
+  <h1>Selenium <em>WebDriver</em></h1>
+  <p class="hero-subtitle">Python bilan kod yozib brauzer'ni boshqarish. Boshlovchilar uchun sodda misollar. 18-darsda Selenium IDE'ni bilamiz - endi haqiqiy kod yozamiz!</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Python kod</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Selenium WebDriver nima?</h2>
+  <p class="section-intro">18-darsda <strong>Selenium IDE</strong> bilan ishladik — Record/Play, kod yozish kerak emas. Endi <strong>WebDriver</strong>'ga o'tamiz — haqiqiy kod yozib brauzer'ni boshqaramiz.</p>
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Selenium WebDriver</strong> — kod yordamida brauzer'ni boshqarish kutubxonasi. Python, Java, JavaScript va boshqa tillar uchun bor.</p>
+    <p><em>Oddiy qilib:</em> Siz Python kod yozasiz - "Brauzer ochib, Login bos" deysiz, kod brauzer bilan ishlaydi, xuddi siz kabi.</p>
+  </div>
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Sodda misol</div>
+    <div class="analogy-title">Pultli avtomashina</div>
+    <div class="analogy-text">
+      Selenium IDE — bolalar o'yinchog'i (oddiy pult). WebDriver — <strong>professional dronni</strong> kompyuter bilan boshqarish. Kuchli, lekin biroz murakkab. Lekin kuch sizda - hamma narsani qila olasiz!
+    </div>
+  </div>
+  <h3>Nima uchun WebDriver?</h3>
+  <ul>
+    <li><strong>Kuchli</strong> — IDE'da imkonsiz narsalarni qila olasiz</li>
+    <li><strong>Tez</strong> — yuzlab testlar bir vaqtda</li>
+    <li><strong>CI/CD</strong> — Jenkins, GitHub Actions bilan integratsiya</li>
+    <li><strong>Framework</strong> — Pytest, unittest bilan birga</li>
+    <li><strong>Maoshingiz</strong> — Selenium WebDriver biluvchi QA: <strong>Junior+ darajasi</strong></li>
+  </ul>
+  <h3>Nega Python?</h3>
+  <ul>
+    <li><strong>Sodda sintaksis</strong> — boshlovchilar uchun ideal</li>
+    <li><strong>Kam kod</strong> — Java'da 10 qator, Python'da 3 qator</li>
+    <li><strong>Mashhur</strong> — QA jamoasida 60%+ Python ishlatadi</li>
+    <li><strong>Ko'p material</strong> — YouTube, kitoblar, blog'lar</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Junior uchun</div>
+    <p>Bu dars juda muhim, lekin <strong>tezda hammasini tushunishga harakat qilmang</strong>. Asosiy tushunchalarni biling, keyin amalda mashq qilasiz. <strong>3-4 hafta amaliyot</strong> kerak!</p>
+  </div>
+</section>
+<section class="section" id="setup">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">O'rnatish va tayyorgarlik</h2>
+  <p class="section-intro">Birinchi skript yozish uchun 3 narsa kerak: <strong>Python</strong>, <strong>Selenium</strong>, <strong>brauzer driver</strong>.</p>
+  <div class="installation-step">
+    <div><span class="installation-step-num">1</span><span class="installation-step-title">Python o'rnatish</span></div>
+    <p style="margin-top:12px;font-size:14px"><a href="https://www.python.org/downloads/" target="_blank" style="color:var(--blue)">python.org/downloads</a> - "Download Python 3.x" bosing. <strong>Mac va Windows</strong> uchun bor.</p>
+    <p style="font-size:13px;color:var(--ink-muted);margin-top:6px">Mac terminal'da tekshirish: <code>python3 --version</code></p>
+  </div>
+  <div class="installation-step">
+    <div><span class="installation-step-num">2</span><span class="installation-step-title">Selenium o'rnatish</span></div>
+    <p style="margin-top:12px;font-size:14px">Terminal'ni oching va yozing:</p>
+    <div class="code-block">
+<span class="code-tag">terminal</span>
+pip install selenium</div>
+    <p style="font-size:13px;color:var(--ink-muted);margin-top:6px">"Successfully installed selenium" deb chiqsa - tayyor!</p>
+  </div>
+  <div class="installation-step">
+    <div><span class="installation-step-num">3</span><span class="installation-step-title">Chrome Driver (avtomatik)</span></div>
+    <p style="margin-top:12px;font-size:14px">Yangi Selenium versiyalari Chrome Driver'ni <strong>avtomatik</strong> yuklab oladi! Hech narsa qilish kerak emas.</p>
+    <p style="font-size:13px;color:var(--ink-muted);margin-top:6px">Eski versiyalarda - <code>webdriver-manager</code> kutubxonasi yordam beradi.</p>
+  </div>
+  <h3>Editor — qaysi dasturda yozasiz?</h3>
+  <ul>
+    <li><strong>VS Code</strong> — bepul, eng mashhur (tavsiyam!)</li>
+    <li><strong>PyCharm Community</strong> — Python uchun maxsus</li>
+    <li><strong>Sublime Text</strong> — yengil va tez</li>
+  </ul>
+</section>
+<section class="section" id="first-script">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Birinchi skript</h2>
+  <p class="section-intro">Klassik <strong>"Hello Browser"</strong> skripti. 6 qator kod, lekin sehrli!</p>
+  <div class="code-block">
+<span class="code-tag">first_test.py</span>
+<span class="comment"># 1. Selenium kutubxonasini import qilish</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+
+<span class="comment"># 2. Brauzer ochish (Chrome)</span>
+driver = webdriver.<span class="class">Chrome</span>()
+
+<span class="comment"># 3. URL'ga o'tish</span>
+driver.<span class="func">get</span>(<span class="string">"https://google.com"</span>)
+
+<span class="comment"># 4. 5 sekund kutish (ko'rish uchun)</span>
+<span class="keyword">import</span> time
+time.<span class="func">sleep</span>(<span class="number">5</span>)
+
+<span class="comment"># 5. Brauzerni yopish</span>
+driver.<span class="func">quit</span>()</div>
+  <h4>Ishga tushirish</h4>
+  <p>Terminal'da yozing:</p>
+  <div class="code-block">
+<span class="code-tag">terminal</span>
+python3 first_test.py</div>
+  <p>Brauzer ochiladi, Google'ga o'tadi, 5 sekund kutadi, yopiladi! 🎉</p>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Tabriklayman!</div>
+    <p>Sizning birinchi automation skriptingiz! Bu kichik kod, lekin <strong>asos shu yerda</strong>. Endi har sahifa bilan ishlash mumkin.</p>
+  </div>
+</section>
+<section class="section" id="commands">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Asosiy buyruqlar</h2>
+  <p class="section-intro">WebDriver'ning kundalik 5 ta buyrug'i. Bularni bilsangiz - 80% ishni qila olasiz.</p>
+  <h3>1. Brauzer boshqarish</h3>
+  <div class="code-block">
+<span class="code-tag">basics.py</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+
+driver = webdriver.<span class="class">Chrome</span>()       <span class="comment"># Brauzer ochish</span>
+driver.<span class="func">get</span>(<span class="string">"https://uzum.uz"</span>)   <span class="comment"># URL'ga o'tish</span>
+driver.<span class="func">maximize_window</span>()         <span class="comment"># Maksimal o'lcham</span>
+driver.<span class="func">refresh</span>()                 <span class="comment"># Sahifani qayta yuklash</span>
+driver.<span class="func">back</span>()                    <span class="comment"># Orqaga qaytish</span>
+driver.<span class="func">forward</span>()                 <span class="comment"># Oldinga</span>
+driver.<span class="func">close</span>()                   <span class="comment"># Tab'ni yopish</span>
+driver.<span class="func">quit</span>()                    <span class="comment"># Brauzerni butunlay yopish</span></div>
+  <h3>2. Element topish</h3>
+  <p>Saytda biror narsa bilan ishlash uchun avval <strong>uni topish</strong> kerak:</p>
+  <div class="code-block">
+<span class="code-tag">find_element.py</span>
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+
+<span class="comment"># ID bo'yicha (eng tez va aniq)</span>
+login_btn = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login-btn"</span>)
+
+<span class="comment"># CSS Selector bo'yicha</span>
+search = driver.<span class="func">find_element</span>(<span class="class">By</span>.CSS_SELECTOR, <span class="string">".search-box"</span>)
+
+<span class="comment"># XPath bo'yicha</span>
+button = driver.<span class="func">find_element</span>(<span class="class">By</span>.XPATH, <span class="string">"//button[text()='Kirish']"</span>)</div>
+  <h3>3. Element bilan ishlash</h3>
+  <div class="code-block">
+<span class="code-tag">interact.py</span>
+<span class="comment"># Bosish</span>
+login_btn.<span class="func">click</span>()
+
+<span class="comment"># Matn yozish</span>
+email_input.<span class="func">send_keys</span>(<span class="string">"test@uzum.uz"</span>)
+
+<span class="comment"># Tozalash (avval bo'lgan matnni o'chirish)</span>
+email_input.<span class="func">clear</span>()
+
+<span class="comment"># Matnni olish</span>
+welcome_text = title.<span class="var">text</span>
+
+<span class="comment"># Attribute olish</span>
+link_url = link.<span class="func">get_attribute</span>(<span class="string">"href"</span>)</div>
+  <h3>4. To'liq E2E misol — Login</h3>
+  <div class="code-block">
+<span class="code-tag">login_test.py</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+<span class="keyword">import</span> time
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"https://testshop.uz/login"</span>)
+
+<span class="comment"># Email maydoniga matn yozish</span>
+email = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"email"</span>)
+email.<span class="func">send_keys</span>(<span class="string">"test@uzum.uz"</span>)
+
+<span class="comment"># Parol maydoniga</span>
+password = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"password"</span>)
+password.<span class="func">send_keys</span>(<span class="string">"Pass123!"</span>)
+
+<span class="comment"># Login tugmasini bosish</span>
+driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login-btn"</span>).<span class="func">click</span>()
+
+<span class="comment"># 3 sekund kutish (Dashboard ochilishi uchun)</span>
+time.<span class="func">sleep</span>(<span class="number">3</span>)
+
+<span class="comment"># Tekshirish - "Welcome" matni borligi</span>
+welcome = driver.<span class="func">find_element</span>(<span class="class">By</span>.CLASS_NAME, <span class="string">"welcome-msg"</span>)
+<span class="keyword">assert</span> <span class="string">"Welcome"</span> <span class="keyword">in</span> welcome.<span class="var">text</span>
+
+driver.<span class="func">quit</span>()
+<span class="func">print</span>(<span class="string">"✅ Test muvaffaqiyatli!"</span>)</div>
+  <p style="font-size:14px;color:var(--ink-soft);margin-top:14px">Bu - to'liq professional Login test! Email yozadi, parol yozadi, tugma bosadi, natijani tekshiradi.</p>
+</section>
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Selenium buyrug'i va vazifasini bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har buyruq nima qiladi?</p>
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Buyruq</h4>
+      <div class="match-item" data-side="left" data-pair="get"><code>driver.get(url)</code></div>
+      <div class="match-item" data-side="left" data-pair="click"><code>element.click()</code></div>
+      <div class="match-item" data-side="left" data-pair="send"><code>element.send_keys()</code></div>
+      <div class="match-item" data-side="left" data-pair="quit"><code>driver.quit()</code></div>
+      <div class="match-item" data-side="left" data-pair="find"><code>find_element()</code></div>
+    </div>
+    <div class="matching-column">
+      <h4>Vazifa</h4>
+      <div class="match-item" data-side="right" data-pair="quit">Brauzerni butunlay yopish</div>
+      <div class="match-item" data-side="right" data-pair="get">URL'ga o'tish (sahifa ochish)</div>
+      <div class="match-item" data-side="right" data-pair="find">Sahifada elementni topish</div>
+      <div class="match-item" data-side="right" data-pair="click">Tugmani bosish</div>
+      <div class="match-item" data-side="right" data-pair="send">Matn yozish (input maydoni)</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft</div>
+</div>
+<section class="section" id="locators">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">Locator Strategy</h2>
+  <p class="section-intro">Selenium'da elementlarni topishning <strong>8 ta usuli</strong> bor. Lekin har biri bir xil emas — qaysisini tanlash muhim!</p>
+  <h3>8 ta locator turi</h3>
+  <div class="locator-card">
+    <span class="locator-name">By.ID</span>
+    <p class="locator-desc">ID bo'yicha. <strong>Eng tez va aniq</strong> usul. ID unikal bo'ladi.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login-btn"</span>)</div>
+    <p class="locator-priority best">⭐ Eng yaxshi - ID bor bo'lsa</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.NAME</span>
+    <p class="locator-desc">Name attribute bo'yicha. Input maydonlar uchun yaxshi.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.NAME, <span class="string">"email"</span>)</div>
+    <p class="locator-priority best">⭐ Yaxshi - input maydonlar uchun</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.CSS_SELECTOR</span>
+    <p class="locator-desc">CSS selector bo'yicha. Eng moslashuvchi va tez.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.CSS_SELECTOR, <span class="string">".btn-primary"</span>)</div>
+    <p class="locator-priority best">⭐ Eng yaxshi - umumiy maqsadlar uchun</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.CLASS_NAME</span>
+    <p class="locator-desc">Class bo'yicha. Lekin bir xil class ko'p elementda bo'lishi mumkin!</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.CLASS_NAME, <span class="string">"submit-btn"</span>)</div>
+    <p class="locator-priority warn">⚠️ Ehtiyot - bir xil class ko'p bo'ladi</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.XPATH</span>
+    <p class="locator-desc">XPath - eng kuchli, lekin sekin. Faqat boshqa imkonsiz bo'lganda.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.XPATH, <span class="string">"//button[text()='Kirish']"</span>)</div>
+    <p class="locator-priority bad">⚠️ Sekin - faqat oxirgi chora</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.LINK_TEXT</span>
+    <p class="locator-desc">Link matni bo'yicha. Faqat <code>&lt;a&gt;</code> tag uchun.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.LINK_TEXT, <span class="string">"Bosh sahifa"</span>)</div>
+    <p class="locator-priority best">⭐ Yaxshi - link'lar uchun</p>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.PARTIAL_LINK_TEXT</span>
+    <p class="locator-desc">Link matnining bir qismi bo'yicha.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.PARTIAL_LINK_TEXT, <span class="string">"Bosh"</span>)</div>
+  </div>
+  <div class="locator-card">
+    <span class="locator-name">By.TAG_NAME</span>
+    <p class="locator-desc">HTML tag bo'yicha. Kamdan-kam ishlatiladi.</p>
+    <div class="code-block" style="margin-top:8px;font-size:12px">
+driver.<span class="func">find_element</span>(<span class="class">By</span>.TAG_NAME, <span class="string">"button"</span>)</div>
+    <p class="locator-priority warn">⚠️ Ko'p element topadi</p>
+  </div>
+  <h3>📊 Locator tanlash tartibi</h3>
+  <div class="example-box">
+    <div class="example-box-title">Eng yaxshidan eng yomonigacha</div>
+    <ol style="margin:0">
+      <li><strong>By.ID</strong> — bor bo'lsa, har doim bu</li>
+      <li><strong>By.NAME</strong> — input maydonlar uchun</li>
+      <li><strong>By.CSS_SELECTOR</strong> — universal va tez</li>
+      <li><strong>By.LINK_TEXT</strong> — faqat link'lar uchun</li>
+      <li><strong>By.CLASS_NAME</strong> — agar unikal bo'lsa</li>
+      <li><strong>By.XPATH</strong> — faqat oxirgi chora!</li>
+    </ol>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Pro maslahat</div>
+    <p>Bug bo'lmasa - ID. Test ishonchli bo'lishi uchun - CSS Selector. Murakkab joy bo'lsa (matn bo'yicha) - XPath. <strong>Boshqa locator topa olmasangiz, dasturchidan ID qo'shishni so'rang!</strong></p>
+  </div>
+</section>
+<div class="dnd-game" id="locatorClassifier">
+  <div class="quiz-label">🎯 Locator Classifier</div>
+  <h3 style="margin-top:8px">Qaysi locator eng yaxshi?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> HTML kodga qarang. <strong>2-qadam:</strong> Eng yaxshi locator turi tanlang.</p>
+  <div class="dnd-hint" id="locatorHint">👆 Endi pastdagi tugmalardan birini tanlang</div>
+  <div id="locatorCards">
+    <div class="classifier-card" data-category="id">
+      <div class="classifier-card-title">&lt;button id="login-btn"&gt;Kirish&lt;/button&gt;</div>
+      <div class="classifier-card-desc">ID atributi bor.</div>
+    </div>
+    <div class="classifier-card" data-category="name">
+      <div class="classifier-card-title">&lt;input name="email" type="email"&gt;</div>
+      <div class="classifier-card-desc">Name atributi bor, ID yo'q.</div>
+    </div>
+    <div class="classifier-card" data-category="css">
+      <div class="classifier-card-title">&lt;button class="btn-primary submit-form"&gt;Yuborish&lt;/button&gt;</div>
+      <div class="classifier-card-desc">Faqat class bor, lekin unikal kombinatsiya.</div>
+    </div>
+    <div class="classifier-card" data-category="link">
+      <div class="classifier-card-title">&lt;a href="/home"&gt;Bosh sahifa&lt;/a&gt;</div>
+      <div class="classifier-card-desc">Bu link, matni unikal.</div>
+    </div>
+    <div class="classifier-card" data-category="xpath">
+      <div class="classifier-card-title">&lt;span&gt;1,250,000 so'm&lt;/span&gt; (jadvaldagi narx)</div>
+      <div class="classifier-card-desc">ID, class yo'q. Faqat matn bo'yicha topish kerak.</div>
+    </div>
+  </div>
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="id">
+      <div class="classifier-bucket-icon">🎯</div>
+      <div class="classifier-bucket-label" style="color:var(--forest)">By.ID</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="name">
+      <div class="classifier-bucket-icon">🏷️</div>
+      <div class="classifier-bucket-label" style="color:var(--blue)">By.NAME</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="css">
+      <div class="classifier-bucket-icon">🎨</div>
+      <div class="classifier-bucket-label" style="color:var(--plum)">CSS</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="link">
+      <div class="classifier-bucket-icon">🔗</div>
+      <div class="classifier-bucket-label" style="color:var(--gold)">LINK_TEXT</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="xpath">
+      <div class="classifier-bucket-icon">📍</div>
+      <div class="classifier-bucket-label" style="color:var(--accent)">XPATH</div>
+    </div>
+  </div>
+  <div class="dnd-score" id="locatorScore">0 / 5 to'g'ri</div>
+</div>
+<section class="section" id="waits">
+  <span class="section-label">5-qism</span>
+  <h2 class="section-title">Wait Strategies — kutish</h2>
+  <p class="section-intro">Eng tez-tez muammo: <strong>"Element topilmadi!"</strong> xatosi. Sababi — sahifa hali yuklanmagan, lekin kod element izlayapti. Yechimi — <strong>kutish</strong>.</p>
+  <div class="term-box">
+    <div class="term-box-title">Muammo</div>
+    <p>Brauzer sekin yuklaydi. AJAX, JavaScript - sahifa keyin paydo bo'ladi. Kod esa darhol element izlaydi va xato beradi.</p>
+    <p><em>Yechim:</em> Kodga "biroz kut" deyish kerak.</p>
+  </div>
+  <h3>3 ta kutish usuli</h3>
+  <h4>1. time.sleep() — eng oddiy (lekin yomon)</h4>
+  <div class="code-block">
+<span class="code-tag">bad_wait.py</span>
+<span class="keyword">import</span> time
+
+driver.<span class="func">get</span>(<span class="string">"https://testshop.uz"</span>)
+time.<span class="func">sleep</span>(<span class="number">5</span>)  <span class="comment"># 5 sekund kutish</span>
+button = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login"</span>)</div>
+  <p style="font-size:13px;color:var(--accent-dark);margin-top:8px">⚠️ <strong>Muammo:</strong> Har doim 5 sekund kutadi, hatto sahifa 1 sekundda yuklansa ham. Vaqt isrofi!</p>
+  <h4>2. Implicit Wait — global kutish</h4>
+  <div class="code-block">
+<span class="code-tag">implicit_wait.py</span>
+driver.<span class="func">implicitly_wait</span>(<span class="number">10</span>)  <span class="comment"># Global - 10 sek max kutadi</span>
+driver.<span class="func">get</span>(<span class="string">"https://testshop.uz"</span>)
+button = driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login"</span>)</div>
+  <p style="font-size:13px;color:var(--ink-soft);margin-top:8px">✅ <strong>Yaxshi:</strong> Element topilsa darhol davom etadi. Topilmasa - 10 sek kutadi.</p>
+  <h4>3. Explicit Wait — eng professional</h4>
+  <div class="code-block">
+<span class="code-tag">explicit_wait.py</span>
+<span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> <span class="class">WebDriverWait</span>
+<span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC
+
+<span class="comment"># 10 sek kut, button bosish mumkin bo'lguncha</span>
+button = <span class="class">WebDriverWait</span>(driver, <span class="number">10</span>).<span class="func">until</span>(
+    EC.<span class="func">element_to_be_clickable</span>((<span class="class">By</span>.ID, <span class="string">"login"</span>))
+)
+button.<span class="func">click</span>()</div>
+  <p style="font-size:13px;color:var(--ink-soft);margin-top:8px">⭐ <strong>Eng yaxshi:</strong> Aniq holat kutadi (visible, clickable, vsh.). Professional QA shu usulni ishlatadi.</p>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Qaysi qachon?</div>
+    <p><strong>time.sleep()</strong> - hech qachon (test sekin bo'ladi). <strong>Implicit Wait</strong> - kichik loyihalarda. <strong>Explicit Wait</strong> - professional, aniq holat kutish kerak bo'lganda.</p>
+  </div>
+</section>
+<div class="code-builder">
+  <div class="quiz-label">🛠 Code Builder</div>
+  <h3 style="margin-top:8px">Selenium kod yarating</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">Vazifani tanlang va Selenium kod ko'ring:</p>
+  <div class="cb-fields">
+    <div class="cb-field">
+      <label class="cb-field-label">Vazifa</label>
+      <select class="cb-select" id="cbAction">
+        <option value="open">Brauzer ochib URL'ga o'tish</option>
+        <option value="click">Tugmani bosish</option>
+        <option value="type">Maydoga matn yozish</option>
+        <option value="check">Matnni tekshirish</option>
+        <option value="login">To'liq Login skript</option>
+      </select>
+    </div>
+    <div class="cb-field">
+      <label class="cb-field-label">URL / Element</label>
+      <input type="text" class="cb-input" id="cbValue" value="https://testshop.uz">
+    </div>
+    <div class="cb-field">
+      <label class="cb-field-label">Locator turi</label>
+      <select class="cb-select" id="cbLocator">
+        <option value="ID">By.ID</option>
+        <option value="NAME">By.NAME</option>
+        <option value="CSS_SELECTOR">By.CSS_SELECTOR</option>
+        <option value="CLASS_NAME">By.CLASS_NAME</option>
+        <option value="XPATH">By.XPATH</option>
+      </select>
+    </div>
+    <div class="cb-field">
+      <label class="cb-field-label">Locator qiymati</label>
+      <input type="text" class="cb-input" id="cbLocatorValue" value="login-btn">
+    </div>
+  </div>
+  <button class="cb-btn" onclick="generateCode()">⚡ Kodni yaratish</button>
+  <div class="cb-preview" id="cbPreview">
+    <div class="code-block" style="margin-top:16px" id="cbPreviewContent"></div>
+  </div>
+</div>
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click loyihasida birinchi automation skripti</div>
+  <div class="scenario-story">
+    <p><strong>Dushanba, 09:00.</strong> Click QA Lead Aziz aka sizga keldi: "Login funksiyamiz har release oldidan tekshiriladi - 8 ta brauzer × 5 ta scenario = 40 ta test. Manualda 4 soat ketadi."</p>
+    <p><strong>Sizdagi vazifa:</strong> Selenium WebDriver bilan Login automation yozish.</p>
+    <p>Quyidagi locator'larni ko'ryapsiz: <code>id="email"</code>, <code>id="password"</code>, <code>id="login-btn"</code>. Birinchi kod qatorlari qanday bo'ladi?</p>
+  </div>
+  <div class="scenario-question">Eng to'g'ri kod boshlanishi qaysi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Hech nima yozmayman, dasturchi avtomat test yozsa kerak</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><code>from selenium import webdriver</code> bilan boshlayman, <code>driver.get()</code> bilan sayt ochaman, <code>By.ID</code> ishlataman (locatorlar ID bilan), <code>send_keys()</code> va <code>click()</code> bilan amallar bajaraman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Java o'rganib, keyin Selenium WebDriver bilan boshlamoqchi bo'laman (3-4 oy keyin)</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">Sayt yuklanadi, lekin element 2-3 sekund keyin ko'rinadi (AJAX). Eng yaxshi yondashuv qaysi?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div><code>time.sleep(10)</code> qo'yaman - har doim 10 sekund kutaman, xavfsiz</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div><code>WebDriverWait</code> bilan Explicit Wait ishlataman - element ko'ringanda darhol davom etadi, ortiqcha kutmaydi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Hech narsa qilmayman, element o'zi topilishi kerak</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">Birinchi Selenium skriptingiz</h2>
+  <p class="section-intro">Endi nazariyani amaliyotga qo'llaymiz. 3 ta vazifa - sodda, lekin amaliy.</p>
+  <div style="background:linear-gradient(135deg,#3776AB 0%,#2E5F86 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🐍</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Python + Selenium</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">Bepul. Mac, Windows, Linux uchun. Asosiy kutubxona.</p>
+    <a href="https://www.python.org/downloads/" target="_blank" style="display:inline-block;background:white;color:#3776AB;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">🚀 Python yuklab olish</a>
+  </div>
+  <h3>Sizning vazifalaringiz:</h3>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#3776AB;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Python va Selenium o'rnatish</div>
+        <div style="color:#4A4A4A;font-size:14px">python.org'dan Python o'rnating. Terminal'da <code>pip install selenium</code> yozing. VS Code'ni ham yuklab oling.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#43B02A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">"Hello Browser" skripti</div>
+        <div style="color:#4A4A4A;font-size:14px">first_test.py fayl yarating. Brauzer ochish, Google ochish, 5 sek kutish, yopish. Ishga tushiring va natijani ko'ring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">TestShop Login skripti</div>
+        <div style="color:#4A4A4A;font-size:14px">login_test.py - TestShop saytida login qiling. Email, parol, tugma. Dashboard ochilishini tekshiring (assert).</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px"><strong>3 ta Python+Selenium skripti</strong> + GitHub'ga upload + ekran yozuv (gif) — Junior portfoliongiz uchun zo'r dalil. Intervyu'da: "Mana mening 1-Selenium skriptlarim, GitHub'da" — deb ko'rsatasiz!</p>
+  </div>
+</section>
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Selenium WebDriver — Junior+ va Middle QA intervyusining asosiy mavzusi. 7 ta professional javob.</p>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Selenium IDE va WebDriver farqi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong></p>
+        <ul>
+          <li><strong>Selenium IDE</strong> — brauzer extension, Record/Play, kodsiz. Boshlovchilar uchun.</li>
+          <li><strong>Selenium WebDriver</strong> — kod yozish kerak. Python/Java/JS bilan. Kuchli, professional.</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Men ikkalasini ham ishlataman. IDE - tez prototip uchun, WebDriver - real automation uchun. Productionda doimo WebDriver."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Locator strategiyasi qanday?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Locator tanlash - eng muhim qaror. Tartibim:"</p>
+        <ul>
+          <li><strong>By.ID</strong> — bor bo'lsa har doim. Tez va aniq.</li>
+          <li><strong>By.NAME</strong> — input maydonlar uchun</li>
+          <li><strong>By.CSS_SELECTOR</strong> — universal, tez</li>
+          <li><strong>By.XPATH</strong> — faqat oxirgi chora, sekin</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Boshqa locator topa olmasangiz, dasturchidan ID qo'shishni so'rang. Bu - jamoa bilan ishlash."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Wait Strategy nima va qachon ishlatasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Sayt asinxron yuklanadi (AJAX). Element keyin ko'rinadi. Wait - bu muammoni hal qiladi."</p>
+        <ul>
+          <li><strong>time.sleep()</strong> — yomon, har doim kutadi (vaqt isrofi)</li>
+          <li><strong>Implicit Wait</strong> — global, oddiy. Element yo'q bo'lsa N sek kutadi.</li>
+          <li><strong>Explicit Wait</strong> — eng yaxshi. WebDriverWait + expected_conditions.</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Men Explicit Wait ishlataman. Aniq holat kutaman: visible, clickable, present. Bu professional yondashuv."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>find_element va find_elements farqi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong></p>
+        <ul>
+          <li><strong>find_element</strong> — birinchi mos elementni topadi (1 ta). Topa olmasa - <code>NoSuchElementException</code> xatosi.</li>
+          <li><strong>find_elements</strong> — barcha mos elementlarni topadi (list qaytaradi). Topa olmasa - bo'sh list.</li>
+        </ul>
+        <p><strong>Misol:</strong> Sahifada 10 ta mahsulot. <code>find_elements(By.CLASS_NAME, "product")</code> - 10 ta element list qaytaradi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>Element topilmadi - nima qilasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Sabablar va yechimlari:</strong></p>
+        <ul>
+          <li><strong>Sahifa hali yuklanmagan</strong> → Wait qo'shing (Implicit yoki Explicit)</li>
+          <li><strong>iframe ichida</strong> → <code>driver.switch_to.frame()</code></li>
+          <li><strong>Locator noto'g'ri</strong> → DevTools'da tekshiring</li>
+          <li><strong>Element dynamic ID</strong> → CSS yoki XPath partial</li>
+          <li><strong>Sahifa o'zgargan</strong> → DOM'ni qayta tekshiring</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Selenium WebDriver arxitekturasi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "WebDriver 3 qismdan iborat:"</p>
+        <ul>
+          <li><strong>Client (sizning kodingiz)</strong> — Python/Java skript yozasiz</li>
+          <li><strong>WebDriver Protocol</strong> — JSON Wire Protocol</li>
+          <li><strong>Browser Driver</strong> — ChromeDriver, GeckoDriver, vsh.</li>
+          <li><strong>Browser</strong> — Chrome, Firefox, Edge - haqiqiy ishlaydi</li>
+        </ul>
+        <p>Sizning kodingiz → Driver → Browser tartibida ishlaydi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Birinchi automation loyihangizni tushuntiring</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Pro javob (siz aytasiz):</strong></p>
+        <p>"Men birinchi automation loyihasini Python + Selenium WebDriver bilan yaratganman. TestShop saytining Login funksiyasini automationtirgandim:"</p>
+        <ul>
+          <li><strong>Setup:</strong> Python 3.x, selenium kutubxona, VS Code</li>
+          <li><strong>Locators:</strong> By.ID asosan (login-btn, email, password)</li>
+          <li><strong>Wait:</strong> Explicit Wait dashboard yuklanishini kutish</li>
+          <li><strong>Assert:</strong> "Welcome" matnini tekshirish</li>
+          <li><strong>GitHub:</strong> Kodni saqlaganman, README bilan</li>
+        </ul>
+        <p>Bu - mening Junior+ darajasidagi tajribam. Hozir Pytest framework bilan loyihalarimni kengaytirayapman.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Setup → Code → Test</div>
+      <div class="summary-point-text">Python + Selenium + Driver. Birinchi 6 qator kod - "Hello Browser". Asoslarni tezda o'rganasiz.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Locator - asosiy san'at</div>
+      <div class="summary-point-text">By.ID eng yaxshi. CSS Selector universal. XPath - oxirgi chora. Bu tartibni eslab qoling.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Explicit Wait - professional</div>
+      <div class="summary-point-text">time.sleep() - hech qachon. Explicit Wait - aniq holat kutish. Test ishonchli bo'ladi.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="18-automation-intro.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>18-dars · Automation asoslari</div>
+  </a>
+  <a href="20-playwright.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>20-dars · Playwright (zamonaviy)</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 14;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> Explicit Wait - eng professional yondashuv. WebDriverWait(driver, 10).until(EC.element_to_be_clickable(...)) - element ko\'ringanda darhol davom etadi. time.sleep(10) - har doim 10 sek kutadi (ortiqcha). Hech narsa qilmaslik - test xato beradi.',
+    incorrect: 'time.sleep() - vaqt isrofi (har doim N sek kutadi). Hech narsa qilmaslik - element topilmaydi xatosi. To\'g\'ri yo\'l - <strong>Explicit Wait</strong> (WebDriverWait + expected_conditions). Aniq holat kutadi va tezda davom etadi.'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Bu Junior+ darajasidagi yondashuv. Selenium import → driver.get() → By.ID locatorlar → send_keys() va click() — to\'g\'ri ketma-ketlik. Kod 10-15 qatorda tayyor bo\'ladi.',
+    incorrect: 'Voz kechish - imkoniyat yo\'qotish. 3-4 oy Java kutish - juda uzoq, Python bilan bugun boshlash mumkin. To\'g\'ri yo\'l: import → driver.get() → find_element → click/send_keys.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+let selectedLeft = null;
+let matchedPairs = 0;
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Selenium buyruqlari!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { id: 'By.ID', name: 'By.NAME', css: 'By.CSS_SELECTOR', link: 'By.LINK_TEXT', xpath: 'By.XPATH' };
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('locatorHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('locatorScore').textContent = `${classifierCorrect} / 5 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 5) {
+        document.getElementById('locatorScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Locator usta!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('locatorHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+function generateCode() {
+  const action = document.getElementById('cbAction').value;
+  const value = document.getElementById('cbValue').value || 'https://testshop.uz';
+  const locator = document.getElementById('cbLocator').value;
+  const locatorValue = document.getElementById('cbLocatorValue').value || 'login-btn';
+  
+  const codeParts = {
+    open: `<span class="comment"># Brauzer ochib URL'ga o'tish</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"${value}"</span>)
+driver.<span class="func">maximize_window</span>()`,
+    
+    click: `<span class="comment"># Tugmani bosish</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"${value}"</span>)
+
+button = driver.<span class="func">find_element</span>(<span class="class">By</span>.${locator}, <span class="string">"${locatorValue}"</span>)
+button.<span class="func">click</span>()`,
+    
+    type: `<span class="comment"># Maydoga matn yozish</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"${value}"</span>)
+
+input_field = driver.<span class="func">find_element</span>(<span class="class">By</span>.${locator}, <span class="string">"${locatorValue}"</span>)
+input_field.<span class="func">send_keys</span>(<span class="string">"test@uzum.uz"</span>)`,
+    
+    check: `<span class="comment"># Matnni tekshirish</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"${value}"</span>)
+
+element = driver.<span class="func">find_element</span>(<span class="class">By</span>.${locator}, <span class="string">"${locatorValue}"</span>)
+<span class="keyword">assert</span> <span class="string">"Welcome"</span> <span class="keyword">in</span> element.<span class="var">text</span>
+<span class="func">print</span>(<span class="string">"✅ Test PASSED"</span>)`,
+    
+    login: `<span class="comment"># To'liq Login skript</span>
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> <span class="class">By</span>
+<span class="keyword">import</span> time
+
+driver = webdriver.<span class="class">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"${value}"</span>)
+
+<span class="comment"># Email yozish</span>
+driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"email"</span>).<span class="func">send_keys</span>(<span class="string">"test@uzum.uz"</span>)
+
+<span class="comment"># Parol yozish</span>
+driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"password"</span>).<span class="func">send_keys</span>(<span class="string">"Pass123!"</span>)
+
+<span class="comment"># Login bosish</span>
+driver.<span class="func">find_element</span>(<span class="class">By</span>.ID, <span class="string">"login-btn"</span>).<span class="func">click</span>()
+
+time.<span class="func">sleep</span>(<span class="number">3</span>)
+
+<span class="comment"># Tekshirish</span>
+welcome = driver.<span class="func">find_element</span>(<span class="class">By</span>.CLASS_NAME, <span class="string">"welcome"</span>)
+<span class="keyword">assert</span> <span class="string">"Welcome"</span> <span class="keyword">in</span> welcome.<span class="var">text</span>
+
+driver.<span class="func">quit</span>()
+<span class="func">print</span>(<span class="string">"✅ Test PASSED"</span>)`
+  };
+  
+  document.getElementById('cbPreviewContent').innerHTML = `<span class="code-tag">test.py</span>${codeParts[action]}`;
+  document.getElementById('cbPreview').classList.add('show');
+  completedActivities.add('codeBuilder');
+  updateProgress();
+}
+
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>
