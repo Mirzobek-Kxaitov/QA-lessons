@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>18-dars: Automation asoslari | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --coral: #D85A30; --coral-soft: #FAECE7;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+  --selenium: #43B02A; --playwright: #2EAD33; --cypress: #17202C; --appium: #662D91;
+  --code-bg: #1E1E1E; --code-text: #D4D4D4;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; }
+.progress-text { font-size: 13px; color: var(--ink-muted); min-width: 45px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; }
+.term-box-title::before { content: "📖 "; }
+.term-box strong { color: var(--blue); }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.compare-card { padding: 24px; border-radius: 16px; border: 2px solid; }
+.compare-card.manual { background: var(--blue-soft); border-color: var(--blue); }
+.compare-card.auto { background: var(--forest-soft); border-color: var(--forest); }
+.compare-card h4 { font-family: 'Fraunces', serif; font-size: 20px; margin-bottom: 12px; }
+.compare-card.manual h4 { color: var(--blue); }
+.compare-card.auto h4 { color: var(--forest); }
+.compare-card ul { padding-left: 18px; margin: 0; font-size: 14px; }
+.compare-card li { margin-bottom: 6px; }
+.compare-table { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+.compare-table table { width: 100%; border-collapse: collapse; }
+.compare-table th { padding: 14px; text-align: left; font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.compare-table th:nth-child(2) { background: var(--blue-soft); color: var(--blue); }
+.compare-table th:nth-child(3) { background: var(--forest-soft); color: var(--forest); }
+.compare-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); vertical-align: top; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { font-weight: 500; color: var(--ink); background: var(--bg-soft); }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 24px 0; }
+.tool-card { background: var(--bg-card); border: 2px solid; border-radius: 14px; padding: 20px; text-align: center; transition: all 0.2s; }
+.tool-card:hover { transform: translateY(-3px); }
+.tool-card.selenium { border-color: var(--selenium); }
+.tool-card.playwright { border-color: var(--playwright); }
+.tool-card.cypress { border-color: var(--cypress); }
+.tool-card.appium { border-color: var(--appium); }
+.tool-icon { font-size: 36px; margin-bottom: 8px; display: block; }
+.tool-card h4 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 6px; }
+.tool-card.selenium h4 { color: var(--selenium); }
+.tool-card.playwright h4 { color: var(--playwright); }
+.tool-card.cypress h4 { color: var(--cypress); }
+.tool-card.appium h4 { color: var(--appium); }
+.tool-card p { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+.tool-meta { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--ink-muted); font-family: 'JetBrains Mono', monospace; }
+.pyramid-visual { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 32px 24px; margin: 24px 0; }
+.pyramid-svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+.pyramid-legend { margin-top: 24px; display: grid; gap: 12px; }
+.pyramid-legend-item { display: grid; grid-template-columns: 30px 100px 1fr; gap: 12px; align-items: center; padding: 10px 14px; background: var(--bg-soft); border-radius: 10px; font-size: 14px; }
+.pyramid-legend-color { width: 24px; height: 24px; border-radius: 6px; }
+.pyramid-legend-name { font-family: 'Fraunces', serif; font-weight: 600; }
+.pyramid-legend-desc { color: var(--ink-soft); font-size: 13px; }
+.code-block { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; overflow-x: auto; }
+.code-block .keyword { color: #FF7B72; }
+.code-block .string { color: #A5D6FF; }
+.code-block .comment { color: #8B949E; font-style: italic; }
+.code-block .var { color: #79C0FF; }
+.code-block .func { color: #D2A8FF; }
+.code-block .number { color: #FFA657; }
+.roi-calc { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.roi-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.roi-field { display: flex; flex-direction: column; gap: 6px; }
+.roi-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--plum); text-transform: uppercase; letter-spacing: 1px; }
+.roi-input { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; background: white; }
+.roi-input:focus { outline: none; border-color: var(--plum); }
+.roi-result { margin-top: 24px; padding: 24px; background: var(--forest-soft); border: 2px solid var(--forest); border-radius: 14px; display: none; }
+.roi-result.show { display: block; }
+.roi-result-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }
+.roi-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.roi-stat { text-align: center; }
+.roi-stat-num { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600; color: var(--forest); line-height: 1; }
+.roi-stat-label { font-size: 12px; color: var(--ink-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.roi-verdict { margin-top: 16px; text-align: center; font-size: 15px; color: var(--ink); padding: 12px; background: white; border-radius: 8px; font-weight: 500; }
+.roi-btn { padding: 12px 24px; background: var(--plum); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; font-weight: 500; margin-top: 16px; }
+.selector-builder { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.selector-mock-html { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; margin: 16px 0; overflow-x: auto; }
+.selector-mock-html .tag { color: #FF7B72; }
+.selector-mock-html .attr { color: #79C0FF; }
+.selector-mock-html .val { color: #A5D6FF; }
+.selector-options { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.selector-option { padding: 14px 18px; background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; }
+.selector-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.selector-option.correct { border-color: var(--forest); background: var(--forest-soft); }
+.selector-option.incorrect { border-color: var(--accent); background: var(--accent-soft); }
+.selector-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.selector-option-code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); }
+.selector-option-type { font-size: 11px; color: var(--ink-muted); font-family: 'JetBrains Mono', monospace; padding: 4px 8px; background: white; border-radius: 4px; }
+.selector-feedback { margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: 14px; display: none; }
+.selector-feedback.show { display: block; }
+.selector-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.selector-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-pairs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dnd-pair { display: grid; grid-template-columns: 200px 1fr; gap: 12px; align-items: center; padding: 14px 16px; background: var(--bg-soft); border-radius: 10px; }
+.dnd-pair-label { font-weight: 500; font-size: 15px; font-family: 'Fraunces', serif; }
+.dnd-slot { min-height: 50px; border: 2px solid var(--line); border-radius: 8px; padding: 10px 14px; background: white; font-size: 14px; color: var(--ink-muted); display: flex; align-items: center; cursor: pointer; }
+.dnd-slot:hover:not(.filled) { border-color: var(--plum); }
+.dnd-slot.active { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-slot.filled { cursor: default; }
+.dnd-slot.correct { border-color: var(--forest); background: var(--forest-soft); color: var(--forest); font-weight: 500; }
+.dnd-slot.wrong { border-color: var(--accent); background: var(--accent-soft); animation: shake 0.4s; }
+.dnd-items-pool { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 20px; background: var(--bg-soft); border-radius: 12px; min-height: 80px; }
+.dnd-item { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 10px 16px; cursor: pointer; font-size: 13px; font-weight: 500; user-select: none; max-width: 280px; }
+.dnd-item:hover:not(.placed) { border-color: var(--plum); background: var(--plum-soft); }
+.dnd-item.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.05); }
+.dnd-item.placed { opacity: 0; pointer-events: none; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.matching-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.matching-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-muted); margin-bottom: 12px; }
+.match-item { background: var(--bg-soft); border: 2px solid transparent; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; font-size: 14px; line-height: 1.4; }
+.match-item:hover:not(.matched):not(.selected) { background: var(--plum-soft); border-color: var(--plum); }
+.match-item.selected { background: var(--plum-soft); border-color: var(--plum); color: var(--plum); font-weight: 500; }
+.match-item.matched { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); cursor: default; opacity: 0.7; }
+.match-item.wrong { background: var(--accent-soft); border-color: var(--accent); animation: shake 0.4s; }
+.match-score { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.match-complete { color: var(--forest); font-weight: 500; }
+.classifier-card { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 14px; padding-right: 100px; }
+.classifier-card-desc { font-size: 12px; color: var(--ink-muted); }
+.classifier-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.classifier-bucket { min-height: 80px; padding: 16px 14px; border: 2px solid var(--line); border-radius: 12px; text-align: center; background: white; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; }
+.classifier-bucket-icon { font-size: 24px; margin-bottom: 2px; }
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; text-align: left; font-size: 16px; font-family: inherit; display: flex; align-items: center; gap: 12px; }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: white; padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; }
+.scenario-story { background: white; border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.interview-section { background: linear-gradient(135deg, #FFFFFF 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: white; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1500px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; }
+.completion-badge.show { display: flex; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .matching-grid, .compare-grid, .roi-fields, .roi-stats { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .roi-calc, .selector-builder { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .dnd-pair { grid-template-columns: 1fr; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">18-dars</div>
+  <h1>Automation <em>asoslari</em></h1>
+  <p class="hero-subtitle">Manual'dan keyingi qadam. Junior'ga oson — Middle'ga shart. Bu darsdan keyin sizning maoshingiz 30-50% oshishi mumkin.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>75 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Boshlovchilar uchun</div>
+    <div class="pill"><span class="pill-dot"></span>6 ta interaktiv</div>
+  </div>
+</section>
+<div class="container">
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">Automation nima?</h2>
+  <p class="section-intro">Tasavvur qiling: TestShop saytida 50 ta sahifa bor. Har sahifa uchun 10 ta test. Jami — <strong>500 ta test</strong>. Ularni qo'lda bajarish kerak <strong>har release oldidan</strong>.</p>
+  <p>Manual qilsangiz: <strong>2-3 kun</strong>. Automation qilsangiz: <strong>30 daqiqa</strong>. Bu — automation'ning sehri!</p>
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Test Automation</strong> — kompyuter tomonidan qo'l harakatlarini takrorlash. Siz bir marta yozasiz, kompyuter har gal o'zi bajaradi.</p>
+    <p><em>Oddiy qilib:</em> Robot — sizning qo'l harakatlaringizni o'rgangan. Endi siz "Bosma!" deysiz, robot bajaradi. Charchamaydi, xatolashmaydi.</p>
+  </div>
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Sodda misol</div>
+    <div class="analogy-title">Kir yuvish mashinasi</div>
+    <div class="analogy-text">
+      Ilgari kishilar kirni qo'lda yuvardi - 1 soat ish. Kir mashinasi paydo bo'ldi - tugmani bosasiz, hammasini o'zi qiladi. <strong>Automation ham xuddi shunday</strong>: bir marta sozlaysiz, keyin tugma bosib, kompyuter testlarni o'zi bajaradi.
+    </div>
+  </div>
+  <h3>Nega automation kerak?</h3>
+  <ul>
+    <li><strong>Tezlik</strong> — 500 ta test 30 daqiqada (qo'lda 3 kun)</li>
+    <li><strong>Aniqlik</strong> — kompyuter charchamaydi, e'tibor yo'qotmaydi</li>
+    <li><strong>Takrorlash</strong> — har release'da qayta-qayta bajaradi</li>
+    <li><strong>Tunda ham</strong> — siz uxlayotganda testlar ishlaydi</li>
+    <li><strong>Maoshingiz</strong> — Manual+Auto QA = 30-50% ko'proq</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Boshlovchilar uchun muhim</div>
+    <p>Automation — <strong>bir kechada</strong> o'rganib bo'lmaydi. 3-6 oy doimiy amaliyot kerak. Lekin <strong>asoslarni</strong> bilish — sizni boshqa Junior'lardan ajratadi!</p>
+  </div>
+</section>
+<section class="section" id="manual-vs-auto">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Manual vs Automation</h2>
+  <p class="section-intro">Bu tez-tez yaxshi tushunilmaydigan tushuncha. Automation <strong>Manual'ni almashtirmaydi</strong> — to'ldiradi.</p>
+  <div class="compare-grid">
+    <div class="compare-card manual">
+      <h4>👤 Manual Testing</h4>
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:8px"><strong>Qo'lda</strong> bajariladi</p>
+      <ul>
+        <li>Tez yangilanadigan testlar</li>
+        <li>UX (foydalanuvchi tajribasi)</li>
+        <li>Murakkab vizual testlar</li>
+        <li>Yangi feature'lar (avval manual)</li>
+        <li>Exploratory testing</li>
+      </ul>
+    </div>
+    <div class="compare-card auto">
+      <h4>🤖 Automation Testing</h4>
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:8px"><strong>Kompyuter</strong> bajaradi</p>
+      <ul>
+        <li>Takrorlanuvchi testlar</li>
+        <li>Regression Testing</li>
+        <li>API testlar</li>
+        <li>Performance / Load testing</li>
+        <li>Critical funksiyalar (Login, To'lov)</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Batafsil taqqoslash</h3>
+  <div class="compare-table">
+    <table>
+      <thead>
+        <tr><th>Xususiyat</th><th>Manual</th><th>Automation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Boshlash vaqti</td><td>Darhol</td><td>Skript yozish kerak (1-2 soat)</td></tr>
+        <tr><td>Bajarilish vaqti</td><td>5-10 daqiqa/test</td><td>5-10 sekund/test</td></tr>
+        <tr><td>1000 marta takror</td><td>Imkonsiz</td><td>Oson</td></tr>
+        <tr><td>UI o'zgartirilsa</td><td>Hech narsa qilma</td><td>Skript yangilash kerak</td></tr>
+        <tr><td>Foydalanuvchi tajribasi</td><td>Yaxshi sezadi</td><td>Sezmaydi</td></tr>
+        <tr><td>Charchaganlik</td><td>Bor</td><td>Yo'q</td></tr>
+        <tr><td>Yangi bug topish</td><td>Yaxshi</td><td>Faqat yozilgan testlar</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy qoida</div>
+    <p><strong>Yangi feature → Manual</strong> (avval qo'lda sinab ko'rasiz). <strong>Eski feature → Automation</strong> (har release'da takrorlash uchun).</p>
+  </div>
+  <h3>ROI — qaytarim hisoblash</h3>
+  <p>Automation arzon emas — vaqt va kuch ketadi. Lekin <strong>uzoq muddatda</strong> juda foydali. Pastdagi kalkulyator orqali sinab ko'ring:</p>
+</section>
+<div class="roi-calc">
+  <div class="quiz-label">🧮 ROI Calculator</div>
+  <h3 style="margin-top:8px">Automation sizga foydalimi?</h3>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:16px">Ma'lumotlarni kiriting va qancha vaqt tejashingizni ko'ring:</p>
+  <div class="roi-fields">
+    <div class="roi-field">
+      <label class="roi-label">Manual: 1 test (daqiqa)</label>
+      <input type="number" class="roi-input" id="roiManualTime" value="5" min="1">
+    </div>
+    <div class="roi-field">
+      <label class="roi-label">Auto: 1 test (sekund)</label>
+      <input type="number" class="roi-input" id="roiAutoTime" value="30" min="1">
+    </div>
+    <div class="roi-field">
+      <label class="roi-label">Skript yozish (soat)</label>
+      <input type="number" class="roi-input" id="roiScriptTime" value="2" min="1">
+    </div>
+    <div class="roi-field">
+      <label class="roi-label">Necha marta takrorlanadi?</label>
+      <input type="number" class="roi-input" id="roiRuns" value="50" min="1">
+    </div>
+  </div>
+  <button class="roi-btn" onclick="calculateROI()">📊 Hisoblash</button>
+  <div class="roi-result" id="roiResult">
+    <div class="roi-result-title">📈 Natija</div>
+    <div class="roi-stats">
+      <div class="roi-stat">
+        <div class="roi-stat-num" id="roiManualTotal">0</div>
+        <div class="roi-stat-label">Manual jami (soat)</div>
+      </div>
+      <div class="roi-stat">
+        <div class="roi-stat-num" id="roiAutoTotal">0</div>
+        <div class="roi-stat-label">Auto jami (soat)</div>
+      </div>
+    </div>
+    <div class="roi-verdict" id="roiVerdict"></div>
+  </div>
+</div>
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 Classifier</div>
+  <h3 style="margin-top:8px">Manual yoki Automation?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Holatni bosing. <strong>2-qadam:</strong> Manual yoki Auto ekanini tanlang.</p>
+  <div class="dnd-hint" id="classifierHint">👆 Endi pastdagi tugmalardan birini tanlang</div>
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="auto">
+      <div class="classifier-card-title">Login funksiyasini har release oldidan tekshirish (50 marta)</div>
+      <div class="classifier-card-desc">Takrorlanuvchi va critical.</div>
+    </div>
+    <div class="classifier-card" data-category="manual">
+      <div class="classifier-card-title">Yangi qo'shilgan "Sevimlilar" tugmasini tekshirish</div>
+      <div class="classifier-card-desc">Yangi feature, hali UI o'zgaradi.</div>
+    </div>
+    <div class="classifier-card" data-category="auto">
+      <div class="classifier-card-title">Sayt 1000 ta foydalanuvchi yukini ko'tara oladimi?</div>
+      <div class="classifier-card-desc">Performance/Load testing.</div>
+    </div>
+    <div class="classifier-card" data-category="manual">
+      <div class="classifier-card-title">Sayt dizaynini ko'rish - "chiroyli ko'rinadimi?"</div>
+      <div class="classifier-card-desc">UX/Vizual baholash.</div>
+    </div>
+    <div class="classifier-card" data-category="auto">
+      <div class="classifier-card-title">100 ta API endpoint - har birida CRUD test</div>
+      <div class="classifier-card-desc">Ko'p, takrorlanuvchi.</div>
+    </div>
+    <div class="classifier-card" data-category="manual">
+      <div class="classifier-card-title">Mobil ilovada animatsiyalar silliq ishlayaptimi?</div>
+      <div class="classifier-card-desc">Vizual va his bilan baholash.</div>
+    </div>
+  </div>
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="manual">
+      <div class="classifier-bucket-icon">👤</div>
+      <div class="classifier-bucket-label" style="color:var(--blue)">Manual</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="auto">
+      <div class="classifier-bucket-icon">🤖</div>
+      <div class="classifier-bucket-label" style="color:var(--forest)">Automation</div>
+    </div>
+  </div>
+  <div class="dnd-score" id="classifierScore">0 / 6 to'g'ri</div>
+</div>
+<section class="section" id="tools">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Automation asboblari</h2>
+  <p class="section-intro">Bozorda ko'p asboblar bor. Hammasi turli xil — turli xil til, turli xil maqsad.</p>
+  <div class="tools-grid">
+    <div class="tool-card selenium">
+      <span class="tool-icon">🌐</span>
+      <h4>Selenium</h4>
+      <p>Eng mashhur, eski, kuchli. Hamma brauzerda ishlaydi.</p>
+      <div class="tool-meta">2004 yil · Java/Python</div>
+    </div>
+    <div class="tool-card playwright">
+      <span class="tool-icon">🎭</span>
+      <h4>Playwright</h4>
+      <p>Microsoft. Zamonaviy, tez. Yangi loyihalar uchun #1.</p>
+      <div class="tool-meta">2020 · JS/Python</div>
+    </div>
+    <div class="tool-card cypress">
+      <span class="tool-icon">⚡</span>
+      <h4>Cypress</h4>
+      <p>Frontend QA uchun. Brauzerda ko'rinadi, oson.</p>
+      <div class="tool-meta">2017 · JavaScript</div>
+    </div>
+    <div class="tool-card appium">
+      <span class="tool-icon">📱</span>
+      <h4>Appium</h4>
+      <p>Mobil ilovalar uchun. iOS va Android.</p>
+      <div class="tool-meta">2014 · Java/Python</div>
+    </div>
+  </div>
+  <h3>Qaysisini tanlash kerak?</h3>
+  <ul>
+    <li><strong>Selenium</strong> — agar Java yoki Python biladigan bo'lsangiz va eski loyihada ishlasangiz</li>
+    <li><strong>Playwright</strong> — yangi loyihalar uchun, JavaScript bilsangiz, eng yaxshisi</li>
+    <li><strong>Cypress</strong> — frontend ko'proq test qilsangiz, JavaScript bilan</li>
+    <li><strong>Appium</strong> — mobil ilova test qilish kerak bo'lsa</li>
+  </ul>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Mening tavsiyam</div>
+    <p>Boshlovchilar uchun: <strong>Selenium IDE</strong> (kodsiz) yoki <strong>Playwright</strong> (zamonaviy). 19-darsda Selenium chuqur o'rganamiz!</p>
+  </div>
+</section>
+<div class="matching-game">
+  <div class="quiz-label">🎯 Bog'lang</div>
+  <h3 style="margin-top:8px">Asbob va xususiyatni bog'lang</h3>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">Har asbob qanday vazifa uchun?</p>
+  <div class="matching-grid">
+    <div class="matching-column">
+      <h4>Asbob</h4>
+      <div class="match-item" data-side="left" data-pair="sel">🌐 Selenium</div>
+      <div class="match-item" data-side="left" data-pair="play">🎭 Playwright</div>
+      <div class="match-item" data-side="left" data-pair="cyp">⚡ Cypress</div>
+      <div class="match-item" data-side="left" data-pair="app">📱 Appium</div>
+      <div class="match-item" data-side="left" data-pair="post">📨 Postman</div>
+    </div>
+    <div class="matching-column">
+      <h4>Xususiyat</h4>
+      <div class="match-item" data-side="right" data-pair="post">API testing uchun</div>
+      <div class="match-item" data-side="right" data-pair="sel">Eng eski va mashhur (2004)</div>
+      <div class="match-item" data-side="right" data-pair="app">Mobil ilovalar uchun (iOS/Android)</div>
+      <div class="match-item" data-side="right" data-pair="cyp">Frontend QA uchun, JS bilan</div>
+      <div class="match-item" data-side="right" data-pair="play">Microsoft yaratdi, zamonaviy va tez</div>
+    </div>
+  </div>
+  <div class="match-score" id="matchScore">0 / 5 juft</div>
+</div>
+<section class="section" id="pyramid">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">Test Automation Piramidasi</h2>
+  <p class="section-intro">Automation asboblar har xil. Lekin <strong>strategiya bir xil</strong> — Test Pyramid (5-darsdan eslang!).</p>
+  <div class="pyramid-visual">
+    <svg class="pyramid-svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#F44336;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#FFA726;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#FFB74D;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#43A047;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#66BB6A;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <polygon points="150,30 250,30 280,90 120,90" fill="url(#grad1)" stroke="#fff" stroke-width="2"/>
+      <text x="200" y="55" text-anchor="middle" fill="white" font-family="Fraunces" font-size="16" font-weight="600">UI / E2E</text>
+      <text x="200" y="75" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="12">10%</text>
+      <polygon points="120,90 280,90 320,180 80,180" fill="url(#grad2)" stroke="#fff" stroke-width="2"/>
+      <text x="200" y="125" text-anchor="middle" fill="white" font-family="Fraunces" font-size="18" font-weight="600">API / Integration</text>
+      <text x="200" y="150" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="14">20%</text>
+      <polygon points="80,180 320,180 360,290 40,290" fill="url(#grad3)" stroke="#fff" stroke-width="2"/>
+      <text x="200" y="225" text-anchor="middle" fill="white" font-family="Fraunces" font-size="22" font-weight="600">Unit Tests</text>
+      <text x="200" y="255" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="16">70%</text>
+      <line x1="380" y1="30" x2="380" y2="290" stroke="#999" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="395" y="60" font-family="JetBrains Mono" font-size="11" fill="#666">Sekin</text>
+      <text x="395" y="270" font-family="JetBrains Mono" font-size="11" fill="#666">Tez</text>
+      <text x="395" y="160" font-family="JetBrains Mono" font-size="11" fill="#666">↕</text>
+      <line x1="20" y1="30" x2="20" y2="290" stroke="#999" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="0" y="60" font-family="JetBrains Mono" font-size="11" fill="#666">Kam</text>
+      <text x="0" y="270" font-family="JetBrains Mono" font-size="11" fill="#666">Ko'p</text>
+    </svg>
+    <div class="pyramid-legend">
+      <div class="pyramid-legend-item">
+        <div class="pyramid-legend-color" style="background:#F44336"></div>
+        <div class="pyramid-legend-name">UI / E2E (10%)</div>
+        <div class="pyramid-legend-desc">Selenium, Playwright. Sekin va qimmat. Faqat critical yo'llar.</div>
+      </div>
+      <div class="pyramid-legend-item">
+        <div class="pyramid-legend-color" style="background:#FFA726"></div>
+        <div class="pyramid-legend-name">API (20%)</div>
+        <div class="pyramid-legend-desc">Postman, Newman. O'rta tez. Backend funksiyalari.</div>
+      </div>
+      <div class="pyramid-legend-item">
+        <div class="pyramid-legend-color" style="background:#43A047"></div>
+        <div class="pyramid-legend-name">Unit (70%)</div>
+        <div class="pyramid-legend-desc">JUnit, Jest, PyTest. Juda tez. Dasturchi yozadi.</div>
+      </div>
+    </div>
+  </div>
+  <div class="example-box">
+    <div class="example-box-title">Nega bunday tartib?</div>
+    <ul style="margin:0">
+      <li><strong>Unit tests</strong> — eng tez (millisekund). Kichik bo'laklarni tekshiradi. Dasturchi yozadi.</li>
+      <li><strong>API tests</strong> — o'rta tez (sekund). Backend funksiyalarini tekshiradi. QA yoki Auto QA yozadi.</li>
+      <li><strong>UI tests</strong> — eng sekin (daqiqa). Foydalanuvchi yo'lini tekshiradi. Auto QA yozadi.</li>
+    </ul>
+    <p style="margin-top:8px;margin-bottom:0">Ko'p Unit + bir oz API + kam UI = <strong>tez va ishonchli</strong> automation!</p>
+  </div>
+</section>
+<div class="dnd-game" id="pyramidGame">
+  <div class="quiz-label">🎯 Tartibga qo'ying</div>
+  <h3 style="margin-top:8px">Test Pyramid darajalarini tartibga qo'ying</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Pastdagi qadamni bosing. <strong>2-qadam:</strong> To'g'ri darajani tanlang.</p>
+  <div class="dnd-hint" id="pyramidHint">👆 Endi yuqoridagi joylardan birini tanlang</div>
+  <div class="dnd-pairs">
+    <div class="dnd-pair"><div class="dnd-pair-label">🔼 Yuqori (10%)</div><div class="dnd-slot" data-level="ui">Darajani qo'ying</div></div>
+    <div class="dnd-pair"><div class="dnd-pair-label">⬆️ O'rta (20%)</div><div class="dnd-slot" data-level="api">Darajani qo'ying</div></div>
+    <div class="dnd-pair"><div class="dnd-pair-label">⬇️ Past (70%)</div><div class="dnd-slot" data-level="unit">Darajani qo'ying</div></div>
+  </div>
+  <div class="dnd-items-pool" id="pyramidPool">
+    <div class="dnd-item" data-level="api">📡 API tests (Postman)</div>
+    <div class="dnd-item" data-level="ui">🌐 UI/E2E tests (Selenium)</div>
+    <div class="dnd-item" data-level="unit">🧩 Unit tests (Jest)</div>
+  </div>
+  <div class="dnd-score" id="pyramidScore">0 / 3 to'g'ri</div>
+</div>
+<section class="section" id="selectors">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">Birinchi automation skripti</h2>
+  <p class="section-intro">Automation skripti yozish uchun avval <strong>elementlarni topish</strong> kerak. Sayt brauzer'da ko'rinadi, lekin kompyuter elementlarni qanday topadi?</p>
+  <div class="term-box">
+    <div class="term-box-title">Element nima?</div>
+    <p><strong>HTML element</strong> — sahifadagi har narsa: tugma, input, link, rasm. Har birining <strong>id</strong>, <strong>class</strong> yoki <strong>name</strong> bo'lishi mumkin.</p>
+    <p><em>Misol:</em> Login tugmasi: <code>&lt;button id="login-btn"&gt;Kirish&lt;/button&gt;</code></p>
+  </div>
+  <h3>Element topishning 3 yo'li</h3>
+  <h4>1. CSS Selector (eng mashhur)</h4>
+  <div class="code-block">
+<span class="comment">// ID bo'yicha (eng aniq)</span>
+<span class="var">#login-btn</span>     <span class="comment">// id="login-btn" elementni topadi</span>
+
+<span class="comment">// Class bo'yicha</span>
+<span class="var">.btn-primary</span>   <span class="comment">// class="btn-primary" elementni topadi</span>
+
+<span class="comment">// Tag bo'yicha</span>
+<span class="var">button</span>         <span class="comment">// barcha &lt;button&gt; elementlar</span>
+
+<span class="comment">// Aralash</span>
+<span class="var">button.btn-primary</span>  <span class="comment">// button + class</span>
+  </div>
+  <h4>2. XPath (kuchli, lekin sekin)</h4>
+  <div class="code-block">
+<span class="comment">// Matn bo'yicha izlash</span>
+<span class="var">//button[text()="Kirish"]</span>
+
+<span class="comment">// Attribute bo'yicha</span>
+<span class="var">//input[@name="email"]</span>
+
+<span class="comment">// Bola element</span>
+<span class="var">//div[@id="form"]/button</span>
+  </div>
+  <h4>3. Boshqa usullar</h4>
+  <ul>
+    <li><strong>By ID</strong> — eng tez va aniq</li>
+    <li><strong>By Name</strong> — input maydonlar uchun</li>
+    <li><strong>By Link Text</strong> — link'lar uchun</li>
+  </ul>
+  <div class="example-box">
+    <div class="example-box-title">Selenium misoli (Python)</div>
+    <div class="code-block">
+<span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+
+driver = webdriver.<span class="func">Chrome</span>()
+driver.<span class="func">get</span>(<span class="string">"https://testshop.uz/login"</span>)
+
+<span class="comment"># Email maydoni topib, ma'lumot kiritish</span>
+email = driver.<span class="func">find_element_by_id</span>(<span class="string">"email"</span>)
+email.<span class="func">send_keys</span>(<span class="string">"test@example.com"</span>)
+
+<span class="comment"># Login tugmasini bosish</span>
+login_btn = driver.<span class="func">find_element_by_css_selector</span>(<span class="string">".btn-login"</span>)
+login_btn.<span class="func">click</span>()
+
+driver.<span class="func">quit</span>()
+    </div>
+    <p style="margin-top:8px;margin-bottom:0">Bu skript: brauzer ochadi, login sahifasi, email kiritadi, tugma bosadi.</p>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Selenium IDE (kodsiz)</div>
+    <p>JavaScript yoki Python bilmaslik xavotir solmasin. <strong>Selenium IDE</strong> brauzer extension - siz harakat qilasiz, u o'zi kod yozadi! Boshlovchilar uchun ideal.</p>
+  </div>
+</section>
+<div class="selector-builder">
+  <div class="quiz-label">🎯 Selector Builder</div>
+  <h3 style="margin-top:8px">To'g'ri selectorni tanlang</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">Quyidagi HTML elementni qaysi selector bilan topish mumkin?</p>
+  <div class="selector-mock-html">
+&lt;<span class="tag">button</span> <span class="attr">id</span>=<span class="val">"submit-btn"</span> <span class="attr">class</span>=<span class="val">"btn btn-primary"</span> <span class="attr">name</span>=<span class="val">"submit"</span>&gt;
+  Yuborish
+&lt;/<span class="tag">button</span>&gt;
+  </div>
+  <p style="font-size:14px;color:var(--ink-soft);margin-top:16px"><strong>Savol:</strong> Eng yaxshi (eng aniq, eng tez) selector qaysi?</p>
+  <div class="selector-options" id="selectorOptions">
+    <div class="selector-option" data-correct="true">
+      <span class="selector-option-code">#submit-btn</span>
+      <span class="selector-option-type">CSS - ID</span>
+    </div>
+    <div class="selector-option" data-correct="false">
+      <span class="selector-option-code">.btn.btn-primary</span>
+      <span class="selector-option-type">CSS - Class</span>
+    </div>
+    <div class="selector-option" data-correct="false">
+      <span class="selector-option-code">button</span>
+      <span class="selector-option-type">CSS - Tag</span>
+    </div>
+    <div class="selector-option" data-correct="false">
+      <span class="selector-option-code">//button[text()="Yuborish"]</span>
+      <span class="selector-option-type">XPath - Text</span>
+    </div>
+  </div>
+  <div class="selector-feedback" id="selectorFeedback"></div>
+</div>
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Click loyihasida 1-automation skript</div>
+  <div class="scenario-story">
+    <p><strong>Dushanba, 10:00.</strong> Click QA Lead sizga keldi: "Login funksiyasi har release oldidan 50 marta tekshiriladi. Manual'da har test 5 daqiqa - jami 250 daqiqa (4+ soat). <strong>Automate qilib bera olasizmi?</strong>"</p>
+    <p>Sizdagi vaqt: 1 hafta. JavaScript va Python yo'q.</p>
+    <p>Birinchi nima qilasiz?</p>
+  </div>
+  <div class="scenario-question">Eng to'g'ri yondashuv?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>"Hozircha automation qila olmayman, manualda qoldiramiz" - voz kechaman</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Selenium IDE'ni o'rnatib, "Record" tugmasini bosib login yo'lini yozib olaman. Kod yozish kerak emas. Skript saqlayman, har release'da "Play" bosaman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>3 oy Python o'rganaman, keyin Selenium WebDriver bilan boshlamoqchiman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">500 ta yangi mahsulot saytga qo'shildi. Har biri uchun "Savatga qo'shish" testi kerak. Manual yoki Auto?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Manual - har birini qo'lda tekshiraman, 500 × 2 daqiqa = 16+ soat</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Automation - 1 ta skript yozib, 500 ta mahsulotni o'tkazaman. 30 daqiqada bajariladi</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Test qilmayman, dasturchi to'g'ri qilgan deb ishonaman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">Boshlovchilar uchun 1-skript</h2>
+  <p class="section-intro">Selenium IDE bilan birinchi automation skriptingizni yarating. <strong>Kod yozish kerak emas!</strong></p>
+  <div style="background:linear-gradient(135deg,#43B02A 0%,#2E7D1F 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🌐</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Selenium IDE Bepul</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">Chrome yoki Firefox extension. Kodsiz - record va play.</p>
+    <a href="https://www.selenium.dev/selenium-ide/" target="_blank" style="display:inline-block;background:white;color:#43B02A;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">🚀 Selenium IDE</a>
+  </div>
+  <h3>Sizning vazifalaringiz:</h3>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#43B02A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Selenium IDE o'rnatish</div>
+        <div style="color:#4A4A4A;font-size:14px">Chrome Web Store yoki Firefox Add-ons'dan "Selenium IDE" extension'ini o'rnating. 1 daqiqa.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">TestShop Login skript yarating</div>
+        <div style="color:#4A4A4A;font-size:14px">Selenium IDE'ni oching → "New Project" → URL: TestShop. <strong>Record</strong> bosing → Login qiling → <strong>Stop</strong>. Endi <strong>Play</strong> bosib, qayta-qayta bajaring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">3 ta skript yarating va saqlang</div>
+        <div style="color:#4A4A4A;font-size:14px">Login skripti, Mahsulot ko'rish skripti, Savatga qo'shish skripti. Hammasini <strong>.side</strong> faylga export qiling.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
+    <p style="margin:0;color:#4A4A4A;font-size:15px"><strong>3 ta Selenium skripti</strong> + ekran yozuvi (gif yoki video) — Junior portfolioda zo'r dalil. Intervyu'da: "Mana mening 1-automation skriptlarim" — deb ko'rsatasiz!</p>
+  </div>
+</section>
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">Automation haqida intervyu'da albatta so'raladi. 7 ta professional javob.</p>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Test automation nima va nega kerak?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Test automation — testlarni kompyuterga bajartiring. Bir marta yozasiz, kompyuter har gal o'zi bajaradi."</p>
+        <p><strong>Sabablari:</strong></p>
+        <ul>
+          <li>Tezlik (500 test 30 daqiqada vs 3 kun)</li>
+          <li>Aniqlik (kompyuter charchamaydi)</li>
+          <li>Takrorlash (har release'da qayta)</li>
+          <li>Tunda ham ishlaydi</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Automation Manual'ni almashtirmaydi - to'ldiradi. Yangi feature avval manual, keyin auto."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>Qachon automation kerak emas?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Automation hamma narsani test qilmaydi. Quyidagi holatlarda manual qoladi:"</p>
+        <ul>
+          <li><strong>Yangi feature</strong> — UI tez-tez o'zgaradi, skript yangilash kerak bo'ladi</li>
+          <li><strong>UX testing</strong> — chiroyli ko'rinishini, hissiyotni baholash</li>
+          <li><strong>Exploratory</strong> — yangi yo'llarni topish</li>
+          <li><strong>Bir martalik</strong> — agar test 1-2 marta ishlaydi, automation qilish ortiqcha</li>
+          <li><strong>Captcha, OTP</strong> — texnik cheklov</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Test Pyramid qanday tuzilgan?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Test Pyramid — automation testlar strategiyasi:"</p>
+        <ul>
+          <li><strong>Unit (70%)</strong> — eng tez, dasturchi yozadi (JUnit, Jest, PyTest)</li>
+          <li><strong>API (20%)</strong> — o'rta tez, QA yoki Auto QA (Postman, REST Assured)</li>
+          <li><strong>UI/E2E (10%)</strong> — eng sekin, faqat critical (Selenium, Playwright)</li>
+        </ul>
+        <p><strong>Nega bunday?</strong> Ko'p kichik testlar tez ishlaydi va buglarni tezroq topadi. UI testlar qimmat va sekin.</p>
+        <p><strong>Anti-pattern:</strong> "Ice Cream Cone" — ko'p UI, kam Unit. Bu xato.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Selenium va Playwright farqi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong></p>
+        <ul>
+          <li><strong>Selenium</strong> — 2004 yil, eski va eng mashhur. Java, Python, JS, C# - hammasi. WebDriver protokol.</li>
+          <li><strong>Playwright</strong> — 2020 yil, Microsoft. Tezroq, ishonchli, auto-wait. JavaScript, Python.</li>
+        </ul>
+        <p><strong>Qaysisini tanlash?</strong></p>
+        <ul>
+          <li>Eski loyiha + Java/Python jamoasi → Selenium</li>
+          <li>Yangi loyiha + JS jamoasi → Playwright</li>
+          <li>Mobil → Appium (Selenium asosida)</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Men ikkalasini ham bilaman. Yangi loyihada Playwright tavsiya qilaman - tezroq va kam flaky test."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>Element topish usullari (Locators)?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Selenium'da 8 ta locator bor, lekin asosan 4 tasini ishlataman:"</p>
+        <ul>
+          <li><strong>By ID</strong> — eng tez, eng aniq. <code>#login-btn</code></li>
+          <li><strong>By Name</strong> — input maydonlar uchun</li>
+          <li><strong>By CSS Selector</strong> — universal va tez. <code>.btn-primary</code></li>
+          <li><strong>By XPath</strong> — kuchli, lekin sekin. Faqat boshqa imkonsiz bo'lganda</li>
+        </ul>
+        <p><strong>Tavsiya:</strong> ID → CSS → XPath tartibida ishlatish. ID eng yaxshi, XPath oxirgi chora.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Automation ROI qanday hisoblanadi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "ROI - Return on Investment. Automation arzon emas, lekin ko'p marta takrorlansa - foyda."</p>
+        <p><strong>Formula:</strong></p>
+        <ul>
+          <li><strong>Manual:</strong> N × Manual_vaqti</li>
+          <li><strong>Auto:</strong> Skript_yozish + (N × Auto_vaqti)</li>
+          <li><strong>Foyda:</strong> Manual - Auto</li>
+        </ul>
+        <p><strong>Misol:</strong> 50 ta test, har biri 5 daqiqa manual. Skript yozish 4 soat, har test 30 sekund.</p>
+        <ul>
+          <li>Manual: 50 × 5 = 250 daqiqa (4.2 soat)</li>
+          <li>Auto: 4 soat + (50 × 0.5/60) = 4.4 soat birinchi gal</li>
+          <li>2-gal: 0.4 soat (har gal!)</li>
+          <li>10 gal: 4 soat + 4 soat = 8 soat (manual: 42 soat)</li>
+        </ul>
+        <p><strong>Xulosa:</strong> 5+ marta takrorlanadigan testlarni automation qilish foydali.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q7</span><span>Automation tajribangiz bormi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Junior javobi:</strong> "Manual'ga e'tibor beraman" - yomon javob.</p>
+        <p><strong>Yaxshi javob:</strong> "Automation o'rganayapman:"</p>
+        <ul>
+          <li><strong>Selenium IDE'da</strong> birinchi skriptlarimni yaratganman (kodsiz)</li>
+          <li><strong>Postman Tests</strong> yozaman (API uchun)</li>
+          <li><strong>Test Pyramid'ni</strong> tushunaman: Unit/API/UI strategiyasi</li>
+          <li><strong>CSS Selectors</strong> va XPath asoslarini bilaman</li>
+          <li><strong>ROI</strong> hisoblay olaman: qaysi testlarni automation qilish kerak</li>
+          <li><strong>Selenium WebDriver yoki Playwright</strong> - keyingi qadam</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "Hozir Manual+API testing'da kuchliman. Automation bilan ishlash uchun tayyorman, kompaniya yo'naltirishi bilan tezda o'rganaman."</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Manual + Auto</div>
+      <div class="summary-point-text">Automation Manual'ni almashtirmaydi. Yangi feature - manual, eski - auto. Ikkalasi birga kuch.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Test Pyramid</div>
+      <div class="summary-point-text">70% Unit, 20% API, 10% UI. Ko'p tez testlar va kam sekin testlar - eng yaxshi strategiya.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Selenium IDE - boshlash</div>
+      <div class="summary-point-text">Kodsiz, oson. Boshlovchilar uchun ideal. Keyin Selenium WebDriver yoki Playwright.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="17-postman-api.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>17-dars · Postman va API</div>
+  </a>
+  <a href="19-selenium.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi dars →</div>
+    <div>19-dars · Selenium WebDriver</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 17;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> 500 ta takrorlanuvchi test - klassik automation holati. 1 ta skript yozasiz, 500 marta ishlatasiz. Manual 16 soat - juda ko\'p vaqt. Automation 30 daqiqa - 32 marta tezroq!',
+    incorrect: '500 ta testni qo\'lda qilish - vaqt isrofi. Test qilmaslik - xavfli. To\'g\'ri yondashuv: bir marta automation skript yozib, 500 ta mahsulot uchun ishlatish.'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Bu professional yondashuv. Selenium IDE - kodsiz boshlash uchun ideal. Record/Play - 30 daqiqada birinchi skript tayyor. 4 soat ish 30 daqiqaga aylanadi. 3 oy kutish - vaqt isrofi.',
+    incorrect: 'Voz kechish - imkoniyatni qo\'ldan boy berish. 3 oy Python o\'rganib o\'tirish - juda uzoq. Selenium IDE bilan bugun boshlash mumkin: Record/Play - kod yozish kerak emas!'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+function calculateROI() {
+  const manualMin = parseInt(document.getElementById('roiManualTime').value) || 5;
+  const autoSec = parseInt(document.getElementById('roiAutoTime').value) || 30;
+  const scriptHours = parseInt(document.getElementById('roiScriptTime').value) || 2;
+  const runs = parseInt(document.getElementById('roiRuns').value) || 50;
+  
+  const manualTotal = (manualMin * runs) / 60;
+  const autoTotal = scriptHours + ((autoSec * runs) / 3600);
+  const saved = manualTotal - autoTotal;
+  const speedup = (manualTotal / autoTotal).toFixed(1);
+  
+  document.getElementById('roiManualTotal').textContent = manualTotal.toFixed(1);
+  document.getElementById('roiAutoTotal').textContent = autoTotal.toFixed(1);
+  
+  let verdict = '';
+  if (saved > 10) {
+    verdict = `🎉 <strong>Automation juda foydali!</strong> ${saved.toFixed(1)} soat tejaysiz va ${speedup}x tezroq.`;
+  } else if (saved > 0) {
+    verdict = `✅ <strong>Automation foydali.</strong> ${saved.toFixed(1)} soat tejaysiz (${speedup}x tez).`;
+  } else {
+    verdict = `⚠️ <strong>Hali automation kerak emas.</strong> Ko'proq takrorlanadigan testlar uchun ishlating.`;
+  }
+  document.getElementById('roiVerdict').innerHTML = verdict;
+  document.getElementById('roiResult').classList.add('show');
+  completedActivities.add('roi');
+  updateProgress();
+}
+
+let selectedLeft = null;
+let matchedPairs = 0;
+document.querySelectorAll('.match-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('matched')) return;
+    if (item.dataset.side === 'left') {
+      document.querySelectorAll('.match-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLeft = item;
+    } else if (item.dataset.side === 'right' && selectedLeft) {
+      if (item.dataset.pair === selectedLeft.dataset.pair) {
+        item.classList.add('matched');
+        selectedLeft.classList.add('matched');
+        selectedLeft.classList.remove('selected');
+        selectedLeft = null;
+        matchedPairs++;
+        document.getElementById('matchScore').textContent = `${matchedPairs} / 5 juft`;
+        completedActivities.add(`match-${matchedPairs}`);
+        updateProgress();
+        if (matchedPairs === 5) {
+          document.getElementById('matchScore').innerHTML = '<span class="match-complete">🏆 Asboblar!</span>';
+        }
+      } else {
+        item.classList.add('wrong');
+        selectedLeft.classList.add('wrong');
+        const wrongLeft = selectedLeft;
+        setTimeout(() => {
+          item.classList.remove('wrong');
+          wrongLeft.classList.remove('wrong', 'selected');
+        }, 600);
+        selectedLeft = null;
+      }
+    }
+  });
+});
+
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { manual: 'Manual', auto: 'Automation' };
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 6 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 6) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Tasniflandi!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+let selectedPyramidItem = null;
+let pyramidCorrect = 0;
+document.querySelectorAll('#pyramidPool .dnd-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.classList.contains('placed')) return;
+    document.querySelectorAll('#pyramidPool .dnd-item').forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+    selectedPyramidItem = item;
+    document.getElementById('pyramidHint').classList.add('show');
+    document.querySelectorAll('#pyramidGame .dnd-slot').forEach(s => {
+      if (!s.classList.contains('filled')) s.classList.add('active');
+    });
+  });
+});
+document.querySelectorAll('#pyramidGame .dnd-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if (slot.classList.contains('filled') || !selectedPyramidItem) return;
+    if (selectedPyramidItem.dataset.level === slot.dataset.level) {
+      slot.textContent = selectedPyramidItem.textContent;
+      slot.classList.add('filled', 'correct');
+      slot.classList.remove('active');
+      selectedPyramidItem.classList.add('placed');
+      pyramidCorrect++;
+      document.getElementById('pyramidScore').textContent = `${pyramidCorrect} / 3 to'g'ri`;
+      completedActivities.add(`pyramid-${pyramidCorrect}`);
+      updateProgress();
+      selectedPyramidItem = null;
+      document.getElementById('pyramidHint').classList.remove('show');
+      document.querySelectorAll('#pyramidGame .dnd-slot').forEach(s => s.classList.remove('active'));
+      if (pyramidCorrect === 3) {
+        document.getElementById('pyramidScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 Pyramid!</span>';
+      }
+    } else {
+      slot.classList.add('wrong');
+      setTimeout(() => slot.classList.remove('wrong'), 600);
+    }
+  });
+});
+
+document.querySelectorAll('#selectorOptions .selector-option').forEach(option => {
+  option.addEventListener('click', () => {
+    if (option.classList.contains('disabled')) return;
+    const allOptions = document.querySelectorAll('#selectorOptions .selector-option');
+    const isCorrect = option.dataset.correct === 'true';
+    allOptions.forEach(opt => {
+      opt.classList.add('disabled');
+      if (opt.dataset.correct === 'true') opt.classList.add('correct');
+    });
+    if (!isCorrect) option.classList.add('incorrect');
+    const feedback = document.getElementById('selectorFeedback');
+    feedback.classList.add('show');
+    feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+    feedback.innerHTML = isCorrect 
+      ? '<strong>To\'g\'ri!</strong> <code>#submit-btn</code> - ID bo\'yicha topish eng tez va aniq. ID unikal bo\'ladi, demak xato bo\'lmaydi. Class va Tag ko\'p elementga to\'g\'ri kelishi mumkin. XPath sekin.'
+      : '<strong>Yaxshi urinish!</strong> Lekin eng yaxshi javob - <code>#submit-btn</code>. ID bo\'yicha topish: 1) eng tez, 2) eng aniq (unikal), 3) eng ishonchli. Class va XPath - faqat ID yo\'q bo\'lganda ishlatiladi.';
+    completedActivities.add('selector');
+    updateProgress();
+  });
+});
+
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>
