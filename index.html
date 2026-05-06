@@ -12,9 +12,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #FBF9F4;
+  --bg: #F4F4F5;
   --bg-card: #FFFFFF;
-  --bg-soft: #F2EEE4;
+  --bg-soft: #E8E8EA;
   --ink: #1A1A1A;
   --ink-soft: #4A4A4A;
   --ink-muted: #7A7A7A;
@@ -84,7 +84,7 @@ body {
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover { color: var(--blue); text-decoration: none; }
 
 .nav-cta {
   padding: 8px 20px;
@@ -94,7 +94,7 @@ body {
   font-weight: 500;
 }
 
-.nav-cta:hover { background: var(--accent-dark); }
+.nav-cta:hover { background: var(--hover-dark, #1A4A6E); }
 
 /* === HERO === */
 .hero {
@@ -228,7 +228,7 @@ body {
 }
 
 .block-card:hover {
-  border-color: var(--line-dark);
+  border-color: var(--blue);
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
 }
@@ -276,6 +276,13 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
+.lesson-group-header { cursor: pointer; user-select: none; }
+.lesson-group-header:hover { background: var(--hover-soft, #E6EEF5); border-radius: 12px; }
+.lesson-group-toggle { margin-left: auto; font-size: 20px; color: var(--blue); transition: transform 0.3s; flex-shrink: 0; }
+.lesson-group.open .lesson-group-toggle { transform: rotate(45deg); }
+.lesson-items { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.lesson-group.open .lesson-items { max-height: 5000px; }
+.lesson-group-count { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-muted); margin-left: 10px; }
 .lesson-group-number {
   font-family: 'Fraunces', serif;
   font-size: 20px;
@@ -312,8 +319,8 @@ body {
 }
 
 .lesson-item:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  border-color: var(--blue);
+  background: var(--hover-soft, #E6EEF5);
   transform: translateX(4px);
 }
 
@@ -380,7 +387,7 @@ body {
 }
 
 .lesson-item:hover .lesson-arrow {
-  color: var(--accent);
+  color: var(--blue);
   transform: translateX(4px);
 }
 
@@ -507,7 +514,7 @@ body {
   transition: color 0.2s;
 }
 
-.footer-col a:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--blue); text-decoration: none; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -648,10 +655,10 @@ body {
     <div class="lessons-wrapper">
 
       <!-- BLOCK 1 -->
-      <div class="lesson-group">
+      <div class="lesson-group open">
         <div class="lesson-group-header">
           <div class="lesson-group-number">01</div>
-          <div class="lesson-group-title">Asoslar va metodologiya</div>
+          <div class="lesson-group-title">Asoslar va metodologiya</div><span class="lesson-group-count">7 dars</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
           <a class="lesson-item" href="lessons/01-qa-intro.html">
@@ -724,7 +731,7 @@ body {
       <div class="lesson-group">
         <div class="lesson-group-header">
           <div class="lesson-group-number">02</div>
-          <div class="lesson-group-title">Prinsiplar va test turlari</div>
+          <div class="lesson-group-title">Prinsiplar va test turlari</div><span class="lesson-group-count">6 dars</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
           <a class="lesson-item" href="lessons/08-principles.html">
@@ -788,7 +795,7 @@ body {
       <div class="lesson-group">
         <div class="lesson-group-header">
           <div class="lesson-group-number">04</div>
-          <div class="lesson-group-title">Test Design Techniques — eng muhim amaliy blok</div>
+          <div class="lesson-group-title">Test Design Techniques va amaliyot</div><span class="lesson-group-count">15 dars</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
           <a class="lesson-item" href="lessons/14-test-plan.html">
@@ -1004,6 +1011,27 @@ body {
     <div>Made with care</div>
   </div>
 </footer>
+
+
+<script>
+// Akkordion
+document.querySelectorAll('.lesson-group-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const group = header.parentElement;
+    const isOpen = group.classList.contains('open');
+    
+    // Barchasini yopamiz
+    document.querySelectorAll('.lesson-group').forEach(g => {
+      g.classList.remove('open');
+    });
+    
+    // Agar yopiq edi — ochamiz
+    if (!isOpen) {
+      group.classList.add('open');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
