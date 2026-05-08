@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bug Hunt — TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
+  --line: #E5DFD2;
+
+  --critical: #8B0000;
+  --major: #D64545;
+  --minor: #C08838;
+  --trivial: #7A7A7A;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--plum) 0%, #3D2A52 100%);
+  color: white;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: #F2D194;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+/* PROGRESS */
+.progress-container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.progress-stats strong {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #F2D194;
+}
+
+.progress-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F2D194, #F5A623);
+  width: 0%;
+  transition: width 0.5s ease;
+  border-radius: 100px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  color: var(--ink-soft);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+/* INSTRUCTIONS */
+.instructions {
+  background: var(--blue-soft);
+  border-left: 4px solid var(--blue);
+  padding: 24px 28px;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 40px;
+}
+
+.instructions h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.instructions ol { padding-left: 20px; color: var(--ink-soft); }
+.instructions li { margin-bottom: 8px; }
+
+/* PAGES GRID */
+.pages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.page-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.page-card:hover {
+  border-color: var(--plum);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -15px rgba(91, 58, 122, 0.3);
+}
+
+.page-card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--plum-soft);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.page-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.page-card-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+.page-card-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.meta-item {
+  padding: 4px 10px;
+  background: var(--bg-soft);
+  border-radius: 100px;
+  color: var(--ink-soft);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.meta-item.bugs { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+
+/* BUGS TABLE */
+.bugs-section {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.bugs-intro { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; }
+
+.bug-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.bug-item:hover {
+  border-color: var(--plum);
+  background: var(--plum-soft);
+}
+
+.bug-item.found {
+  background: var(--forest-soft);
+  border-color: var(--forest);
+}
+
+.bug-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  background: white;
+}
+
+.bug-item.found .bug-checkbox {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.bug-info { flex: 1; }
+
+.bug-title {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.bug-item.found .bug-title { text-decoration: line-through; opacity: 0.7; }
+
+.bug-location {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bug-severity {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.bug-severity.critical { background: rgba(139, 0, 0, 0.1); color: var(--critical); }
+.bug-severity.major { background: var(--accent-soft); color: var(--major); }
+.bug-severity.minor { background: var(--gold-soft); color: var(--minor); }
+.bug-severity.trivial { background: var(--bg-soft); color: var(--trivial); }
+
+/* HINT BUTTON */
+.btn-hint {
+  background: var(--plum-soft);
+  color: var(--plum);
+  border: 1px solid var(--plum);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-hint:hover { background: var(--plum); color: white; }
+
+.hint-box {
+  display: none;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.hint-box.show { display: block; }
+
+.hint-box strong { color: var(--gold); }
+
+.bug-wrapper { margin-bottom: 10px; }
+
+/* COMPLETION */
+.completion-section {
+  display: none;
+  background: linear-gradient(135deg, var(--forest) 0%, #2A4530 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 50px 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.completion-section.show { display: block; }
+
+.completion-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.completion-section p {
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+/* RESET BTN */
+.btn-reset {
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 640px) {
+  .hero { padding: 40px 20px; }
+  .container { margin: 40px auto; }
+  .bugs-section { padding: 24px 20px; }
+  .bug-item { flex-wrap: wrap; padding: 14px; }
+  .bug-info { min-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
+      <a href="register.html">Ro'yxat</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🎯 <em>Bug Hunt</em> — amaliy mashq</h1>
+  <p class="hero-subtitle">Bu saytda qasddan qo'yilgan bug'larni toping. Har topilgan bug uchun progress bar to'ladi. Kelib, sinab ko'ring!</p>
+
+  <div class="progress-container">
+    <div class="progress-stats">
+      <span>Topgan bug'laringiz:</span>
+      <span><strong id="foundCount">0</strong> / <strong id="totalCount">10</strong></span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTAINER -->
+<div class="container">
+
+  <!-- INSTRUCTIONS -->
+  <div class="instructions">
+    <h3>📖 Qanday ishlashingiz kerak?</h3>
+    <ol>
+      <li><strong>Sahifalarni ko'rib chiqing</strong> — Mahsulotlar, Kirish va Ro'yxatdan o'tish sahifalarini siniqona sinab ko'ring</li>
+      <li><strong>Bug'larni qidiring</strong> — bu saytda 10 ta qasddan qo'yilgan bug bor, ularni toping</li>
+      <li><strong>Ro'yxatda belgilang</strong> — topilgan bug'ni quyidagi ro'yxatdan topib, bosing</li>
+      <li><strong>Shoshilmang</strong> — har bugning severity darajasi ko'rsatilgan, har xil joylarda qarang</li>
+      <li><strong>Hint kerak bo'lsa</strong> — "Ko'rsatma" tugmasini bosing (lekin avval o'zingiz urinib ko'ring!)</li>
+    </ol>
+  </div>
+
+  <!-- PAGES -->
+  <h2 class="section-title">Testlash uchun sahifalar</h2>
+  <p class="section-subtitle">Har sahifada bir nechta bug mavjud. Har joyga boring, har tugmani bosing, har formani to'ldiring.</p>
+
+  <div class="pages-grid">
+    <a href="index.html" class="page-card">
+      <div class="page-card-icon">🛒</div>
+      <div class="page-card-title">Bosh sahifa</div>
+      <div class="page-card-desc">Mahsulotlar ro'yxati, kategoriyalar, savat</div>
+      <div class="page-card-meta">
+        <span class="meta-item">8 mahsulot</span>
+        <span class="meta-item bugs">4 ta bug</span>
+      </div>
+    </a>
+
+    <a href="register.html" class="page-card">
+      <div class="page-card-icon">📝</div>
+      <div class="page-card-title">Ro'yxatdan o'tish</div>
+      <div class="page-card-desc">Yangi akkount yaratish formasi</div>
+      <div class="page-card-meta">
+        <span class="meta-item">6 ta maydon</span>
+        <span class="meta-item bugs">3 ta bug</span>
+      </div>
+    </a>
+
+    <a href="login.html" class="page-card">
+      <div class="page-card-icon">🔐</div>
+      <div class="page-card-title">Kirish</div>
+      <div class="page-card-desc">Login va parol kiritish sahifasi</div>
+      <div class="page-card-meta">
+        <span class="meta-item">Login formasi</span>
+        <span class="meta-item bugs">3 ta bug</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- COMPLETION MESSAGE -->
+  <div class="completion-section" id="completionSection">
+    <h2>🏆 Ajoyib! Siz haqiqiy testor!</h2>
+    <p>Barcha 10 ta bug'ni topdingiz. Bu sizning QA qobiliyatlaringizni ko'rsatadi.</p>
+    <p>Endi har bug uchun professional bug report yozishga o'ting (27-darsda ko'ramiz).</p>
+  </div>
+
+  <!-- BUGS LIST -->
+  <div class="bugs-section">
+    <h2 class="section-title">🐛 Topish kerak bo'lgan bug'lar</h2>
+    <p class="bugs-intro">Quyidagi ro'yxatda 10 ta bug bor. Har birini topib, bosing — progress bar to'ladi. Hint kerak bo'lsa, tugmani bosing.</p>
+
+    <!-- BUG 1 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 1)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Bosh sahifada manfiy narxli mahsulot bor</div>
+          <div class="bug-location">📍 index.html → mahsulotlar ro'yxati</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(1)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint1">
+        <strong>Ko'rsatma:</strong> Mahsulotlar ro'yxatini diqqat bilan ko'ring. Narxlarga e'tibor bering — kimdir minus narxda sotayaptimi?
+      </div>
+    </div>
+
+    <!-- BUG 2 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 2)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Narxi 0 so'm bo'lgan mahsulot qo'shish mumkin</div>
+          <div class="bug-location">📍 index.html → PlayStation 5</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(2)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint2">
+        <strong>Ko'rsatma:</strong> Mahsulotlarni diqqat bilan tekshiring — hamma narxlar mantiqiy ko'rinyaptimi?
+      </div>
+    </div>
+
+    <!-- BUG 3 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 3)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Mahsulot rasmi yuklanmagan (broken image)</div>
+          <div class="bug-location">📍 index.html → Samsung Galaxy S24</div>
+        </div>
+        <span class="bug-severity minor">Minor</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(3)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint3">
+        <strong>Ko'rsatma:</strong> Mahsulotlardan birining rasmi o'rniga "Rasm yuklanmadi" xabari bor.
+      </div>
+    </div>
+
+    <!-- BUG 4 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 4)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">iPad Pro "Savatga qo'shish" tugmasi ishlamaydi</div>
+          <div class="bug-location">📍 index.html → iPad Pro 12.9"</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(4)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint4">
+        <strong>Ko'rsatma:</strong> Har mahsulotning "Savatga qo'shish" tugmasini bosing va savatni tekshiring. Kim ishlayapti, kim yo'q?
+      </div>
+    </div>
+
+    <!-- BUG 5 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 5)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Ro'yxatdan o'tishda bo'sh maydonlar qabul qilinadi</div>
+          <div class="bug-location">📍 register.html → forma validatsiyasi</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(5)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint5">
+        <strong>Ko'rsatma:</strong> Ro'yxatdan o'tish sahifasiga boring, hech narsa kiritmay "Ro'yxatdan o'tish" tugmasini bosing.
+      </div>
+    </div>
+
+    <!-- BUG 6 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 6)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Email va "Email qayta kiriting" mos kelmasa ham qabul qiladi</div>
+          <div class="bug-location">📍 register.html → email maydonlari</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(6)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint6">
+        <strong>Ko'rsatma:</strong> Ro'yxat formasida email'ni ikki marta kiritish kerak. Ikki xil email yozing va yuboring — nima bo'ladi?
+      </div>
+    </div>
+
+    <!-- BUG 7 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 7)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Kelajakdagi tug'ilgan sana qabul qilinadi (2050-yil)</div>
+          <div class="bug-location">📍 register.html → tug'ilgan sana</div>
+        </div>
+        <span class="bug-severity minor">Minor</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(7)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint7">
+        <strong>Ko'rsatma:</strong> Tug'ilgan sana maydoniga 2050-yilni kiriting. Boundary Value testing.
+      </div>
+    </div>
+
+    <!-- BUG 8 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 8)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Login sahifasida SQL injection ishlaydi</div>
+          <div class="bug-location">📍 login.html → login maydoni</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(8)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint8">
+        <strong>Ko'rsatma:</strong> Login maydoniga <code>' OR 1=1 --</code> yozib ko'ring. Bu mashhur SQL injection urinishi.
+      </div>
+    </div>
+
+    <!-- BUG 9 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 9)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Error xabarlari inglizcha (qolgan sayt o'zbekcha)</div>
+          <div class="bug-location">📍 login.html → xato xabarlari</div>
+        </div>
+        <span class="bug-severity trivial">Trivial</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(9)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint9">
+        <strong>Ko'rsatma:</strong> Login sahifasida bo'sh formani yuboring va chiqgan xato matnini o'qing.
+      </div>
+    </div>
+
+    <!-- BUG 10 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 10)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">"Parolni unutdim" tugmasi ishlamaydi</div>
+          <div class="bug-location">📍 login.html → parolni tiklash</div>
+        </div>
+        <span class="bug-severity minor">Minor</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(10)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint10">
+        <strong>Ko'rsatma:</strong> Login sahifasida parol maydoni ostida "Parolni unutdingizmi?" havolasi bor. Uni bosing va nima bo'lishini kuzating.
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:30px">
+      <button class="btn-reset" onclick="resetProgress()">Progressni tozalash</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let foundBugs = new Set();
+const TOTAL_BUGS = 10;
+
+function toggleBug(element, bugId) {
+  if (foundBugs.has(bugId)) {
+    foundBugs.delete(bugId);
+    element.classList.remove('found');
+  } else {
+    foundBugs.add(bugId);
+    element.classList.add('found');
+  }
+  updateProgress();
+}
+
+function toggleHint(bugId) {
+  const hint = document.getElementById('hint' + bugId);
+  hint.classList.toggle('show');
+}
+
+function updateProgress() {
+  const count = foundBugs.size;
+  const percent = (count / TOTAL_BUGS) * 100;
+
+  document.getElementById('foundCount').textContent = count;
+  document.getElementById('progressFill').style.width = percent + '%';
+
+  if (count === TOTAL_BUGS) {
+    document.getElementById('completionSection').classList.add('show');
+    document.getElementById('completionSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    document.getElementById('completionSection').classList.remove('show');
+  }
+}
+
+function resetProgress() {
+  foundBugs.clear();
+  document.querySelectorAll('.bug-item').forEach(item => item.classList.remove('found'));
+  updateProgress();
+}
+</script>
+
+</body>
+</html>

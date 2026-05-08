@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil — TestShop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F8F9FA;--bg-card:#FFF;--bg-soft:#F1F3F4;--ink:#1A1A2E;--ink-soft:#4A4A6A;--ink-muted:#9090A0;--primary:#E63946;--primary-dark:#C1121F;--primary-soft:#FDECEA;--success:#2D6A4F;--success-soft:#D8F3DC;--warning:#E65100;--warning-soft:#FFF3E0;--line:#E0E0E8}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
+nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;height:60px}
+.nav-logo{font-weight:800;font-size:20px;color:var(--primary);text-decoration:none}
+.nav-logo span{color:var(--ink)}
+.nav-links{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav-link{text-decoration:none;color:var(--ink-soft);font-size:14px;padding:6px 12px;border-radius:6px}
+.nav-link:hover{background:var(--bg-soft)}
+.container{max-width:1200px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:240px 1fr;gap:24px}
+/* Sidebar */
+.profile-sidebar{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;height:fit-content;position:sticky;top:80px}
+.avatar-block{text-align:center;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#FF7E5F);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;cursor:pointer;position:relative}
+.avatar-edit{position:absolute;bottom:0;right:0;background:white;border:2px solid var(--line);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.profile-name{font-size:17px;font-weight:700;margin-bottom:2px}
+.profile-email{font-size:13px;color:var(--ink-muted)}
+.profile-badge{display:inline-block;background:var(--success-soft);color:var(--success);padding:3px 10px;border-radius:100px;font-size:12px;font-weight:600;margin-top:6px}
+.nav-menu{display:flex;flex-direction:column;gap:4px}
+.menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:14px;transition:all .2s;color:var(--ink-soft);border:none;background:none;width:100%;text-align:left}
+.menu-item:hover{background:var(--bg-soft);color:var(--ink)}
+.menu-item.active{background:var(--primary-soft);color:var(--primary);font-weight:600}
+.menu-item-badge{margin-left:auto;background:var(--primary);color:white;border-radius:100px;padding:1px 7px;font-size:11px;font-weight:700}
+/* Content */
+.content-area{display:flex;flex-direction:column;gap:20px}
+.section-card{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;display:none}
+.section-card.active{display:block}
+.section-title{font-size:18px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.edit-btn{font-size:13px;font-weight:500;color:var(--primary);background:none;border:1px solid var(--primary);padding:5px 14px;border-radius:6px;cursor:pointer}
+/* Form */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--ink-muted);margin-bottom:5px}
+.form-input{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--primary)}
+.form-input:disabled{background:var(--bg-soft);color:var(--ink-muted);cursor:not-allowed}
+.save-btn{padding:10px 24px;background:var(--primary);color:white;border:none;border-radius:8px;cursor:pointer;font-size:15px;font-weight:600}
+.danger-zone{background:var(--primary-soft);border:1px solid #FFCDD2;border-radius:12px;padding:16px;margin-top:20px}
+.danger-title{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:8px}
+.danger-btn{padding:8px 18px;background:var(--primary);color:white;border:none;border-radius:6px;cursor:pointer;font-size:14px}
+/* Orders */
+.order-card{border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px}
+.order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.order-num{font-weight:700;font-size:15px}
+.order-date{font-size:13px;color:var(--ink-muted)}
+.order-status{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:700}
+.status-delivered{background:var(--success-soft);color:var(--success)}
+.status-shipping{background:#E3F2FD;color:#1565C0}
+.status-cancelled{background:var(--primary-soft);color:var(--primary)}
+.status-processing{background:var(--warning-soft);color:var(--warning)}
+.order-items{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.order-item-chip{background:var(--bg-soft);border-radius:8px;padding:6px 10px;font-size:13px;display:flex;align-items:center;gap:6px}
+.order-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--line);flex-wrap:wrap;gap:8px}
+.order-total{font-size:16px;font-weight:700}
+.order-actions{display:flex;gap:8px}
+.btn-sm{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--line);background:white;transition:all .2s}
+.btn-sm:hover{border-color:var(--primary);color:var(--primary)}
+.btn-sm.primary{background:var(--primary);color:white;border-color:var(--primary)}
+/* Wishlist */
+.wishlist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.wl-card{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;position:relative}
+.wl-emoji{font-size:40px;margin-bottom:8px;display:block}
+.wl-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.wl-price{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:8px}
+.wl-add-btn{width:100%;padding:7px;background:var(--primary);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500}
+.wl-remove{position:absolute;top:8px;right:8px;background:none;border:none;cursor:pointer;font-size:16px;color:var(--ink-muted)}
+/* Notifications */
+.notif-item{display:flex;gap:14px;padding:14px;border-radius:10px;margin-bottom:10px;align-items:flex-start}
+.notif-item.unread{background:var(--primary-soft)}
+.notif-icon{font-size:24px;flex-shrink:0}
+.notif-text{font-size:14px;flex:1}
+.notif-text strong{display:block;margin-bottom:2px}
+.notif-time{font-size:12px;color:var(--ink-muted);margin-top:2px}
+.notif-mark{font-size:12px;color:var(--primary);cursor:pointer;flex-shrink:0}
+/* Settings */
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info h4{font-size:15px;font-weight:500;margin-bottom:2px}
+.toggle-info p{font-size:13px;color:var(--ink-muted)}
+.toggle{width:46px;height:24px;background:var(--line);border-radius:100px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--primary)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:left .2s}
+.toggle.on::after{left:24px}
+.toast{position:fixed;bottom:24px;right:24px;background:#1A1A2E;color:white;padding:14px 20px;border-radius:12px;font-size:14px;z-index:999;display:none;align-items:center;gap:10px}
+.toast.show{display:flex}
+@media(max-width:768px){
+  .container{grid-template-columns:1fr}
+  .profile-sidebar{position:static}
+  .form-row,.wishlist-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">🏠 Bosh sahifa</a>
+      <a href="wishlist.html" class="nav-link">❤️ Sevimlilar</a>
+      <a href="checkout.html" class="nav-link">🛒 Savat</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <aside class="profile-sidebar">
+    <div class="avatar-block">
+      <div class="avatar" onclick="changeAvatar()">👤<div class="avatar-edit">✏️</div></div>
+      <div class="profile-name">Mirzobek Xaitov</div>
+      <!-- BUG: Email to'liq ko'rsatilmoqda — @gmail.com ham ko'rinib qolgan -->
+      <div class="profile-email">mirzobek@gmail.com</div>
+      <span class="profile-badge">⭐ Premium a'zo</span>
+    </div>
+    <nav class="nav-menu">
+      <button class="menu-item active" onclick="showTab('orders',this)">📦 Buyurtmalar <span class="menu-item-badge">3</span></button>
+      <button class="menu-item" onclick="showTab('profile',this)">👤 Shaxsiy ma'lumot</button>
+      <button class="menu-item" onclick="showTab('wishlist',this)">❤️ Sevimlilar <span class="menu-item-badge">4</span></button>
+      <button class="menu-item" onclick="showTab('notifications',this)">🔔 Bildirishnomalar <span class="menu-item-badge">2</span></button>
+      <button class="menu-item" onclick="showTab('settings',this)">⚙️ Sozlamalar</button>
+      <button class="menu-item" onclick="showTab('security',this)" style="margin-top:8px;color:var(--primary)">🔒 Xavfsizlik</button>
+    </nav>
+  </aside>
+
+  <div class="content-area">
+    <!-- Orders -->
+    <div class="section-card active" id="tab-orders">
+      <div class="section-title">📦 Buyurtmalarim</div>
+
+      <div class="order-card">
+        <div class="order-header">
+          <div><div class="order-num">#TS-84721</div><div class="order-date">12 May 2024</div></div>
+          <span class="order-status status-delivered">✅ Yetkazildi</span>
+        </div>
+        <div class="order-items">
+          <div class="order-item-chip">📱 iPhone 15 Pro Max × 1</div>
+          <div class="order-item-chip">🎧 AirPods Pro × 1</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">18,450,000 so'm</span>
+          <div class="order-actions">
+            <button class="btn-sm" onclick="showToast('Qayta buyurtma qilindi ✅')">Qayta buyurtma</button>
+            <button class="btn-sm" onclick="showToast('Izoh sahifasi ochildi')">Izoh qoldiring</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-card">
+        <div class="order-header">
+          <div><div class="order-num">#TS-84655</div><div class="order-date">8 May 2024</div></div>
+          <span class="order-status status-shipping">🚚 Yetkazilmoqda</span>
+        </div>
+        <div class="order-items">
+          <div class="order-item-chip">💻 MacBook Air M2 × 1</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">15,200,000 so'm</span>
+          <div class="order-actions">
+            <button class="btn-sm primary" onclick="showToast('Kuzatish: Toshkent → Chilonzor')">Kuzatish</button>
+            <!-- BUG: Bekor qilish butoni yetkazilmoqda holatida ham ishlaydi -->
+            <button class="btn-sm" onclick="cancelOrder()">Bekor qilish</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-card">
+        <div class="order-header">
+          <div><div class="order-num">#TS-84521</div>
+          <!-- BUG: Sana noto'g'ri format (yil 2019) -->
+          <div class="order-date">1 Yanvar 2019</div></div>
+          <span class="order-status status-cancelled">❌ Bekor qilindi</span>
+        </div>
+        <div class="order-items">
+          <div class="order-item-chip">🎮 PlayStation 5 × 1</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">0 so'm</span>
+          <div class="order-actions">
+            <button class="btn-sm" onclick="showToast('Qayta buyurtma qilindi ✅')">Qayta buyurtma</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="section-card" id="tab-profile">
+      <div class="section-title">
+        👤 Shaxsiy ma'lumot
+        <button class="edit-btn" onclick="toggleEdit()">✏️ Tahrirlash</button>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ism</label>
+          <input type="text" class="form-input" id="profileFirstName" value="Mirzobek" disabled>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Familiya</label>
+          <input type="text" class="form-input" id="profileLastName" value="Xaitov" disabled>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <!-- BUG: Email o'zgartirganda validatsiya yo'q -->
+          <input type="text" class="form-input" id="profileEmail" value="mirzobek@gmail.com" disabled>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon</label>
+          <!-- BUG: Telefon maydoni harflarni ham qabul qiladi -->
+          <input type="text" class="form-input" id="profilePhone" value="+998 90 123 45 67" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tug'ilgan sana</label>
+        <!-- BUG: Kelajak sanani ham qabul qiladi (2099-yil ham bo'ladi) -->
+        <input type="date" class="form-input" id="profileDob" value="1995-03-15" disabled>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Manzil</label>
+        <input type="text" class="form-input" id="profileAddress" value="Toshkent sh., Chilonzor t., 5-uy" disabled>
+      </div>
+      <button class="save-btn" id="saveProfileBtn" style="display:none" onclick="saveProfile()">Saqlash</button>
+      <div class="danger-zone" style="margin-top:24px">
+        <div class="danger-title">⚠️ Xavfli zona</div>
+        <p style="font-size:13px;color:var(--ink-muted);margin-bottom:10px">Hisobni o'chirish qaytarib bo'lmaydi</p>
+        <!-- BUG: Tasdiqlash so'ralmasdan darhol "o'chirildi" deydi -->
+        <button class="danger-btn" onclick="deleteAccount()">Hisobni o'chirish</button>
+      </div>
+    </div>
+
+    <!-- Wishlist tab -->
+    <div class="section-card" id="tab-wishlist">
+      <div class="section-title">❤️ Sevimli mahsulotlar</div>
+      <div class="wishlist-grid">
+        <div class="wl-card">
+          <button class="wl-remove" onclick="removeWL(this)">×</button>
+          <span class="wl-emoji">📱</span>
+          <div class="wl-name">iPhone 15 Pro Max</div>
+          <div class="wl-price">18,500,000 so'm</div>
+          <button class="wl-add-btn" onclick="showToast('Savatga qo\'shildi ✅')">🛒 Savatga</button>
+        </div>
+        <div class="wl-card">
+          <button class="wl-remove" onclick="removeWL(this)">×</button>
+          <span class="wl-emoji">💻</span>
+          <div class="wl-name">MacBook Air M2</div>
+          <div class="wl-price">15,200,000 so'm</div>
+          <button class="wl-add-btn" onclick="showToast('Savatga qo\'shildi ✅')">🛒 Savatga</button>
+        </div>
+        <div class="wl-card">
+          <button class="wl-remove" onclick="removeWL(this)">×</button>
+          <span class="wl-emoji">⌚</span>
+          <div class="wl-name">Apple Watch S9</div>
+          <div class="wl-price">4,900,000 so'm</div>
+          <button class="wl-add-btn" onclick="showToast('Savatga qo\'shildi ✅')">🛒 Savatga</button>
+        </div>
+        <!-- BUG: O'chirilgan karta o'rnida bo'sh joy qoladi, sahifa qayta yuklanmaydi -->
+        <div class="wl-card">
+          <button class="wl-remove" onclick="removeWL(this)">×</button>
+          <span class="wl-emoji">🎧</span>
+          <div class="wl-name">AirPods Pro 2</div>
+          <div class="wl-price" style="color:var(--primary)">−50,000 so'm 🐛</div>
+          <button class="wl-add-btn" onclick="showToast('Savatga qo\'shildi ✅')">🛒 Savatga</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="section-card" id="tab-notifications">
+      <div class="section-title">🔔 Bildirishnomalar <button class="edit-btn" onclick="markAllRead()">Hammasini o'qildi</button></div>
+      <div class="notif-item unread">
+        <div class="notif-icon">📦</div>
+        <div class="notif-text"><strong>Buyurtmangiz yo'lda!</strong>Kuryer bugun 14:00—18:00 oralig'ida keladi<div class="notif-time">2 soat oldin</div></div>
+        <span class="notif-mark" onclick="this.parentElement.classList.remove('unread')">✓</span>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-icon">🎉</div>
+        <div class="notif-text"><strong>Maxsus taklif!</strong>Sizga 20% chegirma: PROMO20 kodi bilan<div class="notif-time">5 soat oldin</div></div>
+        <span class="notif-mark" onclick="this.parentElement.classList.remove('unread')">✓</span>
+      </div>
+      <div class="notif-item">
+        <div class="notif-icon">✅</div>
+        <div class="notif-text"><strong>Buyurtma yetkazildi</strong>#TS-84721 muvaffaqiyatli yetkazildi<div class="notif-time">3 kun oldin</div></div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="section-card" id="tab-settings">
+      <div class="section-title">⚙️ Sozlamalar</div>
+      <div class="toggle-row"><div class="toggle-info"><h4>📧 Email bildirishnomalari</h4><p>Buyurtma va aksiyalar haqida</p></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><h4>📱 SMS bildirishnomalari</h4><p>Buyurtma holati</p></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><h4>🔔 Push bildirishnomalari</h4><p>Chegirma va yangi mahsulotlar</p></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      <!-- BUG: Til o'zgartirganda sahifa o'zgarmaydi -->
+      <div class="toggle-row"><div class="toggle-info"><h4>🌐 Til</h4><p>O'zbek (Lotin)</p></div><select style="border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:13px"><option>O'zbek</option><option>Русский</option><option>English</option></select></div>
+      <div class="toggle-row"><div class="toggle-info"><h4>💰 Valyuta</h4><p>So'm (UZS)</p></div><select style="border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:13px"><option>So'm (UZS)</option><option>USD $</option><option>EUR €</option></select></div>
+    </div>
+
+    <!-- Security -->
+    <div class="section-card" id="tab-security">
+      <div class="section-title">🔒 Xavfsizlik</div>
+      <div class="form-group">
+        <label class="form-label">Joriy parol</label>
+        <input type="password" class="form-input" id="oldPass" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Yangi parol</label>
+        <!-- BUG: Parol kuchi tekshirilmaydi — 1 ta belgi ham qabul qilinadi -->
+        <input type="password" class="form-input" id="newPass" placeholder="Kamida 8 ta belgi">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Yangi parolni tasdiqlang</label>
+        <input type="password" class="form-input" id="confPass" placeholder="••••••••">
+      </div>
+      <button class="save-btn" onclick="changePassword()">Parolni o'zgartirish</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showTab(tab, btn) {
+  document.querySelectorAll('.section-card').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+let isEditing = false;
+function toggleEdit() {
+  isEditing = !isEditing;
+  ['profileFirstName','profileLastName','profileEmail','profilePhone','profileDob','profileAddress'].forEach(id => {
+    document.getElementById(id).disabled = !isEditing;
+  });
+  document.getElementById('saveProfileBtn').style.display = isEditing ? 'block' : 'none';
+}
+
+function saveProfile() {
+  // BUG: Validatsiya yo'q — email bo'sh bo'lsa ham saqlanadi
+  showToast('✅ Ma\'lumotlar saqlandi (validatsiya yo\'q 🐛)');
+  toggleEdit();
+}
+
+function cancelOrder() {
+  // BUG: Yetkazilmoqda holatidagi buyurtmani ham bekor qilish mumkin
+  showToast('Buyurtma bekor qilindi (holat tekshirilmadi 🐛)');
+}
+
+function deleteAccount() {
+  // BUG: Tasdiqlash so'ralmasdan o'chirildi deydi
+  showToast('⚠️ Hisob o\'chirildi (tasdiqlash yo\'q edi 🐛)');
+}
+
+function removeWL(btn) {
+  // BUG: Faqat karta yashiriladi, grid bo'sh joy qoladi
+  btn.parentElement.style.visibility = 'hidden';
+  showToast('Sevimlilardan olib tashlandi');
+}
+
+function changePassword() {
+  const newPass = document.getElementById('newPass').value;
+  const confPass = document.getElementById('confPass').value;
+  // BUG: Parol kuchi tekshirilmaydi
+  if(newPass !== confPass) { showToast('❌ Parollar mos kelmaydi'); return; }
+  showToast('✅ Parol o\'zgartirildi (kuch tekshirilmadi 🐛)');
+}
+
+function markAllRead() {
+  document.querySelectorAll('.notif-item').forEach(n => n.classList.remove('unread'));
+  showToast('Barcha bildirishnomalar o\'qildi');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>

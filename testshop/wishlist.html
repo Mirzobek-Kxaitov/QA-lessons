@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevimlilar — TestShop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F8F9FA;--bg-card:#FFF;--bg-soft:#F1F3F4;--ink:#1A1A2E;--ink-soft:#4A4A6A;--ink-muted:#9090A0;--primary:#E63946;--primary-dark:#C1121F;--primary-soft:#FDECEA;--success:#2D6A4F;--success-soft:#D8F3DC;--line:#E0E0E8}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
+nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;height:60px}
+.nav-logo{font-weight:800;font-size:20px;color:var(--primary);text-decoration:none}
+.nav-logo span{color:var(--ink)}
+.nav-links{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav-link{text-decoration:none;color:var(--ink-soft);font-size:14px;padding:6px 12px;border-radius:6px}
+.nav-link:hover{background:var(--bg-soft)}
+.nav-cart-btn{background:var(--primary);color:white;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500}
+.container{max-width:1200px;margin:24px auto;padding:0 20px}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.page-title{font-size:26px;font-weight:800}
+.page-subtitle{color:var(--ink-muted);font-size:15px;margin-top:2px}
+.header-actions{display:flex;gap:10px}
+.btn{padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s}
+.btn-primary{background:var(--primary);color:white}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-secondary{background:white;border:2px solid var(--line);color:var(--ink)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.sort-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.sort-label{font-size:14px;color:var(--ink-muted)}
+.sort-options{display:flex;gap:8px;flex-wrap:wrap}
+.sort-opt{padding:6px 14px;border:2px solid var(--line);border-radius:100px;font-size:13px;cursor:pointer;background:white;transition:all .2s}
+.sort-opt.active,.sort-opt:hover{border-color:var(--primary);color:var(--primary)}
+.wishlist-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.wl-card{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;transition:all .2s}
+.wl-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.wl-card.out-stock{opacity:.7}
+.wl-badge{position:absolute;top:12px;left:12px;background:var(--primary);color:white;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700}
+.wl-remove-btn{position:absolute;top:10px;right:10px;background:white;border:1px solid var(--line);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
+.wl-remove-btn:hover{border-color:var(--primary);color:var(--primary)}
+.wl-emoji{font-size:48px;text-align:center;padding:12px 0;display:block}
+.wl-name{font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.3}
+.wl-rating{color:#F4A261;font-size:12px;margin-bottom:6px}
+.wl-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.wl-price{font-size:16px;font-weight:700;color:var(--primary)}
+.wl-old-price{font-size:12px;color:var(--ink-muted);text-decoration:line-through}
+.wl-stock{font-size:12px;font-weight:600;margin-bottom:10px}
+.stock-ok{color:var(--success)}
+.stock-no{color:var(--primary)}
+.wl-add-btn{width:100%;padding:9px;background:var(--primary);color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.wl-add-btn:hover{background:var(--primary-dark)}
+.wl-add-btn:disabled{background:var(--ink-muted);cursor:not-allowed}
+.wl-added{width:100%;padding:9px;background:var(--success);color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600}
+.empty-state{text-align:center;padding:80px 20px}
+.empty-emoji{font-size:80px;margin-bottom:20px}
+.empty-title{font-size:22px;font-weight:700;margin-bottom:10px}
+.empty-text{font-size:15px;color:var(--ink-muted);margin-bottom:24px}
+.toast{position:fixed;bottom:24px;right:24px;background:#1A1A2E;color:white;padding:14px 20px;border-radius:12px;font-size:14px;z-index:999;display:none;align-items:center;gap:10px}
+.toast.show{display:flex}
+.share-bar{background:white;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.share-text{font-size:14px;color:var(--ink-soft);flex:1}
+.share-btn{padding:7px 14px;border-radius:6px;border:1px solid var(--line);background:white;cursor:pointer;font-size:13px;transition:all .2s}
+.share-btn:hover{border-color:var(--primary);color:var(--primary)}
+@media(max-width:900px){.wishlist-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.wishlist-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">🏠</a>
+      <a href="search.html" class="nav-link">🔍</a>
+      <a href="profile.html" class="nav-link">👤</a>
+      <button class="nav-cart-btn" onclick="location.href='checkout.html'">🛒 Savat</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">❤️ Sevimlilar</h1>
+      <p class="page-subtitle" id="wlCount">4 ta mahsulot saqlangan</p>
+    </div>
+    <div class="header-actions">
+      <!-- BUG: Hammasini savatga qo'shish manfiy narxli mahsulotni ham qo'shadi -->
+      <button class="btn btn-secondary" onclick="addAll()">🛒 Hammasini savatga</button>
+      <!-- BUG: Hammasini o'chirish so'ralomasdan o'chiradi -->
+      <button class="btn btn-secondary" onclick="clearAll()">🗑️ Tozalash</button>
+    </div>
+  </div>
+
+  <div class="share-bar">
+    <span class="share-text">💡 Sevimlilar ro'yxatingizni do'stlaringiz bilan ulashing</span>
+    <!-- BUG: URL kopyalanadi lekin link ishlaydi faqat o'z kompyuterida -->
+    <button class="share-btn" onclick="copyLink()">🔗 Havola nusxalash</button>
+    <button class="share-btn" onclick="showToast('Telegram\'ga yuborildi')">✈️ Telegram</button>
+  </div>
+
+  <div class="sort-bar">
+    <span class="sort-label">Saralash:</span>
+    <div class="sort-options">
+      <button class="sort-opt active" onclick="sortWL('default',this)">Standart</button>
+      <button class="sort-opt" onclick="sortWL('price-asc',this)">Narx ↑</button>
+      <button class="sort-opt" onclick="sortWL('price-desc',this)">Narx ↓</button>
+      <button class="sort-opt" onclick="sortWL('name',this)">Nom A-Z</button>
+    </div>
+  </div>
+
+  <div class="wishlist-grid" id="wishlistGrid"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let items = [
+  {id:1,emoji:'📱',name:'iPhone 15 Pro Max 256GB',price:18500000,oldPrice:21700000,rating:4.9,reviews:1234,inStock:true,badge:'−15%',inCart:false},
+  {id:2,emoji:'💻',name:'MacBook Air M2',price:15200000,oldPrice:null,rating:4.7,reviews:856,inStock:true,badge:null,inCart:false},
+  {id:3,emoji:'⌚',name:'Apple Watch Series 9',price:4900000,oldPrice:5800000,rating:4.9,reviews:567,inStock:false,badge:'Tugadi',inCart:false},
+  // BUG: Manfiy narxli mahsulot sevimlilarda
+  {id:4,emoji:'🎧',name:'AirPods Pro 2',price:-50000,oldPrice:1800000,rating:4.8,reviews:2341,inStock:true,badge:'BUG🐛',inCart:false},
+];
+
+function renderWL(list) {
+  const grid = document.getElementById('wishlistGrid');
+  if(list.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-emoji">💔</div><h3 class="empty-title">Sevimlilar bo'sh</h3><p class="empty-text">Yoqqan mahsulotlarni sevimlilarga qo'shing</p><button class="btn btn-primary" onclick="location.href='index.html'">Mahsulotlarga o'tish</button></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(item => `
+    <div class="wl-card ${!item.inStock?'out-stock':''}" id="card${item.id}">
+      ${item.badge ? `<span class="wl-badge">${item.badge}</span>` : ''}
+      <button class="wl-remove-btn" onclick="removeItem(${item.id})" title="Olib tashlash">×</button>
+      <span class="wl-emoji">${item.emoji}</span>
+      <div class="wl-name">${item.name}</div>
+      <div class="wl-rating">★★★★${item.rating>=4.5?'★':'☆'} (${item.reviews.toLocaleString()})</div>
+      <div class="wl-price-row">
+        <span class="wl-price" style="${item.price<0?'color:var(--primary)':''}">${item.price<0?'−'+Math.abs(item.price).toLocaleString():item.price.toLocaleString()} so'm</span>
+        ${item.oldPrice?`<span class="wl-old-price">${item.oldPrice.toLocaleString()}</span>`:''}
+      </div>
+      <div class="wl-stock ${item.inStock?'stock-ok':'stock-no'}">${item.inStock?'✅ Stokda':'❌ Tugagan'}</div>
+      ${item.inCart
+        ? `<button class="wl-added" onclick="location.href='checkout.html'">✅ Savatda</button>`
+        : `<button class="wl-add-btn" ${!item.inStock?'disabled':''} onclick="addToCart(${item.id})">🛒 Savatga qo'shish</button>`
+      }
+    </div>
+  `).join('');
+  document.getElementById('wlCount').textContent = list.length + ' ta mahsulot saqlangan';
+}
+
+function removeItem(id) {
+  // BUG: Animatsiya yo'q, to'satdan yo'qoladi
+  items = items.filter(i => i.id !== id);
+  renderWL(items);
+  showToast('Sevimlilardan olib tashlandi');
+}
+
+function addToCart(id) {
+  const item = items.find(i => i.id === id);
+  item.inCart = true;
+  renderWL(items);
+  // BUG: Manfiy narxli mahsulotni savatga qo'shsa savat summasi kamayadi
+  showToast('✅ Savatga qo\'shildi: ' + item.name + (item.price < 0 ? ' (narxi manfiy 🐛)' : ''));
+}
+
+function addAll() {
+  // BUG: Stokda bo'lmagan va manfiy narxli mahsulotlarni ham qo'shadi
+  items.forEach(i => i.inCart = true);
+  renderWL(items);
+  showToast('Hammasi savatga qo\'shildi (manfiy narxli ham 🐛)');
+}
+
+function clearAll() {
+  // BUG: Tasdiqlash so'ralmasdan hammasini o'chiradi
+  items = [];
+  renderWL(items);
+  showToast('Sevimlilar tozalandi');
+}
+
+function sortWL(type, btn) {
+  document.querySelectorAll('.sort-opt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  let sorted = [...items];
+  if(type === 'price-asc') sorted.sort((a,b) => a.price - b.price);
+  else if(type === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+  else if(type === 'name') sorted.sort((a,b) => a.name.localeCompare(b.name));
+  renderWL(sorted);
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(location.href).then(() => showToast('🔗 Havola nusxalandi (faqat local ishlaydi 🐛)'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+renderWL(items);
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ro'yxatdan o'tish — TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --line: #E5DFD2;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.nav { display: flex; gap: 24px; align-items: center; }
+
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+
+.qa-banner {
+  background: linear-gradient(135deg, var(--plum) 0%, #3D2A52 100%);
+  color: white;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.qa-banner a { color: white; font-weight: 600; text-decoration: underline; }
+
+/* CONTAINER */
+.container {
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.form-subtitle {
+  text-align: center;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+.form-group { margin-bottom: 18px; }
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background: var(--bg-card);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-input.error {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.form-hint {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+  margin-top: 10px;
+}
+
+.btn-primary:hover { background: var(--accent); }
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.form-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+.success-msg {
+  display: none;
+  background: var(--forest-soft);
+  border: 1px solid var(--forest);
+  color: var(--forest);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.success-msg.show { display: block; }
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.checkbox-group input { margin-top: 3px; }
+.checkbox-group label { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.checkbox-group a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- QA BANNER -->
+<div class="qa-banner">
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
+    </nav>
+  </div>
+</header>
+
+<!-- FORM -->
+<div class="container">
+  <div class="form-card">
+    <h1 class="form-title">Ro'yxatdan o'tish</h1>
+    <p class="form-subtitle">Yangi akkount yarating va xarid qilishni boshlang</p>
+
+    <div class="success-msg" id="successMsg">
+      ✓ Muvaffaqiyatli ro'yxatdan o'tdingiz!
+    </div>
+
+    <form id="registerForm" onsubmit="return handleRegister(event)">
+      <div class="form-group">
+        <label class="form-label">To'liq ism</label>
+        <input type="text" class="form-input" id="fullname" placeholder="Masalan: Aziz Karimov">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-input" id="email" placeholder="example@mail.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email qayta kiriting</label>
+        <input type="text" class="form-input" id="emailConfirm" placeholder="example@mail.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Parol</label>
+        <input type="password" class="form-input" id="password" placeholder="Parolingizni kiriting">
+        <div class="form-hint">Xavfsiz parol uchun kamida 8 belgi tavsiya etiladi</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Tug'ilgan sana</label>
+        <input type="date" class="form-input" id="birthdate">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Telefon raqam</label>
+        <input type="tel" class="form-input" id="phone" placeholder="+998 XX XXX XX XX">
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms">
+        <label for="terms">
+          Men <a href="#">Foydalanish shartlari</a> va <a href="#">Maxfiylik siyosati</a> bilan tanishdim
+        </label>
+      </div>
+
+      <button type="submit" class="btn-primary">Ro'yxatdan o'tish</button>
+    </form>
+
+    <div class="form-footer">
+      Akkount bormi? <a href="login.html">Kirish</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleRegister(e) {
+  e.preventDefault();
+
+  // BUG 1: No validation at all - accepts empty fields
+  // BUG 2: Email va emailConfirm mos kelmasa ham qabul qiladi
+  // BUG 3: Parol 1 belgi ham qabul qilinadi (hech qanday tekshiruv yo'q)
+  // BUG 4: Terms & conditions tasdiqlanmasa ham qabul qiladi
+  // BUG 5: Kelajakdagi sana qabul qilinadi (2050-yil)
+  // BUG 6: Telefon raqami formatiga e'tibor berilmaydi
+
+  const successMsg = document.getElementById('successMsg');
+  successMsg.classList.add('show');
+
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 2000);
+
+  return false;
+}
+</script>
+
+</body>
+</html>

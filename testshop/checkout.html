@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buyurtma berish — TestShop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F8F9FA;--bg-card:#FFF;--bg-soft:#F1F3F4;--ink:#1A1A2E;--ink-soft:#4A4A6A;--ink-muted:#9090A0;--primary:#E63946;--primary-dark:#C1121F;--primary-soft:#FDECEA;--success:#2D6A4F;--success-soft:#D8F3DC;--line:#E0E0E8}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
+nav{background:white;border-bottom:1px solid var(--line);padding:0 20px;display:flex;align-items:center;gap:16px;height:60px}
+.nav-logo{font-weight:800;font-size:20px;color:var(--primary);text-decoration:none}
+.nav-logo span{color:var(--ink)}
+.steps{display:flex;align-items:center;gap:0;max-width:1200px;margin:24px auto;padding:0 20px}
+.step{display:flex;align-items:center;gap:8px;font-size:14px}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.step.done .step-num{background:var(--success);color:white}
+.step.active .step-num{background:var(--primary);color:white}
+.step.todo .step-num{background:var(--line);color:var(--ink-muted)}
+.step.done .step-label{color:var(--success)}
+.step.active .step-label{color:var(--primary);font-weight:600}
+.step.todo .step-label{color:var(--ink-muted)}
+.step-line{flex:1;height:2px;background:var(--line);margin:0 8px}
+.step-line.done{background:var(--success)}
+.container{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:1fr 380px;gap:28px}
+.section-card{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px}
+.section-title{font-size:18px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{margin-bottom:12px}
+.form-group.full{grid-column:1/-1}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--ink-muted);margin-bottom:5px}
+.form-input,.form-select{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s;background:white}
+.form-input:focus,.form-select:focus{border-color:var(--primary)}
+.form-error{font-size:12px;color:var(--primary);margin-top:4px;display:none}
+.form-error.show{display:block}
+.radio-cards{display:flex;flex-direction:column;gap:10px}
+.radio-card{border:2px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:12px}
+.radio-card:hover{border-color:var(--primary)}
+.radio-card.selected{border-color:var(--primary);background:var(--primary-soft)}
+.radio-card input{margin-top:3px;accent-color:var(--primary)}
+.radio-card-info h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.radio-card-info p{font-size:13px;color:var(--ink-muted)}
+.radio-card-price{margin-left:auto;font-weight:700;color:var(--success);font-size:14px;white-space:nowrap}
+.payment-icons{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.payment-icon{background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500}
+.promo-row{display:flex;gap:8px}
+.promo-input{flex:1;padding:10px 14px;border:2px solid var(--line);border-radius:8px;font-size:14px;outline:none;transition:border-color .2s}
+.promo-input:focus{border-color:var(--primary)}
+.promo-btn{padding:10px 18px;background:var(--primary);color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500}
+.promo-result{font-size:13px;margin-top:8px}
+.promo-ok{color:var(--success)}
+.promo-fail{color:var(--primary)}
+/* Order summary */
+.summary-card{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;position:sticky;top:20px}
+.summary-title{font-size:18px;font-weight:700;margin-bottom:18px}
+.summary-item{display:flex;gap:12px;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.summary-item:last-of-type{border-bottom:none}
+.item-emoji{font-size:36px;flex-shrink:0}
+.item-info{flex:1}
+.item-name{font-size:14px;font-weight:600;margin-bottom:2px;line-height:1.3}
+.item-meta{font-size:12px;color:var(--ink-muted)}
+.item-price{font-size:15px;font-weight:700;color:var(--ink);white-space:nowrap}
+.item-qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty-sm-btn{width:24px;height:24px;border:1px solid var(--line);border-radius:4px;background:white;cursor:pointer;font-size:14px;line-height:1}
+.qty-sm-input{width:36px;height:24px;border:1px solid var(--line);border-radius:4px;text-align:center;font-size:13px;outline:none}
+.totals{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.total-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px}
+.total-row.discount{color:var(--success)}
+.total-row.promo{color:var(--success)}
+.total-final{display:flex;justify-content:space-between;font-size:20px;font-weight:800;margin-top:12px;padding-top:12px;border-top:2px solid var(--line)}
+.order-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:12px;cursor:pointer;font-size:16px;font-weight:700;margin-top:16px;transition:all .2s}
+.order-btn:hover{background:var(--primary-dark)}
+.guarantee-list{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.guarantee-item{font-size:12px;color:var(--ink-muted);display:flex;align-items:center;gap:6px}
+/* Success modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:white;border-radius:20px;padding:40px;max-width:480px;width:90%;text-align:center}
+.modal-icon{font-size:64px;margin-bottom:16px}
+.modal-title{font-size:24px;font-weight:800;margin-bottom:8px}
+.modal-text{font-size:15px;color:var(--ink-soft);margin-bottom:24px}
+.modal-order-num{background:var(--success-soft);color:var(--success);padding:10px 20px;border-radius:100px;font-size:16px;font-weight:700;display:inline-block;margin-bottom:20px}
+.modal-btn{padding:12px 28px;background:var(--primary);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600}
+/* Bug notice */
+.bug-notice{background:#FFF3CD;border:1px solid #FFD700;border-radius:8px;padding:8px 12px;font-size:12px;color:#856404;margin-bottom:14px}
+@media(max-width:768px){
+  .container{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+  <span style="margin-left:auto;font-size:13px;color:var(--ink-muted)">🔒 Xavfsiz to'lov</span>
+</nav>
+
+<div class="steps">
+  <div class="step done"><div class="step-num">✓</div><span class="step-label">Savat</span></div>
+  <div class="step-line done"></div>
+  <div class="step active"><div class="step-num">2</div><span class="step-label">Ma'lumotlar</span></div>
+  <div class="step-line"></div>
+  <div class="step todo"><div class="step-num">3</div><span class="step-label">To'lov</span></div>
+  <div class="step-line"></div>
+  <div class="step todo"><div class="step-num">4</div><span class="step-label">Tasdiqlash</span></div>
+</div>
+
+<div class="container">
+  <div class="checkout-form">
+    <!-- Kontakt -->
+    <div class="section-card">
+      <div class="section-title">📞 Kontakt ma'lumotlar</div>
+      <div class="bug-notice">🐛 <strong>QA vazifasi:</strong> Quyidagi maydonlardagi validationni tekshiring</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ism *</label>
+          <!-- BUG: Raqam kiritsa ham qabul qiladi -->
+          <input type="text" class="form-input" id="firstName" placeholder="Mirzobek">
+          <div class="form-error" id="firstNameErr">Ism kiritish shart</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Familiya *</label>
+          <input type="text" class="form-input" id="lastName" placeholder="Xaitov">
+          <div class="form-error" id="lastNameErr">Familiya kiritish shart</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Telefon *</label>
+          <!-- BUG: Istalgan format qabul qilinadi — +998 tekshirilmaydi -->
+          <input type="tel" class="form-input" id="phone" placeholder="+998 90 123 45 67">
+          <div class="form-error" id="phoneErr">To'g'ri telefon raqam kiriting</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <!-- BUG: Email validaton yo'q — "abc" ham qabul qilinadi -->
+          <input type="text" class="form-input" id="email" placeholder="email@mail.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- Yetkazib berish -->
+    <div class="section-card">
+      <div class="section-title">📦 Yetkazib berish usuli</div>
+      <div class="radio-cards">
+        <div class="radio-card selected" onclick="selectDelivery(this,'courier',30000)">
+          <input type="radio" name="delivery" checked>
+          <div class="radio-card-info"><h4>🚚 Kuryer orqali</h4><p>1-3 ish kuni ichida</p></div>
+          <div class="radio-card-price">30,000 so'm</div>
+        </div>
+        <div class="radio-card" onclick="selectDelivery(this,'pickup',0)">
+          <input type="radio" name="delivery">
+          <div class="radio-card-info"><h4>🏪 O'zi olib ketish</h4><p>Bugun tayyor</p></div>
+          <div class="radio-card-price" style="color:var(--success)">Bepul</div>
+        </div>
+        <div class="radio-card" onclick="selectDelivery(this,'express',80000)">
+          <input type="radio" name="delivery">
+          <div class="radio-card-info"><h4>⚡ Express (2 soat)</h4><p>Faqat Toshkent shahrida</p></div>
+          <div class="radio-card-price">80,000 so'm</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px" id="addressBlock">
+        <label class="form-label">Manzil *</label>
+        <input type="text" class="form-input" id="address" placeholder="Ko'cha, uy raqami" style="margin-bottom:10px">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Shahar</label>
+            <select class="form-select" id="city">
+              <option>Toshkent</option>
+              <option>Samarkand</option>
+              <option>Buxoro</option>
+              <option>Namangan</option>
+              <option>Andijon</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Qavat/xonadon</label>
+            <input type="text" class="form-input" id="apartment" placeholder="5-qavat, 42-xonadon">
+          </div>
+        </div>
+        <label class="form-label">Izoh (ixtiyoriy)</label>
+        <input type="text" class="form-input" id="note" placeholder="Qo'shimcha ma'lumot...">
+      </div>
+    </div>
+
+    <!-- To'lov -->
+    <div class="section-card">
+      <div class="section-title">💳 To'lov usuli</div>
+      <div class="radio-cards">
+        <div class="radio-card selected" onclick="selectPayment(this,'card')">
+          <input type="radio" name="payment" checked>
+          <div class="radio-card-info">
+            <h4>💳 Bank kartasi</h4>
+            <div class="payment-icons">
+              <span class="payment-icon">Uzcard</span>
+              <span class="payment-icon">Humo</span>
+              <span class="payment-icon">Visa</span>
+            </div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectPayment(this,'cash')">
+          <input type="radio" name="payment">
+          <div class="radio-card-info"><h4>💵 Naqd pul (kuryer kelganda)</h4><p>Yetkazib berganda to'laysiz</p></div>
+        </div>
+        <div class="radio-card" onclick="selectPayment(this,'installment')">
+          <input type="radio" name="payment">
+          <div class="radio-card-info"><h4>📅 Muddatli to'lov (0%)</h4><p>3, 6, 12 oy — foizsiz</p></div>
+        </div>
+      </div>
+
+      <!-- Karta ma'lumotlari -->
+      <div id="cardBlock" style="margin-top:16px">
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Karta raqami</label>
+            <!-- BUG: Karta raqam validatsiyasi yo'q — 4 raqam kiritsa ham o'tadi -->
+            <input type="text" class="form-input" id="cardNum" placeholder="8600 0000 0000 0000" maxlength="19" oninput="formatCard(this)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Amal qilish muddati</label>
+            <!-- BUG: O'tgan sana ham qabul qilinadi (01/20) -->
+            <input type="text" class="form-input" id="cardExp" placeholder="MM/YY" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">CVV</label>
+            <input type="password" class="form-input" id="cardCvv" placeholder="***" maxlength="3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo kod -->
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line)">
+        <label class="form-label">Promo kod</label>
+        <div class="promo-row">
+          <input type="text" class="promo-input" id="promoInput" placeholder="PROMO20">
+          <button class="promo-btn" onclick="applyPromo()">Qo'llash</button>
+        </div>
+        <div class="promo-result" id="promoResult"></div>
+        <!-- BUG: "DISCOUNT" kodi har doim ishlaydi, boshqalari ham ishlaydi (server tekshiruvi yo'q) -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div>
+    <div class="summary-card">
+      <div class="summary-title">🛒 Buyurtma tarkibi</div>
+
+      <div class="summary-item">
+        <div class="item-emoji">📱</div>
+        <div class="item-info">
+          <div class="item-name">iPhone 15 Pro Max 256GB</div>
+          <div class="item-meta">Qora rang</div>
+          <div class="item-qty">
+            <button class="qty-sm-btn" onclick="changeItemQty(0,-1)">−</button>
+            <!-- BUG: Manfiy miqdor ham qabul qilinadi -->
+            <input class="qty-sm-input" id="qty0" value="1" type="number" oninput="recalc()">
+            <button class="qty-sm-btn" onclick="changeItemQty(0,1)">+</button>
+          </div>
+        </div>
+        <div class="item-price" id="price0">18,500,000 so'm</div>
+      </div>
+
+      <div class="summary-item">
+        <div class="item-emoji">🎧</div>
+        <div class="item-info">
+          <div class="item-name">AirPods Pro 2</div>
+          <div class="item-meta">Oq rang</div>
+          <div class="item-qty">
+            <button class="qty-sm-btn" onclick="changeItemQty(1,-1)">−</button>
+            <input class="qty-sm-input" id="qty1" value="1" type="number" oninput="recalc()">
+            <button class="qty-sm-btn" onclick="changeItemQty(1,1)">+</button>
+          </div>
+        </div>
+        <!-- BUG: Narx -50,000 (manfiy) ko'rsatilmoqda -->
+        <div class="item-price" id="price1" style="color:var(--primary)">−50,000 so'm</div>
+      </div>
+
+      <div class="totals">
+        <div class="total-row"><span>Mahsulotlar</span><span id="subtotal">18,450,000 so'm</span></div>
+        <div class="total-row discount"><span>Chegirma</span><span id="discountRow">−2,730,000 so'm</span></div>
+        <div class="total-row"><span id="deliveryLabel">Yetkazib berish</span><span id="deliveryCost">30,000 so'm</span></div>
+        <div class="total-row promo" id="promoRow" style="display:none"><span>Promo kod</span><span id="promoAmt"></span></div>
+        <div class="total-final"><span>Jami</span><span id="totalFinal">15,750,000 so'm</span></div>
+      </div>
+
+      <button class="order-btn" onclick="placeOrder()">Buyurtma berish →</button>
+
+      <div class="guarantee-list">
+        <div class="guarantee-item">🔒 SSL orqali himoyalangan</div>
+        <div class="guarantee-item">🔄 14 kunlik qaytarish kafolati</div>
+        <div class="guarantee-item">📞 24/7 qo'llab-quvvatlash</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h2 class="modal-title">Buyurtma qabul qilindi!</h2>
+    <p class="modal-text">Tez orada kuryer siz bilan bog'lanadi</p>
+    <div class="modal-order-num">#TS-<span id="orderNum"></span></div>
+    <p class="modal-text" style="font-size:13px">Buyurtma holati SMS va email orqali yuboriladi</p>
+    <button class="modal-btn" onclick="location.href='profile.html'">Buyurtmalarni ko'rish →</button>
+  </div>
+</div>
+
+<script>
+const prices = [18500000, -50000];
+let deliveryCost = 30000;
+let promoDiscount = 0;
+
+function recalc() {
+  const q0 = parseInt(document.getElementById('qty0').value) || 1;
+  const q1 = parseInt(document.getElementById('qty1').value) || 1;
+  // BUG: manfiy narx × manfiy miqdor = musbat (hisob xato)
+  const p0 = prices[0] * q0;
+  const p1 = prices[1] * q1;
+  document.getElementById('price0').textContent = p0.toLocaleString() + ' so\'m';
+  document.getElementById('price1').textContent = (p1<0?'−'+Math.abs(p1):p1).toLocaleString() + ' so\'m';
+  const sub = p0 + p1;
+  const disc = -2730000;
+  const total = sub + disc + deliveryCost - promoDiscount;
+  document.getElementById('subtotal').textContent = sub.toLocaleString() + ' so\'m';
+  document.getElementById('totalFinal').textContent = total.toLocaleString() + ' so\'m';
+}
+
+function changeItemQty(idx, delta) {
+  const el = document.getElementById('qty'+idx);
+  el.value = parseInt(el.value||1) + delta;
+  recalc();
+}
+
+function selectDelivery(card, type, cost) {
+  document.querySelectorAll('.radio-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  card.querySelector('input').checked = true;
+  deliveryCost = cost;
+  document.getElementById('deliveryCost').textContent = cost===0 ? 'Bepul' : cost.toLocaleString()+' so\'m';
+  document.getElementById('addressBlock').style.display = type==='pickup' ? 'none' : 'block';
+  recalc();
+}
+
+function selectPayment(card, type) {
+  document.querySelectorAll('[name=payment]').forEach((_,i)=>document.querySelectorAll('.radio-card')[i+2]?.classList.remove('selected'));
+  card.classList.add('selected');
+  card.querySelector('input').checked = true;
+  document.getElementById('cardBlock').style.display = type==='card' ? 'block' : 'none';
+}
+
+function formatCard(input) {
+  let v = input.value.replace(/\D/g,'').substring(0,16);
+  input.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function applyPromo() {
+  const code = document.getElementById('promoInput').value.trim().toUpperCase();
+  const res = document.getElementById('promoResult');
+  // BUG: Har qanday 6+ harfli kod ishlaydi
+  if(code.length >= 4) {
+    promoDiscount = 500000;
+    res.innerHTML = '<span class="promo-ok">✅ Promo kod qo\'llandi! −500,000 so\'m</span>';
+    document.getElementById('promoRow').style.display = 'flex';
+    document.getElementById('promoAmt').textContent = '−500,000 so\'m';
+  } else {
+    res.innerHTML = '<span class="promo-fail">❌ Promo kod noto\'g\'ri</span>';
+  }
+  recalc();
+}
+
+function validateForm() {
+  let valid = true;
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  // BUG: Validatsiya juda zaif — faqat bo'shligini tekshiradi
+  if(!firstName){document.getElementById('firstNameErr').classList.add('show');valid=false;}
+  else document.getElementById('firstNameErr').classList.remove('show');
+  if(!lastName){document.getElementById('lastNameErr').classList.add('show');valid=false;}
+  else document.getElementById('lastNameErr').classList.remove('show');
+  if(!phone){document.getElementById('phoneErr').classList.add('show');valid=false;}
+  else document.getElementById('phoneErr').classList.remove('show');
+  return valid;
+}
+
+function placeOrder() {
+  if(!validateForm()) return;
+  document.getElementById('orderNum').textContent = Math.floor(Math.random()*90000+10000);
+  document.getElementById('successModal').classList.add('show');
+}
+
+recalc();
+</script>
+</body>
+</html>

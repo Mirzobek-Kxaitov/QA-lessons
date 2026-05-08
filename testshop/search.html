@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qidiruv — TestShop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F8F9FA;--bg-card:#FFF;--bg-soft:#F1F3F4;--ink:#1A1A2E;--ink-soft:#4A4A6A;--ink-muted:#9090A0;--primary:#E63946;--primary-dark:#C1121F;--primary-soft:#FDECEA;--success:#2D6A4F;--line:#E0E0E8}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
+nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;height:60px;flex-wrap:wrap}
+.nav-logo{font-weight:800;font-size:20px;color:var(--primary);text-decoration:none}
+.nav-logo span{color:var(--ink)}
+.nav-search-big{flex:1;max-width:600px;display:flex;gap:0}
+.nav-search-big input{flex:1;padding:11px 16px;border:2px solid var(--primary);border-right:none;border-radius:10px 0 0 10px;font-size:15px;outline:none}
+.nav-search-big button{padding:11px 20px;background:var(--primary);color:white;border:none;border-radius:0 10px 10px 0;cursor:pointer;font-size:15px;font-weight:600}
+.nav-links{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav-link{text-decoration:none;color:var(--ink-soft);font-size:14px;padding:6px 12px;border-radius:6px}
+.nav-link:hover{background:var(--bg-soft)}
+.layout{max-width:1200px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:260px 1fr;gap:24px}
+/* Filter sidebar */
+.filter-sidebar{background:white;border-radius:16px;border:1px solid var(--line);padding:20px;height:fit-content;position:sticky;top:80px}
+.filter-section{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.filter-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.filter-title{font-size:15px;font-weight:700;margin-bottom:14px}
+.filter-option{display:flex;align-items:center;gap:10px;padding:6px 0;cursor:pointer}
+.filter-option input{width:16px;height:16px;accent-color:var(--primary);cursor:pointer}
+.filter-option label{font-size:14px;cursor:pointer;flex:1}
+.filter-option .count{font-size:12px;color:var(--ink-muted)}
+.price-inputs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.price-input{padding:8px 10px;border:2px solid var(--line);border-radius:8px;font-size:13px;text-align:center;width:100%;outline:none}
+.price-input:focus{border-color:var(--primary)}
+.price-apply{width:100%;margin-top:8px;padding:9px;background:var(--primary);color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500}
+.rating-filter{display:flex;flex-direction:column;gap:8px}
+.rating-opt{display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 0}
+.rating-opt input{width:16px;height:16px;accent-color:var(--primary);cursor:pointer}
+.stars-sm{color:#F4A261;font-size:13px}
+.filter-clear{background:none;border:1px solid var(--line);color:var(--ink-muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:13px;margin-top:14px;width:100%}
+/* Results */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.results-count{font-size:15px;color:var(--ink-soft)}
+.results-count strong{color:var(--ink)}
+.sort-select{padding:8px 14px;border:2px solid var(--line);border-radius:8px;font-size:14px;cursor:pointer;outline:none;background:white}
+.sort-select:focus{border-color:var(--primary)}
+.active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filter-tag{background:var(--primary-soft);color:var(--primary);padding:4px 10px;border-radius:100px;font-size:13px;display:flex;align-items:center;gap:6px}
+.filter-tag button{background:none;border:none;cursor:pointer;color:var(--primary);font-size:14px;padding:0;line-height:1}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product-card{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;transition:all .2s;text-decoration:none;color:inherit;display:block}
+.product-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--primary);color:white;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700}
+.product-emoji{font-size:52px;text-align:center;padding:12px 0;display:block}
+.product-name{font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.3}
+.product-stars{color:#F4A261;font-size:12px;margin-bottom:6px}
+.product-stars span{color:var(--ink-muted);font-size:11px;margin-left:3px}
+.product-price{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:10px}
+.product-price-old{font-size:12px;color:var(--ink-muted);text-decoration:line-through;margin-left:4px}
+.add-btn{width:100%;padding:8px;background:var(--primary);color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500}
+.add-btn:hover{background:var(--primary-dark)}
+.wishlist-btn{position:absolute;top:12px;right:12px;background:white;border:1px solid var(--line);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
+.wishlist-btn:hover{border-color:var(--primary)}
+.no-results{text-align:center;padding:60px 20px;grid-column:1/-1}
+.no-results-emoji{font-size:64px;margin-bottom:16px}
+.no-results h3{font-size:20px;margin-bottom:8px}
+.no-results p{color:var(--ink-muted);font-size:15px}
+/* Pagination */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:32px}
+.page-btn{width:40px;height:40px;border:2px solid var(--line);border-radius:8px;background:white;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s}
+.page-btn:hover,.page-btn.active{border-color:var(--primary);background:var(--primary);color:white}
+.toast{position:fixed;bottom:24px;right:24px;background:#1A1A2E;color:white;padding:14px 20px;border-radius:12px;font-size:14px;z-index:999;display:none;align-items:center;gap:10px}
+.toast.show{display:flex}
+/* Bug hint */
+.bug-hint{background:#FFF3CD;border:1px solid #FFD700;border-radius:8px;padding:8px 12px;font-size:12px;color:#856404;margin-bottom:16px}
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .filter-sidebar{position:static}
+  .products-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+    <div class="nav-search-big">
+      <input type="text" id="searchInput" placeholder="Mahsulot qidiring..." value="">
+      <button onclick="doSearch()">🔍</button>
+    </div>
+    <div class="nav-links">
+      <a href="wishlist.html" class="nav-link">❤️</a>
+      <a href="profile.html" class="nav-link">👤</a>
+      <a href="checkout.html" class="nav-link">🛒</a>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+  <!-- Filter sidebar -->
+  <aside class="filter-sidebar">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div style="font-size:17px;font-weight:700">Filtrlar</div>
+      <button class="filter-clear" style="width:auto" onclick="clearFilters()">Tozalash</button>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title">Kategoriya</div>
+      <div class="filter-option"><input type="checkbox" id="c1" onchange="applyFilter()"><label for="c1">Elektronika</label><span class="count">14</span></div>
+      <div class="filter-option"><input type="checkbox" id="c2" onchange="applyFilter()"><label for="c2">Kiyim</label><span class="count">23</span></div>
+      <div class="filter-option"><input type="checkbox" id="c3" onchange="applyFilter()"><label for="c3">Kitoblar</label><span class="count">8</span></div>
+      <div class="filter-option"><input type="checkbox" id="c4" onchange="applyFilter()"><label for="c4">Sport</label><span class="count">11</span></div>
+      <div class="filter-option"><input type="checkbox" id="c5" onchange="applyFilter()"><label for="c5">Oziq-ovqat</label><span class="count">5</span></div>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title">Narx (so'm)</div>
+      <div class="price-inputs">
+        <!-- BUG: Manfiy narx kiritsa ham filter ishlaydi -->
+        <input type="number" class="price-input" id="minPrice" placeholder="dan">
+        <input type="number" class="price-input" id="maxPrice" placeholder="gacha">
+      </div>
+      <button class="price-apply" onclick="applyPriceFilter()">Qo'llash</button>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title">Baho</div>
+      <div class="rating-filter">
+        <div class="rating-opt"><input type="radio" name="ratingF" id="r5" onchange="applyFilter()"><label for="r5"><span class="stars-sm">★★★★★</span> va undan yuqori</label></div>
+        <div class="rating-opt"><input type="radio" name="ratingF" id="r4" onchange="applyFilter()"><label for="r4"><span class="stars-sm">★★★★</span> va undan yuqori</label></div>
+        <div class="rating-opt"><input type="radio" name="ratingF" id="r3" onchange="applyFilter()"><label for="r3"><span class="stars-sm">★★★</span> va undan yuqori</label></div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title">Holati</div>
+      <div class="filter-option"><input type="checkbox" id="instock" onchange="applyFilter()"><label for="instock">Stokda bor</label></div>
+      <div class="filter-option"><input type="checkbox" id="onsale" onchange="applyFilter()"><label for="onsale">Chegirmada</label></div>
+      <div class="filter-option"><input type="checkbox" id="newitems" onchange="applyFilter()"><label for="newitems">Yangi kelgan</label></div>
+    </div>
+  </aside>
+
+  <!-- Results -->
+  <main>
+    <div class="bug-hint">🐛 <strong>QA vazifasi:</strong> Bu sahifada ataylab buglar qoldirilgan. Topib bug-hunt.html ga yozing!</div>
+
+    <div class="results-header">
+      <div class="results-count" id="resultsCount"><strong>8</strong> ta mahsulot topildi</div>
+      <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+        <option value="default">Saralash: Standart</option>
+        <option value="price-asc">Narx: pastdan yuqoriga</option>
+        <option value="price-desc">Narx: yuqoridan pastga</option>
+        <option value="rating">Baho bo'yicha</option>
+        <!-- BUG: "Yangi" saralash ishlaydi lekin eng eskini ko'rsatadi -->
+        <option value="new">Yangi kelganlar</option>
+      </select>
+    </div>
+
+    <div class="active-filters" id="activeFilters"></div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <div class="pagination" id="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">→</button>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const allProducts = [
+  {id:1,emoji:'📱',name:'iPhone 15 Pro Max',price:18500000,oldPrice:21700000,rating:4.9,reviews:1234,cat:'Elektronika',badge:'−15%',inStock:true,isNew:false},
+  {id:2,emoji:'💻',name:'MacBook Air M2',price:15200000,oldPrice:null,rating:4.7,reviews:856,cat:'Elektronika',badge:null,inStock:true,isNew:false},
+  {id:3,emoji:'🎧',name:'AirPods Pro 2',price:-50000,oldPrice:1800000,rating:4.8,reviews:2341,cat:'Elektronika',badge:'BUG',inStock:true,isNew:false},
+  {id:4,emoji:'⌚',name:'Apple Watch S9',price:4900000,oldPrice:5800000,rating:4.9,reviews:567,cat:'Elektronika',badge:'−15%',inStock:true,isNew:true},
+  {id:5,emoji:'📺',name:'Samsung Galaxy S24',price:13500000,oldPrice:null,rating:4.6,reviews:934,cat:'Elektronika',badge:null,inStock:false,isNew:false},
+  {id:6,emoji:'🖥️',name:'iPad Pro 12.9"',price:12800000,oldPrice:null,rating:4.9,reviews:421,cat:'Elektronika',badge:null,inStock:true,isNew:true},
+  {id:7,emoji:'📚',name:'Clean Code (kitob)',price:285000,oldPrice:null,rating:4.9,reviews:2891,cat:'Kitoblar',badge:null,inStock:true,isNew:false},
+  {id:8,emoji:'🎮',name:'PlayStation 5',price:0,oldPrice:7500000,rating:4.8,reviews:1567,cat:'Elektronika',badge:'BUG',inStock:true,isNew:false},
+];
+
+let currentProducts = [...allProducts];
+let wishlist = new Set();
+
+function renderProducts(products) {
+  const grid = document.getElementById('productsGrid');
+  // BUG: Bo'sh qidiruv ham natija ko'rsatadi (hamma mahsulot chiqadi)
+  if(products.length === 0 && document.getElementById('searchInput').value.trim() !== '') {
+    grid.innerHTML = `<div class="no-results"><div class="no-results-emoji">🔍</div><h3>Hech narsa topilmadi</h3><p>Boshqa kalit so'z bilan qidiring</p></div>`;
+    return;
+  }
+  grid.innerHTML = products.map(p => `
+    <a href="product.html" class="product-card">
+      ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+      <button class="wishlist-btn" onclick="event.preventDefault();toggleWL(${p.id},this)" id="wl${p.id}">🤍</button>
+      <span class="product-emoji">${p.emoji}</span>
+      <div class="product-name">${p.name}</div>
+      <div class="product-stars">★★★★${p.rating>=4.5?'★':'☆'} <span>(${p.reviews.toLocaleString()})</span></div>
+      <div class="product-price">${p.price < 0 ? '<span style="color:var(--primary)">🐛 '+p.price.toLocaleString()+'</span>' : p.price.toLocaleString()} so'm
+        ${p.oldPrice ? `<span class="product-price-old">${p.oldPrice.toLocaleString()}</span>` : ''}
+      </div>
+      <button class="add-btn" onclick="event.preventDefault();addCart('${p.name}')">🛒 Savatga</button>
+    </a>
+  `).join('');
+  document.getElementById('resultsCount').innerHTML = `<strong>${products.length}</strong> ta mahsulot topildi`;
+}
+
+function doSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  // BUG: Bo'sh qidiruv hamma mahsulotni ko'rsatadi
+  if(!q) { currentProducts = [...allProducts]; }
+  else { currentProducts = allProducts.filter(p => p.name.toLowerCase().includes(q)); }
+  renderProducts(currentProducts);
+  if(q) addFilterTag('Qidiruv: "'+document.getElementById('searchInput').value+'"');
+}
+
+function sortProducts() {
+  const val = document.getElementById('sortSelect').value;
+  let sorted = [...currentProducts];
+  if(val==='price-asc') sorted.sort((a,b)=>a.price-b.price);
+  else if(val==='price-desc') sorted.sort((a,b)=>b.price-a.price);
+  else if(val==='rating') sorted.sort((a,b)=>b.rating-a.rating);
+  // BUG: "Yangi" saralash id bo'yicha teskari saralaydi (eng eskini birinchi ko'rsatadi)
+  else if(val==='new') sorted.sort((a,b)=>a.id-b.id);
+  renderProducts(sorted);
+}
+
+function applyFilter() {
+  // Filtr ishlayapti lekin narx filtri kech ishga tushadi
+  doSearch();
+}
+
+function applyPriceFilter() {
+  const min = parseInt(document.getElementById('minPrice').value) || 0;
+  const max = parseInt(document.getElementById('maxPrice').value) || Infinity;
+  // BUG: Manfiy narxli mahsulot (AirPods -50000) filtrdan o'tib ketadi
+  currentProducts = allProducts.filter(p => p.price >= min && p.price <= max);
+  renderProducts(currentProducts);
+  if(min||max<Infinity) addFilterTag(`Narx: ${min.toLocaleString()} — ${max===Infinity?'∞':max.toLocaleString()}`);
+}
+
+function addFilterTag(text) {
+  const af = document.getElementById('activeFilters');
+  const tag = document.createElement('div');
+  tag.className = 'filter-tag';
+  tag.innerHTML = text + ' <button onclick="this.parentElement.remove();doSearch()">×</button>';
+  af.appendChild(tag);
+}
+
+function clearFilters() {
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  document.querySelectorAll('input[name=ratingF]').forEach(r=>r.checked=false);
+  document.getElementById('minPrice').value='';
+  document.getElementById('maxPrice').value='';
+  document.getElementById('activeFilters').innerHTML='';
+  currentProducts = [...allProducts];
+  renderProducts(currentProducts);
+}
+
+function toggleWL(id, btn) {
+  if(wishlist.has(id)){wishlist.delete(id);btn.textContent='🤍';}
+  else{wishlist.add(id);btn.textContent='❤️';}
+  showToast(wishlist.has(id)?'❤️ Sevimlilarga qo\'shildi':'Sevimlilardan olib tashlandi');
+}
+
+function addCart(name) { showToast('✅ Savatga qo\'shildi: '+name); }
+
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// URL dan qidiruv so'zi
+const params = new URLSearchParams(location.search);
+const q = params.get('q');
+if(q){document.getElementById('searchInput').value=q;doSearch();}
+else{renderProducts(allProducts);}
+</script>
+</body>
+</html>

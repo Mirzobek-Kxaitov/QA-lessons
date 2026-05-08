@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirish — TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --line: #E5DFD2;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+
+.qa-banner {
+  background: linear-gradient(135deg, var(--plum) 0%, #3D2A52 100%);
+  color: white;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.qa-banner a { color: white; font-weight: 600; text-decoration: underline; }
+
+.container {
+  max-width: 440px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.form-subtitle {
+  text-align: center;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+.form-group { margin-bottom: 18px; }
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--bg-card);
+}
+
+.form-input:focus { outline: none; border-color: var(--accent); }
+
+.forgot-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 10px;
+}
+
+.btn-primary:hover { background: var(--accent); }
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.form-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+.error-msg {
+  display: none;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent-dark);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.error-msg.show { display: block; }
+
+.success-msg {
+  display: none;
+  background: var(--forest-soft);
+  border: 1px solid var(--forest);
+  color: var(--forest);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.success-msg.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="qa-banner">
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="register.html">Ro'yxatdan o'tish</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="form-card">
+    <h1 class="form-title">Xush kelibsiz</h1>
+    <p class="form-subtitle">Akkountingizga kiring</p>
+
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="success-msg" id="successMsg">✓ Muvaffaqiyatli kirildi!</div>
+
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label">Email yoki telefon</label>
+        <input type="text" class="form-input" id="username" placeholder="example@mail.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Parol</label>
+        <input type="password" class="form-input" id="password" placeholder="Parolingizni kiriting">
+        <a class="forgot-link" onclick="forgotPassword()">Parolni unutdingizmi?</a>
+      </div>
+
+      <button type="submit" class="btn-primary">Kirish</button>
+    </form>
+
+    <div class="form-footer">
+      Akkountingiz yo'qmi? <a href="register.html">Ro'yxatdan o'ting</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const errorMsg = document.getElementById('errorMsg');
+  const successMsg = document.getElementById('successMsg');
+
+  // BUG 1: SQL injection ishlaydi
+  if (username.includes("' OR 1=1")) {
+    successMsg.textContent = '✓ Muvaffaqiyatli kirildi! (Admin sifatida)';
+    successMsg.classList.add('show');
+    setTimeout(() => window.location.href = 'index.html', 1500);
+    return false;
+  }
+
+  // BUG 2: Bo'sh maydonlar bo'lsa ham submit bo'ladi
+  // BUG 3: Error matni inglizcha (qolgan sayt o'zbekcha)
+  if (username === '' || password === '') {
+    errorMsg.textContent = 'Please fill all fields';
+    errorMsg.classList.add('show');
+    return false;
+  }
+
+  // BUG 4: Parol 1 belgi ham qabul qilinadi - validation yo'q
+
+  // Demo: har qanday kombinatsiya kiradi
+  successMsg.classList.add('show');
+  setTimeout(() => window.location.href = 'index.html', 1500);
+
+  return false;
+}
+
+function forgotPassword() {
+  // BUG 5: "Parolni unutdim" tugmasi ishlamaydi - hech narsa bo'lmaydi
+  return;
+}
+</script>
+
+</body>
+</html>
