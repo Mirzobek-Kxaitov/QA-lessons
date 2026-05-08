@@ -7,6 +7,38 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#F8F9FA;--bg-card:#FFF;--bg-soft:#F1F3F4;--ink:#1A1A2E;--ink-soft:#4A4A6A;--ink-muted:#9090A0;--primary:#E63946;--primary-dark:#C1121F;--primary-soft:#FDECEA;--success:#2D6A4F;--success-soft:#D8F3DC;--warning:#F4A261;--line:#E0E0E8}
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --accent-soft: #3A1515;
+  --gold-soft: #2A2010;
+  --forest-soft: #0E2010;
+  --plum-soft: #1A1025;
+}
+
+.qa-toolbar { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+.qa-tool-btn { width: 44px; height: 44px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 12px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.qa-tool-btn:hover { transform: scale(1.1); border-color: var(--primary); }
+.bug-report-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: none; align-items: center; justify-content: center; }
+.bug-report-modal.open { display: flex; }
+.bug-report-inner { background: var(--bg-card); border-radius: 16px; padding: 28px; width: 100%; max-width: 480px; margin: 20px; }
+.bug-report-inner h3 { font-family: 'Fraunces', serif; font-size: 22px; margin-bottom: 20px; }
+.bug-report-inner label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; margin-top: 14px; color: var(--ink-soft); }
+.bug-report-inner input, .bug-report-inner textarea, .bug-report-inner select { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-family: inherit; font-size: 14px; }
+.bug-report-inner textarea { height: 80px; resize: vertical; }
+.bug-report-btns { display: flex; gap: 10px; margin-top: 20px; }
+.btn-copy-report { flex: 1; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn-close-report { padding: 10px 16px; background: var(--bg-soft); border: none; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.hint-popup { position: fixed; right: 72px; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: none; z-index: 9998; }
+.hint-popup.open { display: block; }
+.hint-popup h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.hint-popup p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6}
 nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;height:60px}
@@ -428,6 +460,87 @@ function showToast(msg) {
 // Cart badge
 const c = localStorage.getItem('cartCount');
 if(c) document.getElementById('cartBadge').textContent = c;
+
+// === QA TOOLBAR ===
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+function toggleHint() {
+  document.getElementById('hintPopup').classList.toggle('open');
+}
+
+function toggleBugReport() {
+  document.getElementById('bugReportModal').classList.toggle('open');
+}
+
+function copyBugReport() {
+  const title = document.getElementById('brTitle').value;
+  const page = document.getElementById('brPage').value;
+  const severity = document.getElementById('brSeverity').value;
+  const steps = document.getElementById('brSteps').value;
+  const expected = document.getElementById('brExpected').value;
+  const actual = document.getElementById('brActual').value;
+  const text = `BUG REPORT\n==========\nSarlavha: ${title}\nSahifa: ${page}\nJiddiylik: ${severity}\n\nTakrorlash qadamlari:\n${steps}\n\nKutilgan natija:\n${expected}\n\nHaqiqiy natija:\n${actual}`;
+  navigator.clipboard.writeText(text).then(() => alert('Bug report nusxalandi! ✅'));
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
 </script>
+<!-- QA TOOLBAR -->
+<div class="qa-toolbar">
+  <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
+  <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
+  <button class="qa-tool-btn" onclick="window.location.href='../lessons/02-testing-basics.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
+</div>
+
+<!-- HINT POPUP -->
+<div class="hint-popup" id="hintPopup">
+  <h4>🐛 Bu sahifada</h4>
+  <p><strong>6 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Bug topish uchun forma, tugmalar, narxlar va validatsiyalarni tekshiring.</p>
+</div>
+
+<!-- BUG REPORT MODAL -->
+<div class="bug-report-modal" id="bugReportModal">
+  <div class="bug-report-inner">
+    <h3>📝 Bug Report</h3>
+    <label>Bug nomi</label>
+    <input type="text" id="brTitle" placeholder="Qisqacha tavsif...">
+    <label>Sahifa</label>
+    <input type="text" id="brPage" value="product.html" readonly>
+    <label>Jiddiylik darajasi</label>
+    <select id="brSeverity">
+      <option>Critical</option>
+      <option>Major</option>
+      <option>Minor</option>
+      <option>Trivial</option>
+    </select>
+    <label>Takrorlash qadamlari</label>
+    <textarea id="brSteps" placeholder="1. ... 2. ... 3. ..."></textarea>
+    <label>Kutilgan natija</label>
+    <textarea id="brExpected" placeholder="Nima bo'lishi kerak edi..."></textarea>
+    <label>Haqiqiy natija</label>
+    <textarea id="brActual" placeholder="Nima bo'ldi..."></textarea>
+    <div class="bug-report-btns">
+      <button class="btn-copy-report" onclick="copyBugReport()">📋 Nusxa olish</button>
+      <button class="btn-close-report" onclick="toggleBugReport()">Yopish</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

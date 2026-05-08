@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Sahifa topilmadi | TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --line: #E5DFD2;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --accent-soft: #3A1515;
+  --forest-soft: #0E2010;
+}
+
+.qa-toolbar { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+.qa-tool-btn { width: 44px; height: 44px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 12px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.qa-tool-btn:hover { transform: scale(1.1); border-color: var(--accent); }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-banner {
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 10px 24px;
+  font-size: 14px;
+}
+
+.qa-banner a { color: white; font-weight: 600; }
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 24px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+.nav a:hover { color: var(--accent); }
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.error-code {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(80px, 20vw, 160px);
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -4px;
+}
+
+.error-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.error-desc {
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.error-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn-home {
+  padding: 14px 28px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-home:hover { background: var(--accent-dark); }
+
+.btn-back {
+  padding: 14px 28px;
+  background: var(--bg-card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-back:hover { border-color: var(--accent); }
+
+.qa-hint {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 480px;
+}
+
+.qa-hint-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.qa-hint p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="qa-banner">
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
+      <a href="register.html">Ro'yxatdan o'tish</a>
+      <a href="search.html">🔍 Qidiruv</a>
+      <a href="wishlist.html">❤️ Sevimlilar</a>
+      <a href="profile.html">👤 Profil</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <div>
+    <div class="error-code">404</div>
+    <div class="error-title">Sahifa topilmadi</div>
+    <p class="error-desc">Siz qidirgan sahifa mavjud emas yoki o'chirib tashlangan. Ehtimol URL noto'g'ri kiritilgan bo'lishi mumkin.</p>
+
+    <div class="error-actions">
+      <a href="index.html" class="btn-home">🏠 Bosh sahifaga qaytish</a>
+      <a href="javascript:history.back()" class="btn-back">← Orqaga</a>
+    </div>
+
+    <div class="qa-hint">
+      <div class="qa-hint-title">🐛 QA eslatmasi</div>
+      <p>Bu sahifaga ataylab olib keladigan <strong>singan linklar</strong> mavjud. Topа olasizmi? 404 xatosi to'g'ri ko'rsatilishi kerakmi — buni tekshiring!</p>
+    </div>
+  </div>
+</main>
+
+<!-- QA TOOLBAR -->
+<div class="qa-toolbar">
+  <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
+  <button class="qa-tool-btn" onclick="window.location.href='../index.html'" title="QA Academy ga qaytish">📚</button>
+</div>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

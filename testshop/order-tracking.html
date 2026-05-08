@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kirish — TestShop</title>
+<title>Buyurtmani kuzatish — TestShop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
   --accent: #D64545;
   --accent-dark: #A03535;
   --accent-soft: #FDEDED;
+  --gold: #C08838;
   --forest: #3A5A40;
   --forest-soft: #E8EFE9;
   --plum: #5B3A7A;
@@ -93,6 +94,7 @@ body {
 
 .nav { display: flex; gap: 24px; align-items: center; }
 .nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+.nav a:hover { color: var(--ink); }
 
 .qa-banner {
   background: linear-gradient(135deg, var(--plum) 0%, #3D2A52 100%);
@@ -105,70 +107,69 @@ body {
 .qa-banner a { color: white; font-weight: 600; text-decoration: underline; }
 
 .container {
-  max-width: 440px;
-  margin: 80px auto;
+  max-width: 600px;
+  margin: 60px auto;
   padding: 0 24px;
 }
 
-.form-card {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
-}
-
-.form-title {
+.page-title {
   font-family: 'Fraunces', serif;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 500;
   margin-bottom: 8px;
   text-align: center;
 }
 
-.form-subtitle {
+.page-subtitle {
   text-align: center;
   color: var(--ink-muted);
-  margin-bottom: 28px;
   font-size: 15px;
+  margin-bottom: 36px;
 }
 
-.form-group { margin-bottom: 18px; }
+/* Search card */
+.search-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+  margin-bottom: 28px;
+}
 
 .form-label {
   display: block;
   font-size: 13px;
   font-weight: 500;
   color: var(--ink-soft);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
+.search-row {
+  display: flex;
+  gap: 12px;
+}
+
 .form-input {
-  width: 100%;
-  padding: 12px 14px;
+  flex: 1;
+  padding: 12px 16px;
   border: 1px solid var(--line);
   border-radius: 8px;
   font-size: 15px;
-  font-family: inherit;
+  font-family: 'JetBrains Mono', monospace;
   background: var(--bg-card);
+  color: var(--ink);
+  transition: border-color 0.2s;
+  letter-spacing: 1px;
 }
 
 .form-input:focus { outline: none; border-color: var(--accent); }
+.form-input::placeholder { font-family: 'Instrument Sans', sans-serif; letter-spacing: 0; }
 
-.forgot-link {
-  display: inline-block;
-  font-size: 13px;
-  color: var(--accent);
-  text-decoration: none;
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.btn-primary {
-  width: 100%;
-  padding: 14px;
+.btn-track {
+  padding: 12px 24px;
   background: var(--ink);
   color: white;
   border: none;
@@ -177,45 +178,152 @@ body {
   font-weight: 500;
   cursor: pointer;
   font-family: inherit;
-  margin-top: 10px;
+  white-space: nowrap;
+  transition: background 0.2s;
 }
 
-.btn-primary:hover { background: var(--accent); }
+.btn-track:hover { background: var(--accent); }
 
-.form-footer {
-  text-align: center;
-  margin-top: 20px;
+/* Result card */
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.result-card.show { display: block; }
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+
+.order-number-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.order-number-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--forest-soft);
+  color: var(--forest);
+  border: 1px solid var(--forest);
+  padding: 6px 14px;
+  border-radius: 20px;
   font-size: 14px;
+  font-weight: 600;
+}
+
+/* Tracking steps */
+.tracking-steps {
+  margin-bottom: 28px;
+}
+
+.tracking-steps-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.step:last-child { padding-bottom: 0; }
+
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 36px;
+  width: 2px;
+  height: calc(100% - 24px);
+  background: var(--forest);
+}
+
+.step-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--forest-soft);
+  border: 2px solid var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.step-content { flex: 1; padding-top: 4px; }
+
+.step-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.step-time {
+  font-size: 13px;
   color: var(--ink-muted);
 }
 
-.form-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
-
-.error-msg {
-  display: none;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
-  color: var(--accent-dark);
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 14px;
+/* Delivery info */
+.delivery-info {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.error-msg.show { display: block; }
+.info-block {}
 
-.success-msg {
-  display: none;
-  background: var(--forest-soft);
-  border: 1px solid var(--forest);
-  color: var(--forest);
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 14px;
+.info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
-.success-msg.show { display: block; }
+.info-value {
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* BUG 4: date in past — highlighted intentionally as delivery estimate */
+.info-value.date-past {
+  color: var(--accent);
+}
 </style>
 </head>
 <body>
@@ -229,78 +337,109 @@ body {
     <a href="index.html" class="logo">Test<span>Shop</span></a>
     <nav class="nav">
       <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
       <a href="register.html">Ro'yxatdan o'tish</a>
     </nav>
   </div>
 </header>
 
 <div class="container">
-  <div class="form-card">
-    <h1 class="form-title">Xush kelibsiz</h1>
-    <p class="form-subtitle">Akkountingizga kiring</p>
+  <h1 class="page-title">Buyurtmani kuzatish</h1>
+  <p class="page-subtitle">Buyurtma raqamingizni kiriting va holati bilan tanishing</p>
 
-    <div class="error-msg" id="errorMsg"></div>
-    <div class="success-msg" id="successMsg">✓ Muvaffaqiyatli kirildi!</div>
+  <div class="search-card">
+    <label class="form-label">Buyurtma raqami</label>
+    <div class="search-row">
+      <!-- BUG 1: type="text" instead of type="number" — accepts letters -->
+      <input type="text" class="form-input" id="orderInput" placeholder="Masalan: 100234">
+      <!-- BUG 2: No validation — works even with empty input -->
+      <button class="btn-track" onclick="trackOrder()">Kuzatish</button>
+    </div>
+  </div>
 
-    <form id="loginForm" onsubmit="return handleLogin(event)">
-      <div class="form-group">
-        <label class="form-label">Email yoki telefon</label>
-        <input type="text" class="form-input" id="username" placeholder="example@mail.com">
+  <!-- BUG 3: Shows "Yetkazildi" for ALL order numbers (even invalid/empty) -->
+  <!-- BUG 4: Estimated delivery shows yesterday's hardcoded date -->
+  <div class="result-card" id="resultCard">
+    <div class="result-header">
+      <div>
+        <div class="order-number-label">Buyurtma raqami</div>
+        <div class="order-number-value" id="displayOrderNum">#100234</div>
+      </div>
+      <div class="status-badge">✅ Yetkazildi</div>
+    </div>
+
+    <div class="tracking-steps">
+      <div class="tracking-steps-title">Kuzatuv tarixi</div>
+
+      <div class="step">
+        <div class="step-icon">✅</div>
+        <div class="step-content">
+          <div class="step-name">Qabul qilindi</div>
+          <div class="step-time">8 May 2026, 09:15</div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Parol</label>
-        <input type="password" class="form-input" id="password" placeholder="Parolingizni kiriting">
-        <a class="forgot-link" onclick="forgotPassword()">Parolni unutdingizmi?</a>
+      <div class="step">
+        <div class="step-icon">✅</div>
+        <div class="step-content">
+          <div class="step-name">Tayyorlanmoqda</div>
+          <div class="step-time">8 May 2026, 11:40</div>
+        </div>
       </div>
 
-      <button type="submit" class="btn-primary">Kirish</button>
-    </form>
+      <div class="step">
+        <div class="step-icon">✅</div>
+        <div class="step-content">
+          <div class="step-name">Yo'lda</div>
+          <div class="step-time">8 May 2026, 14:22</div>
+        </div>
+      </div>
 
-    <div class="form-footer">
-      Akkountingiz yo'qmi? <a href="register.html">Ro'yxatdan o'ting</a>
+      <div class="step">
+        <div class="step-icon">✅</div>
+        <div class="step-content">
+          <div class="step-name">Yetkazildi</div>
+          <div class="step-time">8 May 2026, 17:05</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="delivery-info">
+      <div class="info-block">
+        <div class="info-label">Taxminiy yetkazish sanasi</div>
+        <!-- BUG 4: Hardcoded yesterday's date (2026-05-08) -->
+        <div class="info-value date-past">8 May 2026 (kecha)</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Yetkazish manzili</div>
+        <div class="info-value">Toshkent, Chilonzor t., 12-uy</div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-function handleLogin(e) {
-  e.preventDefault();
+// BUG 2 + BUG 3: No validation; always shows "Delivered" regardless of input
+function trackOrder() {
+  const orderInput = document.getElementById('orderInput');
+  const resultCard = document.getElementById('resultCard');
+  const displayOrderNum = document.getElementById('displayOrderNum');
 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const errorMsg = document.getElementById('errorMsg');
-  const successMsg = document.getElementById('successMsg');
+  // BUG 2: Works even with empty order number — no empty check
+  const val = orderInput.value.trim() || '??????';
+  displayOrderNum.textContent = '#' + val;
 
-  // BUG 1: SQL injection ishlaydi
-  if (username.includes("' OR 1=1")) {
-    successMsg.textContent = '✓ Muvaffaqiyatli kirildi! (Admin sifatida)';
-    successMsg.classList.add('show');
-    setTimeout(() => window.location.href = 'index.html', 1500);
-    return false;
-  }
-
-  // BUG 2: Bo'sh maydonlar bo'lsa ham submit bo'ladi
-  // BUG 3: Error matni inglizcha (qolgan sayt o'zbekcha)
-  if (username === '' || password === '') {
-    errorMsg.textContent = 'Please fill all fields';
-    errorMsg.classList.add('show');
-    return false;
-  }
-
-  // BUG 4: Parol 1 belgi ham qabul qilinadi - validation yo'q
-
-  // Demo: har qanday kombinatsiya kiradi
-  successMsg.classList.add('show');
-  setTimeout(() => window.location.href = 'index.html', 1500);
-
-  return false;
+  // BUG 3: Always shows Yetkazildi (Delivered) for every input
+  resultCard.classList.add('show');
+  resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function forgotPassword() {
-  // BUG 5: "Parolni unutdim" tugmasi ishlamaydi - hech narsa bo'lmaydi
-  return;
-}
+// Allow pressing Enter to trigger tracking
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('orderInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') trackOrder();
+  });
+});
 
 // === QA TOOLBAR ===
 function toggleTheme() {
@@ -346,15 +485,15 @@ function copyBugReport() {
 <div class="qa-toolbar">
   <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
   <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
-  <button class="qa-tool-btn" onclick="window.location.href='../lessons/01-qa-intro.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="window.location.href='../lessons/03-sdlc-stlc.html'" title="QA Academy darsiga qaytish">📚</button>
   <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
 </div>
 
 <!-- HINT POPUP -->
 <div class="hint-popup" id="hintPopup">
   <h4>🐛 Bu sahifada</h4>
-  <p><strong>5 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
-  <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Bug topish uchun forma, tugmalar, narxlar va validatsiyalarni tekshiring.</p>
+  <p><strong>4 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Input turi, bo'sh qidiruv, holat va yetkazish sanasini tekshiring.</p>
 </div>
 
 <!-- BUG REPORT MODAL -->
@@ -364,7 +503,7 @@ function copyBugReport() {
     <label>Bug nomi</label>
     <input type="text" id="brTitle" placeholder="Qisqacha tavsif...">
     <label>Sahifa</label>
-    <input type="text" id="brPage" value="login.html" readonly>
+    <input type="text" id="brPage" value="order-tracking.html" readonly>
     <label>Jiddiylik darajasi</label>
     <select id="brSeverity">
       <option>Critical</option>
@@ -384,5 +523,6 @@ function copyBugReport() {
     </div>
   </div>
 </div>
+
 </body>
 </html>
