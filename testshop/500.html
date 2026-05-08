@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>500 — Server xatosi | TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FDF6E8;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --line: #E5DFD2;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --accent-soft: #3A1515;
+  --gold-soft: #2A2010;
+  --forest-soft: #0E2010;
+}
+
+.qa-toolbar { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+.qa-tool-btn { width: 44px; height: 44px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 12px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.qa-tool-btn:hover { transform: scale(1.1); border-color: var(--accent); }
+.hint-popup { position: fixed; right: 72px; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: none; z-index: 9998; }
+.hint-popup.open { display: block; }
+.hint-popup h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.hint-popup p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-banner {
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 10px 24px;
+  font-size: 14px;
+}
+.qa-banner a { color: white; font-weight: 600; }
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 24px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+.nav a:hover { color: var(--accent); }
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.error-code {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(80px, 20vw, 160px);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -4px;
+}
+
+.error-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.error-desc {
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.error-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+
+.btn-retry {
+  padding: 14px 28px;
+  background: var(--gold);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+.btn-retry:hover { background: #9E6E28; }
+
+.btn-home {
+  padding: 14px 28px;
+  background: var(--bg-card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-home:hover { border-color: var(--accent); }
+
+/* BUG 3: support link goes to login.html */
+.btn-support {
+  padding: 14px 28px;
+  background: var(--bg-card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-support:hover { border-color: var(--gold); }
+
+.countdown-box {
+  margin-top: 32px;
+  padding: 20px 28px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 420px;
+}
+.countdown-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+/* BUG 2: Error code shown as 505 instead of 500 */
+.error-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 12px;
+}
+
+.qa-hint-box {
+  margin-top: 32px;
+  padding: 20px 24px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 480px;
+}
+.qa-hint-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.qa-hint-box p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="qa-banner">
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
+      <a href="register.html">Ro'yxatdan o'tish</a>
+      <a href="search.html">🔍 Qidiruv</a>
+      <a href="wishlist.html">❤️ Sevimlilar</a>
+      <a href="profile.html">👤 Profil</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <div>
+    <div class="error-code">500</div>
+    <div class="error-title">Server xatosi</div>
+    <p class="error-desc">Kechirasiz! Serverda kutilmagan xato yuz berdi. Muammo aniqlanmoqda, tez orada bartaraf etiladi.</p>
+
+    <div class="error-actions">
+      <!-- BUG 1: Retry button just reloads the page — same error appears again, no actual retry -->
+      <button class="btn-retry" onclick="retryRequest()">🔄 Qayta urinish</button>
+      <a href="index.html" class="btn-home">🏠 Bosh sahifa</a>
+      <!-- BUG 3: Support link goes to login.html instead of a real support page -->
+      <a href="login.html" class="btn-support">📞 Texnik yordam</a>
+    </div>
+
+    <div class="countdown-box">
+      <div class="countdown-label">⏱ Avtomatik qayta urinish</div>
+      <p style="font-size:15px;color:var(--ink-soft)">
+        <!-- BUG 4: Timer counts down 2x faster than real seconds -->
+        <span id="countdown">30</span> soniyadan so'ng avtomatik yangilanadi
+      </p>
+      <!-- BUG 2: Error ID shows "Error 505" instead of "Error 500" -->
+      <div class="error-id">Error ID: ERR-505-INTERNAL · Vaqt: <span id="errTime"></span></div>
+    </div>
+
+    <div class="qa-hint-box" style="margin-top:24px">
+      <div class="qa-hint-title">🐛 QA eslatmasi</div>
+      <p>Bu sahifada <strong>4 ta bug</strong> ataylab joylashtirilgan. Retry tugmasi, xato kodi, texnik yordam havolasi va taymer — barchasini tekshiring!</p>
+    </div>
+  </div>
+</main>
+
+<div class="qa-toolbar">
+  <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
+  <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
+  <button class="qa-tool-btn" onclick="window.location.href='../index.html'" title="QA Academy ga qaytish">📚</button>
+</div>
+
+<div class="hint-popup" id="hintPopup">
+  <h4>🐛 Bu sahifada</h4>
+  <p><strong>4 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Retry tugmasi, xato kodi, texnik yordam havolasi va taymer — tekshiring.</p>
+</div>
+
+<script>
+// BUG 1: Retry just reloads — same 500 page loads again
+function retryRequest() {
+  location.reload();
+}
+
+// BUG 4: Countdown runs 2x faster (interval 500ms instead of 1000ms)
+let count = 30;
+const countEl = document.getElementById('countdown');
+setInterval(() => {
+  count--;
+  if (count <= 0) {
+    count = 0;
+    location.reload();
+  }
+  if (countEl) countEl.textContent = count;
+}, 500);
+
+// BUG 2: Shows 505 in error ID (already in HTML)
+document.getElementById('errTime').textContent = new Date().toLocaleTimeString('uz');
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+function toggleHint() {
+  document.getElementById('hintPopup').classList.toggle('open');
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
