@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QA Academy — ISTQB asosidagi O'zbek tilidagi kurs</title>
-<meta name="description" content="Professional QA testing bo'yicha interaktiv darslar. ISTQB CTFL v4.0.1 asosida, O'zbek tilida.">
+<title>QA Academy — Курс на основе ISTQB на русском языке</title>
+<meta name="description" content="Профессиональные интерактивные уроки по QA тестированию. На основе ISTQB CTFL v4.0.1, на русском языке.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -97,7 +97,7 @@ body {
   font-weight: 500;
 }
 
-.nav-cta:hover { background: var(--hover-dark, #1A4A6E); }
+.nav-cta:hover { background: var(--hover-dark); }
 
 .lang-toggle {
   display: flex;
@@ -136,19 +136,6 @@ body {
   padding: 100px 24px 80px;
   text-align: center;
   position: relative;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: 6px 14px;
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.5px;
-  margin-bottom: 28px;
 }
 
 .hero h1 {
@@ -307,15 +294,17 @@ body {
   margin-bottom: 24px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  user-select: none;
 }
 
-.lesson-group-header { cursor: pointer; user-select: none; }
-.lesson-group-header:hover { background: var(--hover-soft, #E6EEF5); border-radius: 12px; }
+.lesson-group-header:hover { background: var(--hover-soft); border-radius: 12px; }
 .lesson-group-toggle { margin-left: auto; font-size: 20px; color: var(--blue); transition: transform 0.3s; flex-shrink: 0; }
 .lesson-group.open .lesson-group-toggle { transform: rotate(45deg); }
 .lesson-items { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
 .lesson-group.open .lesson-items { max-height: 5000px; }
 .lesson-group-count { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-muted); margin-left: 10px; }
+
 .lesson-group-number {
   font-family: 'Fraunces', serif;
   font-size: 20px;
@@ -353,14 +342,8 @@ body {
 
 .lesson-item:hover {
   border-color: var(--blue);
-  background: var(--hover-soft, #E6EEF5);
+  background: var(--hover-soft);
   transform: translateX(4px);
-}
-
-.lesson-item.locked {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
 }
 
 .lesson-num-badge {
@@ -398,20 +381,9 @@ body {
   text-transform: uppercase;
 }
 
-.status-done {
-  background: var(--forest-soft);
-  color: var(--forest);
-}
-
-.status-current {
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-}
-
-.status-locked {
-  background: var(--bg-soft);
-  color: var(--ink-muted);
-}
+.status-done { background: var(--forest-soft); color: var(--forest); }
+.status-current { background: var(--accent-soft); color: var(--accent-dark); }
+.status-locked { background: var(--bg-soft); color: var(--ink-muted); }
 
 .lesson-arrow {
   color: var(--ink-muted);
@@ -483,17 +455,8 @@ body {
   flex-shrink: 0;
 }
 
-.feature-title {
-  font-weight: 600;
-  margin-bottom: 4px;
-  font-size: 15px;
-}
-
-.feature-desc {
-  font-size: 14px;
-  color: var(--ink-muted);
-  line-height: 1.5;
-}
+.feature-title { font-weight: 600; margin-bottom: 4px; font-size: 15px; }
+.feature-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
 
 /* === FOOTER === */
 .footer {
@@ -547,7 +510,7 @@ body {
   transition: color 0.2s;
 }
 
-.footer-col a:hover { color: var(--blue); text-decoration: none; }
+.footer-col a:hover { color: var(--blue); }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -581,24 +544,24 @@ body {
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="logo" style="display:inline-flex;align-items:center;gap:8px">
+    <a href="../index.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit">
       <svg width="36" height="36" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
         <circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
         <line x1="36" y1="36" x2="46" y2="46" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
         <text x="22" y="29" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="18" font-weight="800" fill="currentColor">A</text>
       </svg>
       <span style="font-weight:700;font-size:20px">QA<span style="color:var(--accent)">.</span>Academy</span>
-    </div>
+    </a>
     <ul class="nav-links">
-      <li><a href="#curriculum">Dasturlar</a></li>
-      <li><a href="#lessons">Darslar</a></li>
-      <li><a href="#about">Haqida</a></li>
-      <li><a href="lessons/08-principles.html" class="nav-cta">Boshlash</a></li>
+      <li><a href="#curriculum">Программа</a></li>
+      <li><a href="#lessons">Уроки</a></li>
+      <li><a href="#about">О курсе</a></li>
+      <li><a href="../lessons/ru/01-qa-intro.html" class="nav-cta">Начать</a></li>
       <li><a href="#testshop" class="nav-cta" style="background:#1A1A1A;color:#FFFFFF;margin-left:8px">TestShop</a></li>
       <li>
         <div class="lang-toggle">
-          <button class="lang-btn active" id="btnUZ" onclick="setLang('uz')">UZ</button>
-          <button class="lang-btn" id="btnRU" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn" id="btnUZ" onclick="window.location.href='../index.html'">UZ</button>
+          <button class="lang-btn active" id="btnRU">RU</button>
         </div>
       </li>
     </ul>
@@ -607,25 +570,25 @@ body {
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Professional QA <em>testor</em> bo'lishning haqiqiy yo'li</h1>
-  <p class="hero-subtitle">Nazariyadan amaliyotgacha, real hayotiy misollar bilan. 28 ta interaktiv dars, tezkor testlar va topshiriqlar — barchasi O'zbek tilida.</p>
+  <h1>Настоящий путь к профессии <em>QA инженера</em></h1>
+  <p class="hero-subtitle">От теории к практике — с реальными примерами. 28 интерактивных уроков, быстрые тесты и задания — всё на русском языке.</p>
 
   <div class="hero-stats">
     <div>
       <div class="stat-num">28</div>
-      <div class="stat-label">Interaktiv dars</div>
+      <div class="stat-label">Интерактивных урока</div>
     </div>
     <div>
       <div class="stat-num">9</div>
-      <div class="stat-label">Tematik blok</div>
+      <div class="stat-label">Тематических блока</div>
     </div>
     <div>
       <div class="stat-num">100+</div>
-      <div class="stat-label">Amaliy misol</div>
+      <div class="stat-label">Практических примеров</div>
     </div>
     <div>
       <div class="stat-num">ISTQB</div>
-      <div class="stat-label">Standartiga mos</div>
+      <div class="stat-label">Соответствует стандарту</div>
     </div>
   </div>
 </section>
@@ -634,56 +597,56 @@ body {
 <section class="section" id="curriculum">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Dasturning tuzilmasi</span>
-      <h2 class="section-title">9 ta blok, 28 ta dars</h2>
-      <p class="section-subtitle">QA asoslaridan professional darajagacha — har bir tushunchani real misollar bilan o'rganasiz</p>
+      <span class="section-label">Структура программы</span>
+      <h2 class="section-title">9 блоков, 28 уроков</h2>
+      <p class="section-subtitle">От основ QA до профессионального уровня — каждое понятие изучается на реальных примерах</p>
     </div>
 
     <div class="blocks-grid">
       <div class="block-card">
-        <div class="block-num">BLOK 01</div>
-        <div class="block-title">Asoslar va metodologiya</div>
-        <div class="block-lessons">1–7 darslar</div>
+        <div class="block-num">БЛОК 01</div>
+        <div class="block-title">Основы и методология</div>
+        <div class="block-lessons">Уроки 1–7</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 02</div>
-        <div class="block-title">Prinsiplar va test turlari</div>
-        <div class="block-lessons">8–11 darslar</div>
+        <div class="block-num">БЛОК 02</div>
+        <div class="block-title">Принципы и виды тестов</div>
+        <div class="block-lessons">Уроки 8–11</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 03</div>
+        <div class="block-num">БЛОК 03</div>
         <div class="block-title">Static Testing</div>
-        <div class="block-lessons">12–13 darslar</div>
+        <div class="block-lessons">Уроки 12–13</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 04</div>
+        <div class="block-num">БЛОК 04</div>
         <div class="block-title">Test Design Techniques</div>
-        <div class="block-lessons">14–19 darslar</div>
+        <div class="block-lessons">Уроки 14–19</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 05</div>
+        <div class="block-num">БЛОК 05</div>
         <div class="block-title">Test Management</div>
-        <div class="block-lessons">20–22 darslar</div>
+        <div class="block-lessons">Уроки 20–22</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 06</div>
+        <div class="block-num">БЛОК 06</div>
         <div class="block-title">Risk Management</div>
-        <div class="block-lessons">23–24 darslar</div>
+        <div class="block-lessons">Уроки 23–24</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 07</div>
-        <div class="block-title">Monitoring va Reporting</div>
-        <div class="block-lessons">25–26 darslar</div>
+        <div class="block-num">БЛОК 07</div>
+        <div class="block-title">Monitoring и Reporting</div>
+        <div class="block-lessons">Уроки 25–26</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 08</div>
+        <div class="block-num">БЛОК 08</div>
         <div class="block-title">Defect Management</div>
-        <div class="block-lessons">27-dars</div>
+        <div class="block-lessons">Урок 27</div>
       </div>
       <div class="block-card">
-        <div class="block-num">BLOK 09</div>
-        <div class="block-title">Test Tools va Automation</div>
-        <div class="block-lessons">28-dars</div>
+        <div class="block-num">БЛОК 09</div>
+        <div class="block-title">Test Tools и Automation</div>
+        <div class="block-lessons">Урок 28</div>
       </div>
     </div>
   </div>
@@ -693,9 +656,9 @@ body {
 <section class="section" id="lessons">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Darslar</span>
-      <h2 class="section-title">To'liq dasturlar ro'yxati</h2>
-      <p class="section-subtitle">Har bir darsni alohida ochishingiz mumkin. Tartibiga rioya qilib borish tavsiya etiladi.</p>
+      <span class="section-label">Уроки</span>
+      <h2 class="section-title">Полный список уроков</h2>
+      <p class="section-subtitle">Каждый урок можно открыть отдельно. Рекомендуется проходить по порядку.</p>
     </div>
 
     <div class="lessons-wrapper">
@@ -704,70 +667,70 @@ body {
       <div class="lesson-group open">
         <div class="lesson-group-header">
           <div class="lesson-group-number">01</div>
-          <div class="lesson-group-title">Asoslar va metodologiya</div><span class="lesson-group-count">7 dars</span><span class="lesson-group-toggle">+</span>
+          <div class="lesson-group-title">Основы и методология</div><span class="lesson-group-count">7 уроков</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
-          <a class="lesson-item" href="lessons/01-qa-intro.html" data-uz="lessons/01-qa-intro.html" data-ru="lessons/ru/01-qa-intro.html">
+          <a class="lesson-item" href="../lessons/ru/01-qa-intro.html">
             <div class="lesson-num-badge">01</div>
             <div class="lesson-info">
-              <div class="lesson-title">QA nima va testor kim?</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Kirish</span></div>
+              <div class="lesson-title">Что такое QA и кто такой тестировщик?</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Введение</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/02-testing-basics.html">
+          <a class="lesson-item" href="../lessons/02-testing-basics.html">
             <div class="lesson-num-badge">02</div>
             <div class="lesson-info">
-              <div class="lesson-title">Testlash, bug va testing turlari</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Asosiy</span></div>
+              <div class="lesson-title">Тестирование, баги и виды тестирования</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Основы</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/03-sdlc-stlc.html">
+          <a class="lesson-item" href="../lessons/03-sdlc-stlc.html">
             <div class="lesson-num-badge">03</div>
             <div class="lesson-info">
-              <div class="lesson-title">Testlash jarayoni: SDLC va STLC</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Nazariy</span></div>
+              <div class="lesson-title">Процесс тестирования: SDLC и STLC</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Теория</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/04-bug-testware.html">
+          <a class="lesson-item" href="../lessons/04-bug-testware.html">
             <div class="lesson-num-badge">04</div>
             <div class="lesson-info">
-              <div class="lesson-title">Bug sabablari va testware</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Nazariy</span></div>
+              <div class="lesson-title">Причины багов и testware</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Теория</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/05-roles-traceability.html">
+          <a class="lesson-item" href="../lessons/05-roles-traceability.html">
             <div class="lesson-num-badge">05</div>
             <div class="lesson-info">
-              <div class="lesson-title">Rollar, vazifalar va traceability</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Nazariy</span></div>
+              <div class="lesson-title">Роли, обязанности и traceability</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Теория</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/06-team-approaches.html">
+          <a class="lesson-item" href="../lessons/06-team-approaches.html">
             <div class="lesson-num-badge">06</div>
             <div class="lesson-info">
               <div class="lesson-title">Whole Team Approach, TDD/ATDD/BDD</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Metodologiya</span></div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Методология</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/07-shift-left-right.html">
+          <a class="lesson-item" href="../lessons/07-shift-left-right.html">
             <div class="lesson-num-badge">07</div>
             <div class="lesson-info">
-              <div class="lesson-title">Shift Left va Shift Right Testing</div>
-              <div class="lesson-meta"><span>80 min</span><span>·</span><span>Zamonaviy strategiya</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Shift Left и Shift Right Testing</div>
+              <div class="lesson-meta"><span>80 мин</span><span>·</span><span>Современная стратегия</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
         </div>
@@ -777,301 +740,294 @@ body {
       <div class="lesson-group">
         <div class="lesson-group-header">
           <div class="lesson-group-number">02</div>
-          <div class="lesson-group-title">Prinsiplar va test turlari</div><span class="lesson-group-count">6 dars</span><span class="lesson-group-toggle">+</span>
+          <div class="lesson-group-title">Принципы и виды тестов</div><span class="lesson-group-count">6 уроков</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
-          <a class="lesson-item" href="lessons/08-principles.html">
+          <a class="lesson-item" href="../lessons/08-principles.html">
             <div class="lesson-num-badge">08</div>
             <div class="lesson-info">
-              <div class="lesson-title">7 ta prinsip, DevOps va Retrospektivlar</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Fundamental</span><span>·</span><span>4 ta interaktiv</span></div>
+              <div class="lesson-title">7 принципов, DevOps и ретроспективы</div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Фундамент</span></div>
             </div>
-            <div class="lesson-status status-current">Hozirda</div>
+            <div class="lesson-status status-current">Текущий</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/09-test-levels.html">
+          <a class="lesson-item" href="../lessons/09-test-levels.html">
             <div class="lesson-num-badge">09</div>
             <div class="lesson-info">
-              <div class="lesson-title">Test darajalari va Regression Testing</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Nazariy + Amaliy</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Уровни тестирования и Regression Testing</div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Теория + Практика</span></div>
             </div>
-            <div class="lesson-status status-current">Hozirda</div>
+            <div class="lesson-status status-current">Текущий</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/10-test-types.html">
+          <a class="lesson-item" href="../lessons/10-test-types.html">
             <div class="lesson-num-badge">10</div>
             <div class="lesson-info">
-              <div class="lesson-title">Test turlari (Functional, Performance, Security)</div>
-              <div class="lesson-meta"><span>80 min</span><span>·</span><span>Nazariy + Amaliy</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Виды тестов (Functional, Performance, Security)</div>
+              <div class="lesson-meta"><span>80 мин</span><span>·</span><span>Теория + Практика</span></div>
             </div>
-            <div class="lesson-status status-current">Hozirda</div>
+            <div class="lesson-status status-current">Текущий</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/11-confirmation-maintenance.html">
+          <a class="lesson-item" href="../lessons/11-confirmation-maintenance.html">
             <div class="lesson-num-badge">11</div>
             <div class="lesson-info">
               <div class="lesson-title">Confirmation, Regression, Maintenance</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Kundalik ish</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Ежедневная работа</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/12-test-analysis-design.html">
+          <a class="lesson-item" href="../lessons/12-test-analysis-design.html">
             <div class="lesson-num-badge">12</div>
             <div class="lesson-info">
-              <div class="lesson-title">Test Analysis va Test Design</div>
-              <div class="lesson-meta"><span>80 min</span><span>·</span><span>Test yaratish</span><span>·</span><span>7 ta interaktiv</span></div>
+              <div class="lesson-title">Test Analysis и Test Design</div>
+              <div class="lesson-meta"><span>80 мин</span><span>·</span><span>Создание тестов</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/13-test-techniques.html">
+          <a class="lesson-item" href="../lessons/13-test-techniques.html">
             <div class="lesson-num-badge">13</div>
             <div class="lesson-info">
-              <div class="lesson-title">Test Case yozish texnikalari (chuqur)</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Amaliy</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Техники написания Test Case (углублённо)</div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Практика</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
         </div>
       </div>
 
-      <!-- BLOCK 4 — preview -->
+      <!-- BLOCK 4 -->
       <div class="lesson-group">
         <div class="lesson-group-header">
           <div class="lesson-group-number">04</div>
-          <div class="lesson-group-title">Test Design Techniques va amaliyot</div><span class="lesson-group-count">15 dars</span><span class="lesson-group-toggle">+</span>
+          <div class="lesson-group-title">Test Design Techniques и практика</div><span class="lesson-group-count">15 уроков</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
-          <a class="lesson-item" href="lessons/14-test-plan.html">
+          <a class="lesson-item" href="../lessons/14-test-plan.html">
             <div class="lesson-num-badge">14</div>
             <div class="lesson-info">
-              <div class="lesson-title">Test Plan tuzish</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Loyiha menejmenti</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Составление Test Plan</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Проектный менеджмент</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/15-jira.html">
+          <a class="lesson-item" href="../lessons/15-jira.html">
             <div class="lesson-num-badge">15</div>
             <div class="lesson-info">
-              <div class="lesson-title">Jira'da to'liq ishlash</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Asbob amaliyoti</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Полная работа в Jira</div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Инструмент</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/16-testrail.html">
+          <a class="lesson-item" href="../lessons/16-testrail.html">
             <div class="lesson-num-badge">16</div>
             <div class="lesson-info">
-              <div class="lesson-title">TestRail va test management</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Asbob amaliyoti</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">TestRail и test management</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Инструмент</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/17-postman-api.html">
+          <a class="lesson-item" href="../lessons/17-postman-api.html">
             <div class="lesson-num-badge">17</div>
             <div class="lesson-info">
-              <div class="lesson-title">Postman va API testing</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Middle QA ko'nikmasi</span><span>·</span><span>7 ta interaktiv</span></div>
+              <div class="lesson-title">Postman и API тестирование</div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Middle QA навык</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/18-automation-intro.html">
+          <a class="lesson-item" href="../lessons/18-automation-intro.html">
             <div class="lesson-num-badge">18</div>
             <div class="lesson-info">
-              <div class="lesson-title">Automation asoslari</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Boshlovchilar uchun</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Основы автоматизации</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Для начинающих</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/19-selenium.html">
+          <a class="lesson-item" href="../lessons/19-selenium.html">
             <div class="lesson-num-badge">19</div>
             <div class="lesson-info">
               <div class="lesson-title">Selenium WebDriver (Python)</div>
-              <div class="lesson-meta"><span>90 min</span><span>·</span><span>Python kod</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-meta"><span>90 мин</span><span>·</span><span>Python код</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/20-playwright.html">
+          <a class="lesson-item" href="../lessons/20-playwright.html">
             <div class="lesson-num-badge">20</div>
             <div class="lesson-info">
-              <div class="lesson-title">Playwright — zamonaviy automation</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Python kod</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Playwright — современная автоматизация</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Python код</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/21-automation-strategy.html">
+          <a class="lesson-item" href="../lessons/21-automation-strategy.html">
             <div class="lesson-num-badge">21</div>
             <div class="lesson-info">
-              <div class="lesson-title">Automation Strategiyasi (POM, Pytest)</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>Python kod</span><span>·</span><span>6 ta interaktiv</span></div>
+              <div class="lesson-title">Стратегия автоматизации (POM, Pytest)</div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Python код</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/22-performance-testing.html">
+          <a class="lesson-item" href="../lessons/22-performance-testing.html">
             <div class="lesson-num-badge">22</div>
             <div class="lesson-info">
               <div class="lesson-title">Performance Testing (JMeter)</div>
-              <div class="lesson-meta"><span>75 min</span><span>·</span><span>JMeter asbob</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-meta"><span>75 мин</span><span>·</span><span>Инструмент JMeter</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/23-mobile-testing.html">
+          <a class="lesson-item" href="../lessons/23-mobile-testing.html">
             <div class="lesson-num-badge">23</div>
             <div class="lesson-info">
               <div class="lesson-title">Mobile Testing (Android + iOS)</div>
-              <div class="lesson-meta"><span>70 min</span><span>·</span><span>Android + iOS</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-meta"><span>70 мин</span><span>·</span><span>Android + iOS</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/24-portfolio.html">
+          <a class="lesson-item" href="../lessons/24-portfolio.html">
             <div class="lesson-num-badge">24</div>
             <div class="lesson-info">
-              <div class="lesson-title">Portfolio yaratish (GitHub + LinkedIn)</div>
-              <div class="lesson-meta"><span>70 min</span><span>·</span><span>Karyera</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Создание портфолио (GitHub + LinkedIn)</div>
+              <div class="lesson-meta"><span>70 мин</span><span>·</span><span>Карьера</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/25-cv.html">
+          <a class="lesson-item" href="../lessons/25-cv.html">
             <div class="lesson-num-badge">25</div>
             <div class="lesson-info">
-              <div class="lesson-title">CV yozish (ATS, Builder, Shablon)</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Karyera</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Написание CV (ATS, Builder, Шаблон)</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Карьера</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/26-interview.html">
+          <a class="lesson-item" href="../lessons/26-interview.html">
             <div class="lesson-num-badge">26</div>
             <div class="lesson-info">
-              <div class="lesson-title">Intervyu tayyorgarlik (Mock + FAQ)</div>
-              <div class="lesson-meta"><span>80 min</span><span>·</span><span>20 ta Mock savol</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">Подготовка к собеседованию (Mock + FAQ)</div>
+              <div class="lesson-meta"><span>80 мин</span><span>·</span><span>20 Mock вопросов</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/27-real-project.html">
+          <a class="lesson-item" href="../lessons/27-real-project.html">
             <div class="lesson-num-badge">27</div>
             <div class="lesson-info">
-              <div class="lesson-title">Real loyihada QA (0–3 oy)</div>
-              <div class="lesson-meta"><span>70 min</span><span>·</span><span>Workflow Simulator</span><span>·</span><span>5 ta interaktiv</span></div>
+              <div class="lesson-title">QA на реальном проекте (0–3 месяца)</div>
+              <div class="lesson-meta"><span>70 мин</span><span>·</span><span>Workflow Simulator</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
-          <a class="lesson-item" href="lessons/28-final.html">
+          <a class="lesson-item" href="../lessons/28-final.html">
             <div class="lesson-num-badge">28</div>
             <div class="lesson-info">
-              <div class="lesson-title">Yakuniy dars — Siz QA Engineer siz! 🏆</div>
-              <div class="lesson-meta"><span>60 min</span><span>·</span><span>Sertifikat</span><span>·</span><span>20 ta Quiz</span></div>
+              <div class="lesson-title">Финальный урок — Вы QA Engineer! 🏆</div>
+              <div class="lesson-meta"><span>60 мин</span><span>·</span><span>Сертификат</span><span>·</span><span>20 Quiz</span></div>
             </div>
-            <div class="lesson-status status-done">Tayyor</div>
+            <div class="lesson-status status-done">Готово</div>
             <div class="lesson-arrow">→</div>
           </a>
         </div>
       </div>
 
       <p style="text-align:center;color:var(--ink-muted);font-size:15px;margin-top:40px">
-        🎉 Barcha 28 ta dars tayyor!
+        🎉 Все 28 уроков готовы!
       </p>
 
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <div class="container">
 
-
-<!-- BONUS DARSLAR — TAKROR -->
+<!-- BONUS LESSONS -->
 <section style="padding:80px 0;background:var(--bg-soft)" id="review">
   <div style="max-width:1100px;margin:0 auto;padding:0 24px">
     <div style="text-align:center;margin-bottom:48px">
-      <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:var(--plum-soft);padding:6px 14px;border-radius:4px;margin-bottom:14px">📖 BONUS DARSLAR</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:40px;font-weight:500;letter-spacing:-1px;margin-bottom:14px">Bilimni mustahkamlang</h2>
-      <p style="color:var(--ink-muted);font-size:17px;max-width:580px;margin:0 auto;line-height:1.6">28 ta darsni 3 ta katta blokda takrorlash. Eng muhim ma'lumotlar bir joyda.</p>
+      <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);background:var(--plum-soft);padding:6px 14px;border-radius:4px;margin-bottom:14px">📖 БОНУСНЫЕ УРОКИ</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:40px;font-weight:500;letter-spacing:-1px;margin-bottom:14px">Закрепите знания</h2>
+      <p style="color:var(--ink-muted);font-size:17px;max-width:580px;margin:0 auto;line-height:1.6">28 уроков в 3 больших блоках для повторения. Самые важные материалы в одном месте.</p>
     </div>
-    
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      
-      <!-- Takror 1 -->
-      <a href="lessons/review/review-01-10.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
+      <a href="../lessons/review/review-01-10.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--plum);background:var(--plum-soft);padding:4px 10px;border-radius:4px;font-weight:600">TAKROR 1</span>
-          <span style="font-size:13px;color:var(--ink-muted)">~25 daq</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--plum);background:var(--plum-soft);padding:4px 10px;border-radius:4px;font-weight:600">ПОВТОР 1</span>
+          <span style="font-size:13px;color:var(--ink-muted)">~25 мин</span>
         </div>
-        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">1–10 darslar xulosasi</h3>
-        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">QA asoslari, SDLC, Bug Life Cycle, Test darajalari, Testing turlari va prinsiplar.</p>
-        <div style="color:var(--plum);font-weight:600;font-size:14px">O'qishni boshlash →</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">Итоги уроков 1–10</h3>
+        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">Основы QA, SDLC, Bug Life Cycle, уровни тестирования, виды тестирования и принципы.</p>
+        <div style="color:var(--plum);font-weight:600;font-size:14px">Начать читать →</div>
       </a>
 
-      <!-- Takror 2 -->
-      <a href="lessons/review/review-11-20.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--forest)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
+      <a href="../lessons/review/review-11-20.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--forest)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--forest);background:var(--forest-soft);padding:4px 10px;border-radius:4px;font-weight:600">TAKROR 2</span>
-          <span style="font-size:13px;color:var(--ink-muted)">~30 daq</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--forest);background:var(--forest-soft);padding:4px 10px;border-radius:4px;font-weight:600">ПОВТОР 2</span>
+          <span style="font-size:13px;color:var(--ink-muted)">~30 мин</span>
         </div>
-        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">11–20 darslar xulosasi</h3>
-        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">Test Design Techniques, Jira, Postman, API testing va Automation asoslari.</p>
-        <div style="color:var(--forest);font-weight:600;font-size:14px">O'qishni boshlash →</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">Итоги уроков 11–20</h3>
+        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">Test Design Techniques, Jira, Postman, API тестирование и основы автоматизации.</p>
+        <div style="color:var(--forest);font-weight:600;font-size:14px">Начать читать →</div>
       </a>
 
-      <!-- Takror 3 -->
-      <a href="lessons/review/review-21-28.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
+      <a href="../lessons/review/review-21-28.html" style="background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block" onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);background:var(--gold-soft);padding:4px 10px;border-radius:4px;font-weight:600">TAKROR 3</span>
-          <span style="font-size:13px;color:var(--ink-muted)">~25 daq · Yakuniy</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);background:var(--gold-soft);padding:4px 10px;border-radius:4px;font-weight:600">ПОВТОР 3</span>
+          <span style="font-size:13px;color:var(--ink-muted)">~25 мин · Финал</span>
         </div>
-        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">21–28 darslar xulosasi</h3>
-        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">POM, Performance, Mobile testing, Portfolio, CV va Intervyu tayyorgarligi.</p>
-        <div style="color:var(--gold);font-weight:600;font-size:14px">O'qishni boshlash →</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;line-height:1.3">Итоги уроков 21–28</h3>
+        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:14px">POM, Performance, Mobile тестирование, портфолио, CV и подготовка к собеседованию.</p>
+        <div style="color:var(--gold);font-weight:600;font-size:14px">Начать читать →</div>
       </a>
-
     </div>
   </div>
 </section>
 
-<!-- TESTSHOP — AMALIY MASHQ SAYTI -->
+<!-- TESTSHOP -->
 <section style="padding:80px 0;background:linear-gradient(135deg,#1A1A1A 0%,#2A1A3A 100%);color:white" id="testshop">
   <div style="max-width:1100px;margin:0 auto;padding:0 24px">
     <div style="text-align:center;margin-bottom:48px">
-      <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#D64545;background:rgba(214,69,69,0.15);padding:6px 14px;border-radius:4px;margin-bottom:14px">🛒 Amaliy mashq</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:40px;font-weight:500;letter-spacing:-1px;margin-bottom:14px;color:white">TestShop — bilimingizni amalda sinang</h2>
-      <p style="color:#AAA;font-size:17px;max-width:580px;margin:0 auto;line-height:1.6">Real e-commerce sayt — ataylab buglar bilan. Login, savat, to'lov, qidiruv — hammasini test qiling.</p>
+      <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#D64545;background:rgba(214,69,69,0.15);padding:6px 14px;border-radius:4px;margin-bottom:14px">🛒 Практическое задание</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:40px;font-weight:500;letter-spacing:-1px;margin-bottom:14px;color:white">TestShop — проверьте знания на практике</h2>
+      <p style="color:#AAA;font-size:17px;max-width:580px;margin:0 auto;line-height:1.6">Реальный e-commerce сайт — намеренно с багами. Логин, корзина, оплата, поиск — тестируйте всё.</p>
     </div>
-    
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:40px">
       <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;text-align:center">
         <div style="font-size:36px;margin-bottom:10px">🛍️</div>
-        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">9 ta sahifa</div>
-        <div style="font-size:14px;color:#AAA">Bosh sahifa, mahsulot, qidiruv, savat, profil, sevimlilar va boshqalar</div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">9 страниц</div>
+        <div style="font-size:14px;color:#AAA">Главная, товар, поиск, корзина, профиль, избранное и другие</div>
       </div>
       <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;text-align:center">
         <div style="font-size:36px;margin-bottom:10px">🐛</div>
-        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">30+ ataylab bug</div>
-        <div style="font-size:14px;color:#AAA">Manfiy narx, validatsiya yo'qligi, mantiqiy xatolar — topib hujjatlang</div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">30+ намеренных багов</div>
+        <div style="font-size:14px;color:#AAA">Отрицательная цена, отсутствие валидации, логические ошибки — находите и документируйте</div>
       </div>
       <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;text-align:center">
         <div style="font-size:36px;margin-bottom:10px">💼</div>
-        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">Real ish kabi</div>
-        <div style="font-size:14px;color:#AAA">Bug topish va Jira'da bug report yozish ko'nikmalari</div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;color:white">Как на реальной работе</div>
+        <div style="font-size:14px;color:#AAA">Навыки поиска багов и написания баг-репортов в Jira</div>
       </div>
     </div>
-    
+
     <div style="text-align:center">
-      <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;padding:16px 36px;background:#D64545;color:white;text-decoration:none;border-radius:12px;font-size:16px;font-weight:600;transition:all .2s" onmouseover="this.style.background='#B83838'" onmouseout="this.style.background='#D64545'">🛒 TestShop saytini ochish →</a>
-      <p style="font-size:13px;color:#888;margin-top:14px">Bepul · Ro'yxatdan o'tish yo'q · Hoziroq sinab ko'ring</p>
+      <a href="https://mirzobek-kxaitov.github.io/testshop/" target="_blank" style="display:inline-block;padding:16px 36px;background:#D64545;color:white;text-decoration:none;border-radius:12px;font-size:16px;font-weight:600;transition:all .2s" onmouseover="this.style.background='#B83838'" onmouseout="this.style.background='#D64545'">🛒 Открыть TestShop →</a>
+      <p style="font-size:13px;color:#888;margin-top:14px">Бесплатно · Без регистрации · Попробуйте прямо сейчас</p>
     </div>
   </div>
 </section>
@@ -1079,32 +1035,32 @@ body {
 <section class="about" id="about">
   <div class="about-grid">
     <div class="about-text">
-      <h2>Nega aynan bu kurs?</h2>
-      <p>Ko'pchilik QA kurslari eski ma'lumotlar yoki tarjima qilingan matnlar asosida tuzilgan. Bu kurs esa <strong>ISTQB CTFL v4.0.1</strong> (2024) — dunyodagi eng obro'li QA sertifikatlash standarti asosida yozilgan.</p>
-      <p>Har bir prinsip, har bir texnika — <strong>O'zbekistondagi real loyihalar</strong> misolida tushuntiriladi. Click, Uzum, Payme, Uzcard — siz tanish bo'lgan kompaniyalar.</p>
-      <p>Kursda <strong>interaktiv mashg'ulotlar</strong>: tezkor testlar, drag-and-drop o'yinlar, real vaziyatlarda qaror qabul qilish. Faqat nazariya emas — amaliyot.</p>
+      <h2>Почему именно этот курс?</h2>
+      <p>Большинство QA курсов построено на устаревших материалах или переводных текстах. Этот курс написан на основе <strong>ISTQB CTFL v4.0.1</strong> (2024) — самого авторитетного стандарта сертификации QA в мире.</p>
+      <p>Каждый принцип, каждая техника — объясняется на примерах <strong>реальных проектов</strong>. Click, Uzum, Payme, Uzcard — компании, которые вам знакомы.</p>
+      <p>В курсе <strong>интерактивные задания</strong>: быстрые тесты, drag-and-drop игры, принятие решений в реальных ситуациях. Не только теория — практика.</p>
     </div>
 
     <div class="about-features">
       <div class="feature-item">
         <div class="feature-icon">01</div>
         <div>
-          <div class="feature-title">ISTQB standartiga mos</div>
-          <div class="feature-desc">Xalqaro sertifikatga tayyorgarlik uchun asos</div>
+          <div class="feature-title">Соответствует стандарту ISTQB</div>
+          <div class="feature-desc">Основа для подготовки к международной сертификации</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">02</div>
         <div>
-          <div class="feature-title">O'zbek tilida, mahalliy misollar</div>
-          <div class="feature-desc">Tarjima emas, sizning tilda yozilgan</div>
+          <div class="feature-title">На русском языке, реальные примеры</div>
+          <div class="feature-desc">Не перевод — написано для вас</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">03</div>
         <div>
-          <div class="feature-title">Interaktiv va amaliy</div>
-          <div class="feature-desc">Har darsdan keyin testlar va topshiriqlar</div>
+          <div class="feature-title">Интерактивно и практично</div>
+          <div class="feature-desc">Тесты и задания после каждого урока</div>
         </div>
       </div>
     </div>
@@ -1117,18 +1073,18 @@ body {
   <div class="footer-inner">
     <div>
       <div class="footer-brand">QA<span>.</span>Academy</div>
-      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. ISTQB asosida, O'zbek tilida, interaktiv formatda.</p>
+      <p class="footer-tagline">Чёткий и быстрый путь к профессии QA тестировщика. На основе ISTQB, на русском языке, в интерактивном формате.</p>
     </div>
     <div class="footer-col">
-      <h4>Bo'limlar</h4>
+      <h4>Разделы</h4>
       <ul>
-        <li><a href="#curriculum">Dastur</a></li>
-        <li><a href="#lessons">Barcha darslar</a></li>
-        <li><a href="lessons/08-principles.html">Boshlash</a></li>
+        <li><a href="#curriculum">Программа</a></li>
+        <li><a href="#lessons">Все уроки</a></li>
+        <li><a href="../lessons/ru/01-qa-intro.html">Начать</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Muallif bilan aloqa</h4>
+      <h4>Связаться с автором</h4>
       <ul>
         <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" style="display:flex;align-items:center;gap:8px">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
@@ -1150,38 +1106,19 @@ body {
   </div>
   <div class="footer-bottom">
     <div>© 2026 QA Academy. ISTQB® — International Software Testing Qualifications Board.</div>
-    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" style="color:inherit;font-weight:600">Mirzobek Xaitov</a></div>
+    <div>Автор: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" style="color:inherit;font-weight:600">Mirzobek Xaitov</a></div>
   </div>
 </footer>
 
-
 <script>
-// Akkordion
 document.querySelectorAll('.lesson-group-header').forEach(header => {
   header.addEventListener('click', () => {
     const group = header.parentElement;
     const isOpen = group.classList.contains('open');
-    
-    // Barchasini yopamiz
-    document.querySelectorAll('.lesson-group').forEach(g => {
-      g.classList.remove('open');
-    });
-    
-    // Agar yopiq edi — ochamiz
-    if (!isOpen) {
-      group.classList.add('open');
-    }
+    document.querySelectorAll('.lesson-group').forEach(g => g.classList.remove('open'));
+    if (!isOpen) group.classList.add('open');
   });
 });
-</script>
-
-<script>
-// === LANGUAGE TOGGLE ===
-function setLang(lang) {
-  if (lang === 'ru') {
-    window.location.href = 'ru/index.html';
-  }
-}
 </script>
 
 </body>
