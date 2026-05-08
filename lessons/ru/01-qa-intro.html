@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок 1: Что такое QA и кто такой тестировщик? | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* === HEADER === */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(251, 249, 244, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 14px 0;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.progress-container {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 45px;
+}
+
+/* === HERO === */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.lesson-number {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+.meta-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === SECTION === */
+.section {
+  margin: 80px 0;
+  scroll-margin-top: 80px;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* === TERMIN BOX === */
+.term-box {
+  background: var(--blue-soft);
+  border-left: 3px solid var(--blue);
+  padding: 18px 22px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.term-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--blue);
+  margin-bottom: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.term-box-title::before {
+  content: "📖";
+  font-size: 14px;
+}
+
+.term-box strong {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+
+/* === EXAMPLE BOX === */
+.example-box {
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.example-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* === TAKEAWAY BOX === */
+.takeaway-box {
+  background: var(--forest-soft);
+  border-left: 3px solid var(--forest);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.takeaway-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--forest);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.takeaway-box ul { padding-left: 20px; }
+.takeaway-box li { margin-bottom: 6px; }
+
+/* === ANALOGY CARD === */
+.analogy-card {
+  background: var(--bg-card);
+  border: 2px dashed var(--gold);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 28px 0;
+  text-align: center;
+}
+
+.analogy-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.analogy-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.analogy-text {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* === COMPARISON CARDS === */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.compare-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.compare-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.compare-card.dev h4 { color: var(--blue); }
+.compare-card.qa h4 { color: var(--accent); }
+
+.compare-card ul { list-style: none; padding: 0; }
+
+.compare-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.compare-card li:last-child { border-bottom: none; }
+
+.compare-card li::before {
+  content: "→ ";
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* === QUIZ === */
+.quiz-card {
+  background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%);
+  border: 2px solid var(--plum);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.quiz-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--plum);
+  background: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+
+.quiz-option {
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-option:hover:not(.disabled) {
+  border-color: var(--plum);
+  background: var(--plum-soft);
+}
+
+.quiz-option.correct {
+  background: var(--forest-soft);
+  border-color: var(--forest);
+  color: var(--forest);
+}
+
+.quiz-option.incorrect {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+
+.quiz-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--line-dark);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.quiz-option.correct .quiz-marker {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.quiz-option.incorrect .quiz-marker {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.quiz-feedback {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: none;
+  line-height: 1.55;
+}
+
+.quiz-feedback.show { display: block; }
+
+.quiz-feedback.correct {
+  background: var(--forest-soft);
+  color: var(--forest);
+  border: 1px solid var(--forest);
+}
+
+.quiz-feedback.incorrect {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+}
+
+/* === TYPOGRAPHY === */
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+
+h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+p { margin-bottom: 16px; }
+
+.container p, .container li { color: var(--ink-soft); }
+
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+
+li { margin-bottom: 8px; color: var(--ink-soft); }
+
+strong { color: var(--ink); font-weight: 600; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 8px 0 8px 20px;
+  margin: 20px 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: var(--bg-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-dark);
+}
+
+/* === SKILLS GRID === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.skill-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.skill-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.skill-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* === SUMMARY === */
+.summary-section {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  margin: 80px 0;
+  text-align: center;
+}
+
+.summary-section .section-label {
+  background: rgba(255,255,255,0.1);
+  color: var(--gold);
+}
+
+.summary-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.summary-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.summary-point {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.summary-point-num {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  color: var(--gold);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.summary-point-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* === NAV FOOTER === */
+.nav-footer {
+  max-width: 780px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 18px 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 240px;
+}
+
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+.nav-btn-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+
+.nav-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* === COMPLETION BADGE === */
+.completion-badge {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--forest);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -8px rgba(58, 90, 64, 0.5);
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  animation: slideUp 0.5s ease;
+}
+
+.completion-badge.show { display: flex; }
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+}
+
+/* === FADE IN === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="../../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="lesson-number">Урок 1</div>
+  <h1>Что такое <em>QA</em> и кто такой тестировщик?</h1>
+  <p class="hero-subtitle">Добро пожаловать в мир IT! В этом уроке вы познакомитесь со сферой QA, узнаете, кто такой профессиональный тестировщик, и поймёте, почему эта профессия сегодня так востребована.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>60 минут</div>
+    <div class="pill"><span class="pill-dot"></span>Для начинающих</div>
+    <div class="pill"><span class="pill-dot"></span>3 интерактивных задания</div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- INTRO -->
+<section class="section" id="intro">
+  <span class="section-label">Введение</span>
+  <h2 class="section-title">Прежде чем начать...</h2>
+  <p class="section-intro">Возможно, сейчас вы думаете: "Я не умею программировать, хочу войти в IT, но не знаю с чего начать". Не переживайте — именно этот урок для вас!</p>
+  <p><strong>QA тестирование</strong> — один из самых доступных способов войти в мир IT. Потому что эта профессия на начальном этапе не требует глубоких знаний программирования. Главное — <strong>внимательность</strong>, <strong>аналитическое мышление</strong> и <strong>логика</strong>.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Новый термин</div>
+    <p><strong>IT (Information Technology)</strong> — «Информационные технологии». Эта сфера занимается компьютерами, программами, интернетом, приложениями и цифровыми системами.</p>
+    <p><em>Простыми словами:</em> каждое приложение на вашем телефоне, сайты которые вы посещаете, программы в банкоматах — всё это IT-продукты.</p>
+  </div>
+
+  <p>В этом курсе мы превратим вас из <strong>полного новичка</strong> в профессионального QA тестировщика. Каждый термин объясняется простым языком, каждое понятие подкреплено жизненными примерами.</p>
+</section>
+
+<!-- SECTION 1: QA -->
+<section class="section" id="qa">
+  <span class="section-label">Часть 1</span>
+  <h2 class="section-title">Что такое QA?</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Основной термин</div>
+    <p><strong>QA (Quality Assurance)</strong> — переводится как «Обеспечение качества».</p>
+    <p><em>Простыми словами:</em> это процесс обеспечения того, что программный продукт (программа, сайт, приложение) качественный, прежде чем он попадёт к пользователю.</p>
+  </div>
+
+  <p>Представьте, что вы скачали новое мобильное приложение. Открыли — работает, красиво выглядит, все кнопки на месте. Значит, в этом приложении <strong>QA было выполнено хорошо</strong>.</p>
+
+  <p>Теперь представьте обратное: приложение вылетает при открытии, кнопки не работают, текст не на своём месте. Это говорит о том, что <strong>QA было выполнено плохо</strong>.</p>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Жизненный пример</div>
+    <div class="analogy-title">QA — это работа контролёра на кухне ресторана</div>
+    <div class="analogy-text">
+      В ресторане повар готовит еду. Но перед тем как отнести блюдо клиенту, <strong>контролёр</strong> его проверяет: достаточно ли соли, прожарено ли мясо, красиво ли оно подано. Если есть проблема — возвращает повару. Именно так работает QA.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: TESTER -->
+<section class="section" id="tester">
+  <span class="section-label">Часть 2</span>
+  <h2 class="section-title">Кто такой тестировщик?</h2>
+
+  <div class="term-box">
+    <div class="term-box-title">Новый термин</div>
+    <p><strong>Тестировщик (Tester)</strong> — специалист, выполняющий работу QA.</p>
+    <p><em>Простыми словами:</em> он проверяет программу или приложение, находит ошибки и сообщает о них разработчику.</p>
+  </div>
+
+  <p>Представьте, что некая компания создаёт новый интернет-магазин. Разработчики написали сайт. Но кто-то должен его протестировать:</p>
+
+  <ul>
+    <li>Правильно ли отображаются товары?</li>
+    <li>Работает ли добавление в корзину?</li>
+    <li>Правильно ли считает система оплаты?</li>
+    <li>Красиво ли выглядит сайт на разных телефонах?</li>
+    <li>Переводятся ли все тексты при выборе английского языка?</li>
+  </ul>
+
+  <p>Человек, который находит ответы на эти вопросы — <strong>тестировщик</strong>. Он ищет «опасные места» внутри программы.</p>
+
+  <div class="term-box">
+    <div class="term-box-title">Новый термин</div>
+    <p><strong>Баг (Bug)</strong> (с англ. «насекомое», «жучок») — ошибка в программе.</p>
+    <p><em>Простыми словами:</em> когда что-то в сайте или приложении работает неправильно — это баг. Например: нажимаете кнопку, а ничего не происходит. Это баг.</p>
+    <p><em>Интересная история:</em> в 1947 году настоящий жучок попал внутрь компьютера и остановил его. С тех пор ошибку в программе называют «bug».</p>
+  </div>
+
+  <h3>Разработчик и тестировщик — в чём разница?</h3>
+
+  <p>Многие, кто только начинает изучать IT, не понимают этой разницы. Давайте объясним просто:</p>
+
+  <div class="compare-grid">
+    <div class="compare-card dev">
+      <h4>Разработчик (Developer)</h4>
+      <ul>
+        <li><strong>Создаёт</strong> программу</li>
+        <li>Пишет код</li>
+        <li>Добавляет новые функции</li>
+        <li>«Как мне это создать?»</li>
+      </ul>
+    </div>
+    <div class="compare-card qa">
+      <h4>Тестировщик (Tester)</h4>
+      <ul>
+        <li><strong>Проверяет</strong> программу</li>
+        <li>Находит ошибки</li>
+        <li>Обеспечивает качество</li>
+        <li>«Что здесь может сломаться?»</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Жизненный пример</div>
+    <div class="analogy-title">Строитель и придирчивый инспектор</div>
+    <div class="analogy-text">
+      Разработчик — это <strong>строитель</strong>, он строит дом. Тестировщик — это <strong>инспектор</strong>, он проверяет дом: прочны ли стены, правильно ли проведено электричество, работают ли водопроводные трубы. Оба важны — мало просто построить дом, он должен быть ещё и качественным.
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ 1 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Быстрая проверка</div>
+  <div class="quiz-question">В новом приложении для вызова такси вы заметили следующее: при нажатии кнопки «Вызвать» ничего не происходит. Что это?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Это нормально, телефон работает медленно</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Это баг — в программе есть ошибка</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Это дело разработчика, тестировщик тут ни при чём</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<!-- SECTION 3: WHY QA IS IMPORTANT -->
+<section class="section" id="why">
+  <span class="section-label">Часть 3</span>
+  <h2 class="section-title">Почему QA важно?</h2>
+  <p class="section-intro">Теперь возникает вопрос: «Разве разработчик не может сам протестировать? Зачем нужен отдельный тестировщик?»</p>
+
+  <h3>Реальные истории</h3>
+
+  <div class="example-box">
+    <div class="example-box-title">История 1 — NASA и космический корабль (1999)</div>
+    <p>NASA отправило космический корабль на Марс. Корабль стоил 125 миллионов долларов. Но он так и не долетел до Марса — был уничтожен.</p>
+    <p><strong>Причина?</strong> Маленький баг — одна программа считала в метрах, другая — в <strong>футах</strong> (американская единица измерения). Эта простая ошибка обошлась в 125 миллионов долларов.</p>
+    <p style="margin-bottom:0"><strong>Вывод:</strong> хороший тестировщик должен был найти эту ошибку заранее.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">История 2 — Мобильное приложение банка</div>
+    <p>В мобильном приложении одного банка появился баг: когда пользователь хотел перевести <strong>1 рубль</strong>, списывалось <strong>1000 рублей</strong> (программа добавляла лишние нули).</p>
+    <p>Банк был вынужден за один день вернуть деньги сотням клиентов. Репутация упала, клиенты ушли.</p>
+    <p style="margin-bottom:0"><strong>Почему?</strong> Тестировщик не проверял <strong>граничные значения</strong> (об этом поговорим в уроке 15).</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">История 3 — Онлайн-магазин</div>
+    <p>Один интернет-магазин запустил скидки в честь Чёрной пятницы. 10 000 человек пытались зайти на сайт в час. Сайт упал — не работал весь день.</p>
+    <p><strong>Причина?</strong> Тестировщики не проверили <strong>устойчивость сайта к большому потоку пользователей</strong> (об этом поговорим в уроке 10).</p>
+    <p style="margin-bottom:0"><strong>Результат:</strong> убытки в миллионы и потеря клиентов, ушедших к конкурентам.</p>
+  </div>
+
+  <h3>Тестировщик защищает от трёх главных проблем</h3>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">₽</div>
+      <div class="skill-title">Финансовые потери</div>
+      <div class="skill-desc">Из-за багов компании могут терять миллионы. Тестировщик предотвращает эти потери.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">★</div>
+      <div class="skill-title">Потеря репутации</div>
+      <div class="skill-desc">Никто не хочет пользоваться плохо работающим приложением. Если однажды оставить плохое впечатление — вернуть клиента сложно.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">✓</div>
+      <div class="skill-title">Опасные ситуации</div>
+      <div class="skill-desc">Баги в медицинских, банковских и транспортных системах могут нанести вред здоровью людей.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ 2 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Быстрая проверка</div>
+  <div class="quiz-question">Почему разработчик не может полностью протестировать созданную им программу?</div>
+  <div class="quiz-options" data-quiz="q2">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Разработчики ленивые</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Разработчик верит в свою работу и может не заметить некоторые ошибки. Новый человек (тестировщик) смотрит другим взглядом</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Разработчик не умеет создавать программы и тестировать их тоже не умеет</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q2"></div>
+</div>
+
+<!-- SECTION 4: SKILLS -->
+<section class="section" id="skills">
+  <span class="section-label">Часть 4</span>
+  <h2 class="section-title">Что нужно, чтобы стать тестировщиком?</h2>
+  <p class="section-intro">Хорошая новость: чтобы стать тестировщиком, <strong>не нужно глубоко знать математику</strong> или <strong>идеально выучить программирование</strong>. Главное — правильный <strong>образ мышления</strong>.</p>
+
+  <h3>Важные качества</h3>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">◎</div>
+      <div class="skill-title">Внимательность</div>
+      <div class="skill-desc">Умение замечать мелкие детали. Видеть одну неправильную букву в тексте.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">?</div>
+      <div class="skill-title">Любопытство</div>
+      <div class="skill-desc">Привычка спрашивать «Почему?», «Что будет, если я сделаю вот так?»</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚙</div>
+      <div class="skill-title">Аналитическое мышление</div>
+      <div class="skill-desc">Умение разбить проблему на части, найти связь между причиной и следствием.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">✎</div>
+      <div class="skill-title">Чёткое изложение</div>
+      <div class="skill-desc">Найденный баг нужно описать так, чтобы разработчик понял и смог исправить.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☺</div>
+      <div class="skill-title">Коммуникация</div>
+      <div class="skill-desc">Работа в команде, умение объяснить свою мысль, показать проблему.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⟳</div>
+      <div class="skill-title">Терпение</div>
+      <div class="skill-desc">Многократно тестировать одно и то же разными способами. Иногда нужно 100 попыток, чтобы найти баг.</div>
+    </div>
+  </div>
+
+  <h3>Технические знания</h3>
+  <p>На начальном этапе <strong>достаточно минимума</strong>. Со временем вы будете учиться:</p>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Начальный уровень (сейчас)</div>
+    <ul>
+      <li>Уверенная работа за компьютером</li>
+      <li>Знание Windows/Mac операционной системы</li>
+      <li>Основы Excel или Google Sheets</li>
+      <li>Поиск информации в интернете</li>
+    </ul>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Средний уровень (освоите за 3–6 месяцев)</div>
+    <ul>
+      <li>Основы HTML и CSS (как устроен сайт)</li>
+      <li>Принципы работы мобильных приложений</li>
+      <li>Основы SQL (работа с базами данных)</li>
+      <li>Базовые понятия: API, клиент-сервер</li>
+    </ul>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Профессиональный уровень (через 1 год)</div>
+    <ul>
+      <li>Автоматизированное тестирование (Selenium, Playwright)</li>
+      <li>Язык программирования (основы JavaScript или Python)</li>
+      <li>Работа с Git и GitHub</li>
+      <li>Профессиональные инструменты: Jira, TestRail</li>
+    </ul>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Новые термины</div>
+    <p><strong>API</strong> — «язык общения» программ между собой. <em>Например:</em> когда в приложении показывается погода, оно получает данные с сервера погоды через API.</p>
+    <p><strong>SQL</strong> — язык запросов к базам данных. <em>Например:</em> запросы вида «Покажи мне всех пользователей, зарегистрированных в 2024 году».</p>
+    <p><em>Запоминать это прямо сейчас не обязательно</em> — подробно изучим в следующих уроках.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: CAREER -->
+<section class="section" id="career">
+  <span class="section-label">Часть 5</span>
+  <h2 class="section-title">Перспективы профессии QA</h2>
+
+  <h3>Почему QA — хороший выбор?</h3>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">↗</div>
+      <div class="skill-title">Быстрый старт</div>
+      <div class="skill-desc">За 3–6 месяцев можно устроиться на первую работу. Разработчикам нужно 1–2 года.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">$</div>
+      <div class="skill-title">Хорошая зарплата</div>
+      <div class="skill-desc">Начинающие тестировщики получают от $300–600, опытные — до $1500–3000.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⌂</div>
+      <div class="skill-title">Удалённая работа</div>
+      <div class="skill-desc">Можно работать с зарубежными компаниями. Возможность зарабатывать из дома.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⇌</div>
+      <div class="skill-title">Карьерный рост</div>
+      <div class="skill-desc">Junior → Middle → Senior → Lead → Manager. Или стать специалистом по автоматизации.</div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-box-title">Новые термины — карьерные уровни</div>
+    <p><strong>Junior (младший)</strong> — 0–1 год опыта, только начинает</p>
+    <p><strong>Middle (средний)</strong> — 2–4 года опыта, работает самостоятельно</p>
+    <p><strong>Senior (старший)</strong> — 5+ лет опыта, обучает других</p>
+    <p><strong>Lead (руководитель)</strong> — управляет командой</p>
+  </div>
+
+  <h3>Ситуация на рынке труда</h3>
+  <p>Сейчас QA тестировщики очень востребованы. Многие IT-компании и фирмы, работающие с зарубежными заказчиками, постоянно ищут тестировщиков. Те, кто входит в эту сферу, как правило, не остаются без работы.</p>
+
+  <div class="example-box">
+    <div class="example-box-title">Компании, нанимающие QA специалистов</div>
+    <ul style="margin:0">
+      <li><strong>Локальные:</strong> Click, Payme, Uzum, Humans, Yandex.Taxi, EPAM Uzbekistan</li>
+      <li><strong>Зарубежные:</strong> Exadel, iTransition, Andersen, EPAM Systems</li>
+      <li><strong>Фриланс платформы:</strong> Upwork, Toptal — работа с иностранными клиентами</li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUIZ 3 -->
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Итоговая проверка</div>
+  <div class="quiz-question">Ваш друг хочет войти в сферу QA, но не умеет программировать. Что вы скажете?</div>
+  <div class="quiz-options" data-quiz="q3">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>В QA невозможно попасть, сначала нужно 2 года изучать программирование</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Для начала работы в QA глубокое программирование не нужно. Важнее внимательность, любопытство, аналитическое мышление. Технические знания растут со временем</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Профессия QA устаревает, лучше выбрать другое направление</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q3"></div>
+</div>
+
+<!-- SECTION 6: WHAT NEXT -->
+<section class="section">
+  <span class="section-label">Далее</span>
+  <h2 class="section-title">Что вы изучите в курсе?</h2>
+
+  <p>Этот урок 1 — просто знакомство. Впереди много интересного:</p>
+
+  <ul style="list-style:none; padding:0">
+    <li style="padding:14px 18px; background:var(--bg-card); border:1px solid var(--line); border-radius:10px; margin-bottom:10px"><strong>Урок 2:</strong> Тестирование, виды багов и тестов</li>
+    <li style="padding:14px 18px; background:var(--bg-card); border:1px solid var(--line); border-radius:10px; margin-bottom:10px"><strong>Урок 3:</strong> Процесс разработки и тестирования — SDLC и STLC</li>
+    <li style="padding:14px 18px; background:var(--bg-card); border:1px solid var(--line); border-radius:10px; margin-bottom:10px"><strong>Уроки 14–16:</strong> Техники тестирования — искусство нахождения багов</li>
+    <li style="padding:14px 18px; background:var(--bg-card); border:1px solid var(--line); border-radius:10px; margin-bottom:10px"><strong>Урок 27:</strong> Профессиональное составление баг-репортов</li>
+    <li style="padding:14px 18px; background:var(--bg-card); border:1px solid var(--line); border-radius:10px"><strong>Урок 28:</strong> Автоматизация — следующий шаг в будущее</li>
+  </ul>
+</section>
+
+</div><!-- /container -->
+
+<!-- SUMMARY -->
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Итог</span>
+  <h2>3 главные мысли</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Самые важные идеи, которые нужно запомнить из этого урока</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">QA — обеспечение качества</div>
+      <div class="summary-point-text">Процесс тестирования программы или приложения и нахождения ошибок до того, как оно попадёт к пользователю.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Тестировщик — внимательный взгляд</div>
+      <div class="summary-point-text">Тестировщик — не разработчик. Он не создаёт программу, но отвечает за её качество.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Это — входные ворота</div>
+      <div class="summary-point-text">QA — один из самых доступных путей в мир IT. Глубокое программирование не нужно, за 3–6 месяцев можно устроиться на первую работу.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <div class="nav-btn nav-btn-disabled">
+    <div class="nav-btn-label">← Предыдущий</div>
+    <div>Это первый урок</div>
+  </div>
+  <a href="02-testing-basics.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Следующий урок →</div>
+    <div>Урок 2 · Тестирование и виды багов</div>
+  </a>
+</div>
+
+<!-- COMPLETION BADGE -->
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Первый урок завершён!</span>
+</div>
+
+<script>
+// === PROGRESS TRACKING ===
+let completedActivities = new Set();
+const TOTAL_ACTIVITIES = 3;
+
+function updateProgress() {
+  const percent = Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+
+  if (percent === 100) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+// === QUIZ LOGIC ===
+const quizFeedback = {
+  q1: {
+    correct: '<strong>Правильно!</strong> Если при нажатии кнопки ничего не происходит — это явный баг. Задача тестировщика — найти такие ситуации и сообщить разработчику.',
+    incorrect: 'На самом деле это баг. Телефон не тормозит, кнопка не работает. Это проблема, над которой работают тестировщик и разработчик вместе.'
+  },
+  q2: {
+    correct: '<strong>Отлично!</strong> Это психологический феномен — называется «confirmation bias» (предвзятость подтверждения). Разработчик, написавший код, уверен в его правильности. Новый человек (тестировщик) смотрит с сомнением и находит больше ошибок.',
+    incorrect: 'Разработчики не ленивые и тоже тестируют. Но они не могут критично смотреть на то, что сами создали. Тестировщик смотрит «чужим» взглядом.'
+  },
+  q3: {
+    correct: '<strong>Правильный ответ!</strong> Для начала работы в QA глубокое программирование не обязательно. Главное — правильный образ мышления. Технические знания растут постепенно по мере работы.',
+    incorrect: 'Этот ответ неверный. QA — именно то направление в IT, куда легче всего войти. Оно востребовано, и начать несложно. Глубокое программирование не нужно.'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+
+      if (!isCorrect) option.classList.add('incorrect');
+
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+// === FADE IN ON SCROLL ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.quiz-card, .analogy-card, .skill-card, .compare-card, .term-box, .example-box, .takeaway-box').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

@@ -99,6 +99,36 @@ body {
 
 .nav-cta:hover { background: var(--hover-dark, #1A4A6E); }
 
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+  margin-left: 8px;
+}
+
+.lang-btn {
+  padding: 5px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.lang-btn.active {
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
 /* === HERO === */
 .hero {
   max-width: 900px;
@@ -565,6 +595,12 @@ body {
       <li><a href="#about">Haqida</a></li>
       <li><a href="lessons/08-principles.html" class="nav-cta">Boshlash</a></li>
       <li><a href="#testshop" class="nav-cta" style="background:#1A1A1A;color:#FFFFFF;margin-left:8px">TestShop</a></li>
+      <li>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btnUZ" onclick="setLang('uz')">UZ</button>
+          <button class="lang-btn" id="btnRU" onclick="setLang('ru')">RU</button>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
@@ -671,7 +707,7 @@ body {
           <div class="lesson-group-title">Asoslar va metodologiya</div><span class="lesson-group-count">7 dars</span><span class="lesson-group-toggle">+</span>
         </div>
         <div class="lesson-items">
-          <a class="lesson-item" href="lessons/01-qa-intro.html">
+          <a class="lesson-item" href="lessons/01-qa-intro.html" data-uz="lessons/01-qa-intro.html" data-ru="lessons/ru/01-qa-intro.html">
             <div class="lesson-num-badge">01</div>
             <div class="lesson-info">
               <div class="lesson-title">QA nima va testor kim?</div>
@@ -1137,6 +1173,25 @@ document.querySelectorAll('.lesson-group-header').forEach(header => {
     }
   });
 });
+</script>
+
+<script>
+// === LANGUAGE TOGGLE ===
+function setLang(lang) {
+  localStorage.setItem('qa_lang', lang);
+  document.getElementById('btnUZ').classList.toggle('active', lang === 'uz');
+  document.getElementById('btnRU').classList.toggle('active', lang === 'ru');
+
+  document.querySelectorAll('a[data-uz][data-ru]').forEach(link => {
+    link.href = link.dataset[lang];
+  });
+}
+
+// Sahifa yuklanganda saqlangan tilni qo'llash
+(function() {
+  const saved = localStorage.getItem('qa_lang') || 'uz';
+  setLang(saved);
+})();
 </script>
 
 </body>
