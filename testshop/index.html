@@ -235,6 +235,7 @@ body {
   overflow: hidden;
   transition: all 0.3s ease;
 }
+.product-card.hidden { display: none !important; }
 
 .product-card:hover {
   transform: translateY(-4px);
@@ -771,9 +772,9 @@ function filterCategory(category, btn) {
   btn.classList.add('active');
   document.querySelectorAll('#productsGrid .product-card').forEach(card => {
     if (category === 'hammasi' || card.dataset.category === category) {
-      card.style.removeProperty('display');
+      card.classList.remove('hidden');
     } else {
-      card.style.display = 'none';
+      card.classList.add('hidden');
     }
   });
 }
