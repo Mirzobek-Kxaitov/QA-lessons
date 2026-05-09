@@ -489,7 +489,7 @@ body {
     <h3>📖 Qanday ishlashingiz kerak?</h3>
     <ol>
       <li><strong>Sahifalarni ko'rib chiqing</strong> — Mahsulotlar, Kirish va Ro'yxatdan o'tish sahifalarini siniqona sinab ko'ring</li>
-      <li><strong>Bug'larni qidiring</strong> — bu saytda 10 ta qasddan qo'yilgan bug bor, ularni toping</li>
+      <li><strong>Bug'larni qidiring</strong> — bu saytda 21 ta qasddan qo'yilgan bug bor, ularni toping</li>
       <li><strong>Ro'yxatda belgilang</strong> — topilgan bug'ni quyidagi ro'yxatdan topib, bosing</li>
       <li><strong>Shoshilmang</strong> — har bugning severity darajasi ko'rsatilgan, har xil joylarda qarang</li>
       <li><strong>Hint kerak bo'lsa</strong> — "Ko'rsatma" tugmasini bosing (lekin avval o'zingiz urinib ko'ring!)</li>
@@ -638,14 +638,14 @@ body {
   <!-- COMPLETION MESSAGE -->
   <div class="completion-section" id="completionSection">
     <h2>🏆 Ajoyib! Siz haqiqiy testor!</h2>
-    <p>Barcha 10 ta bug'ni topdingiz. Bu sizning QA qobiliyatlaringizni ko'rsatadi.</p>
+    <p>Barcha 21 ta bug'ni topdingiz. Bu sizning QA qobiliyatlaringizni ko'rsatadi.</p>
     <p>Endi har bug uchun professional bug report yozishga o'ting (27-darsda ko'ramiz).</p>
   </div>
 
   <!-- BUGS LIST -->
   <div class="bugs-section">
     <h2 class="section-title">🐛 Topish kerak bo'lgan bug'lar</h2>
-    <p class="bugs-intro">Quyidagi ro'yxatda 10 ta bug bor. Har birini topib, bosing — progress bar to'ladi. Hint kerak bo'lsa, tugmani bosing.</p>
+    <p class="bugs-intro">Quyidagi ro'yxatda 21 ta bug bor. Har birini topib, bosing — progress bar to'ladi. Hint kerak bo'lsa, tugmani bosing.</p>
 
     <!-- BUG 1 -->
     <div class="bug-wrapper">
@@ -807,6 +807,182 @@ body {
       </div>
     </div>
 
+    <!-- BUG 11 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 11)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Oziq-ovqat kategoriya filteri ishlamaydi (active holat o'zgarmaydi)</div>
+          <div class="bug-location">📍 index.html → kategoriya filterlari</div>
+        </div>
+        <span class="bug-severity minor">Minor</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(11)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint11">
+        <strong>Ko'rsatma:</strong> Barcha kategoriya tugmalarini bosing. Biri ishlaydi, biri ishlamaydi — qaysi biri?
+      </div>
+    </div>
+
+    <!-- BUG 12 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 12)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Savatchada miqdor o'zgarganda umumiy narx yangilanmaydi</div>
+          <div class="bug-location">📍 cart.html → miqdor tugmalari</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(12)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint12">
+        <strong>Ko'rsatma:</strong> Savatcha sahifasiga boring. "+" tugmasini bosib miqdorni oshiring — jami narx o'zgaradimi?
+      </div>
+    </div>
+
+    <!-- BUG 13 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 13)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Savatdan mahsulotni o'chirish tugmasi ishlaydi faqat ko'rinishda</div>
+          <div class="bug-location">📍 cart.html → O'chirish tugmasi</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(13)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint13">
+        <strong>Ko'rsatma:</strong> "🗑 O'chirish" tugmasini bosing — mahsulot yo'qoladimi yoki faqat tugma matni o'zgaradimi?
+      </div>
+    </div>
+
+    <!-- BUG 14 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 14)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Istalgan promo kod 10% chegirma beradi</div>
+          <div class="bug-location">📍 cart.html → promo kod maydoni</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(14)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint14">
+        <strong>Ko'rsatma:</strong> Promo kod maydoniga "ABCD123" yoki "XXXXXXXXXXX" yozing va "Qo'llash" ni bosing.
+      </div>
+    </div>
+
+    <!-- BUG 15 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 15)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">To'lov formasida karta raqami harflarni qabul qiladi</div>
+          <div class="bug-location">📍 payment.html → karta raqami maydoni</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(15)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint15">
+        <strong>Ko'rsatma:</strong> Karta raqami maydoniga "ABCD EFGH IJKL MNOP" yozing — qabul qiladimi?
+      </div>
+    </div>
+
+    <!-- BUG 16 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 16)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">O'tgan muddatli karta (01/20) to'lovda qabul qilinadi</div>
+          <div class="bug-location">📍 payment.html → amal qilish muddati</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(16)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint16">
+        <strong>Ko'rsatma:</strong> Muddati maydonga "01/20" (o'tib ketgan) yozing va to'lovni amalga oshiring.
+      </div>
+    </div>
+
+    <!-- BUG 17 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 17)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Parolni tiklashda email formati tekshirilmaydi</div>
+          <div class="bug-location">📍 forgot-password.html → email maydoni</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(17)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint17">
+        <strong>Ko'rsatma:</strong> Email maydoniga "bu_email_emas" yozing va "Yuborish" ni bosing.
+      </div>
+    </div>
+
+    <!-- BUG 18 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 18)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Buyurtma raqamiga harf kiritsa ham "topildi" deydi</div>
+          <div class="bug-location">📍 order-tracking.html → buyurtma raqami</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(18)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint18">
+        <strong>Ko'rsatma:</strong> Buyurtma raqami maydoniga "ABC" yozing va "Kuzatish" ni bosing.
+      </div>
+    </div>
+
+    <!-- BUG 19 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 19)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">500 sahifasida retry tugmasi xuddi shu xatoni ko'rsatadi</div>
+          <div class="bug-location">📍 500.html → Qayta urinish tugmasi</div>
+        </div>
+        <span class="bug-severity major">Major</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(19)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint19">
+        <strong>Ko'rsatma:</strong> 500 sahifasiga boring. "🔄 Qayta urinish" tugmasini bosing — nima bo'ladi?
+      </div>
+    </div>
+
+    <!-- BUG 20 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 20)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">Hisob sozlamalarida eski parol tekshirilmaydi</div>
+          <div class="bug-location">📍 account-settings.html → Xavfsizlik tab</div>
+        </div>
+        <span class="bug-severity critical">Critical</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(20)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint20">
+        <strong>Ko'rsatma:</strong> Xavfsizlik tabiga o'ting. "Joriy parol" maydoniga noto'g'ri parol yozing — yangi parol saqlanadimi?
+      </div>
+    </div>
+
+    <!-- BUG 21 -->
+    <div class="bug-wrapper">
+      <div class="bug-item" onclick="toggleBug(this, 21)">
+        <div class="bug-checkbox">✓</div>
+        <div class="bug-info">
+          <div class="bug-title">500 sahifasida xato kodi "ERR-505" ko'rsatilgan (500 emas)</div>
+          <div class="bug-location">📍 500.html → Error ID</div>
+        </div>
+        <span class="bug-severity minor">Minor</span>
+        <button class="btn-hint" onclick="event.stopPropagation(); toggleHint(21)">Ko'rsatma</button>
+      </div>
+      <div class="hint-box" id="hint21">
+        <strong>Ko'rsatma:</strong> 500 sahifasida pastki qismda "Error ID" ni diqqat bilan o'qing.
+      </div>
+    </div>
+
     <div style="text-align:center; margin-top:30px">
       <button class="btn-reset" onclick="resetProgress()">Progressni tozalash</button>
     </div>
@@ -816,7 +992,7 @@ body {
 
 <script>
 let foundBugs = new Set();
-const TOTAL_BUGS = 10;
+const TOTAL_BUGS = 21;
 
 function toggleBug(element, bugId) {
   if (foundBugs.has(bugId)) {
@@ -906,7 +1082,7 @@ function copyBugReport() {
 <!-- HINT POPUP -->
 <div class="hint-popup" id="hintPopup">
   <h4>🐛 Bu sahifada</h4>
-  <p><strong>10 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p><strong>21 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
   <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Bug topish uchun forma, tugmalar, narxlar va validatsiyalarni tekshiring.</p>
 </div>
 
