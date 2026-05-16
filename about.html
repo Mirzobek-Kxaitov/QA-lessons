@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muallif haqida — Mirzobek Xaitov | QA Academy</title>
+<meta name="description" content="QA Academy asoschisi Mirzobek Xaitov — QA Engineer, Team Lead, ISTQB CTFL. 2+ yillik tajriba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F4F4F5;
+  --bg-card: #FFFFFF;
+  --bg-soft: #E8E8EA;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --gold-soft: #FAF2E0;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF6;
+  --blue: #2C5F8D;
+  --blue-soft: #E6EEF5;
+  --line: #E5DFD2;
+  --line-dark: #D0C8B5;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --line-dark: #3A3A3E;
+  --accent-soft: #3A1515;
+  --gold-soft: #2A2010;
+  --forest-soft: #0E2010;
+  --plum-soft: #1A1025;
+  --blue-soft: #0E1E2E;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  background: rgba(244, 244, 245, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 16px 0;
+}
+[data-theme="dark"] .nav { background: rgba(15, 15, 17, 0.95); }
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; letter-spacing: -0.5px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--blue); }
+
+/* HERO */
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .hero-avatar { margin: 0 auto; }
+  .hero-social { justify-content: center; }
+}
+
+.hero-avatar {
+  width: 240px;
+  height: 240px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--plum) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100px;
+  color: white;
+  box-shadow: 0 20px 40px -15px rgba(44, 95, 141, 0.3);
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  font-size: 20px;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: var(--ink-muted);
+  margin-bottom: 20px;
+}
+
+.hero-bio {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.hero-social {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.social-btn:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+/* SECTIONS */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+.section { margin-bottom: 60px; }
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+}
+
+/* EXPERIENCE */
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+.exp-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+.exp-role { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; }
+.exp-company { color: var(--blue); font-weight: 600; font-size: 15px; margin-top: 2px; }
+.exp-date { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-muted); white-space: nowrap; padding: 4px 12px; background: var(--bg-soft); border-radius: 6px; }
+.exp-type { font-size: 13px; color: var(--ink-muted); font-style: italic; }
+
+.exp-list { list-style: none; margin-top: 12px; }
+.exp-list li { padding: 4px 0 4px 20px; position: relative; font-size: 15px; color: var(--ink-soft); }
+.exp-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); opacity: 0.5; }
+
+.exp-highlight {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.exp-highlight .exp-role { color: var(--accent); }
+.exp-highlight .exp-list li::before { background: var(--accent); }
+
+/* SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+.skill-label { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.skill-label.auto { color: var(--blue); }
+.skill-label.api { color: var(--forest); }
+.skill-label.perf { color: var(--gold); }
+.skill-label.mobile { color: var(--plum); }
+.skill-label.db { color: var(--accent); }
+.skill-label.ci { color: var(--ink-muted); }
+.skill-label.ai { color: var(--plum); }
+.skill-label.meth { color: var(--forest); }
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  padding: 5px 12px;
+  background: var(--bg-soft);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-soft);
+}
+
+/* LANGUAGES */
+.lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 600px) { .lang-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.lang-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.lang-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+.lang-level { font-size: 14px; color: var(--ink-muted); }
+.lang-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+.lang-badge.native { background: var(--accent-soft); color: var(--accent); }
+.lang-badge.b2 { background: var(--blue-soft); color: var(--blue); }
+.lang-badge.c1 { background: var(--forest-soft); color: var(--forest); }
+
+/* EDUCATION */
+.edu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.edu-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.edu-spec { font-size: 14px; color: var(--ink-muted); }
+
+.cert-list { list-style: none; margin-top: 16px; }
+.cert-list li {
+  padding: 10px 16px;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cert-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); }
+
+/* CTA */
+.cta-section {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--plum) 100%);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  color: white;
+}
+.cta-title { font-family: 'Fraunces', serif; font-size: 32px; margin-bottom: 12px; }
+.cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-btn {
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.cta-btn.primary { background: white; color: var(--blue); }
+.cta-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.cta-btn.secondary { border: 2px solid rgba(255,255,255,0.5); color: white; }
+.cta-btn.secondary:hover { border-color: white; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 40px 24px; font-size: 14px; color: var(--ink-muted); }
+
+/* THEME TOGGLE */
+.theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 999;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { transform: scale(1.1); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">QA <span>Academy</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Darslar</a></li>
+      <li><a href="testshop/index.html">TestShop</a></li>
+      <li><a href="about.html" style="color:var(--blue);font-weight:600">Muallif</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-avatar">M</div>
+  <div>
+    <h1 class="hero-name">Mirzobek Xaitov</h1>
+    <div class="hero-title">QA Engineer | Manual & Automation</div>
+    <div class="hero-subtitle">Toshkent, O'zbekiston</div>
+    <p class="hero-bio">
+      2+ yillik tajribaga ega QA muhandis. Web va mobil ilovalarni manual va avtomatlashtirilgan test qilish bo'yicha mutaxassis.
+      QA jarayonlarini boshqarish, jamoa a'zolarini mentorlik qilish va Agile/Scrum muhitida ishlash tajribasi bor.
+      Sifat — bu checklist emas, bu madaniyat.
+    </p>
+    <div class="hero-social">
+      <a href="https://github.com/Mirzobek-Kxaitov" class="social-btn" target="_blank">GitHub</a>
+      <a href="https://t.me/MagistrIIAU" class="social-btn" target="_blank">Telegram</a>
+      <a href="https://www.linkedin.com/in/mirzobek-xaitov" class="social-btn" target="_blank">LinkedIn</a>
+      <a href="https://qa-academy.uz" class="social-btn" style="border-color:var(--accent);color:var(--accent)">qa-academy.uz</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <h2 class="section-title">Ish tajribasi</h2>
+
+    <div class="exp-card exp-highlight">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Founder & Developer</div>
+          <div class="exp-company">QA Academy — qa-academy.uz</div>
+        </div>
+        <span class="exp-date">2024 — Hozir</span>
+      </div>
+      <ul class="exp-list">
+        <li>O'zbek tilidagi birinchi QA o'quv platformasini yaratdim va ishga tushirdim</li>
+        <li>ISTQB CTFL v4.0 dasturiga asoslangan 10+ interaktiv dars ishlab chiqdim</li>
+        <li>TestShop — 21 ta ataylab bug joylashtirilgan e-commerce platformasini yaratdim</li>
+        <li>Bug Hunt tizimini joriy etdim — talabalar real buglarni topib, hujjatlashtiradi</li>
+        <li>Ko'p tillilik (UZ/RU) va dark/light tema qo'llab-quvvatlashni qo'shdim</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">QA Engineer</div>
+          <div class="exp-company">Flexobo.uz</div>
+          <div class="exp-type">Hybrid</div>
+        </div>
+        <span class="exp-date">2025 — Hozir</span>
+      </div>
+      <ul class="exp-list">
+        <li>Yuk tashish va transport logistika platformasini testlash</li>
+        <li>Preprod muhitda yuk yaratish va dispetcher workflow larini manual va exploratory test qilish</li>
+        <li>Test case, checklist va regression test to'plamlarini yozish va saqlash</li>
+        <li>Buglarni to'liq hayot sikli davomida kuzatish, dev jamoa bilan root-cause tahlil qilish</li>
+        <li>Manual test oqimlarini Playwright (Python) avtomatizatsiyasiga o'tkazishni boshlash</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">QA Engineer</div>
+          <div class="exp-company">Ishgo.uz</div>
+          <div class="exp-type">Part-time</div>
+        </div>
+        <span class="exp-date">Mar 2025 — Mar 2026</span>
+      </div>
+      <ul class="exp-list">
+        <li>O'zbekistonning yetakchi ish portali (web + mobile) da UI, funksional va regression test</li>
+        <li>Foydalanuvchi autentifikatsiyasi, ish e'lonlari va qidiruv uchun test case ishlab chiqish</li>
+        <li>Postman va Swagger orqali REST API testlash</li>
+        <li>Playwright + Python orqali kritik user flowlarni avtomatlash</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Team Lead QA</div>
+          <div class="exp-company">Jobster.HR</div>
+          <div class="exp-type">Full-time</div>
+        </div>
+        <span class="exp-date">Feb 2025 — Feb 2026</span>
+      </div>
+      <ul class="exp-list">
+        <li>QA jamoani boshqarish: vazifa taqsimlash, code/case review, junior QA mentorlik</li>
+        <li>Test plan, test strategiya va release sikllari uchun sifat darvozalarini ishlab chiqish</li>
+        <li>Elektron hujjat boshqaruv tizimlari uchun smoke testing workflowlarini joriy etish</li>
+        <li>JMeter yordamida load va performance testlash; kritik muammolarni aniqlash</li>
+        <li>Sprint marosimlari; Agile/Scrum jamoada QA ovozi sifatida faoliyat</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">AI Developer</div>
+          <div class="exp-company">Shaxsiy loyiha — RAG-based Q&A System</div>
+        </div>
+        <span class="exp-date">2024 — Hozir</span>
+      </div>
+      <ul class="exp-list">
+        <li>RAG arxitekturasi (Retrieval-Augmented Generation) asosida savol-javob tizimi yaratish</li>
+        <li>OpenAI API + Pinecone vektor baza integratsiyasi</li>
+        <li>Python data pipeline va Gradio web interfeys ishlab chiqish</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <h2 class="section-title">Texnik ko'nikmalar</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-label auto">Automation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Playwright</span>
+          <span class="skill-tag">Selenium</span>
+          <span class="skill-tag">Appium</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label api">API Testing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Swagger</span>
+          <span class="skill-tag">REST API</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label perf">Performance</div>
+        <div class="skill-tags">
+          <span class="skill-tag">JMeter</span>
+          <span class="skill-tag">Load Testing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label mobile">Mobile Testing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Android</span>
+          <span class="skill-tag">iOS</span>
+          <span class="skill-tag">Appium</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label db">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label ci">CI/CD & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Qase.io</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label ai">AI / ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">Pinecone</span>
+          <span class="skill-tag">Gradio</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-label meth">Metodologiyalar</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile</span>
+          <span class="skill-tag">Scrum</span>
+          <span class="skill-tag">Kanban</span>
+          <span class="skill-tag">SDLC</span>
+          <span class="skill-tag">STLC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section">
+    <h2 class="section-title">Tillar</h2>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-name">O'zbek</div>
+        <div class="lang-level">Ona tili</div>
+        <span class="lang-badge native">Native</span>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Rus</div>
+        <div class="lang-level">Upper-Intermediate</div>
+        <span class="lang-badge b2">B2</span>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Ingliz</div>
+        <div class="lang-level">Intermediate</div>
+        <span class="lang-badge b2">B2</span>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Arab</div>
+        <div class="lang-level">Advanced</div>
+        <span class="lang-badge c1">C1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <h2 class="section-title">Ta'lim va sertifikatlar</h2>
+
+    <div class="edu-card">
+      <div class="edu-title">International Islamic Academy of Uzbekistan</div>
+      <div class="edu-spec">Yo'nalish: Tarix, Ma'naviyat, Din tadqiqotlari — Bitiruvchi</div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;color:var(--ink-soft);margin:24px 0 12px;text-transform:uppercase;letter-spacing:0.5px">Professional rivojlanish</h3>
+    <ul class="cert-list">
+      <li>
+        QA Life by Artsiom Rusau — Software Tester from Scratch
+        <span class="cert-date">Tugallangan</span>
+      </li>
+      <li>
+        Aleksey Koledachkin — Selenium with Python
+        <span class="cert-date">Apr 2025 — Hozir</span>
+      </li>
+      <li>
+        Mohir Dev — QA Engineer Course
+        <span class="cert-date">Nov 2024 — Mar 2025</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">Biz bilan o'rganing!</div>
+    <p class="cta-desc">QA sohasiga kirish uchun bepul, o'zbek tilidagi interaktiv darslar va amaliy mashqlar.</p>
+    <div class="cta-buttons">
+      <a href="index.html" class="cta-btn primary">Darslarga o'tish</a>
+      <a href="testshop/bug-hunt.html" class="cta-btn secondary">Bug Hunt boshlash</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  QA Academy &copy; 2024 — Mirzobek Xaitov tomonidan yaratilgan.
+</footer>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
