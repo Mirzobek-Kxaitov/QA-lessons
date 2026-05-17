@@ -489,7 +489,7 @@ body {
     <h3>📖 Qanday ishlashingiz kerak?</h3>
     <ol>
       <li><strong>Sahifalarni ko'rib chiqing</strong> — Mahsulotlar, Kirish va Ro'yxatdan o'tish sahifalarini siniqona sinab ko'ring</li>
-      <li><strong>Bug'larni qidiring</strong> — bu saytda 21 ta qasddan qo'yilgan bug bor, ularni toping</li>
+      <li><strong>Bug'larni qidiring</strong> — bu saytda 30+ ta qasddan qo'yilgan bug bor, ularni toping</li>
       <li><strong>Ro'yxatda belgilang</strong> — topilgan bug'ni quyidagi ro'yxatdan topib, bosing</li>
       <li><strong>Shoshilmang</strong> — har bugning severity darajasi ko'rsatilgan, har xil joylarda qarang</li>
       <li><strong>Hint kerak bo'lsa</strong> — "Ko'rsatma" tugmasini bosing (lekin avval o'zingiz urinib ko'ring!)</li>
@@ -621,6 +621,36 @@ body {
       </div>
     </a>
 
+    <a href="contact.html" class="page-card">
+      <div class="page-card-icon">📞</div>
+      <div class="page-card-title">Aloqa</div>
+      <div class="page-card-desc">Aloqa formasi va email validatsiyasi</div>
+      <div class="page-card-meta">
+        <span class="meta-item">Aloqa formasi</span>
+        <span class="meta-item bugs">5 ta bug</span>
+      </div>
+    </a>
+
+    <a href="reviews.html" class="page-card">
+      <div class="page-card-icon">⭐</div>
+      <div class="page-card-title">Sharhlar</div>
+      <div class="page-card-desc">Mijozlar sharhlari va reyting tizimi</div>
+      <div class="page-card-meta">
+        <span class="meta-item">Sharhlar sahifasi</span>
+        <span class="meta-item bugs">5 ta bug</span>
+      </div>
+    </a>
+
+    <a href="compare.html" class="page-card">
+      <div class="page-card-icon">📊</div>
+      <div class="page-card-title">Solishtirish</div>
+      <div class="page-card-desc">Mahsulotlarni spesifikatsiya bo'yicha solishtirish</div>
+      <div class="page-card-meta">
+        <span class="meta-item">Solishtirish jadvali</span>
+        <span class="meta-item bugs">5 ta bug</span>
+      </div>
+    </a>
+
     <!-- Error pages section -->
     <div style="grid-column:1/-1;margin-top:8px;padding-top:24px;border-top:1px solid var(--line)">
       <h3 style="font-family:'Fraunces',serif;font-size:18px;margin-bottom:16px;color:var(--ink-soft)">⚠️ Xato sahifalarini tekshirish</h3>
@@ -638,14 +668,14 @@ body {
   <!-- COMPLETION MESSAGE -->
   <div class="completion-section" id="completionSection">
     <h2>🏆 Ajoyib! Siz haqiqiy testor!</h2>
-    <p>Barcha 21 ta bug'ni topdingiz. Bu sizning QA qobiliyatlaringizni ko'rsatadi.</p>
+    <p>Barcha 30+ ta bug'ni topdingiz. Bu sizning QA qobiliyatlaringizni ko'rsatadi.</p>
     <p>Endi har bug uchun professional bug report yozishga o'ting (27-darsda ko'ramiz).</p>
   </div>
 
   <!-- BUGS LIST -->
   <div class="bugs-section">
     <h2 class="section-title">🐛 Topish kerak bo'lgan bug'lar</h2>
-    <p class="bugs-intro">Quyidagi ro'yxatda 21 ta bug bor. Har birini topib, bosing — progress bar to'ladi. Hint kerak bo'lsa, tugmani bosing.</p>
+    <p class="bugs-intro">Quyidagi ro'yxatda 30+ ta bug bor. Har birini topib, bosing — progress bar to'ladi. Hint kerak bo'lsa, tugmani bosing.</p>
 
     <!-- BUG 1 -->
     <div class="bug-wrapper">
@@ -992,7 +1022,7 @@ body {
 
 <script>
 let foundBugs = new Set();
-const TOTAL_BUGS = 21;
+const TOTAL_BUGS = 30;
 
 function toggleBug(element, bugId) {
   if (foundBugs.has(bugId)) {
@@ -1082,7 +1112,7 @@ function copyBugReport() {
 <!-- HINT POPUP -->
 <div class="hint-popup" id="hintPopup">
   <h4>🐛 Bu sahifada</h4>
-  <p><strong>21 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p><strong>30+ ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
   <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Bug topish uchun forma, tugmalar, narxlar va validatsiyalarni tekshiring.</p>
 </div>
 

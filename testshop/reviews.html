@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahsulot sharhlari — TestShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FBF9F4;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F2EEE4;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --accent: #D64545;
+  --accent-dark: #A03535;
+  --accent-soft: #FDEDED;
+  --gold: #C08838;
+  --forest: #3A5A40;
+  --forest-soft: #E8EFE9;
+  --plum: #5B3A7A;
+  --plum-soft: #F0EAF5;
+  --line: #E5DFD2;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --accent-soft: #3A1515;
+  --gold-soft: #2A2010;
+  --forest-soft: #0E2010;
+  --plum-soft: #1A1025;
+}
+
+.qa-toolbar { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+.qa-tool-btn { width: 44px; height: 44px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 12px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.qa-tool-btn:hover { transform: scale(1.1); border-color: var(--accent); }
+.bug-report-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: none; align-items: center; justify-content: center; }
+.bug-report-modal.open { display: flex; }
+.bug-report-inner { background: var(--bg-card); border-radius: 16px; padding: 28px; width: 100%; max-width: 480px; margin: 20px; }
+.bug-report-inner h3 { font-family: 'Fraunces', serif; font-size: 22px; margin-bottom: 20px; }
+.bug-report-inner label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; margin-top: 14px; color: var(--ink-soft); }
+.bug-report-inner input, .bug-report-inner textarea, .bug-report-inner select { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-family: inherit; font-size: 14px; }
+.bug-report-inner textarea { height: 80px; resize: vertical; }
+.bug-report-btns { display: flex; gap: 10px; margin-top: 20px; }
+.btn-copy-report { flex: 1; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn-close-report { padding: 10px 16px; background: var(--bg-soft); border: none; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.hint-popup { position: fixed; right: 72px; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: none; z-index: 9998; }
+.hint-popup.open { display: block; }
+.hint-popup h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.hint-popup p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo span { color: var(--accent); }
+
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+.nav a:hover { color: var(--ink); }
+
+.qa-banner {
+  background: linear-gradient(135deg, var(--plum) 0%, #3D2A52 100%);
+  color: white;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.qa-banner a { color: white; font-weight: 600; text-decoration: underline; }
+
+.container {
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+.page-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.average-rating {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.average-rating .score {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.average-rating .stars {
+  color: var(--gold);
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.average-rating .label {
+  color: var(--ink-muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.review-date {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.review-stars {
+  color: var(--gold);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.review-text {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.review-form-section {
+  margin-top: 48px;
+}
+
+.review-form-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.review-form {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.form-group { margin-bottom: 18px; }
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--bg-card);
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent); }
+
+.form-textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="qa-banner">
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <nav class="nav">
+      <a href="index.html">Mahsulotlar</a>
+      <a href="login.html">Kirish</a>
+      <a href="register.html">Ro'yxatdan o'tish</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <h1 class="page-title">Mijozlar sharhlari</h1>
+
+  <!-- BUG 5: Average shows 4.8 but actual average of 5+4+1+5+3+4 = 22/6 = 3.67 -->
+  <div class="average-rating">
+    <div class="score">4.8 / 5</div>
+    <div class="stars">★★★★★</div>
+    <div class="label">6 ta sharh asosida</div>
+  </div>
+
+  <!-- Review 1: Aziz -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Aziz</span>
+      <span class="review-date">12 May 2026</span>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <div class="review-text">Ajoyib mahsulot, tez yetkazib berildi!</div>
+  </div>
+
+  <!-- Review 2: Dilnoza -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Dilnoza</span>
+      <span class="review-date">10 May 2026</span>
+    </div>
+    <div class="review-stars">★★★★</div>
+    <div class="review-text">Sifati yaxshi, lekin qadoqlash yaxshiroq bo'lishi mumkin edi</div>
+  </div>
+
+  <!-- Review 3: Jasur — BUG 1: Text is positive "Zo'r mahsulot!" but rating is 1 star (mismatch) -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Jasur</span>
+      <span class="review-date">8 May 2026</span>
+    </div>
+    <div class="review-stars">★</div>
+    <div class="review-text">Zo'r mahsulot!</div>
+  </div>
+
+  <!-- Review 4: Kamola — BUG 2: Invalid date "32 May 2026" -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Kamola</span>
+      <span class="review-date">32 May 2026</span>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <div class="review-text">Tavsiya qilaman!</div>
+  </div>
+
+  <!-- Review 5: Bobur -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Bobur</span>
+      <span class="review-date">5 May 2026</span>
+    </div>
+    <div class="review-stars">★★★</div>
+    <div class="review-text">O'rtacha sifat</div>
+  </div>
+
+  <!-- Review 6: Nilufar — BUG 3: Shows 5 stars visually but rating number says 4 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="reviewer-name">Nilufar</span>
+      <span class="review-date">3 May 2026</span>
+    </div>
+    <div class="review-stars" title="4 yulduz">★★★★★</div>
+    <div class="review-text">Yaxshi xizmat, rahmat!</div>
+  </div>
+
+  <!-- Review Form -->
+  <div class="review-form-section">
+    <h2>Sharh qoldirish</h2>
+    <form class="review-form" id="reviewForm" onsubmit="return handleReviewSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">Ismingiz</label>
+        <input type="text" class="form-input" id="reviewName" placeholder="Ismingizni kiriting">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Baholash</label>
+        <select class="form-select" id="reviewRating">
+          <option value="5">5 — A'lo</option>
+          <option value="4">4 — Yaxshi</option>
+          <option value="3">3 — O'rtacha</option>
+          <option value="2">2 — Yomon</option>
+          <option value="1">1 — Juda yomon</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Sharh matni</label>
+        <!-- BUG 4: No required attribute, form accepts empty text -->
+        <textarea class="form-textarea" id="reviewText" placeholder="Fikringizni yozing..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Sharh yuborish</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// BUG 4: Form submits even when review text is empty (no validation)
+function handleReviewSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('reviewName').value;
+  const rating = document.getElementById('reviewRating').value;
+  const text = document.getElementById('reviewText').value;
+
+  // No validation for empty text — this is intentional BUG 4
+  alert('Rahmat, ' + (name || 'Foydalanuvchi') + '! Sharhingiz qabul qilindi.');
+  document.getElementById('reviewForm').reset();
+}
+
+// === QA TOOLBAR ===
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+function toggleHint() {
+  document.getElementById('hintPopup').classList.toggle('open');
+}
+
+function toggleBugReport() {
+  document.getElementById('bugReportModal').classList.toggle('open');
+}
+
+function copyBugReport() {
+  const title = document.getElementById('brTitle').value;
+  const page = document.getElementById('brPage').value;
+  const severity = document.getElementById('brSeverity').value;
+  const steps = document.getElementById('brSteps').value;
+  const expected = document.getElementById('brExpected').value;
+  const actual = document.getElementById('brActual').value;
+  const text = `BUG REPORT\n==========\nSarlavha: ${title}\nSahifa: ${page}\nJiddiylik: ${severity}\n\nTakrorlash qadamlari:\n${steps}\n\nKutilgan natija:\n${expected}\n\nHaqiqiy natija:\n${actual}`;
+  navigator.clipboard.writeText(text).then(() => alert('Bug report nusxalandi! ✅'));
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+<!-- QA TOOLBAR -->
+<div class="qa-toolbar">
+  <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
+  <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
+  <button class="qa-tool-btn" onclick="window.location.href='../lessons/01-qa-intro.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
+</div>
+
+<!-- HINT POPUP -->
+<div class="hint-popup" id="hintPopup">
+  <h4>🐛 Bu sahifada</h4>
+  <p><strong>5 ta bug</strong> ataylab joylashtirilgan. Hammasini topa olasizmi?</p>
+  <p style="margin-top:8px;font-size:12px;color:var(--ink-muted)">Reyting va matn mosligi, sana, yulduzlar soni, bo'sh sharh va o'rtacha hisob — tekshiring.</p>
+</div>
+
+<!-- BUG REPORT MODAL -->
+<div class="bug-report-modal" id="bugReportModal">
+  <div class="bug-report-inner">
+    <h3>📝 Bug Report</h3>
+    <label>Bug nomi</label>
+    <input type="text" id="brTitle" placeholder="Qisqacha tavsif...">
+    <label>Sahifa</label>
+    <input type="text" id="brPage" value="reviews.html" readonly>
+    <label>Jiddiylik darajasi</label>
+    <select id="brSeverity">
+      <option>Critical</option>
+      <option>Major</option>
+      <option>Minor</option>
+      <option>Trivial</option>
+    </select>
+    <label>Takrorlash qadamlari</label>
+    <textarea id="brSteps" placeholder="1. ... 2. ... 3. ..."></textarea>
+    <label>Kutilgan natija</label>
+    <textarea id="brExpected" placeholder="Nima bo'lishi kerak edi..."></textarea>
+    <label>Haqiqiy natija</label>
+    <textarea id="brActual" placeholder="Nima bo'ldi..."></textarea>
+    <div class="bug-report-btns">
+      <button class="btn-copy-report" onclick="copyBugReport()">📋 Nusxa olish</button>
+      <button class="btn-close-report" onclick="toggleBugReport()">Yopish</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -60,6 +60,17 @@
 .hint-popup h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .hint-popup p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
 
+/* TOAST */
+.toast-notification { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--forest); color: white; padding: 14px 24px; border-radius: 10px; font-size: 14px; font-weight: 500; z-index: 8000; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform 0.3s ease; pointer-events: none; }
+.toast-notification.show { transform: translateX(-50%) translateY(0); }
+
+/* COOKIE BANNER */
+.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-card); border-top: 1px solid var(--line); padding: 16px 24px; display: flex; align-items: center; justify-content: center; gap: 16px; z-index: 9000; box-shadow: 0 -4px 16px rgba(0,0,0,0.08); flex-wrap: wrap; }
+.cookie-banner p { font-size: 14px; color: var(--ink-soft); max-width: 600px; }
+.cookie-btn { padding: 10px 20px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.cookie-accept { background: var(--forest); color: white; }
+.cookie-decline { background: var(--bg-soft); color: var(--ink-soft); }
+
 body {
   font-family: 'Instrument Sans', sans-serif;
   background: var(--bg);
@@ -697,6 +708,19 @@ body {
   </div>
 </section>
 
+<!-- ACCESSIBILITY BUGS SECTION -->
+<section style="max-width:1200px;margin:0 auto;padding:40px 24px 0">
+  <h2 style="font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:16px">Maxsus takliflar</h2>
+  <!-- BUG: Past contrast — light gray text on light background, barely readable -->
+  <p style="color:#E0E0E0;font-size:14px;margin-bottom:12px">* Ushbu aksiya faqat 24 soat davom etadi. Shartlar va qoidalar qo'llaniladi. Batafsil ma'lumot uchun quyidagi havolaga murojaat qiling.</p>
+  <!-- BUG: Link has tabindex="-1" — can't be reached via keyboard Tab -->
+  <a href="contact.html" style="color:var(--blue);font-size:14px" tabindex="-1">Batafsil ma'lumot →</a>
+  <!-- BUG: Image without alt text -->
+  <div style="margin-top:16px">
+    <img src="https://via.placeholder.com/728x90?text=AKSIYA+BANNER" style="width:100%;border-radius:12px;border:1px solid var(--line)">
+  </div>
+</section>
+
 <!-- ERROR PAGES -->
 <section style="max-width:1200px;margin:0 auto;padding:40px 24px 0">
   <h2 style="font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:8px">⚠️ Xato sahifalarini tekshirish</h2>
@@ -744,7 +768,14 @@ function addToCart(name, price, icon, event) {
   if (event) { event.preventDefault(); event.stopPropagation(); }
   cart.push({ name, price, icon });
   updateCart();
-  // BUG: No success notification shown to user
+  showToast('✅ ' + name + ' savatga qo\'shildi');
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toastNotification');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3000);
 }
 
 function brokenAddButton() {
@@ -842,6 +873,17 @@ function copyBugReport() {
   }
 })();
 </script>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast-notification" id="toastNotification"></div>
+
+<!-- COOKIE BANNER — BUG: "Rad etish" tugmasi bannerni yopmaydi -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>🍪 Biz cookie fayllaridan foydalanamiz. Saytdan foydalanishda davom etish orqali siz cookie siyosatimizga rozilik bildirasiz.</p>
+  <button class="cookie-btn cookie-accept" onclick="document.getElementById('cookieBanner').style.display='none'">Qabul qilaman</button>
+  <!-- BUG: Rad etish tugmasi bannerni yopmaydi, faqat matnni o'zgartiradi -->
+  <button class="cookie-btn cookie-decline" onclick="this.textContent='Rad etildi...'">Rad etish</button>
+</div>
 
 <!-- QA TOOLBAR -->
 <div class="qa-toolbar">
