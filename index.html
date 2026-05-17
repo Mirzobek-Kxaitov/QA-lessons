@@ -78,6 +78,7 @@ body {
   padding: 0 24px;
   display: flex;
   justify-content: space-between;
+  position: relative;
   align-items: center;
 }
 
@@ -579,9 +580,43 @@ body {
   gap: 12px;
 }
 
+/* === HAMBURGER === */
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.hamburger:hover { border-color: var(--accent); }
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .nav-links a:not(.nav-cta) { display: none; }
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 10px 0; font-size: 16px; }
+  .nav-links a.nav-cta { text-align: center; padding: 12px; border-radius: 8px; }
+  .lang-toggle { justify-content: flex-start; }
   .hero h1 { font-size: 42px; }
   .section-title { font-size: 34px; }
   .about { padding: 32px 24px; }
@@ -606,6 +641,7 @@ body {
       </svg>
       <span style="font-weight:700;font-size:20px">QA<span style="color:var(--accent)">.</span>Academy</span>
     </div>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
       <li><a href="#curriculum">Dasturlar</a></li>
       <li><a href="#lessons">Darslar</a></li>
