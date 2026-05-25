@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Record Bug — Real Keys #1 | QA Academy</title>
+<meta name="description" content="Arvoh yozuv xatosi — foydalanuvchiga ko'rinadigan, lekin bazada mavjud bo'lmagan yozuv. Real QA case study.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F4F4F5; --bg-card: #FFFFFF; --bg-soft: #E8E8EA;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --blue: #2C5F8D; --line: #E5DFD2;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11; --bg-card: #1A1A1E; --bg-soft: #242428;
+  --ink: #F0F0F0; --ink-soft: #B0B0B0; --ink-muted: #707070;
+  --line: #2A2A2E;
+}
+
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+.nav { position: sticky; top: 0; background: rgba(244,244,245,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 16px 0; }
+[data-theme="dark"] .nav { background: rgba(15,15,17,0.95); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+.nav-links a:hover { color: var(--blue); }
+
+.case-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+.case-breadcrumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+.case-breadcrumb a { color: var(--blue); text-decoration: none; }
+.case-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.case-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tag-severity { background: #FDEDED; color: #D64545; }
+.tag-category { background: #E6EEF5; color: #2C5F8D; }
+.tag-case { background: #FAF2E0; color: #C08838; }
+
+.case-title {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.case-subtitle {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.diagram-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.diagram-frame {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.diagram-frame iframe {
+  width: 100%;
+  height: 900px;
+  border: none;
+  display: block;
+}
+
+.case-content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.section { margin-bottom: 48px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+.section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.section p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
+.section ul { list-style: none; margin: 16px 0; }
+.section ul li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0.5;
+}
+
+.code-block {
+  background: #1A1A1E;
+  color: #E0E0E0;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.code-block .k { color: #8A8E97; }
+.code-block .s { color: #C8341A; }
+.code-block .g { color: #1F8A5B; }
+
+.takeaway-box {
+  background: #E6EEF5;
+  border: 1px solid #B8D0E8;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+[data-theme="dark"] .takeaway-box { background: #0E1E2E; border-color: #1E3A5E; }
+.takeaway-box h3 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 12px; }
+.takeaway-box p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+.nav-footer {
+  max-width: 780px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-btn {
+  padding: 16px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+  min-width: 200px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { border-color: var(--accent); }
+.nav-btn-label { font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+
+.theme-toggle { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 999; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">QA <span>Academy</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Darslar</a></li>
+      <li><a href="index.html" style="color:var(--blue);font-weight:600">Real keyslar</a></li>
+      <li><a href="../testshop/index.html">TestShop</a></li>
+      <li><a href="../about.html">Muallif</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="case-header">
+  <div class="case-breadcrumb">
+    <a href="../index.html">QA Academy</a> / <a href="index.html">Real keyslar</a> / Ghost Record Bug
+  </div>
+  <div class="case-meta">
+    <span class="case-tag tag-severity">Jiddiylik: Yuqori</span>
+    <span class="case-tag tag-category">Ma'lumotlar yaxlitligi</span>
+    <span class="case-tag tag-case">Keys #1</span>
+  </div>
+  <h1 class="case-title">Arvoh yozuv xatosi (Ghost Record Bug)</h1>
+  <p class="case-subtitle">Foydalanuvchiga ko'rinadigan, ammo asosiy ma'lumotlar bazasida mavjud bo'lmagan yozuv. Tugallanmagan migratsiya paytida UI va API turli manbalardan o'qiganda yuzaga keladi.</p>
+</div>
+
+<div class="case-content">
+
+<div class="section">
+  <div class="section-label">Muammo</div>
+  <h2>Nima sodir bo'ldi?</h2>
+  <p>Tester admin panelda "Yo'nalishlar" sahifasini ochdi. Ro'yxatda <strong>Volgograd → Buxoro</strong> yo'nalishi ko'rinayapti, narxi $0.00. Tester bu yozuvni o'chirmoqchi bo'lganda <strong>404 Not Found</strong> xatosi qaytdi.</p>
+  <p>Ya'ni: yozuv UI da <strong>ko'rinyapti</strong>, lekin o'chirish imkonsiz — chunki u aslida tizimda <strong>mavjud emas</strong>.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">Sabab</div>
+  <h2>Nima uchun bu sodir bo'ldi?</h2>
+  <p>Loyihada eski ma'lumotlar bazasidan (v1) yangisiga (v2) migratsiya jarayoni boradi. Muammo shundaki:</p>
+  <ul>
+    <li><strong>UI (frontend)</strong> hali ham <strong>eski bazadan</strong> o'qiyapti (GET so'rovi)</li>
+    <li><strong>API (backend)</strong> esa <strong>yangi bazaga</strong> yozadi (DELETE so'rovi)</li>
+    <li>Eski bazada yozuv <strong>mavjud</strong>, yangi bazada esa <strong>yo'q</strong></li>
+    <li>Natijada: ko'rishingiz mumkin, lekin boshqarishingiz mumkin emas — "arvoh yozuv"</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-label">API javob</div>
+  <h2>Server nimani qaytardi?</h2>
+  <div class="code-block">
+<span class="k">DELETE</span> /api/v2/routes/8821 → <span class="s">404 Not Found</span>
+
+{
+  <span class="k">"error":</span> <span class="s">"RECORD_NOT_FOUND"</span>,
+  <span class="k">"message":</span> <span class="s">"Yozuv topilmadi"</span>,
+  <span class="k">"resource":</span> <span class="s">"route"</span>,
+  <span class="k">"id":</span> 8821
+}
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Tahlil</div>
+  <h2>QA sifatida nimaga e'tibor berish kerak?</h2>
+  <ul>
+    <li><strong>Narx $0.00</strong> — bu allaqachon signal. Haqiqiy yo'nalishda narx 0 bo'lishi mantiqiy emas</li>
+    <li><strong>O'chirish 404 qaytaradi</strong> — yozuv UI da bor, lekin backend topa olmaydi</li>
+    <li><strong>Ikki turli manba</strong> — bu "dual-read" arxitektura xatosi</li>
+    <li><strong>Migratsiya to'liq tugallanmagan</strong> — eski ma'lumotlar ko'chirilmagan</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-label">Yechim</div>
+  <h2>Qanday tuzatildi?</h2>
+  <ul>
+    <li>Barcha yozuvlar eski bazadan yangisiga to'liq <strong>migratsiya</strong> qilindi</li>
+    <li>UI va API <strong>bitta manba</strong> (yangi baza) dan o'qish/yozishga o'tkazildi</li>
+    <li><strong>Sinxronizatsiya tekshiruvi</strong> qo'shildi — agar manbalarda farq bo'lsa, ogohlantirish chiqadi</li>
+    <li>Migratsiya skripti uchun <strong>avtomatik testlar</strong> yozildi</li>
+  </ul>
+</div>
+
+<div class="takeaway-box">
+  <h3>QA uchun dars</h3>
+  <p>Migratsiya paytida har doim ikki narsani tekshiring: <strong>1)</strong> Ma'lumotlar to'liq ko'chirilganmi? <strong>2)</strong> UI va API bir xil manbadan o'qish/yozishyaptimi? "Arvoh yozuvlar" — bu eng nozik va topish qiyin buglardan biri.</p>
+</div>
+
+</div>
+
+<div class="nav-footer">
+  <a href="index.html" class="nav-btn">
+    <div class="nav-btn-label">← Barcha keyslar</div>
+    <div>Real keyslar ro'yxati</div>
+  </a>
+  <div class="nav-btn" style="opacity:0.5;cursor:default">
+    <div class="nav-btn-label">Keyingi keys →</div>
+    <div>Tez orada...</div>
+  </div>
+</div>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+
+<script>
+function toggleTheme() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+(function() {
+  var saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
