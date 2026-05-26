@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bug Bounty — Real Keys #3 | QA Academy</title>
+<meta name="description" content="Bug topib bersang pul beraman — Bug Bounty haqida real hikoyalar, raqamlar va amaliy ma'lumotlar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F4F4F5; --bg-card: #FFFFFF; --bg-soft: #E8E8EA;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --blue: #2C5F8D; --line: #E5DFD2;
+  --green: #1F8A5B; --gold: #C08838;
+}
+
+[data-theme="dark"] {
+  --bg: #0F0F11; --bg-card: #1A1A1E; --bg-soft: #242428;
+  --ink: #F0F0F0; --ink-soft: #B0B0B0; --ink-muted: #707070;
+  --line: #2A2A2E;
+}
+
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+.nav { position: sticky; top: 0; background: rgba(244,244,245,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 16px 0; }
+[data-theme="dark"] .nav { background: rgba(15,15,17,0.95); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+.nav-links a:hover { color: var(--blue); }
+
+.case-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+.case-breadcrumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+.case-breadcrumb a { color: var(--blue); text-decoration: none; }
+.case-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.case-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tag-green { background: #E8F5E9; color: #1F8A5B; }
+.tag-category { background: #E6EEF5; color: #2C5F8D; }
+.tag-case { background: #FAF2E0; color: #C08838; }
+[data-theme="dark"] .tag-green { background: #0D2010; color: #66BB6A; }
+
+.case-title {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.case-subtitle {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.case-content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.section { margin-bottom: 48px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+.section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.section p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
+.section ul { list-style: none; margin: 16px 0; }
+.section ul li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0.5;
+}
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.stat-box {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 4px;
+  letter-spacing: -1px;
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* Story cards */
+.story-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 16px 0;
+  display: flex;
+  gap: 20px;
+}
+.story-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--line);
+  flex-shrink: 0;
+  line-height: 1;
+  width: 40px;
+  text-align: right;
+}
+[data-theme="dark"] .story-num { color: #333; }
+.story-body h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.story-body p { font-size: 15px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.story-reward {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  background: #E8F5E9;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+[data-theme="dark"] .story-reward { background: #0D2010; }
+.story-note {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+/* Platform links */
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.platform-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.platform-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.platform-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.platform-desc { font-size: 13px; color: var(--ink-muted); }
+
+/* Takeaway */
+.takeaway-box {
+  background: #E6EEF5;
+  border: 1px solid #B8D0E8;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+[data-theme="dark"] .takeaway-box { background: #0E1E2E; border-color: #1E3A5E; }
+.takeaway-box h3 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 12px; }
+.takeaway-box p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* Highlight callout */
+.callout {
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 20px 0;
+  background: #FAF2E0;
+  border-radius: 0 10px 10px 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+[data-theme="dark"] .callout { background: #2A2000; border-color: #7A5800; }
+
+.nav-footer {
+  max-width: 780px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-btn {
+  padding: 16px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+  min-width: 200px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { border-color: var(--accent); }
+.nav-btn-label { font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+
+.theme-toggle { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border: 1px solid var(--line); background: var(--bg-card); border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 999; }
+
+@media (max-width: 600px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .platforms { grid-template-columns: 1fr; }
+  .story-card { flex-direction: column; gap: 8px; }
+  .story-num { font-size: 24px; width: auto; text-align: left; }
+  .case-title { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">QA <span>Academy</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Darslar</a></li>
+      <li><a href="index.html" style="color:var(--blue);font-weight:600">Real keyslar</a></li>
+      <li><a href="../testshop/index.html">TestShop</a></li>
+      <li><a href="../about.html">Muallif</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="case-header">
+  <div class="case-breadcrumb">
+    <a href="../index.html">QA Academy</a> / <a href="index.html">Real keyslar</a> / Bug Bounty
+  </div>
+  <div class="case-meta">
+    <span class="case-tag tag-green">Daromad imkoniyati</span>
+    <span class="case-tag tag-category">Security Testing</span>
+    <span class="case-tag tag-case">Keys #3</span>
+  </div>
+  <h1 class="case-title">Bug topib bersang<br>pul beraman — Bug Bounty</h1>
+  <p class="case-subtitle">Uyda o'tirib, biror kompaniyaning ilovasini test qilasiz, bug topib xabar bersangiz — kompaniya sizga minglab dollar to'laydi. Bu xayol emas, bu Bug Bounty.</p>
+</div>
+
+<div class="case-content">
+
+<div class="section">
+  <div class="section-label">Real raqamlar</div>
+  <h2>Meta (Facebook, Instagram, WhatsApp)</h2>
+  <p>Meta o'zining rasmiy bug bounty dasturiga ega: <a href="https://bugbounty.meta.com" target="_blank" rel="noopener" style="color:var(--blue)">bugbounty.meta.com</a></p>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num">$28M+</div>
+      <div class="stat-label">Jami to'langan mukofotlar (barcha vaqt uchun)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$2.1M</div>
+      <div class="stat-label">Faqat 2026 yilda to'langan</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$300,000</div>
+      <div class="stat-label">Eng katta mukofot — WhatsApp'dagi bitta bug uchun</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Real hikoyalar</div>
+  <h2>Ular qanday qilib topdi?</h2>
+
+  <div class="story-card">
+    <div class="story-num">1</div>
+    <div class="story-body">
+      <h3>Nieko "Specters" Rivera — uysizdan millionergacha</h3>
+      <p>Nieko Rivera hech qanday diplom va uysiz DEFCON konferensiyasida Bugcrowd vakillari e'tiborini tortdi. Bugun Bug Bounty daromadi bilan uy sotib olmoqda va Hispanic hamjamiyatidagi yoshlarga yo'l ko'rsatmoqda.</p>
+      <span class="story-note">Manba: Dark Reading</span>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">2</div>
+    <div class="story-body">
+      <h3>Tesla Model 3 — mashinani hacklab mukofot oldi</h3>
+      <p>2020 yilda bir tadqiqotchi Tesla Model 3 ga kirib, kritik funksiyalarga ruxsatsiz kirish imkoniyatini topdi. Tesla tezda muammoni tuzatdi.</p>
+      <span class="story-reward">$15,000 mukofot</span>
+      <br><span class="story-note">Manba: Medium</span>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">3</div>
+    <div class="story-body">
+      <h3>Argentinalik 19 yoshli yigit — HackerOne millioneri</h3>
+      <p>HackerOne platformasining eng so'nggi millioner xakerlari ro'yxatida Argentinadan 19 yoshli yigit bor. Yosh, hech qanday rasmiy ta'lim yo'q — faqat qiziqish va amaliyot.</p>
+      <span class="story-note">Manba: Dark Reading</span>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">4</div>
+    <div class="story-body">
+      <h3>gzobqq — Google tarixidagi rekord</h3>
+      <p>"gzobqq" taxallus bilan tanilgan xaker Android tizimida 5 ta zaiflikni birlashtirgan exploit chain topdi. Qizig'i — xuddi shu odam 2021 yilda ham Android'da kritik zaiflik topib, o'sha paytdagi rekordni o'rnatgan edi.</p>
+      <span class="story-reward">$605,000 — Google tarixidagi eng katta bug bounty</span>
+      <br><span class="story-note">2021 yilda ham: $157,000 (o'sha paytdagi rekord)</span>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">5</div>
+    <div class="story-body">
+      <h3>Khalil Shreateh — Zuckerberg'ning sahifasiga post yozdi</h3>
+      <p>2013 yil. Falastin dasturchi Facebook da jiddiy zaiflik topdi — ixtiyoriy foydalanuvchining sahifasiga do'st bo'lmasa ham post yozish mumkin edi. U bir necha marta Facebook jamoasiga xabar berdi. Javob: <strong>"Bu bug emas"</strong>.</p>
+      <p style="margin-top:8px">Oxirida u to'g'ridan-to'g'ri Zuckerberg'ning sahifasiga post yozdi: <em>"Kechirasiz, boshqa ilojim yo'q edi..."</em> Facebook darhol murojaat qildi. Bug haqiqiy ekani isbotlandi.</p>
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:14px;color:var(--accent);font-weight:500">❌ Facebook — qoidani buzgani uchun hech narsa bermadi</span>
+      </div>
+      <div style="margin-top:6px">
+        <span style="font-size:14px;color:var(--green);font-weight:500">✅ Security hamjamiyati unga $10,000+ yig'ib berdi</span>
+      </div>
+      <span class="story-note" style="margin-top:8px;display:block">Sabab: hamjamiyat buni adolatsizlik deb hisobladi</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Qayerdan boshlash</div>
+  <h2>Asosiy platformalar</h2>
+  <p>Rasmiy bug bounty dasturlari va platformalari:</p>
+
+  <div class="platforms">
+    <a href="https://bugbounty.meta.com" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-name">bugbounty.meta.com</div>
+      <div class="platform-desc">Meta — Facebook, Instagram, WhatsApp</div>
+    </a>
+    <a href="https://hackerone.com" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-name">hackerone.com</div>
+      <div class="platform-desc">Yuzlab kompaniyalar</div>
+    </a>
+    <a href="https://bugcrowd.com" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-name">bugcrowd.com</div>
+      <div class="platform-desc">Yana yuzlab kompaniyalar</div>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">QA ko'zi bilan</div>
+  <h2>Nimaga e'tibor berish kerak?</h2>
+  <div class="callout">
+    Har qanday input, har qanday so'rov — potentsial zaiflik bo'lishi mumkin.
+  </div>
+  <ul>
+    <li><strong>Autentifikatsiya</strong> — boshqa foydalanuvchi ma'lumotlariga kirish imkoni bormi?</li>
+    <li><strong>Input validatsiya</strong> — forma maydonlariga nima kiritsa bo'ladi?</li>
+    <li><strong>API so'rovlari</strong> — ruxsatsiz so'rov yuborsa nima bo'ladi?</li>
+    <li><strong>Ruxsatlar</strong> — bir rol boshqa rolning funksiyalarini ishlatishi mumkinmi?</li>
+    <li><strong>Sessiya boshqaruvi</strong> — logout qilgandan keyin eski token ishlayaptimi?</li>
+  </ul>
+</div>
+
+<div class="takeaway-box">
+  <h3>Asosiy xulosa</h3>
+  <p>Bug Bounty — bu QA bilimlarini real pul topishga aylantirish imkoniyati. Diplom shart emas. Yosh muhim emas. Asosiysi — qiziqish, tizimli fikrlash va qoidalarga rioya qilish. Har bir kompaniya dasturining qoidalarini diqqat bilan o'qib, faqat ruxsat etilgan doirada test qiling.</p>
+</div>
+
+</div>
+
+<div class="nav-footer">
+  <a href="bigint-env.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi keys</div>
+    <div>BigInt Muhit Xatosi</div>
+  </a>
+  <div class="nav-btn" style="opacity:0.5;cursor:default">
+    <div class="nav-btn-label">Keyingi keys →</div>
+    <div>Tez orada...</div>
+  </div>
+</div>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+
+<script>
+function toggleTheme() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+(function() {
+  var saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
