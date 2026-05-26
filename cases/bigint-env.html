@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Record Bug — Real Keys #1 | QA Academy</title>
-<meta name="description" content="Arvoh yozuv xatosi — foydalanuvchiga ko'rinadigan, lekin bazada mavjud bo'lmagan yozuv. Real QA case study.">
+<title>BigInt Muhit Xatosi — Real Keys #2 | QA Academy</title>
+<meta name="description" content="BigInt muhit xatosi — lokal ishlaydi, production crash bo'ladi. Brauzer mosligi va browserslist konfiguratsiyasi haqida real QA case study.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -78,26 +78,6 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
   line-height: 1.6;
 }
 
-.diagram-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 24px 48px;
-}
-
-.diagram-frame {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-}
-.diagram-frame iframe {
-  width: 100%;
-  height: 900px;
-  border: none;
-  display: block;
-}
-
 .case-content {
   max-width: 780px;
   margin: 0 auto;
@@ -139,6 +119,35 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
   opacity: 0.5;
 }
 
+.env-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+.env-box {
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid var(--line);
+}
+.env-box.dev { background: #E8F5E9; border-color: #A5D6A7; }
+.env-box.prod { background: #FDEDED; border-color: #F5C6C6; }
+[data-theme="dark"] .env-box.dev { background: #0D2010; border-color: #2A5030; }
+[data-theme="dark"] .env-box.prod { background: #2A0D0D; border-color: #5A2020; }
+.env-box-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.env-box.dev .env-box-label { color: #2E7D32; }
+.env-box.prod .env-box-label { color: #C62828; }
+[data-theme="dark"] .env-box.dev .env-box-label { color: #66BB6A; }
+[data-theme="dark"] .env-box.prod .env-box-label { color: #EF9A9A; }
+.env-box p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
 .code-block {
   background: #1A1A1E;
   color: #E0E0E0;
@@ -153,6 +162,8 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
 .code-block .k { color: #8A8E97; }
 .code-block .s { color: #C8341A; }
 .code-block .g { color: #1F8A5B; }
+.code-block .y { color: #C08838; }
+.code-block .c { color: #6A7080; font-style: italic; }
 
 .takeaway-box {
   background: #E6EEF5;
@@ -164,6 +175,20 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
 [data-theme="dark"] .takeaway-box { background: #0E1E2E; border-color: #1E3A5E; }
 .takeaway-box h3 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 12px; }
 .takeaway-box p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+.warning-box {
+  background: #FFF8E1;
+  border: 1px solid #FFD54F;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+[data-theme="dark"] .warning-box { background: #2A2000; border-color: #7A5800; }
+.warning-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.warning-box p { font-size: 15px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
 
 .nav-footer {
   max-width: 780px;
@@ -208,15 +233,15 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
 
 <div class="case-header">
   <div class="case-breadcrumb">
-    <a href="../index.html">QA Academy</a> / <a href="index.html">Real keyslar</a> / Ghost Record Bug
+    <a href="../index.html">QA Academy</a> / <a href="index.html">Real keyslar</a> / BigInt Muhit Xatosi
   </div>
   <div class="case-meta">
     <span class="case-tag tag-severity">Jiddiylik: Yuqori</span>
-    <span class="case-tag tag-category">Ma'lumotlar yaxlitligi</span>
-    <span class="case-tag tag-case">Keys #1</span>
+    <span class="case-tag tag-category">Brauzer moslik</span>
+    <span class="case-tag tag-case">Keys #2</span>
   </div>
-  <h1 class="case-title">Arvoh yozuv xatosi (Ghost Record Bug)</h1>
-  <p class="case-subtitle">Foydalanuvchiga ko'rinadigan, ammo asosiy ma'lumotlar bazasida mavjud bo'lmagan yozuv. Tugallanmagan migratsiya paytida UI va API turli manbalardan o'qiganda yuzaga keladi.</p>
+  <h1 class="case-title">BigInt Muhit Xatosi<br>(Environment Mismatch Bug)</h1>
+  <p class="case-subtitle">Lokal kompyuterda mukammal ishlagan ilova production serverga chiqgandan so'ng darhol crash bo'ldi. Kod o'zgarmagan, konfiguratsiya to'g'ri — lekin muhit farqi hamma narsani buzdi.</p>
 </div>
 
 <div class="case-content">
@@ -224,75 +249,105 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
 <div class="section">
   <div class="section-label">Muammo</div>
   <h2>Nima sodir bo'ldi?</h2>
-  <p>Tester admin panelda "Yo'nalishlar" sahifasini ochdi. Ro'yxatda <strong>Volgograd → Buxoro</strong> yo'nalishi ko'rinayapti, narxi $0.00. Tester bu yozuvni o'chirmoqchi bo'lganda <strong>404 Not Found</strong> xatosi qaytdi.</p>
-  <p>Ya'ni: yozuv UI da <strong>ko'rinyapti</strong>, lekin o'chirish imkonsiz — chunki u aslida tizimda <strong>mavjud emas</strong>.</p>
+  <p>Developer web3 ilovasini production serverga chiqardi. Lokal kompyuterda hamma narsa mukammal ishlagan edi: tranzaksiyalar o'tdi, wallet ulandi, hisob-kitoblar to'g'ri chiqdi.</p>
+  <p>Lekin production'da ilova sahifa ochilishi bilanoq <strong>crash bo'ldi</strong>. Konsol bitta xato ko'rsatdi:</p>
+  <div class="code-block"><span class="s">Uncaught TypeError: Cannot convert a BigInt value to a number</span>
+    at processTransaction (web3.min.js:1)
+    at handleWalletConnect (app.js:48)</div>
+  <div class="warning-box">
+    <div class="warning-icon">⚠️</div>
+    <p>Kod o'zgarmagan. Konfiguratsiya to'g'ri. Server ishlayapti. Lekin ilova ishlamayapti. Bu — muhit farqidan kelib chiqqan yashirin xato.</p>
+  </div>
 </div>
 
 <div class="section">
   <div class="section-label">Sabab</div>
   <h2>Nima uchun bu sodir bo'ldi?</h2>
-  <p>Loyihada eski ma'lumotlar bazasidan (v1) yangisiga (v2) migratsiya jarayoni boradi. Muammo shundaki:</p>
+  <p>React ilovasi build qilinayotganda <strong>browserslist</strong> degan konfiguratsiya qaysi brauzerlarni qo'llab-quvvatlash kerakligini belgilaydi. Babel va boshqa toollar shu konfiguratsiyaga qarab kodni o'zgartirib beradi.</p>
+  <p>Muammo shundaki, development va production muhitlari uchun turli brauzerlar maqsad qilib olindi:</p>
+
+  <div class="env-compare">
+    <div class="env-box dev">
+      <div class="env-box-label">Development (lokal)</div>
+      <p>Faqat <strong>oxirgi Chrome/Firefox</strong> versiyasi. Bu brauzerlar BigInt'ni to'liq biladi — hech qanday o'zgartirish kerak emas.</p>
+    </div>
+    <div class="env-box prod">
+      <div class="env-box-label">Production (server)</div>
+      <p><strong>Default konfiguratsiya</strong> — eski brauzerlar ham hisobga olingan. Ular BigInt'ni tushunmaydi, Babel esa uni o'zgartira olmaydi.</p>
+    </div>
+  </div>
+
   <ul>
-    <li><strong>UI (frontend)</strong> hali ham <strong>eski bazadan</strong> o'qiyapti (GET so'rovi)</li>
-    <li><strong>API (backend)</strong> esa <strong>yangi bazaga</strong> yozadi (DELETE so'rovi)</li>
-    <li>Eski bazada yozuv <strong>mavjud</strong>, yangi bazada esa <strong>yo'q</strong></li>
-    <li>Natijada: ko'rishingiz mumkin, lekin boshqarishingiz mumkin emas — "arvoh yozuv"</li>
+    <li><strong>BigInt</strong> — JavaScript'ning yangi turi, u juda katta sonlar bilan ishlaydi (blockchain tranzaksiyalarida kerak)</li>
+    <li>Eski brauzerlar BigInt'ni bilmaydi va uni oddiy number'ga convert qila olmaydi</li>
+    <li>Babel BigInt'ni polyfill qila olmaydi — bu til darajasidagi o'zgarish</li>
+    <li>Natijada: lokal ishlaydi (yangi Chrome), production crash bo'ladi (eski brauzerni hisobga olgan build)</li>
   </ul>
 </div>
 
 <div class="section">
-  <div class="section-label">API javob</div>
+  <div class="section-label">Xato xabari</div>
   <h2>Server nimani qaytardi?</h2>
-  <div class="code-block">
-<span class="k">DELETE</span> /api/v2/routes/8821 → <span class="s">404 Not Found</span>
+  <p>Bu server xatosi emas — bu brauzer konsolida paydo bo'lgan JavaScript runtime xatosi:</p>
+  <div class="code-block"><span class="s">Uncaught TypeError: Cannot convert a BigInt value to a number</span>
+    at processTransaction (web3.min.js:1)
+    at handleWalletConnect (app.js:48)
 
-{
-  <span class="k">"error":</span> <span class="s">"RECORD_NOT_FOUND"</span>,
-  <span class="k">"message":</span> <span class="s">"Yozuv topilmadi"</span>,
-  <span class="k">"resource":</span> <span class="s">"route"</span>,
-  <span class="k">"id":</span> 8821
-}
-  </div>
+<span class="c">// Sabab: production build eski brauzerlarni ham maqsad qilib oldi,
+// lekin BigInt ular tomonidan qo'llab-quvvatlanmaydi</span></div>
 </div>
 
 <div class="section">
   <div class="section-label">Tahlil</div>
   <h2>QA sifatida nimaga e'tibor berish kerak?</h2>
   <ul>
-    <li><strong>Narx $0.00</strong> — bu allaqachon signal. Haqiqiy yo'nalishda narx 0 bo'lishi mantiqiy emas</li>
-    <li><strong>O'chirish 404 qaytaradi</strong> — yozuv UI da bor, lekin backend topa olmaydi</li>
-    <li><strong>Ikki turli manba</strong> — bu "dual-read" arxitektura xatosi</li>
-    <li><strong>Migratsiya to'liq tugallanmagan</strong> — eski ma'lumotlar ko'chirilmagan</li>
+    <li><strong>"Lokal ishlaydi" = "Production ishlaydi" emas</strong> — bu eng keng tarqalgan xato fikr</li>
+    <li><strong>Muhit farqlarini</strong> har doim tekshirish kerak: brauzer versiyasi, OS, build konfiguratsiyasi</li>
+    <li><strong>BigInt va boshqa yangi API'lar</strong> ishlatilgan joylarda brauzer mosligini alohida tekshirish lozim</li>
+    <li><strong>Production build'ni lokal ham sinab ko'rish</strong> kerak — <code>npm run build && serve</code></li>
+    <li><strong>Turli brauzerlarda</strong> (ayniqsa eski versiyalarda) test o'tkazish muhim</li>
+    <li><strong>Web3 / blockchain</strong> ilovalarda BigInt keng ishlatiladi — bu muhitlarda brauzer mosligi kritik</li>
   </ul>
 </div>
 
 <div class="section">
   <div class="section-label">Yechim</div>
   <h2>Qanday tuzatildi?</h2>
-  <ul>
-    <li>Barcha yozuvlar eski bazadan yangisiga to'liq <strong>migratsiya</strong> qilindi</li>
-    <li>UI va API <strong>bitta manba</strong> (yangi baza) dan o'qish/yozishga o'tkazildi</li>
-    <li><strong>Sinxronizatsiya tekshiruvi</strong> qo'shildi — agar manbalarda farq bo'lsa, ogohlantirish chiqadi</li>
-    <li>Migratsiya skripti uchun <strong>avtomatik testlar</strong> yozildi</li>
-  </ul>
+  <p><code>package.json</code> faylida <strong>browserslist</strong> yangilandi — production uchun BigInt'ni qo'llaydigan brauzerlar ko'rsatildi:</p>
+  <div class="code-block"><span class="c">// package.json — oldin (muammoli konfiguratsiya)</span>
+<span class="k">"browserslist":</span> <span class="s">"> 0.5%, last 2 versions, not dead"</span>
+
+<span class="c">// package.json — keyin (to'g'ri konfiguratsiya)</span>
+<span class="k">"browserslist":</span> {
+  <span class="k">"production":</span> [
+    <span class="g">"supports bigint"</span>,
+    <span class="g">"not dead"</span>
+  ],
+  <span class="k">"development":</span> [
+    <span class="g">"last 1 chrome version"</span>,
+    <span class="g">"last 1 firefox version"</span>,
+    <span class="g">"last 1 safari version"</span>
+  ]
+}</div>
+  <p>Shundan so'ng production build ham to'g'ri ishladi. <code>supports bigint</code> filtri faqat BigInt'ni qo'llaydigan brauzerlarga mo'ljallangan build yaratadi.</p>
 </div>
 
 <div class="takeaway-box">
   <h3>QA uchun dars</h3>
-  <p>Migratsiya paytida har doim ikki narsani tekshiring: <strong>1)</strong> Ma'lumotlar to'liq ko'chirilganmi? <strong>2)</strong> UI va API bir xil manbadan o'qish/yozishyaptimi? "Arvoh yozuvlar" — bu eng nozik va topish qiyin buglardan biri.</p>
+  <p>Har doim ikkita narsani tekshiring: <strong>1)</strong> Test qilgan muhitingiz production bilan bir xilmi? <strong>2)</strong> Yangi texnologiya yoki tip ishlatilgan bo'lsa, brauzer mosligini tekshirdingmi? <strong>"Lokal ishlaydi"</strong> — bu hali tayyor degani emas. Production build'ni lokal sinab ko'rish — har bir release'dan oldin majburiy qadam.</p>
 </div>
 
 </div>
 
 <div class="nav-footer">
-  <a href="index.html" class="nav-btn">
-    <div class="nav-btn-label">← Barcha keyslar</div>
-    <div>Real keyslar ro'yxati</div>
+  <a href="ghost-record.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi keys</div>
+    <div>Arvoh yozuv xatosi (Ghost Record Bug)</div>
   </a>
-  <a href="bigint-env.html" class="nav-btn">
+  <div class="nav-btn" style="opacity:0.5;cursor:default">
     <div class="nav-btn-label">Keyingi keys →</div>
-    <div>BigInt Muhit Xatosi (Environment Mismatch Bug)</div>
-  </a>
+    <div>Tez orada...</div>
+  </div>
 </div>
 
 <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
