@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>29-dars: QA uchun AI | QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FBF9F4; --bg-card: #FFFFFF; --bg-soft: #F2EEE4;
+  --ink: #1A1A1A; --ink-soft: #4A4A4A; --ink-muted: #7A7A7A;
+  --accent: #D64545; --accent-dark: #A03535; --accent-soft: #FDEDED;
+  --gold: #C08838; --gold-soft: #FAF2E0;
+  --forest: #3A5A40; --forest-soft: #E8EFE9;
+  --plum: #5B3A7A; --plum-soft: #F0EAF6;
+  --blue: #2C5F8D; --blue-soft: #E6EEF5;
+  --teal: #0F6E56; --teal-soft: #E1F5EE;
+  --line: #E5DFD2; --line-dark: #D0C8B5;
+  --ai: #6B4FBB; --ai-soft: #EFEAFB;
+  --code-bg: #1E1E1E; --code-text: #D4D4D4;
+}
+[data-theme="dark"] {
+  --bg: #0F0F11;
+  --bg-card: #1A1A1E;
+  --bg-soft: #242428;
+  --ink: #F0F0F0;
+  --ink-soft: #B0B0B0;
+  --ink-muted: #707070;
+  --line: #2A2A2E;
+  --line-dark: #3A3A3E;
+  --hover-soft: #1E2A38;
+  --accent-soft: #3A1515;
+  --gold-soft: #2A2010;
+  --forest-soft: #0E2010;
+  --plum-soft: #1A1025;
+  --blue-soft: #0E1E2E;
+  --teal-soft: #0C2019;
+  --ai-soft: #1C1430;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 17px; overflow-x: hidden; }
+.header { position: sticky; top: 0; background: rgba(251,249,244,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; padding: 14px 0; }
+[data-theme="dark"] .header { background: rgba(15,15,17,0.95); }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; text-decoration: none; color: var(--ink); }
+.logo span { color: var(--accent); }
+.progress-container { flex: 1; max-width: 400px; display: flex; align-items: center; gap: 12px; }
+.progress-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.4s ease; }
+.progress-text { font-size: 13px; color: var(--ink-muted); min-width: 45px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; position: relative; }
+.hero::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--accent); }
+.lesson-number { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-muted); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 19px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 40px; line-height: 1.5; }
+.meta-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+.section { margin: 80px 0; scroll-margin-top: 80px; }
+.section-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.section-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 32px; }
+.term-box { background: var(--blue-soft); border-left: 3px solid var(--blue); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.term-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; font-weight: 500; }
+.term-box-title::before { content: "📖 "; }
+.term-box strong { color: var(--blue); }
+.term-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.term-box p:last-child { margin-bottom: 0; }
+.example-box { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.example-box-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+.takeaway-box { background: var(--forest-soft); border-left: 3px solid var(--forest); padding: 16px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+.takeaway-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest); margin-bottom: 6px; font-weight: 500; }
+.takeaway-box p { margin: 0; color: var(--ink-soft); }
+.warn-box { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 18px 22px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.warn-box-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
+.warn-box p { margin-bottom: 8px; color: var(--ink-soft); }
+.warn-box p:last-child { margin-bottom: 0; }
+.analogy-card { background: var(--bg-card); border: 2px dashed var(--gold); border-radius: 16px; padding: 28px; margin: 28px 0; text-align: center; }
+.analogy-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+.analogy-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+.analogy-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+.code-block { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; }
+.code-block .comment { color: #8B949E; font-style: italic; }
+.code-block .key { color: #79C0FF; }
+.code-block .string { color: #A5D6FF; }
+
+/* Yomon vs yaxshi prompt taqqoslash */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.compare-col { border: 2px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg-card); display: flex; flex-direction: column; }
+.compare-col.bad { border-color: var(--accent); }
+.compare-col.good { border-color: var(--forest); }
+.compare-head { padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: white; }
+.compare-col.bad .compare-head { background: var(--accent); }
+.compare-col.good .compare-head { background: var(--forest); }
+.compare-prompt { padding: 16px 18px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; color: var(--ink-soft); border-bottom: 1px dashed var(--line); white-space: pre-wrap; }
+.compare-result { padding: 16px 18px; font-size: 14px; color: var(--ink-soft); flex: 1; }
+.compare-result ul { padding-left: 18px; margin: 8px 0 0; }
+.compare-result li { font-size: 13.5px; margin-bottom: 5px; }
+.compare-verdict { padding: 12px 18px; font-size: 13px; font-weight: 500; }
+.compare-col.bad .compare-verdict { background: var(--accent-soft); color: var(--accent-dark); }
+.compare-col.good .compare-verdict { background: var(--forest-soft); color: var(--forest); }
+
+/* Prompt anatomiyasi */
+.anatomy { display: flex; flex-direction: column; gap: 10px; margin: 28px 0; }
+.anatomy-row { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: start; background: var(--bg-card); border: 1px solid var(--line); border-left: 4px solid var(--ai); border-radius: 0 12px 12px 0; padding: 16px 18px; }
+.anatomy-key { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ai); text-transform: uppercase; letter-spacing: 1px; padding-top: 2px; }
+.anatomy-body h4 { font-family: 'Fraunces', serif; font-size: 16px; margin: 0 0 4px; font-weight: 600; }
+.anatomy-body p { font-size: 14px; color: var(--ink-soft); margin: 0 0 6px; }
+.anatomy-body .anatomy-ex { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--ai-soft); color: var(--ink-soft); padding: 8px 12px; border-radius: 6px; display: block; line-height: 1.5; }
+
+/* Prompt builder */
+.prompt-builder { background: var(--bg-card); border: 2px solid var(--ai); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.pb-fields { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.pb-field { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; }
+.pb-field-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ai); text-transform: uppercase; letter-spacing: 1px; }
+.pb-input, .pb-select, .pb-textarea { padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; font-size: 14px; background: var(--bg); color: var(--ink); font-family: inherit; width: 100%; }
+.pb-input, .pb-textarea { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.pb-textarea { min-height: 70px; resize: vertical; }
+.pb-select { cursor: pointer; }
+.pb-btn { padding: 12px 24px; background: var(--ai); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; font-weight: 500; margin-top: 16px; font-family: inherit; }
+.pb-btn:hover { opacity: 0.9; }
+.pb-preview { margin-top: 20px; display: none; }
+.pb-preview.show { display: block; }
+
+/* Prompt kartochkalari */
+.prompt-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 16px; overflow: hidden; }
+.prompt-card-head { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.prompt-card-icon { font-size: 22px; }
+.prompt-card-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; flex: 1; min-width: 160px; }
+.prompt-card-lesson { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--line); padding: 4px 10px; border-radius: 100px; }
+.prompt-card-lesson:hover { border-color: var(--ai); color: var(--ai); }
+.prompt-text { background: var(--code-bg); color: var(--code-text); padding: 18px 20px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.65; white-space: pre-wrap; overflow-x: auto; }
+.prompt-text.long { max-height: 420px; overflow-y: auto; }
+.prompt-text.long::-webkit-scrollbar { width: 10px; }
+.prompt-text.long::-webkit-scrollbar-track { background: #2A2A2A; }
+.prompt-text.long::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
+.prompt-scroll-note { font-size: 12px; color: var(--ink-muted); padding: 8px 20px 0; font-style: italic; }
+.copy-btn { display: block; width: 100%; padding: 13px; background: var(--ai-soft); color: var(--ai); border: none; border-top: 1px solid var(--line); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.copy-btn:hover { background: var(--ai); color: white; }
+.copy-btn.copied { background: var(--forest); color: white; }
+
+/* Ko'radi / ko'rmaydi jadval */
+.vision-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.vision-table th { text-align: left; padding: 12px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); border-bottom: 2px solid var(--line); }
+.vision-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.vision-table tr:last-child td { border-bottom: none; }
+.vision-yes { color: var(--forest); font-weight: 600; white-space: nowrap; }
+.vision-no { color: var(--accent); font-weight: 600; white-space: nowrap; }
+
+/* Classifier o'yin */
+.dnd-game { background: var(--bg-card); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.dnd-instruction { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.dnd-hint { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 14px; display: none; }
+.dnd-hint.show { display: block; }
+.dnd-score { margin-top: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.classifier-card { background: var(--bg); border: 2px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+.classifier-card:hover:not(.classified) { border-color: var(--plum); }
+.classifier-card.selected { border-color: var(--plum); background: var(--plum-soft); transform: scale(1.02); }
+.classifier-card.classified { opacity: 0.5; pointer-events: none; background: var(--forest-soft); border-color: var(--forest); position: relative; }
+.classifier-card.classified::after { content: "✓ " attr(data-placed-in); position: absolute; top: 12px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--forest); font-weight: 600; }
+.classifier-card-title { font-weight: 500; margin-bottom: 6px; font-size: 14px; padding-right: 130px; }
+.classifier-card-desc { font-size: 12px; color: var(--ink-muted); }
+.classifier-buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 18px; }
+.classifier-bucket { min-height: 80px; padding: 16px 14px; border: 2px solid var(--line); border-radius: 12px; text-align: center; background: var(--bg); cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.classifier-bucket:hover { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.active { border-color: var(--plum); background: var(--plum-soft); }
+.classifier-bucket.disabled { opacity: 0.5; pointer-events: none; }
+.classifier-bucket-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
+.classifier-bucket-icon { font-size: 24px; margin-bottom: 2px; }
+
+/* Quiz */
+.quiz-card { background: linear-gradient(135deg, var(--plum-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 32px; margin: 32px 0; }
+.quiz-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); background: var(--bg-card); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.quiz-question { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin-bottom: 24px; font-weight: 500; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: var(--bg-card); border: 2px solid var(--line); border-radius: 12px; padding: 16px 20px; cursor: pointer; text-align: left; font-size: 16px; font-family: inherit; display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.quiz-option:hover:not(.disabled) { border-color: var(--plum); background: var(--plum-soft); }
+.quiz-option.correct { background: var(--forest-soft); border-color: var(--forest); color: var(--forest); }
+.quiz-option.incorrect { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+.quiz-option.disabled { cursor: not-allowed; opacity: 0.7; }
+.quiz-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.quiz-option.correct .quiz-marker { background: var(--forest); border-color: var(--forest); color: white; }
+.quiz-option.incorrect .quiz-marker { background: var(--accent); border-color: var(--accent); color: white; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 15px; display: none; line-height: 1.55; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--forest-soft); color: var(--forest); border: 1px solid var(--forest); }
+.quiz-feedback.incorrect { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+.scenario-card { background: linear-gradient(135deg, var(--teal-soft) 0%, var(--bg-card) 100%); border: 2px solid var(--teal); border-radius: 20px; padding: 32px; margin: 40px 0; }
+.scenario-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); background: var(--bg-card); padding: 6px 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }
+.scenario-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 16px; }
+.scenario-story { background: var(--bg-card); border-left: 3px solid var(--teal); padding: 18px 22px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.scenario-story strong { color: var(--ink); font-style: normal; }
+.scenario-question { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+
+/* Amaliyot qadamlari */
+.step-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 12px; }
+.step-inner { display: flex; gap: 14px; align-items: flex-start; }
+.step-num { width: 36px; height: 36px; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0; }
+.step-title { font-weight: 500; margin-bottom: 6px; }
+.step-desc { color: var(--ink-soft); font-size: 14px; }
+
+.interview-section { background: linear-gradient(135deg, var(--bg-card) 0%, var(--plum-soft) 100%); border: 2px solid var(--plum); border-radius: 20px; padding: 40px; margin: 60px 0; }
+.interview-intro { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.interview-item { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.interview-item:hover { border-color: var(--plum); }
+.interview-question { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; font-weight: 500; font-size: 15px; line-height: 1.4; }
+.interview-question:hover { background: var(--plum-soft); }
+.interview-q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--plum); font-weight: 600; flex-shrink: 0; min-width: 30px; }
+.interview-toggle { margin-left: auto; color: var(--plum); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.interview-item.open .interview-toggle { transform: rotate(45deg); }
+.interview-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; background: var(--plum-soft); }
+.interview-item.open .interview-answer { max-height: 1500px; }
+.interview-answer-inner { padding: 20px 22px 22px 66px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--line); }
+.interview-answer-inner strong { color: var(--plum); }
+.interview-answer-inner ul { padding-left: 18px; margin-top: 8px; }
+.summary-section { background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%); color: white; border-radius: 24px; padding: 60px 40px; margin: 80px 0; text-align: center; }
+.summary-section .section-label { background: rgba(255,255,255,0.1); color: var(--gold); }
+.summary-section h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; margin-bottom: 20px; }
+.summary-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; text-align: left; }
+.summary-point { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; }
+.summary-point-num { font-family: 'Fraunces', serif; font-size: 40px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 12px; }
+.summary-point-title { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+.summary-point-text { font-size: 14px; opacity: 0.8; line-height: 1.5; }
+.nav-footer { max-width: 780px; margin: 60px auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.nav-btn { padding: 18px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-card); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; flex: 1; min-width: 240px; }
+.nav-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-btn-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-btn-next { text-align: right; border-color: var(--accent); background: var(--accent); color: white; }
+.nav-btn-next:hover { background: var(--accent-dark); }
+.nav-btn-next .nav-btn-label { color: rgba(255,255,255,0.7); }
+h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-top: 40px; margin-bottom: 14px; }
+h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-top: 24px; margin-bottom: 10px; }
+p { margin-bottom: 16px; }
+.container p, .container li { color: var(--ink-soft); }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
+[data-theme="dark"] code { color: #FF8A8A; }
+.completion-badge { position: fixed; bottom: 30px; right: 30px; background: var(--forest); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 12px 30px -8px rgba(58,90,64,0.5); font-weight: 500; display: none; align-items: center; gap: 12px; z-index: 200; }
+.completion-badge.show { display: flex; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; }
+  .section-title { font-size: 30px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .anatomy-row { grid-template-columns: 1fr; gap: 8px; }
+  .summary-section { padding: 40px 24px; }
+  .summary-section h2 { font-size: 32px; }
+  .interview-section, .scenario-card, .prompt-builder, .dnd-game { padding: 24px 18px; }
+  .interview-answer-inner { padding: 16px 18px 20px 50px; }
+  .pb-field { grid-template-columns: 1fr; gap: 6px; }
+  .classifier-card.classified::after { position: static; display: block; margin-top: 8px; }
+  .classifier-card-title { padding-right: 0; }
+  .vision-table { font-size: 13px; }
+  .vision-table th, .vision-table td { padding: 10px 8px; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">QA<span>.</span>Academy</a>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+    <button id="themeToggle" onclick="toggleTheme()" style="width:36px;height:36px;border:1px solid var(--line);background:var(--bg-card);border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="Temani almashtirish">🌙</button>
+  </div>
+</header>
+<section class="hero">
+  <div class="lesson-number">29-dars · Bonus</div>
+  <h1>QA uchun <em>AI</em></h1>
+  <p class="hero-subtitle">ChatGPT va Claude'ga test-keys, checklist va bug-report yozdirish. Va eng muhimi — AI javobini qanday tekshirish kerak.</p>
+  <div class="meta-pills">
+    <div class="pill"><span class="pill-dot"></span>60 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>Amaliy ko'nikma</div>
+    <div class="pill"><span class="pill-dot"></span>5 ta tayyor prompt</div>
+  </div>
+</section>
+<div class="container">
+
+<section class="section">
+  <span class="section-label">Kirish</span>
+  <h2 class="section-title">AI QA'ni almashtirmaydi. Lekin...</h2>
+  <p class="section-intro">2026-yilda intervyuda deyarli har doim so'raladigan savol: <strong>"Ishingizda AI'dan foydalanasizmi? Qanday?"</strong></p>
+  <p>Ikkita yomon javob bor. Birinchisi: <em>"Yo'q, men o'zim yozaman"</em> — bu tezlikni yo'qotish. Ikkinchisi: <em>"Ha, ChatGPT'ga aytaman, u test-keys yozib beradi"</em> — bu javobgarlikni yo'qotish.</p>
+  <p>To'g'ri javob uchinchisi: <strong>"AI'ni qoralama yozuvchi sifatida ishlataman, natijasini o'zim tekshiraman va to'ldiraman."</strong> Bu dars aynan shu haqda.</p>
+  <div class="term-box">
+    <div class="term-box-title">Asosiy atama</div>
+    <p><strong>Prompt</strong> — AI'ga beriladigan topshiriq matni. Prompt qanchalik aniq bo'lsa, javob shunchalik foydali bo'ladi.</p>
+    <p><strong>Prompt engineering</strong> — kerakli natijani olish uchun promptni to'g'ri qurish ko'nikmasi.</p>
+    <p><strong>Hallucination</strong> — AI'ning ishonch bilan <em>o'ylab topilgan</em>, real bo'lmagan ma'lumot berishi. QA uchun eng xavfli hodisa.</p>
+  </div>
+  <div class="analogy-card">
+    <div class="analogy-label">💡 Oddiy o'xshatish</div>
+    <div class="analogy-title">AI — juda tez intern</div>
+    <div class="analogy-text">Tasavvur qiling, sizga <strong>30 soniyada 25 punktli checklist</strong> yozib beradigan intern berildi. U juda tez, charchamaydi, hech qachon "vaqtim yo'q" demaydi. Lekin: u sizning mahsulotingizni <strong>hech qachon ochib ko'rmagan</strong>, requirements'ni o'qimagan va bilmagan narsasini ham ishonch bilan yozib yuboradi. Bunday internning ishini <strong>tekshirmasdan</strong> mijozga yuborasizmi?</div>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <span class="section-label">1-qism</span>
+  <h2 class="section-title">Yomon prompt vs yaxshi prompt</h2>
+  <p class="section-intro">Bir xil AI, bir xil vazifa — lekin natija butunlay boshqacha. Farq faqat promptda.</p>
+  <div class="compare-grid">
+    <div class="compare-col bad">
+      <div class="compare-head">❌ Yomon prompt</div>
+      <div class="compare-prompt">Login uchun test keyslar yozib ber</div>
+      <div class="compare-result">
+        <strong>AI javobi:</strong>
+        <ul>
+          <li>To'g'ri login va parol bilan kirish</li>
+          <li>Noto'g'ri parol bilan kirish</li>
+          <li>Bo'sh maydonlar bilan kirish</li>
+          <li>Noto'g'ri email formati</li>
+          <li>"Parolni unutdim" havolasi</li>
+        </ul>
+      </div>
+      <div class="compare-verdict">5 ta umumiy punkt. Har qanday saytga mos — ya'ni sizning saytingizga <strong>mos emas</strong>.</div>
+    </div>
+    <div class="compare-col good">
+      <div class="compare-head">✅ Yaxshi prompt</div>
+      <div class="compare-prompt">Sen 5 yillik tajribaga ega Senior QA muhandisisan.
+
+Mahsulot: O'zbekistondagi onlayn do'kon.
+Login: telefon raqam (+998) + SMS kod.
+Kod 5 daqiqa amal qiladi, 3 marta
+xato kiritilsa akkaunt 15 daqiqaga
+bloklanadi.
+
+Vazifa: login oqimi uchun test-keys yoz.
+
+Format: jadval — ID, Sarlavha, Qadamlar,
+Kutilgan natija, Prioritet.
+
+Talab: kamida 5 ta salbiy va 3 ta
+chegaraviy (boundary) keys bo'lsin.
+Xavfsizlik holatlarini ham qo'sh.</div>
+      <div class="compare-result">
+        <strong>AI javobi:</strong>
+        <ul>
+          <li>Kod 4:59 da kiritildi → qabul qilinadi</li>
+          <li>Kod 5:01 da kiritildi → rad etiladi</li>
+          <li>2-marta xato → hali bloklanmaydi</li>
+          <li>3-marta xato → 15 daq blok</li>
+          <li>Blok vaqtida to'g'ri kod → baribir rad</li>
+          <li>Boshqa raqamning kodi ishlatildi</li>
+          <li>Bir kod ikki marta ishlatildi</li>
+          <li>+998 siz raqam kiritildi</li>
+          <li>SMS kelmasa — qayta yuborish limiti</li>
+          <li>... yana 12 ta</li>
+        </ul>
+      </div>
+      <div class="compare-verdict">21 ta aniq keys. <strong>Sizning</strong> mahsulotingiz mantiqiga bog'langan.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Asosiy qoida</div>
+    <p>AI sizning mahsulotingizni bilmaydi. <strong>Kontekstni siz berasiz.</strong> Qancha kontekst bersangiz — shuncha foydali javob olasiz.</p>
+  </div>
+</section>
+
+<section class="section" id="anatomy">
+  <span class="section-label">2-qism</span>
+  <h2 class="section-title">Promptning 5 ta qismi</h2>
+  <p class="section-intro">Har bir yaxshi QA prompti shu 5 ta bo'lakdan iborat. Yodlab oling — bu shablon barcha vazifalarga ishlaydi.</p>
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <div class="anatomy-key">1 · Rol</div>
+      <div class="anatomy-body">
+        <h4>AI kim bo'lib javob bersin?</h4>
+        <p>Rol berilsa, AI javob darajasini o'zgartiradi. "Senior QA" va "yordamchi" butunlay boshqa javob beradi.</p>
+        <span class="anatomy-ex">Sen 5 yillik tajribaga ega Senior QA muhandisisan. Fintech sohasida ishlagansan.</span>
+      </div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-key">2 · Kontekst</div>
+      <div class="anatomy-body">
+        <h4>Mahsulot haqida nima bilishi kerak?</h4>
+        <p>Eng muhim qism. Biznes qoidalar, cheklovlar, foydalanuvchi turlari, platforma. AI buni <strong>hech qayerdan bilmaydi</strong>.</p>
+        <span class="anatomy-ex">Mahsulot: P2P pul o'tkazish. Limit: kuniga 10 mln so'm. Faqat verifikatsiyadan o'tgan foydalanuvchilar. Komissiya 1%.</span>
+      </div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-key">3 · Vazifa</div>
+      <div class="anatomy-body">
+        <h4>Aniq nima kerak?</h4>
+        <p>"Test qil" emas — "test-keys yoz", "checklist tuz", "bug-report shakllantir". Fe'l aniq bo'lsin.</p>
+        <span class="anatomy-ex">Vazifa: pul o'tkazish oqimi uchun test-keys yoz.</span>
+      </div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-key">4 · Format</div>
+      <div class="anatomy-body">
+        <h4>Javob qanday ko'rinishda bo'lsin?</h4>
+        <p>Formatni aytmasangiz, AI o'zi tanlaydi va siz uni TestRail'ga ko'chira olmaysiz.</p>
+        <span class="anatomy-ex">Format: Markdown jadval — ID, Sarlavha, Talab, Qadamlar, Kutilgan natija, Prioritet.</span>
+      </div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-key">5 · Cheklov</div>
+      <div class="anatomy-body">
+        <h4>Nima majburiy, nima taqiqlangan?</h4>
+        <p>Bu qism javob sifatini eng ko'p oshiradi. Miqdor, majburiy turlar va "o'ylab topma" ko'rsatmasi.</p>
+        <span class="anatomy-ex">Kamida 8 ta salbiy keys bo'lsin. Faqat men bergan ma'lumotdan foydalan — taxmin qilma. Noaniq joyni "ANIQLASHTIRISH KERAK" deb belgila.</span>
+      </div>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="warn-box-title">⚠️ 5-qismdagi eng muhim jumla</div>
+    <p><strong>"Faqat men bergan ma'lumotdan foydalan. Bilmagan narsangni o'ylab topma — o'rniga savol ber."</strong></p>
+    <p>Bu bitta jumla hallucination'ni sezilarli kamaytiradi. Har bir promptingizga qo'shing.</p>
+  </div>
+</section>
+
+<div class="prompt-builder">
+  <div class="quiz-label">🛠 Amaliy mashq</div>
+  <h3 style="margin-top:8px">O'z promptingizni yig'ing</h3>
+  <p style="font-size:15px;color:var(--ink-soft)">Maydonlarni o'z loyihangizga moslab to'ldiring — tayyor promptni nusxalab oling:</p>
+  <div class="pb-fields">
+    <div class="pb-field">
+      <label class="pb-field-label">1 · Rol</label>
+      <select class="pb-select" id="pbRole">
+        <option value="5 yillik tajribaga ega Senior QA muhandisisan">Senior QA muhandis</option>
+        <option value="fintech sohasida ishlagan Test Lead'san">Fintech Test Lead</option>
+        <option value="mobil ilovalar bo'yicha QA mutaxassisisan">Mobil QA mutaxassis</option>
+        <option value="xavfsizlik testlari bo'yicha mutaxassissan">Xavfsizlik bo'yicha QA</option>
+      </select>
+    </div>
+    <div class="pb-field">
+      <label class="pb-field-label">2 · Kontekst</label>
+      <textarea class="pb-textarea" id="pbContext">Mahsulot: onlayn do'kon savatchasi.
+Foydalanuvchi 10 tagacha mahsulot qo'sha oladi.
+Promo-kod faqat 100 000 so'mdan yuqori buyurtmaga ishlaydi.</textarea>
+    </div>
+    <div class="pb-field">
+      <label class="pb-field-label">3 · Vazifa</label>
+      <select class="pb-select" id="pbTask">
+        <option value="test-keys">Test-keys yozish</option>
+        <option value="checklist">Checklist tuzish</option>
+        <option value="bug-report">Bug-report shakllantirish</option>
+        <option value="test-data">Test ma'lumotlari yaratish</option>
+      </select>
+    </div>
+    <div class="pb-field">
+      <label class="pb-field-label">4 · Cheklov</label>
+      <input type="text" class="pb-input" id="pbCount" value="15">
+    </div>
+  </div>
+  <button class="pb-btn" onclick="buildPrompt()">⚡ Promptni yig'ish</button>
+  <div class="pb-preview" id="pbPreview">
+    <div class="prompt-card" style="margin-bottom:0">
+      <div class="prompt-card-head">
+        <span class="prompt-card-icon">✨</span>
+        <span class="prompt-card-title">Sizning promptingiz</span>
+      </div>
+      <div class="prompt-text" id="pbOutput"></div>
+      <button class="copy-btn" data-copy-target="pbOutput">📋 Nusxalash</button>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="prompts">
+  <span class="section-label">3-qism</span>
+  <h2 class="section-title">5 ta tayyor prompt</h2>
+  <p class="section-intro">Nusxalang, kontekstni o'zingiznikiga almashtiring va ishlating. Har bir prompt kursdagi tegishli darsga bog'langan.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-head">
+      <span class="prompt-card-icon">📋</span>
+      <span class="prompt-card-title">1. Test Case yozish</span>
+      <a href="12-test-analysis-design.html" class="prompt-card-lesson">12-dars</a>
+    </div>
+    <div class="prompt-scroll-note">To'liq professional versiya — pastga aylantirib ko'ring, keyin bitta tugma bilan nusxalang.</div>
+    <div class="prompt-text long" id="prompt1">Sen test dizayni va test tahlili bo'yicha katta tajribaga ega Senior QA Engineersan.
+
+Berilgan artefaktlar (Talablar, User Story, Acceptance Criteria, Figma, Screenshotlar, API hujjatlari, Swagger/OpenAPI, Database sxemasi va boshqa hujjatlar) asosida funksional testlash uchun to'liq va professional Test Case'lar to'plamini yarat.
+
+## Asosiy talablar
+
+### 1. To'liqlik
+
+Quyidagi barcha yo'nalishlarni qamrab ol.
+
+* Pozitiv ssenariylar
+* Negativ ssenariylar
+* Edge Case
+* Boundary Value
+* Data Validation
+* Error Handling
+* Error Message Validation
+* Accessibility (agar dolzarb bo'lsa)
+* Security
+* Cross Browser
+* Cross Platform
+* Responsive (agar kerak bo'lsa)
+
+Hech bir muhim ssenariy o'tkazib yuborilmasin.
+
+### 2. Atomarlik
+
+Har bir Test Case faqat bitta tekshiruvni o'z ichiga olsin.
+
+Bir Test Case ichida bir nechta tekshiruv bo'lmasin.
+
+"Va", "Shuningdek" kabi bir nechta tekshiruvni birlashtiruvchi jumlalardan foydalanma.
+
+### 3. Aniqlik
+
+Har bir qadam qayta bajarilishi mumkin bo'lgan darajada aniq yozilsin.
+
+Expected Result aniq va tushunarli bo'lsin.
+
+Xatolik matnlari mavjud bo'lsa, ularning to'liq matni ko'rsatilsin.
+
+### 4. Traceability
+
+Agar mavjud bo'lsa, quyidagilarni bog'lab ko'rsat.
+
+* Requirement ID
+* User Story ID
+* Acceptance Criteria ID
+
+### 5. Moslashuvchanlik
+
+Natija quyidagi platformalarga import qilish uchun mos bo'lsin.
+
+* TestRail
+* TestOps
+* Azure DevOps Test Plans
+* Xray
+* Google Sheets
+
+### 6. Test muhiti
+
+Har bir Test Case uchun quyidagilar ko'rsatilsin.
+
+* Browser
+* Device
+* Operating System
+* Environment
+* User Role
+* Test Data
+* Locale
+
+## Test Case shabloni
+
+Har bir Test Case quyidagi formatda yozilsin.
+
+ID:
+TC-001
+
+Test Case nomi:
+
+Bog'liq Requirement:
+
+Precondition:
+
+Test Steps:
+
+Expected Result:
+
+Priority:
+High
+Medium
+Low
+
+Notes:
+
+* Browser
+* Device
+* Role
+* Test Data
+* Environment
+
+## Natija formati
+
+Har doim quyidagi ketma-ketlikka amal qil.
+
+### 1. Coverage Summary
+
+Qamrab olingan barcha test yo'nalishlarini qisqacha ro'yxat ko'rinishida chiqar.
+
+### 2. Complete Test Cases
+
+Har bir Test Case alohida yozilsin.
+
+Hech qanday ichki raqamlangan ro'yxatlar ishlatilmasin.
+
+Har bir Test Case mustaqil bo'lsin.
+
+## Kirish artefaktlari
+
+* Functional Requirements
+* Business Requirements
+* User Story
+* Acceptance Criteria
+* Technical Specification
+* Figma
+* Screenshotlar
+* API Documentation
+* Swagger/OpenAPI
+* Database Schema
+* ER Diagram
+* Sequence Diagram
+* BPMN Diagram
+* Flow Diagram
+* Cheklovlar
+* Qo'shimcha hujjatlar</div>
+    <button class="copy-btn" data-copy-target="prompt1">📋 Nusxalash</button>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-head">
+      <span class="prompt-card-icon">✅</span>
+      <span class="prompt-card-title">2. Checklist tuzish</span>
+      <a href="14-test-plan.html" class="prompt-card-lesson">14-dars</a>
+    </div>
+    <div class="prompt-scroll-note">To'liq professional versiya — pastga aylantirib ko'ring, keyin bitta tugma bilan nusxalang.</div>
+    <div class="prompt-text long" id="prompt2">Sen test dizayni va test tahlili bo'yicha katta tajribaga ega Senior QA Engineersan.
+
+Berilgan artefaktlar (Talablar, Texnik topshiriq, Figma dizayni, Screenshotlar, API hujjatlari, Database sxemasi yoki boshqa hujjatlar) asosida funksional testlash uchun to'liq, tartibli va professional chek-list yarat.
+
+## Asosiy talablar
+
+Chek-list quyidagi tamoyillarga amal qilishi kerak.
+
+### 1. To'liqlik
+
+Quyidagi barcha yo'nalishlarni qamrab ol.
+
+* Pozitiv ssenariylar
+* Negativ ssenariylar
+* Edge Case (chegaraviy holatlar)
+* Biznes mantiqi
+* Ma'lumotlar validatsiyasi
+* UI tekshiruvlari
+* UX tekshiruvlari
+* Xatoliklarni qayta ishlash
+* Xavfsizlik
+* Unumdorlik
+* Kross-brauzer
+* Adaptiv dizayn
+* Accessibility (agar dolzarb bo'lsa)
+
+Hech bir muhim ssenariy o'tkazib yuborilmasin.
+
+### 2. Atomarlik
+
+Har bir band faqat bitta tekshiruvni o'z ichiga olsin.
+
+Bir band ichida bir nechta tekshiruv yozilmasin.
+
+### 3. Aniqlik
+
+Har bir tekshiruv sodda, tushunarli va bir ma'noli bo'lsin.
+
+Noaniq iboralar ishlatilmasin.
+
+### 4. Mustaqillik
+
+Har bir tekshiruv boshqa tekshiruvlarga bog'liq bo'lmasin.
+
+Istalgan bandni alohida bajarish mumkin bo'lsin.
+
+### 5. Mantiqiy tuzilish
+
+Tekshiruvlarni quyidagilar bo'yicha guruhla.
+
+* Sahifalar
+* Ekranlar
+* Modullar
+* Funksiyalar
+
+### 6. Universallik
+
+Chek-list Junior, Middle va Senior QA mutaxassislari uchun tushunarli bo'lsin.
+
+### 7. Test muhiti
+
+Chek-list boshida quyidagilar ko'rsatilsin.
+
+* Browser
+* Device
+* Operating System
+* Environment
+* User Role
+* Language (Locale)
+
+Agar ushbu ma'lumotlar berilmagan bo'lsa, standart qiymatlardan foydalan.
+
+## Qamrov
+
+### Functional Testing
+
+* CRUD operatsiyalari
+* Business Logic
+* Workflow
+* Permission
+* State Transition
+
+### Validation
+
+* Mandatory Fields
+* Input Format
+* Length Validation
+* Data Type
+* Boundary Value
+* Duplicate Data
+* Invalid Data
+
+### Negative Testing
+
+* Noto'g'ri foydalanuvchi harakatlari
+* Server xatolari
+* Network uzilishi
+* Session Timeout
+* Token muddati tugashi
+* Ruxsatsiz kirish
+
+### UI Testing
+
+* Elementlar ko'rinishi
+* Alignment
+* Responsive Layout
+* Tugmalar
+* Input maydonlari
+* Ikonkalar
+* Ranglar
+* Matnlar
+* Tooltip
+* Placeholder
+
+### UX Testing
+
+* Navigatsiya
+* Fokus tartibi
+* Klaviatura orqali boshqarish
+* Loading holati
+* Empty State
+* Success State
+* Error State
+
+### Error Messages
+
+Har bir xabar quyidagicha tekshirilsin.
+
+* To'g'ri chiqishi
+* Tushunarli bo'lishi
+* Foydalanuvchiga foydali ma'lumot berishi
+* Dizaynga mosligi
+
+### Security
+
+* Authentication
+* Authorization
+* Role Based Access
+* Session
+* Cookie
+* URL Manipulation
+* API Security
+* Input Sanitization
+
+### Performance
+
+* Sahifa yuklanishi
+* API javob vaqti
+* Katta hajmdagi ma'lumotlar bilan ishlash
+* Pagination
+* Search Performance
+
+### Cross Browser
+
+Agar dolzarb bo'lsa.
+
+* Chrome
+* Firefox
+* Edge
+* Safari
+
+### Responsive
+
+Agar dolzarb bo'lsa.
+
+* Desktop
+* Tablet
+* Mobile
+
+### Localization
+
+Agar tizim ko'p tilli bo'lsa.
+
+* Tarjimalar
+* Sana
+* Vaqt
+* Valyuta
+* Timezone
+
+## Natija formati
+
+Har doim quyidagi ketma-ketlikka amal qil.
+
+### 1. Qamrov xulosasi
+
+Qaysi test yo'nalishlari chek-listda qamrab olinganini qisqacha ko'rsat.
+
+### 2. To'liq chek-list
+
+Quyidagi formatda yoz.
+
+# Chek-list nomi
+
+## Tavsif
+
+## Test muhiti
+
+### 1-bo'lim
+
+* Tekshiruv 1
+* Tekshiruv 2
+* Tekshiruv 3
+
+### 2-bo'lim
+
+* Tekshiruv 1
+* Tekshiruv 2
+* Tekshiruv 3
+
+...
+
+## Qo'shimcha talablar
+
+* Har bir tekshiruv atomar bo'lsin.
+* Takroriy tekshiruvlar bo'lmasin.
+* Muhim ssenariylar o'tkazib yuborilmasin.
+* TestRail, Azure DevOps Test Plans, TestOps, Xray va Google Sheets formatlariga mos bo'lsin.
+* Har bir tekshiruv aniq va bajarilishi oson bo'lsin.
+* Zarur bo'lsa Edge Case ssenariylarini avtomatik qo'sh.
+* Javob faqat chek-listdan iborat bo'lsin.
+* Hech qanday izoh, tahlil yoki mulohaza yozilmasin.
+
+## Kirish artefaktlari
+
+Chek-list quyidagi ma'lumotlar asosida yaratiladi.
+
+* Functional Requirements
+* Business Requirements
+* User Story
+* Acceptance Criteria
+* Technical Specification
+* Figma Design
+* Screenshotlar
+* API Documentation
+* Database Schema
+* Swagger/OpenAPI
+* Flow Diagram
+* BPMN Diagram
+* Sequence Diagram
+* ER Diagram
+* Cheklovlar
+* Qo'shimcha hujjatlar</div>
+    <button class="copy-btn" data-copy-target="prompt2">📋 Nusxalash</button>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-head">
+      <span class="prompt-card-icon">🐞</span>
+      <span class="prompt-card-title">3. Bug-report yozish</span>
+      <a href="04-bug-testware.html" class="prompt-card-lesson">4-dars</a>
+    </div>
+    <div class="prompt-text" id="prompt3">Sen bug-report yozishda tajribali QA muhandisisan.
+
+MENING QO'POL YOZUVIM:
+[Bu yerga yozing: nima bo'ldi, qayerda, qanday holatda —
+qanday bo'lsa shunday, tartibsiz bo'lsa ham]
+
+VAZIFA:
+Buni to'liq bug-report shakliga keltir.
+
+FORMAT:
+- Sarlavha (qisqa, muammo + joy)
+- Muhitlar (brauzer, OS, versiya)
+- Oldindan shartlar
+- Takrorlash qadamlari (raqamlangan)
+- Kutilgan natija
+- Haqiqiy natija
+- Jiddiylik (Severity) + asos
+- Prioritet + asos
+
+TALABLAR:
+- Sarlavha 10 so'zdan oshmasin
+- Qadamlar shunchalik aniq bo'lsinki, dasturchi savol bermasin
+- Severity va Prioritet farqini hisobga ol
+
+MUHIM:
+Men aytmagan tafsilotni o'ylab topma. Yetishmayotgan
+ma'lumot bo'lsa, "[TO'LDIRISH KERAK]" deb qoldir.</div>
+    <button class="copy-btn" data-copy-target="prompt3">📋 Nusxalash</button>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-head">
+      <span class="prompt-card-icon">🎲</span>
+      <span class="prompt-card-title">4. Test ma'lumotlari yaratish</span>
+      <a href="13-test-techniques.html" class="prompt-card-lesson">13-dars</a>
+    </div>
+    <div class="prompt-text" id="prompt4">Sen test ma'lumotlari tayyorlayotgan QA muhandisisan.
+
+MAYDON TAVSIFI:
+[Bu yerga yozing: maydon nomi, turi, uzunlik chegaralari,
+qanday belgilar ruxsat etilgan, majburiymi]
+
+VAZIFA:
+Shu maydon uchun test ma'lumotlari to'plamini yarat.
+
+FORMAT (jadval):
+| Qiymat | Turi | Kutilgan natija | Nima tekshiriladi |
+
+MAJBURIY GURUHLAR:
+- To'g'ri qiymatlar (tipik)
+- Chegaraviy: min-1, min, min+1, max-1, max, max+1
+- Bo'sh qiymat va faqat probel
+- Maxsus belgilar: < > " ' & % \ /
+- Unicode: kirill, emoji, arab yozuvi
+- Juda uzun matn (10 000 belgi)
+- SQL injection namunasi
+- XSS namunasi
+- O'zbek tiliga xos: o' g' ' belgilari
+
+MUHIM:
+Har bir qiymat uchun nega tekshirilayotganini yoz.</div>
+    <button class="copy-btn" data-copy-target="prompt4">📋 Nusxalash</button>
+  </div>
+
+  <div class="prompt-card" style="border-color:var(--accent);border-width:2px">
+    <div class="prompt-card-head">
+      <span class="prompt-card-icon">🔍</span>
+      <span class="prompt-card-title">5. AI javobini tekshirish</span>
+      <span class="prompt-card-lesson" style="color:var(--accent);border-color:var(--accent)">Eng muhimi</span>
+    </div>
+    <div class="prompt-text" id="prompt5">AI yozib bergan test-keys / checklistni <b>o'sha AI'ning
+o'ziga</b> qaytadan yuboring:
+
+---
+
+Sen endi tajribali Test Lead'san va yuqoridagi
+test-keys to'plamini tekshiryapsan.
+
+VAZIFA:
+Bu to'plamni tanqidiy ko'rib chiq va quyidagilarni top:
+
+1. QAMROVDAGI BO'SHLIQLAR
+   Qaysi holatlar umuman tushib qolgan?
+   Ayniqsa: xatolik holatlari, bir vaqtda bir nechta
+   foydalanuvchi, tarmoq uzilishi, ma'lumot holati.
+
+2. TAXMINLAR
+   Bu keyslarning qaysi biri men bermagan taxminga
+   asoslangan? Ularni ro'yxatla.
+
+3. TEKSHIRIB BO'LMAYDIGAN KEYSLAR
+   Qaysi keysning "kutilgan natijasi" noaniq yoki
+   o'lchab bo'lmaydigan?
+
+4. TAKRORLAR
+   Qaysi keyslar bir xil narsani tekshiryapti?
+
+Har bir topilma uchun aniq tuzatish taklif qil.
+Menga xushomad qilma — kamchilikni ochiq ayt.</div>
+    <button class="copy-btn" data-copy-target="prompt5">📋 Nusxalash</button>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Nega 5-prompt eng muhim?</div>
+    <p>Birinchi javob — bu <strong>qoralama</strong>. AI o'z ishini tanqid qilishda o'z ishini yozishdan ko'ra ancha yaxshi. Ikki qadamli usul bir qadamlidan sezilarli kuchli natija beradi.</p>
+  </div>
+</section>
+
+<div class="quiz-card">
+  <div class="quiz-label">⚡ Tezkor tekshiruv</div>
+  <div class="quiz-question">AI sizga 20 punktli checklist yozib berdi. Keyingi qadamingiz nima?</div>
+  <div class="quiz-options" data-quiz="q1">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Jamoaga yuboraman — AI yaxshi ishlaydi, tekshirishga vaqt yo'q</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Har bir punktni mahsulot bilan solishtiraman: bu funksiya realda bormi? Keyin AI ko'ra olmagan holatlarni (backend, ruxsatlar, ma'lumot holati) qo'lda qo'shaman</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>Umuman ishlatmayman — AI'ga ishonib bo'lmaydi, hammasini o'zim yozaman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="q1"></div>
+</div>
+
+<section class="section" id="blindspots">
+  <span class="section-label">4-qism</span>
+  <h2 class="section-title">AI nimani ko'rmaydi</h2>
+  <p class="section-intro">Bu darsning eng muhim bo'limi. Mahsulotingiz skrinshotini AI'ga yuborsangiz, u chiroyli checklist yozadi — lekin u <strong>faqat piksellarni</strong> ko'radi.</p>
+  <p>Skrinshot — bu bir soniyalik surat. Unda backend yo'q, baza yo'q, tarmoq yo'q, vaqt yo'q. AI shu suratdan kelib chiqib yozadi va qolgan hammasini <strong>taxmin qiladi</strong>.</p>
+  <table class="vision-table">
+    <thead>
+      <tr><th>Nimani tekshirish kerak</th><th>Skrinshotdan</th><th>Nega</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tugma matni, rangi, joylashuvi</td><td class="vision-yes">✅ Ko'radi</td><td>Ekranda ko'rinadi</td></tr>
+      <tr><td>Matndagi imlo xatolari</td><td class="vision-yes">✅ Ko'radi</td><td>Matn o'qiladi</td></tr>
+      <tr><td>Rang kontrasti (ochiqlik)</td><td class="vision-yes">✅ Ko'radi</td><td>Ranglar o'lchanadi</td></tr>
+      <tr><td>Bo'sh forma yuborilsa nima bo'ladi</td><td class="vision-no">❌ Ko'rmaydi</td><td>Server javobi suratda yo'q</td></tr>
+      <tr><td>Promo-kod to'g'ri hisoblanadimi</td><td class="vision-no">❌ Ko'rmaydi</td><td>Biznes mantiq yashirin</td></tr>
+      <tr><td>Muddati o'tgan karta rad etiladimi</td><td class="vision-no">❌ Ko'rmaydi</td><td>Validatsiya backendda</td></tr>
+      <tr><td>Boshqa foydalanuvchi ma'lumotiga kirish</td><td class="vision-no">❌ Ko'rmaydi</td><td>Ruxsatlar ko'rinmaydi</td></tr>
+      <tr><td>SQL injection ishlaydimi</td><td class="vision-no">❌ Ko'rmaydi</td><td>Kirish maydoni tashqi ko'rinishda oddiy</td></tr>
+      <tr><td>Internet uzilsa ma'lumot yo'qoladimi</td><td class="vision-no">❌ Ko'rmaydi</td><td>Vaqt va tarmoq suratda yo'q</td></tr>
+      <tr><td>Ikki foydalanuvchi bir vaqtda tahrirlasa</td><td class="vision-no">❌ Ko'rmaydi</td><td>Bir nechta sessiya ko'rinmaydi</td></tr>
+    </tbody>
+  </table>
+  <div class="warn-box">
+    <div class="warn-box-title">⚠️ Eng xavfli oqibat</div>
+    <p>AI'ning checklisti <strong>to'liq ko'rinadi</strong>. 25 punkt, chiroyli guruhlangan, professional tilda. Yangi QA uni ko'chirib oladi va "qamrov tayyor" deb hisoblaydi.</p>
+    <p>Natijada eng jiddiy buglar — ruxsatlar, to'lov mantiqi, ma'lumot yo'qolishi — <strong>umuman tekshirilmay qoladi</strong>. Bu AI'siz ishlashdan ham yomonroq, chunki soxta ishonch paydo bo'ladi.</p>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Qoida</div>
+    <p>AI checklisti — <strong>boshlanish nuqtasi</strong>, tugash nuqtasi emas. Uni olgach birinchi savolingiz: <em>"Bu ro'yxatda nima yo'q?"</em></p>
+  </div>
+</section>
+
+<div class="dnd-game" id="classifierGame">
+  <div class="quiz-label">🎯 AI ko'radimi?</div>
+  <h3 style="margin-top:8px">Skrinshotdan topa oladimi?</h3>
+  <p class="dnd-instruction"><strong>1-qadam:</strong> Holatni bosing. <strong>2-qadam:</strong> AI uni skrinshotdan aniqlay oladimi — tanlang.</p>
+  <div class="dnd-hint" id="classifierHint">👆 Endi pastdagi ikkita tugmadan birini tanlang</div>
+  <div id="classifierCards">
+    <div class="classifier-card" data-category="visible">
+      <div class="classifier-card-title">"Sotib olish" tugmasi matni "Sotib olsh" deb yozilgan</div>
+      <div class="classifier-card-desc">Imlo xatosi.</div>
+    </div>
+    <div class="classifier-card" data-category="hidden">
+      <div class="classifier-card-title">Har qanday promo-kod kiritilsa 10% chegirma beradi</div>
+      <div class="classifier-card-desc">Chegirma mantiqi.</div>
+    </div>
+    <div class="classifier-card" data-category="visible">
+      <div class="classifier-card-title">Narx oq fonda och sariq rangda — o'qib bo'lmaydi</div>
+      <div class="classifier-card-desc">Kontrast muammosi.</div>
+    </div>
+    <div class="classifier-card" data-category="hidden">
+      <div class="classifier-card-title">Login maydoniga <code>' OR 1=1 --</code> yozilsa tizimga kiradi</div>
+      <div class="classifier-card-desc">SQL injection.</div>
+    </div>
+    <div class="classifier-card" data-category="hidden">
+      <div class="classifier-card-title">Savatdan mahsulot o'chirilsa, umumiy summa o'zgarmaydi</div>
+      <div class="classifier-card-desc">Hisoblash xatosi.</div>
+    </div>
+    <div class="classifier-card" data-category="visible">
+      <div class="classifier-card-title">Mahsulot rasmi o'rniga buzilgan rasm belgisi turibdi</div>
+      <div class="classifier-card-desc">Yuklanmagan rasm.</div>
+    </div>
+  </div>
+  <div class="classifier-buckets">
+    <div class="classifier-bucket" data-bucket="visible">
+      <div class="classifier-bucket-icon">👁</div>
+      <div class="classifier-bucket-label" style="color:#3A5A40">Skrinshotdan ko'radi</div>
+    </div>
+    <div class="classifier-bucket" data-bucket="hidden">
+      <div class="classifier-bucket-icon">🚫</div>
+      <div class="classifier-bucket-label" style="color:#D64545">Ko'ra olmaydi</div>
+    </div>
+  </div>
+  <div class="dnd-score" id="classifierScore">0 / 6 to'g'ri</div>
+</div>
+
+<div class="scenario-card">
+  <div class="scenario-label">🎬 Haqiqiy stsenariy</div>
+  <div class="scenario-title">Payshanba, 17:40 — release ertaga</div>
+  <div class="scenario-story">
+    <p><strong>Sizga yangi "Sovg'a sertifikati" funksiyasi keldi.</strong> Ertaga ertalab release. Qo'lingizda 1 soat bor.</p>
+    <p>Requirements hujjati bor, lekin qisqa. Funksiya: foydalanuvchi sertifikat sotib oladi, kod oladi, buyurtmada ishlatadi. Sertifikat 1 yil amal qiladi, qisman ishlatish mumkin.</p>
+    <p><strong>Nima qilasiz?</strong></p>
+  </div>
+  <div class="scenario-question">Eng professional yondashuv qaysi?</div>
+  <div class="quiz-options" data-quiz="scenario">
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">A</div>
+      <div>Ekran skrinshotini AI'ga yuboraman, checklist olaman va shu bo'yicha tekshirib chiqaman — 1 soatga yetadi</div>
+    </button>
+    <button class="quiz-option" data-correct="true">
+      <div class="quiz-marker">B</div>
+      <div>Requirements matnini AI'ga beraman (skrinshot emas), test-keys olaman, keyin 5-prompt bilan uni tanqid qildiraman. So'ng <strong>o'zim</strong> pul bilan bog'liq holatlarni qo'shaman: qisman ishlatish qoldig'i, muddati o'tgan sertifikat, bir kodni ikki marta ishlatish, qaytarish holati</div>
+    </button>
+    <button class="quiz-option" data-correct="false">
+      <div class="quiz-marker">C</div>
+      <div>AI'ga vaqt yo'q — 1 soatda qo'lda qanchasini ulgursam, shunchasini test qilaman</div>
+    </button>
+  </div>
+  <div class="quiz-feedback" data-feedback="scenario"></div>
+</div>
+
+<section class="section" id="practice">
+  <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
+  <h2 class="section-title">TestShop bilan sinab ko'ring</h2>
+  <p class="section-intro">Nazariya tugadi. Endi yopiq halqa: AI checklist yozadi → siz uni real buglar bilan solishtirasiz → farqni <strong>o'z ko'zingiz bilan</strong> ko'rasiz.</p>
+  <div class="step-card">
+    <div class="step-inner">
+      <div class="step-num" style="background:#6B4FBB">1</div>
+      <div>
+        <div class="step-title">TestShop'ni oching va skrinshot oling</div>
+        <div class="step-desc"><a href="../testshop/index.html" style="color:var(--ai)">TestShop</a> — bu kurs uchun maxsus yozilgan, ataylab buzilgan onlayn do'kon. Bosh sahifa yoki savat sahifasining skrinshotini oling.</div>
+      </div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-inner">
+      <div class="step-num" style="background:#2C5F8D">2</div>
+      <div>
+        <div class="step-title">AI'dan checklist so'rang</div>
+        <div class="step-desc">Skrinshotni ChatGPT yoki Claude'ga yuklang va yuqoridagi <strong>2-promptni</strong> ishlating. Nechta punkt chiqdi? Yozib qo'ying.</div>
+      </div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-inner">
+      <div class="step-num" style="background:#C08838">3</div>
+      <div>
+        <div class="step-title">Savol bering: "Bu ro'yxatda nima yo'q?"</div>
+        <div class="step-desc">4-qismdagi jadvalga qarang. AI ko'rmagan toifalar — backend validatsiya, hisoblash mantiqi, ruxsatlar, xavfsizlik — bo'yicha <strong>o'zingiz</strong> punkt qo'shing.</div>
+      </div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-inner">
+      <div class="step-num" style="background:#3A5A40">4</div>
+      <div>
+        <div class="step-title">Haqiqat bilan solishtiring</div>
+        <div class="step-desc"><a href="../testshop/bug-hunt.html" style="color:var(--ai)">Bug Hunt</a> sahifasida TestShop'ga ataylab joylangan buglar ro'yxati bor. AI checklistida ularning nechtasi qamrab olingan edi? Sizning qo'shimchalaringiz nechtasini qo'shdi?</div>
+      </div>
+    </div>
+  </div>
+  <div class="example-box">
+    <div class="example-box-title">Nimani ko'rasiz</div>
+    <p style="margin-bottom:0">Ko'p o'quvchilarda natija shunday bo'ladi: AI 20-25 punkt yozadi va ularning <strong>ko'pi tashqi ko'rinish haqida</strong>. Jiddiy buglar — SQL injection, muddati o'tgan karta, promo-kod mantiqi, savat summasi — ro'yxatda umuman bo'lmaydi. Aynan shu farq sizni AI'dan ajratib turadi.</p>
+  </div>
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Portfolio uchun</div>
+    <p>Bu mashqni hujjatlashtiring: AI checklisti, sizning qo'shimchalaringiz, topilgan buglar. Intervyuda <strong>"AI'dan qanday foydalanasiz?"</strong> savoliga bu eng kuchli javob bo'ladi.</p>
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-label">Intervyuga tayyorlov</span>
+  <h2 class="section-title">Intervyu savollari</h2>
+  <p class="section-intro">2026-yilda bu savollar deyarli har bir QA intervyusida uchraydi. 6 ta professional javob.</p>
+  <div class="interview-section">
+    <p class="interview-intro">💡 Har savol ustiga bosing — javobni ko'rasiz.</p>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q1</span><span>Ishingizda AI'dan foydalanasizmi? Qanday?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Ha, lekin qoralama yozuvchi sifatida. Men AI'ga requirements'ni beraman, u test-keys qoralamasini yozadi — bu menga 30-40 daqiqa tejaydi."</p>
+        <p><strong>Davomi (eng muhim qismi):</strong> "Keyin men har bir keysni mahsulot bilan solishtiraman. AI biznes mantiqni bilmaydi, shuning uchun ruxsatlar, hisoblash va ma'lumot holati bo'yicha keyslarni o'zim qo'shaman."</p>
+        <p><strong>Nega bu yaxshi javob:</strong> siz tezlikni ham, javobgarlikni ham ko'rsatasiz. Intervyu oluvchi aynan shu muvozanatni izlaydi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q2</span><span>AI QA'ni almashtiradimi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "AI test yozishni tezlashtiradi, lekin QA ishining asosini almashtira olmaydi."</p>
+        <ul>
+          <li><strong>AI bilmaydi:</strong> mahsulot biznes mantiqini, foydalanuvchi kimligini, qaysi bug qanchalik jiddiy ekanini</li>
+          <li><strong>AI qila olmaydi:</strong> real mahsulotni ochib, bosib, kuzatib ko'rishni</li>
+          <li><strong>AI javob bermaydi:</strong> release chiqsa bo'ladimi degan qarorga</li>
+        </ul>
+        <p><strong>Pro javob:</strong> "AI'dan foydalanmaydigan QA'ni AI'dan foydalanadigan QA almashtiradi. Ya'ni raqobat AI bilan emas, ko'nikma bilan."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q3</span><span>Hallucination nima va u sizga qanday xalaqit beradi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Hallucination — AI'ning real bo'lmagan narsani ishonch bilan yozib yuborishi."</p>
+        <p><strong>QA'dagi misol:</strong> "AI menga 'Parolni tiklash tugmasi ishlashini tekshir' degan keys yozdi. Lekin bizning ilovada bunday tugma umuman yo'q — u odatiy loginga qarab taxmin qilgan edi."</p>
+        <p><strong>Qanday oldini olaman:</strong></p>
+        <ul>
+          <li>Promptga "faqat men bergan ma'lumotdan foydalan" deb yozaman</li>
+          <li>Noaniq joyni "ANIQLASHTIRISH KERAK" deb belgilashini so'rayman</li>
+          <li>Har keysni mahsulot bilan solishtirib chiqaman</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q4</span><span>Yaxshi prompt qanday tuziladi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Men 5 qismli tuzilishdan foydalanaman:"</p>
+        <ul>
+          <li><strong>Rol</strong> — "Sen Senior QA muhandisisan"</li>
+          <li><strong>Kontekst</strong> — mahsulot, biznes qoidalar, cheklovlar</li>
+          <li><strong>Vazifa</strong> — aniq fe'l: "test-keys yoz"</li>
+          <li><strong>Format</strong> — jadval ustunlari aniq ko'rsatiladi</li>
+          <li><strong>Cheklov</strong> — miqdor, majburiy turlar, "o'ylab topma"</li>
+        </ul>
+        <p><strong>Pro qo'shimcha:</strong> "Eng ko'p natija beradigan qism — Kontekst. AI mahsulotni bilmaydi, shuning uchun biznes qoidalarni batafsil yozaman."</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q5</span><span>AI yozgan test-keyslarni qanday tekshirasiz?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Ikki bosqichli usul ishlataman."</p>
+        <ul>
+          <li><strong>1-bosqich:</strong> AI'ning o'ziga qaytadan beraman va Test Lead rolida tanqid qilishini so'rayman — qamrovdagi bo'shliqlar, taxminlar, tekshirib bo'lmaydigan keyslar, takrorlar</li>
+          <li><strong>2-bosqich:</strong> O'zim ko'rib chiqaman va 4 ta savolga javob izlayman: bu funksiya realda bormi? Kutilgan natija o'lchanadimi? Biznes qoidaga mos keladimi? Nima tushib qolgan?</li>
+        </ul>
+        <p><strong>Doim qo'shaman:</strong> ruxsatlar va rollar, ma'lumot holati, bir vaqtda bir nechta foydalanuvchi, tarmoq uzilishi. AI bularni deyarli hech qachon o'zi qo'shmaydi.</p>
+      </div></div>
+    </div>
+    <div class="interview-item">
+      <div class="interview-question"><span class="interview-q-num">Q6</span><span>Mahsulot ma'lumotlarini AI'ga yuborish xavfsizmi?</span><span class="interview-toggle">+</span></div>
+      <div class="interview-answer"><div class="interview-answer-inner">
+        <p><strong>Javob:</strong> "Bu kompaniya siyosatiga bog'liq va men buni doim oldindan aniqlab olaman."</p>
+        <p><strong>Hech qachon yubormayman:</strong></p>
+        <ul>
+          <li>Real foydalanuvchi ma'lumotlari — ism, telefon, pasport, karta raqami</li>
+          <li>Kirish ma'lumotlari, tokenlar, API kalitlari</li>
+          <li>Ichki hujjatlar, agar kompaniya ruxsat bermagan bo'lsa</li>
+        </ul>
+        <p><strong>Qanday ishlayman:</strong> "Requirements'ni yuborishdan oldin ma'lumotni anonimlashtiraman — real ismlar o'rniga 'Foydalanuvchi A', real summalar o'rniga shartli raqamlar. Kompaniyada korporativ AI hisobi bo'lsa, faqat shuni ishlataman."</p>
+        <p><em>Bu javob intervyuda juda kuchli taassurot qoldiradi — ko'p nomzodlar bu haqda o'ylamaydi ham.</em></p>
+      </div></div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="container">
+<div class="summary-section">
+  <span class="section-label">Yakuniy</span>
+  <h2>3 ta asosiy fikr</h2>
+  <p style="opacity:0.8;max-width:500px;margin:0 auto">Bu darsdan eslab qolishingiz kerak bo'lgan eng muhim g'oyalar</p>
+  <div class="summary-points">
+    <div class="summary-point">
+      <div class="summary-point-num">01</div>
+      <div class="summary-point-title">Kontekst — hammasi</div>
+      <div class="summary-point-text">AI sizning mahsulotingizni bilmaydi. Rol, kontekst, vazifa, format, cheklov — beshtasi ham bo'lsin.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">02</div>
+      <div class="summary-point-title">Skrinshot yarmini ko'rsatadi</div>
+      <div class="summary-point-text">AI piksellarni ko'radi, biznes mantiqni emas. Backend, ruxsatlar va xavfsizlik doim sizning zimmangizda.</div>
+    </div>
+    <div class="summary-point">
+      <div class="summary-point-num">03</div>
+      <div class="summary-point-title">Birinchi javob — qoralama</div>
+      <div class="summary-point-text">AI'ga o'z ishini tanqid qildiring, keyin o'zingiz to'ldiring. Javobgarlik hech qachon AI'da emas.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="nav-footer">
+  <a href="28-final.html" class="nav-btn">
+    <div class="nav-btn-label">← Oldingi dars</div>
+    <div>28-dars · Yakuniy dars</div>
+  </a>
+  <a href="../cases/index.html" class="nav-btn nav-btn-next">
+    <div class="nav-btn-label">Keyingi qadam →</div>
+    <div>Real Keys · Haqiqiy holatlar</div>
+  </a>
+</div>
+<div class="completion-badge" id="completionBadge">
+  <span style="font-size:20px">🏆</span>
+  <span>Darsni muvaffaqiyatli tugatdingiz!</span>
+</div>
+<script>
+let completedActivities = new Set();
+// 2 quiz + 1 prompt builder + 6 nusxalash tugmasi + 6 classifier = 15
+const TOTAL_ACTIVITIES = 15;
+
+function updateProgress() {
+  const percent = Math.min(100, Math.round((completedActivities.size / TOTAL_ACTIVITIES) * 100));
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressText').textContent = percent + '%';
+  if (percent >= 90) {
+    const badge = document.getElementById('completionBadge');
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 5000);
+  }
+}
+
+const quizFeedback = {
+  q1: {
+    correct: '<strong>To\'g\'ri!</strong> AI checklisti — boshlanish nuqtasi. Har bir punktni mahsulot bilan solishtirish va tushib qolgan toifalarni qo\'shish — bu QA ishining o\'zi. AI buni siz uchun qila olmaydi.',
+    incorrect: 'A varianti xavfli: tekshirilmagan checklist soxta ishonch beradi. C varianti esa tezlikni behuda yo\'qotish. <strong>To\'g\'ri yo\'l — AI\'dan qoralama olib, uni o\'zingiz tekshirib to\'ldirish.</strong>'
+  },
+  scenario: {
+    correct: '<strong>Mukammal!</strong> Uchta muhim qaror: (1) skrinshot emas, <em>requirements matni</em> berdingiz — AI ko\'proq mantiqni ko\'radi; (2) AI\'ga o\'z ishini tanqid qildirdingiz; (3) pul bilan bog\'liq holatlarni o\'zingiz qo\'shdingiz. Sertifikatda eng ko\'p bug aynan qoldiq hisobi va qayta ishlatishda chiqadi.',
+    incorrect: 'A varianti: skrinshot biznes mantiqni ko\'rsatmaydi — qisman ishlatish qoldig\'i, muddat, qayta ishlatish umuman tushib qoladi. C varianti: 1 soatda qo\'lda ishlash mumkin, lekin AI qoralamasi sizga 30 daqiqa tejab berardi. <strong>Eng yaxshisi — requirements matnini berish va natijani o\'zingiz to\'ldirish.</strong>'
+  }
+};
+
+document.querySelectorAll('.quiz-options').forEach(quiz => {
+  const quizId = quiz.dataset.quiz;
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.querySelector(`[data-feedback="${quizId}"]`);
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (quiz.classList.contains('answered')) return;
+      const isCorrect = option.dataset.correct === 'true';
+      options.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+      });
+      if (!isCorrect) option.classList.add('incorrect');
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+      feedback.innerHTML = isCorrect ? quizFeedback[quizId].correct : quizFeedback[quizId].incorrect;
+      quiz.classList.add('answered');
+      completedActivities.add(quizId);
+      updateProgress();
+    });
+  });
+});
+
+const taskTemplates = {
+  'test-keys': {
+    task: 'Yuqoridagi funksiya uchun to\'liq test-keys to\'plamini yoz.',
+    format: 'FORMAT (Markdown jadval):\n| ID | Sarlavha | Qadamlar | Kutilgan natija | Prioritet |',
+    rules: 'Guruhlar: Happy path, Salbiy holatlar, Chegaraviy qiymatlar, Xavfsizlik.\nQadamlar aniq bo\'lsin — "tekshirish" emas, "X tugmasini bos".'
+  },
+  'checklist': {
+    task: 'Release oldidan tekshiriladigan checklist tuz.',
+    format: 'FORMAT:\nBo\'limlarga ajratilgan belgilanadigan ro\'yxat:\nFunksionallik / Validatsiya / UI-UX / Ochiqlik / Xavfsizlik / Unumdorlik',
+    rules: 'Har bir band bitta aniq harakat bo\'lsin.\n"Ishlashini tekshir" kabi noaniq bandlar bo\'lmasin.'
+  },
+  'bug-report': {
+    task: 'Topilgan muammoni to\'liq bug-report shakliga keltir.',
+    format: 'FORMAT:\nSarlavha / Muhit / Oldindan shartlar / Takrorlash qadamlari /\nKutilgan natija / Haqiqiy natija / Severity / Prioritet',
+    rules: 'Sarlavha 10 so\'zdan oshmasin.\nQadamlar shunchalik aniq bo\'lsinki, dasturchi savol bermasin.'
+  },
+  'test-data': {
+    task: 'Kirish maydonlari uchun test ma\'lumotlari to\'plamini yarat.',
+    format: 'FORMAT (jadval):\n| Qiymat | Turi | Kutilgan natija | Nima tekshiriladi |',
+    rules: 'Majburiy: chegaraviy qiymatlar, bo\'sh qiymat, maxsus belgilar,\nUnicode (kirill, emoji), juda uzun matn, SQL/XSS namunalari,\no\'zbek tiliga xos o\' g\' belgilari.'
+  }
+};
+
+function buildPrompt() {
+  const role = document.getElementById('pbRole').value;
+  const context = document.getElementById('pbContext').value.trim() || '[kontekst kiritilmagan]';
+  const taskKey = document.getElementById('pbTask').value;
+  const count = parseInt(document.getElementById('pbCount').value, 10) || 10;
+  const t = taskTemplates[taskKey];
+
+  const prompt =
+`Sen ${role}.
+
+MAHSULOT KONTEKSTI:
+${context}
+
+VAZIFA:
+${t.task}
+
+${t.format}
+
+TALABLAR:
+- Kamida ${count} ta band bo'lsin
+${t.rules.split('\n').map(r => '- ' + r).join('\n')}
+
+MUHIM:
+Faqat men bergan ma'lumotdan foydalan. Bilmagan narsangni
+o'ylab topma. Noaniq joy bo'lsa, taxmin qilish o'rniga
+"❓ ANIQLASHTIRISH KERAK: ..." deb yoz.`;
+
+  document.getElementById('pbOutput').textContent = prompt;
+  document.getElementById('pbPreview').classList.add('show');
+  completedActivities.add('promptBuilder');
+  updateProgress();
+}
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const target = document.getElementById(btn.dataset.copyTarget);
+    if (!target) return;
+    const text = target.innerText;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    const original = btn.textContent;
+    btn.textContent = '✅ Nusxalandi';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
+    completedActivities.add('copy-' + btn.dataset.copyTarget);
+    updateProgress();
+  });
+});
+
+let selectedCard = null;
+let classifierCorrect = 0;
+const bucketNames = { visible: 'Ko\'radi', hidden: 'Ko\'rmaydi' };
+
+document.querySelectorAll('.classifier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('classified')) return;
+    document.querySelectorAll('.classifier-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedCard = card;
+    document.getElementById('classifierHint').classList.add('show');
+    document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('active'));
+  });
+});
+
+document.querySelectorAll('.classifier-bucket').forEach(bucket => {
+  bucket.addEventListener('click', () => {
+    if (!selectedCard) return;
+    if (selectedCard.dataset.category === bucket.dataset.bucket) {
+      selectedCard.classList.add('classified');
+      selectedCard.classList.remove('selected');
+      selectedCard.setAttribute('data-placed-in', bucketNames[bucket.dataset.bucket]);
+      classifierCorrect++;
+      document.getElementById('classifierScore').textContent = `${classifierCorrect} / 6 to'g'ri`;
+      completedActivities.add(`classifier-${classifierCorrect}`);
+      updateProgress();
+      if (classifierCorrect === 6) {
+        document.getElementById('classifierScore').innerHTML = '<span style="color:var(--forest);font-weight:500">🏆 AI ko\'rish chegarasini tushundingiz!</span>';
+        document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.add('disabled'));
+      }
+      selectedCard = null;
+      document.getElementById('classifierHint').classList.remove('show');
+      document.querySelectorAll('.classifier-bucket').forEach(b => b.classList.remove('active'));
+    } else {
+      bucket.style.borderColor = 'var(--accent)';
+      bucket.style.background = 'var(--accent-soft)';
+      bucket.style.animation = 'shake 0.4s ease';
+      setTimeout(() => {
+        bucket.style.borderColor = '';
+        bucket.style.background = '';
+        bucket.style.animation = '';
+      }, 600);
+    }
+  });
+});
+
+document.querySelectorAll('.interview-question').forEach(question => {
+  question.addEventListener('click', () => question.parentElement.classList.toggle('open'));
+});
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+</body>
+</html>
