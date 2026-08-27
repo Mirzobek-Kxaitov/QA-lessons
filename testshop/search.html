@@ -114,15 +114,15 @@ nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z
 <body>
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+    <a href="/testshop/index.html" class="nav-logo">Test<span>Shop</span></a>
     <div class="nav-search-big">
       <input type="text" id="searchInput" placeholder="Mahsulot qidiring..." value="">
       <button onclick="doSearch()">🔍</button>
     </div>
     <div class="nav-links">
-      <a href="wishlist.html" class="nav-link">❤️</a>
-      <a href="profile.html" class="nav-link">👤</a>
-      <a href="checkout.html" class="nav-link">🛒</a>
+      <a href="/testshop/wishlist.html" class="nav-link">❤️</a>
+      <a href="/testshop/profile.html" class="nav-link">👤</a>
+      <a href="/testshop/checkout.html" class="nav-link">🛒</a>
     </div>
   </div>
 </nav>
@@ -225,7 +225,7 @@ function renderProducts(products) {
     return;
   }
   grid.innerHTML = products.map(p => `
-    <a href="product.html" class="product-card">
+    <a href="/testshop/product.html" class="product-card">
       ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
       <button class="wishlist-btn" onclick="event.preventDefault();toggleWL(${p.id},this)" id="wl${p.id}">🤍</button>
       <span class="product-emoji">${p.emoji}</span>
@@ -355,7 +355,7 @@ function copyBugReport() {
 <div class="qa-toolbar">
   <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
   <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
-  <button class="qa-tool-btn" onclick="window.location.href='../lessons/02-testing-basics.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="window.location.href='/lessons/02-testing-basics.html'" title="QA Academy darsiga qaytish">📚</button>
   <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
 </div>
 

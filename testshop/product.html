@@ -174,19 +174,19 @@ nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z
 <body>
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Test<span>Shop</span></a>
+    <a href="/testshop/index.html" class="nav-logo">Test<span>Shop</span></a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Mahsulotlar</a>
-      <a href="wishlist.html" class="nav-link">❤️ Sevimlilar</a>
-      <a href="profile.html" class="nav-link">👤 Profil</a>
-      <button class="nav-cart-btn" onclick="location.href='checkout.html'">🛒 Savat <span class="cart-badge" id="cartBadge">0</span></button>
+      <a href="/testshop/index.html" class="nav-link">Mahsulotlar</a>
+      <a href="/testshop/wishlist.html" class="nav-link">❤️ Sevimlilar</a>
+      <a href="/testshop/profile.html" class="nav-link">👤 Profil</a>
+      <button class="nav-cart-btn" onclick="location.href='/testshop/checkout.html'">🛒 Savat <span class="cart-badge" id="cartBadge">0</span></button>
     </div>
   </div>
 </nav>
 
 <div class="breadcrumb">
-  <a href="index.html">Bosh sahifa</a><span>›</span>
-  <a href="index.html">Elektronika</a><span>›</span>
+  <a href="/testshop/index.html">Bosh sahifa</a><span>›</span>
+  <a href="/testshop/index.html">Elektronika</a><span>›</span>
   iPhone 15 Pro Max
 </div>
 
@@ -368,10 +368,10 @@ nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z
   <div style="margin-bottom:48px">
     <h2 class="section-title">O'xshash mahsulotlar</h2>
     <div class="related-grid">
-      <a href="product.html" class="related-card"><div class="related-emoji">💻</div><div class="related-name">MacBook Air M2</div><div class="related-price">15,200,000 so'm</div></a>
-      <a href="product.html" class="related-card"><div class="related-emoji">🎧</div><div class="related-name">AirPods Pro 2</div><div class="related-price">1,850,000 so'm</div></a>
-      <a href="product.html" class="related-card"><div class="related-emoji">⌚</div><div class="related-name">Apple Watch S9</div><div class="related-price">4,900,000 so'm</div></a>
-      <a href="product.html" class="related-card"><div class="related-emoji">🖥️</div><div class="related-name">iPad Pro 12.9"</div><div class="related-price">12,800,000 so'm</div></a>
+      <a href="/testshop/product.html" class="related-card"><div class="related-emoji">💻</div><div class="related-name">MacBook Air M2</div><div class="related-price">15,200,000 so'm</div></a>
+      <a href="/testshop/product.html" class="related-card"><div class="related-emoji">🎧</div><div class="related-name">AirPods Pro 2</div><div class="related-price">1,850,000 so'm</div></a>
+      <a href="/testshop/product.html" class="related-card"><div class="related-emoji">⌚</div><div class="related-name">Apple Watch S9</div><div class="related-price">4,900,000 so'm</div></a>
+      <a href="/testshop/product.html" class="related-card"><div class="related-emoji">🖥️</div><div class="related-name">iPad Pro 12.9"</div><div class="related-price">12,800,000 so'm</div></a>
     </div>
   </div>
 </div>
@@ -431,7 +431,7 @@ function addToCart() {
 
 function buyNow() {
   addToCart();
-  location.href = 'checkout.html';
+  location.href = '/testshop/checkout.html';
 }
 
 function toggleWishlist() {
@@ -504,7 +504,7 @@ function copyBugReport() {
 <div class="qa-toolbar">
   <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
   <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
-  <button class="qa-tool-btn" onclick="window.location.href='../lessons/02-testing-basics.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="window.location.href='/lessons/02-testing-basics.html'" title="QA Academy darsiga qaytish">📚</button>
   <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
 </div>
 

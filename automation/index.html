@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/section.css">
+<link rel="stylesheet" href="/assets/section.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="../index.html" class="logo">
+    <a href="/" class="logo">
       <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
         <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,11 +24,11 @@
     </a>
     <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
-      <li><a href="../index.html#lessons">Darslar</a></li>
-      <li><a href="index.html" class="current">Automation</a></li>
-      <li><a href="../cases/index.html">Real keyslar</a></li>
-      <li><a href="../blog/index.html">Blog</a></li>
-      <li><a href="../about.html">Muallif</a></li>
+      <li><a href="/#lessons">Darslar</a></li>
+      <li><a href="/automation/" class="current">Automation</a></li>
+      <li><a href="/cases/">Real keyslar</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">Muallif</a></li>
       <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
     </ul>
   </div>
@@ -70,11 +70,11 @@
     <div class="footer-col">
       <h4>Bo'limlar</h4>
       <ul>
-        <li><a href="../index.html#lessons">Darslar</a></li>
-        <li><a href="index.html">Automation</a></li>
-        <li><a href="../cases/index.html">Real keyslar</a></li>
-        <li><a href="../blog/index.html">Blog</a></li>
-        <li><a href="../about.html">Muallif</a></li>
+        <li><a href="/#lessons">Darslar</a></li>
+        <li><a href="/automation/">Automation</a></li>
+        <li><a href="/cases/">Real keyslar</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">Muallif</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -152,7 +152,7 @@ function render() {
   }
 
   grid.innerHTML = visible.map((p, i) => `
-    <a href="${p.slug}" class="post-card${i === 0 && activeCat === 'all' && !q ? ' featured' : ''}">
+    <a href="/automation/${p.slug}" class="post-card${i === 0 && activeCat === 'all' && !q ? ' featured' : ''}">
       <span class="cat-badge cat-${p.cat}">${CAT_NAMES[p.cat]}</span>
       <h2 class="post-title">${p.title}</h2>
       <p class="post-excerpt">${p.excerpt}</p>

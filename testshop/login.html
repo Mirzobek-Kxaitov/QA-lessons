@@ -221,15 +221,15 @@ body {
 <body>
 
 <div class="qa-banner">
-  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
+  🎯 TestShop — QA Academy bilan amaliy mashqlar · <a href="/testshop/bug-hunt.html">Bug Hunt vazifalariga o'ting →</a>
 </div>
 
 <header class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo">Test<span>Shop</span></a>
+    <a href="/testshop/index.html" class="logo">Test<span>Shop</span></a>
     <nav class="nav">
-      <a href="index.html">Mahsulotlar</a>
-      <a href="register.html">Ro'yxatdan o'tish</a>
+      <a href="/testshop/index.html">Mahsulotlar</a>
+      <a href="/testshop/register.html">Ro'yxatdan o'tish</a>
     </nav>
   </div>
 </header>
@@ -258,7 +258,7 @@ body {
     </form>
 
     <div class="form-footer">
-      Akkountingiz yo'qmi? <a href="register.html">Ro'yxatdan o'ting</a>
+      Akkountingiz yo'qmi? <a href="/testshop/register.html">Ro'yxatdan o'ting</a>
     </div>
   </div>
 </div>
@@ -276,7 +276,7 @@ function handleLogin(e) {
   if (username.includes("' OR 1=1")) {
     successMsg.textContent = '✓ Muvaffaqiyatli kirildi! (Admin sifatida)';
     successMsg.classList.add('show');
-    setTimeout(() => window.location.href = 'index.html', 1500);
+    setTimeout(() => window.location.href = '/testshop/index.html', 1500);
     return false;
   }
 
@@ -292,7 +292,7 @@ function handleLogin(e) {
 
   // Demo: har qanday kombinatsiya kiradi
   successMsg.classList.add('show');
-  setTimeout(() => window.location.href = 'index.html', 1500);
+  setTimeout(() => window.location.href = '/testshop/index.html', 1500);
 
   return false;
 }
@@ -346,7 +346,7 @@ function copyBugReport() {
 <div class="qa-toolbar">
   <button class="qa-tool-btn" id="themeToggle" onclick="toggleTheme()" title="Dark/Light tema">🌙</button>
   <button class="qa-tool-btn" onclick="toggleHint()" title="Bu sahifadagi buglar">🐛</button>
-  <button class="qa-tool-btn" onclick="window.location.href='../lessons/01-qa-intro.html'" title="QA Academy darsiga qaytish">📚</button>
+  <button class="qa-tool-btn" onclick="window.location.href='/lessons/01-qa-intro.html'" title="QA Academy darsiga qaytish">📚</button>
   <button class="qa-tool-btn" onclick="toggleBugReport()" title="Bug report yozish">📝</button>
 </div>
 
