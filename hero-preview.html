@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero prototip — QA Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #F6FAFD;
+  --ink: #15202B;
+  --ink-soft: #4B5A67;
+  --ink-muted: #8A98A5;
+  --accent: #3BA0E6;
+  --accent-deep: #2A7FC0;
+  --line: #E1EAF1;
+}
+html, body { height: 100%; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+.nav { max-width: 1120px; margin: 0 auto; padding: 30px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; color: var(--ink); text-decoration: none; letter-spacing: -0.3px; }
+.brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 34px; align-items: center; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-size: 15.5px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+.hero { max-width: 860px; margin: 0 auto; padding: 130px 40px 120px; }
+.eyebrow { font-size: 15px; color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; margin-bottom: 26px; opacity: 0; transform: translateY(12px); animation: rise 0.7s ease forwards 0.1s; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(46px, 8vw, 88px); line-height: 1.03; letter-spacing: -2.5px; margin-bottom: 34px; max-width: 780px; }
+.hero h1 .line { display: block; opacity: 0; transform: translateY(16px); animation: rise 0.8s ease forwards; }
+.hero h1 .line:nth-child(1) { animation-delay: 0.16s; }
+.hero h1 .line:nth-child(2) { animation-delay: 0.26s; }
+.accent-word { position: relative; color: var(--accent); font-style: italic; white-space: nowrap; }
+.accent-word svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
+.accent-word svg path { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 340; stroke-dashoffset: 340; animation: draw 0.9s ease forwards 0.7s; opacity: 0.85; }
+
+.hero p { font-size: clamp(18px, 2.4vw, 22px); color: var(--ink-soft); max-width: 560px; line-height: 1.55; margin-bottom: 44px; opacity: 0; transform: translateY(12px); animation: rise 0.8s ease forwards 0.4s; }
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(12px); animation: rise 0.8s ease forwards 0.52s; }
+.cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 100px; font-size: 16px; font-weight: 600; text-decoration: none; transition: transform 0.2s, background 0.2s, border-color 0.2s; }
+.cta-primary { background: var(--ink); color: var(--bg); }
+.cta-primary:hover { transform: translateY(-2px); background: var(--accent); }
+.cta-ghost { color: var(--ink); border: 1px solid var(--line); }
+.cta-ghost:hover { border-color: var(--ink-muted); transform: translateY(-2px); }
+
+.meta { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 64px; padding-top: 26px; border-top: 1px solid var(--line); opacity: 0; animation: rise 0.8s ease forwards 0.66s; }
+.meta div { font-size: 15px; color: var(--ink-muted); }
+.meta strong { color: var(--ink); font-weight: 600; }
+
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 720px) {
+  .nav { padding: 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 70px 24px 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow, .hero h1 .line, .hero p, .cta-row, .meta { animation: none; opacity: 1; transform: none; }
+  .accent-word svg path { animation: none; stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">QA<span>.</span>Academy</a>
+  <div class="nav-links">
+    <a href="#">Darslar</a>
+    <a href="#">Amaliyot</a>
+    <a href="#">Real Keys</a>
+    <a href="#">Biz haqimizda</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Noldan Junior QA gacha</div>
+  <h1>
+    <span class="line">Sen ham</span>
+    <span class="line"><span class="accent-word">QA Engineer<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M4 13 C 70 5, 150 5, 296 11"/></svg></span> bo'lasan.</span>
+  </h1>
+  <p>28 ta dars, real buglar bilan mashq maydoni va intervyuga tayyorgarlik — bepul, o'zbek tilida.</p>
+  <div class="cta-row">
+    <a href="#" class="cta cta-primary">Boshlash →</a>
+    <a href="#" class="cta cta-ghost">Darslar ro'yxati</a>
+  </div>
+  <div class="meta">
+    <div><strong>28</strong> ta dars</div>
+    <div><strong>ISTQB</strong> asosida</div>
+    <div><strong>Bepul</strong> · o'zbekcha</div>
+  </div>
+</section>
+
+</body>
+</html>

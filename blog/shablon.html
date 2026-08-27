@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uz">
+<!--
+  ============================================================================
+  YANGI POST SHABLONI
+
+  1. Shu fayldan nusxa oling:  cp blog/shablon.html blog/mening-postim.html
+  2. Quyidagi joylarni to'ldiring:
+       <title>, <meta description>, .cat-badge, <h1>, .article-lead, .article-meta
+  3. Kategoriya klassini tanlang (badge uchun):
+       cat-qa · cat-ai · cat-arab · cat-rus · cat-ingliz
+  4. blog/index.html ichidagi POSTS ro'yxatiga yangi qator qo'shing (eng tepaga)
+  5. Bu shablon fayli blog ro'yxatida ko'rinmaydi — POSTS ga qo'shilmagani uchun
+
+  ARAB TILI POSTLARI UCHUN: arabcha matnni <p class="rtl"> ichiga yozing —
+  o'ngdan chapga, kattaroq shrift bilan chiqadi.
+  ============================================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAQOLA SARLAVHASI — Blog | QA Academy</title>
+<meta name="description" content="Maqolaning 1-2 jumlalik qisqacha mazmuni. Google qidiruvda shu matn ko'rinadi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/section.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html#lessons">Darslar</a></li>
+      <li><a href="../automation/index.html">Automation</a></li>
+      <li><a href="../cases/index.html">Real keyslar</a></li>
+      <li><a href="index.html" class="current">Blog</a></li>
+      <li><a href="../about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<article class="article">
+  <a href="index.html" class="back-link">← Blogga qaytish</a>
+
+  <header class="article-head">
+    <span class="cat-badge cat-qa">QA va testing</span>
+    <h1>Maqola sarlavhasi shu yerda</h1>
+    <p class="article-lead">Kirish jumlasi — o'quvchi nima uchun bu maqolani o'qishi kerakligini 1-2 gapda ayting.</p>
+    <div class="article-meta">
+      <span>27-avgust, 2026</span>
+      <span>6 daqiqa o'qish</span>
+      <span>Mirzobek Xaitov</span>
+    </div>
+  </header>
+
+  <div class="article-body">
+
+    <p>Oddiy paragraf. Matnni shu yerga yozing.</p>
+
+    <h2>Katta bo'lim sarlavhasi</h2>
+    <p>Bo'lim matni. <strong>Qalin matn</strong> va <a href="#">havola</a> shunday yoziladi.</p>
+
+    <h3>Kichik sarlavha</h3>
+    <ul>
+      <li>Ro'yxat elementi</li>
+      <li>Yana bitta element</li>
+    </ul>
+
+    <blockquote>
+      <p>Muhim fikr yoki iqtibos shu blokda ajralib turadi.</p>
+    </blockquote>
+
+    <div class="note">
+      <div class="note-title">Eslatma</div>
+      <p>Qo'shimcha maslahat yoki ogohlantirish uchun.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pre><code>// Kod bloki
+console.log("salom");</code></pre>
+
+    <p>Arab tili uchun. Alohida qatorda — <code>class="rtl"</code>:</p>
+    <p class="rtl">السَّلَامُ عَلَيْكُمْ</p>
+    <p>Matn ichidagi arabcha so'z — <code>class="ar"</code>: <span class="ar">كِتَاب</span> (kitāb) — kitob.</p>
+
+  </div>
+
+  <footer class="article-foot">
+    <p class="article-foot-note">Savol yoki fikringiz bormi? Telegramda yozing.</p>
+    <a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener" class="article-cta">Telegram →</a>
+  </footer>
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Blog bo'limida esa — testingdan tashqari qiziqishlarim.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="../index.html#lessons">Darslar</a></li>
+        <li><a href="../automation/index.html">Automation</a></li>
+        <li><a href="../cases/index.html">Real keyslar</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="../about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

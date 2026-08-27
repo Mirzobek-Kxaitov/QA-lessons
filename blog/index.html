@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — QA Academy</title>
+<meta name="description" content="QA, sun'iy intellekt va til o'rganish haqida shaxsiy yozuvlar. Arab tili, rus tili, ingliz tili bo'yicha darslar va foydali ma'lumotlar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/section.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html#lessons">Darslar</a></li>
+      <li><a href="../automation/index.html">Automation</a></li>
+      <li><a href="../cases/index.html">Real keyslar</a></li>
+      <li><a href="index.html" class="current">Blog</a></li>
+      <li><a href="../about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <span class="eyebrow">Shaxsiy yozuvlar</span>
+  <h1>Blog</h1>
+  <p>Testing, sun'iy intellekt va til o'rganish haqida o'zim o'rgangan, o'zimga foydali bo'lgan narsalarni shu yerda yozib boraman.</p>
+</section>
+
+<!-- QIDIRUV -->
+<div class="search-row">
+  <input type="search" class="search-input" id="search" placeholder="Maqolalar ichidan qidirish..." aria-label="Maqolalar ichidan qidirish">
+</div>
+
+<!-- KATEGORIYA FILTRI -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-cat="all">Hammasi</button>
+  <button class="filter-btn" data-cat="qa">QA va testing</button>
+  <button class="filter-btn" data-cat="ai">Sun'iy intellekt</button>
+  <button class="filter-btn" data-cat="arab">Arab tili</button>
+  <button class="filter-btn" data-cat="rus">Rus tili</button>
+  <button class="filter-btn" data-cat="ingliz">Ingliz tili</button>
+  <span class="filter-count" id="filterCount"></span>
+</div>
+
+<!-- POSTLAR -->
+<main class="posts-grid" id="postsGrid"></main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Blog bo'limida esa — testingdan tashqari qiziqishlarim.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="../index.html#lessons">Darslar</a></li>
+        <li><a href="../automation/index.html">Automation</a></li>
+        <li><a href="../cases/index.html">Real keyslar</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="../about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   YANGI POST QO'SHISH:
+   1. shablon.html dan nusxa oling → blog/<slug>.html deb saqlang
+   2. Quyidagi ro'yxat BOSHIGA yangi obyekt qo'shing (eng yangisi tepada)
+   cat: 'qa' | 'ai' | 'arab' | 'rus' | 'ingliz'
+   ============================================================ */
+const POSTS = [
+  {
+    slug: 'ai-bilan-til-organish.html',
+    cat: 'ai',
+    title: 'Sun\'iy intellekt bilan til o\'rganish',
+    excerpt: 'QISQACHA MAZMUN — 1-2 jumla. Blog ro\'yxatidagi kartada shu matn ko\'rinadi.',
+    date: '2026-08-27',
+    readTime: '— daqiqa'
+  }
+];
+
+const CAT_NAMES = {
+  qa: 'QA va testing',
+  ai: 'Sun\'iy intellekt',
+  arab: 'Arab tili',
+  rus: 'Rus tili',
+  ingliz: 'Ingliz tili'
+};
+
+const MONTHS = ['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'];
+
+function formatDate(iso) {
+  const [y, m, d] = iso.split('-');
+  return `${Number(d)}-${MONTHS[Number(m) - 1]}, ${y}`;
+}
+
+let activeCat = 'all';
+let query = '';
+
+function render() {
+  const grid = document.getElementById('postsGrid');
+  const q = query.trim().toLowerCase();
+
+  const visible = POSTS.filter(p => {
+    const catOk = activeCat === 'all' || p.cat === activeCat;
+    const textOk = !q || (p.title + ' ' + p.excerpt).toLowerCase().includes(q);
+    return catOk && textOk;
+  });
+
+  document.getElementById('filterCount').textContent =
+    visible.length ? `${visible.length} ta maqola` : '';
+
+  if (!visible.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <strong>Bu bo'limda hozircha maqola yo'q</strong>
+        Tez orada qo'shiladi. Boshqa kategoriyani tanlab ko'ring.
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = visible.map((p, i) => `
+    <a href="${p.slug}" class="post-card${i === 0 && activeCat === 'all' && !q ? ' featured' : ''}">
+      <span class="cat-badge cat-${p.cat}">${CAT_NAMES[p.cat]}</span>
+      <h2 class="post-title">${p.title}</h2>
+      <p class="post-excerpt">${p.excerpt}</p>
+      <div class="post-meta">
+        <span>${formatDate(p.date)}</span>
+        <span>${p.readTime} o'qish</span>
+      </div>
+    </a>`).join('');
+}
+
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  render();
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  query = e.target.value;
+  render();
+});
+
+render();
+
+/* Tema — index.html bilan bir xil kalit (qa_theme) */
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
