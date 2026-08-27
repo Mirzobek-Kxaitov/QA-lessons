@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sun'iy intellekt bilan til o'rganish | QA Academy Blog</title>
-<meta name="description" content="Sun'iy intellekt yordamida chet tili o'rganish — amaliy usullar va tajriba.">
+<meta name="description" content="Chet tilini AI yordamida o'rganishning tizimlashtirilgan uslublari va tayyor promptlar. Arab tili uchun to'liq metodika: gapirish, o'qish, yozish, lug'at va grammatika rejimlari.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
@@ -39,32 +39,729 @@
   <header class="article-head">
     <span class="cat-badge cat-ai">Sun'iy intellekt</span>
     <h1>Sun'iy intellekt bilan til o'rganish</h1>
-    <p class="article-lead">KIRISH JUMLASI — mavzuni bering, shu yerga yoziladi.</p>
+    <p class="article-lead">Chet tilini AI yordamida o'rganishning tizimlashtirilgan uslublari. Har bir uslub uchun tayyor prompt bor — nusxalab, istalgan AI'ga tashlash kifoya.</p>
     <div class="article-meta">
       <span>27-avgust, 2026</span>
-      <span>— daqiqa o'qish</span>
       <span>Mirzobek Xaitov</span>
     </div>
   </header>
 
-  <div class="article-body">
+  <!-- TIL VARAQALARI -->
+  <div class="lang-tabs" id="langTabs">
+    <button class="lang-tab active" data-lang="ar">Arab tili</button>
+    <button class="lang-tab" data-lang="en">Ingliz tili</button>
+    <button class="lang-tab" data-lang="ru">Rus tili</button>
+  </div>
 
-    <!-- ======================================================================
-         MAZMUN SHU YERGA YOZILADI.
-         Mavzu va ma'lumotlarni bering — shu blok ichiga joylashtiriladi.
+  <!-- ============ INGLIZ TILI (tez orada) ============ -->
+  <div class="lang-panel article-body" data-panel="en" hidden>
+    <div class="coming-soon">
+      <strong>Ingliz tili bo'limi tayyorlanmoqda</strong>
+      Arab tili metodikasi kabi to'liq uslublar to'plami va tayyor promptlar bo'ladi.
+    </div>
+  </div>
 
-         Mavjud bloklar (blog.css da tayyor turibdi):
-           <h2>          — katta bo'lim sarlavhasi
-           <h3>          — kichik sarlavha
-           <p>           — paragraf
-           <ul> / <ol>   — ro'yxat
-           <blockquote>  — ajratib ko'rsatiladigan fikr
-           <div class="note"> + <div class="note-title">  — eslatma bloki
-           <div class="table-wrap"><table>  — jadval
-           <pre><code>   — kod bloki
-           <p class="rtl">      — arabcha matn, alohida qatorda
-           <span class="ar">    — matn ichidagi arabcha so'z
-         ====================================================================== -->
+  <!-- ============ RUS TILI (tez orada) ============ -->
+  <div class="lang-panel article-body" data-panel="ru" hidden>
+    <div class="coming-soon">
+      <strong>Rus tili bo'limi tayyorlanmoqda</strong>
+      Arab tili metodikasi kabi to'liq uslublar to'plami va tayyor promptlar bo'ladi.
+    </div>
+  </div>
+
+  <!-- ============ ARAB TILI ============ -->
+  <div class="lang-panel article-body" data-panel="ar">
+
+    <div class="note">
+      <div class="note-title">Bu nima?</div>
+      <p>Arab tilini sun'iy intellekt (Claude, ChatGPT, Gemini va h.k.) yordamida o'rganishning tizimlashtirilgan uslublari to'plami. Har bir uslub uchun <strong>tayyor prompt</strong> bor.</p>
+      <p><strong>Qanday ishlatiladi?</strong></p>
+      <ol>
+        <li>Yangi suhbat boshlaganda <strong>§0 "Asosiy tizim prompti"</strong> ni to'liq nusxalab yuboring.</li>
+        <li>Keyin kerakli rejim buyrug'ini yozing (masalan <code>/تحدث</code> yoki <code>/ترجمة</code>).</li>
+        <li>Dars oxirida <strong>§7 "Xatolar daftari"</strong> ni yangilab, keyingi safar AI'ga qayta bering.</li>
+      </ol>
+    </div>
+
+    <nav class="toc">
+      <div class="toc-title">Mundarija</div>
+      <ol>
+        <li><a href="#s0">§0 — Asosiy tizim prompti (eng muhim qism)</a></li>
+        <li><a href="#s1">§1 — Rejimlar jadvali (buyruqlar)</a></li>
+        <li><a href="#s2">§2 — TAKALLUM: gapirish uslublari</a></li>
+        <li><a href="#s3">§3 — QIROAT: o'qish uslublari</a></li>
+        <li><a href="#s4">§4 — KITOBAT: yozish uslublari</a></li>
+        <li><a href="#s5">§5 — MUFRADOT: lug'at uslublari</a></li>
+        <li><a href="#s6">§6 — QAVOID: grammatika uslublari</a></li>
+        <li><a href="#s7">§7 — Tizimli uslublar</a></li>
+        <li><a href="#s8">§8 — Tuzatish protokoli</a></li>
+        <li><a href="#s9">§9 — Haftalik dars rejasi</a></li>
+        <li><a href="#s10">§10 — Holat bloki</a></li>
+        <li><a href="#s11">Uslublarni tanlash yo'riqnomasi</a></li>
+      </ol>
+    </nav>
+
+    <hr>
+
+    <h2 id="s0">§0 — Asosiy tizim prompti</h2>
+
+    <p>Bu matnni har bir yangi suhbat boshida to'liq nusxalab yuboring. <code>[...]</code> ichidagi joylarni o'zingizga moslang.</p>
+
+<pre><code>Sen mening arab tili bo'yicha shaxsiy ustozimsan.
+
+MEN HAQIMDA:
+- Ona tilim: o'zbek tili
+- Arab tili darajam: [مبتدئ / متوسط / متقدم]
+- Maqsadim: [klassik matnlarni tushunish / jonli muloqot / ilmiy matnlar / imtihon]
+- Diqqat qaratmoqchi bo'lgan lahjam: [فصحى / مصري / شامي / خليجي]
+
+USTOZLIK USLUBING:
+1. Meni faqat maqtama. Har bir javobimda yaxshilash mumkin bo'lgan joyni ko'rsat.
+2. Javobim to'g'ri bo'lsa ham, agar tabiiyroq/fasihroq varianti bo'lsa —
+   "to'g'ri, lekin arab tilida odatda bunday aytiladi: ..." deb ayt.
+3. Xatoni tuzatganda HAR DOIM sababini ayt (grammatik qoida yoki uslubiy sabab).
+   Faqat to'g'ri variantni berish yetarli emas.
+4. Menga qoidani tayyor berma — avval misollar ber, qoidani o'zim chiqarishga urin.
+   Faqat men xato chiqarsam tuzat.
+5. Har bir arabcha jumlangni harakat (تشكيل) bilan yoz — men o'qiy olishim uchun.
+6. Bir vaqtda 1-2 tadan ortiq yangi tushunchani kiritma.
+7. Meni gapirtir. Sen ko'p gapirma — javoblaring qisqa, savollaring ko'p bo'lsin.
+
+TUZATISH QOIDASI:
+- Suhbat davomida (تحدث rejimida): faqat MA'NONI BUZADIGAN xatolarni darhol tuzat.
+  Qolganini yozib bor.
+- Har mashq oxirida: to'plangan xatolarni jadval qilib ber:
+  | Men yozgan | To'g'ri variant | Sabab | Qoida nomi |
+- Har 10 xatodan keyin: eng ko'p takrorlangan xato turini aniqlab, o'sha turga
+  qaratilgan 5 ta maxsus mashq ber.
+
+TILLAR:
+- Tushuntirishlar: o'zbek tilida
+- Mashq materiali: arab tilida
+- Agar men "عربي فقط" desam — butun suhbat faqat arabchada bo'ladi,
+  tushunmasam soddaroq arabcha bilan tushuntirasan, tarjima qilmaysan.
+
+Tayyor bo'lsang, "تفضل" deb javob ber va men rejim buyrug'ini yuboraman.</code></pre>
+
+    <hr>
+
+    <h2 id="s1">§1 — Rejimlar jadvali</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Buyruq</th><th>Nomi</th><th>Nima bo'ladi</th><th>Ko'nikma</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/تحدث</code></td><td>Jonli muloqot</td><td>AI mavzu bo'yicha savol beradi, siz javob berasiz</td><td>Gapirish</td></tr>
+          <tr><td><code>/دور</code></td><td>Rol o'ynash</td><td>Aniq vaziyat, ikkalangiz personaj</td><td>Gapirish</td></tr>
+          <tr><td><code>/مناظرة</code></td><td>Munozara</td><td>AI qarshi tomonni oladi, bahslashasiz</td><td>Gapirish</td></tr>
+          <tr><td><code>/مقابلة</code></td><td>Intervyu</td><td>Siz savol berasiz, AI javob beradi</td><td>Savol tuzish</td></tr>
+          <tr><td><code>/خطاب</code></td><td>Monolog</td><td>2 daqiqalik nutq, keyin tahlil</td><td>Gapirish</td></tr>
+          <tr><td><code>/قصة</code></td><td>Hikoya zanjiri</td><td>Navbatma-navbat hikoya to'qiysiz</td><td>Ijod</td></tr>
+          <tr><td><code>/قراءة</code></td><td>Matn tahlili</td><td>Siz tarjima+sharh qilasiz, AI to'ldiradi</td><td>O'qish</td></tr>
+          <tr><td><code>/تلخيص</code></td><td>Xulosalash</td><td>Matnni 3 jumlada arabcha xulosa</td><td>O'qish</td></tr>
+          <tr><td><code>/فراغات</code></td><td>Bo'sh joylar</td><td>Matndan so'zlar olib tashlanadi</td><td>O'qish</td></tr>
+          <tr><td><code>/ترجمة</code></td><td>Teskari tarjima</td><td>O'zbekcha → arabcha</td><td>Yozish</td></tr>
+          <tr><td><code>/إملاء</code></td><td>Diktant</td><td>AI jumla beradi, siz yozasiz</td><td>Imlo</td></tr>
+          <tr><td><code>/إنشاء</code></td><td>Insho</td><td>Siz yozasiz, AI tahrirlaydi</td><td>Yozish</td></tr>
+          <tr><td><code>/جذر</code></td><td>O'zak oilasi</td><td>Bir o'zakdan so'zlar tarmog'i</td><td>Lug'at</td></tr>
+          <tr><td><code>/مرادف</code></td><td>Sinonimlar</td><td>Bir fikrni 3 xil aytish</td><td>Lug'at</td></tr>
+          <tr><td><code>/إعراب</code></td><td>I'rob tahlili</td><td>Jumla a'zolarini aniqlash</td><td>Grammatika</td></tr>
+          <tr><td><code>/قاعدة</code></td><td>Induktiv qoida</td><td>Misollardan qoida chiqarish</td><td>Grammatika</td></tr>
+          <tr><td><code>/نص</code></td><td>Matn yaratish</td><td>Darajangizga mos matn (i+1)</td><td>O'qish</td></tr>
+          <tr><td><code>/عربي فقط</code></td><td>Immersiya</td><td>Faqat arabcha, tarjimasiz</td><td>Hammasi</td></tr>
+          <tr><td><code>/لهجة</code></td><td>Lahja</td><td>Fus'ha ↔ lahja o'girish</td><td>Gapirish</td></tr>
+          <tr><td><code>/اختبار</code></td><td>Daraja testi</td><td>Darajani aniqlash</td><td>Baholash</td></tr>
+          <tr><td><code>/دفتر</code></td><td>Xatolar daftari</td><td>Xatolar tahlili + mashq</td><td>Tizim</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2 id="s2">§2 — TAKALLUM: gapirish uslublari</h2>
+
+    <h3>2.1. Jonli muloqot — <code>/تحدث</code></h3>
+
+    <p><strong>Maqsad:</strong> Erkin gapirish, real vaqtda fikr shakllantirish.<br>
+    <strong>Nega ishlaydi:</strong> Fikrni arabcha "qurish" mashqi — tarjima qilish emas.</p>
+
+<pre><code>/تحدث rejimi.
+
+Mavzu: [MAVZU]
+Savollar ro'yxati: [SAVOLLARNI SHU YERGA TASHLAYMAN]
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va qo'shimcha savol ber (chuqurlashtir).
+3. Javobim to'g'ri lekin sun'iy/tarjimaviy bo'lsa:
+   "To'g'ri. Lekin arab shunday aytadi: ..." deb tabiiy variantni ko'rsat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, sababini tushuntir, qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora (تعبير) ber.
+6. Barcha savollar tugagach: umumiy tahlil + xatolar jadvali + 5 ta mustahkamlash mashqi.</code></pre>
+
+    <h3>2.2. Rol o'ynash — <code>/دور</code></h3>
+
+    <p><strong>Maqsad:</strong> Vaziyatga moslashish. Tayyor javob ishlamaydi.</p>
+
+<pre><code>/دور rejimi.
+
+Vaziyat: [masalan: Qohira aeroportida bagajim yo'qolgan]
+Sening roling: [aeroport xodimi]
+Mening rolim: [yo'lovchi]
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh (masalan: hujjat so'rash).
+2. Meni chalg'itadigan savol ber — tayyorlanmagan javob berishimga majbur qil.
+3. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qaysi joyda arab boshqacha aytardi
+   - shu vaziyat uchun 10 ta kerakli ibora ro'yxati</code></pre>
+
+    <div class="note">
+      <div class="note-title">Vaziyatlar banki</div>
+      <p>aeroport · shifokorda · bozorda · ish suhbatida · mehmonxonada · bank · taksi · restoran · politsiya · universitetda ro'yxatdan o'tish · telefon suhbati · shikoyat qilish · uzr so'rash · taklif qilish va rad etish</p>
+    </div>
+
+    <h3>2.3. Munozara — <code>/مناظرة</code></h3>
+
+    <p><strong>Maqsad:</strong> Dalil keltirish, bog'lovchilarni ishlatish, murakkab jumla qurish.</p>
+
+<pre><code>/مناظرة rejimi.
+
+Mavzu: [masalan: "Ijtimoiy tarmoqlar yoshlarga zarar keltiradi"]
+Mening pozitsiyam: [tarafdor / qarshi]
+
+Qoidalar:
+1. Sen ATAYLAB qarama-qarshi tomonni ol va qattiq turib bahslash.
+2. Har bir dalilimga e'tiroz bildir — meni himoyalanishga majbur qil.
+3. Meni quyidagi bog'lovchilarni ishlatishga undab bor:
+   لكن ، غير أن ، مع ذلك ، من ناحية أخرى ، بالإضافة إلى ، لذلك ، بما أن ، رغم أن
+4. Agar men sodda jumla ishlatsam, uni murakkablashtirib ko'rsat.
+5. Bahs oxirida: kim yutdi + mening dalillarimning til jihatidan tahlili.</code></pre>
+
+    <h3>2.4. Intervyu — <code>/مقابلة</code></h3>
+
+    <p><strong>Maqsad:</strong> Savol tuzish ko'nikmasi (ko'pchilik faqat javob berishni o'rganadi).</p>
+
+<pre><code>/مقابلة rejimi.
+
+Sen [personaj: mashhur yozuvchi / shifokor / sayohatchi] rolidasan.
+Men jurnalistman va senga intervyu olaman.
+
+Qoidalar:
+1. Faqat men bergan savolga javob ber. O'zing yangi mavzu ochma.
+2. Savolim grammatik xato bo'lsa — javob berishdan oldin tuzat.
+3. Savolim juda sodda bo'lsa: "bu savolni shunday chuqurroq berish mumkin edi: ..." de.
+4. Qisqa javob ber — men savol berishim kerak, sen emas.
+5. Oxirida: savol tuzish turlarim bo'yicha tahlil (ما / هل / كيف / لماذا / أ + fe'l).</code></pre>
+
+    <h3>2.5. Monolog — <code>/خطاب</code></h3>
+
+<pre><code>/خطاب rejimi.
+
+Menga mavzu ber va 2 daqiqalik nutq so'ra. Men matn yozaman (yoki aytaman).
+
+Baholash mezonlaring:
+1. الطلاقة — ravonlik (uzilishlar, takrorlar)
+2. الدقة — grammatik aniqlik
+3. الثروة اللغوية — lug'at boyligi (necha xil so'z ishlatdim)
+4. التنظيم — tuzilma (kirish / asosiy qism / xulosa bormi)
+5. الطبيعية — tabiiylik (o'zbekcha tarjimaga o'xshaydimi)
+
+Har biri uchun 10 ballik baho + aniq misol bilan izoh ber.</code></pre>
+
+    <h3>2.6. Hikoya zanjiri — <code>/قصة</code></h3>
+
+<pre><code>/قصة rejimi.
+
+Sen bitta jumla bilan hikoya boshlaysan. Men davom ettiraman. Navbatma-navbat.
+
+Qoidalar:
+1. Har safar 1-2 jumladan yoz, ko'p emas.
+2. Mening jumlamdagi xatoni tuzatib, KEYIN davom ettir
+   (tuzatishni [] qavs ichida ber, hikoya oqimi buzilmasin).
+3. Hikoyaga kutilmagan burilish qo'sh — meni yangi lug'at izlashga majbur qil.
+4. 10 navbatdan keyin to'xtat va butun hikoyani toza holda qayta yoz.</code></pre>
+
+    <hr>
+
+    <h2 id="s3">§3 — QIROAT: o'qish uslublari</h2>
+
+    <h3>3.1. Matn tahlili (asosiy uslub) — <code>/قراءة</code></h3>
+
+    <p><strong>Maqsad:</strong> Passiv o'qishni aktiv tushunishga aylantirish.</p>
+
+<pre><code>/قراءة rejimi.
+
+Men senga arabcha matn yuboraman. Tartib:
+
+1-QADAM: Men matnni o'zbekchaga tarjima qilaman.
+  → Sen tarjimamni tekshirasan. Xato yoki noaniq joylarni ko'rsatasan.
+    Ayniqsa: men "taxmin qilib" tarjima qilgan joylarni top.
+
+2-QADAM: Men matnni ARAB TILIDA sharhlab beraman (o'z so'zlarim bilan).
+  → Sen sharhimni tinglaysan. Meni bo'lmaysan.
+
+3-QADAM: Sen tahlil qilasan:
+  a) Men noto'g'ri tushungan joylar
+  b) Men umuman tegmagan (tushunmay o'tkazib yuborgan) joylar
+  c) Sharhimdagi til xatolari
+  d) Matndagi muhim iboralar va ularning ishlatilishi
+  e) Matndan 5 ta savol — javob bermasam demak tushunmaganman
+
+Muhim: 3-qadamgacha hech narsa aytma. Meni to'xtatma.</code></pre>
+
+    <h3>3.2. Xulosalash — <code>/تلخيص</code></h3>
+
+<pre><code>/تلخيص rejimi.
+
+Matnni o'qib, ARABCHA xulosa yozaman. Shartlar:
+- Faqat 3 jumla
+- Matndagi so'zlarni ko'chirmayman, o'z so'zlarim bilan yozaman
+
+Sen tekshirasan:
+1. Asosiy fikr tushirib qoldirilganmi?
+2. Ikkinchi darajali detal kiritilganmi (xulosani buzadigan)?
+3. Til jihatidan tahrir
+4. Namunaviy xulosa yozib ko'rsat (solishtirish uchun)</code></pre>
+
+    <h3>3.3. O'qishdan oldingi savollar — <code>/قبل القراءة</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> Savolni bilib o'qish — diqqatni keskin oshiradi.</p>
+
+<pre><code>Menga matn ber, LEKIN avval 5 ta savol ber.
+Men savollarni o'qiyman, keyin matnni o'qiyman va javob qidiraman.
+Javoblarimni tekshirib, qayerda matnni noto'g'ri o'qiganimni ko'rsat.</code></pre>
+
+    <h3>3.4. Bo'sh joy to'ldirish — <code>/فراغات</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> Bitta matnni ikki marta, ikki xil chuqurlikda ishlatish.</p>
+
+<pre><code>/فراغات rejimi.
+
+Men avval o'qigan matnni ol va undan so'zlarni olib tashla.
+Daraja tanlash:
+- Oson: faqat ismlar va fe'llar
+- O'rta: bog'lovchilar (حروف الجر ، أدوات الربط)
+- Qiyin: fe'l shakllari (zamon, shaxs, son) — o'zak berilgan, shaklni men topaman
+
+Men to'ldiraman, sen tekshirasan va HAR BIR xato uchun qaysi qoida buzilganini aytasan.</code></pre>
+
+    <h3>3.5. Matn yaratish (i+1) — <code>/نص</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> Tayyor matnlar odatda yo juda oson, yo juda qiyin. Bu boshqarish imkonini beradi.</p>
+
+<pre><code>/نص rejimi.
+
+Menga matn YOZ (tayyor manbadan olma). Shartlar:
+- Mavzu: [MAVZU]
+- Uzunlik: [100 / 200 / 400] so'z
+- Darajam: [مبتدئ / متوسط / متقدم]
+- QOIDA: matnning ~90% men bilishim kerak bo'lgan so'zlardan,
+  ~10% yangi so'zlardan iborat bo'lsin. Ko'p emas.
+- Yangi so'zlarni matn ostida ro'yxat qilib berma — men kontekstdan topishga urinaman.
+  Men so'ragandagina berasan.
+- Matn harakat bilan (بالتشكيل) bo'lsin.</code></pre>
+
+    <hr>
+
+    <h2 id="s4">§4 — KITOBAT: yozish uslublari</h2>
+
+    <h3>4.1. Teskari tarjima — <code>/ترجمة</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Bu ro'yxatdagi eng samarali uslublardan biri. Tanish so'zni <strong>tanish</strong> (recognition) oson, uni <strong>eslab chiqarish</strong> (recall) qiyin. Faqat recall o'rgatadi.</p>
+
+<pre><code>/ترجمة rejimi.
+
+Menga O'ZBEKCHA jumlalar ber, men arabchaga tarjima qilaman.
+
+Qoidalar:
+1. Bir vaqtda 5 ta jumla ber, birma-bir emas.
+2. Jumlalar bir mavzu/grammatik qoida atrofida bo'lsin
+   (masalan: hammasi كان + مضارع konstruksiyasini talab qilsin).
+3. Men tarjima qilgach:
+   - o'z variantimni ko'rsat
+   - sening varianting bilan solishtir
+   - farq qayerda va NEGA — tushuntir
+   - "ikkalasi ham to'g'ri" bo'lsa buni ham ayt (bu muhim!)
+4. Jumlalarni asta murakkablashtir.
+
+MUHIM: menga arabcha variantni oldindan ko'rsatma.</code></pre>
+
+    <h3>4.2. Diktant — <code>/إملاء</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> <span class="ar">همزة، تاء مربوطة، ألف مقصورة، تنوين</span> xatolari faqat shunda ochiladi.</p>
+
+<pre><code>/إملاء rejimi.
+
+Menga arabcha jumla ber (harakatsiz — بدون تشكيل), men qayta yozaman.
+Tekshirganda alohida e'tibor ber:
+- همزة القطع / همزة الوصل
+- التاء المربوطة / المفتوحة
+- الألف المقصورة / الممدودة
+- التنوين
+- اللام الشمسية / القمرية
+
+Har xato uchun qoidani ayt va shu qoidaga 3 ta qo'shimcha misol ber.</code></pre>
+
+    <h3>4.3. Insho va tahrir — <code>/إنشاء</code></h3>
+
+<pre><code>/إنشاء rejimi.
+
+Mavzu ber, men [100/200] so'zlik insho yozaman.
+
+Tahrir qilganda ikki bosqichda ber:
+BOSQICH 1 — Xatolar (نحو ، صرف ، إملاء): jadval shaklida
+BOSQICH 2 — Uslub (أسلوب): xato emas, lekin yaxshiroq bo'lishi mumkin bo'lgan joylar
+  "Sen shunday yozding → Arab yozuvchisi shunday yozardi → Sababi"
+
+Oxirida: to'liq tahrirlangan variantni ber, lekin mening ovozimni saqlab
+(butunlay qayta yozma).</code></pre>
+
+    <h3>4.4. Qayta ifodalash — <code>/مرادف</code></h3>
+
+<pre><code>Men bir jumla aytaman.
+Sen: "shu fikrni boshqa so'zlar bilan ayt" deysan. Men qayta aytaman.
+Yana: "yana bir marta, butunlay boshqacha" deysan.
+
+3 martadan keyin: mening 3 variantimni solishtir —
+qaysi biri eng fasih, qaysi biri eng so'zlashuv uslubida, qaysi biri sun'iy.
+Keyin sen 2 ta variant qo'shib ber, men bilmagan.</code></pre>
+
+    <hr>
+
+    <h2 id="s5">§5 — MUFRADOT: lug'at uslublari</h2>
+
+    <h3>5.1. O'zak oilasi — <code>/جذر</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Arab tilining bosh xususiyati — o'zak tizimi. Bitta so'zni o'rganish o'rniga bitta oilani o'rganasiz. Lug'at geometrik o'sadi.</p>
+
+<pre><code>/جذر rejimi.
+
+Men bir so'z beraman. Sen shu so'zning O'ZAGINI (الجذر) aniqla va tarmoq qur:
+
+1. الجذر: [ك-ت-ب]
+2. الأفعال: كل الأوزان المستعملة (كَتَبَ ، كاتَبَ ، اِكْتَتَبَ ، اِسْتَكْتَبَ)
+   — har biri qanday ma'no qo'shadi
+3. اسم الفاعل / اسم المفعول: كاتِب ، مَكْتوب
+4. المصدر: كِتابة
+5. اسم المكان: مَكْتَب ، مَكْتَبة
+6. الجمع: كُتُب ، كُتّاب
+7. Har biri uchun 1 ta qisqa jumla — kontekstda ko'rsat
+8. Bu o'zakdan yasalgan MASHHUR ibora yoki maqol bo'lsa — ber
+
+Oxirida menga 5 ta jumla ber, bo'sh joyga shu o'zakdan to'g'ri shaklni qo'yaman.</code></pre>
+
+    <h3>5.2. Kollokatsiyalar — <code>/تلازم</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> So'zni bilish ≠ so'zni ishlata olish. Qaysi so'z qaysi so'z bilan yuradi — buni lug'at o'rgatmaydi.</p>
+
+<pre><code>Men bir so'z beraman (masalan: قرار).
+Sen shu so'z bilan yuradigan so'zlarni ber:
+- Qaysi fe'l bilan: اتخذ قراراً ، ألغى قراراً ، نفّذ قراراً
+- Qaysi sifat bilan: قرار حاسم ، قرار نهائي ، قرار متسرّع
+- Qaysi predlog bilan
+- O'ZBEKCHADAN tarjima qilganda qilinadigan TIPIK XATO nima
+  (masalan: "qaror qilmoq"ni so'zma-so'z tarjima qilish)</code></pre>
+
+    <h3>5.3. Takroriy mustahkamlash — <code>/مراجعة</code></h3>
+
+<pre><code>Quyidagi so'zlarni [oldingi darslardagi ro'yxat] takrorlaymiz.
+
+Qoidalar:
+1. Menga so'zning MA'NOSINI so'rama (bu juda oson).
+2. O'rniga: shu so'z ishtirok etadigan jumla tuzishimni so'ra.
+3. Yoki: o'zbekcha jumla berib, shu so'zni ishlatishga majbur qil.
+4. Qaysi so'zda qiynalganimni belgilab bor — ular keyingi takrorlashda ko'proq chiqsin.
+5. Oson bilgan so'zlarni ro'yxatdan chiqar.</code></pre>
+
+    <h3>5.4. Sinonim/antonim tarmog'i — <code>/شبكة</code></h3>
+
+<pre><code>Bir so'z beraman. Sen tarmoq qur:
+- المرادفات (sinonimlar) + ular orasidagi INCE FARQ
+  (masalan: جميل / حسن / بديع / رائع — qachon qaysi biri?)
+- الأضداد (antonimlar)
+- Uslubiy daraja: qaysi biri رسمي (rasmiy), qaysi biri عامي (so'zlashuv), qaysi biri أدبي
+- Har biriga 1 jumla</code></pre>
+
+    <hr>
+
+    <h2 id="s6">§6 — QAVOID: grammatika uslublari</h2>
+
+    <h3>6.1. Induktiv qoida — <code>/قاعدة</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> O'zi topgan qoidani inson unutmaydi. Berilgan qoidani unutadi.</p>
+
+<pre><code>/قاعدة rejimi.
+
+Mavzu: [masalan: إنّ وأخواتها]
+
+Tartib:
+1. Menga 6-8 ta MISOL ber. Qoidani AYTMA.
+2. "Bu misollarda nima umumiy? Qoidani o'zing ayt" deb so'ra.
+3. Men qoidani aytishga urinaman.
+4. Qoidam to'liq bo'lmasa — to'g'ridan-to'g'ri aytma, o'rniga
+   qoidamni buzadigan YANGI misol ber va qayta o'ylashimni so'ra.
+5. Faqat 3 urinishdan keyin to'liq qoidani ber.
+6. Keyin ISTISNOLARNI alohida ber.
+7. Oxirida 10 ta mashq — 3 tasi ataylab istisno bo'lsin.</code></pre>
+
+    <h3>6.2. I'rob tahlili — <code>/إعراب</code></h3>
+
+<pre><code>/إعراب rejimi.
+
+Men jumla beraman (yoki sen berasan). Men har bir so'zning i'robini aytaman:
+[so'z] — [vazifasi] — [holati: مرفوع/منصوب/مجرور] — [belgisi]
+
+Sen tekshirasan. Xato bo'lsa:
+- to'g'ri javobni darrov berma
+- "bu so'z fe'ldan keyin keldimi yoki oldinmi?" kabi yo'naltiruvchi savol ber
+- o'zim topishimga imkon ber</code></pre>
+
+    <h3>6.3. Xato ovi — <code>/صيد الأخطاء</code></h3>
+
+<pre><code>Menga 10 ta arabcha jumla ber.
+Ulardan [3 tasi] ataylab XATO bo'lsin, qolganlari to'g'ri.
+Men xatolarni topaman va tuzataman.
+
+Shart: xatolar mening tipik xatolarim turida bo'lsin
+(xatolar daftarimga qara).
+
+Keyin: topa olmagan xatolarim — bu mening "ko'r nuqtalarim".
+Ular ustida alohida ishlaymiz.</code></pre>
+
+    <h3>6.4. Konstruksiya mashqi — <code>/تركيب</code></h3>
+
+<pre><code>Bitta grammatik konstruksiyani tanla (masalan: كان + الفعل المضارع).
+Menga shu konstruksiyani TALAB QILADIGAN 10 ta vaziyat ber
+(o'zbekcha jumla yoki savol shaklida).
+Men har birida shu konstruksiyani ishlatishga majbur bo'lay.
+
+Bu qoidani "bilish"dan "avtomatik ishlatish"ga o'tkazish uchun.</code></pre>
+
+    <hr>
+
+    <h2 id="s7">§7 — Tizimli uslublar</h2>
+
+    <h3>7.1. Xatolar daftari — <code>/دفتر</code> ⭐⭐</h3>
+
+    <blockquote>
+      <p>Bu ro'yxatdagi eng ko'p e'tibordan chetda qoladigan, lekin eng foydali uslub. Odam bir xil xatoni yillab takrorlaydi, chunki hech kim uni sanamaydi.</p>
+    </blockquote>
+
+    <p><strong>Fayl formati</strong> (o'zingiz yuritasiz, har dars AI'ga berasiz):</p>
+
+<pre><code>## Xatolar daftari — [ism]
+Oxirgi yangilanish: [sana]
+
+| № | Xato turi | Men yozgan | To'g'risi | Sabab | Necha marta |
+|---|-----------|-----------|-----------|-------|-------------|
+| 1 | إعراب     | الطلابُ رأيتُ | رأيتُ الطلابَ | مفعول به منصوب | 7 |
+| 2 | حرف جر    | بحثت عن... | بحثت في... | fe'l+predlog bog'lanishi | 4 |
+| 3 | همزة      | إبن       | ابن       | همزة وصل | 3 |
+
+### Eng ko'p takrorlanadigan 3 xato (ustuvor ish):
+1. ...
+2. ...
+3. ...
+
+### Bartaraf etilgan xatolar (3 dars ketma-ket takrorlanmagan):
+- ...</code></pre>
+
+    <p><strong>Prompt:</strong></p>
+
+<pre><code>/دفتر rejimi.
+
+Mana mening xatolar daftarim: [FAYLNI TASHLAYMAN]
+
+Vazifang:
+1. Eng ko'p takrorlanadigan 3 ta xato turini aniqla.
+2. Ularning ILDIZ SABABINI top — bu alohida-alohida xatolar emas,
+   balki bitta noto'g'ri tushunchaning natijasi bo'lishi mumkin.
+3. Har bir tur uchun: qoidani qayta tushuntir + 10 ta maqsadli mashq.
+4. Mashqlar oxirida: shu xatolar tuzatildimi — baho ber.
+5. Daftarning yangilangan variantini menga qaytar.</code></pre>
+
+    <h3>7.2. Daraja testi — <code>/اختبار</code></h3>
+
+<pre><code>/اختبار rejimi.
+
+Mening arab tili darajamni aniqla. Test tartibi:
+1. 10 ta grammatik savol (osondan qiyinga)
+2. 1 ta matn + 5 tushunish savoli
+3. 5 ta o'zbekcha→arabcha tarjima
+4. 1 ta erkin yozma javob (100 so'z)
+
+Natijada:
+- Umumiy daraja: A1/A2/B1/B2/C1 (CEFR) yoki مبتدئ/متوسط/متقدم
+- Ko'nikmalar bo'yicha alohida: قراءة / كتابة / قواعد / مفردات
+- Eng kuchsiz 3 soha
+- Keyingi 1 oy uchun aniq reja</code></pre>
+
+    <h3>7.3. Immersiya rejimi — <code>/عربي فقط</code></h3>
+
+<pre><code>/عربي فقط
+
+Shu paytdan boshlab butun suhbat FAQAT arab tilida.
+- O'zbekcha yoki inglizcha bir so'z ham yozma.
+- Men tushunmasam, TARJIMA QILMA — soddaroq arabcha bilan qayta tushuntir.
+- Sinonim ber, misol ber, tasvirla — lekin tarjima qilma.
+- Men "أوقف" desam — rejim tugaydi.
+- Rejim tugagach: qancha vaqt o'zbekchaga qaytmay turdim, qayerda qiynaldim — tahlil ber.</code></pre>
+
+    <h3>7.4. Lahja o'girish — <code>/لهجة</code></h3>
+
+<pre><code>/لهجة rejimi.
+
+Lahja: [مصري / شامي / خليجي / مغربي]
+
+Mashq: men fus'hada jumla aytaman, sen lahjaga o'girasan (yoki teskarisi).
+Har o'girishda ko'rsat:
+- qaysi so'z o'zgardi
+- talaffuz qanday o'zgardi
+- grammatika qanday soddalashdi (masalan: إعراب tushib qolishi)
+- bu jumlani fus'hada aytsam ko'chada g'alati eshitiladimi</code></pre>
+
+    <h3>7.5. Solishtirma tahlil — <code>/مقارنة</code></h3>
+
+    <p><strong>Nega ishlaydi:</strong> O'zbek tilidan tarjima qilinganda paydo bo'ladigan tipik xatolar tizimli.</p>
+
+<pre><code>Menga o'zbek tilidan arab tiliga tarjima qilganda O'ZBEKLAR qiladigan
+TIPIK xatolarni tushuntir. Mavzu: [masalan: fe'l zamonlari].
+
+Har biri uchun:
+- O'zbek tilida qanday
+- Arab tilida qanday
+- Nima uchun o'zbek so'zlovchi adashadi
+- To'g'ri fikrlash usuli
+- 5 ta tekshiruv mashqi</code></pre>
+
+    <hr>
+
+    <h2 id="s8">§8 — Tuzatish protokoli</h2>
+
+    <p>Bu qismni AI'ga alohida berish mumkin — u ustozning eng muhim sozlamasi.</p>
+
+<pre><code>TUZATISH SOZLAMALARI:
+
+DARAJA 1 — Ravon suhbat (تحدث ، دور ، مناظرة rejimlarida):
+  - Faqat MA'NONI BUZADIGAN xatolarni darhol tuzat
+  - Qolganini yozib bor, oxirida ber
+  - Sabab: to'xtatilaverish gapirish qo'rquvini kuchaytiradi
+
+DARAJA 2 — Aniqlik mashqi (ترجمة ، إعراب ، إملاء rejimlarida):
+  - HAR BIR xatoni darhol tuzat
+  - Sabab: bu yerda maqsad ravonlik emas, aniqlik
+
+DARAJA 3 — Yozma ish (إنشاء rejimida):
+  - Hech narsani bo'lma, oxirida to'liq tahrir
+  - Ikki qatlamda: (a) xatolar (b) uslubiy yaxshilash
+
+TUZATISH SHAKLI — har doim shunday:
+  ❌ Men yozgan: [...]
+  ✅ To'g'ri: [...]
+  📖 Sabab: [qoida nomi + tushuntirish]
+  💡 Yanada yaxshi: [agar bor bo'lsa, tabiiyroq variant]
+
+TAQIQ:
+  - "Juda yaxshi!" deb qo'yib yuborma. Har javobda yaxshilash nuqtasi bor.
+  - Xatoni tuzatib, sababini aytmasdan o'tma.
+  - Bir vaqtda 5 tadan ko'p xatoni ko'rsatma — men cho'kib ketaman.
+    Eng muhim 3 tasini tanla.</code></pre>
+
+    <hr>
+
+    <h2 id="s9">§9 — Haftalik dars rejasi namunasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Kun</th><th>Rejim</th><th>Vaqt</th><th>Maqsad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dushanba</td><td><code>/نص</code> + <code>/قراءة</code></td><td>40 daq</td><td>Yangi matn, tarjima + sharh</td></tr>
+          <tr><td>Seshanba</td><td><code>/جذر</code> + <code>/تلازم</code></td><td>30 daq</td><td>Dushanba matnidagi so'zlarni chuqurlashtirish</td></tr>
+          <tr><td>Chorshanba</td><td><code>/تحدث</code> yoki <code>/دور</code></td><td>40 daq</td><td>Faol gapirish</td></tr>
+          <tr><td>Payshanba</td><td><code>/قاعدة</code> + <code>/إعراب</code></td><td>40 daq</td><td>Bitta grammatik mavzu</td></tr>
+          <tr><td>Juma</td><td><code>/ترجمة</code></td><td>30 daq</td><td>Haftadagi hamma narsani recall qilish</td></tr>
+          <tr><td>Shanba</td><td><code>/فراغات</code> + <code>/مراجعة</code></td><td>30 daq</td><td>Takrorlash</td></tr>
+          <tr><td>Yakshanba</td><td><code>/دفتر</code></td><td>30 daq</td><td>Xatolar tahlili + ustuvor mashq</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Oyning oxirgi kuni:</strong> <code>/اختبار</code> — daraja o'lchash va rejani qayta sozlash.</p>
+
+    <div class="note">
+      <div class="note-title">Muvozanat qoidasi</div>
+      <ul>
+        <li><strong>40%</strong> — Input (o'qish, tinglash)</li>
+        <li><strong>40%</strong> — Output (gapirish, yozish)</li>
+        <li><strong>20%</strong> — Tahlil (grammatika, xatolar daftari)</li>
+      </ul>
+      <p>Faqat input — tushunasiz lekin gapira olmaysiz. Faqat output — xatolaringiz muzlab qoladi.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="s10">§10 — Holat bloki</h2>
+
+    <p>Har yangi suhbatda §0 dan keyin shuni yuboring — AI sizni "eslab qoladi".</p>
+
+<pre><code>MENING HOLATIM (holat: [SANA]):
+
+Daraja: [...]
+Hozirgi mavzu: [...]
+O'rganilgan grammatik mavzular: [...]
+Faol lug'atim taxminan: [...] so'z
+
+Ustuvor 3 xatoim:
+1. [...]
+2. [...]
+3. [...]
+
+Oxirgi darsda qilganim: [...]
+Bugun ishlamoqchi bo'lgan narsam: [...]
+
+Meni shu holatga qarab yo'naltir. Bilgan narsamni qayta tushuntirma,
+lekin ustuvor xatolarimni har darsda tekshirib tur.</code></pre>
+
+    <hr>
+
+    <h2 id="s11">Uslublarni tanlash yo'riqnomasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Muammo</th><th>Kerakli uslub</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Tushunaman lekin gapira olmayman"</td><td><code>/ترجمة</code> ⭐, <code>/دور</code>, <code>/تحدث</code></td></tr>
+          <tr><td>"Gapiraman lekin xatolar bilan"</td><td><code>/دفتر</code> ⭐, <code>/إعراب</code>, <code>/صيد الأخطاء</code></td></tr>
+          <tr><td>"Lug'atim kam"</td><td><code>/جذر</code> ⭐, <code>/تلازم</code>, <code>/شبكة</code></td></tr>
+          <tr><td>"Yozganim sun'iy chiqadi"</td><td><code>/مرادف</code>, <code>/إنشاء</code>, <code>/تلازم</code></td></tr>
+          <tr><td>"Grammatikani yodlayman lekin ishlatolmayman"</td><td><code>/تركيب</code>, <code>/قاعدة</code></td></tr>
+          <tr><td>"Matnni o'qiyman lekin esimda qolmaydi"</td><td><code>/قبل القراءة</code>, <code>/تلخيص</code>, <code>/فراغات</code></td></tr>
+          <tr><td>"Imlo xatolarim ko'p"</td><td><code>/إملاء</code></td></tr>
+          <tr><td>"O'zbekcha o'ylab, arabcha gapiraman"</td><td><code>/مقارنة</code>, <code>/عربي فقط</code></td></tr>
+          <tr><td>"Zerikdim"</td><td><code>/قصة</code>, <code>/مناظرة</code>, <code>/مقابلة</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2>Muhim eslatmalar</h2>
+
+    <ol>
+      <li><strong>AI hamma narsani bilmaydi.</strong> Nozik uslubiy masalalarda (bu ibora tabiiymi?) AI xato qilishi mumkin. Muhim narsalarni jonli manba yoki lug'at bilan tekshiring.</li>
+      <li><strong>Recall &gt; Recognition.</strong> Tanish (o'qib tushunish) oson, eslab chiqarish qiyin. Faqat qiyin bo'lgani o'rgatadi. Shuning uchun <code>/ترجمة</code> va <code>/جذر</code> yulduzchali.</li>
+      <li><strong>Kam va muntazam &gt; ko'p va tartibsiz.</strong> Kuniga 30 daqiqa har kuni, haftada bir marta 4 soatdan afzal.</li>
+      <li><strong>Xatolar daftarisiz o'rganish — teshik chelakka suv quyish.</strong> Uslublar orasidan bittasini tanlash kerak bo'lsa — <code>/دفتر</code> ni tanlang.</li>
+      <li><strong>Immersiya rejimini qo'rqmasdan ishlating.</strong> Noqulaylik — o'sish belgisi.</li>
+    </ol>
 
   </div>
 
@@ -107,6 +804,43 @@
 </footer>
 
 <script>
+/* Til varaqalari */
+document.getElementById('langTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.lang-tab');
+  if (!btn) return;
+  document.querySelectorAll('.lang-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.lang-panel').forEach(p => {
+    p.hidden = p.dataset.panel !== btn.dataset.lang;
+  });
+  window.scrollTo({ top: document.querySelector('.lang-tabs').offsetTop - 80, behavior: 'smooth' });
+});
+
+/* Har bir prompt blokiga "nusxalash" tugmasi */
+document.querySelectorAll('.article-body pre').forEach(pre => {
+  const wrap = document.createElement('div');
+  wrap.className = 'code-wrap';
+  pre.parentNode.insertBefore(wrap, pre);
+  wrap.appendChild(pre);
+
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.type = 'button';
+  btn.textContent = 'Nusxalash';
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(pre.innerText);
+      btn.textContent = 'Nusxalandi ✓';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'Nusxalash'; btn.classList.remove('done'); }, 1800);
+    } catch {
+      btn.textContent = 'Nusxalanmadi';
+      setTimeout(() => { btn.textContent = 'Nusxalash'; }, 1800);
+    }
+  });
+  wrap.appendChild(btn);
+});
+
 function toggleTheme() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const newTheme = isDark ? 'light' : 'dark';
