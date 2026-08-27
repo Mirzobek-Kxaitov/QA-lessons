@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python'da VENV, PIP va .ENV — Automation 1-dars | QA Academy</title>
+<meta name="description" content="Har bir loyiha uchun alohida Python muhiti yarating, package'larni PIP bilan boshqaring va parollarni .env faylida xavfsiz saqlang. QA automation uchun 1-dars.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/section.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html#lessons">Darslar</a></li>
+      <li><a href="index.html" class="current">Automation</a></li>
+      <li><a href="../cases/index.html">Real keyslar</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<article class="article">
+  <a href="index.html" class="back-link">← Automation bo'limiga qaytish</a>
+
+  <header class="article-head">
+    <span class="cat-badge cat-python">Python asoslari</span>
+    <h1>Python'da VENV, PIP va .ENV</h1>
+    <p class="article-lead">Har bir loyiha uchun alohida muhit yarating, kerakli package'larni o'rnating va parol kabi maxfiy ma'lumotlarni xavfsiz saqlang.</p>
+    <div class="article-meta">
+      <span>1-dars</span>
+      <span>~30 daqiqa nazariya + 15 daqiqa amaliyot</span>
+      <span>Talab: kompyuterda Python o'rnatilgan bo'lishi</span>
+    </div>
+  </header>
+
+  <div class="article-body">
+
+    <h2>Kirish: nima uchun bu 3 ta narsa kerak?</h2>
+
+    <p>Tasavvur qiling, siz ikkita QA automation loyihasida ishlayapsiz:</p>
+
+<pre><code>Project A  →  Selenium 4.10 kerak
+Project B  →  Selenium 4.20 kerak</code></pre>
+
+    <p>Agar ikkalasi ham bitta umumiy Python muhitidan foydalansa, bitta versiya ikkinchisining ustiga yoziladi. Natijada bugun ishlagan testlar ertaga sababsiz "sinadi".</p>
+
+    <p>Xuddi shu loyihalarda login uchun parol kerak. Agar parolni to'g'ridan-to'g'ri kod ichiga yozsangiz, kodni GitHub'ga yuklaganingizda parol hammaga ochiq bo'lib qoladi.</p>
+
+    <p>Bu ikki muammoni hal qiladigan uchta vosita bor:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Vosita</th><th>Vazifasi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>VENV</strong></td><td>Har bir loyihaga alohida muhit beradi</td></tr>
+          <tr><td><strong>PIP</strong></td><td>Shu muhitga package o'rnatadi</td></tr>
+          <tr><td><strong>.ENV</strong></td><td>Maxfiy ma'lumotlarni koddan ajratib saqlaydi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2>1. VENV — loyihaning shaxsiy qutisi</h2>
+
+    <h3>VENV nima?</h3>
+
+    <p><strong>VENV (virtual environment)</strong> — bitta loyiha uchun ajratilgan alohida Python muhiti.</p>
+
+    <p>Buni uydagi qutilarga o'xshating:</p>
+
+<pre><code>📦 1-quti → Kiyimlar
+📦 2-quti → Idish-tovoqlar
+📦 3-quti → O'yinchoqlar</code></pre>
+
+    <p>Har bir qutida faqat o'ziga tegishli buyum turadi va ular aralashib ketmaydi. Python loyihalarida ham xuddi shunday:</p>
+
+<pre><code>📦 Project A
+   └── venv
+       └── Selenium 4.10
+
+📦 Project B
+   └── venv
+       └── Selenium 4.20</code></pre>
+
+    <p>Endi ikkala loyiha bir-biriga xalaqit bermaydi.</p>
+
+    <h3>VENV yaratish</h3>
+
+    <p>Loyiha papkasini oching va terminalda yozing:</p>
+
+<pre><code>python -m venv venv</code></pre>
+
+    <p>Bu buyruq loyihangiz ichida <code>venv/</code> nomli papka yaratadi. Ichida alohida Python va bo'sh package ro'yxati bo'ladi.</p>
+
+    <div class="note">
+      <div class="note-title">Eslatma</div>
+      <p>Ba'zi kompyuterlarda <code>python</code> o'rniga <code>python3</code> yozish kerak bo'ladi.</p>
+    </div>
+
+    <h3>VENV'ni aktivlashtirish ⚠️</h3>
+
+    <p>Bu darsdagi <strong>eng muhim qadam</strong>. VENV yaratilgani bilan avtomatik ishlamaydi — uni har safar qo'lda yoqish kerak.</p>
+
+    <p><strong>Windows (CMD / PowerShell):</strong></p>
+<pre><code>venv\Scripts\activate</code></pre>
+
+    <p><strong>Mac / Linux:</strong></p>
+<pre><code>source venv/bin/activate</code></pre>
+
+    <h3>Aktiv bo'lganini qanday bilamiz?</h3>
+
+    <p>Terminal satrining boshida <code>(venv)</code> paydo bo'ladi:</p>
+
+<pre><code>(venv) C:\qa_project&gt;</code></pre>
+
+    <p>Mana shu <code>(venv)</code> yozuvi — "quti ochiq, ishlashga tayyor" degani. Agar u ko'rinmasa, VENV o'chiq va o'rnatgan package'laringiz noto'g'ri joyga tushadi.</p>
+
+    <p>Qo'shimcha tekshirish:</p>
+
+<pre><code>pip list</code></pre>
+
+    <p>Yangi VENV'da ro'yxat deyarli bo'sh bo'ladi — bu normal holat.</p>
+
+    <h3>VENV'dan chiqish</h3>
+
+<pre><code>deactivate</code></pre>
+
+    <p><code>(venv)</code> yozuvi yo'qoladi. Ishni davom ettirmoqchi bo'lsangiz, yuqoridagi aktivlashtirish buyrug'ini qayta yozasiz.</p>
+
+    <hr>
+
+    <h2>2. PIP — qutini to'ldiruvchi vosita</h2>
+
+    <h3>PIP nima?</h3>
+
+    <p>Bizda quti bor. Endi uni to'ldirish kerak. Bu ishni <strong>PIP</strong> bajaradi.</p>
+
+    <p><strong>PIP</strong> — Python package'larini internetdan yuklab olib, muhitga o'rnatadigan vosita. U Python bilan birga keladi, alohida o'rnatish shart emas.</p>
+
+<pre><code>📦 VENV  → quti
+🔧 PIP   → qutiga buyum keltiruvchi
+🧸 Selenium, Pytest → qutidagi buyumlar</code></pre>
+
+    <h3>Asosiy buyruqlar</h3>
+
+    <p><strong>Package o'rnatish:</strong></p>
+<pre><code>pip install selenium</code></pre>
+
+    <p><strong>Bir vaqtda bir nechtasini o'rnatish:</strong></p>
+<pre><code>pip install selenium pytest python-dotenv</code></pre>
+
+    <p><strong>Aniq versiyani o'rnatish:</strong></p>
+<pre><code>pip install selenium==4.10.0</code></pre>
+
+    <p><strong>O'rnatilganlarni ko'rish:</strong></p>
+<pre><code>pip list</code></pre>
+
+    <p><strong>Package'ni o'chirish:</strong></p>
+<pre><code>pip uninstall selenium</code></pre>
+
+    <div class="note">
+      <div class="note-title">Muhim</div>
+      <p><code>pip install</code> yozishdan oldin <code>(venv)</code> ko'rinib turganiga ishonch hosil qiling. Aks holda package butun kompyuterga o'rnatiladi va VENV'ning mantig'i buziladi.</p>
+    </div>
+
+    <h3>requirements.txt — buyumlar ro'yxati</h3>
+
+    <p>Loyihada 10-15 ta package bo'lishi mumkin. Yangi hamkasbingiz loyihani ochganda ularning har birini qo'lda yozib chiqishi kerakmi? Yo'q.</p>
+
+    <p><strong>Ro'yxatni saqlash:</strong></p>
+<pre><code>pip freeze &gt; requirements.txt</code></pre>
+
+    <p>Fayl ichida shunga o'xshash yozuv paydo bo'ladi:</p>
+
+<pre><code>selenium==4.20.0
+pytest==8.2.0
+python-dotenv==1.0.1</code></pre>
+
+    <p><strong>Ro'yxat bo'yicha hammasini o'rnatish:</strong></p>
+<pre><code>pip install -r requirements.txt</code></pre>
+
+    <p>Bir buyruq — va yangi kompyuterda loyihaning butun muhiti tayyor.</p>
+
+    <div class="note">
+      <div class="note-title">Amaliy qoida</div>
+      <p>Yangi package o'rnatgan har safaringizda <code>pip freeze &gt; requirements.txt</code> ni qayta ishlating, aks holda ro'yxat eskirib qoladi.</p>
+    </div>
+
+    <hr>
+
+    <h2>3. .ENV — loyihaning seyfi</h2>
+
+    <h3>Muammo</h3>
+
+    <p>QA automation loyihasida saytga login qilish kerak. Ko'pchilik shunday yozadi:</p>
+
+<pre><code>username = "admin"
+password = "123456"
+url = "https://example.com"</code></pre>
+
+    <p>Bu <strong>xavfli va noqulay</strong>:</p>
+
+    <ul>
+      <li>Kodni GitHub'ga yuklasangiz, parol hammaga ochiq bo'ladi</li>
+      <li>Test muhitidan production'ga o'tishda kodning o'zini o'zgartirishga to'g'ri keladi</li>
+      <li>Jamoadagi har bir kishining o'z logini bo'lsa, fayl doim konflikt beradi</li>
+    </ul>
+
+    <h3>Yechim: .env fayli</h3>
+
+    <p><strong>.ENV</strong> — sozlamalar va maxfiy ma'lumotlar saqlanadigan oddiy matn fayli. U koddan tashqarida turadi.</p>
+
+    <p>Loyiha papkasida <code>.env</code> nomli fayl yarating (nomi aynan shunday, nuqta bilan boshlanadi):</p>
+
+<pre><code>URL=https://example.com
+USERNAME=admin
+PASSWORD=123456</code></pre>
+
+    <p><strong>Yozish qoidalari:</strong></p>
+
+    <ul>
+      <li><code>KALIT=qiymat</code> shaklida, tenglik belgisi atrofida bo'sh joy qo'yilmaydi</li>
+      <li>Qiymat qo'shtirnoqqa olinmaydi</li>
+      <li>Har bir sozlama alohida qatorda</li>
+    </ul>
+
+<pre><code>✅ To'g'ri:   USERNAME=admin
+❌ Noto'g'ri: USERNAME = "admin"</code></pre>
+
+    <h3>.env faylini Python'da o'qish</h3>
+
+    <p>Buning uchun alohida package kerak:</p>
+
+<pre><code>pip install python-dotenv</code></pre>
+
+    <p>Endi kodda:</p>
+
+<pre><code>from dotenv import load_dotenv
+import os
+
+load_dotenv()          # .env faylini yuklaydi
+
+URL = os.getenv("URL")
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
+
+print(URL)             # https://example.com</code></pre>
+
+    <p>Endi parol kodda emas, <code>.env</code> faylida. Kodda faqat uning <strong>nomi</strong> qoladi.</p>
+
+    <h3>.gitignore — eng muhim qadam ⚠️</h3>
+
+    <p><code>.env</code> ning butun mantig'i shunda: <strong>u hech qachon Git'ga tushmasligi kerak.</strong> Buni ta'minlash uchun loyiha papkasida <code>.gitignore</code> fayli yaratiladi:</p>
+
+<pre><code>venv/
+.env
+__pycache__/</code></pre>
+
+    <p>Endi Git bu fayllarni butunlay e'tiborsiz qoldiradi.</p>
+
+    <blockquote>
+      <p><code>venv/</code> ni ham qo'shamiz, chunki u minglab fayldan iborat va har bir dasturchi uni <code>requirements.txt</code> orqali o'zi yaratib oladi.</p>
+    </blockquote>
+
+    <h3>.env.example — jamoa uchun namuna</h3>
+
+    <p>Agar <code>.env</code> Git'ga tushmasa, yangi hamkasb qanday sozlamalar kerakligini qayerdan biladi? Buning uchun <code>.env.example</code> fayli yaratiladi — ichida faqat kalitlar, qiymatsiz:</p>
+
+<pre><code>URL=
+USERNAME=
+PASSWORD=</code></pre>
+
+    <p>Bu fayl Git'ga yuklanadi. Yangi hamkasb uni nusxalab, <code>.env</code> deb nomlaydi va o'z qiymatlarini yozadi.</p>
+
+    <hr>
+
+    <h2>4. Boshlovchilar qiladigan 5 ta xato</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Xato</th><th>Nima bo'ladi</th><th>Yechim</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VENV'ni aktivlashtirmasdan <code>pip install</code> qilish</td>
+            <td>Package global muhitga tushadi</td>
+            <td>Avval <code>(venv)</code> borligini tekshiring</td>
+          </tr>
+          <tr>
+            <td><code>.env</code> ni Git'ga yuklab yuborish</td>
+            <td>Parol hammaga ochiq bo'ladi</td>
+            <td><code>.gitignore</code> ga <code>.env</code> qo'shing</td>
+          </tr>
+          <tr>
+            <td><code>.env</code> da qo'shtirnoq ishlatish</td>
+            <td>Qiymat qo'shtirnoq bilan o'qiladi</td>
+            <td><code>USERNAME=admin</code> deb yozing</td>
+          </tr>
+          <tr>
+            <td><code>venv/</code> papkasini Git'ga yuklash</td>
+            <td>Repository og'irlashadi</td>
+            <td><code>.gitignore</code> ga <code>venv/</code> qo'shing</td>
+          </tr>
+          <tr>
+            <td><code>requirements.txt</code> ni yangilamaslik</td>
+            <td>Hamkasbda loyiha ishlamaydi</td>
+            <td>Har o'rnatishdan keyin <code>pip freeze</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2>5. Amaliyot: 7 qadamda to'liq loyiha</h2>
+
+    <p>Quyidagi qadamlarni terminalda ketma-ket bajaring.</p>
+
+    <h3>1. Loyiha papkasini yarating</h3>
+<pre><code>mkdir qa_project
+cd qa_project</code></pre>
+
+    <h3>2. VENV yarating</h3>
+<pre><code>python -m venv venv</code></pre>
+
+    <h3>3. VENV'ni aktivlashtiring</h3>
+<pre><code>venv\Scripts\activate          # Windows
+source venv/bin/activate       # Mac / Linux</code></pre>
+    <p>Terminalda <code>(venv)</code> paydo bo'lganini tekshiring.</p>
+
+    <h3>4. Package'larni o'rnating</h3>
+<pre><code>pip install selenium pytest python-dotenv</code></pre>
+
+    <h3>5. Ro'yxatni saqlang</h3>
+<pre><code>pip freeze &gt; requirements.txt</code></pre>
+
+    <h3>6. <code>.env</code> va <code>.gitignore</code> fayllarini yarating</h3>
+
+    <p><code>.env</code>:</p>
+<pre><code>URL=https://example.com
+USERNAME=admin
+PASSWORD=123456</code></pre>
+
+    <p><code>.gitignore</code>:</p>
+<pre><code>venv/
+.env
+__pycache__/</code></pre>
+
+    <h3>7. Tekshiring</h3>
+
+    <p><code>test_env.py</code> faylini yarating:</p>
+
+<pre><code>from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+print("URL:", os.getenv("URL"))
+print("USERNAME:", os.getenv("USERNAME"))</code></pre>
+
+    <p>Ishga tushiring:</p>
+<pre><code>python test_env.py</code></pre>
+
+    <p>Ekranda quyidagi natija chiqishi kerak:</p>
+
+<pre><code>URL: https://example.com
+USERNAME: admin</code></pre>
+
+    <p>✅ Chiqdi — demak hamma narsa to'g'ri sozlangan.</p>
+
+    <hr>
+
+    <h2>6. Loyiha strukturasi</h2>
+
+    <p>Amaliyotdan keyin loyihangiz shunday ko'rinishda bo'ladi:</p>
+
+<pre><code>qa_project/
+│
+├── venv/               ← alohida Python muhiti (Git'ga tushmaydi)
+├── tests/              ← test fayllar
+├── pages/              ← Page Object klasslari
+├── .env                ← maxfiy ma'lumotlar (Git'ga tushmaydi)
+├── .env.example        ← namuna (Git'ga tushadi)
+├── .gitignore          ← nimani e'tiborsiz qoldirishni belgilaydi
+└── requirements.txt    ← package'lar ro'yxati</code></pre>
+
+    <hr>
+
+    <h2>Xulosa</h2>
+
+<pre><code>📦 VENV             → loyihaning alohida muhiti (quti)
+🔧 PIP              → qutiga package o'rnatadi
+📋 requirements.txt → qutidagi buyumlar ro'yxati
+🔑 .env             → parol va sozlamalar seyfi
+🚫 .gitignore       → nimani Git'dan yashirishni belgilaydi</code></pre>
+
+    <div class="note">
+      <div class="note-title">Dars oxirida siz quyidagi savollarga javob bera olishingiz kerak</div>
+      <ol>
+        <li>VENV nima va nima uchun kerak?</li>
+        <li>VENV'ni qanday aktivlashtiramiz va aktiv ekanini qanday bilamiz?</li>
+        <li><code>pip freeze</code> va <code>pip install -r</code> nima qiladi?</li>
+        <li>Nima uchun parolni kod ichiga yozmaymiz?</li>
+        <li>Nima uchun <code>.env</code> faylini <code>.gitignore</code> ga qo'shish shart?</li>
+      </ol>
+    </div>
+
+    <hr>
+
+    <h2>Uy vazifasi</h2>
+
+    <ol>
+      <li>Yangi <code>my_first_project</code> papkasini yarating va yuqoridagi 7 qadamni mustaqil takrorlang.</li>
+      <li><code>.env</code> ga <code>BROWSER=chrome</code> qatorini qo'shing va uni Python orqali ekranga chiqaring.</li>
+      <li><code>pip uninstall pytest</code> qilib ko'ring, keyin <code>pip install -r requirements.txt</code> orqali qayta tiklang.</li>
+    </ol>
+
+    <blockquote>
+      <p><strong>Keyingi dars:</strong> Selenium WebDriver bilan birinchi avtotest yozish.</p>
+    </blockquote>
+
+  </div>
+
+  <footer class="article-foot">
+    <p class="article-foot-note">Savol yoki fikringiz bormi? Telegramda yozing.</p>
+    <a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener" class="article-cta">Telegram →</a>
+  </footer>
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Automation bo'limida — amaliyot va real kod.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="../index.html#lessons">Darslar</a></li>
+        <li><a href="index.html">Automation</a></li>
+        <li><a href="../cases/index.html">Real keyslar</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

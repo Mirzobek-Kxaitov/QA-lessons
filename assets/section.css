@@ -33,6 +33,7 @@
   --cat-selenium: #B8791F;    --cat-selenium-tint: #FBF0DE;
   --cat-api: #2A7FC0;         --cat-api-tint: #E4F0FA;
   --cat-cicd: #7C5CD6;        --cat-cicd-tint: #F0EBFB;
+  --cat-python: #C0455E;      --cat-python-tint: #FBE9ED;
 }
 
 [data-theme="dark"] {
@@ -58,6 +59,7 @@
   --cat-selenium: #DDA95E;    --cat-selenium-tint: #2C2110;
   --cat-api: #58B4EE;         --cat-api-tint: #14283A;
   --cat-cicd: #A38BEA;        --cat-cicd-tint: #241B3B;
+  --cat-python: #EE8098;      --cat-python-tint: #3A1420;
 }
 
 html { scroll-behavior: smooth; }
@@ -146,6 +148,7 @@ a { color: var(--accent-deep); }
 .cat-selenium   { background: var(--cat-selenium-tint);   color: var(--cat-selenium); }
 .cat-api        { background: var(--cat-api-tint);        color: var(--cat-api); }
 .cat-cicd       { background: var(--cat-cicd-tint);       color: var(--cat-cicd); }
+.cat-python     { background: var(--cat-python-tint);     color: var(--cat-python); }
 
 .post-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 10px; }
 .post-excerpt { font-size: 15.5px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 18px; flex: 1; }
@@ -206,6 +209,8 @@ a { color: var(--accent-deep); }
   font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 14px; line-height: 1.65;
 }
 .article-body pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+/* Qorong'i temada kod bloki sahifa foni bilan qo'shilib ketmasligi uchun */
+[data-theme="dark"] .article-body pre { background: #090F16; border: 1px solid var(--line); }
 
 /* === ARAB TILI === */
 /* Blok holidagi arabcha matn — o'ngdan chapga, alohida qator */

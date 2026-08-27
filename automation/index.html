@@ -49,6 +49,7 @@
 <!-- KATEGORIYA FILTRI -->
 <div class="filter-bar" id="filterBar">
   <button class="filter-btn active" data-cat="all">Hammasi</button>
+  <button class="filter-btn" data-cat="python">Python asoslari</button>
   <button class="filter-btn" data-cat="playwright">Playwright</button>
   <button class="filter-btn" data-cat="selenium">Selenium</button>
   <button class="filter-btn" data-cat="api">API testing</button>
@@ -97,11 +98,21 @@
    YANGI AUTOMATION DARSI QO'SHISH:
    1. shablon.html dan nusxa oling → automation/<slug>.html
    2. Quyidagi ro'yxat BOSHIGA yangi obyekt qo'shing
-   cat: 'playwright' | 'selenium' | 'api' | 'cicd'
+   cat: 'python' | 'playwright' | 'selenium' | 'api' | 'cicd'
    ============================================================ */
-const LESSONS = [];
+const LESSONS = [
+  {
+    slug: '01-venv-pip-env.html',
+    cat: 'python',
+    title: "1-dars: Python'da VENV, PIP va .ENV",
+    excerpt: "Har bir loyiha uchun alohida muhit, package'larni boshqarish va parollarni .env faylida xavfsiz saqlash. Automation'ga birinchi qadam.",
+    date: '2026-08-27',
+    readTime: '45 daqiqa'
+  }
+];
 
 const CAT_NAMES = {
+  python: 'Python asoslari',
   playwright: 'Playwright',
   selenium: 'Selenium',
   api: 'API testing',
@@ -147,7 +158,7 @@ function render() {
       <p class="post-excerpt">${p.excerpt}</p>
       <div class="post-meta">
         <span>${formatDate(p.date)}</span>
-        <span>${p.readTime} o'qish</span>
+        <span>${p.readTime}</span>
       </div>
     </a>`).join('');
 }
