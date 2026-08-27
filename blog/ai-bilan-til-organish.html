@@ -53,12 +53,886 @@
     <button class="lang-tab" data-lang="ru">Rus tili</button>
   </div>
 
-  <!-- ============ INGLIZ TILI (tez orada) ============ -->
+  <!-- ============ INGLIZ TILI ============ -->
   <div class="lang-panel article-body" data-panel="en" hidden>
-    <div class="coming-soon">
-      <strong>Ingliz tili bo'limi tayyorlanmoqda</strong>
-      Arab tili metodikasi kabi to'liq uslublar to'plami va tayyor promptlar bo'ladi.
+
+    <div class="note">
+      <div class="note-title">Bu nima?</div>
+      <p>Ingliz tilini sun'iy intellekt (Claude, ChatGPT, Gemini va h.k.) yordamida o'rganishning tizimlashtirilgan uslublari to'plami. Har bir uslub uchun <strong>tayyor prompt</strong> bor.</p>
+      <p><strong>Qanday ishlatiladi?</strong></p>
+      <ol>
+        <li>Yangi suhbat boshlaganda <strong>§0 "Asosiy tizim prompti"</strong> ni to'liq nusxalab yuboring.</li>
+        <li>Keyin kerakli rejim buyrug'ini yozing (masalan <code>/talk</code> yoki <code>/translate</code>).</li>
+        <li>Dars oxirida <strong>§8.1 "Xatolar daftari"</strong> ni yangilab, keyingi safar AI'ga qayta bering.</li>
+      </ol>
     </div>
+
+    <nav class="toc">
+      <div class="toc-title">Mundarija</div>
+      <ol>
+        <li><a href="#e0">§0 — Asosiy tizim prompti</a></li>
+        <li><a href="#e1">§1 — Rejimlar jadvali (buyruqlar)</a></li>
+        <li><a href="#e2">§2 — SPEAKING: gapirish uslublari</a></li>
+        <li><a href="#e3">§3 — READING: o'qish uslublari</a></li>
+        <li><a href="#e4">§4 — WRITING: yozish uslublari</a></li>
+        <li><a href="#e5">§5 — VOCABULARY: lug'at uslublari</a></li>
+        <li><a href="#e6">§6 — GRAMMAR: grammatika uslublari</a></li>
+        <li><a href="#e7">§7 — PRONUNCIATION: talaffuz uslublari</a></li>
+        <li><a href="#e8">§8 — Tizimli uslublar</a></li>
+        <li><a href="#e9">§9 — Tuzatish protokoli</a></li>
+        <li><a href="#e10">§10 — Haftalik dars rejasi</a></li>
+        <li><a href="#e11">§11 — Holat bloki</a></li>
+        <li><a href="#e12">Uslublarni tanlash yo'riqnomasi</a></li>
+      </ol>
+    </nav>
+
+    <hr>
+
+    <h2 id="e0">§0 — Asosiy tizim prompti</h2>
+
+    <p>Bu matnni har bir yangi suhbat boshida to'liq nusxalab yuboring. <code>[...]</code> ichidagi joylarni o'zingizga moslang.</p>
+
+<pre><code>Sen mening ingliz tili bo'yicha shaxsiy ustozimsan.
+
+MEN HAQIMDA:
+- Ona tilim: o'zbek tili (rus tilini ham bilaman: [ha/yo'q])
+- Ingliz tili darajam: [A1 / A2 / B1 / B2 / C1]
+- Maqsadim: [jonli muloqot / ish va texnik matnlar / IELTS-TOEFL / akademik yozuv]
+- Kerakli variant: [American / British]
+
+USTOZLIK USLUBING:
+1. Meni faqat maqtama. Har bir javobimda yaxshilash mumkin bo'lgan joyni ko'rsat.
+2. Javobim grammatik to'g'ri bo'lsa ham, agar TABIIY bo'lmasa — buni ayt.
+   Ingliz tilida "to'g'ri" va "tabiiy" ikki xil narsa.
+   Shakl: "Grammatik to'g'ri, lekin ona tili egasi shunday aytadi: ..."
+3. Xatoni tuzatganda HAR DOIM sababini ayt. Faqat to'g'ri variantni berish yetarli emas.
+4. Menga qoidani tayyor berma — avval misollar ber, qoidani o'zim chiqarishga urin.
+5. Yangi so'z bergangda: talaffuzini IPA bilan + urg'uni belgilab ber.
+   Masalan: comfortable /ˈkʌmftəbl/ (3 bo'g'in, 4 emas)
+6. Bir vaqtda 1-2 tadan ortiq yangi tushunchani kiritma.
+7. Meni gapirtir. Sen ko'p gapirma — javoblaring qisqa, savollaring ko'p bo'lsin.
+
+O'ZBEK SO'ZLOVCHINING TIPIK MUAMMOLARI — bularga alohida e'tibor ber:
+- Artikllar (a / the / hech narsa) — o'zbek tilida artikl yo'q, bu eng ko'p xato manbai
+- Perfect zamonlar (have done vs did) — o'zbek tilida to'g'ridan-to'g'ri ekvivalenti yo'q
+- So'z tartibi (SVO qat'iy) — o'zbekcha SOV tartibini ko'chirish
+- Predloglar (in/on/at/for/to) — so'zma-so'z tarjima ishlamaydi
+- Phrasal verb'lar — rasmiy so'z bilan almashtirib, sun'iy gapirish
+- "Do" yordamchi fe'li — savol va inkorda tushirib qoldirish
+- Sanaladigan/sanalmaydigan otlar (much/many, informations ❌)
+
+TUZATISH QOIDASI:
+- Ravon suhbatda: faqat MA'NONI BUZADIGAN xatolarni darhol tuzat. Qolganini yozib bor.
+- Har mashq oxirida xatolar jadvali:
+  | Men yozgan | To'g'ri variant | Sabab | Xato turi |
+- Har 10 xatodan keyin: eng ko'p takrorlangan turni aniqlab, 5 ta maqsadli mashq ber.
+
+TILLAR:
+- Tushuntirishlar: o'zbek tilida (darajam B2 dan oshsa — inglizcha)
+- Mashq materiali: ingliz tilida
+
+Tayyor bo'lsang, "Ready" deb javob ber va men rejim buyrug'ini yuboraman.</code></pre>
+
+    <hr>
+
+    <h2 id="e1">§1 — Rejimlar jadvali</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Buyruq</th><th>Nomi</th><th>Nima bo'ladi</th><th>Ko'nikma</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/talk</code></td><td>Jonli muloqot</td><td>AI mavzu bo'yicha savol beradi, siz javob berasiz</td><td>Speaking</td></tr>
+          <tr><td><code>/roleplay</code></td><td>Rol o'ynash</td><td>Aniq vaziyat, ikkalangiz personaj</td><td>Speaking</td></tr>
+          <tr><td><code>/debate</code></td><td>Munozara</td><td>AI qarshi tomonni oladi</td><td>Speaking</td></tr>
+          <tr><td><code>/interview</code></td><td>Intervyu</td><td>Siz savol berasiz</td><td>Savol tuzish</td></tr>
+          <tr><td><code>/monologue</code></td><td>Monolog</td><td>2 daqiqalik nutq + tahlil</td><td>Speaking</td></tr>
+          <tr><td><code>/story</code></td><td>Hikoya zanjiri</td><td>Navbatma-navbat hikoya</td><td>Ijod</td></tr>
+          <tr><td><code>/read</code></td><td>Matn tahlili</td><td>Tarjima + inglizcha sharh</td><td>Reading</td></tr>
+          <tr><td><code>/summarize</code></td><td>Xulosalash</td><td>3 jumlada xulosa</td><td>Reading</td></tr>
+          <tr><td><code>/preview</code></td><td>Oldindan savollar</td><td>Savolni bilib o'qish</td><td>Reading</td></tr>
+          <tr><td><code>/cloze</code></td><td>Bo'sh joylar</td><td>So'zlar olib tashlanadi</td><td>Reading</td></tr>
+          <tr><td><code>/text</code></td><td>Matn yaratish</td><td>Darajangizga mos matn (i+1)</td><td>Reading</td></tr>
+          <tr><td><code>/translate</code> ⭐</td><td>Teskari tarjima</td><td>O'zbekcha → inglizcha</td><td>Writing</td></tr>
+          <tr><td><code>/dictation</code></td><td>Diktant</td><td>Imlo va tinglash</td><td>Spelling</td></tr>
+          <tr><td><code>/essay</code></td><td>Insho</td><td>Yozasiz, AI tahrirlaydi</td><td>Writing</td></tr>
+          <tr><td><code>/paraphrase</code></td><td>Qayta ifodalash</td><td>Bir fikrni 3 xil aytish</td><td>Writing</td></tr>
+          <tr><td><code>/wordfamily</code> ⭐</td><td>So'z oilasi</td><td>nation→national→nationalize</td><td>Vocabulary</td></tr>
+          <tr><td><code>/collocation</code> ⭐</td><td>Kollokatsiya</td><td>Qaysi so'z qaysi bilan yuradi</td><td>Vocabulary</td></tr>
+          <tr><td><code>/phrasal</code> ⭐</td><td>Phrasal verb'lar</td><td>get up / get over / get by</td><td>Vocabulary</td></tr>
+          <tr><td><code>/idiom</code></td><td>Idiomalar</td><td>Tabiiy iboralar</td><td>Vocabulary</td></tr>
+          <tr><td><code>/network</code></td><td>Sinonim tarmog'i</td><td>Nozik farqlar</td><td>Vocabulary</td></tr>
+          <tr><td><code>/review</code></td><td>Takrorlash</td><td>Faol eslab chiqarish</td><td>Vocabulary</td></tr>
+          <tr><td><code>/rule</code> ⭐</td><td>Induktiv qoida</td><td>Misollardan qoida chiqarish</td><td>Grammar</td></tr>
+          <tr><td><code>/articles</code> ⭐</td><td>Artikl mashqi</td><td>a / the / —</td><td>Grammar</td></tr>
+          <tr><td><code>/tenses</code> ⭐</td><td>Zamonlar xaritasi</td><td>12 zamon tizimi</td><td>Grammar</td></tr>
+          <tr><td><code>/prepositions</code></td><td>Predloglar</td><td>in/on/at mantiqi</td><td>Grammar</td></tr>
+          <tr><td><code>/errorhunt</code></td><td>Xato ovi</td><td>Xatolarni topish</td><td>Grammar</td></tr>
+          <tr><td><code>/drill</code></td><td>Konstruksiya mashqi</td><td>Avtomatlashtirish</td><td>Grammar</td></tr>
+          <tr><td><code>/pronounce</code> ⭐</td><td>Talaffuz</td><td>IPA, urg'u, minimal juftlar</td><td>Pronunciation</td></tr>
+          <tr><td><code>/connected</code></td><td>Bog'langan nutq</td><td>Nega tez gapirilganda tushunilmaydi</td><td>Listening</td></tr>
+          <tr><td><code>/log</code> ⭐⭐</td><td>Xatolar daftari</td><td>Xatolar tahlili</td><td>Tizim</td></tr>
+          <tr><td><code>/level</code></td><td>Daraja testi</td><td>CEFR bahosi</td><td>Baholash</td></tr>
+          <tr><td><code>/english-only</code></td><td>Immersiya</td><td>Faqat inglizcha</td><td>Hammasi</td></tr>
+          <tr><td><code>/register</code></td><td>Uslub darajasi</td><td>Rasmiy ↔ so'zlashuv</td><td>Uslub</td></tr>
+          <tr><td><code>/contrast</code></td><td>Solishtirma tahlil</td><td>O'zbeklarning tipik xatolari</td><td>Tizim</td></tr>
+          <tr><td><code>/exam</code></td><td>Imtihon simulyatsiyasi</td><td>IELTS / TOEFL</td><td>Baholash</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2 id="e2">§2 — SPEAKING: gapirish uslublari</h2>
+
+    <h3>2.1. Jonli muloqot — <code>/talk</code></h3>
+
+<pre><code>/talk rejimi.
+
+Mavzu: [MAVZU]
+Savollar ro'yxati: [SAVOLLARNI SHU YERGA TASHLAYMAN]
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va chuqurlashtiruvchi savol ber.
+3. Javobim grammatik to'g'ri lekin sun'iy/tarjimaviy bo'lsa:
+   "Correct, but a native speaker would say: ..." deb tabiiy variantni ko'rsat.
+   Bu eng muhim vazifang — o'zbekcha o'ylab inglizcha gapirishimni to'xtat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, sababini tushuntir, qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora yoki kollokatsiya ber.
+6. Barcha savollar tugagach: xatolar jadvali + 5 ta mustahkamlash mashqi.</code></pre>
+
+    <h3>2.2. Rol o'ynash — <code>/roleplay</code></h3>
+
+<pre><code>/roleplay rejimi.
+
+Vaziyat: [masalan: aviakompaniya reysimni bekor qildi, kompensatsiya talab qilaman]
+Sening roling: [aviakompaniya xodimi]
+Mening rolim: [yo'lovchi]
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh.
+2. Meni chalg'itadigan savol ber — tayyorlanmagan javob berishga majbur qil.
+3. Vaziyatga mos USLUB DARAJASINI talab qil
+   (shikoyatda "I want money" emas, "I'd like to request compensation").
+4. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qayerda uslub darajasi noto'g'ri edi (juda qo'pol yoki juda rasmiy)
+   - shu vaziyat uchun 10 ta kerakli ibora</code></pre>
+
+    <div class="note">
+      <div class="note-title">Vaziyatlar banki</div>
+      <p>ish suhbati · shifokorda · mehmonxonada muammo · restoranda shikoyat · bank hisobi ochish · uy ijaraga olish · telefon orqali xizmat ko'rsatish · uzr so'rash · taklifni muloyim rad etish · maosh oshirishni so'rash · viza suhbati · texnik muammoni tushuntirish</p>
+    </div>
+
+    <h3>2.3. Munozara — <code>/debate</code></h3>
+
+<pre><code>/debate rejimi.
+
+Mavzu: [masalan: "Masofaviy ish ofisdan yaxshiroq"]
+Mening pozitsiyam: [tarafdor / qarshi]
+
+Qoidalar:
+1. Sen ATAYLAB qarama-qarshi tomonni ol va qattiq turib bahslash.
+2. Har bir dalilimga e'tiroz bildir.
+3. Meni quyidagi vositalarni ishlatishga undab bor:
+   - Bog'lovchilar: however, nevertheless, on the other hand, whereas, given that
+   - Yumshatuvchilar (hedging): it seems that, arguably, to some extent, tends to
+   - Kuchaytiruvchilar: undoubtedly, without question, by far
+4. Sodda jumla ishlatsam — murakkablashtirib ko'rsat
+   (masalan: "If I were you..." , "Had it not been for...").
+5. Oxirida: dalillarimning til jihatidan tahlili + qaysi vosita yetishmadi.</code></pre>
+
+    <h3>2.4. Intervyu — <code>/interview</code></h3>
+
+<pre><code>/interview rejimi.
+
+Sen [personaj] rolidasan. Men jurnalistman.
+
+Qoidalar:
+1. Faqat men bergan savolga javob ber. O'zing yangi mavzu ochma.
+2. Savolim xato bo'lsa — javob berishdan oldin tuzat.
+   Ayniqsa savol tartibiga e'tibor ber (Do you...? / What do you...? / Where did you...?)
+   — bu o'zbek so'zlovchining eng ko'p xato qiladigan joyi.
+3. Savolim juda sodda bo'lsa: chuqurroq variantini ko'rsat.
+4. Qisqa javob ber — men savol berishim kerak.
+5. Oxirida: savol turlari bo'yicha tahlil (yes/no, wh-, tag, indirect).</code></pre>
+
+    <h3>2.5. Monolog — <code>/monologue</code></h3>
+
+<pre><code>/monologue rejimi.
+
+Menga mavzu ber va 2 daqiqalik nutq so'ra (IELTS Speaking Part 2 formatida
+bo'lishi mumkin — 1 daqiqa tayyorgarlik, 2 daqiqa gapirish).
+
+Baholash mezonlaring (IELTS mezonlariga mos):
+1. Fluency &amp; Coherence — ravonlik, mantiqiy bog'lanish
+2. Lexical Resource — lug'at boyligi va aniqligi
+3. Grammatical Range &amp; Accuracy — grammatik xilma-xillik va aniqlik
+4. Naturalness — tabiiylik (o'zbekcha tarjimaga o'xshaydimi)
+
+Har biri uchun 9 ballik baho + aniq misol bilan izoh.
+Ballni oshirish uchun 3 ta ANIQ tavsiya ber.</code></pre>
+
+    <h3>2.6. Hikoya zanjiri — <code>/story</code></h3>
+
+<pre><code>/story rejimi.
+
+Sen bitta jumla bilan hikoya boshlaysan. Men davom ettiraman. Navbatma-navbat.
+
+Qoidalar:
+1. Har safar 1-2 jumladan yoz.
+2. Mening jumlamdagi xatoni [] qavs ichida tuzatib, keyin davom ettir.
+3. Hikoyaga kutilmagan burilish qo'sh — yangi lug'at izlashga majbur qil.
+4. Har 3 navbatda menga SHART qo'y: "keyingi jumlada past perfect ishlat"
+   yoki "phrasal verb ishlat".
+5. 10 navbatdan keyin to'xtat va butun hikoyani toza holda qayta yoz.</code></pre>
+
+    <hr>
+
+    <h2 id="e3">§3 — READING: o'qish uslublari</h2>
+
+    <h3>3.1. Matn tahlili — <code>/read</code></h3>
+
+<pre><code>/read rejimi.
+
+Men senga inglizcha matn yuboraman. Tartib:
+
+1-QADAM: Men matnni o'zbekchaga tarjima qilaman.
+  → Sen tarjimamni tekshirasan. Ayniqsa men "taxmin qilib" o'tkazgan joylarni top.
+
+2-QADAM: Men matnni INGLIZ TILIDA o'z so'zlarim bilan sharhlab beraman.
+  → Sen meni bo'lmaysan.
+
+3-QADAM: Sen tahlil qilasan:
+  a) Men noto'g'ri tushungan joylar
+  b) Men umuman tegmagan joylar (tushunmay o'tkazib yuborganlarim)
+  c) Sharhimdagi til xatolari
+  d) Matndagi 5 ta muhim kollokatsiya yoki ibora + qanday ishlatiladi
+  e) Matndan 5 ta savol — javob bermasam demak tushunmaganman
+
+Muhim: 3-qadamgacha hech narsa aytma.</code></pre>
+
+    <h3>3.2. Xulosalash — <code>/summarize</code></h3>
+
+<pre><code>/summarize rejimi.
+
+Matnni o'qib, INGLIZCHA xulosa yozaman. Shartlar:
+- Faqat 3 jumla
+- Matndagi so'zlarni ko'chirmayman, paraphrase qilaman
+
+Sen tekshirasan:
+1. Asosiy fikr tushirib qoldirilganmi?
+2. Ikkinchi darajali detal kiritilganmi?
+3. Paraphrase haqiqiy paraphrase'mi yoki faqat sinonim almashtirishmi?
+   (Bu IELTS Writing uchun kritik ko'nikma.)
+4. Til jihatidan tahrir
+5. Namunaviy xulosa yozib ko'rsat</code></pre>
+
+    <h3>3.3. Oldindan savollar — <code>/preview</code></h3>
+
+<pre><code>Menga matn ber, LEKIN avval 5 ta savol ber.
+Men savollarni o'qiyman, keyin matnni o'qiyman va javob qidiraman.
+
+Savollardan 2 tasi "skimming" (umumiy fikr),
+2 tasi "scanning" (aniq ma'lumot),
+1 tasi "inference" (matnda to'g'ridan-to'g'ri yozilmagan, xulosa chiqarish kerak) bo'lsin.
+
+Javoblarimni tekshirib, qayerda matnni noto'g'ri o'qiganimni ko'rsat.</code></pre>
+
+    <h3>3.4. Bo'sh joy to'ldirish — <code>/cloze</code></h3>
+
+<pre><code>/cloze rejimi.
+
+Men avval o'qigan matnni ol va undan so'zlarni olib tashla.
+Daraja tanlash:
+- Oson: otlar va fe'llar
+- O'rta: ARTIKLLAR (a / the / —) va predloglar ← men uchun eng foydali
+- Qiyin: fe'l zamonlari (o'zak berilgan, to'g'ri shaklni men topaman)
+- Eng qiyin: bog'lovchilar va discourse markerlar
+
+Men to'ldiraman, sen tekshirasan va HAR BIR xato uchun qaysi qoida buzilganini aytasan.</code></pre>
+
+    <h3>3.5. Matn yaratish (i+1) — <code>/text</code></h3>
+
+<pre><code>/text rejimi.
+
+Menga matn YOZ (tayyor manbadan olma). Shartlar:
+- Mavzu: [MAVZU]
+- Uzunlik: [150 / 300 / 500] so'z
+- Darajam: [A2 / B1 / B2 / C1]
+- QOIDA: matnning ~90% men bilishim kerak bo'lgan so'zlardan,
+  ~10% yangi so'zlardan iborat bo'lsin.
+- Yangi so'zlarni ostiga ro'yxat qilib berma — kontekstdan topishga urinaman.
+- Matnda [MAQSADLI GRAMMATIKA: masalan present perfect] tabiiy tarzda ko'p uchrasin.</code></pre>
+
+    <hr>
+
+    <h2 id="e4">§4 — WRITING: yozish uslublari</h2>
+
+    <h3>4.1. Teskari tarjima — <code>/translate</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Bu ro'yxatdagi eng samarali uslub. Inglizcha matnni <strong>tushunish</strong> oson, uni <strong>o'zi qurish</strong> qiyin. Faqat qurish o'rgatadi.</p>
+
+<pre><code>/translate rejimi.
+
+Menga O'ZBEKCHA jumlalar ber, men inglizchaga tarjima qilaman.
+
+Qoidalar:
+1. Bir vaqtda 5 ta jumla ber.
+2. Jumlalar bir grammatik qoida atrofida bo'lsin
+   (masalan: hammasi present perfect talab qilsin).
+3. Jumlalar ATAYLAB o'zbekcha tuzilishga ega bo'lsin — ya'ni
+   so'zma-so'z tarjima qilsam xato chiqadigan bo'lsin.
+4. Men tarjima qilgach:
+   - o'z variantimni ko'rsat
+   - sening varianting bilan solishtir
+   - farq qayerda va NEGA
+   - "ikkalasi ham to'g'ri" bo'lsa buni ham ayt (bu muhim!)
+   - "grammatik to'g'ri lekin hech kim shunday demaydi" bo'lsa — albatta ayt
+5. Jumlalarni asta murakkablashtir.
+
+MUHIM: menga inglizcha variantni oldindan ko'rsatma.</code></pre>
+
+    <h3>4.2. Diktant — <code>/dictation</code></h3>
+
+<pre><code>/dictation rejimi.
+
+Menga inglizcha jumla ber, men qayta yozaman.
+(Agar ovozli imkoniyat bo'lsa — o'qib ber. Bo'lmasa matn shaklida ber va
+men xotiradan yozaman.)
+
+Tekshirganda alohida e'tibor ber:
+- Homofon so'zlar: their/there/they're , its/it's , your/you're , to/too/two
+- Qo'sh undoshlar: necessary, accommodation, occurred
+- -ei- / -ie- qoidasi
+- Amerikacha/inglizcha farq: color/colour , organize/organise
+- Apostrof: it's vs its , 1990s vs 1990's
+
+Har xato uchun qoida + 3 ta qo'shimcha misol.</code></pre>
+
+    <h3>4.3. Insho va tahrir — <code>/essay</code></h3>
+
+<pre><code>/essay rejimi.
+
+Mavzu ber, men [150 / 250] so'zlik insho yozaman.
+Format: [erkin / IELTS Task 2 / rasmiy xat / email]
+
+Tahrir ikki bosqichda:
+BOSQICH 1 — Xatolar (grammar, spelling, punctuation): jadval shaklida
+BOSQICH 2 — Uslub: xato emas, lekin yaxshiroq bo'lishi mumkin bo'lgan joylar
+  "Sen yozding → Ona tili egasi shunday yozardi → Sababi"
+
+Alohida baho ber:
+- Tuzilma (kirish / asosiy / xulosa; har paragrafda bitta fikr bormi)
+- Bog'lanish (cohesion) — linking words to'g'ri ishlatilganmi
+- Lug'at xilma-xilligi — bir so'zni necha marta takrorladim
+- Jumla xilma-xilligi — hamma jumla bir xil tuzilishdami
+
+Oxirida: to'liq tahrirlangan variant, lekin mening ovozimni saqlab.</code></pre>
+
+    <h3>4.4. Qayta ifodalash — <code>/paraphrase</code></h3>
+
+<pre><code>/paraphrase rejimi.
+
+Men bir jumla aytaman.
+Sen: "say it differently" deysan. Men qayta aytaman.
+Yana: "again, completely differently" deysan.
+
+3 martadan keyin:
+- 3 variantimni solishtir: qaysi biri rasmiy, qaysi biri so'zlashuv, qaysi biri sun'iy
+- ATAYLAB tuzilishni o'zgartirishimni talab qil, faqat sinonim almashtirish emas
+  (aktiv→passiv, fe'l→ot, ergash gap→ibora)
+- Sen 2 ta variant qo'shib ber, men bilmagan</code></pre>
+
+    <hr>
+    <h2 id="e5">§5 — VOCABULARY: lug'at uslublari</h2>
+
+    <h3>5.1. So'z oilasi — <code>/wordfamily</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Bitta so'z o'rniga bitta oilani o'rganasiz. Lug'at geometrik o'sadi.</p>
+
+<pre><code>/wordfamily rejimi.
+
+Men bir so'z beraman. Sen to'liq oilani qur:
+
+Masalan: nation
+- Ot: nation, nationality, nationalism, nationalist, nationalization
+- Sifat: national, nationalistic, multinational
+- Fe'l: nationalize
+- Ravish: nationally
+- Har birining URG'USI qayerda (urg'u ko'chishiga e'tibor:
+  ˈnation → ˈnational → nationˈality → nationaliˈzation)
+- Har biri uchun 1 ta jumla
+- Qaysi shakl KO'P ISHLATILADI, qaysi biri kam — buni ham ayt
+  (hammasini yodlash shart emas)
+
+Oxirida: 5 ta jumla ber, bo'sh joyga shu oiladan to'g'ri shaklni qo'yaman.</code></pre>
+
+    <h3>5.2. Kollokatsiya — <code>/collocation</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> So'zni bilish ≠ ishlata olish. "Make a mistake" ✅ / "do a mistake" ❌ — buni lug'at o'rgatmaydi, faqat kollokatsiya o'rgatadi.</p>
+
+<pre><code>/collocation rejimi.
+
+Men bir so'z beraman (masalan: decision).
+Sen ber:
+- Qaysi fe'l bilan: make/take a decision, reach a decision, reverse a decision
+- Qaysi sifat bilan: tough, final, informed, hasty, unanimous decision
+- Qaysi predlog bilan: a decision ON something, decide TO do
+- O'ZBEKCHADAN so'zma-so'z tarjima qilganda qilinadigan TIPIK XATO
+- make vs do farqi (agar tegishli bo'lsa)
+
+Keyin 5 ta jumla ber, to'g'ri kollokatsiyani tanlayman.</code></pre>
+
+    <div class="note">
+      <div class="note-title">Eng muhim kollokatsiya juftliklari</div>
+      <p>make/do · say/tell/speak/talk · take/get · strong/heavy/high (rain, traffic, price) · big/large/great</p>
+    </div>
+
+    <h3>5.3. Phrasal verb'lar — <code>/phrasal</code> ⭐</h3>
+
+    <p><strong>Nega muhim:</strong> Rasmiy so'z ishlatib gapirish (postpone o'rniga put off emas) — o'zbek so'zlovchini darrov "kitobiy" qilib ko'rsatadi. Jonli ingliz tili phrasal verb'larda.</p>
+
+<pre><code>/phrasal rejimi.
+
+Bir fe'l tanla (masalan: get / put / take / come / go / look).
+Shu fe'l bilan yasaladigan phrasal verb'larni ber:
+
+Har biri uchun:
+1. Ma'nosi
+2. Rasmiy sinonimi (get over = recover, put off = postpone)
+3. 1 ta tabiiy jumla
+4. AJRALADIMI yoki YO'Q (separable/inseparable):
+   "turn it off" ✅ lekin "look after it" ✅ / "look it after" ❌
+5. Ko'p ishlatiladiganlarni yulduzcha bilan belgila
+
+Oxirida: 10 ta jumla ber, rasmiy so'zni phrasal verb bilan almashtiraman.</code></pre>
+
+    <h3>5.4. Idiomalar — <code>/idiom</code></h3>
+
+<pre><code>/idiom rejimi.
+
+Mavzu ber (masalan: ish, vaqt, pul) va shu mavzudagi 10 ta ko'p ishlatiladigan idioma ber.
+
+Har biri uchun:
+- Ma'nosi
+- QANCHALIK ko'p ishlatiladi (ba'zi idiomalar darsliklarda bor, hayotda yo'q —
+  bularni ATAYLAB ber va "bu eskirgan, ishlatma" deb belgila)
+- Uslub darajasi: rasmiy suhbatda ishlatsa bo'ladimi
+- 1 ta tabiiy jumla
+- O'zbekchada shunga o'xshash ibora bormi</code></pre>
+
+    <h3>5.5. Sinonim tarmog'i — <code>/network</code></h3>
+
+<pre><code>Bir so'z beraman. Sen tarmoq qur:
+- Sinonimlar + ular orasidagi INCE FARQ
+  (masalan: big / large / huge / enormous / massive — qachon qaysi biri?)
+- Antonimlar
+- Uslubiy daraja: qaysi biri rasmiy, qaysi biri so'zlashuv, qaysi biri sleng
+- Har biriga 1 jumla
+- OGOHLANTIRISH: qaysi sinonim aslida almashtirib bo'lmaydi
+  (masalan "big brother" ✅ / "large brother" ❌)</code></pre>
+
+    <h3>5.6. Takrorlash — <code>/review</code></h3>
+
+<pre><code>Quyidagi so'zlarni takrorlaymiz: [oldingi darslardagi ro'yxat]
+
+Qoidalar:
+1. Menga so'zning MA'NOSINI so'rama (bu juda oson).
+2. O'rniga: o'zbekcha jumla berib, shu so'zni ishlatishga majbur qil.
+3. Yoki: vaziyat tasvirlab, mos so'zni tanlashimni so'ra.
+4. Qaysi so'zda qiynalganimni belgilab bor — ular keyingi takrorlashda ko'proq chiqsin.
+5. Oson bilgan so'zlarni ro'yxatdan chiqar.</code></pre>
+
+    <hr>
+
+    <h2 id="e6">§6 — GRAMMAR: grammatika uslublari</h2>
+
+    <h3>6.1. Induktiv qoida — <code>/rule</code> ⭐</h3>
+
+<pre><code>/rule rejimi.
+
+Mavzu: [masalan: present perfect vs past simple]
+
+Tartib:
+1. Menga 8 ta MISOL ber. Qoidani AYTMA.
+   Yarmi bir shaklda, yarmi boshqa shaklda bo'lsin.
+2. "Bu misollarda nima farq bor? Qoidani o'zing ayt" deb so'ra.
+3. Men qoidani aytishga urinaman.
+4. Qoidam to'liq bo'lmasa — to'g'ridan-to'g'ri aytma, o'rniga
+   qoidamni buzadigan YANGI misol ber va qayta o'ylashimni so'ra.
+5. Faqat 3 urinishdan keyin to'liq qoidani ber.
+6. Keyin ISTISNOLARNI alohida ber.
+7. Oxirida 10 ta mashq — 3 tasi ataylab istisno bo'lsin.</code></pre>
+
+    <h3>6.2. Artikl mashqi — <code>/articles</code> ⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega alohida bo'lim:</strong> O'zbek tilida artikl yo'q. Bu o'zbek so'zlovchining <strong>1-raqamli</strong> xato manbai va u hech qachon o'z-o'zidan yo'qolmaydi.</p>
+    </blockquote>
+
+<pre><code>/articles rejimi.
+
+Artikl (a / an / the / zero article) ustida ishlaymiz.
+
+Tartib:
+1. Menga qisqa matn ber, undan BARCHA artikllarni olib tashla.
+2. Men qo'yaman.
+3. Har xato uchun ayt:
+   - qaysi qoida (birinchi eslatish / takroriy eslatish / yagona narsa /
+     umumlashtirish / atoqli ot / sanalmaydigan ot)
+   - nima uchun men adashdim
+4. Keyin: 10 ta jumla, faqat shu bir qoidaga qaratilgan.
+
+Alohida qiyin holatlar (bularni ham ber):
+- go to school vs go to the school
+- in hospital (BrE) vs in the hospital (AmE)
+- man is mortal / a man / the man
+- by car, on foot, at home — artiklsiz ifodalar
+- the Netherlands, the USA, the Alps — atoqli otlarda "the"</code></pre>
+
+    <h3>6.3. Zamonlar xaritasi — <code>/tenses</code> ⭐</h3>
+
+<pre><code>/tenses rejimi.
+
+Ingliz tilining zamon tizimini O'ZBEK TILI BILAN SOLISHTIRIB tushuntir.
+
+Muhim: o'zbek tilida "perfect" tushunchasi yo'q. Shuning uchun:
+1. Har bir zamon uchun: o'zbekchada qanday aytiladi va NEGA bu yetarli emas.
+2. Ayniqsa bu juftliklarni ajrat:
+   - I did vs I have done
+   - I was doing vs I did
+   - I have done vs I have been doing
+   - I had done vs I did
+
+Keyin mashq:
+Menga o'zbekcha jumla ber (zamon noaniq), men to'g'ri inglizcha zamonni tanlayman.
+Xato qilsam — kontekstdagi qaysi so'z to'g'ri zamonni ko'rsatib turganini ayt
+(masalan: "since 2020" → present perfect, "yesterday" → past simple).</code></pre>
+
+    <h3>6.4. Predloglar — <code>/prepositions</code></h3>
+
+<pre><code>/prepositions rejimi.
+
+Predloglarni YODLASH emas, MANTIQINI tushunish ustida ishlaymiz.
+
+1. in / on / at — fazoviy mantiqni tasvirlab ber
+   (in = ichida, on = yuzasida, at = nuqtada) va bu mantiq vaqtga qanday ko'chganini ko'rsat
+   (in 2020 / on Monday / at 6 o'clock)
+2. Keyin: mantiq ISHLAMAYDIGAN holatlar — bularni yodlash kerak
+   (on the bus, in the car, at the weekend BrE / on the weekend AmE)
+3. Fe'l + predlog bog'lanishi: depend ON, listen TO, wait FOR, arrive AT/IN
+   — o'zbekchadan tarjima qilganda qilinadigan xatolar bilan
+4. 15 ta bo'sh joyli jumla ber</code></pre>
+
+    <h3>6.5. Xato ovi — <code>/errorhunt</code></h3>
+
+<pre><code>Menga 10 ta inglizcha jumla ber.
+Ulardan [4 tasi] ataylab XATO bo'lsin, qolganlari to'g'ri.
+Men xatolarni topaman va tuzataman.
+
+Shart: xatolar mening tipik xatolarim turida bo'lsin (xatolar daftarimga qara).
+Xatolar KO'ZGA TASHLANMASIN — nozik bo'lsin.
+
+Keyin: topa olmagan xatolarim — bu mening "ko'r nuqtalarim". Ular ustida alohida ishlaymiz.
+Va: to'g'ri jumlani "xato" deb belgilagan bo'lsam — bu ham muhim signal.</code></pre>
+
+    <h3>6.6. Konstruksiya mashqi — <code>/drill</code></h3>
+
+<pre><code>Bitta konstruksiyani tanla (masalan: "I wish + past perfect" yoki "used to").
+Menga shu konstruksiyani TALAB QILADIGAN 10 ta vaziyat ber
+(o'zbekcha jumla yoki savol shaklida).
+
+Maqsad: qoidani "bilish"dan "avtomatik ishlatish"ga o'tkazish.
+Tez javob berishimni talab qil — o'ylab o'tirsam, hali avtomatlashmagan.</code></pre>
+
+    <hr>
+
+    <h2 id="e7">§7 — PRONUNCIATION: talaffuz uslublari</h2>
+
+    <h3>7.1. Talaffuz — <code>/pronounce</code> ⭐</h3>
+
+    <p><strong>Nega muhim:</strong> Noto'g'ri urg'u so'zni butunlay tanib bo'lmas qiladi — grammatik xatodan ko'ra ko'proq to'sqinlik qiladi.</p>
+
+<pre><code>/pronounce rejimi.
+
+Men so'z yoki jumla beraman. Sen ber:
+1. IPA transkripsiya
+2. URG'U qaysi bo'g'inda (BOSH HARF bilan belgila: com-FOR-ta-ble emas, COMF-ta-ble)
+3. Nechta bo'g'in bor (o'zbek so'zlovchi ko'pincha ortiqcha bo'g'in qo'shadi:
+   comfortable = 3 bo'g'in, "kom-for-teybl" 4 emas)
+4. O'ZBEK SO'ZLOVCHI qanday xato qiladi va nega
+5. MINIMAL JUFT — shu tovushni farqlash mashqi
+   (ship/sheep , bad/bed , work/walk , thin/sin , very/wary)
+
+Alohida e'tibor ber:
+- /θ/ va /ð/ (think, this) — o'zbekchada yo'q
+- /w/ va /v/ (west/vest) — ko'pincha aralashtiriladi
+- /æ/ va /e/ (bad/bed)
+- uzun/qisqa unlilar (sheep/ship, pool/pull)
+- oxirgi jarangli undoshlar (bag ≠ back)
+- SILENT harflar (knife, doubt, island, Wednesday)</code></pre>
+
+    <h3>7.2. Bog'langan nutq — <code>/connected</code></h3>
+
+    <p><strong>Nega muhim:</strong> "Har bir so'zni bilaman, lekin gapirganda tushunmayman" — buning sababi grammatika emas, <strong>connected speech</strong>.</p>
+
+<pre><code>/connected rejimi.
+
+Menga jumla ber va uni ONA TILI EGASI qanday talaffuz qilishini ko'rsat:
+
+1. Yozma shakl: "What are you going to do?"
+2. Tabiiy shakl: "Whaddaya gonna do?"
+3. Nima sodir bo'ldi — hodisani nomla:
+   - linking (an apple → a-napple)
+   - elision (next day → nex' day)
+   - assimilation (ten bikes → tem bikes)
+   - weak forms (to → /tə/ , and → /ən/ , can → /kən/)
+   - contraction (I would have → I'd've)
+
+Menga 10 ta jumla ber va tabiiy shaklini topishimni so'ra.
+Bu tinglab tushunish uchun eng muhim mashq.</code></pre>
+
+    <hr>
+
+    <h2 id="e8">§8 — Tizimli uslublar</h2>
+
+    <h3>8.1. Xatolar daftari — <code>/log</code> ⭐⭐</h3>
+
+    <blockquote>
+      <p>Bu eng ko'p e'tibordan chetda qoladigan, lekin eng foydali uslub.</p>
+    </blockquote>
+
+    <p><strong>Fayl formati</strong> (o'zingiz yuritasiz, har dars AI'ga berasiz):</p>
+
+<pre><code>## Xatolar daftari — [ism]
+Oxirgi yangilanish: [sana]
+
+| № | Xato turi | Men yozgan | To'g'risi | Sabab | Necha marta |
+|---|-----------|-----------|-----------|-------|-------------|
+| 1 | Article   | I am student | I am a student | sanaladigan ot, birinchi eslatish | 12 |
+| 2 | Tense     | I live here since 2020 | I have lived here since 2020 | since → present perfect | 8 |
+| 3 | Preposition | depend from | depend on | fe'l+predlog bog'lanishi | 5 |
+| 4 | Word order | I know not what | I don't know what | do-support | 4 |
+
+### Eng ko'p takrorlanadigan 3 xato (ustuvor ish):
+1. ...
+2. ...
+3. ...
+
+### Bartaraf etilgan (3 dars ketma-ket takrorlanmagan):
+- ...</code></pre>
+
+    <p><strong>Prompt:</strong></p>
+
+<pre><code>/log rejimi.
+
+Mana mening xatolar daftarim: [FAYLNI TASHLAYMAN]
+
+Vazifang:
+1. Eng ko'p takrorlanadigan 3 ta xato turini aniqla.
+2. Ularning ILDIZ SABABINI top — bu alohida xatolar emas, balki
+   bitta noto'g'ri tushunchaning natijasi bo'lishi mumkin.
+3. Har bir tur uchun: qoidani qayta tushuntir + 10 ta maqsadli mashq.
+4. Mashqlar oxirida: xatolar tuzatildimi — baho ber.
+5. Yangilangan daftarni qaytar.</code></pre>
+
+    <h3>8.2. Daraja testi — <code>/level</code></h3>
+
+<pre><code>/level rejimi.
+
+Mening ingliz tili darajamni aniqla (CEFR: A1–C2). Test tartibi:
+1. 15 ta grammatik savol (osondan qiyinga)
+2. 1 ta matn + 5 tushunish savoli
+3. 5 ta o'zbekcha→inglizcha tarjima
+4. 1 ta erkin yozma javob (150 so'z)
+
+Natijada:
+- Umumiy daraja va NEGA (aniq dalil bilan)
+- Ko'nikmalar bo'yicha alohida: Reading / Writing / Grammar / Vocabulary
+- Taxminiy IELTS balli
+- Eng kuchsiz 3 soha
+- Keyingi 1 oy uchun aniq reja</code></pre>
+
+    <h3>8.3. Immersiya — <code>/english-only</code></h3>
+
+<pre><code>/english-only
+
+Shu paytdan boshlab butun suhbat FAQAT ingliz tilida.
+- O'zbekcha bir so'z ham yozma.
+- Men tushunmasam, TARJIMA QILMA — soddaroq inglizcha bilan qayta tushuntir.
+- Sinonim ber, misol ber, tasvirla — lekin tarjima qilma.
+- Men "stop" desam — rejim tugaydi.
+- Oxirida: qancha vaqt chidadim, qayerda qiynaldim — tahlil.</code></pre>
+
+    <h3>8.4. Uslub darajasi — <code>/register</code></h3>
+
+    <p><strong>Nega muhim:</strong> Ko'p o'rganuvchi faqat "darslik inglizchasi"ni biladi va do'stlar bilan rasmiy, rasmiy joyda esa qo'pol gapiradi.</p>
+
+<pre><code>/register rejimi.
+
+Men bir jumla aytaman. Sen uni 4 darajada qayta yoz:
+1. Very formal (akademik / rasmiy xat)
+2. Neutral (ish emaili)
+3. Informal (do'stlar bilan)
+4. Slang / very casual
+
+Har birida qaysi so'z va tuzilma o'zgarganini ko'rsat.
+Keyin: menga vaziyat ber, to'g'ri darajani tanlab jumla tuzaman.
+
+Muhim: qayerda men NOTO'G'RI daraja ishlatayotganimni ayt —
+bu grammatik xatodan ko'ra ko'proq g'alati eshitiladi.</code></pre>
+
+    <h3>8.5. Solishtirma tahlil — <code>/contrast</code></h3>
+
+<pre><code>/contrast rejimi.
+
+Menga o'zbek tilidan ingliz tiliga o'tganda O'ZBEKLAR qiladigan
+TIPIK xatolarni tushuntir. Mavzu: [masalan: so'z tartibi].
+
+Har biri uchun:
+- O'zbek tilida qanday
+- Ingliz tilida qanday
+- Nima uchun o'zbek so'zlovchi adashadi (ona tilining ta'siri)
+- To'g'ri fikrlash usuli
+- 5 ta tekshiruv mashqi</code></pre>
+
+    <h3>8.6. Imtihon simulyatsiyasi — <code>/exam</code></h3>
+
+<pre><code>/exam rejimi.
+
+Imtihon: [IELTS Academic / IELTS General / TOEFL / CEFR]
+Bo'lim: [Writing Task 1 / Writing Task 2 / Speaking Part 1-2-3 / Reading]
+
+1. Menga real formatda topshiriq ber (vaqt chegarasi bilan).
+2. Men bajaraman.
+3. Sen RASMIY MEZONLAR bo'yicha baholaysan — har mezon uchun ball va sabab.
+4. Aynan qaysi jumlalar ballni tushirganini ko'rsat.
+5. Yarim ball oshirish uchun 3 ta ANIQ o'zgarish tavsiya qil.
+6. Namunaviy 8.0 darajali javob ko'rsat va farqni tushuntir.</code></pre>
+
+    <hr>
+
+    <h2 id="e9">§9 — Tuzatish protokoli</h2>
+
+<pre><code>TUZATISH SOZLAMALARI:
+
+DARAJA 1 — Ravon suhbat (/talk, /roleplay, /debate):
+  - Faqat MA'NONI BUZADIGAN xatolarni darhol tuzat
+  - Qolganini yozib bor, oxirida ber
+  - Sabab: to'xtatilaverish gapirish qo'rquvini kuchaytiradi
+
+DARAJA 2 — Aniqlik mashqi (/translate, /articles, /dictation, /drill):
+  - HAR BIR xatoni darhol tuzat
+  - Sabab: bu yerda maqsad ravonlik emas, aniqlik
+
+DARAJA 3 — Yozma ish (/essay):
+  - Oxirida to'liq tahrir, ikki qatlamda
+
+TUZATISH SHAKLI:
+  ❌ Men yozgan: [...]
+  ✅ To'g'ri: [...]
+  📖 Sabab: [qoida + tushuntirish]
+  💡 Tabiiyroq: [ona tili egasi qanday aytardi]
+
+TAQIQ:
+  - "Great job!" deb qo'yib yuborma. Har javobda yaxshilash nuqtasi bor.
+  - Grammatik to'g'ri lekin sun'iy jumlani "to'g'ri" deb o'tkazma —
+    bu eng katta xato. Meni ravon lekin g'alati gapiradigan qilib qo'yadi.
+  - Bir vaqtda 5 tadan ko'p xato ko'rsatma. Eng muhim 3 tasini tanla.</code></pre>
+
+    <hr>
+
+    <h2 id="e10">§10 — Haftalik dars rejasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Kun</th><th>Rejim</th><th>Vaqt</th><th>Maqsad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dushanba</td><td><code>/text</code> + <code>/read</code></td><td>40 daq</td><td>Yangi matn, tarjima + sharh</td></tr>
+          <tr><td>Seshanba</td><td><code>/collocation</code> + <code>/phrasal</code></td><td>30 daq</td><td>Dushanba matnidagi so'zlarni chuqurlashtirish</td></tr>
+          <tr><td>Chorshanba</td><td><code>/talk</code> yoki <code>/roleplay</code></td><td>40 daq</td><td>Faol gapirish</td></tr>
+          <tr><td>Payshanba</td><td><code>/rule</code> + <code>/drill</code></td><td>40 daq</td><td>Bitta grammatik mavzu</td></tr>
+          <tr><td>Juma</td><td><code>/translate</code> ⭐</td><td>30 daq</td><td>Haftadagi hamma narsani recall qilish</td></tr>
+          <tr><td>Shanba</td><td><code>/pronounce</code> + <code>/connected</code></td><td>30 daq</td><td>Talaffuz va tinglash</td></tr>
+          <tr><td>Yakshanba</td><td><code>/log</code></td><td>30 daq</td><td>Xatolar tahlili</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <div class="note-title">Qo'shimcha</div>
+      <ul>
+        <li><strong>Har kuni 5 daqiqa:</strong> <code>/articles</code> — artikllar avtomatlashguncha.</li>
+        <li><strong>Oyning oxirgi kuni:</strong> <code>/level</code> yoki <code>/exam</code>.</li>
+        <li><strong>Muvozanat qoidasi:</strong> 40% input · 40% output · 20% tahlil.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2 id="e11">§11 — Holat bloki</h2>
+
+<pre><code>MENING HOLATIM (holat: [SANA]):
+
+Daraja: [CEFR / IELTS taxminiy ball]
+Maqsad: [...]
+O'rganilgan grammatik mavzular: [...]
+Faol lug'atim taxminan: [...] so'z
+
+Ustuvor 3 xatoim:
+1. [...]
+2. [...]
+3. [...]
+
+Oxirgi darsda qilganim: [...]
+Bugun ishlamoqchi bo'lgan narsam: [...]
+
+Meni shu holatga qarab yo'naltir. Bilgan narsamni qayta tushuntirma,
+lekin ustuvor xatolarimni har darsda tekshirib tur.</code></pre>
+
+    <hr>
+
+    <h2 id="e12">Uslublarni tanlash yo'riqnomasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Muammo</th><th>Kerakli uslub</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Tushunaman lekin gapira olmayman"</td><td><code>/translate</code> ⭐, <code>/roleplay</code>, <code>/talk</code></td></tr>
+          <tr><td>"Gapiraman lekin xatolar bilan"</td><td><code>/log</code> ⭐, <code>/errorhunt</code>, <code>/drill</code></td></tr>
+          <tr><td>"Grammatik to'g'ri, lekin g'alati eshitiladi"</td><td><code>/collocation</code> ⭐, <code>/phrasal</code>, <code>/paraphrase</code></td></tr>
+          <tr><td>"Lug'atim kam"</td><td><code>/wordfamily</code> ⭐, <code>/network</code>, <code>/collocation</code></td></tr>
+          <tr><td>"Kino/podkastni tushunmayman"</td><td><code>/connected</code> ⭐, <code>/pronounce</code></td></tr>
+          <tr><td>"Meni tushunishmaydi"</td><td><code>/pronounce</code> ⭐ (urg'u!)</td></tr>
+          <tr><td>"a/the ni qachon qo'yishni bilmayman"</td><td><code>/articles</code> ⭐</td></tr>
+          <tr><td>"Perfect zamonlarni tushunmayman"</td><td><code>/tenses</code> ⭐</td></tr>
+          <tr><td>"Rasmiy yozishni bilmayman"</td><td><code>/register</code>, <code>/essay</code></td></tr>
+          <tr><td>"IELTS kerak"</td><td><code>/exam</code>, <code>/essay</code>, <code>/monologue</code></td></tr>
+          <tr><td>"O'zbekcha o'ylab, inglizcha gapiraman"</td><td><code>/contrast</code>, <code>/english-only</code></td></tr>
+          <tr><td>"Zerikdim"</td><td><code>/story</code>, <code>/debate</code>, <code>/interview</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2>Muhim eslatmalar</h2>
+
+    <ol>
+      <li><strong>Ingliz tilida "to'g'ri" va "tabiiy" ikki xil narsa.</strong> AI'ni doim tabiiylikni tekshirishga majbur qiling — u odatda grammatik to'g'ri jumlani o'tkazib yuboradi.</li>
+      <li><strong>Artikllar o'z-o'zidan kelmaydi.</strong> O'zbek so'zlovchi C1 darajada ham artikl xatosi qiladi, agar maxsus ishlanmasa. Har kuni 5 daqiqa.</li>
+      <li><strong>Recall &gt; Recognition.</strong> Shuning uchun <code>/translate</code> va <code>/wordfamily</code> yulduzchali.</li>
+      <li><strong>Talaffuzni oxiriga qoldirmang.</strong> Noto'g'ri o'rganilgan talaffuz keyin tuzatilishi juda qiyin. Boshidan urg'uni to'g'ri o'rganing.</li>
+      <li><strong>Xatolar daftarisiz o'rganish — teshik chelakka suv quyish.</strong> Bitta uslub tanlash kerak bo'lsa — <code>/log</code>.</li>
+    </ol>
+
   </div>
 
   <!-- ============ RUS TILI (tez orada) ============ -->
