@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suhbat banki — 60 mavzu, 1376 savol | QA Academy</title>
+<meta name="description" content="Arab, ingliz va rus tillarida gapirish mashqi uchun savollar banki: 60 mavzu, 1376 savol, 295 rolli o'yin. Har bir mavzuni bir bosishda AI'ga tayyor prompt qilib olasiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/section.css">
+<style>
+/* ==========================================================================
+   Suhbat banki — sahifaga xos stillar.
+   Ranglar section.css tokenlaridan olinadi, yangisi kiritilmagan.
+   Darajalar mavjud kategoriya ranglarini qayta ishlatadi:
+     boshlang'ich → arab (yashil) · o'rta → api (ko'k) · yuqori → ai (siyoh)
+   ========================================================================== */
+
+:root { --nav-h: 69px; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+/* === HERO STATISTIKA === */
+.bank-stats {
+  display: flex; flex-wrap: wrap; gap: 30px;
+  margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line);
+}
+.bank-stats div { font-size: 14px; color: var(--ink-muted); line-height: 1.35; }
+.bank-stats b {
+  display: block; font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 30px; color: var(--ink); letter-spacing: -0.5px;
+}
+.blog-hero { padding-top: 56px; }
+.blog-hero .back-link { margin-bottom: 26px; }
+.blog-hero .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+.blog-hero .eyebrow a:hover { color: var(--accent-deep); }
+
+/* === "1-QISMNING DAVOMI" KARTASI === */
+.serial {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; margin-top: 8px;
+}
+.serial > div { background: var(--bg-card); padding: 22px 24px; }
+.serial .part {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+  color: var(--ink-muted); margin-bottom: 8px;
+}
+.serial .part-name {
+  font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500;
+  line-height: 1.3; margin-bottom: 8px; display: block;
+  color: var(--ink); text-decoration: none;
+}
+a.part-name:hover { color: var(--accent-deep); }
+.serial p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+.serial .now { background: var(--accent-tint); }
+.serial .now .part { color: var(--accent-deep); }
+
+/* === BOSHQARUV PANELI === */
+.controls {
+  position: sticky; top: var(--nav-h); z-index: 50;
+  background: rgba(246,250,253,0.94); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line); margin-top: 48px; padding: 16px 0;
+}
+[data-theme="dark"] .controls { background: rgba(14,22,32,0.94); }
+.ctrl-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.ctrl-row + .ctrl-row { margin-top: 12px; }
+.ctrl-label {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 14px; color: var(--ink-muted); margin-right: 2px;
+}
+.controls .search-input { max-width: none; flex: 1; min-width: 220px; }
+
+/* Til segmenti — .lang-tab idiomasi, ixchamroq */
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  padding: 8px 16px; border: 1px solid var(--line-strong); background: var(--bg-card);
+  border-radius: 100px; font-family: inherit; font-size: 14.5px; font-weight: 500;
+  color: var(--ink-soft); cursor: pointer; transition: all 0.18s;
+}
+.seg button:hover { border-color: var(--accent); color: var(--accent); }
+.seg button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg-card); }
+[data-theme="dark"] .seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #0E1620; }
+.seg button .ar { font-size: 1.15em; }
+
+/* Yordamchi tugmalar */
+.ghost-btn {
+  padding: 8px 15px; border: 1px solid var(--line-strong); background: transparent;
+  border-radius: 100px; font-family: inherit; font-size: 14px; font-weight: 500;
+  color: var(--ink-soft); cursor: pointer; transition: all 0.18s;
+}
+.ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+.ghost-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); }
+
+.result-line { font-size: 14px; color: var(--ink-muted); margin: 26px 0 14px; }
+.result-line b { color: var(--ink-soft); font-weight: 600; }
+
+/* === MAVZU KARTASI === */
+.topics { padding-bottom: 20px; }
+.topic { border-bottom: 1px solid var(--line); }
+.topic:first-child { border-top: 1px solid var(--line); }
+
+.topic-head {
+  width: 100%; display: flex; align-items: center; gap: 16px;
+  padding: 20px 4px; background: none; border: none; cursor: pointer;
+  font-family: inherit; color: inherit; text-align: left;
+}
+.topic-num {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 17px;
+  color: var(--accent); min-width: 26px; flex-shrink: 0;
+}
+.topic-main { flex: 1; min-width: 0; }
+.topic-title {
+  display: block;
+  font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500;
+  letter-spacing: -0.3px; line-height: 1.3; transition: color 0.2s;
+}
+.topic-head:hover .topic-title { color: var(--accent); }
+.topic-sub {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+  margin-top: 5px; font-size: 13.5px; color: var(--ink-muted);
+}
+.topic-sub .ar { font-size: 19px; line-height: 1.4; color: var(--ink-soft); }
+.topic-sub .topic-orig { color: var(--ink-soft); font-weight: 500; }
+.lv-badge {
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+}
+.lv-beginner     { background: var(--cat-arab-tint); color: var(--cat-arab); }
+.lv-intermediate { background: var(--cat-api-tint);  color: var(--cat-api); }
+.lv-advanced     { background: var(--cat-ai-tint);   color: var(--cat-ai); }
+.topic-toggle {
+  margin-left: auto; font-size: 22px; line-height: 1; color: var(--ink-muted);
+  flex-shrink: 0; transition: transform 0.3s, color 0.2s;
+}
+.topic.open .topic-toggle { transform: rotate(45deg); color: var(--accent); }
+
+.topic-body { display: none; padding: 4px 0 34px; }
+.topic.open .topic-body { display: block; }
+
+/* === PROMPT TUGMALARI === */
+.prompt-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 26px; }
+.prompt-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border: none; border-radius: 100px;
+  background: var(--accent); color: #fff;
+  font-family: inherit; font-size: 14.5px; font-weight: 600;
+  cursor: pointer; transition: background 0.18s;
+}
+.prompt-btn:hover { background: var(--accent-deep); }
+.prompt-btn.secondary { background: var(--bg-soft); color: var(--ink-soft); border: 1px solid var(--line-strong); }
+.prompt-btn.secondary:hover { background: var(--bg-soft); border-color: var(--accent); color: var(--accent); }
+.prompt-btn.done { background: #1E9E63; color: #fff; border-color: #1E9E63; }
+.prompt-btn code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.9em;
+  background: rgba(255,255,255,0.18); padding: 1px 6px; border-radius: 4px; unicode-bidi: isolate;
+}
+.prompt-btn.secondary code { background: var(--bg-card); border: 1px solid var(--line); }
+
+/* === SAVOLLAR === */
+.q-head {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
+  color: var(--accent); margin-bottom: 14px;
+}
+.q-list { list-style: none; counter-reset: q; }
+.q-list li {
+  display: flex; gap: 14px; padding: 11px 12px 11px 8px;
+  border-radius: var(--radius-sm); transition: background 0.15s;
+}
+.q-list li:hover { background: var(--bg-soft); }
+.q-list li::before {
+  counter-increment: q; content: counter(q);
+  font-family: 'Fraunces', serif; font-size: 13px; color: var(--ink-muted);
+  min-width: 22px; flex-shrink: 0; padding-top: 4px; text-align: right;
+}
+.q-text { flex: 1; min-width: 0; }
+.q-main { font-size: 18px; line-height: 1.6; color: var(--ink); }
+.q-alt { font-size: 14.5px; line-height: 1.55; color: var(--ink-muted); margin-top: 3px; }
+
+/* Arabcha matn — harakatlar o'qilishi uchun kattaroq va o'ngdan chapga */
+.is-ar {
+  font-family: 'Noto Naskh Arabic', 'Geeza Pro', 'Traditional Arabic', serif;
+  direction: rtl; text-align: right; unicode-bidi: isolate;
+}
+.q-main.is-ar { font-size: 25px; line-height: 1.95; }
+.q-alt.is-ar  { font-size: 20px; line-height: 1.8; margin-top: 6px; }
+
+/* === ROLLI O'YIN === */
+.rp-block {
+  margin-top: 28px; background: var(--bg-soft);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px;
+}
+.rp-block .q-head { margin-bottom: 12px; }
+.rp-block .q-list li:hover { background: transparent; }
+.rp-block .q-list li { padding-left: 0; }
+
+/* === MANBA === */
+.source-note { margin: 56px 0 0; }
+.source-note .ar { font-size: 1.25em; }
+
+/* === TOAST === */
+.toast {
+  position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 14px);
+  background: var(--ink); color: var(--bg); padding: 12px 22px; border-radius: 100px;
+  font-size: 14.5px; font-weight: 500; box-shadow: 0 10px 30px rgba(21,32,43,0.22);
+  opacity: 0; pointer-events: none; transition: opacity 0.22s, transform 0.22s; z-index: 200;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+[data-theme="dark"] .toast { background: var(--accent); color: #0E1620; }
+
+/* === HOLATLAR === */
+.empty-state { margin: 40px 0; }
+.loading { text-align: center; padding: 70px 24px; color: var(--ink-muted); font-size: 15px; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  :root { --nav-h: 71px; }
+  .wrap { padding: 0 24px; }
+  .serial { grid-template-columns: 1fr; }
+  .bank-stats { gap: 22px; }
+  .bank-stats b { font-size: 26px; }
+  .topic-head { gap: 12px; padding: 18px 2px; }
+  .topic-title { font-size: 19px; }
+  .q-main.is-ar { font-size: 22px; }
+  .prompt-btn { flex: 1; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic-toggle, .toast { transition: none; }
+}
+
+/* === CHOP ETISH === */
+@media print {
+  .nav, .controls, .prompt-row, .toast, .footer, .back-link, .serial { display: none !important; }
+  .topic-body { display: block !important; }
+  .topic-toggle { display: none; }
+  .topic { break-inside: avoid; border-bottom: 1px solid #ccc; }
+  body { background: #fff; font-size: 12px; }
+  .q-list li:hover { background: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="/#lessons">Darslar</a></li>
+      <li><a href="/automation/">Automation</a></li>
+      <li><a href="/cases/">Real keyslar</a></li>
+      <li><a href="/blog/" class="current">Blog</a></li>
+      <li><a href="/about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="blog-hero">
+  <a href="/blog/" class="back-link">← Blogga qaytish</a>
+  <span class="eyebrow"><a href="/blog/ai-bilan-til-organish.html">AI bilan til o'rganish</a> · 2-qism</span>
+  <h1>Suhbat banki</h1>
+  <p>Gapirish mashqi uchun tayyor savollar. 1-qismda — <em>qanday</em> o'rganish kerakligi. Bu yerda — <em>nimani</em> mashq qilish: har bir mavzuni bir bosishda AI uchun tayyor promptga aylantirasiz.</p>
+  <div class="bank-stats">
+    <div><b id="stTopics">60</b>mavzu</div>
+    <div><b id="stQ">1376</b>savol</div>
+    <div><b id="stRp">295</b>rolli o'yin</div>
+    <div><b>3</b>til · 3 daraja</div>
+  </div>
+</header>
+
+<!-- 1-QISM BILAN BOG'LANISH -->
+<div class="wrap">
+  <div class="serial">
+    <div>
+      <div class="part">1-qism · metodika</div>
+      <a class="part-name" href="/blog/ai-bilan-til-organish.html">Sun'iy intellekt bilan til o'rganish</a>
+      <p>92 ta rejim va 110 ta tayyor prompt. <code>/talk</code> promptida <strong>«Savollar ro'yxati: [...]»</strong> degan bo'sh joy bor.</p>
+    </div>
+    <div class="now">
+      <div class="part">2-qism · material</div>
+      <span class="part-name">Suhbat banki</span>
+      <p>Aynan o'sha bo'sh joyni to'ldiradi. 60 mavzu bo'yicha 1376 savol — mavzuni tanlang, prompt tayyor holda nusxalanadi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOSHQARUV -->
+<div class="controls">
+  <div class="wrap">
+    <div class="ctrl-row">
+      <span class="ctrl-label">Men o'rganyapman:</span>
+      <div class="seg" id="targetSeg" role="group" aria-label="Mashq tili">
+        <button data-lang="ar" aria-pressed="true"><span class="ar">العربية</span> — arab</button>
+        <button data-lang="en" aria-pressed="false">English — ingliz</button>
+        <button data-lang="ru" aria-pressed="false">Русский — rus</button>
+      </div>
+      <button class="ghost-btn" id="transBtn" aria-pressed="true">Tarjima ko'rinsin</button>
+    </div>
+    <div class="ctrl-row">
+      <input type="search" class="search-input" id="search" placeholder="Savol yoki mavzu bo'yicha qidirish — istalgan tilda…" aria-label="Qidirish">
+      <div class="seg" id="levelSeg" role="group" aria-label="Daraja">
+        <button data-lv="all" aria-pressed="true">Hammasi</button>
+        <button data-lv="beginner" aria-pressed="false">Boshlang'ich</button>
+        <button data-lv="intermediate" aria-pressed="false">O'rta</button>
+        <button data-lv="advanced" aria-pressed="false">Yuqori</button>
+      </div>
+      <button class="ghost-btn" id="expandBtn" aria-pressed="false">Hammasini ochish</button>
+    </div>
+  </div>
+</div>
+
+<!-- RO'YXAT -->
+<main class="wrap">
+  <p class="result-line" id="resultLine"></p>
+  <div class="topics" id="topics"><div class="loading">Savollar banki yuklanmoqda…</div></div>
+
+  <div class="note source-note">
+    <div class="note-title">Manba va foydalanish</div>
+    <p>Savollar <strong>«<span class="ar">دليل الشراكة اللغوية</span>»</strong> — <em>Dr. Khalid Hussein Abu Amsha</em>ning ochiq manba qo'llanmasidan olingan; uch tilli nashr asosida tayyorlandi. Mavzu nomlari va sahifa interfeysi o'zbek tiliga o'girildi, savollar matni asl holida qoldirildi.</p>
+    <p style="margin-top:12px">Tarjimani o'chirib qo'ysangiz sahifa o'z-o'zini sinash mashqiga aylanadi: savolni ko'rasiz, tarjimasini emas.</p>
+  </div>
+
+  <div class="article-foot">
+    <span class="article-foot-note">Bu material qanday ishlatilishini bilmaysizmi? 1-qismda 92 ta rejim tushuntirilgan.</span>
+    <a class="article-cta" href="/blog/ai-bilan-til-organish.html">1-qismga o'tish →</a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Blog bo'limida — o'rganish uslublari va amaliy materiallar.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="/#lessons">Darslar</a></li>
+        <li><a href="/automation/">Automation</a></li>
+        <li><a href="/cases/">Real keyslar</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   SUHBAT BANKI
+   Ma'lumot: /blog/data/suhbat-banki.json (355 KB, talabga ko'ra yuklanadi)
+   Qayta yig'ish kerak bo'lsa — asl uch tilli HTML'dan JSON chiqariladi.
+   ============================================================ */
+
+const LV_NAME = { beginner: "Boshlang'ich", intermediate: "O'rta", advanced: "Yuqori" };
+const LANG_NAME = { ar: 'arab', en: 'ingliz', ru: 'rus' };
+const ALT_ORDER = { ar: ['en', 'ru'], en: ['ru', 'ar'], ru: ['en', 'ar'] };
+
+/* 1-qismdagi promptlar — har til uchun o'sha maqoladagi aynan matn */
+const PROMPTS = {
+  ar: {
+    talkCmd: '/تحدث',
+    talk: (mavzu, savollar) =>
+`/تحدث rejimi.
+
+Mavzu: ${mavzu}
+Savollar ro'yxati:
+${savollar}
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va qo'shimcha savol ber (chuqurlashtir).
+3. Javobim to'g'ri lekin sun'iy/tarjimaviy bo'lsa:
+   "To'g'ri. Lekin arab shunday aytadi: ..." deb tabiiy variantni ko'rsat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, sababini tushuntir, qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora (تعبير) ber.
+6. Barcha savollar tugagach: umumiy tahlil + xatolar jadvali + 5 ta mustahkamlash mashqi.`,
+    rpCmd: '/دور',
+    rp: (mavzu, vaziyatlar) =>
+`/دور rejimi.
+
+Mavzu: ${mavzu}
+Vaziyatlar (birma-bir o'ynaymiz, men qaysinisidan boshlashni aytaman):
+${vaziyatlar}
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh (masalan: hujjat so'rash).
+2. Meni chalg'itadigan savol ber — tayyorlanmagan javob berishimga majbur qil.
+3. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qaysi joyda arab boshqacha aytardi
+   - shu vaziyat uchun 10 ta kerakli ibora ro'yxati`
+  },
+  en: {
+    talkCmd: '/talk',
+    talk: (mavzu, savollar) =>
+`/talk rejimi.
+
+Mavzu: ${mavzu}
+Savollar ro'yxati:
+${savollar}
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va chuqurlashtiruvchi savol ber.
+3. Javobim grammatik to'g'ri lekin sun'iy/tarjimaviy bo'lsa:
+   "Correct, but a native speaker would say: ..." deb tabiiy variantni ko'rsat.
+   Bu eng muhim vazifang — o'zbekcha o'ylab inglizcha gapirishimni to'xtat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, sababini tushuntir, qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora yoki kollokatsiya ber.
+6. Barcha savollar tugagach: xatolar jadvali + 5 ta mustahkamlash mashqi.`,
+    rpCmd: '/roleplay',
+    rp: (mavzu, vaziyatlar) =>
+`/roleplay rejimi.
+
+Mavzu: ${mavzu}
+Vaziyatlar (birma-bir o'ynaymiz, men qaysinisidan boshlashni aytaman):
+${vaziyatlar}
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh.
+2. Meni chalg'itadigan savol ber — tayyorlanmagan javob berishga majbur qil.
+3. Vaziyatga mos USLUB DARAJASINI talab qil
+   (shikoyatda "I want money" emas, "I'd like to request compensation").
+4. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qayerda uslub darajasi noto'g'ri edi (juda qo'pol yoki juda rasmiy)
+   - shu vaziyat uchun 10 ta kerakli ibora`
+  },
+  ru: {
+    talkCmd: '/говори',
+    talk: (mavzu, savollar) =>
+`/говори rejimi.
+
+Mavzu: ${mavzu}
+Savollar ro'yxati:
+${savollar}
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va chuqurlashtiruvchi savol ber.
+3. Javobim grammatik to'g'ri lekin sun'iy bo'lsa:
+   "Верно, но русский сказал бы: ..." deb tabiiy variantni ko'rsat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, KELISHIK yoki VID nomini ayt,
+   qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora yoki устойчивое выражение.
+6. Barcha savollar tugagach: xatolar jadvali + 5 ta mustahkamlash mashqi.`,
+    rpCmd: '/роль',
+    rp: (mavzu, vaziyatlar) =>
+`/роль rejimi.
+
+Mavzu: ${mavzu}
+Vaziyatlar (birma-bir o'ynaymiz, men qaysinisidan boshlashni aytaman):
+${vaziyatlar}
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh (hujjat so'rash, navbat yo'qligi).
+2. Meni chalg'itadigan savol ber.
+3. Vaziyatga mos MUROJAAT SHAKLINI talab qil:
+   "ты" yoki "вы", "Извините" yoki "Простите", ism+otasining ismi.
+   Bu rus tilida juda muhim — noto'g'ri murojaat qo'pol eshitiladi.
+4. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qayerda ты/вы xato edi
+   - shu vaziyat uchun 10 ta kerakli ibora`
+  }
+};
+
+let MAVZULAR = [];
+let target = 'ar';
+let showTrans = true;
+let level = 'all';
+let query = '';
+const opened = new Set();
+
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+/* ---------- Yuklash ---------- */
+fetch('/blog/data/suhbat-banki.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    MAVZULAR = d.mavzular;
+    $('stTopics').textContent = MAVZULAR.length;
+    $('stQ').textContent  = MAVZULAR.reduce((s, t) => s + t.q.length, 0);
+    $('stRp').textContent = MAVZULAR.reduce((s, t) => s + t.rp.length, 0);
+    render();
+    openFromHash();
+  })
+  .catch(() => {
+    $('topics').innerHTML =
+      '<div class="empty-state"><strong>Ma\'lumotni yuklab bo\'lmadi</strong>' +
+      'Internet aloqasini tekshirib, sahifani yangilang.</div>';
+  });
+
+/* ---------- Filtr ---------- */
+function visible() {
+  const q = query.trim().toLowerCase();
+  return MAVZULAR.filter(t => {
+    if (level !== 'all' && t.lv !== level) return false;
+    if (!q) return true;
+    if ((t.uz + ' ' + t.ar + ' ' + t.en + ' ' + t.ru).toLowerCase().includes(q)) return true;
+    return t.q.some(x => (x.ar + ' ' + x.en + ' ' + x.ru).toLowerCase().includes(q))
+        || t.rp.some(x => (x.ar + ' ' + x.en + ' ' + x.ru).toLowerCase().includes(q));
+  });
+}
+
+/* ---------- Bitta qator ---------- */
+function rowHtml(item) {
+  const cls = l => 'is-' + l;
+  let h = `<div class="q-text"><div class="q-main ${cls(target)}">${esc(item[target])}</div>`;
+  if (showTrans) {
+    for (const l of ALT_ORDER[target]) {
+      h += `<div class="q-alt ${cls(l)}">${esc(item[l])}</div>`;
+    }
+  }
+  return h + '</div>';
+}
+
+/* ---------- Mavzu tanasi ---------- */
+function bodyHtml(t) {
+  const p = PROMPTS[target];
+  let h = `<div class="prompt-row">
+    <button class="prompt-btn" data-copy="talk" data-num="${t.num}">
+      <code>${esc(p.talkCmd)}</code> promptini nusxalash
+    </button>`;
+  if (t.rp.length) {
+    h += `<button class="prompt-btn secondary" data-copy="rp" data-num="${t.num}">
+      <code>${esc(p.rpCmd)}</code> — rolli o'yin
+    </button>`;
+  }
+  h += '</div>';
+
+  h += `<div class="q-head">${t.q.length} ta savol</div><ol class="q-list">`;
+  h += t.q.map(x => `<li>${rowHtml(x)}</li>`).join('');
+  h += '</ol>';
+
+  if (t.rp.length) {
+    h += `<div class="rp-block"><div class="q-head">🎭 Rolli o'yin uchun ${t.rp.length} ta vaziyat</div><ol class="q-list">`;
+    h += t.rp.map(x => `<li>${rowHtml(x)}</li>`).join('');
+    h += '</ol></div>';
+  }
+  return h;
+}
+
+/* ---------- Render ---------- */
+function render() {
+  const list = visible();
+  const totalQ = list.reduce((s, t) => s + t.q.length, 0);
+
+  $('resultLine').innerHTML = list.length
+    ? `<b>${list.length}</b> ta mavzu · <b>${totalQ}</b> ta savol · mashq tili: <b>${LANG_NAME[target]}</b>`
+    : '';
+
+  if (!list.length) {
+    $('topics').innerHTML =
+      `<div class="empty-state"><strong>Hech narsa topilmadi</strong>Boshqa so'z bilan qidirib ko'ring yoki daraja filtrini bekor qiling.</div>`;
+    return;
+  }
+
+  $('topics').innerHTML = list.map(t => {
+    const isOpen = opened.has(t.num);
+    return `<article class="topic${isOpen ? ' open' : ''}" id="mavzu-${t.num}" data-num="${t.num}">
+      <button class="topic-head" aria-expanded="${isOpen}">
+        <span class="topic-num">${t.num}</span>
+        <span class="topic-main">
+          <span class="topic-title">${esc(t.uz)}</span>
+          <span class="topic-sub">
+            <span class="lv-badge lv-${t.lv}">${LV_NAME[t.lv]}</span>
+            ${target === 'ar'
+              ? `<span class="ar">${esc(t.ar)}</span>`
+              : `<span class="topic-orig">${esc(t[target])}</span>`}
+            <span>${t.q.length} savol${t.rp.length ? ` · ${t.rp.length} rolli o'yin` : ''}</span>
+          </span>
+        </span>
+        <span class="topic-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="topic-body">${isOpen ? bodyHtml(t) : ''}</div>
+    </article>`;
+  }).join('');
+}
+
+/* ---------- Ochish / yopish ---------- */
+$('topics').addEventListener('click', e => {
+  const copyBtn = e.target.closest('[data-copy]');
+  if (copyBtn) { doCopy(copyBtn); return; }
+
+  const head = e.target.closest('.topic-head');
+  if (!head) return;
+
+  const art = head.closest('.topic');
+  const num = Number(art.dataset.num);
+  const t = MAVZULAR.find(x => x.num === num);
+
+  if (opened.has(num)) {
+    opened.delete(num);
+    art.classList.remove('open');
+    head.setAttribute('aria-expanded', 'false');
+    art.querySelector('.topic-body').innerHTML = '';
+  } else {
+    opened.add(num);
+    art.querySelector('.topic-body').innerHTML = bodyHtml(t);
+    art.classList.add('open');
+    head.setAttribute('aria-expanded', 'true');
+  }
+  syncExpandBtn();
+});
+
+/* ---------- Nusxalash ---------- */
+function doCopy(btn) {
+  const t = MAVZULAR.find(x => x.num === Number(btn.dataset.num));
+  const p = PROMPTS[target];
+  const mavzu = `${t.uz} (${t[target]})`;
+  let text;
+
+  if (btn.dataset.copy === 'talk') {
+    text = p.talk(mavzu, t.q.map((x, i) => `${i + 1}. ${x[target]}`).join('\n'));
+  } else {
+    text = p.rp(mavzu, t.rp.map((x, i) => `${i + 1}. ${x[target]}`).join('\n'));
+  }
+
+  navigator.clipboard.writeText(text).then(() => {
+    const old = btn.innerHTML;
+    btn.classList.add('done');
+    btn.textContent = '✓ Nusxalandi';
+    toast('Prompt nusxalandi — AI suhbatiga tashlang');
+    setTimeout(() => { btn.classList.remove('done'); btn.innerHTML = old; }, 1800);
+  }).catch(() => toast('Nusxalab bo\'lmadi — matnni qo\'lda belgilang'));
+}
+
+let toastTimer;
+function toast(msg) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+/* ---------- Boshqaruv ---------- */
+function segHandler(id, fn) {
+  $(id).addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    $(id).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    fn(btn);
+    render();
+  });
+}
+segHandler('targetSeg', btn => { target = btn.dataset.lang; });
+segHandler('levelSeg',  btn => { level  = btn.dataset.lv; });
+
+$('transBtn').addEventListener('click', () => {
+  showTrans = !showTrans;
+  $('transBtn').setAttribute('aria-pressed', String(showTrans));
+  $('transBtn').textContent = showTrans ? "Tarjima ko'rinsin" : "Tarjima yashirilgan";
+  render();
+});
+
+$('search').addEventListener('input', e => { query = e.target.value; render(); });
+
+function syncExpandBtn() {
+  const all = visible().length > 0 && visible().every(t => opened.has(t.num));
+  $('expandBtn').setAttribute('aria-pressed', String(all));
+  $('expandBtn').textContent = all ? 'Hammasini yopish' : 'Hammasini ochish';
+}
+
+$('expandBtn').addEventListener('click', () => {
+  const list = visible();
+  const allOpen = list.length > 0 && list.every(t => opened.has(t.num));
+  if (allOpen) list.forEach(t => opened.delete(t.num));
+  else list.forEach(t => opened.add(t.num));
+  render();
+  syncExpandBtn();
+});
+
+/* ---------- #mavzu-12 ko'rinishidagi havola ---------- */
+function openFromHash() {
+  const m = /^#mavzu-(\d+)$/.exec(location.hash);
+  if (!m) return;
+  const num = Number(m[1]);
+  if (!MAVZULAR.some(t => t.num === num)) return;
+  opened.add(num);
+  render();
+  syncExpandBtn();
+  const el = $('mavzu-' + num);
+  if (el) setTimeout(() => el.scrollIntoView({ block: 'start' }), 60);
+}
+window.addEventListener('hashchange', openFromHash);
+
+/* ---------- Tema (butun sayt bilan bir xil kalit) ---------- */
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  $('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', next);
+}
+
+(function () {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const b = $('themeToggle');
+      if (b) b.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
