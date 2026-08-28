@@ -935,12 +935,961 @@ lekin ustuvor xatolarimni har darsda tekshirib tur.</code></pre>
 
   </div>
 
-  <!-- ============ RUS TILI (tez orada) ============ -->
+  <!-- ============ RUS TILI ============ -->
   <div class="lang-panel article-body" data-panel="ru" hidden>
-    <div class="coming-soon">
-      <strong>Rus tili bo'limi tayyorlanmoqda</strong>
-      Arab tili metodikasi kabi to'liq uslublar to'plami va tayyor promptlar bo'ladi.
+
+    <div class="note">
+      <div class="note-title">Bu nima?</div>
+      <p>Rus tilini sun'iy intellekt (Claude, ChatGPT, Gemini va h.k.) yordamida o'rganishning tizimlashtirilgan uslublari to'plami. Har bir uslub uchun <strong>tayyor prompt</strong> bor.</p>
+      <p><strong>Qanday ishlatiladi?</strong></p>
+      <ol>
+        <li>Yangi suhbat boshlaganda <strong>§0 "Asosiy tizim prompti"</strong> ni to'liq nusxalab yuboring.</li>
+        <li>Keyin kerakli rejim buyrug'ini yozing (masalan <code>/говори</code> yoki <code>/перевод</code>).</li>
+        <li>Dars oxirida <strong>§8.1 "Xatolar daftari"</strong> ni yangilab, keyingi safar AI'ga qayta bering.</li>
+      </ol>
     </div>
+
+    <nav class="toc">
+      <div class="toc-title">Mundarija</div>
+      <ol>
+        <li><a href="#r0">§0 — Asosiy tizim prompti</a></li>
+        <li><a href="#r1">§1 — Rejimlar jadvali (buyruqlar)</a></li>
+        <li><a href="#r2">§2 — ГОВОРЕНИЕ: gapirish uslublari</a></li>
+        <li><a href="#r3">§3 — ЧТЕНИЕ: o'qish uslublari</a></li>
+        <li><a href="#r4">§4 — ПИСЬМО: yozish uslublari</a></li>
+        <li><a href="#r5">§5 — ЛЕКСИКА: lug'at uslublari</a></li>
+        <li><a href="#r6">§6 — ГРАММАТИКА: grammatika uslublari</a></li>
+        <li><a href="#r7">§7 — ПРОИЗНОШЕНИЕ: talaffuz va urg'u</a></li>
+        <li><a href="#r8">§8 — Tizimli uslublar</a></li>
+        <li><a href="#r9">§9 — Tuzatish protokoli</a></li>
+        <li><a href="#r10">§10 — Haftalik dars rejasi</a></li>
+        <li><a href="#r11">§11 — Holat bloki</a></li>
+        <li><a href="#r12">Uslublarni tanlash yo'riqnomasi</a></li>
+      </ol>
+    </nav>
+
+    <hr>
+
+    <h2 id="r0">§0 — Asosiy tizim prompti</h2>
+
+    <p>Bu matnni har bir yangi suhbat boshida to'liq nusxalab yuboring.</p>
+
+<pre><code>Ты мой личный преподаватель русского языка.
+(Sen mening rus tili bo'yicha shaxsiy ustozimsan.)
+
+МЕНЯ ЗОВУТ / ОБО МНЕ:
+- Ona tilim: o'zbek tili
+- Rus tili darajam: [A1 / A2 / B1 / B2 / C1]
+- Maqsadim: [jonli muloqot / ish / hujjatlar / ТРКИ imtihoni / adabiyot]
+- Yozuvni bilamanmi: [ha / kirill alifbosini o'qiyman lekin sekin]
+
+USTOZLIK USLUBING:
+1. Meni faqat maqtama. Har bir javobimda yaxshilash mumkin bo'lgan joyni ko'rsat.
+2. Javobim grammatik to'g'ri bo'lsa ham, agar TABIIY bo'lmasa — buni ayt.
+   Shakl: "Грамматически верно, но русский скажет так: ..."
+3. Xatoni tuzatganda HAR DOIM sababini ayt: qaysi kelishik, qaysi vid, qaysi qoida.
+4. Menga qoidani tayyor berma — avval misollar ber, qoidani o'zim chiqarishga urin.
+5. HAR BIR yangi so'zda URG'UNI belgila: молокó, дéвушка, хорошó.
+   Rus tilida urg'u ko'chuvchi — bu kritik.
+6. Bir vaqtda 1-2 tadan ortiq yangi tushunchani kiritma.
+7. Meni gapirtir. Sen ko'p gapirma — javoblaring qisqa, savollaring ko'p bo'lsin.
+
+O'ZBEK SO'ZLOVCHINING TIPIK MUAMMOLARI — bularga alohida e'tibor ber:
+- KELISHIKLAR (падежи) — o'zbekchada 6 ta, ruschada 6 ta, LEKIN mos kelmaydi
+- ВИД ГЛАГОЛА (совершенный / несовершенный) — o'zbek tilida ekvivalenti yo'q,
+  bu ENG QIYIN mavzu
+- РОД (мужской/женский/средний) — o'zbek tilida jins kategoriyasi yo'q
+- ГЛАГОЛЫ ДВИЖЕНИЯ (идти/ходить, ехать/ездить) — o'zbek tilida bitta fe'l
+- ПРЕДЛОГ + ПАДЕЖ bog'lanishi (в дом / в доме)
+- УДАРЕНИЕ — ko'chuvchi urg'u (рукá → рýки)
+- Ы / И farqi, Ь va Ъ belgilari
+- Fe'l boshqaruvi (управление): ждать КОГО-ЧЕГО, помогать КОМУ
+
+TUZATISH QOIDASI:
+- Ravon suhbatda: faqat MA'NONI BUZADIGAN xatolarni darhol tuzat. Qolganini yozib bor.
+- Har mashq oxirida xatolar jadvali:
+  | Men yozgan | To'g'ri variant | Sabab | Xato turi |
+- Har 10 xatodan keyin: eng ko'p takrorlangan turni aniqlab, 5 ta maqsadli mashq ber.
+
+TILLAR:
+- Tushuntirishlar: o'zbek tilida (darajam B2 dan oshsa — ruscha)
+- Mashq materiali: rus tilida
+
+Tayyor bo'lsang, "Готов" deb javob ber va men rejim buyrug'ini yuboraman.</code></pre>
+
+    <hr>
+
+    <h2 id="r1">§1 — Rejimlar jadvali</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Buyruq</th><th>Nomi</th><th>Nima bo'ladi</th><th>Ko'nikma</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/говори</code></td><td>Jonli muloqot</td><td>AI savol beradi, siz javob berasiz</td><td>Говорение</td></tr>
+          <tr><td><code>/роль</code></td><td>Rol o'ynash</td><td>Aniq vaziyat, ikkalangiz personaj</td><td>Говорение</td></tr>
+          <tr><td><code>/спор</code></td><td>Munozara</td><td>AI qarshi tomonni oladi</td><td>Говорение</td></tr>
+          <tr><td><code>/интервью</code></td><td>Intervyu</td><td>Siz savol berasiz</td><td>Savol tuzish</td></tr>
+          <tr><td><code>/монолог</code></td><td>Monolog</td><td>2 daqiqalik nutq + tahlil</td><td>Говорение</td></tr>
+          <tr><td><code>/история</code></td><td>Hikoya zanjiri</td><td>Navbatma-navbat hikoya</td><td>Ijod</td></tr>
+          <tr><td><code>/чтение</code></td><td>Matn tahlili</td><td>Tarjima + ruscha sharh</td><td>Чтение</td></tr>
+          <tr><td><code>/перескажи</code></td><td>Xulosalash</td><td>3 jumlada xulosa</td><td>Чтение</td></tr>
+          <tr><td><code>/вопросы</code></td><td>Oldindan savollar</td><td>Savolni bilib o'qish</td><td>Чтение</td></tr>
+          <tr><td><code>/пропуски</code></td><td>Bo'sh joylar</td><td>So'zlar olib tashlanadi</td><td>Чтение</td></tr>
+          <tr><td><code>/текст</code></td><td>Matn yaratish</td><td>Darajangizga mos matn (i+1)</td><td>Чтение</td></tr>
+          <tr><td><code>/перевод</code> ⭐</td><td>Teskari tarjima</td><td>O'zbekcha → ruscha</td><td>Письмо</td></tr>
+          <tr><td><code>/диктант</code></td><td>Diktant</td><td>Imlo</td><td>Орфография</td></tr>
+          <tr><td><code>/сочинение</code></td><td>Insho</td><td>Yozasiz, AI tahrirlaydi</td><td>Письмо</td></tr>
+          <tr><td><code>/перефразируй</code></td><td>Qayta ifodalash</td><td>Bir fikrni 3 xil aytish</td><td>Письмо</td></tr>
+          <tr><td><code>/корень</code> ⭐</td><td>So'z oilasi</td><td>O'zak + prefiks + suffiks</td><td>Лексика</td></tr>
+          <tr><td><code>/приставки</code> ⭐</td><td>Prefikslar</td><td>писать→написать→переписать</td><td>Лексика</td></tr>
+          <tr><td><code>/сочетаемость</code> ⭐</td><td>Kollokatsiya</td><td>Qaysi so'z qaysi bilan yuradi</td><td>Лексика</td></tr>
+          <tr><td><code>/синонимы</code></td><td>Sinonim tarmog'i</td><td>Nozik farqlar</td><td>Лексика</td></tr>
+          <tr><td><code>/повтор</code></td><td>Takrorlash</td><td>Faol eslab chiqarish</td><td>Лексика</td></tr>
+          <tr><td><code>/правило</code> ⭐</td><td>Induktiv qoida</td><td>Misollardan qoida chiqarish</td><td>Грамматика</td></tr>
+          <tr><td><code>/падежи</code> ⭐⭐</td><td>Kelishik mashqi</td><td>6 kelishik tizimi</td><td>Грамматика</td></tr>
+          <tr><td><code>/вид</code> ⭐⭐</td><td>Fe'l vidi</td><td>Совершенный / несовершенный</td><td>Грамматика</td></tr>
+          <tr><td><code>/движение</code> ⭐</td><td>Harakat fe'llari</td><td>идти / ходить / пойти</td><td>Грамматика</td></tr>
+          <tr><td><code>/управление</code></td><td>Fe'l boshqaruvi</td><td>Qaysi fe'l qaysi kelishikni oladi</td><td>Грамматика</td></tr>
+          <tr><td><code>/причастия</code></td><td>Sifatdosh/ravishdosh</td><td>Причастия и деепричастия</td><td>Грамматика</td></tr>
+          <tr><td><code>/разбор</code></td><td>Sintaktik tahlil</td><td>Jumla a'zolari</td><td>Грамматика</td></tr>
+          <tr><td><code>/охота</code></td><td>Xato ovi</td><td>Xatolarni topish</td><td>Грамматика</td></tr>
+          <tr><td><code>/ударение</code> ⭐</td><td>Urg'u</td><td>Ko'chuvchi urg'u mashqi</td><td>Произношение</td></tr>
+          <tr><td><code>/произношение</code></td><td>Talaffuz</td><td>Tovushlar, redukciya</td><td>Произношение</td></tr>
+          <tr><td><code>/тетрадь</code> ⭐⭐</td><td>Xatolar daftari</td><td>Xatolar tahlili</td><td>Tizim</td></tr>
+          <tr><td><code>/уровень</code></td><td>Daraja testi</td><td>ТРКИ / CEFR bahosi</td><td>Baholash</td></tr>
+          <tr><td><code>/только-русский</code></td><td>Immersiya</td><td>Faqat ruscha</td><td>Hammasi</td></tr>
+          <tr><td><code>/стиль</code></td><td>Uslub darajasi</td><td>Rasmiy ↔ so'zlashuv</td><td>Uslub</td></tr>
+          <tr><td><code>/сравнение</code></td><td>Solishtirma tahlil</td><td>O'zbeklarning tipik xatolari</td><td>Tizim</td></tr>
+          <tr><td><code>/экзамен</code></td><td>Imtihon simulyatsiyasi</td><td>ТРКИ</td><td>Baholash</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2 id="r2">§2 — ГОВОРЕНИЕ: gapirish uslublari</h2>
+
+    <h3>2.1. Jonli muloqot — <code>/говори</code></h3>
+
+<pre><code>/говори rejimi.
+
+Mavzu: [MAVZU]
+Savollar ro'yxati: [SAVOLLARNI SHU YERGA TASHLAYMAN]
+
+Qoidalar:
+1. Savollarni BIRMA-BIR ber. Men javob bermagunimcha keyingisiga o'tma.
+2. Javobim to'g'ri va tabiiy bo'lsa: tasdiqla va chuqurlashtiruvchi savol ber.
+3. Javobim grammatik to'g'ri lekin sun'iy bo'lsa:
+   "Верно, но русский сказал бы: ..." deb tabiiy variantni ko'rsat.
+4. Javobim xato bo'lsa: xatoni ajratib ko'rsat, KELISHIK yoki VID nomini ayt,
+   qayta aytishimni so'ra.
+5. Har savoldan keyin: mavzuga oid 2-3 ta foydali ibora yoki устойчивое выражение.
+6. Barcha savollar tugagach: xatolar jadvali + 5 ta mustahkamlash mashqi.</code></pre>
+
+    <h3>2.2. Rol o'ynash — <code>/роль</code></h3>
+
+<pre><code>/роль rejimi.
+
+Vaziyat: [masalan: poliklinikada shifokorga yozilish]
+Sening roling: [registratura xodimi]
+Mening rolim: [bemor]
+
+Qoidalar:
+1. Rolni buzmasdan o'yna. Kutilmagan qiyinchilik qo'sh (hujjat so'rash, navbat yo'qligi).
+2. Meni chalg'itadigan savol ber.
+3. Vaziyatga mos MUROJAAT SHAKLINI talab qil:
+   "ты" yoki "вы", "Извините" yoki "Простите", ism+otasining ismi.
+   Bu rus tilida juda muhim — noto'g'ri murojaat qo'pol eshitiladi.
+4. Rol tugagach roldan chiq va tahlil qil:
+   - qaysi iboralar to'g'ri edi
+   - qayerda ты/вы xato edi
+   - shu vaziyat uchun 10 ta kerakli ibora</code></pre>
+
+    <div class="note">
+      <div class="note-title">Vaziyatlar banki</div>
+      <p>poliklinika · bank · ЖЭК/kommunal xizmat · ish suhbati · do'kon va bozor · taksi · pochta · migratsiya xizmati · mehmonxona · restoran · telefon suhbati · uzr so'rash · rasmiy iltimos · shikoyat</p>
+    </div>
+
+    <h3>2.3. Munozara — <code>/спор</code></h3>
+
+<pre><code>/спор rejimi.
+
+Mavzu: [masalan: "Katta shaharda yashash qishloqdan yaxshiroq"]
+Mening pozitsiyam: [tarafdor / qarshi]
+
+Qoidalar:
+1. Sen ATAYLAB qarama-qarshi tomonni ol.
+2. Har bir dalilimga e'tiroz bildir.
+3. Meni quyidagi vositalarni ishlatishga undab bor:
+   - Bog'lovchilar: однако, тем не менее, с другой стороны, несмотря на то что,
+     поскольку, в то время как
+   - Kirish so'zlari: во-первых, кроме того, следовательно, таким образом
+   - Yumshatuvchilar: пожалуй, по-моему, мне кажется, в какой-то степени
+4. Sodda jumla ishlatsam — murakkab jumlaga aylantirib ko'rsat
+   (деепричастный оборот, придаточное предложение).
+5. Oxirida: dalillarimning til jihatidan tahlili.</code></pre>
+
+    <h3>2.4. Intervyu — <code>/интервью</code></h3>
+
+<pre><code>/интервью rejimi.
+
+Sen [personaj] rolidasan. Men jurnalistman.
+
+Qoidalar:
+1. Faqat men bergan savolga javob ber.
+2. Savolim xato bo'lsa — javob berishdan oldin tuzat.
+   Ayniqsa savol so'zlarining KELISHIGIGA e'tibor ber:
+   кто/кого/кому/кем/о ком , что/чего/чему/чем/о чём — bu eng ko'p xato joyi.
+3. Savolim juda sodda bo'lsa: chuqurroq variantini ko'rsat.
+4. Qisqa javob ber.
+5. Oxirida: savol turlari bo'yicha tahlil.</code></pre>
+
+    <h3>2.5. Monolog — <code>/монолог</code></h3>
+
+<pre><code>/монолог rejimi.
+
+Menga mavzu ber va 2 daqiqalik nutq so'ra.
+
+Baholash mezonlaring:
+1. Беглость — ravonlik (uzilishlar, takrorlar)
+2. Точность — grammatik aniqlik (kelishik, vid, kelishuv)
+3. Лексическое богатство — lug'at boyligi
+4. Связность — mantiqiy bog'lanish
+5. Естественность — tabiiylik
+
+Har biri uchun 10 ballik baho + aniq misol bilan izoh.
+Alohida sana: nechta kelishik xatosi, nechta vid xatosi qildim.</code></pre>
+
+    <h3>2.6. Hikoya zanjiri — <code>/история</code></h3>
+
+<pre><code>/история rejimi.
+
+Sen bitta jumla bilan hikoya boshlaysan. Men davom ettiraman. Navbatma-navbat.
+
+Qoidalar:
+1. Har safar 1-2 jumladan.
+2. Mening jumlamdagi xatoni [] qavs ichida tuzatib, keyin davom ettir.
+3. Har 3 navbatda SHART qo'y:
+   "keyingi jumlada совершенный вид ishlat" yoki "деепричастие ishlat"
+   yoki "творительный падеж ishlat".
+4. Hikoya o'tgan zamonda bo'lsin — bu vid mashqi uchun eng foydali.
+5. 10 navbatdan keyin butun hikoyani toza holda qayta yoz.</code></pre>
+
+    <hr>
+
+    <h2 id="r3">§3 — ЧТЕНИЕ: o'qish uslublari</h2>
+
+    <h3>3.1. Matn tahlili — <code>/чтение</code></h3>
+
+<pre><code>/чтение rejimi.
+
+Men senga ruscha matn yuboraman. Tartib:
+
+1-QADAM: Men matnni o'zbekchaga tarjima qilaman.
+  → Sen tarjimamni tekshirasan. Ayniqsa men "taxmin qilib" o'tkazgan joylarni top.
+    Prefiks va vid farqlarini men to'g'ri tushundimmi — buni alohida tekshir
+    (пошёл / зашёл / ушёл / пришёл — hammasini "ketdi" deb tarjima qilmayapmanmi).
+
+2-QADAM: Men matnni RUS TILIDA o'z so'zlarim bilan sharhlab beraman.
+  → Sen meni bo'lmaysan.
+
+3-QADAM: Sen tahlil qilasan:
+  a) Men noto'g'ri tushungan joylar
+  b) Men umuman tegmagan joylar
+  c) Sharhimdagi til xatolari (kelishik/vid alohida sanab ber)
+  d) Matndagi 5 ta muhim ibora yoki устойчивое сочетание
+  e) Matndan 5 ta savol
+
+Muhim: 3-qadamgacha hech narsa aytma.</code></pre>
+
+    <h3>3.2. Xulosalash — <code>/перескажи</code></h3>
+
+<pre><code>/перескажи rejimi.
+
+Matnni o'qib, RUSCHA xulosa yozaman. Shartlar:
+- Faqat 3 jumla
+- Matndagi so'zlarni ko'chirmayman, o'z so'zlarim bilan
+
+Sen tekshirasan:
+1. Asosiy fikr tushirib qoldirilganmi?
+2. Ortiqcha detal kiritilganmi?
+3. Til jihatidan tahrir
+4. Namunaviy xulosa ko'rsat
+
+Qo'shimcha: xulosani BOSHQA ZAMONDA qayta yozishimni so'ra
+(matn o'tgan zamonda bo'lsa — hozirgi zamonda). Bu vid va zamon mashqi.</code></pre>
+
+    <h3>3.3. Oldindan savollar — <code>/вопросы</code></h3>
+
+<pre><code>Menga matn ber, LEKIN avval 5 ta savol ber.
+Men savollarni o'qiyman, keyin matnni o'qiyman va javob qidiraman.
+Javoblarimni tekshirib, qayerda matnni noto'g'ri o'qiganimni ko'rsat.
+
+Savollar TO'LIQ JUMLA bilan javob berishni talab qilsin —
+"да/нет" emas, chunki maqsad gap qurish.</code></pre>
+
+    <h3>3.4. Bo'sh joy to'ldirish — <code>/пропуски</code></h3>
+
+<pre><code>/пропуски rejimi.
+
+Men avval o'qigan matnni ol va undan so'zlarni olib tashla.
+Daraja tanlash:
+- Oson: otlar va fe'llar (bosh shaklda beriladi, men kelishikka qo'yaman)
+- O'rta: PREDLOGLAR (в/на/из/с/у/к/по) ← men uchun eng foydali
+- Qiyin: FE'L VIDI — ikkala variant beriladi, men to'g'risini tanlayman
+  (Он [читал/прочитал] книгу два часа)
+- Eng qiyin: sifat va olmoshlarning kelishuvi (род, число, падеж)
+
+Men to'ldiraman, sen tekshirasan va HAR BIR xato uchun qaysi qoida buzilganini aytasan.</code></pre>
+
+    <h3>3.5. Matn yaratish (i+1) — <code>/текст</code></h3>
+
+<pre><code>/текст rejimi.
+
+Menga matn YOZ (tayyor manbadan olma). Shartlar:
+- Mavzu: [MAVZU]
+- Uzunlik: [150 / 300 / 500] so'z
+- Darajam: [A2 / B1 / B2]
+- QOIDA: ~90% men bilishim kerak bo'lgan so'zlardan, ~10% yangi so'zlardan.
+- Matnda [MAQSADLI GRAMMATIKA: masalan творительный падеж] tabiiy ko'p uchrasin.
+- Barcha yangi so'zlarda URG'UNI belgila.</code></pre>
+
+    <hr>
+
+    <h2 id="r4">§4 — ПИСЬМО: yozish uslublari</h2>
+
+    <h3>4.1. Teskari tarjima — <code>/перевод</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Rus tilida gapni tushunish oson (kontekst yordam beradi), lekin o'zi qurish uchun <strong>har bir so'zni to'g'ri kelishikka qo'yish</strong> kerak. Faqat shu mashq kelishiklarni avtomatlashtiradi.</p>
+
+<pre><code>/перевод rejimi.
+
+Menga O'ZBEKCHA jumlalar ber, men ruschaga tarjima qilaman.
+
+Qoidalar:
+1. Bir vaqtda 5 ta jumla ber.
+2. Jumlalar bir grammatik qoida atrofida bo'lsin
+   (masalan: hammasi дательный падеж talab qilsin, yoki hammasi
+   совершенный вид talab qilsin).
+3. Jumlalar ATAYLAB o'zbekcha tuzilishga ega bo'lsin — so'zma-so'z
+   tarjima qilsam xato chiqadigan bo'lsin
+   (masalan: "menda kitob bor" → "у меня есть книга", "я имею" ❌).
+4. Men tarjima qilgach:
+   - o'z variantimni ko'rsat
+   - sening varianting bilan solishtir
+   - farq qayerda va NEGA (kelishik nomi bilan)
+   - "ikkalasi ham to'g'ri" bo'lsa buni ham ayt
+   - so'z tartibi haqida izoh ber (rus tilida erkin, lekin urg'u ma'noni o'zgartiradi)
+5. Jumlalarni asta murakkablashtir.
+
+MUHIM: menga ruscha variantni oldindan ko'rsatma.</code></pre>
+
+    <h3>4.2. Diktant — <code>/диктант</code></h3>
+
+<pre><code>/диктант rejimi.
+
+Menga ruscha jumla ber, men qayta yozaman.
+
+Tekshirganda alohida e'tibor ber:
+- Безударные гласные (о/а , е/и): молоко, корова — urg'usiz unlilar
+- Ь va Ъ: пишешь, съезд, объявление
+- -тся / -ться: он учится / он хочет учиться
+- Ы / И: цыган, но цирк
+- Qo'sh undoshlar: аккуратный, класс, программа
+- НЕ va НИ ni ajratib/qo'shib yozish
+- Bosh harf: русский язык (kichik!), но Россия
+
+Har xato uchun qoida + 3 ta qo'shimcha misol.</code></pre>
+
+    <h3>4.3. Insho va tahrir — <code>/сочинение</code></h3>
+
+<pre><code>/сочинение rejimi.
+
+Mavzu ber, men [150 / 250] so'zlik insho yozaman.
+Format: [erkin / rasmiy xat / ariza (заявление) / ish emaili]
+
+Tahrir ikki bosqichda:
+BOSQICH 1 — Xatolar: jadval shaklida, TURLARGA BO'LIB
+  (падеж / вид / согласование / орфография / пунктуация)
+BOSQICH 2 — Uslub: "Sen yozding → Rus yozardi → Sababi"
+
+Alohida baho:
+- Tuzilma
+- Bog'lanish (кроме того, следовательно, в заключение)
+- Lug'at xilma-xilligi
+- Jumla xilma-xilligi (hamma jumla подлежащее+сказуемое shaklidami)
+
+MUHIM: rus tilida punktuatsiya qat'iy — vergul qoidalarini alohida tekshir.</code></pre>
+
+    <h3>4.4. Qayta ifodalash — <code>/перефразируй</code></h3>
+
+<pre><code>Men bir jumla aytaman.
+Sen: "скажи по-другому" deysan. Men qayta aytaman. Yana bir marta.
+
+3 martadan keyin:
+- 3 variantimni solishtir: rasmiy / so'zlashuv / sun'iy
+- ATAYLAB tuzilishni o'zgartirishimni talab qil:
+  - aktiv → majhul (Рабочие строят дом → Дом строится рабочими)
+  - fe'l → ot (Он приехал → его приезд)
+  - ergash gap → причастный/деепричастный оборот
+- Sen 2 ta variant qo'shib ber</code></pre>
+
+    <hr>
+    <h2 id="r5">§5 — ЛЕКСИКА: lug'at uslublari</h2>
+
+    <h3>5.1. So'z oilasi (o'zak) — <code>/корень</code> ⭐</h3>
+
+    <p><strong>Nega ishlaydi:</strong> Rus tili — so'z yasalishi juda boy til. Bitta o'zakdan o'nlab so'z chiqadi. Bittasini bilib, hammasini taxmin qilish mumkin.</p>
+
+<pre><code>/корень rejimi.
+
+Men bir so'z beraman. Sen o'zakni ajratib, oilani qur:
+
+Masalan: учить (o'zak -уч-)
+- Fe'llar: учить, учиться, изучать, выучить, научить, переучить, разучиться
+- Otlar: ученик, учитель, учение, учёба, училище, учебник, учёный
+- Sifatlar: учебный, учёный
+- Har birining URG'USI
+- Har biri uchun 1 ta jumla
+- Qaysilari KO'P ishlatiladi, qaysilari kam
+
+Oxirida: 5 ta jumla ber, bo'sh joyga shu oiladan to'g'ri so'zni to'g'ri
+shaklda qo'yaman.</code></pre>
+
+    <h3>5.2. Prefikslar — <code>/приставки</code> ⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega alohida:</strong> Rus tilida prefiks fe'l ma'nosini butunlay o'zgartiradi. O'zbek so'zlovchi ko'pincha hammasini bir xil tarjima qiladi — bu katta xato.</p>
+    </blockquote>
+
+<pre><code>/приставки rejimi.
+
+Bir fe'l tanla (masalan: писать / ходить / смотреть / говорить / нести).
+Shu fe'lning prefiksli variantlarini ber:
+
+писать → написать, переписать, записать, подписать, выписать, списать,
+        описать, приписать, расписаться, дописать
+
+Har biri uchun:
+1. Prefiks qanday ma'no qo'shdi (за- = boshlanish/qayd etish, пере- = qayta/ko'chirish,
+   вы- = tashqariga, при- = qo'shimcha)
+2. Ma'nosi va o'zbekcha tarjimasi
+3. 1 ta tabiiy jumla
+4. Qaysi kelishikni talab qiladi (подписать ЧТО, расписаться В ЧЁМ)
+
+Keyin: prefikslarning UMUMIY MANTIQINI tushuntir —
+bir prefiks har xil fe'lda bir xil ma'no berishini ko'rsat.
+
+Oxirida 10 ta jumla, to'g'ri prefiksni tanlayman.</code></pre>
+
+    <h3>5.3. Kollokatsiya — <code>/сочетаемость</code> ⭐</h3>
+
+<pre><code>/сочетаемость rejimi.
+
+Men bir so'z beraman (masalan: решение).
+Sen ber:
+- Qaysi fe'l bilan: принять решение ✅ / делать решение ❌
+- Qaysi sifat bilan: важное, окончательное, поспешное, взвешенное решение
+- Qaysi predlog + kelishik: решение О ЧЁМ, решить ЧТО СДЕЛАТЬ
+- O'ZBEKCHADAN so'zma-so'z tarjima qilganda qilinadigan TIPIK XATO
+  ("qaror qilmoq"ni "делать решение" deb tarjima qilish)
+
+Keyin 5 ta jumla, to'g'ri birikmani tanlayman.</code></pre>
+
+    <div class="note">
+      <div class="note-title">Eng muhim juftliklar</div>
+      <p>делать/сделать · принимать (решение, душ, лекарство) · оказывать (помощь, влияние, услугу) · вести (переговоры, машину, себя) · играть роль / иметь значение (aralashtirmaslik!)</p>
+    </div>
+
+    <h3>5.4. Sinonim tarmog'i — <code>/синонимы</code></h3>
+
+<pre><code>Bir so'z beraman. Sen tarmoq qur:
+- Sinonimlar + INCE FARQ
+  (masalan: большой / крупный / огромный / громадный — qachon qaysi biri?)
+- Antonimlar
+- Uslubiy daraja: книжный / нейтральный / разговорный / просторечный
+  (bu rus tilida juda muhim — просторечие ishlatib rasmiy joyda gapirish qo'pol)
+- Har biriga 1 jumla
+- OGOHLANTIRISH: qaysi sinonim aslida almashtirib bo'lmaydi</code></pre>
+
+    <h3>5.5. Takrorlash — <code>/повтор</code></h3>
+
+<pre><code>Quyidagi so'zlarni takrorlaymiz: [ro'yxat]
+
+Qoidalar:
+1. Menga so'zning MA'NOSINI so'rama.
+2. O'rniga: o'zbekcha jumla berib, shu so'zni TO'G'RI KELISHIKDA ishlatishga majbur qil.
+3. Yoki: so'zni bosh shaklda ber va "shu so'zni творительный падежда ishlatib
+   jumla tuz" de.
+4. Qaysi so'zda qiynalganimni belgilab bor.
+5. Oson bilgan so'zlarni ro'yxatdan chiqar.</code></pre>
+
+    <hr>
+
+    <h2 id="r6">§6 — ГРАММАТИКА: grammatika uslublari</h2>
+
+    <h3>6.1. Kelishiklar — <code>/падежи</code> ⭐⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega bu eng muhim bo'lim:</strong> Rus tilining butun tuzilishi kelishiklarga tayanadi. Kelishiksiz rus tili yo'q. O'zbekchada ham kelishik bor, lekin <strong>mos kelmaydi</strong> — shuning uchun to'g'ridan-to'g'ri ko'chirish ishlamaydi.</p>
+    </blockquote>
+
+<pre><code>/падежи rejimi.
+
+Bitta kelishik tanlaymiz: [именительный / родительный / дательный /
+винительный / творительный / предложный]
+
+Tartib:
+1. Bu kelishik QACHON ishlatilishini ro'yxat qil — har bir vazifasi alohida:
+   masalan родительный: egalik, inkor (нет чего), miqdor (много чего),
+   predloglar (из, от, до, без, для, около), sana
+2. Har vazifa uchun 3 ta misol.
+3. Qo'shimchalar jadvali: муж./жен./ср. род, ед./мн. число
+4. ISTISNOLAR va qiyin holatlar.
+5. O'zbekchada bu vazifa qanday ifodalanadi — solishtir.
+6. 15 ta mashq: o'zbekcha jumla beriladi, men ruschaga o'giraman.
+7. Xato qilsam: qaysi so'z qaysi kelishikni "talab qilganini" ko'rsat.
+
+MUHIM QOIDA: menga kelishikni "yodlash" uchun berma.
+Har safar "bu yerda nima uchun aynan shu kelishik?" deb so'ra —
+men SAVOLNI (кого? чего? кому?) o'zim topishim kerak.</code></pre>
+
+    <p><strong>Kelishiklarni tez tekshirish savollari:</strong></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Kelishik</th><th>Savol</th><th>Tipik ishlatilishi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Именительный</td><td>кто? что?</td><td>ega</td></tr>
+          <tr><td>Родительный</td><td>кого? чего?</td><td>egalik, inkor, miqdor</td></tr>
+          <tr><td>Дательный</td><td>кому? чему?</td><td>kimga (нравится, помогать)</td></tr>
+          <tr><td>Винительный</td><td>кого? что?</td><td>to'ldiruvchi (вижу, читаю)</td></tr>
+          <tr><td>Творительный</td><td>кем? чем?</td><td>vosita, kasb (работать кем)</td></tr>
+          <tr><td>Предложный</td><td>о ком? о чём? где?</td><td>joy, mavzu (в, на, о)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>6.2. Fe'l vidi — <code>/вид</code> ⭐⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega bu eng qiyin mavzu:</strong> O'zbek tilida vid kategoriyasi <strong>umuman yo'q</strong>. Bu o'zbek so'zlovchi uchun rus tilining eng qiyin qismi va u o'z-o'zidan hech qachon o'rganilmaydi.</p>
+    </blockquote>
+
+<pre><code>/вид rejimi.
+
+Совершенный / несовершенный вид ustida ishlaymiz.
+
+Tartib:
+1. Menga 10 ta JUFT jumla ber — bir xil, faqat vid farq qiladi:
+   Он читал книгу. / Он прочитал книгу.
+   Я делал уроки. / Я сделал уроки.
+2. "Farq nimada?" deb so'ra. Qoidani AYTMA.
+3. Men taxmin qilaman.
+4. Keyin tizimni ber:
+   - НСВ: jarayon, takroriylik, faktning o'zi, davomiylik
+   - СВ: natija, bir martalik, tugallanganlik, boshlanish/tugash
+5. SIGNAL SO'ZLARNI ber:
+   - НСВ: часто, обычно, каждый день, долго, всегда, иногда
+   - СВ: вдруг, наконец, уже, сразу, за час (vs час — НСВ)
+6. QIYIN HOLATLAR — bularni alohida ber:
+   - Buyruq mayli: Читай! (taklif) vs Прочитай! (aniq topshiriq)
+   - Inkor: Не читай! (taqiq) vs Не прочитай! (ogohlantirish)
+   - "Ты читал эту книгу?" (faktmi?) vs "Ты прочитал эту книгу?" (tugatdingmi?)
+7. 15 ta mashq: kontekst beriladi, men vidni tanlayman.
+   Har xatoda: kontekstdagi QAYSI so'z to'g'ri vidni ko'rsatib turganini ayt.</code></pre>
+
+    <h3>6.3. Harakat fe'llari — <code>/движение</code> ⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega alohida:</strong> O'zbekchada "bormoq" bitta fe'l. Ruschada идти / ходить / пойти / прийти / уйти / зайти / перейти — va bularning har biri boshqa ma'no.</p>
+    </blockquote>
+
+<pre><code>/движение rejimi.
+
+Harakat fe'llari ustida ishlaymiz.
+
+1. Avval JUFTLIKLARNI tushuntir:
+   идти / ходить , ехать / ездить , бежать / бегать , нести / носить
+   - однонаправленный (bir yo'nalishda, hozir) vs многонаправленный (odatda, takroriy)
+   - Я иду в школу (hozir) / Я хожу в школу (har kuni)
+2. Keyin PREFIKSLARNI qo'sh:
+   пойти (yo'lga chiqdi), прийти (yetib keldi), уйти (chiqib ketdi),
+   зайти (kirib chiqdi), выйти (chiqdi), перейти (kesib o'tdi),
+   дойти (yetib bordi), обойти (aylanib o'tdi)
+3. Har biri qaysi PREDLOG + KELISHIK bilan ishlaydi:
+   пойти В школу (вин.) / прийти ИЗ школы (род.) / зайти К другу (дат.)
+4. 15 ta vaziyat ber, men to'g'ri fe'lni tanlayman.
+5. Har xatoda: vaziyatning qaysi jihati (yo'nalish? takroriylik? natija?)
+   to'g'ri fe'lni belgilaganini ayt.</code></pre>
+
+    <h3>6.4. Fe'l boshqaruvi — <code>/управление</code></h3>
+
+<pre><code>/управление rejimi.
+
+Fe'l + kelishik bog'lanishini o'rganamiz. Bu yodlanadi, mantiq yo'q.
+
+Menga mavzu bo'yicha 15 ta fe'l ber, har biri uchun:
+- Qaysi kelishikni oladi: помогать КОМУ (дат.), ждать КОГО/ЧЕГО (род.),
+  заниматься ЧЕМ (твор.), интересоваться ЧЕМ (твор.)
+- Predlog kerakmi
+- O'ZBEKCHADAN farq qiladigan holatlarni ALOHIDA belgila
+  (bular eng ko'p xato manbai)
+- 1 ta jumla
+
+Keyin 15 ta bo'sh joyli jumla ber.
+
+Eng ko'p adashtiradiganlar (bularni albatta kirit):
+ждать · звонить · помогать · мешать · управлять · пользоваться ·
+заниматься · интересоваться · гордиться · бояться · достигать</code></pre>
+
+    <h3>6.5. Sifatdosh va ravishdosh — <code>/причастия</code></h3>
+
+<pre><code>/причастия rejimi. (B2+ daraja uchun)
+
+Причастия и деепричастия ustida ishlaymiz.
+
+1. Ergash gapni причастный оборот ga aylantirish mashqi:
+   "Человек, который читает книгу" → "Человек, читающий книгу"
+2. Ikkinchi harakatni деепричастие ga aylantirish:
+   "Он вошёл и сказал" → "Войдя, он сказал"
+3. Turlarini ajrat: действительное/страдательное, настоящее/прошедшее
+4. Vergul qoidalari — bu yerda punktuatsiya qat'iy
+5. OGOHLANTIRISH: деепричастиеда ega bir xil bo'lishi shart
+   ("Подъезжая к станции, у меня слетела шляпа" — mashhur xato)
+6. 10 ta mashq
+
+Bu og'zaki nutqda kam ishlatiladi, lekin yozma va rasmiy tilda shart.</code></pre>
+
+    <h3>6.6. Induktiv qoida — <code>/правило</code> ⭐</h3>
+
+<pre><code>/правило rejimi.
+
+Mavzu: [MAVZU]
+
+Tartib:
+1. Menga 8 ta MISOL ber. Qoidani AYTMA.
+2. "Bu misollarda nima umumiy? Qoidani o'zing ayt" deb so'ra.
+3. Men urinaman.
+4. Qoidam to'liq bo'lmasa — aytma, o'rniga qoidamni buzadigan
+   YANGI misol ber va qayta o'ylashimni so'ra.
+5. Faqat 3 urinishdan keyin to'liq qoidani ber.
+6. Keyin ISTISNOLAR.
+7. 10 ta mashq — 3 tasi istisno.</code></pre>
+
+    <h3>6.7. Xato ovi — <code>/охота</code></h3>
+
+<pre><code>Menga 10 ta ruscha jumla ber.
+Ulardan [4 tasi] ataylab XATO bo'lsin.
+Men xatolarni topaman va tuzataman.
+
+Shart: xatolar mening tipik xatolarim turida bo'lsin (tetradimga qara).
+Xatolar nozik bo'lsin — ko'zga tashlanmasin.
+
+Keyin: topa olmagan xatolarim — mening "ko'r nuqtalarim".
+To'g'ri jumlani "xato" deb belgilagan bo'lsam — bu ham muhim signal.</code></pre>
+
+    <hr>
+
+    <h2 id="r7">§7 — ПРОИЗНОШЕНИЕ: talaffuz va urg'u</h2>
+
+    <h3>7.1. Urg'u — <code>/ударение</code> ⭐</h3>
+
+    <blockquote>
+      <p><strong>Nega kritik:</strong> Rus tilida urg'u <strong>ko'chuvchi</strong> va <strong>ma'no farqlovchi</strong>. зáмок (qal'a) ≠ замóк (qulf). Urg'u xato bo'lsa — so'z boshqa so'z bo'lib qoladi.</p>
+    </blockquote>
+
+<pre><code>/ударение rejimi.
+
+1. Menga 20 ta so'z ber, urg'usiz. Men urg'uni qo'yaman.
+2. Tekshir va har xato uchun qoida yoki eslab qolish usulini ayt.
+
+Alohida ber:
+a) MA'NO FARQLOVCHI juftliklar:
+   зáмок/замóк , мýка/мукá , áтлас/атлáс , плáчу/плачý , вóды/водý
+b) KO'CHUVCHI urg'u (so'z o'zgarganda urg'u ko'chadi):
+   рукá → рýки , головá → гóлову , окнó → óкна
+   Bu eng qiyin qism — tizimini tushuntir
+c) KO'P XATO QILINADIGAN so'zlar:
+   звонúт (звóнит ❌) , договóр , каталóг , красúвее , тóрты ,
+   свёкла , жалюзи́ , обеспéчение , включи́т
+d) Fe'llarda o'tgan zamon urg'usi:
+   бы́л / былá / бы́ло / бы́ли — ayol jinsida ko'chadi</code></pre>
+
+    <h3>7.2. Talaffuz — <code>/произношение</code></h3>
+
+<pre><code>/произношение rejimi.
+
+Men so'z yoki jumla beraman. Sen ber:
+1. Transkripsiya
+2. Urg'u
+3. О'ZBEK SO'ZLOVCHI qanday xato qiladi
+
+Alohida e'tibor ber:
+- РЕДУКЦИЯ (urg'usiz unlilar): молокó = [мълакó] , хорошó = [хърашó]
+  Bu ENG MUHIM — urg'usiz "о" hech qachon "о" deb aytilmaydi
+- Ы va И farqi: мышка / мишка , был / бил
+  (o'zbekchada Ы yo'q — bu maxsus mashq talab qiladi)
+- Yumshoq undoshlar: мать/мат , быть/быт , угол/уголь
+- Ж, Ш, Ц — doim qattiq; Ч, Щ — doim yumshoq
+- Oxirgi jarangli undoshlar karlashadi: друг = [друк] , зуб = [зуп]
+- -ого / -его = [ово] / [ево]: красного = [крáснова]
+- что = [што] , конечно = [канéшна]
+
+Har tovush uchun MINIMAL JUFT mashqi ber.</code></pre>
+
+    <hr>
+
+    <h2 id="r8">§8 — Tizimli uslublar</h2>
+
+    <h3>8.1. Xatolar daftari — <code>/тетрадь</code> ⭐⭐</h3>
+
+    <p><strong>Fayl formati</strong> (o'zingiz yuritasiz, har dars AI'ga berasiz):</p>
+
+<pre><code>## Xatolar daftari — [ism]
+Oxirgi yangilanish: [sana]
+
+| № | Xato turi | Men yozgan | To'g'risi | Sabab | Necha marta |
+|---|-----------|-----------|-----------|-------|-------------|
+| 1 | Падеж | Я помогаю брата | Я помогаю брату | помогать + дательный | 11 |
+| 2 | Вид | Вчера я читал книгу и понял всё | ...прочитал... | natija → СВ | 9 |
+| 3 | Род | Моя кофе | Мой кофе | кофе — мужской род (istisno) | 4 |
+| 4 | Движение | Я иду в школу каждый день | Я хожу... | takroriylik → многонапр. | 6 |
+| 5 | Ударение | звóнит | звонúт | — | 7 |
+
+### Eng ko'p takrorlanadigan 3 xato (ustuvor ish):
+1. ...
+2. ...
+3. ...
+
+### Bartaraf etilgan (3 dars ketma-ket takrorlanmagan):
+- ...</code></pre>
+
+    <p><strong>Prompt:</strong></p>
+
+<pre><code>/тетрадь rejimi.
+
+Mana mening xatolar daftarim: [FAYLNI TASHLAYMAN]
+
+Vazifang:
+1. Eng ko'p takrorlanadigan 3 ta xato turini aniqla.
+2. ILDIZ SABABINI top — masalan, agar men doim дательный o'rniga винительный
+   ishlatsam, demak fe'l boshqaruvini yodlamaganman, kelishikni bilmaganim uchun emas.
+3. Har bir tur uchun: qoidani qayta tushuntir + 10 ta maqsadli mashq.
+4. Mashqlar oxirida baho ber.
+5. Yangilangan daftarni qaytar.</code></pre>
+
+    <h3>8.2. Daraja testi — <code>/уровень</code></h3>
+
+<pre><code>/уровень rejimi.
+
+Mening rus tili darajamni aniqla (ТРКИ va CEFR bo'yicha). Test:
+1. 15 ta grammatik savol (kelishik, vid, boshqaruv — osondan qiyinga)
+2. 1 ta matn + 5 tushunish savoli
+3. 5 ta o'zbekcha→ruscha tarjima
+4. 1 ta erkin yozma javob (150 so'z)
+
+Natijada:
+- ТРКИ darajasi (Элементарный / Базовый / ТРКИ-1 / ТРКИ-2 / ТРКИ-3) va NEGA
+- CEFR ekvivalenti
+- Ko'nikmalar bo'yicha alohida
+- Kelishiklardan qaysilarini bilaman, qaysilarini yo'q
+- Vid bo'yicha alohida baho
+- Keyingi 1 oy uchun aniq reja</code></pre>
+
+    <h3>8.3. Immersiya — <code>/только-русский</code></h3>
+
+<pre><code>/только-русский
+
+Shu paytdan boshlab butun suhbat FAQAT rus tilida.
+- O'zbekcha bir so'z ham yozma.
+- Men tushunmasam, TARJIMA QILMA — soddaroq ruscha bilan qayta tushuntir.
+- Sinonim ber, misol ber, tasvirla.
+- Men "стоп" desam — rejim tugaydi.
+- Oxirida: qancha chidadim, qayerda qiynaldim — tahlil.</code></pre>
+
+    <h3>8.4. Uslub darajasi — <code>/стиль</code></h3>
+
+    <p><strong>Nega muhim:</strong> Rus tilida uslub farqi juda keskin. "Здравствуйте" va "Привет" o'rtasida katta masofa bor.</p>
+
+<pre><code>/стиль rejimi.
+
+Men bir jumla aytaman. Sen uni 4 darajada qayta yoz:
+1. Официально-деловой (ariza, rasmiy xat)
+2. Нейтральный (ish emaili)
+3. Разговорный (do'stlar bilan)
+4. Просторечный / сленг
+
+Har birida qaysi so'z va tuzilma o'zgarganini ko'rsat.
+Alohida ayt: qayerda "ты" va qayerda "вы" ishlatiladi.
+Va: ism+otasining ismi qachon kerak.
+
+Keyin: menga vaziyat ber, to'g'ri darajani tanlab jumla tuzaman.</code></pre>
+
+    <h3>8.5. Solishtirma tahlil — <code>/сравнение</code></h3>
+
+<pre><code>/сравнение rejimi.
+
+Menga o'zbek tilidan rus tiliga o'tganda O'ZBEKLAR qiladigan
+TIPIK xatolarni tushuntir. Mavzu: [masalan: kelishiklar / vid / jins].
+
+Har biri uchun:
+- O'zbek tilida qanday
+- Rus tilida qanday
+- Nima uchun o'zbek so'zlovchi adashadi (ona tilining ta'siri)
+- To'g'ri fikrlash usuli
+- 5 ta tekshiruv mashqi
+
+Ayniqsa bularni yorit:
+- "Menda bor" → "У меня есть" (я имею ❌)
+- Jins yo'qligi → род xatolari
+- Vid yo'qligi → делал/сделал aralashishi
+- Bitta "bormoq" → идти/ходить/поехать aralashishi
+- Ega tushib qolishi (o'zbekchada mumkin, ruschada ko'pincha yo'q)</code></pre>
+
+    <h3>8.6. Imtihon simulyatsiyasi — <code>/экзамен</code></h3>
+
+<pre><code>/экзамен rejimi.
+
+Imtihon: [ТРКИ-1 / ТРКИ-2 / boshqa]
+Bo'lim: [Лексика-грамматика / Чтение / Письмо / Говорение]
+
+1. Real formatda topshiriq ber (vaqt chegarasi bilan).
+2. Men bajaraman.
+3. Rasmiy mezonlar bo'yicha baholaysan.
+4. Aynan qaysi javoblar ballni tushirganini ko'rsat.
+5. Ballni oshirish uchun 3 ta aniq tavsiya.
+6. Namunaviy yuqori ballli javob ko'rsat va farqni tushuntir.</code></pre>
+
+    <hr>
+
+    <h2 id="r9">§9 — Tuzatish protokoli</h2>
+
+<pre><code>TUZATISH SOZLAMALARI:
+
+DARAJA 1 — Ravon suhbat (/говори, /роль, /спор):
+  - Faqat MA'NONI BUZADIGAN xatolarni darhol tuzat
+    (masalan noto'g'ri vid ma'noni butunlay o'zgartirsa — tuzat;
+     род xatosi ma'noni buzmaydi — yozib bor)
+  - Qolganini oxirida ber
+
+DARAJA 2 — Aniqlik mashqi (/перевод, /падежи, /вид, /диктант):
+  - HAR BIR xatoni darhol tuzat, kelishik/vid nomini aytib
+
+DARAJA 3 — Yozma ish (/сочинение):
+  - Oxirida to'liq tahrir, ikki qatlamda
+
+TUZATISH SHAKLI:
+  ❌ Men yozgan: [...]
+  ✅ To'g'ri: [...]
+  📖 Sabab: [kelishik/vid nomi + qoida]
+  💡 Tabiiyroq: [rus qanday aytardi]
+
+TAQIQ:
+  - "Молодец!" deb qo'yib yuborma. Har javobda yaxshilash nuqtasi bor.
+  - Kelishik xatosini tuzatib, QAYSI kelishik kerakligini va NEGA
+    aytmasdan o'tma — men savolni (кого? кому? чем?) o'zim topishim kerak.
+  - Bir vaqtda 5 tadan ko'p xato ko'rsatma. Eng muhim 3 tasini tanla.
+  - Yangi so'zda urg'uni qo'yishni unutma.</code></pre>
+
+    <hr>
+
+    <h2 id="r10">§10 — Haftalik dars rejasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Kun</th><th>Rejim</th><th>Vaqt</th><th>Maqsad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dushanba</td><td><code>/текст</code> + <code>/чтение</code></td><td>40 daq</td><td>Yangi matn, tarjima + sharh</td></tr>
+          <tr><td>Seshanba</td><td><code>/корень</code> + <code>/приставки</code></td><td>30 daq</td><td>So'z yasalishi</td></tr>
+          <tr><td>Chorshanba</td><td><code>/говори</code> yoki <code>/роль</code></td><td>40 daq</td><td>Faol gapirish</td></tr>
+          <tr><td>Payshanba</td><td><code>/падежи</code> yoki <code>/вид</code></td><td>40 daq</td><td>Asosiy grammatika</td></tr>
+          <tr><td>Juma</td><td><code>/перевод</code> ⭐</td><td>30 daq</td><td>Haftadagi hamma narsani recall qilish</td></tr>
+          <tr><td>Shanba</td><td><code>/ударение</code> + <code>/произношение</code></td><td>30 daq</td><td>Urg'u va talaffuz</td></tr>
+          <tr><td>Yakshanba</td><td><code>/тетрадь</code></td><td>30 daq</td><td>Xatolar tahlili</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <div class="note-title">Qo'shimcha</div>
+      <ul>
+        <li><strong>Har kuni 5 daqiqa:</strong> <code>/падежи</code> — bitta kelishik, aylanma tartibda.</li>
+        <li><strong>Oyning oxirgi kuni:</strong> <code>/уровень</code>.</li>
+        <li><strong>Muvozanat qoidasi:</strong> 40% input · 40% output · 20% tahlil.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2 id="r11">§11 — Holat bloki</h2>
+
+<pre><code>MENING HOLATIM (holat: [SANA]):
+
+Daraja: [ТРКИ / CEFR]
+Maqsad: [...]
+O'zlashtirgan kelishiklar: [masalan: им., вин., предл. — ishonchli;
+                            род., дат., твор. — qiynalaman]
+Vid bo'yicha holatim: [...]
+Faol lug'atim taxminan: [...] so'z
+
+Ustuvor 3 xatoim:
+1. [...]
+2. [...]
+3. [...]
+
+Oxirgi darsda qilganim: [...]
+Bugun ishlamoqchi bo'lgan narsam: [...]
+
+Meni shu holatga qarab yo'naltir. Bilgan narsamni qayta tushuntirma,
+lekin ustuvor xatolarimni har darsda tekshirib tur.</code></pre>
+
+    <hr>
+
+    <h2 id="r12">Uslublarni tanlash yo'riqnomasi</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Muammo</th><th>Kerakli uslub</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Tushunaman lekin gapira olmayman"</td><td><code>/перевод</code> ⭐, <code>/роль</code>, <code>/говори</code></td></tr>
+          <tr><td>"Kelishiklarda adashaman"</td><td><code>/падежи</code> ⭐⭐, <code>/управление</code>, <code>/пропуски</code></td></tr>
+          <tr><td>"делал / сделал farqini bilmayman"</td><td><code>/вид</code> ⭐⭐</td></tr>
+          <tr><td>"идти / ходить aralashib ketadi"</td><td><code>/движение</code> ⭐</td></tr>
+          <tr><td>"Gapiraman lekin xatolar bilan"</td><td><code>/тетрадь</code> ⭐, <code>/охота</code></td></tr>
+          <tr><td>"Lug'atim kam"</td><td><code>/корень</code> ⭐, <code>/приставки</code> ⭐, <code>/синонимы</code></td></tr>
+          <tr><td>"Grammatik to'g'ri, lekin g'alati eshitiladi"</td><td><code>/сочетаемость</code> ⭐, <code>/перефразируй</code></td></tr>
+          <tr><td>"Meni tushunishmaydi"</td><td><code>/ударение</code> ⭐, <code>/произношение</code></td></tr>
+          <tr><td>"Imlo xatolarim ko'p"</td><td><code>/диктант</code></td></tr>
+          <tr><td>"Rasmiy yozishni bilmayman"</td><td><code>/стиль</code>, <code>/сочинение</code></td></tr>
+          <tr><td>"ТРКИ kerak"</td><td><code>/экзамен</code>, <code>/сочинение</code>, <code>/монолог</code></td></tr>
+          <tr><td>"O'zbekcha o'ylab, ruscha gapiraman"</td><td><code>/сравнение</code>, <code>/только-русский</code></td></tr>
+          <tr><td>"Zerikdim"</td><td><code>/история</code>, <code>/спор</code>, <code>/интервью</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <h2>Muhim eslatmalar</h2>
+
+    <ol>
+      <li><strong>Kelishik va vid — rus tilining ikki ustuni.</strong> Boshqa hamma narsa bularsiz qulaydi. Har hafta ikkalasiga ham vaqt ajrating.</li>
+      <li><strong>Vid o'z-o'zidan kelmaydi.</strong> O'zbek tilida bu kategoriya yo'q, shuning uchun quloq bilan "his qilib" o'rganib bo'lmaydi. Maxsus mashq shart.</li>
+      <li><strong>Urg'uni birinchi kundan belgilang.</strong> Noto'g'ri o'rganilgan urg'uni keyin tuzatish deyarli imkonsiz. AI'dan har yangi so'zda urg'uni talab qiling.</li>
+      <li><strong>Recall &gt; Recognition.</strong> Shuning uchun <code>/перевод</code> va <code>/корень</code> yulduzchali.</li>
+      <li><strong>Xatolar daftarisiz o'rganish — teshik chelakka suv quyish.</strong> Bitta uslub tanlash kerak bo'lsa — <code>/тетрадь</code>.</li>
+      <li><strong>AI urg'uda va nozik uslubiy masalalarda xato qilishi mumkin.</strong> Muhim narsalarni lug'at (gramota.ru) bilan tekshiring.</li>
+    </ol>
+
   </div>
 
   <!-- ============ ARAB TILI ============ -->
