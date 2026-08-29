@@ -152,7 +152,7 @@ function render() {
   }
 
   grid.innerHTML = visible.map((p, i) => `
-    <a href="/automation/${p.slug}" class="post-card${i === 0 && activeCat === 'all' && !q ? ' featured' : ''}">
+    <a href="/automation/${p.slug}" class="post-card${i === 0 && activeCat === 'all' && !q && visible.length >= 3 ? ' featured' : ''}">
       <span class="cat-badge cat-${p.cat}">${CAT_NAMES[p.cat]}</span>
       <h2 class="post-title">${p.title}</h2>
       <p class="post-excerpt">${p.excerpt}</p>
