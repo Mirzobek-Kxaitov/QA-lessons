@@ -761,31 +761,15 @@ driver.<span class="func">quit</span>()
 
 <section class="section" id="practice">
   <span class="section-label" style="color:#085041;background:#E1F5EE">🎯 Amaliyot vaqti</span>
-  <h2 class="section-title">Boshlovchilar uchun 1-skript</h2>
-  <p class="section-intro">Selenium IDE bilan birinchi automation skriptingizni yarating. <strong>Kod yozish kerak emas!</strong></p>
-
-  <div style="background:var(--gold-soft);border-left:3px solid var(--gold);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;font-weight:500">⚠️ Avval o'qing — 2026-yil holati</div>
-    <p style="margin:0 0 10px;color:var(--ink-soft);font-size:15px"><strong>Selenium IDE'ning Chrome extension'i endi ishlamaydi.</strong> U eski Manifest V2 standartida yozilgan, Chrome esa 2025-yil iyuldan boshlab bunday extensionlarni butunlay o'chirib qo'ydi — na sozlama, na flag bilan yoqib bo'lmaydi. 2026-yil 31-avgustda ular Chrome Web Store'dan ham olib tashlandi.</p>
-    <p style="margin:0 0 10px;color:var(--ink-soft);font-size:15px"><strong>Ishlaydigan ikkita yo'l bor:</strong> <strong>Firefox extension</strong> (eng tez yo'l) yoki <strong>Selenium IDE v4 desktop ilovasi</strong> — u extension emas, alohida dastur, shuning uchun Chrome siyosati unga ta'sir qilmaydi. Mac uchun <code>universal.dmg</code> bor: Apple Silicon (M-seriya) va Intel'da ham ishlaydi.</p>
-    <p style="margin:0;color:var(--ink-soft);font-size:15px">Halol gap: Selenium IDE 2024-yildan beri yangilanmagan va hali <code>beta</code> statusida. Bugungi sanoatda "yozib olish" uchun <strong>Playwright codegen</strong> ishlatiladi — uni <a href="20-playwright.html" style="color:var(--gold);font-weight:600">20-darsda</a> ko'ramiz. Bu darsda Selenium IDE bilan tamoyilni tushunasiz: <em>asbob emas, tushuncha muhim</em>. Asbob tanlashda uning tirikligini tekshirish ham QA ishining bir qismi.</p>
-  </div>
-  <div style="background:linear-gradient(135deg,#43B02A 0%,#2E7D1F 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">🌐</div>
-    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Selenium IDE Bepul</h3>
-    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">Firefox extension yoki Mac/Windows uchun desktop ilova. Kodsiz — record va play.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://addons.mozilla.org/firefox/addon/selenium-ide/" target="_blank" rel="noopener" style="display:inline-block;background:white;color:#43B02A;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">🦊 Firefox extension</a>
-      <a href="https://github.com/SeleniumHQ/selenium-ide/releases" target="_blank" rel="noopener" style="display:inline-block;background:rgba(255,255,255,0.16);color:white;border:1px solid rgba(255,255,255,0.65);padding:13px 27px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">💻 Desktop ilova — Mac / Windows</a>
-    </div>
-  </div>
+  <h2 class="section-title">Bilimni mustahkamlang</h2>
+  <p class="section-intro">Bu darsda kod yozmaymiz — automation'ni <strong>qachon, nimaga va qanday rejalashtirish</strong> kerakligini o'rgandik. To'rt vazifa shuni mustahkamlaydi. Birinchi ishlaydigan skriptni 19-darsda yozasiz.</p>
   <h3>Sizning vazifalaringiz:</h3>
   <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
     <div style="display:flex;gap:14px;align-items:flex-start">
-      <div style="width:36px;height:36px;background:#43B02A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
       <div>
-        <div style="font-weight:500;margin-bottom:6px">Selenium IDE o'rnatish</div>
-        <div style="color:#4A4A4A;font-size:14px"><strong>Firefox'da:</strong> Add-ons'dan "Selenium IDE" — 1 daqiqa.<br><strong>Mac yoki Windows'da:</strong> GitHub Releases'dan desktop ilovani yuklang. Mac uchun <strong>universal.dmg</strong> — M-seriya va Intel'da ham ishlaydi.<br><em>Mac eslatmasi:</em> ilova imzolanmagani uchun "ochib bo'lmaydi" degan xabar chiqsa — <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>.<br><strong>Chrome'da ishlamaydi</strong> — sababi yuqorida.</div>
+        <div style="font-weight:500;margin-bottom:6px">ROI'ni o'z loyihangiz uchun hisoblang</div>
+        <div style="color:#4A4A4A;font-size:14px">Yuqoridagi <a href="#manual-vs-auto" style="color:#5B3A7A;font-weight:600">ROI kalkulyatoriga</a> qayting va o'z jamoangiz raqamlarini kiriting: nechta test, har biri necha daqiqa, oyiga necha marta bajariladi. Natijani yozib oling — automation qachon o'zini oqlashini raqam bilan bilib qo'ying.</div>
       </div>
     </div>
   </div>
@@ -793,23 +777,38 @@ driver.<span class="func">quit</span>()
     <div style="display:flex;gap:14px;align-items:flex-start">
       <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
       <div>
-        <div style="font-weight:500;margin-bottom:6px">TestShop Login skript yarating</div>
-        <div style="color:#4A4A4A;font-size:14px">Selenium IDE'ni oching → "New Project" → URL: TestShop. <strong>Record</strong> bosing → Login qiling → <strong>Stop</strong>. Endi <strong>Play</strong> bosib, qayta-qayta bajaring.</div>
+        <div style="font-weight:500;margin-bottom:6px">TestShop'da 5 ta selector yozing</div>
+        <div style="color:#4A4A4A;font-size:14px"><a href="https://www.qa-academy.uz/testshop/login" target="_blank" rel="noopener" style="color:#2C5F8D;font-weight:600">TestShop login sahifasini</a> oching, <strong>DevTools</strong> (F12 yoki ⌥⌘I) ni ishga tushiring. 5 ta elementga CSS Selector yozing va Console'da <code>document.querySelector("...")</code> bilan tekshiring. Har biri uchun <strong>eng qisqa va barqaror</strong> variantni tanlang.</div>
       </div>
     </div>
   </div>
   <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
     <div style="display:flex;gap:14px;align-items:flex-start">
-      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div style="width:36px;height:36px;background:#0F6E56;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
       <div>
-        <div style="font-weight:500;margin-bottom:6px">3 ta skript yarating va saqlang</div>
-        <div style="color:#4A4A4A;font-size:14px">Login skripti, Mahsulot ko'rish skripti, Savatga qo'shish skripti. Hammasini <strong>.side</strong> faylga export qiling.</div>
+        <div style="font-weight:500;margin-bottom:6px">O'z testlaringizni piramidaga joylang</div>
+        <div style="color:#4A4A4A;font-size:14px">Loyihangizdagi (yoki o'ylab topgan) 10 ta testni oling va <a href="#pyramid" style="color:#0F6E56;font-weight:600">piramidaning</a> qaysi qavatiga tushishini belgilang: Unit, API yoki UI. Nisbatni sanang — 70/20/10 ga yaqinmi yoki hamma narsa UI'damimi?</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#C08838;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">4</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Automation nomzodlarini ajrating</div>
+        <div style="color:#4A4A4A;font-size:14px">Shu 10 ta testdan qaysilari automation'ga arziydi? Mezon: <strong>takrorlanuvchi</strong> + <strong>barqaror</strong> + <strong>natijasi aniq</strong>. Arzimaydiganlarini ham yozing va sababini ko'rsating — intervyuda aynan shu fikrlash so'raladi.</div>
       </div>
     </div>
   </div>
   <div style="background:#FAF2E0;border-left:3px solid #C08838;padding:18px 22px;border-radius:0 8px 8px 0;margin-top:24px">
     <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C08838;margin-bottom:6px;font-weight:500">💡 Portfolio uchun</div>
-    <p style="margin:0;color:#4A4A4A;font-size:15px"><strong>3 ta Selenium skripti</strong> + ekran yozuvi (gif yoki video) — Junior portfolioda zo'r dalil. Intervyu'da: "Mana mening 1-automation skriptlarim" — deb ko'rsatasiz!</p>
+    <p style="margin:0;color:#4A4A4A;font-size:15px">3- va 4-vazifa natijasini bitta jadvalga yig'ing: <strong>test → daraja → automation kerakmi → sababi</strong>. Bu Junior portfolio uchun kuchli hujjat — u siz kod yozishdan oldin <em>o'ylay olishingizni</em> ko'rsatadi.</p>
+  </div>
+  <div style="background:linear-gradient(135deg,#43B02A 0%,#2E7D1F 100%);color:white;border-radius:20px;padding:32px;margin:28px 0 0;text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🎬</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:10px;color:white">Keyingi dars — birinchi skriptingiz</h3>
+    <p style="opacity:0.92;margin-bottom:22px;font-size:16px;max-width:540px;margin-left:auto;margin-right:auto">19-darsda avval <strong>Selenium IDE</strong> bilan kod yozmasdan skript yozib olasiz (Record → Play), keyin o'sha skriptni <strong>Python kodiga</strong> aylantiramiz.</p>
+    <a href="19-selenium.html" style="display:inline-block;background:white;color:#43B02A;padding:14px 30px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">19-darsga o'tish →</a>
   </div>
 </section>
 <section class="section">

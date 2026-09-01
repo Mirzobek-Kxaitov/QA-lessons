@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>19-dars: Selenium WebDriver (Python) | QA Academy</title>
+<title>19-dars: Selenium — IDE va WebDriver | QA Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -226,10 +226,10 @@ code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: v
 </header>
 <section class="hero">
   <div class="lesson-number">19-dars</div>
-  <h1>Selenium <em>WebDriver</em></h1>
-  <p class="hero-subtitle">Python bilan kod yozib brauzer'ni boshqarish. Boshlovchilar uchun sodda misollar. 18-darsda Selenium IDE'ni bilamiz - endi haqiqiy kod yozamiz!</p>
+  <h1>Selenium: <em>IDE'dan WebDriver'gacha</em></h1>
+  <p class="hero-subtitle">Avval Selenium IDE bilan kod yozmasdan birinchi skriptingizni yozib olasiz, keyin o'shani Python kodiga aylantiramiz. Boshlovchilar uchun sodda misollar.</p>
   <div class="meta-pills">
-    <div class="pill"><span class="pill-dot"></span>90 daqiqa</div>
+    <div class="pill"><span class="pill-dot"></span>110 daqiqa</div>
     <div class="pill"><span class="pill-dot"></span>Python kod</div>
     <div class="pill"><span class="pill-dot"></span>5 ta interaktiv</div>
   </div>
@@ -238,7 +238,7 @@ code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: v
 <section class="section">
   <span class="section-label">Kirish</span>
   <h2 class="section-title">Selenium WebDriver nima?</h2>
-  <p class="section-intro">18-darsda <strong>Selenium IDE</strong> bilan ishladik — Record/Play, kod yozish kerak emas. Endi <strong>WebDriver</strong>'ga o'tamiz — haqiqiy kod yozib brauzer'ni boshqaramiz.</p>
+  <p class="section-intro">18-darsda automation nima ekanini va qachon kerakligini ko'rdik. Endi amaliyot: avval <strong>Selenium IDE</strong> bilan kodsiz skript yozib olamiz (Record/Play), keyin <strong>WebDriver</strong>'ga o'tib o'sha ishni haqiqiy Python kodi bilan qilamiz.</p>
   <div class="term-box">
     <div class="term-box-title">Asosiy atama</div>
     <p><strong>Selenium WebDriver</strong> — kod yordamida brauzer'ni boshqarish kutubxonasi. Python, Java, JavaScript va boshqa tillar uchun bor.</p>
@@ -271,8 +271,65 @@ code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: v
     <p>Bu dars juda muhim, lekin <strong>tezda hammasini tushunishga harakat qilmang</strong>. Asosiy tushunchalarni biling, keyin amalda mashq qilasiz. <strong>3-4 hafta amaliyot</strong> kerak!</p>
   </div>
 </section>
-<section class="section" id="setup">
+<section class="section" id="selenium-ide">
   <span class="section-label">1-qism</span>
+  <h2 class="section-title">Selenium IDE — kodsiz boshlash</h2>
+  <p class="section-intro">Kod yozishdan oldin automation'ni <strong>ko'rib</strong> olish foydali. Selenium IDE brauzerda harakatlaringizni yozib oladi va o'zi qaytaradi — 10 daqiqada birinchi skriptingiz tayyor bo'ladi.</p>
+
+  <div style="background:var(--gold-soft);border-left:3px solid var(--gold);padding:18px 22px;margin:20px 0;border-radius:0 8px 8px 0">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;font-weight:500">⚠️ Avval o'qing — 2026-yil holati</div>
+    <p style="margin:0 0 10px;color:var(--ink-soft);font-size:15px"><strong>Selenium IDE'ning Chrome extension'i endi ishlamaydi.</strong> U eski Manifest V2 standartida yozilgan, Chrome esa 2025-yil iyuldan boshlab bunday extensionlarni butunlay o'chirib qo'ydi — na sozlama, na flag bilan yoqib bo'lmaydi. 2026-yil 31-avgustda ular Chrome Web Store'dan ham olib tashlandi.</p>
+    <p style="margin:0 0 10px;color:var(--ink-soft);font-size:15px"><strong>Ishlaydigan ikkita yo'l bor:</strong> <strong>Firefox extension</strong> (eng tez yo'l) yoki <strong>Selenium IDE v4 desktop ilovasi</strong> — u extension emas, alohida dastur, shuning uchun Chrome siyosati unga ta'sir qilmaydi. Mac uchun <code>universal.dmg</code> bor: Apple Silicon (M-seriya) va Intel'da ham ishlaydi.</p>
+    <p style="margin:0;color:var(--ink-soft);font-size:15px">Halol gap: Selenium IDE 2024-yildan beri yangilanmagan va hali <code>beta</code> statusida. Bugungi sanoatda "yozib olish" uchun <strong>Playwright codegen</strong> ishlatiladi — uni <a href="20-playwright.html" style="color:var(--gold);font-weight:600">20-darsda</a> ko'ramiz. Bu yerda Selenium IDE bilan <em>tamoyilni</em> tushunasiz: asbob emas, tushuncha muhim. Asbob tanlashda uning tirikligini tekshirish ham QA ishining bir qismi.</p>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#43B02A 0%,#2E7D1F 100%);color:white;border-radius:20px;padding:40px;margin:32px 0;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🌐</div>
+    <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin-bottom:12px;color:white">Selenium IDE bepul</h3>
+    <p style="opacity:0.9;margin-bottom:24px;font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">Firefox extension yoki Mac/Windows uchun desktop ilova. Kodsiz — record va play.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://addons.mozilla.org/firefox/addon/selenium-ide/" target="_blank" rel="noopener" style="display:inline-block;background:white;color:#43B02A;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">🦊 Firefox extension</a>
+      <a href="https://github.com/SeleniumHQ/selenium-ide/releases" target="_blank" rel="noopener" style="display:inline-block;background:rgba(255,255,255,0.16);color:white;border:1px solid rgba(255,255,255,0.65);padding:13px 27px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">💻 Desktop ilova — Mac / Windows</a>
+    </div>
+  </div>
+
+  <h3>Uch qadamda birinchi skript</h3>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#43B02A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">1</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">Selenium IDE o'rnatish</div>
+        <div style="color:#4A4A4A;font-size:14px"><strong>Firefox'da:</strong> Add-ons'dan "Selenium IDE" — 1 daqiqa.<br><strong>Mac yoki Windows'da:</strong> GitHub Releases'dan desktop ilovani yuklang. Mac uchun <strong>universal.dmg</strong> — M-seriya va Intel'da ham ishlaydi.<br><em>Mac eslatmasi:</em> ilova imzolanmagani uchun "ochib bo'lmaydi" degan xabar chiqsa — <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>.<br><strong>Chrome'da ishlamaydi</strong> — sababi yuqorida.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#2C5F8D;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">2</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">TestShop Login skriptini yozib oling</div>
+        <div style="color:#4A4A4A;font-size:14px">Selenium IDE'ni oching → <strong>New Project</strong> → URL: <a href="https://www.qa-academy.uz/testshop/login" target="_blank" rel="noopener" style="color:#2C5F8D;font-weight:600">TestShop login</a>. <strong>Record</strong> bosing → login qiling → <strong>Stop</strong>. Endi <strong>Play</strong> bosib qayta-qayta bajaring — har safar bir xil ishlaydi.</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#FFFFFF;border:1px solid #E5DFD2;border-radius:14px;padding:22px;margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:#5B3A7A;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0">3</div>
+      <div>
+        <div style="font-weight:500;margin-bottom:6px">3 ta skript yarating va saqlang</div>
+        <div style="color:#4A4A4A;font-size:14px">Login skripti, Mahsulot ko'rish skripti, Savatga qo'shish skripti. Hammasini <strong>.side</strong> faylga export qiling — bu portfolioingizning birinchi dalili.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="takeaway-box-title">Endi diqqat qiling</div>
+    <p>IDE yozgan qadamlarga qarang: har birida <strong>command</strong>, <strong>target</strong> (locator) va <strong>value</strong> bor. Bu aynan WebDriver kodida yozadigan narsamiz — faqat u yerda buni o'zimiz yozamiz. Shuning uchun IDE'ni tushunsangiz, keyingi bo'lim oson kechadi.</p>
+  </div>
+</section>
+
+<section class="section" id="setup">
+  <span class="section-label">2-qism</span>
   <h2 class="section-title">O'rnatish va tayyorgarlik</h2>
   <p class="section-intro">Birinchi skript yozish uchun 3 narsa kerak: <strong>Python</strong>, <strong>Selenium</strong>, <strong>brauzer driver</strong>.</p>
   <div class="installation-step">
@@ -301,7 +358,7 @@ pip install selenium</div>
   </ul>
 </section>
 <section class="section" id="first-script">
-  <span class="section-label">2-qism</span>
+  <span class="section-label">3-qism</span>
   <h2 class="section-title">Birinchi skript</h2>
   <p class="section-intro">Klassik <strong>"Hello Browser"</strong> skripti. 6 qator kod, lekin sehrli!</p>
   <div class="code-block">
@@ -333,7 +390,7 @@ python3 first_test.py</div>
   </div>
 </section>
 <section class="section" id="commands">
-  <span class="section-label">3-qism</span>
+  <span class="section-label">4-qism</span>
   <h2 class="section-title">Asosiy buyruqlar</h2>
   <p class="section-intro">WebDriver'ning kundalik 5 ta buyrug'i. Bularni bilsangiz - 80% ishni qila olasiz.</p>
   <h3>1. Brauzer boshqarish</h3>
@@ -437,7 +494,7 @@ driver.<span class="func">quit</span>()
   <div class="match-score" id="matchScore">0 / 5 juft</div>
 </div>
 <section class="section" id="locators">
-  <span class="section-label">4-qism</span>
+  <span class="section-label">5-qism</span>
   <h2 class="section-title">Locator Strategy</h2>
   <p class="section-intro">Selenium'da elementlarni topishning <strong>8 ta usuli</strong> bor. Lekin har biri bir xil emas — qaysisini tanlash muhim!</p>
   <h3>8 ta locator turi</h3>
@@ -565,7 +622,7 @@ driver.<span class="func">find_element</span>(<span class="class">By</span>.TAG_
   <div class="dnd-score" id="locatorScore">0 / 5 to'g'ri</div>
 </div>
 <section class="section" id="waits">
-  <span class="section-label">5-qism</span>
+  <span class="section-label">6-qism</span>
   <h2 class="section-title">Wait Strategies — kutish</h2>
   <p class="section-intro">Eng tez-tez muammo: <strong>"Element topilmadi!"</strong> xatosi. Sababi — sahifa hali yuklanmagan, lekin kod element izlayapti. Yechimi — <strong>kutish</strong>.</p>
   <div class="term-box">
