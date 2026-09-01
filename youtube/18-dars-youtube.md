@@ -43,12 +43,15 @@ Manual testchidan Automation QA'ga o'tishning birinchi qadami. Bu darsda automat
 👉 https://mirzobek-kxaitov.github.io/testshop/
 
 🎯 Uyga vazifa:
-1. Selenium IDE extension'ini o'rnating (Chrome yoki Firefox)
+1. Selenium IDE'ni o'rnating — Firefox extension yoki desktop ilova (Mac uchun universal.dmg).
+   Diqqat: Chrome extension'i endi ishlamaydi (Manifest V2 o'chirilgan)
 2. TestShop saytida Login skriptini yozib oling (Record → Play)
 3. 3 ta skript yarating: Login, Mahsulot ko'rish, Savatga qo'shish
 4. Hammasini .side faylga export qiling — bu portfolioingizning birinchi dalili
 
 ⚠️ Muhim: Automation Manual'ni almashtirmaydi — to'ldiradi. Yangi feature avval manual, keyin auto.
+
+⚠️ Selenium IDE haqida: Chrome extension'i 2025-yildan beri ishlamaydi. Firefox extension yoki desktop ilovadan foydalaning. Bugungi sanoat standarti — Playwright codegen (20-dars).
 
 🔗 Kursning boshqa darslari:
 17-dars — Postman va API testing: https://youtu.be/3e5r4RouBeQ
@@ -167,6 +170,7 @@ Shorts sarlavhasi uchun: savol shaklida yozing — "Bu selectorlardan qaysi biri
 - [ ] "Bolalar uchun emas" belgilandi
 - [ ] Tavsifdagi barcha `[LINK]` joylari to'ldirildi
 - [ ] Muqova 1280×720, 2 MB dan kichik
+- [ ] Videoda Selenium IDE Chrome'da emas, Firefox yoki desktop ilovada ko'rsatilgan
 
 ---
 
