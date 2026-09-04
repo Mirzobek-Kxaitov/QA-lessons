@@ -277,6 +277,75 @@ td .ar, th .ar { font-size: 30px; line-height: 1.6; display: inline-block; }
 /* Arabcha so'z inline kod ichida bo'lsa, atrofdagi matn yo'nalishini buzmasin */
 .article-body code { unicode-bidi: isolate; }
 
+/* === SXEMA, NATIJA VA SPOILER BLOKLARI ===
+   Amaliy (SQL, API, kod) postlar uchun. Ishlatilishi:
+     <figure> + <svg>            — sxema; qizil urg'u uchun class="df" (fill) / "ds" (stroke)
+     <p class="rez-label">natija</p> + <table class="rez">  — so'rov natijasi
+     <table class="oddiy">       — ikki ustunli qisqa jadval (kalit → izoh)
+     <div class="oson">          — yumshoq izoh, "shuni eslab qoling"
+     <div class="warn">          — ogohlantirish yoki spoiler chegarasi
+     <details><summary>          — yopiq javob bloki
+     <span class="step-no">01</span> — h3 ichidagi qadam raqami
+   ------------------------------------------------------------------------ */
+
+/* Sxemalardagi urg'u rangi. SVG ichida fill="..." to'g'ridan-to'g'ri var() ni
+   qabul qilmaydi, shuning uchun elementlarga .df / .ds klassi qo'yiladi. */
+.article-body { --dia-accent: #B3231F; }
+[data-theme="dark"] .article-body { --dia-accent: #E0574F; }
+.article-body figure .df { fill: var(--dia-accent); }
+.article-body figure .ds { stroke: var(--dia-accent); }
+
+.article-body figure { margin: 34px 0; }
+.article-body figure svg { width: 100%; height: auto; display: block; }
+.article-body figure.cover svg { border-radius: var(--radius); border: 1px solid var(--line); }
+.article-body figcaption { font-size: 14.5px; font-style: italic; color: var(--ink-muted); margin-top: 10px; }
+.article-body figcaption code { font-size: 0.85em; }
+
+/* Natija jadvali */
+.article-body > .rez-label {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--ink-muted); margin-top: 14px;
+}
+.article-body > .rez-label + .table-wrap { margin-top: 6px; }
+.article-body table.rez { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13.5px; border: 1px solid var(--line); }
+.article-body table.rez th, .article-body table.rez td { padding: 8px 12px; border: 1px solid var(--line); color: var(--ink); }
+.article-body table.rez th { font-family: inherit; font-weight: 600; background: var(--bg-soft); }
+
+/* Ikki ustunli qisqa jadval */
+.article-body table.oddiy th {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 14px; font-weight: 600;
+  background: none; width: 36%; white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Yumshoq izoh */
+.oson { border-left: 3px solid var(--line-strong); padding: 2px 0 2px 20px; }
+.article-body .oson p { font-size: 16.5px; color: var(--ink-soft); }
+.article-body .oson p + p { margin-top: 12px; }
+
+/* Ogohlantirish / spoiler chegarasi */
+.warn { border: 2px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; }
+.article-body .warn p { font-size: 16.5px; }
+
+/* Yopiq javob bloki */
+.article-body details { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg-soft); padding: 0 20px; }
+.article-body details[open] { padding-bottom: 14px; }
+.article-body details > * + * { margin-top: 14px; }
+.article-body summary {
+  cursor: pointer; padding: 14px 0; list-style: none;
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--accent-deep);
+}
+.article-body summary::-webkit-details-marker { display: none; }
+.article-body summary::before { content: '▸ '; font-style: normal; }
+.article-body details[open] summary::before { content: '▾ '; }
+
+/* Qadam raqami */
+.step-no { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.78em; color: var(--accent); margin-right: 10px; }
+
+/* Maqola oxiridagi manba izohi */
+.article-body > .source-note { font-size: 14.5px; color: var(--ink-muted); }
+
 /* === FOOTER === */
 .footer { background: #101B26; color: #EAF1F7; padding: 60px 32px 34px; margin-top: 110px; }
 [data-theme="dark"] .footer { border-top: 1px solid var(--line); }

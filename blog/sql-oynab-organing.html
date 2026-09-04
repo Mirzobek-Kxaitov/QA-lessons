@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL ni o'ynab o'rganing: noldan boshlab, detektiv o'yin orqali — QA Academy</title>
+<meta name="description" content="SQL ni hech qachon ko'rmagan bo'lsangiz ham shu postdan boshlashingiz mumkin. Detektiv o'yinda qotilni topib, yo'l-yo'lakay SELECT, WHERE va JOIN ni o'rganamiz. Har bir so'rovdan keyin natijasi ko'rsatilgan.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL ni o'ynab o'rganing">
+<meta property="og:description" content="Qotilni topish uchun so'rov yozasiz. Yo'l-yo'lakay SQL o'rganasiz.">
+<meta property="og:url" content="https://www.qa-academy.uz/blog/sql-oynab-organing">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/section.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="/#lessons">Darslar</a></li>
+      <li><a href="/automation/">Automation</a></li>
+      <li><a href="/cases/">Real keyslar</a></li>
+      <li><a href="/blog/" class="current">Blog</a></li>
+      <li><a href="/about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<article class="article">
+  <a href="/blog/" class="back-link">← Blogga qaytish</a>
+
+  <header class="article-head">
+    <span class="cat-badge cat-qa">QA va testing</span>
+    <h1>SQL ni o'ynab o'rganing</h1>
+    <p class="article-lead">Bu post SQL ni umuman ko'rmagan odam uchun. "Jadval", "so'rov", "baza" degan so'zlar sizga hech narsa demasa ham — hechqisi yo'q, hammasini boshidan boshlaymiz. Oxiriga borganda siz haqiqiy ma'lumotlar bazasidan qotilni topgan bo'lasiz.</p>
+    <div class="article-meta">
+      <span>5-sentabr, 2026</span>
+      <span>15 daqiqa o'qish</span>
+      <span>Mirzobek Xaitov</span>
+    </div>
+  </header>
+
+  <div class="article-body">
+    <figure class="cover">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="SQL ni o'ynab o'rganing">
+        <defs>
+          <filter id="grain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+            <feColorMatrix type="saturate" values="0"/>
+          </filter>
+        </defs>
+        <rect width="1200" height="630" fill="#E8E2D4"/>
+        <rect width="1200" height="630" filter="url(#grain)" opacity="0.09"/>
+        <line x1="96" y1="0" x2="96" y2="630" stroke="#B3231F" stroke-width="2" opacity="0.45"/>
+        <line x1="104" y1="0" x2="104" y2="630" stroke="#B3231F" stroke-width="1" opacity="0.25"/>
+        <circle cx="48" cy="180" r="13" fill="#D6CFBE"/>
+        <circle cx="48" cy="315" r="13" fill="#D6CFBE"/>
+        <circle cx="48" cy="450" r="13" fill="#D6CFBE"/>
+        <g transform="rotate(-3.5 150 128)">
+          <rect x="148" y="100" width="382" height="56" fill="none" stroke="#B3231F" stroke-width="3" opacity="0.8"/>
+          <text x="172" y="137" font-family="'Courier New', monospace" font-size="24" font-weight="bold" letter-spacing="3.5" fill="#B3231F" opacity="0.85">ISH № 20180115 · SQL CITY</text>
+        </g>
+        <text x="148" y="272" font-family="Georgia, serif" font-size="82" font-weight="bold" fill="#1E1B18">SQL ni</text>
+        <text x="148" y="356" font-family="Georgia, serif" font-size="82" font-weight="bold" fill="#1E1B18">o‘ynab o‘rganing</text>
+        <line x1="148" y1="392" x2="612" y2="392" stroke="#1E1B18" stroke-width="1.5" opacity="0.35"/>
+        <text x="148" y="432" font-family="Georgia, serif" font-size="27" fill="#2E3A4A">Detektiv o‘yin orqali — noldan boshlab</text>
+        <text x="148" y="468" font-family="Georgia, serif" font-size="27" fill="#2E3A4A">hech qanday tayyorgarlik kerak emas</text>
+        <text x="148" y="556" font-family="'Courier New', monospace" font-size="21" letter-spacing="2" fill="#1E1B18" opacity="0.7">qa-academy.uz</text>
+        <g font-family="'Courier New', monospace" font-size="19" fill="#2E3A4A">
+          <rect x="686" y="150" width="452" height="286" fill="#F1ECE0" stroke="#1E1B18" stroke-opacity="0.25"/>
+          <text x="710" y="186" font-size="15" letter-spacing="2" fill="#1E1B18" opacity="0.55">person</text>
+          <line x1="710" y1="200" x2="1114" y2="200" stroke="#1E1B18" stroke-opacity="0.3"/>
+          <text x="710" y="228" font-weight="bold" fill="#1E1B18">id      name</text>
+          <line x1="710" y1="242" x2="1114" y2="242" stroke="#1E1B18" stroke-opacity="0.15"/>
+          <text x="710" y="276">14887   Morty Schapiro</text>
+          <text x="710" y="318">16371   Annabel Miller</text>
+          <text x="710" y="360">51739   Tushar Chandra</text>
+          <text x="710" y="402">67318   Jeremy Bowers</text>
+        </g>
+        <path d="M 694 256 C 700 240, 780 234, 880 238 C 968 242, 1002 250, 1000 268 C 998 288, 930 296, 838 294 C 748 292, 692 284, 694 260" fill="none" stroke="#B3231F" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+      </svg>
+    </figure>
+
+    <h2>Avval — nima uchun bu kerak</h2>
+
+    <p>Agar siz testing sohasida ishlasangiz yoki ishlamoqchi bo'lsangiz, SQL sizga uchta joyda kerak bo'ladi.</p>
+
+    <p><strong>Ilova rost gapiryaptimi, tekshirish uchun.</strong> Ekranda "Saqlandi" degan yozuv chiqdi. Lekin haqiqatan saqlandimi? Buni faqat ma'lumotlar bazasiga qarab bilasiz. Va o'shanda sizning bug reportingiz "ishlamayapti" emas, "ma'lumot bazaga umuman yozilmayapti" bo'ladi. Bu ikkalasi butunlay boshqa darajadagi ish.</p>
+
+    <p><strong>Test uchun ma'lumot tayyorlash uchun.</strong> Sizga "obunasi ertaga tugaydigan foydalanuvchi" kerak. Ilova orqali buni yaratib bo'lmaydi. Bazada esa bir qatorda hal bo'ladi.</p>
+
+    <p><strong>Ishga kirish uchun.</strong> QA suhbatlarida SQL savoli deyarli har doim bo'ladi.</p>
+
+    <h2>Uchta o'yin</h2>
+
+    <p>Odatiy darsliklarda sizga "endi SELECT ni o'rganamiz" deyishadi va mashq beriladi. Muammo shundaki, siz nima uchun bu so'rovni yozayotganingizni bilmaysiz. Detektiv o'yinda esa sabab bor: qotilni topmasangiz, oldinga o'tolmaysiz.</p>
+
+    <p><strong>SQL Murder Mystery</strong> — bepul, brauzerda ochiladi, ro'yxatdan o'tish shart emas. Northwestern universiteti jamoasi tayyorlagan. Biz shu postda aynan shu ishni yechamiz. Havola: <a href="https://mystery.knightlab.com/" target="_blank" rel="noopener">mystery.knightlab.com</a></p>
+
+    <p><strong>SQL Noir</strong> — 1980-yillar nuar detektiv agentligi, bir nechta ish bor. Birinchisini yechganingizdan keyin shunga o'ting. Havola: <a href="https://www.sqlnoir.com/" target="_blank" rel="noopener">sqlnoir.com</a></p>
+
+    <p><strong>Ghost in the SQL Data</strong> — Steam'dagi yangi o'yin. Bu allaqachon to'laqonli trenajyor: SQL ni noldan o'rgatadi va so'rovingizdagi xatoni tushuntiradi. Bepul demo 2026-yil 10-sentabrda chiqadi.</p>
+
+    <h2>Ma'lumotlar bazasi nima</h2>
+
+    <p>Excel yoki Google Sheets bilan ishlaganmisiz? Unda siz ma'lumotlar bazasini deyarli tushunasiz.</p>
+
+    <p>Baza — bu bir nechta Excel varag'i bir joyda turgani, xolos. Har bir varaq — <strong>jadval</strong> (table). Jadvalning tepasidagi sarlavhalar — <strong>ustunlar</strong> (columns). Har bir yozuv esa bitta <strong>qator</strong> (row).</p>
+
+    <figure>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" fill="currentColor" font-family="'Courier New', monospace" role="img" aria-label="Jadval, ustun va qator">
+        <text x="30" y="34" font-family="Georgia, serif" font-size="17" fill-opacity="0.7">jadval nomi:</text>
+        <text x="160" y="34" font-size="17" font-weight="bold">person</text>
+
+        <rect x="30" y="52" width="420" height="180" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <rect x="30" y="52" width="420" height="40" fill="currentColor" fill-opacity="0.07"/>
+        <rect class="df" x="170" y="52" width="150" height="180" fill-opacity="0.11"/>
+        <rect class="df" x="30" y="132" width="420" height="40" fill-opacity="0.11"/>
+
+        <line x1="30" y1="92" x2="450" y2="92" stroke="currentColor" stroke-opacity="0.5"/>
+        <line x1="30" y1="132" x2="450" y2="132" stroke="currentColor" stroke-opacity="0.25"/>
+        <line x1="30" y1="172" x2="450" y2="172" stroke="currentColor" stroke-opacity="0.25"/>
+        <line x1="170" y1="52" x2="170" y2="232" stroke="currentColor" stroke-opacity="0.25"/>
+        <line x1="320" y1="52" x2="320" y2="232" stroke="currentColor" stroke-opacity="0.25"/>
+
+        <g font-size="14" font-weight="bold">
+          <text x="46" y="78">id</text><text x="186" y="78">name</text><text x="336" y="78">city</text>
+        </g>
+        <g font-size="14" fill-opacity="0.85">
+          <text x="46" y="118">14887</text><text x="186" y="118">Morty</text><text x="336" y="118">SQL City</text>
+          <text x="46" y="158">16371</text><text x="186" y="158">Annabel</text><text x="336" y="158">SQL City</text>
+          <text x="46" y="198">67318</text><text x="186" y="198">Jeremy</text><text x="336" y="198">SQL City</text>
+        </g>
+
+        <path class="ds" d="M 245 42 L 245 20 L 500 20" fill="none" stroke-width="1.8"/>
+        <text class="df" x="510" y="26" font-family="Georgia, serif" font-size="16">ustun (column)</text>
+
+        <path class="ds" d="M 460 152 L 500 152" fill="none" stroke-width="1.8"/>
+        <text class="df" x="510" y="158" font-family="Georgia, serif" font-size="16">qator (row)</text>
+
+        <path d="M 240 242 L 240 268 L 500 268" fill="none" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+        <text x="510" y="274" font-family="Georgia, serif" font-size="16" fill-opacity="0.7">jadval (table)</text>
+      </svg>
+    </figure>
+
+    <p>SQL — bu shu jadvallardan ma'lumot so'rash tili. Siz unga savol berasiz, u sizga jadval qaytaradi. Boshqa hech narsa emas.</p>
+
+    <h2>Birinchi so'rovingiz</h2>
+
+    <p>Eng oddiy so'rov shunday ko'rinadi:</p>
+
+    <pre><code>SELECT *
+    FROM person;</code></pre>
+
+    <p>Buni odam tilida o'qisak: "<code>person</code> jadvalidan hamma narsani ko'rsat". <code>SELECT</code> — "ko'rsat", <code>*</code> — "hamma ustunlarni", <code>FROM person</code> — "<code>person</code> jadvalidan". Oxiridagi nuqta-vergul — so'rov tugadi degani.</p>
+
+    <p>Ammo <code>person</code> jadvalida minglab qator bor va ularning hammasi ekranga to'kiladi. Shuning uchun boshida har doim chegara qo'ying:</p>
+
+    <pre><code>SELECT *
+    FROM person
+    LIMIT 5;</code></pre>
+
+    <p class="rez-label">natija</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>id</th><th>name</th><th>license_id</th><th>address_street_name</th></tr>
+      <tr><td>10000</td><td>Christoper Peteuil</td><td>993845</td><td>Machine Ln</td></tr>
+      <tr><td>10007</td><td>Kourtney Calderwood</td><td>861794</td><td>Bankhall Ave</td></tr>
+      <tr><td>10010</td><td>Muoi Cary</td><td>385336</td><td>Lyman St</td></tr>
+      <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+    </table></div>
+
+    <div class="oson">
+      <p>Yangi loyihada bazani ko'rganingizda birinchi qiladigan ishingiz — aynan shu. <code>SELECT * FROM jadval LIMIT 5;</code> yozib, ichida nima borligini ko'rasiz. Bu odat sizni juda ko'p vaqtdan qutqaradi.</p>
+    </div>
+
+    <h3>Kerakli qatorlarni ajratib olish</h3>
+
+    <p>Endi hamma emas, faqat kerakli qatorlar kerak. Buning uchun <code>WHERE</code> bor — "shu shartga mos kelganlarini":</p>
+
+    <pre><code>SELECT id, name
+    FROM person
+    WHERE address_street_name = 'Franklin Ave';</code></pre>
+
+    <p>Uch narsaga e'tibor bering. Birinchidan, <code>*</code> o'rniga kerakli ustunlarni vergul bilan sanab yozdik. Ikkinchidan, matn qiymati <strong>bitta tirnoq</strong> ichida: <code>'Franklin Ave'</code>. Uchinchidan, <code>=</code> belgisi "aynan shunga teng" degani.</p>
+
+    <p>Bir nechta shartni birlashtirish uchun <code>AND</code> ishlatiladi: "ham buni, ham buni".</p>
+
+    <p>Mana, aslida shu. Shu ikki so'z bilan tergovni boshlash mumkin.</p>
+
+    <h2>SQL City bazasida nimalar bor</h2>
+
+    <p>O'yinni ochganingizda jadvallar ro'yxatini ko'rasiz. Hozir hammasini yodlash shart emas — pastdagi rasmni chetga qo'yib qo'ying, kerak bo'lganda qaytib qaraysiz.</p>
+
+    <figure>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 630" fill="currentColor" font-family="'Courier New', monospace" role="img" aria-label="SQL City bazasi jadvallari">
+        <g class="ds" stroke-width="1.8" fill="none" opacity="0.65">
+          <path d="M 270 285 L 330 285"/>
+          <path d="M 270 435 C 300 435, 300 360, 330 360"/>
+          <path d="M 560 270 C 585 270, 585 160, 610 160"/>
+          <path d="M 560 300 L 610 300"/>
+          <path d="M 740 360 L 740 430"/>
+          <path d="M 445 390 L 445 480"/>
+        </g>
+        <g class="df" font-size="11" opacity="0.9">
+          <text x="278" y="278">person_id</text>
+          <text x="278" y="392">ssn</text>
+          <text x="566" y="212">license_id</text>
+          <text x="562" y="293">person_id</text>
+          <text x="748" y="399">id → membership_id</text>
+          <text x="452" y="438">person_id</text>
+        </g>
+        <rect class="ds" x="20" y="20" width="250" height="110" fill="none" stroke-width="2"/>
+        <text class="df" x="34" y="44" font-size="15" font-weight="bold">crime_scene_report</text>
+        <line class="ds" x1="20" y1="52" x2="270" y2="52" stroke-opacity="0.5"/>
+        <g font-size="13" fill-opacity="0.85"><text x="34" y="72">date</text><text x="34" y="92">type</text><text x="34" y="112">city, description</text></g>
+        <text class="df" x="290" y="76" font-family="Georgia, serif" font-size="14">← shu yerdan boshlaymiz</text>
+        <rect x="330" y="240" width="230" height="150" fill="none" stroke="currentColor" stroke-opacity="0.75" stroke-width="2"/>
+        <text x="344" y="264" font-size="15" font-weight="bold">person</text>
+        <line x1="330" y1="272" x2="560" y2="272" stroke="currentColor" stroke-opacity="0.4"/>
+        <g font-size="13" fill-opacity="0.85"><text x="344" y="292">id</text><text x="344" y="312">name</text><text x="344" y="332">license_id</text><text x="344" y="352">ssn</text><text x="344" y="372">address_number, _street_name</text></g>
+        <rect x="610" y="20" width="260" height="170" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="624" y="44" font-size="15" font-weight="bold">drivers_license</text>
+        <line x1="610" y1="52" x2="870" y2="52" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="624" y="72">id</text><text x="624" y="92">gender</text><text x="624" y="112">height</text><text x="624" y="132">hair_color, eye_color</text><text x="624" y="152">plate_number</text><text x="624" y="172">car_make, car_model</text></g>
+        <rect x="20" y="250" width="250" height="70" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="34" y="274" font-size="15" font-weight="bold">interview</text>
+        <line x1="20" y1="282" x2="270" y2="282" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="34" y="302">person_id</text><text x="150" y="302">transcript</text></g>
+        <rect x="20" y="400" width="250" height="70" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="34" y="424" font-size="15" font-weight="bold">income</text>
+        <line x1="20" y1="432" x2="270" y2="432" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="34" y="452">ssn</text><text x="150" y="452">annual_income</text></g>
+        <rect x="610" y="250" width="260" height="110" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="624" y="274" font-size="15" font-weight="bold">get_fit_now_member</text>
+        <line x1="610" y1="282" x2="870" y2="282" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="624" y="302">id</text><text x="624" y="322">person_id, name</text><text x="624" y="342">membership_status</text></g>
+        <rect x="610" y="430" width="260" height="90" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="624" y="454" font-size="15" font-weight="bold">get_fit_now_check_in</text>
+        <line x1="610" y1="462" x2="870" y2="462" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="624" y="482">membership_id</text><text x="624" y="502">check_in_date, _time</text></g>
+        <rect x="310" y="480" width="270" height="90" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="324" y="504" font-size="15" font-weight="bold">facebook_event_checkin</text>
+        <line x1="310" y1="512" x2="580" y2="512" stroke="currentColor" stroke-opacity="0.3"/>
+        <g font-size="13" fill-opacity="0.85"><text x="324" y="532">person_id, event_id</text><text x="324" y="552">event_name, date</text></g>
+        <line x1="20" y1="596" x2="860" y2="596" stroke="currentColor" stroke-opacity="0.2"/>
+        <text x="20" y="620" font-family="Georgia, serif" font-size="14" fill-opacity="0.75">Qizil chiziqlar — qaysi jadval qaysi ustun orqali boshqasiga bog‘langanini ko‘rsatadi.</text>
+      </svg>
+      <figcaption>Deyarli hamma yo'l <code>person</code> jadvalidan o'tadi.</figcaption>
+    </figure>
+
+    <p>Bitta muhim narsa: sanalar bu yerda <code>20180115</code> ko'rinishida yozilgan. Ya'ni yil, oy, kun bir-biriga qo'shib yuborilgan va bu son, matn emas. Shuning uchun sanani yozganda tirnoq qo'yilmaydi.</p>
+
+    <div class="warn">
+      <p><strong>Bundan keyin ishning yechimi boshlanadi.</strong> O'zingiz mustaqil yechmoqchi bo'lsangiz, hozir <a href="https://mystery.knightlab.com/" target="_blank" rel="noopener">saytni oching</a> va shu yergacha o'qiganingiz bilan urinib ko'ring. Javoblar pastda yopiq bloklarda — bosmasangiz ochilmaydi.</p>
+    </div>
+
+    <h2>Ishni yechamiz</h2>
+
+    <p>Bizga faqat shu ma'lum: <strong>qotillik</strong>, <strong>2018-yil 15-yanvar</strong>, <strong>SQL City</strong>. Boshqa hech narsa yo'q.</p>
+
+    <h3><span class="step-no">01</span> Jinoyat joyi hisobotini topamiz</h3>
+
+    <p>Uchta shart bor, demak uchta <code>AND</code>:</p>
+
+    <pre><code>SELECT description
+    FROM crime_scene_report
+    WHERE date = 20180115
+      AND type = 'murder'
+      AND city = 'SQL City';</code></pre>
+
+    <p>Diqqat: <code>20180115</code> tirnoqsiz (bu son), <code>'murder'</code> va <code>'SQL City'</code> esa tirnoq ichida (bular matn).</p>
+
+    <details>
+      <summary>Natijani ko'rish</summary>
+      <p>Bitta qator qaytadi. Unda yozilishicha, kamera yozuvida ikki guvoh bor edi:</p>
+      <ul>
+        <li>Birinchisi <strong>Northwestern Dr</strong> ko'chasidagi <strong>eng oxirgi uyda</strong> yashaydi.</li>
+        <li>Ikkinchisining ismi <strong>Annabel</strong>, u <strong>Franklin Ave</strong> da yashaydi.</li>
+      </ul>
+    </details>
+
+    <h3><span class="step-no">02</span> Birinchi guvohni topamiz</h3>
+
+    <p>"Ko'chadagi eng oxirgi uy" — bu uy raqami eng katta bo'lgan odam degani. Bunday holatda ikkita yangi so'z kerak bo'ladi.</p>
+
+    <p><code>ORDER BY</code> — saralaydi. <code>DESC</code> qo'shsak, kattadan kichikka qarab saralaydi. <code>LIMIT 1</code> esa faqat birinchi qatorni oladi. Ikkalasini qo'shsak — "eng kattasini ko'rsat" degan ma'no chiqadi.</p>
+
+    <pre><code>SELECT id, name, address_number
+    FROM person
+    WHERE address_street_name = 'Northwestern Dr'
+    ORDER BY address_number DESC
+    LIMIT 1;</code></pre>
+
+    <p class="rez-label">natija</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>id</th><th>name</th><th>address_number</th></tr>
+      <tr><td>14887</td><td>Morty Schapiro</td><td>4919</td></tr>
+    </table></div>
+
+    <div class="oson">
+      <p>Bu naqshni eslab qoling: <code>ORDER BY … DESC LIMIT 1</code> — "eng oxirgisi". Ishda siz undan "eng oxirgi yaratilgan buyurtma" yoki "eng so'nggi login" ni topish uchun foydalanasiz.</p>
+    </div>
+
+    <h3><span class="step-no">03</span> Ikkinchi guvohni topamiz</h3>
+
+    <p>Bu yerda muammo bor: bizda faqat ism bor, familiya yo'q. Bazada esa <code>name</code> ustunida to'liq ism-familiya yozilgan. <code>= 'Annabel'</code> deb yozsak, hech narsa topilmaydi — chunki bazada "Annabel" emas, "Annabel Miller" turibdi.</p>
+
+    <p>Shu holat uchun <code>LIKE</code> bor. U aynan moslikni emas, <em>qisman</em> moslikni tekshiradi. <code>%</code> belgisi esa "bu yerda istalgan matn bo'lishi mumkin" degani.</p>
+
+    <div class="table-wrap"><table class="oddiy">
+      <tr><th>'Annabel%'</th><td>Annabel bilan <strong>boshlanadi</strong></td></tr>
+      <tr><th>'%Miller'</th><td>Miller bilan <strong>tugaydi</strong></td></tr>
+      <tr><th>'%bel%'</th><td>ichida bel <strong>bor</strong></td></tr>
+    </table></div>
+
+    <pre><code>SELECT id, name
+    FROM person
+    WHERE name LIKE 'Annabel%'
+      AND address_street_name = 'Franklin Ave';</code></pre>
+
+    <p class="rez-label">natija</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>id</th><th>name</th></tr>
+      <tr><td>16371</td><td>Annabel Miller</td></tr>
+    </table></div>
+
+    <h3><span class="step-no">04</span> Guvohlarning ko'rsatmalarini o'qiymiz</h3>
+
+    <p>Ikkalasining <code>id</code> raqami bizda bor. Ko'rsatmalar <code>interview</code> jadvalida, <code>person_id</code> ustuni orqali bog'langan.</p>
+
+    <p>Ikkita raqamni bittada olish uchun <code>IN</code> ishlatamiz — bu <code>= 14887 OR = 16371</code> ning qisqa yozuvi:</p>
+
+    <pre><code>SELECT person_id, transcript
+    FROM interview
+    WHERE person_id IN (14887, 16371);</code></pre>
+
+    <details>
+      <summary>Ko'rsatmalarni o'qish</summary>
+      <p><strong>Morty:</strong> o'q ovozini eshitdim, bir erkak yugurib chiqdi. Qo'lida "Get Fit Now Gym" sumkasi bor edi. Sumkadagi a'zolik raqami <strong>48Z</strong> bilan boshlanardi — bunday sumka faqat <strong>gold</strong> a'zolarda bo'ladi. U mashinaga o'tirdi, raqamida <strong>H42W</strong> bor edi.</p>
+      <p><strong>Annabel:</strong> qotillikni o'z ko'zim bilan ko'rdim. Qotilni sportzaldan taniyman.</p>
+    </details>
+
+    <h3><span class="step-no">05</span> Sportzal a'zolarini tekshiramiz</h3>
+
+    <p>Birinchi ikkita ipuchi bitta jadvalda — <code>get_fit_now_member</code>. Ularni allaqachon biladigan narsalarimiz bilan yozamiz:</p>
+
+    <pre><code>SELECT id, person_id, name
+    FROM get_fit_now_member
+    WHERE id LIKE '48Z%'
+      AND membership_status = 'gold';</code></pre>
+
+    <p class="rez-label">natija</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>id</th><th>person_id</th><th>name</th></tr>
+      <tr><td>48Z7A</td><td>28819</td><td>Joe Germuska</td></tr>
+      <tr><td>48Z55</td><td>67318</td><td>Jeremy Bowers</td></tr>
+    </table></div>
+
+    <p>Ikkita nomzod qoldi. Endi uchinchi ipuchi kerak — mashina raqami. Lekin u boshqa jadvalda.</p>
+
+    <h3><span class="step-no">06</span> JOIN — ikki jadvalni bog'lash</h3>
+
+    <p>Mana shu — SQL dagi eng muhim tushuncha, va u ko'p odamni qo'rqitadi. Aslida esa juda oddiy.</p>
+
+    <p>Diagrammaga qarang. <code>get_fit_now_member</code> jadvalida <code>person_id</code> ustuni bor. <code>person</code> jadvalida esa <code>id</code> ustuni bor. Ular bir xil odamni bildiradi — shunchaki ikki xil jadvalda yozilgan.</p>
+
+    <p><code>JOIN</code> aynan shuni qiladi: "bu jadvalning shu ustuni, ana u jadvalning ana u ustuniga teng bo'lsa — ularni yonma-yon qo'y".</p>
+
+    <p>Avval ikkitasini bog'laymiz:</p>
+
+    <pre><code>SELECT m.name, p.license_id
+    FROM get_fit_now_member AS m
+    JOIN person AS p ON p.id = m.person_id
+    WHERE m.id LIKE '48Z%'
+      AND m.membership_status = 'gold';</code></pre>
+
+    <p>Yangi narsalar ikkita. <code>AS m</code> va <code>AS p</code> — bu qisqartma nomlar, shundan keyin uzun jadval nomini har safar yozib o'tirmaymiz. <code>ON p.id = m.person_id</code> esa — bog'lanish sharti, ya'ni "qaysi ustun qaysi ustunga mos kelishi kerak".</p>
+
+    <p>Endi uchinchi jadvalni ham qo'shamiz. Mashina raqami <code>drivers_license</code> da, va <code>person</code> jadvalidagi <code>license_id</code> unga ishora qiladi:</p>
+
+    <pre><code>SELECT m.name, d.plate_number
+    FROM get_fit_now_member AS m
+    JOIN person AS p          ON p.id = m.person_id
+    JOIN drivers_license AS d ON d.id = p.license_id
+    WHERE m.id LIKE '48Z%'
+      AND m.membership_status = 'gold';</code></pre>
+
+    <p class="rez-label">natija</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>name</th><th>plate_number</th></tr>
+      <tr><td>Joe Germuska</td><td>WR0G60</td></tr>
+      <tr><td>Jeremy Bowers</td><td>0H42W2</td></tr>
+    </table></div>
+
+    <p>Ikkinchi qatorga qarang: <code>0H42W2</code> raqami ichida <strong>H42W</strong> bor. Guvoh aynan shuni aytgan edi.</p>
+
+    <div class="oson">
+      <p>E'tibor bering — biz JOIN ni birdan yozmadik. Avval bitta jadval, keyin ikkitasi, keyin uchtasi. Har qadamda natijaga qarab, to'g'ri ketayotganimizni tekshirdik. Uzun so'rovni ana shunday yozish kerak.</p>
+    </div>
+
+    <details>
+      <summary>Qotil kim</summary>
+      <p><strong>Jeremy Bowers</strong>, <code>person.id = 67318</code>.</p>
+    </details>
+
+    <h3><span class="step-no">07</span> Ish shu yerda tugamaydi</h3>
+
+    <p>Topilgan odamning ham ko'rsatmasi bor. Uni o'qib ko'rsak:</p>
+
+    <pre><code>SELECT transcript
+    FROM interview
+    WHERE person_id = 67318;</code></pre>
+
+    <details>
+      <summary>Ko'rsatmani o'qish</summary>
+      <p>Meni juda badavlat bir ayol yollagan. Ismini bilmayman, lekin sochi <strong>qizil</strong>, <strong>Tesla Model S</strong> mashinasida yuradi. 2017-yil dekabrida <strong>"SQL Symphony Concert"</strong> ga <strong>uch marta</strong> borgan.</p>
+    </details>
+
+    <h3><span class="step-no">08</span> Sanashni o'rganamiz</h3>
+
+    <p>Oxirgi ipuchi boshqacha. "Qizil soch" yoki "Tesla" — bularni <code>WHERE</code> bilan tekshirsa bo'ladi. Lekin "uch marta borgan" — bu qatorlarni <em>sanash</em> kerak degani.</p>
+
+    <p>Buning uchun ikkita yangi so'z bor. <code>GROUP BY</code> — bir xil qiymatli qatorlarni bitta guruhga yig'adi. <code>COUNT(*)</code> — har bir guruhda nechta qator borligini sanaydi.</p>
+
+    <pre><code>SELECT person_id, COUNT(*) AS marta
+    FROM facebook_event_checkin
+    WHERE event_name = 'SQL Symphony Concert'
+      AND date LIKE '201712%'
+    GROUP BY person_id;</code></pre>
+
+    <p class="rez-label">natija (bir qismi)</p>
+    <div class="table-wrap"><table class="rez">
+      <tr><th>person_id</th><th>marta</th></tr>
+      <tr><td>24556</td><td>1</td></tr>
+      <tr><td>28582</td><td>2</td></tr>
+      <tr><td>92736</td><td>3</td></tr>
+      <tr><td>…</td><td>…</td></tr>
+    </table></div>
+
+    <p>Bizga faqat <code>marta = 3</code> bo'lganlari kerak. Lekin bu yerda kutilmagan narsa bor: buni <code>WHERE</code> ga yozib bo'lmaydi. Sababi shundaki, <code>WHERE</code> ishlaganda guruhlar hali tuzilmagan — sanaydigan narsaning o'zi yo'q.</p>
+
+    <figure>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" fill="currentColor" font-family="'Courier New', monospace" role="img" aria-label="SQL yozilish va bajarilish tartibi">
+        <text x="60" y="46" font-family="Georgia, serif" font-size="21" font-weight="bold">Siz shunday yozasiz</text>
+        <text x="500" y="46" font-family="Georgia, serif" font-size="21" font-weight="bold">Baza shunday bajaradi</text>
+        <line x1="60" y1="62" x2="300" y2="62" stroke="currentColor" stroke-opacity="0.3"/>
+        <line x1="500" y1="62" x2="740" y2="62" stroke="currentColor" stroke-opacity="0.3"/>
+        <g class="ds" fill="none" stroke-width="2" opacity="0.55">
+          <path d="M 300 122 C 400 122, 400 342, 500 342"/>
+          <path d="M 300 177 C 400 177, 400 122, 500 122"/>
+          <path d="M 300 232 C 400 232, 400 177, 500 177"/>
+          <path d="M 300 287 C 400 287, 400 232, 500 232"/>
+          <path d="M 300 342 C 400 342, 400 287, 500 287"/>
+          <path d="M 300 397 C 400 397, 400 397, 500 397"/>
+        </g>
+        <g font-size="20">
+          <rect x="60" y="100" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="129">SELECT</text>
+          <rect x="60" y="155" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="184">FROM</text>
+          <rect x="60" y="210" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="239">WHERE</text>
+          <rect x="60" y="265" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="294">GROUP BY</text>
+          <rect x="60" y="320" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="349">HAVING</text>
+          <rect x="60" y="375" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.45"/><text x="80" y="404">ORDER BY</text>
+        </g>
+        <g font-size="20">
+          <rect x="500" y="100" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="129" font-weight="bold">1</text><text x="546" y="129">FROM</text>
+          <rect x="500" y="155" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="184" font-weight="bold">2</text><text x="546" y="184">WHERE</text>
+          <rect x="500" y="210" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="239" font-weight="bold">3</text><text x="546" y="239">GROUP BY</text>
+          <rect x="500" y="265" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="294" font-weight="bold">4</text><text x="546" y="294">HAVING</text>
+          <rect x="500" y="320" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="349" font-weight="bold">5</text><text x="546" y="349">SELECT</text>
+          <rect x="500" y="375" width="240" height="44" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.6"/><text class="df" x="516" y="404" font-weight="bold">6</text><text x="546" y="404">ORDER BY</text>
+        </g>
+        <line x1="60" y1="450" x2="740" y2="450" stroke="currentColor" stroke-opacity="0.2"/>
+        <text x="60" y="479" font-family="Georgia, serif" font-size="17" fill-opacity="0.75">WHERE ikkinchi, GROUP BY uchinchi bo‘lib bajariladi — tartib shuning uchun muhim.</text>
+      </svg>
+      <figcaption>SQL siz yozgan tartibda emas, o'ng tomondagi tartibda bajariladi.</figcaption>
+    </figure>
+
+    <p>Guruhlarni filtrlash uchun alohida so'z bor — <code>HAVING</code>. U <code>GROUP BY</code> dan keyin ishlaydi, ya'ni guruhlar tayyor bo'lganda:</p>
+
+    <pre><code>SELECT person_id, COUNT(*) AS marta
+    FROM facebook_event_checkin
+    WHERE event_name = 'SQL Symphony Concert'
+      AND date LIKE '201712%'
+    GROUP BY person_id
+    HAVING COUNT(*) = 3;</code></pre>
+
+    <div class="oson">
+      <p>Qisqasi: <code>WHERE</code> alohida qatorlarni filtrlaydi, <code>HAVING</code> esa guruhlarni. Shuning uchun <code>COUNT()</code> faqat <code>HAVING</code> da ishlaydi. Bu QA suhbatlarida eng ko'p so'raladigan savollardan biri.</p>
+    </div>
+
+    <h3><span class="step-no">09</span> Oxirgi so'rov</h3>
+
+    <p>Endi hammasini birlashtiramiz. Sanash <code>facebook_event_checkin</code> da, tashqi ko'rinish belgilari esa <code>drivers_license</code> da — demak yana <code>JOIN</code> kerak:</p>
+
+    <pre><code>SELECT p.name
+    FROM facebook_event_checkin AS f
+    JOIN person AS p          ON p.id = f.person_id
+    JOIN drivers_license AS d ON d.id = p.license_id
+    WHERE f.event_name = 'SQL Symphony Concert'
+      AND f.date LIKE '201712%'
+      AND d.hair_color = 'red'
+      AND d.car_make  = 'Tesla'
+      AND d.car_model = 'Model S'
+    GROUP BY p.name
+    HAVING COUNT(*) = 3;</code></pre>
+
+    <details>
+      <summary>Qotilni kim yollagan</summary>
+      <p>Javob: <strong>Miranda Priestly</strong>.</p>
+      <p>Tekshirish uchun o'yinning o'zida shunday yozing:</p>
+      <pre><code>INSERT INTO solution VALUES (1, 'Miranda Priestly');
+    SELECT value FROM solution;</code></pre>
+    </details>
+
+    <h2>Nima o'rgandingiz</h2>
+
+    <p>Diqqat qiling: hech qayerda "endi JOIN mavzusini o'tamiz" degan jumla bo'lmadi. Har bir yangi so'z kerak bo'lgani uchun paydo bo'ldi.</p>
+
+    <div class="table-wrap"><table class="oddiy">
+      <tr><th>SELECT, FROM</th><td>jadvaldan ma'lumot olish</td></tr>
+      <tr><th>WHERE, AND</th><td>kerakli qatorlarni ajratish</td></tr>
+      <tr><th>LIKE, %</th><td>qisman moslik bo'yicha qidirish</td></tr>
+      <tr><th>ORDER BY, LIMIT</th><td>saralash, "eng oxirgisini" topish</td></tr>
+      <tr><th>IN</th><td>bir nechta qiymat bo'yicha</td></tr>
+      <tr><th>JOIN, ON</th><td>jadvallarni bog'lash</td></tr>
+      <tr><th>GROUP BY, COUNT, HAVING</th><td>sanash va guruhlarni filtrlash</td></tr>
+    </table></div>
+
+    <p>Bu ro'yxat kichkina ko'rinadi, lekin QA ishida ishlatiladigan so'rovlarning katta qismi shulardan iborat. Masalan, bazadagi dublikatlarni topish — testerlar eng ko'p yozadigan so'rovlardan biri — aynan oxirgi qatordagi konstruksiya:</p>
+
+    <pre><code>SELECT email, COUNT(*)
+    FROM users
+    GROUP BY email
+    HAVING COUNT(*) &gt; 1;</code></pre>
+
+    <p>Ya'ni siz qotilni qidirayotganda o'rgangan narsangizni ertaga ishda "nega bir xil email bilan ikkita akkaunt bor?" degan bugni topishda ishlatasiz.</p>
+
+    <h2>So'rov ishlamasa</h2>
+
+    <p>Xato chiqishi normal. Deyarli har doim sabab quyidagilardan biri.</p>
+
+    <p><strong>Bo'sh natija chiqdi.</strong> Shartlaringizdan bittasi noto'g'ri. Ularni birma-bir olib tashlab ko'ring — qaysi birini olib tashlaganda natija paydo bo'lsa, muammo o'sha shartda.</p>
+
+    <p><strong>Katta-kichik harf.</strong> <code>'gold'</code> va <code>'Gold'</code> ko'p bazalarda ikki xil qiymat. Qiymatlar aslida qanday yozilganini ko'rish uchun <code>SELECT DISTINCT ustun_nomi FROM jadval;</code> yozing.</p>
+
+    <p><strong>Tirnoq.</strong> Matn bitta tirnoq ichida: <code>'SQL City'</code>. Son tirnoqsiz: <code>20180115</code>.</p>
+
+    <p><strong><code>=</code> topmayapti.</strong> Qiymat ichida bo'lsa, aniq moslik ishlamaydi — <code>LIKE '%…%'</code> ishlating.</p>
+
+    <h2>Keyin nima qilish kerak</h2>
+
+    <ol>
+      <li><strong>Ishni o'zingiz qaytadan yeching.</strong> O'qib chiqish bilan o'rganilmaydi. Saytni oching va so'rovlarni o'z qo'lingiz bilan yozing — postga qarab bo'lsa ham.</li>
+      <li><strong>SQL Noir ga o'ting.</strong> U yerda yangi ishlar bor, murakkabligi asta oshib boradi.</li>
+      <li><strong><code>LEFT JOIN</code> ni o'rganing.</strong> Biz ishlatgan oddiy <code>JOIN</code> faqat ikkala jadvalda mosligi bor qatorlarni qaytaradi. <code>LEFT JOIN</code> esa mos qatori yo'qlarini ham ko'rsatadi — va QA da aynan shu bilan "yetishmayotgan" ma'lumotni topasiz.</li>
+      <li><strong>Ghost in the SQL Data demosini kuting</strong> — 10-sentabr, Steam, bepul.</li>
+    </ol>
+
+    <p>Va eng muhim maslahat: so'rovni birdan to'liq yozishga urinmang. Bitta jadvaldan boshlang, natijaga qarang, bitta shart qo'shing, yana qarang. Biz yuqorida aynan shunday qildik — va shuning uchun hech qayerda adashmadik.</p>
+
+    <hr>
+
+    <p class="source-note">SQL Murder Mystery — Northwestern University Knight Lab loyihasi. SQL Noir — ochiq kodli loyiha. Ghost in the SQL Data — ishlab chiquvchi Isaac Menard, demo chiqish sanasi 2026-yil 10-sentabr.</p>
+
+  </div>
+
+  <footer class="article-foot">
+    <p class="article-foot-note">So'rovingiz ishlamadimi yoki savolingiz bormi? Telegramda yozing.</p>
+    <a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener" class="article-cta">Telegram →</a>
+  </footer>
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Blog bo'limida esa — testingdan tashqari qiziqishlarim.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="/#lessons">Darslar</a></li>
+        <li><a href="/automation/">Automation</a></li>
+        <li><a href="/cases/">Real keyslar</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('qa_theme', newTheme);
+}
+
+(function() {
+  const saved = localStorage.getItem('qa_theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
