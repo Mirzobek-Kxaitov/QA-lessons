@@ -1,0 +1,817 @@
+{
+  "reviewedOn": "2026-10-14",
+  "bankQuestions": 530,
+  "scope": "Gaps identified in the previous review are now resolved with original trilingual entries; no verbatim copying. LinkedIn attachment work remains paused.",
+  "method": "Manual semantic comparison against both question text and existing answers/examples. Covered: core requested topic answered, possibly across multiple questions. Partial: related material exists but an explicit distinction/definition/example is incomplete. Missing: topic requires a new entry. Counts are source prompts, not unique additions.",
+  "devassure": {
+    "url": "https://www.devassure.io/blog/top-qa-interview-questions/",
+    "sourceItems": 68,
+    "numberingNote": "Title says Top 60, but the main list continues through number 68. Navigation repeats are excluded.",
+    "counts": {
+      "covered": 68,
+      "partial": 0,
+      "missing": 0
+    },
+    "items": [
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-17",
+          "automation-junior-63"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-03"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-17"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-14",
+          "manual-junior-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-16"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 7,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-35",
+          "automation-middle-15",
+          "automation-middle-59"
+        ],
+        "gap": "Visual baseline maintenance exists; add a clear definition and comparison workflow.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 8,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 9,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 10,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-49"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 11,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-132"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 12,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 13,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 14,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 15,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-57"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 16,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 17,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-junior-134"
+        ],
+        "gap": "Explain high-level scenario versus detailed case.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 18,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-54"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 19,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-07"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 20,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-23",
+          "manual-junior-08"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 21,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-61"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 22,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-69",
+          "manual-junior-136"
+        ],
+        "gap": "Accessibility is related; add usability evaluation with representative users.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 23,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 24,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51",
+          "manual-middle-46"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 25,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51",
+          "manual-senior-58"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 26,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-100"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 27,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-29",
+          "manual-junior-52",
+          "manual-senior-30"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 28,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-10"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 29,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-137"
+        ],
+        "gap": "Add internationalization/globalization readiness, distinct from translation.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 30,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-138"
+        ],
+        "gap": "Add alpha versus beta stages and participants.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 31,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-139"
+        ],
+        "gap": "Add randomized event testing and distinction from exploratory/fuzz testing.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 32,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-57",
+          "manual-senior-01",
+          "manual-junior-135"
+        ],
+        "gap": "Explain strategy-versus-plan scope and how documents relate.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 33,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-13",
+          "manual-senior-08",
+          "manual-senior-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 34,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-21",
+          "automation-senior-23",
+          "automation-middle-60"
+        ],
+        "gap": "Explain continuous quality feedback across delivery stages, beyond one CI run.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 35,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-47"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 36,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-63"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 37,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-66"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 38,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30",
+          "automation-junior-26",
+          "automation-junior-61",
+          "manual-junior-71"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 39,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 40,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30",
+          "automation-junior-42"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 41,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-31"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 42,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 43,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-37",
+          "automation-junior-54"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 44,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-junior-65",
+          "manual-middle-115"
+        ],
+        "gap": "Compare API and UI layers, coverage and trade-offs directly.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 45,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-71"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 46,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-20"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 47,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-senior-23"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 48,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-47",
+          "manual-senior-09",
+          "manual-middle-116"
+        ],
+        "gap": "Add response-time distribution, throughput, errors and resource metrics together.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 49,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 50,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-100",
+          "manual-senior-57",
+          "manual-middle-117"
+        ],
+        "gap": "Distinguish penetration assessment from broader security checks.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 51,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-100"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 52,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-44"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 53,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-104"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 54,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-61",
+          "automation-junior-60"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 55,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-83"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 56,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-01"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 57,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-03"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 58,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-middle-21",
+          "manual-junior-59"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 59,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-08"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 60,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-44"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 61,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-18"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 62,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-15",
+          "automation-junior-35"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 63,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 64,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-62",
+          "manual-middle-19",
+          "manual-middle-118"
+        ],
+        "gap": "Explain generating/selecting checks from a behavioral model.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 65,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 66,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-132"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 67,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-21",
+          "manual-senior-10",
+          "manual-senior-64"
+        ],
+        "gap": "Define checking agreed standards with an evidence trail; requirements depend on context.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 68,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      }
+    ]
+  },
+  "thinksys": {
+    "url": "https://thinksys.com/qa-testing/top-qa-interview-question-answer/",
+    "sourceItems": 18,
+    "numberingNote": "Three interview lists, each numbered 1–6: fundamentals, automation, scenarios. Hiring checklists and marketing headings are not counted as extra interview entries.",
+    "counts": {
+      "covered": 18,
+      "partial": 0,
+      "missing": 0
+    },
+    "items": [
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-14",
+          "manual-junior-15"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-middle-21"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-02"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-53"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-63"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-65",
+          "automation-junior-66"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-01",
+          "automation-junior-65"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-58",
+          "automation-senior-07",
+          "automation-middle-61"
+        ],
+        "sourceSection": "automation",
+        "gap": "Tool structure/migration covered; add a concrete selection rationale for the tools actually used.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-01",
+          "automation-senior-03",
+          "automation-middle-58"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-21",
+          "automation-middle-03",
+          "automation-senior-23"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-63",
+          "manual-senior-08"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-104",
+          "manual-junior-12",
+          "manual-junior-85"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-09"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-112",
+          "manual-junior-06"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-01",
+          "manual-middle-89"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-02",
+          "manual-middle-16",
+          "manual-senior-05"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      }
+    ]
+  }
+}

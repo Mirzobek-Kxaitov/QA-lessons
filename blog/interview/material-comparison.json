@@ -1,0 +1,278 @@
+{
+  "reviewedOn": "2026-10-13",
+  "bankQuestions": 461,
+  "method": "Manual semantic comparison of question text AND answer/example content. Covered means the core topic is answered; partial means a related question exists but the requested distinction, tool-specific detail or example needs work. This is not an exact-text duplicate count.",
+  "sample": {
+    "title": "QA Interview Vault — 30-question sample",
+    "author": "Aston Cook",
+    "authorAnnouncement": "https://www.linkedin.com/posts/aston-cook_qa-vault-sample-activity-7348335193994223618-aTfS",
+    "inspectedCopy": "https://www.scribd.com/document/1030077877/QA-Vault-Sample-1752413591",
+    "provenance": "Publicly indexed third-party copy. Original attachment/version identity has not been independently confirmed.",
+    "items": [
+      {
+        "sourceQuestionNumber": 1,
+        "topic": "verification / validation",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-03"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "topic": "exploration",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-49"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "topic": "page abstraction",
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-25"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "topic": "Cypress synchronization",
+        "status": "missing",
+        "targetQuestionIds": []
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "topic": "resource updates",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-38"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "topic": "authenticated API checks",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-41",
+          "manual-middle-108"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 7,
+        "topic": "continuous delivery",
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-senior-23"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 8,
+        "topic": "Jenkins execution",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-21"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 9,
+        "topic": "framework structure",
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-58"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 10,
+        "topic": "behavior collaboration",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-18"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 11,
+        "topic": "remote Git synchronization",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-17",
+          "automation-middle-17"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 12,
+        "topic": "conflict recovery",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-19"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 13,
+        "topic": "database consistency",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-100"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 14,
+        "topic": "duplicate records",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-11"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 15,
+        "topic": "runtime dispatch",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-23"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 16,
+        "topic": "Java list implementations",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-50"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 17,
+        "topic": "Java concurrency",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-junior-51",
+          "automation-middle-11"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 18,
+        "topic": "thread creation",
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-51"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 19,
+        "topic": "Maven build management",
+        "status": "missing",
+        "targetQuestionIds": []
+      },
+      {
+        "sourceQuestionNumber": 20,
+        "topic": "runner annotations",
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-54"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 21,
+        "topic": "Gherkin notation",
+        "status": "partial",
+        "targetQuestionIds": [
+          "manual-senior-18"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 22,
+        "topic": "Cucumber data inputs",
+        "status": "missing",
+        "targetQuestionIds": []
+      },
+      {
+        "sourceQuestionNumber": 23,
+        "topic": "Docker runtime",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-middle-25"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 24,
+        "topic": "container execution",
+        "status": "partial",
+        "targetQuestionIds": [
+          "automation-middle-25",
+          "automation-middle-45"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 25,
+        "topic": "solo QA priorities",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-02",
+          "manual-senior-05"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 26,
+        "topic": "late defect example",
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-113",
+          "manual-senior-41"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 27,
+        "topic": "automation achievement narrative",
+        "status": "partial",
+        "targetQuestionIds": [
+          "manual-junior-130",
+          "manual-middle-113"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 28,
+        "topic": "learning under time pressure",
+        "status": "missing",
+        "targetQuestionIds": []
+      },
+      {
+        "sourceQuestionNumber": 29,
+        "topic": "professional attributes",
+        "status": "partial",
+        "targetQuestionIds": [
+          "manual-junior-13",
+          "manual-senior-63"
+        ]
+      },
+      {
+        "sourceQuestionNumber": 30,
+        "topic": "professional development habits",
+        "status": "missing",
+        "targetQuestionIds": []
+      }
+    ],
+    "counts": {
+      "covered": 14,
+      "partial": 11,
+      "missing": 5
+    }
+  },
+  "otherMaterials": [
+    {
+      "author": "Suraj Rathod",
+      "title": "QA Interview Guide",
+      "authorPost": "https://www.linkedin.com/posts/suraj-rathod-7648ab217_qa-automationtesting-sdet-activity-7350950119027920896-Aw3S",
+      "indexedCopy": "https://www.scribd.com/document/1058376663/QA-Guide-1752695281",
+      "status": "Some indexed content inspected; full-text extraction and complete comparison not finished. Author post offers the guide by DM."
+    },
+    {
+      "author": "Aston Cook",
+      "title": "Full QA Interview Vault",
+      "url": "https://planoly.store/aston-cook/bundles/qa-vault",
+      "status": "Paid checkout verified; full contents unavailable for comparison."
+    },
+    {
+      "author": "Aston Cook",
+      "title": "Ten-question post",
+      "url": "https://www.linkedin.com/posts/aston-cook_i-bombed-my-first-qa-interview-so-badly-the-activity-7441657474052542464-a8tc",
+      "status": "Announcement text inspected; attached question content not extracted."
+    }
+  ]
+}

@@ -1,0 +1,4990 @@
+{
+  "reviewedOn": "2026-10-14",
+  "scope": "Adapted topic coverage: original wording, examples and practical exercise data. Some topics are combined and some are assigned a different learning level. This is not a verbatim reproduction.",
+  "itvdn": {
+    "url": "https://itvdn.com/ru/blog/article/250-questions-qa",
+    "sourceItems": 282,
+    "counts": {
+      "junior": 136,
+      "middle": 103,
+      "senior": 43
+    },
+    "numberingNotes": "Junior number 133 occurs twice (appliance report, then equivalence partitions). Middle number 94 is absent.",
+    "items": [
+      {
+        "ordinal": 1,
+        "sourceLevel": "junior",
+        "sourceNumber": 1,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 2,
+        "sourceLevel": "junior",
+        "sourceNumber": 2,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 3,
+        "sourceLevel": "junior",
+        "sourceNumber": 3,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-15"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 4,
+        "sourceLevel": "junior",
+        "sourceNumber": 4,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-17"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 5,
+        "sourceLevel": "junior",
+        "sourceNumber": 5,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-16"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 6,
+        "sourceLevel": "junior",
+        "sourceNumber": 6,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-22"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 7,
+        "sourceLevel": "junior",
+        "sourceNumber": 7,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-61"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 8,
+        "sourceLevel": "junior",
+        "sourceNumber": 8,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-23",
+          "manual-junior-08"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 9,
+        "sourceLevel": "junior",
+        "sourceNumber": 9,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 10,
+        "sourceLevel": "junior",
+        "sourceNumber": 10,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-18"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 11,
+        "sourceLevel": "junior",
+        "sourceNumber": 11,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-98"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 12,
+        "sourceLevel": "junior",
+        "sourceNumber": 12,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-52"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 13,
+        "sourceLevel": "junior",
+        "sourceNumber": 13,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-49"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 14,
+        "sourceLevel": "junior",
+        "sourceNumber": 14,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-99",
+          "manual-junior-69"
+        ],
+        "topics": [
+          "theory",
+          "web"
+        ]
+      },
+      {
+        "ordinal": 15,
+        "sourceLevel": "junior",
+        "sourceNumber": 15,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 16,
+        "sourceLevel": "junior",
+        "sourceNumber": 16,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-51"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 17,
+        "sourceLevel": "junior",
+        "sourceNumber": 17,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 18,
+        "sourceLevel": "junior",
+        "sourceNumber": 18,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-59"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 19,
+        "sourceLevel": "junior",
+        "sourceNumber": 19,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 20,
+        "sourceLevel": "junior",
+        "sourceNumber": 20,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-50"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 21,
+        "sourceLevel": "junior",
+        "sourceNumber": 21,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-100"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 22,
+        "sourceLevel": "junior",
+        "sourceNumber": 22,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-101"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 23,
+        "sourceLevel": "junior",
+        "sourceNumber": 23,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-48"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 24,
+        "sourceLevel": "junior",
+        "sourceNumber": 24,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-56"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 25,
+        "sourceLevel": "junior",
+        "sourceNumber": 25,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-14",
+          "manual-junior-15",
+          "manual-junior-58"
+        ],
+        "topics": [
+          "documentation",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 26,
+        "sourceLevel": "junior",
+        "sourceNumber": 26,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-53"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 27,
+        "sourceLevel": "junior",
+        "sourceNumber": 27,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-06"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 28,
+        "sourceLevel": "junior",
+        "sourceNumber": 28,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-07"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 29,
+        "sourceLevel": "junior",
+        "sourceNumber": 29,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-20"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 30,
+        "sourceLevel": "junior",
+        "sourceNumber": 30,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-03"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 31,
+        "sourceLevel": "junior",
+        "sourceNumber": 31,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-24"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 32,
+        "sourceLevel": "junior",
+        "sourceNumber": 32,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-57"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 33,
+        "sourceLevel": "junior",
+        "sourceNumber": 33,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-57",
+          "manual-junior-102"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 34,
+        "sourceLevel": "junior",
+        "sourceNumber": 34,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-05"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 35,
+        "sourceLevel": "junior",
+        "sourceNumber": 35,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-25"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 36,
+        "sourceLevel": "junior",
+        "sourceNumber": 36,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-23"
+        ],
+        "topics": [
+          "programming"
+        ]
+      },
+      {
+        "ordinal": 37,
+        "sourceLevel": "junior",
+        "sourceNumber": 37,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-36"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 38,
+        "sourceLevel": "junior",
+        "sourceNumber": 38,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-29"
+        ],
+        "topics": [
+          "programming"
+        ]
+      },
+      {
+        "ordinal": 39,
+        "sourceLevel": "junior",
+        "sourceNumber": 39,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-24"
+        ],
+        "topics": [
+          "programming"
+        ]
+      },
+      {
+        "ordinal": 40,
+        "sourceLevel": "junior",
+        "sourceNumber": 40,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-39"
+        ],
+        "topics": [
+          "programming"
+        ]
+      },
+      {
+        "ordinal": 41,
+        "sourceLevel": "junior",
+        "sourceNumber": 41,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-25",
+          "automation-junior-40"
+        ],
+        "topics": [
+          "automation",
+          "programming"
+        ]
+      },
+      {
+        "ordinal": 42,
+        "sourceLevel": "junior",
+        "sourceNumber": 42,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-50"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 43,
+        "sourceLevel": "junior",
+        "sourceNumber": 43,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-51"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 44,
+        "sourceLevel": "junior",
+        "sourceNumber": 44,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-52"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 45,
+        "sourceLevel": "junior",
+        "sourceNumber": 45,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-53"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 46,
+        "sourceLevel": "junior",
+        "sourceNumber": 46,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-30"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 47,
+        "sourceLevel": "junior",
+        "sourceNumber": 47,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-30"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 48,
+        "sourceLevel": "junior",
+        "sourceNumber": 48,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-31"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 49,
+        "sourceLevel": "junior",
+        "sourceNumber": 49,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-07"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 50,
+        "sourceLevel": "junior",
+        "sourceNumber": 50,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-41",
+          "automation-junior-08"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 51,
+        "sourceLevel": "junior",
+        "sourceNumber": 51,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-37"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 52,
+        "sourceLevel": "junior",
+        "sourceNumber": 52,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-42"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 53,
+        "sourceLevel": "junior",
+        "sourceNumber": 53,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-43"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 54,
+        "sourceLevel": "junior",
+        "sourceNumber": 54,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-07",
+          "automation-middle-42"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 55,
+        "sourceLevel": "junior",
+        "sourceNumber": 55,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-69"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 56,
+        "sourceLevel": "junior",
+        "sourceNumber": 56,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-44"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 57,
+        "sourceLevel": "junior",
+        "sourceNumber": 57,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-45"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 58,
+        "sourceLevel": "junior",
+        "sourceNumber": 58,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-46"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 59,
+        "sourceLevel": "junior",
+        "sourceNumber": 59,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-47"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 60,
+        "sourceLevel": "junior",
+        "sourceNumber": 60,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-48"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 61,
+        "sourceLevel": "junior",
+        "sourceNumber": 61,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-49"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 62,
+        "sourceLevel": "junior",
+        "sourceNumber": 62,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-09"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 63,
+        "sourceLevel": "junior",
+        "sourceNumber": 63,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-37"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 64,
+        "sourceLevel": "junior",
+        "sourceNumber": 64,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-54"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 65,
+        "sourceLevel": "junior",
+        "sourceNumber": 65,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-55",
+          "automation-junior-11"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 66,
+        "sourceLevel": "junior",
+        "sourceNumber": 66,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-56",
+          "automation-middle-11"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 67,
+        "sourceLevel": "junior",
+        "sourceNumber": 67,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-57"
+        ],
+        "topics": [
+          "git"
+        ]
+      },
+      {
+        "ordinal": 68,
+        "sourceLevel": "junior",
+        "sourceNumber": 68,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-57"
+        ],
+        "topics": [
+          "git"
+        ]
+      },
+      {
+        "ordinal": 69,
+        "sourceLevel": "junior",
+        "sourceNumber": 69,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-16"
+        ],
+        "topics": [
+          "git"
+        ]
+      },
+      {
+        "ordinal": 70,
+        "sourceLevel": "junior",
+        "sourceNumber": 70,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-58"
+        ],
+        "topics": [
+          "git"
+        ]
+      },
+      {
+        "ordinal": 71,
+        "sourceLevel": "junior",
+        "sourceNumber": 71,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-20"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 72,
+        "sourceLevel": "junior",
+        "sourceNumber": 72,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-21"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 73,
+        "sourceLevel": "junior",
+        "sourceNumber": 73,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-21"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 74,
+        "sourceLevel": "junior",
+        "sourceNumber": 74,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-59"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 75,
+        "sourceLevel": "junior",
+        "sourceNumber": 75,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-22"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 76,
+        "sourceLevel": "junior",
+        "sourceNumber": 76,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-27"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 77,
+        "sourceLevel": "junior",
+        "sourceNumber": 77,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-103"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 78,
+        "sourceLevel": "junior",
+        "sourceNumber": 78,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-33"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 79,
+        "sourceLevel": "junior",
+        "sourceNumber": 79,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-104"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 80,
+        "sourceLevel": "junior",
+        "sourceNumber": 80,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-110",
+          "manual-junior-32"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 81,
+        "sourceLevel": "junior",
+        "sourceNumber": 81,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-junior-71"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 82,
+        "sourceLevel": "junior",
+        "sourceNumber": 82,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-34"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 83,
+        "sourceLevel": "junior",
+        "sourceNumber": 83,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-37"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 84,
+        "sourceLevel": "junior",
+        "sourceNumber": 84,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-39"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 85,
+        "sourceLevel": "junior",
+        "sourceNumber": 85,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-111"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 86,
+        "sourceLevel": "junior",
+        "sourceNumber": 86,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-112",
+          "manual-senior-50"
+        ],
+        "topics": [
+          "api",
+          "web"
+        ]
+      },
+      {
+        "ordinal": 87,
+        "sourceLevel": "junior",
+        "sourceNumber": 87,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-42"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 88,
+        "sourceLevel": "junior",
+        "sourceNumber": 88,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-40"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 89,
+        "sourceLevel": "junior",
+        "sourceNumber": 89,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-36"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 90,
+        "sourceLevel": "junior",
+        "sourceNumber": 90,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-105"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 91,
+        "sourceLevel": "junior",
+        "sourceNumber": 91,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-29"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 92,
+        "sourceLevel": "junior",
+        "sourceNumber": 92,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-30"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 93,
+        "sourceLevel": "junior",
+        "sourceNumber": 93,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-31"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 94,
+        "sourceLevel": "junior",
+        "sourceNumber": 94,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-66"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 95,
+        "sourceLevel": "junior",
+        "sourceNumber": 95,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-106"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 96,
+        "sourceLevel": "junior",
+        "sourceNumber": 96,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-107"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 97,
+        "sourceLevel": "junior",
+        "sourceNumber": 97,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-65"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 98,
+        "sourceLevel": "junior",
+        "sourceNumber": 98,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-108"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 99,
+        "sourceLevel": "junior",
+        "sourceNumber": 99,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-31"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 100,
+        "sourceLevel": "junior",
+        "sourceNumber": 100,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-109"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 101,
+        "sourceLevel": "junior",
+        "sourceNumber": 101,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-65",
+          "manual-junior-70"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 102,
+        "sourceLevel": "junior",
+        "sourceNumber": 102,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-113"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 103,
+        "sourceLevel": "junior",
+        "sourceNumber": 103,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-70"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 104,
+        "sourceLevel": "junior",
+        "sourceNumber": 104,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-114",
+          "manual-junior-79"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 105,
+        "sourceLevel": "junior",
+        "sourceNumber": 105,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-114"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 106,
+        "sourceLevel": "junior",
+        "sourceNumber": 106,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-115"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 107,
+        "sourceLevel": "junior",
+        "sourceNumber": 107,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-79"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 108,
+        "sourceLevel": "junior",
+        "sourceNumber": 108,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-80",
+          "manual-junior-116"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 109,
+        "sourceLevel": "junior",
+        "sourceNumber": 109,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-81"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 110,
+        "sourceLevel": "junior",
+        "sourceNumber": 110,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-86"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 111,
+        "sourceLevel": "junior",
+        "sourceNumber": 111,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-87"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 112,
+        "sourceLevel": "junior",
+        "sourceNumber": 112,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-60"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 113,
+        "sourceLevel": "junior",
+        "sourceNumber": 113,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-61"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 114,
+        "sourceLevel": "junior",
+        "sourceNumber": 114,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-88"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 115,
+        "sourceLevel": "junior",
+        "sourceNumber": 115,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-89"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 116,
+        "sourceLevel": "junior",
+        "sourceNumber": 116,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-90"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 117,
+        "sourceLevel": "junior",
+        "sourceNumber": 117,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-97"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 118,
+        "sourceLevel": "junior",
+        "sourceNumber": 118,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-08",
+          "manual-junior-61",
+          "manual-junior-23"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 119,
+        "sourceLevel": "junior",
+        "sourceNumber": 119,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-09"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 120,
+        "sourceLevel": "junior",
+        "sourceNumber": 120,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-95"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 121,
+        "sourceLevel": "junior",
+        "sourceNumber": 121,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-117"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 122,
+        "sourceLevel": "junior",
+        "sourceNumber": 122,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-118"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 123,
+        "sourceLevel": "junior",
+        "sourceNumber": 123,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-119"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 124,
+        "sourceLevel": "junior",
+        "sourceNumber": 124,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-120",
+          "manual-junior-09"
+        ],
+        "topics": [
+          "practice",
+          "web"
+        ]
+      },
+      {
+        "ordinal": 125,
+        "sourceLevel": "junior",
+        "sourceNumber": 125,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-91"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 126,
+        "sourceLevel": "junior",
+        "sourceNumber": 126,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-92"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 127,
+        "sourceLevel": "junior",
+        "sourceNumber": 127,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-94"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 128,
+        "sourceLevel": "junior",
+        "sourceNumber": 133,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-118"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 129,
+        "sourceLevel": "junior",
+        "sourceNumber": 128,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-121"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 130,
+        "sourceLevel": "junior",
+        "sourceNumber": 129,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-93"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 131,
+        "sourceLevel": "junior",
+        "sourceNumber": 130,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-122"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 132,
+        "sourceLevel": "junior",
+        "sourceNumber": 131,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-42"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 133,
+        "sourceLevel": "junior",
+        "sourceNumber": 132,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-123"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 134,
+        "sourceLevel": "junior",
+        "sourceNumber": 133,
+        "occurrence": 2,
+        "targetQuestionIds": [
+          "manual-junior-123",
+          "manual-junior-61"
+        ],
+        "topics": [
+          "design",
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 135,
+        "sourceLevel": "junior",
+        "sourceNumber": 134,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-124"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 136,
+        "sourceLevel": "junior",
+        "sourceNumber": 135,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-62"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 137,
+        "sourceLevel": "middle",
+        "sourceNumber": 1,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-13"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 138,
+        "sourceLevel": "middle",
+        "sourceNumber": 2,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-46",
+          "manual-junior-51",
+          "manual-middle-73"
+        ],
+        "topics": [
+          "performance",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 139,
+        "sourceLevel": "middle",
+        "sourceNumber": 3,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-03"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 140,
+        "sourceLevel": "middle",
+        "sourceNumber": 4,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-58"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 141,
+        "sourceLevel": "middle",
+        "sourceNumber": 5,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-24",
+          "manual-junior-26",
+          "manual-junior-102"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 142,
+        "sourceLevel": "middle",
+        "sourceNumber": 6,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-101"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 143,
+        "sourceLevel": "middle",
+        "sourceNumber": 7,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-100"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 144,
+        "sourceLevel": "middle",
+        "sourceNumber": 8,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-10"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 145,
+        "sourceLevel": "middle",
+        "sourceNumber": 9,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-15"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 146,
+        "sourceLevel": "middle",
+        "sourceNumber": 10,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-14",
+          "automation-middle-05"
+        ],
+        "topics": [
+          "automation",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 147,
+        "sourceLevel": "middle",
+        "sourceNumber": 11,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-04"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 148,
+        "sourceLevel": "middle",
+        "sourceNumber": 12,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-18"
+        ],
+        "topics": [
+          "design"
+        ]
+      },
+      {
+        "ordinal": 149,
+        "sourceLevel": "middle",
+        "sourceNumber": 13,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-62"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 150,
+        "sourceLevel": "middle",
+        "sourceNumber": 14,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-63"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 151,
+        "sourceLevel": "middle",
+        "sourceNumber": 15,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-64"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 152,
+        "sourceLevel": "middle",
+        "sourceNumber": 16,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-21",
+          "automation-senior-23"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 153,
+        "sourceLevel": "middle",
+        "sourceNumber": 17,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-65"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 154,
+        "sourceLevel": "middle",
+        "sourceNumber": 18,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-102"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 155,
+        "sourceLevel": "middle",
+        "sourceNumber": 19,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-66"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 156,
+        "sourceLevel": "middle",
+        "sourceNumber": 20,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-12",
+          "manual-senior-07"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 157,
+        "sourceLevel": "middle",
+        "sourceNumber": 21,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-67"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 158,
+        "sourceLevel": "middle",
+        "sourceNumber": 22,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-68"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 159,
+        "sourceLevel": "middle",
+        "sourceNumber": 23,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-69"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 160,
+        "sourceLevel": "middle",
+        "sourceNumber": 24,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-70"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 161,
+        "sourceLevel": "middle",
+        "sourceNumber": 25,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-71",
+          "manual-middle-16"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 162,
+        "sourceLevel": "middle",
+        "sourceNumber": 26,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-32",
+          "manual-junior-71",
+          "manual-junior-10"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 163,
+        "sourceLevel": "middle",
+        "sourceNumber": 27,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-73",
+          "manual-junior-51"
+        ],
+        "topics": [
+          "performance",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 164,
+        "sourceLevel": "middle",
+        "sourceNumber": 28,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-73",
+          "manual-junior-51",
+          "manual-senior-58"
+        ],
+        "topics": [
+          "performance",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 165,
+        "sourceLevel": "middle",
+        "sourceNumber": 29,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-28"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 166,
+        "sourceLevel": "middle",
+        "sourceNumber": 30,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-13"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 167,
+        "sourceLevel": "middle",
+        "sourceNumber": 31,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-72"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 168,
+        "sourceLevel": "middle",
+        "sourceNumber": 32,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-103"
+        ],
+        "topics": [
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 169,
+        "sourceLevel": "middle",
+        "sourceNumber": 33,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-45"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 170,
+        "sourceLevel": "middle",
+        "sourceNumber": 34,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-senior-01",
+          "automation-senior-02"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 171,
+        "sourceLevel": "middle",
+        "sourceNumber": 35,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-30"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 172,
+        "sourceLevel": "middle",
+        "sourceNumber": 36,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-38"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 173,
+        "sourceLevel": "middle",
+        "sourceNumber": 37,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-09"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 174,
+        "sourceLevel": "middle",
+        "sourceNumber": 38,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-32"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 175,
+        "sourceLevel": "middle",
+        "sourceNumber": 39,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-junior-61"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 176,
+        "sourceLevel": "middle",
+        "sourceNumber": 40,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-52"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 177,
+        "sourceLevel": "middle",
+        "sourceNumber": 41,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-53"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 178,
+        "sourceLevel": "middle",
+        "sourceNumber": 42,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-54"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 179,
+        "sourceLevel": "middle",
+        "sourceNumber": 43,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-25",
+          "automation-middle-46"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 180,
+        "sourceLevel": "middle",
+        "sourceNumber": 44,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-25"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 181,
+        "sourceLevel": "middle",
+        "sourceNumber": 45,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-25",
+          "automation-middle-45"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 182,
+        "sourceLevel": "middle",
+        "sourceNumber": 46,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-47"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 183,
+        "sourceLevel": "middle",
+        "sourceNumber": 47,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-48"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 184,
+        "sourceLevel": "middle",
+        "sourceNumber": 48,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-49"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 185,
+        "sourceLevel": "middle",
+        "sourceNumber": 49,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-27"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 186,
+        "sourceLevel": "middle",
+        "sourceNumber": 50,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-50"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 187,
+        "sourceLevel": "middle",
+        "sourceNumber": 51,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-26"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 188,
+        "sourceLevel": "middle",
+        "sourceNumber": 52,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-51"
+        ],
+        "topics": [
+          "infrastructure"
+        ]
+      },
+      {
+        "ordinal": 189,
+        "sourceLevel": "middle",
+        "sourceNumber": 53,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-41",
+          "manual-middle-06"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 190,
+        "sourceLevel": "middle",
+        "sourceNumber": 54,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-74"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 191,
+        "sourceLevel": "middle",
+        "sourceNumber": 55,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-75",
+          "manual-junior-40"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 192,
+        "sourceLevel": "middle",
+        "sourceNumber": 56,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-30",
+          "manual-middle-08"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 193,
+        "sourceLevel": "middle",
+        "sourceNumber": 57,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-68"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 194,
+        "sourceLevel": "middle",
+        "sourceNumber": 58,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-24"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 195,
+        "sourceLevel": "middle",
+        "sourceNumber": 59,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-50",
+          "manual-middle-51",
+          "manual-middle-52",
+          "manual-senior-57"
+        ],
+        "topics": [
+          "practice",
+          "security"
+        ]
+      },
+      {
+        "ordinal": 196,
+        "sourceLevel": "middle",
+        "sourceNumber": 60,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-76"
+        ],
+        "topics": [
+          "performance"
+        ]
+      },
+      {
+        "ordinal": 197,
+        "sourceLevel": "middle",
+        "sourceNumber": 61,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-37"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 198,
+        "sourceLevel": "middle",
+        "sourceNumber": 62,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-38"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 199,
+        "sourceLevel": "middle",
+        "sourceNumber": 63,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-77"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 200,
+        "sourceLevel": "middle",
+        "sourceNumber": 64,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-38"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 201,
+        "sourceLevel": "middle",
+        "sourceNumber": 65,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-78"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 202,
+        "sourceLevel": "middle",
+        "sourceNumber": 66,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-79"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 203,
+        "sourceLevel": "middle",
+        "sourceNumber": 67,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-31"
+        ],
+        "topics": [
+          "api"
+        ]
+      },
+      {
+        "ordinal": 204,
+        "sourceLevel": "middle",
+        "sourceNumber": 68,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-80"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 205,
+        "sourceLevel": "middle",
+        "sourceNumber": 69,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-81"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 206,
+        "sourceLevel": "middle",
+        "sourceNumber": 70,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-82"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 207,
+        "sourceLevel": "middle",
+        "sourceNumber": 71,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-83"
+        ],
+        "topics": [
+          "sql"
+        ]
+      },
+      {
+        "ordinal": 208,
+        "sourceLevel": "middle",
+        "sourceNumber": 72,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-104"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 209,
+        "sourceLevel": "middle",
+        "sourceNumber": 73,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-84"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 210,
+        "sourceLevel": "middle",
+        "sourceNumber": 74,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-41"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 211,
+        "sourceLevel": "middle",
+        "sourceNumber": 75,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-42"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 212,
+        "sourceLevel": "middle",
+        "sourceNumber": 76,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-85"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 213,
+        "sourceLevel": "middle",
+        "sourceNumber": 77,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-43"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 214,
+        "sourceLevel": "middle",
+        "sourceNumber": 78,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-86"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 215,
+        "sourceLevel": "middle",
+        "sourceNumber": 79,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-40"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 216,
+        "sourceLevel": "middle",
+        "sourceNumber": 80,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-45"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 217,
+        "sourceLevel": "middle",
+        "sourceNumber": 81,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-105"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 218,
+        "sourceLevel": "middle",
+        "sourceNumber": 82,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-82"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 219,
+        "sourceLevel": "middle",
+        "sourceNumber": 83,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-87"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 220,
+        "sourceLevel": "middle",
+        "sourceNumber": 84,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-88"
+        ],
+        "topics": [
+          "mobile"
+        ]
+      },
+      {
+        "ordinal": 221,
+        "sourceLevel": "middle",
+        "sourceNumber": 85,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-89",
+          "manual-senior-11"
+        ],
+        "topics": [
+          "practice",
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 222,
+        "sourceLevel": "middle",
+        "sourceNumber": 86,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-90",
+          "manual-middle-12"
+        ],
+        "topics": [
+          "practice",
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 223,
+        "sourceLevel": "middle",
+        "sourceNumber": 87,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-91"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 224,
+        "sourceLevel": "middle",
+        "sourceNumber": 88,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-09"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 225,
+        "sourceLevel": "middle",
+        "sourceNumber": 89,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-92"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 226,
+        "sourceLevel": "middle",
+        "sourceNumber": 90,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-92"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 227,
+        "sourceLevel": "middle",
+        "sourceNumber": 91,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-93"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 228,
+        "sourceLevel": "middle",
+        "sourceNumber": 92,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-94"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 229,
+        "sourceLevel": "middle",
+        "sourceNumber": 93,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-95"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 230,
+        "sourceLevel": "middle",
+        "sourceNumber": 95,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-96"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 231,
+        "sourceLevel": "middle",
+        "sourceNumber": 96,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-97"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 232,
+        "sourceLevel": "middle",
+        "sourceNumber": 97,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-middle-58",
+          "automation-middle-14"
+        ],
+        "topics": [
+          "api",
+          "automation",
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 233,
+        "sourceLevel": "middle",
+        "sourceNumber": 98,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-98"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 234,
+        "sourceLevel": "middle",
+        "sourceNumber": 99,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-99"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 235,
+        "sourceLevel": "middle",
+        "sourceNumber": 100,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-54"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 236,
+        "sourceLevel": "middle",
+        "sourceNumber": 101,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-57"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 237,
+        "sourceLevel": "middle",
+        "sourceNumber": 102,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-55"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 238,
+        "sourceLevel": "middle",
+        "sourceNumber": 103,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-56"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 239,
+        "sourceLevel": "middle",
+        "sourceNumber": 104,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-middle-55",
+          "automation-junior-21"
+        ],
+        "topics": [
+          "cicd",
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 240,
+        "sourceLevel": "senior",
+        "sourceNumber": 1,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-20"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 241,
+        "sourceLevel": "senior",
+        "sourceNumber": 2,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-43"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 242,
+        "sourceLevel": "senior",
+        "sourceNumber": 3,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-44"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 243,
+        "sourceLevel": "senior",
+        "sourceNumber": 4,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-15"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 244,
+        "sourceLevel": "senior",
+        "sourceNumber": 5,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-16"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 245,
+        "sourceLevel": "senior",
+        "sourceNumber": 6,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-03"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 246,
+        "sourceLevel": "senior",
+        "sourceNumber": 7,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-21",
+          "manual-senior-46"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 247,
+        "sourceLevel": "senior",
+        "sourceNumber": 8,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-45"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 248,
+        "sourceLevel": "senior",
+        "sourceNumber": 9,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-09"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 249,
+        "sourceLevel": "senior",
+        "sourceNumber": 10,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-46"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 250,
+        "sourceLevel": "senior",
+        "sourceNumber": 11,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-47"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 251,
+        "sourceLevel": "senior",
+        "sourceNumber": 12,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-14"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 252,
+        "sourceLevel": "senior",
+        "sourceNumber": 13,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-23",
+          "manual-senior-02"
+        ],
+        "topics": [
+          "documentation",
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 253,
+        "sourceLevel": "senior",
+        "sourceNumber": 14,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-08",
+          "manual-senior-03"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 254,
+        "sourceLevel": "senior",
+        "sourceNumber": 15,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-02"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 255,
+        "sourceLevel": "senior",
+        "sourceNumber": 16,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-13"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 256,
+        "sourceLevel": "senior",
+        "sourceNumber": 17,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-06",
+          "manual-junior-128"
+        ],
+        "topics": [
+          "design",
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 257,
+        "sourceLevel": "senior",
+        "sourceNumber": 18,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-48"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 258,
+        "sourceLevel": "senior",
+        "sourceNumber": 19,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-22",
+          "manual-senior-08"
+        ],
+        "topics": [
+          "documentation",
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 259,
+        "sourceLevel": "senior",
+        "sourceNumber": 20,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-08"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 260,
+        "sourceLevel": "senior",
+        "sourceNumber": 21,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-20"
+        ],
+        "topics": [
+          "documentation"
+        ]
+      },
+      {
+        "ordinal": 261,
+        "sourceLevel": "senior",
+        "sourceNumber": 22,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-senior-20"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 262,
+        "sourceLevel": "senior",
+        "sourceNumber": 23,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-senior-21"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 263,
+        "sourceLevel": "senior",
+        "sourceNumber": 24,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-senior-22",
+          "automation-senior-02"
+        ],
+        "topics": [
+          "automation"
+        ]
+      },
+      {
+        "ordinal": 264,
+        "sourceLevel": "senior",
+        "sourceNumber": 25,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "automation-senior-23"
+        ],
+        "topics": [
+          "cicd"
+        ]
+      },
+      {
+        "ordinal": 265,
+        "sourceLevel": "senior",
+        "sourceNumber": 26,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-37",
+          "manual-senior-57"
+        ],
+        "topics": [
+          "practice",
+          "security"
+        ]
+      },
+      {
+        "ordinal": 266,
+        "sourceLevel": "senior",
+        "sourceNumber": 27,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-18"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 267,
+        "sourceLevel": "senior",
+        "sourceNumber": 28,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-49",
+          "manual-middle-24"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 268,
+        "sourceLevel": "senior",
+        "sourceNumber": 29,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-58"
+        ],
+        "topics": [
+          "performance"
+        ]
+      },
+      {
+        "ordinal": 269,
+        "sourceLevel": "senior",
+        "sourceNumber": 30,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-50"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 270,
+        "sourceLevel": "senior",
+        "sourceNumber": 31,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-51"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 271,
+        "sourceLevel": "senior",
+        "sourceNumber": 32,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-52"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 272,
+        "sourceLevel": "senior",
+        "sourceNumber": 33,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-53"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 273,
+        "sourceLevel": "senior",
+        "sourceNumber": 34,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-54"
+        ],
+        "topics": [
+          "web"
+        ]
+      },
+      {
+        "ordinal": 274,
+        "sourceLevel": "senior",
+        "sourceNumber": 35,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-97"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 275,
+        "sourceLevel": "senior",
+        "sourceNumber": 36,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-11"
+        ],
+        "topics": [
+          "strategy"
+        ]
+      },
+      {
+        "ordinal": 276,
+        "sourceLevel": "senior",
+        "sourceNumber": 37,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-39"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 277,
+        "sourceLevel": "senior",
+        "sourceNumber": 38,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-19",
+          "manual-junior-15"
+        ],
+        "topics": [
+          "strategy",
+          "theory"
+        ]
+      },
+      {
+        "ordinal": 278,
+        "sourceLevel": "senior",
+        "sourceNumber": 39,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-40"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 279,
+        "sourceLevel": "senior",
+        "sourceNumber": 40,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-55",
+          "manual-senior-56",
+          "manual-middle-75",
+          "manual-junior-72",
+          "manual-middle-92"
+        ],
+        "topics": [
+          "api",
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 280,
+        "sourceLevel": "senior",
+        "sourceNumber": 41,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-middle-92"
+        ],
+        "topics": [
+          "practice"
+        ]
+      },
+      {
+        "ordinal": 281,
+        "sourceLevel": "senior",
+        "sourceNumber": 42,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-junior-120",
+          "manual-junior-09"
+        ],
+        "topics": [
+          "practice",
+          "web"
+        ]
+      },
+      {
+        "ordinal": 282,
+        "sourceLevel": "senior",
+        "sourceNumber": 43,
+        "occurrence": 1,
+        "targetQuestionIds": [
+          "manual-senior-57"
+        ],
+        "topics": [
+          "practice"
+        ]
+      }
+    ]
+  },
+  "medium": {
+    "url": "https://medium.com/@nuhansi22uni/25-interview-questions-answers-for-software-qa-engineer-intern-046c8a77d623",
+    "sourceItems": 25,
+    "items": [
+      {
+        "id": "faq-01",
+        "sourceNumber": 1,
+        "questionId": "manual-junior-125"
+      },
+      {
+        "id": "faq-02",
+        "sourceNumber": 2,
+        "questionId": "manual-junior-126"
+      },
+      {
+        "id": "faq-03",
+        "sourceNumber": 3,
+        "questionId": "manual-junior-19"
+      },
+      {
+        "id": "faq-04",
+        "sourceNumber": 4,
+        "questionId": "manual-junior-06"
+      },
+      {
+        "id": "faq-05",
+        "sourceNumber": 5,
+        "questionId": "manual-junior-18"
+      },
+      {
+        "id": "faq-06",
+        "sourceNumber": 6,
+        "questionId": "automation-junior-01"
+      },
+      {
+        "id": "faq-07",
+        "sourceNumber": 7,
+        "questionId": "manual-junior-03"
+      },
+      {
+        "id": "faq-08",
+        "sourceNumber": 8,
+        "questionId": "manual-junior-09"
+      },
+      {
+        "id": "faq-09",
+        "sourceNumber": 9,
+        "questionId": "manual-junior-25"
+      },
+      {
+        "id": "faq-10",
+        "sourceNumber": 10,
+        "questionId": "manual-senior-41"
+      },
+      {
+        "id": "faq-11",
+        "sourceNumber": 11,
+        "questionId": "manual-junior-23"
+      },
+      {
+        "id": "faq-12",
+        "sourceNumber": 12,
+        "questionId": "manual-junior-127"
+      },
+      {
+        "id": "faq-13",
+        "sourceNumber": 13,
+        "questionId": "manual-junior-128"
+      },
+      {
+        "id": "faq-14",
+        "sourceNumber": 14,
+        "questionId": "automation-junior-63"
+      },
+      {
+        "id": "faq-15",
+        "sourceNumber": 15,
+        "questionId": "automation-junior-64"
+      },
+      {
+        "id": "faq-16",
+        "sourceNumber": 16,
+        "questionId": "automation-junior-65"
+      },
+      {
+        "id": "faq-17",
+        "sourceNumber": 17,
+        "questionId": "automation-junior-66"
+      },
+      {
+        "id": "faq-18",
+        "sourceNumber": 18,
+        "questionId": "automation-senior-23"
+      },
+      {
+        "id": "faq-19",
+        "sourceNumber": 19,
+        "questionId": "automation-junior-21"
+      },
+      {
+        "id": "faq-20",
+        "sourceNumber": 20,
+        "questionId": "manual-junior-49"
+      },
+      {
+        "id": "faq-21",
+        "sourceNumber": 21,
+        "questionId": "automation-junior-67"
+      },
+      {
+        "id": "faq-22",
+        "sourceNumber": 22,
+        "questionId": "manual-middle-16"
+      },
+      {
+        "id": "faq-23",
+        "sourceNumber": 23,
+        "questionId": "manual-senior-08"
+      },
+      {
+        "id": "faq-24",
+        "sourceNumber": 24,
+        "questionId": "manual-junior-129"
+      },
+      {
+        "id": "faq-25",
+        "sourceNumber": 25,
+        "questionId": "automation-junior-68"
+      }
+    ]
+  },
+  "linkedin": {
+    "url": "https://www.linkedin.com/top-content/recruitment-hr/interview-techniques-for-recruiters/interview-questions-for-qa-candidates/",
+    "reviewedOn": "2026-10-13",
+    "scope": "70 visible software-QA prompts across seven member posts, including repeated prompts. Mapped to adapted original questions; this does not cover unseen attachment contents.",
+    "sourceItems": 70,
+    "addedQuestions": 22,
+    "items": [
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-junior-32",
+          "manual-junior-10"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-junior-37"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-junior-36",
+          "manual-junior-38"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-junior-75"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-middle-106"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 6,
+        "targetQuestionIds": [
+          "manual-junior-33"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 7,
+        "targetQuestionIds": [
+          "manual-middle-107"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 8,
+        "targetQuestionIds": [
+          "automation-middle-56"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 9,
+        "targetQuestionIds": [
+          "automation-junior-22",
+          "manual-middle-114"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 10,
+        "targetQuestionIds": [
+          "manual-junior-133"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 11,
+        "targetQuestionIds": [
+          "manual-middle-108"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 12,
+        "targetQuestionIds": [
+          "manual-middle-109"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 13,
+        "targetQuestionIds": [
+          "manual-junior-75",
+          "manual-junior-36",
+          "manual-junior-38"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 14,
+        "targetQuestionIds": [
+          "manual-middle-110"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 15,
+        "targetQuestionIds": [
+          "manual-middle-30"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 16,
+        "targetQuestionIds": [
+          "manual-middle-106"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 17,
+        "targetQuestionIds": [
+          "automation-middle-56"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 18,
+        "targetQuestionIds": [
+          "automation-middle-57"
+        ]
+      },
+      {
+        "postAuthor": "Yuvraj Vardhan",
+        "sourceQuestionNumber": 19,
+        "targetQuestionIds": [
+          "manual-middle-111"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-junior-130"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-junior-17",
+          "manual-junior-04"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-junior-22",
+          "manual-junior-63",
+          "manual-middle-107"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-junior-79",
+          "manual-middle-104"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-junior-32",
+          "manual-junior-40",
+          "manual-junior-71"
+        ]
+      },
+      {
+        "postAuthor": "KHAWAR SHAHZAD",
+        "sourceQuestionNumber": 6,
+        "targetQuestionIds": [
+          "manual-junior-30",
+          "manual-middle-08"
+        ]
+      },
+      {
+        "postAuthor": "Rajveer Kareliya",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-junior-03"
+        ]
+      },
+      {
+        "postAuthor": "Rajveer Kareliya",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-senior-59"
+        ]
+      },
+      {
+        "postAuthor": "Rajveer Kareliya",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-junior-71",
+          "manual-middle-106",
+          "manual-middle-111"
+        ]
+      },
+      {
+        "postAuthor": "Rajveer Kareliya",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-senior-08",
+          "manual-senior-15",
+          "manual-senior-63"
+        ]
+      },
+      {
+        "postAuthor": "Rajveer Kareliya",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-senior-02",
+          "automation-senior-22"
+        ]
+      },
+      {
+        "postAuthor": "Lamiya Yousuf",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-middle-112"
+        ]
+      },
+      {
+        "postAuthor": "Lamiya Yousuf",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-junior-131"
+        ]
+      },
+      {
+        "postAuthor": "Lamiya Yousuf",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-senior-16"
+        ]
+      },
+      {
+        "postAuthor": "Lamiya Yousuf",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-senior-08",
+          "manual-middle-16",
+          "manual-middle-22",
+          "manual-middle-114"
+        ]
+      },
+      {
+        "postAuthor": "Lamiya Yousuf",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-junior-54"
+        ]
+      },
+      {
+        "postAuthor": "Mithun Biswas",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-middle-113"
+        ]
+      },
+      {
+        "postAuthor": "Mithun Biswas",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-middle-02"
+        ]
+      },
+      {
+        "postAuthor": "Mithun Biswas",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "automation-middle-58"
+        ]
+      },
+      {
+        "postAuthor": "Mithun Biswas",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-junior-29",
+          "manual-senior-30",
+          "manual-middle-56"
+        ]
+      },
+      {
+        "postAuthor": "Mithun Biswas",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-senior-02"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-junior-130",
+          "manual-senior-62"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "automation-middle-58",
+          "automation-senior-03"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-senior-43",
+          "manual-senior-08"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "automation-junior-65",
+          "automation-senior-02"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "automation-senior-23",
+          "automation-junior-21"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 6,
+        "targetQuestionIds": [
+          "automation-middle-01"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 7,
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-middle-111",
+          "automation-middle-56"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 8,
+        "targetQuestionIds": [
+          "manual-senior-13",
+          "manual-senior-14"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 9,
+        "targetQuestionIds": [
+          "manual-senior-02",
+          "manual-middle-114"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 10,
+        "targetQuestionIds": [
+          "manual-senior-05",
+          "manual-senior-07"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 11,
+        "targetQuestionIds": [
+          "manual-senior-59",
+          "manual-senior-03"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 12,
+        "targetQuestionIds": [
+          "manual-junior-07",
+          "manual-middle-16"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 13,
+        "targetQuestionIds": [
+          "manual-senior-60"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 14,
+        "targetQuestionIds": [
+          "manual-middle-13",
+          "manual-senior-63"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 15,
+        "targetQuestionIds": [
+          "manual-senior-63"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 16,
+        "targetQuestionIds": [
+          "manual-senior-61"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 17,
+        "targetQuestionIds": [
+          "automation-senior-03",
+          "automation-senior-13"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 18,
+        "targetQuestionIds": [
+          "manual-senior-23",
+          "manual-senior-24",
+          "manual-senior-25"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 19,
+        "targetQuestionIds": [
+          "manual-senior-11",
+          "manual-senior-63"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 20,
+        "targetQuestionIds": [
+          "manual-senior-07"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 21,
+        "targetQuestionIds": [
+          "automation-senior-01",
+          "manual-senior-05"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 22,
+        "targetQuestionIds": [
+          "automation-senior-24"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 23,
+        "targetQuestionIds": [
+          "manual-senior-19",
+          "manual-senior-01"
+        ]
+      },
+      {
+        "postAuthor": "Vaishali Gajjar",
+        "sourceQuestionNumber": 24,
+        "targetQuestionIds": [
+          "manual-senior-62"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 1,
+        "targetQuestionIds": [
+          "manual-junior-129"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 2,
+        "targetQuestionIds": [
+          "manual-junior-131"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 3,
+        "targetQuestionIds": [
+          "manual-junior-132"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 4,
+        "targetQuestionIds": [
+          "manual-senior-59",
+          "manual-senior-03"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 5,
+        "targetQuestionIds": [
+          "manual-middle-114"
+        ]
+      },
+      {
+        "postAuthor": "Shubham bharti",
+        "sourceQuestionNumber": 6,
+        "targetQuestionIds": [
+          "manual-middle-02",
+          "manual-senior-05"
+        ]
+      }
+    ],
+    "excluded": [
+      {
+        "postAuthor": "Abdallh Ali",
+        "reason": "Seven construction QA/QC prompts are outside this software-QA site scope."
+      },
+      {
+        "postAuthor": "Suraj Rathod",
+        "reason": "A PDF guide is advertised but its question text is not exposed on this page."
+      },
+      {
+        "postAuthor": "Aston Cook",
+        "reason": "Ten questions and a larger vault are advertised without question text on this page."
+      }
+    ],
+    "technicalReferences": [
+      "https://github.com/rest-assured/rest-assured/wiki/Usage",
+      "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "https://json-schema.org/understanding-json-schema/reference/object"
+    ]
+  },
+  "devassure": {
+    "url": "https://www.devassure.io/blog/top-qa-interview-questions/",
+    "sourceItems": 68,
+    "numberingNote": "Title says Top 60, but the main list continues through number 68. Navigation repeats are excluded.",
+    "counts": {
+      "covered": 68,
+      "partial": 0,
+      "missing": 0
+    },
+    "items": [
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-17",
+          "automation-junior-63"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-03"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-17"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-14",
+          "manual-junior-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-16"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 7,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-35",
+          "automation-middle-15",
+          "automation-middle-59"
+        ],
+        "gap": "Visual baseline maintenance exists; add a clear definition and comparison workflow.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 8,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 9,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 10,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-49"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 11,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-132"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 12,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 13,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 14,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-19"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 15,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-57"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 16,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 17,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-junior-134"
+        ],
+        "gap": "Explain high-level scenario versus detailed case.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 18,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-54"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 19,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-07"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 20,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-23",
+          "manual-junior-08"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 21,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-61"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 22,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-69",
+          "manual-junior-136"
+        ],
+        "gap": "Accessibility is related; add usability evaluation with representative users.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 23,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 24,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51",
+          "manual-middle-46"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 25,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51",
+          "manual-senior-58"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 26,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-100"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 27,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-29",
+          "manual-junior-52",
+          "manual-senior-30"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 28,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-10"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 29,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-137"
+        ],
+        "gap": "Add internationalization/globalization readiness, distinct from translation.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 30,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-138"
+        ],
+        "gap": "Add alpha versus beta stages and participants.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 31,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-139"
+        ],
+        "gap": "Add randomized event testing and distinction from exploratory/fuzz testing.",
+        "reviewStatusBefore": "missing",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 32,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-57",
+          "manual-senior-01",
+          "manual-junior-135"
+        ],
+        "gap": "Explain strategy-versus-plan scope and how documents relate.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 33,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-13",
+          "manual-senior-08",
+          "manual-senior-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 34,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-21",
+          "automation-senior-23",
+          "automation-middle-60"
+        ],
+        "gap": "Explain continuous quality feedback across delivery stages, beyond one CI run.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 35,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-47"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 36,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-63"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 37,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-66"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 38,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30",
+          "automation-junior-26",
+          "automation-junior-61",
+          "manual-junior-71"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 39,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 40,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-30",
+          "automation-junior-42"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 41,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-31"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 42,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 43,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-37",
+          "automation-junior-54"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 44,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-10",
+          "manual-junior-65",
+          "manual-middle-115"
+        ],
+        "gap": "Compare API and UI layers, coverage and trade-offs directly.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 45,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-71"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 46,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-20"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 47,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-senior-23"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 48,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-47",
+          "manual-senior-09",
+          "manual-middle-116"
+        ],
+        "gap": "Add response-time distribution, throughput, errors and resource metrics together.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 49,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-51"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 50,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-100",
+          "manual-senior-57",
+          "manual-middle-117"
+        ],
+        "gap": "Distinguish penetration assessment from broader security checks.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 51,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-100"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 52,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-44"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 53,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-104"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 54,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-61",
+          "automation-junior-60"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 55,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-83"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 56,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-01"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 57,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-03"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 58,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-middle-21",
+          "manual-junior-59"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 59,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-08"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 60,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-44"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 61,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-18"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 62,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-15",
+          "automation-junior-35"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 63,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-15"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 64,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-62",
+          "manual-middle-19",
+          "manual-middle-118"
+        ],
+        "gap": "Explain generating/selecting checks from a behavioral model.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 65,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-25"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 66,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-132"
+        ],
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 67,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-21",
+          "manual-senior-10",
+          "manual-senior-64"
+        ],
+        "gap": "Define checking agreed standards with an evidence trail; requirements depend on context.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 68,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-04"
+        ],
+        "reviewStatusBefore": "covered"
+      }
+    ]
+  },
+  "thinksys": {
+    "url": "https://thinksys.com/qa-testing/top-qa-interview-question-answer/",
+    "sourceItems": 18,
+    "numberingNote": "Three interview lists, each numbered 1–6: fundamentals, automation, scenarios. Hiring checklists and marketing headings are not counted as extra interview entries.",
+    "counts": {
+      "covered": 18,
+      "partial": 0,
+      "missing": 0
+    },
+    "items": [
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-01"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-14",
+          "manual-junior-15"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-25",
+          "manual-middle-21"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-02"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-53"
+        ],
+        "sourceSection": "fundamentals",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-63"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-65",
+          "automation-junior-66"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-01",
+          "automation-junior-65"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-58",
+          "automation-senior-07",
+          "automation-middle-61"
+        ],
+        "sourceSection": "automation",
+        "gap": "Tool structure/migration covered; add a concrete selection rationale for the tools actually used.",
+        "reviewStatusBefore": "partial",
+        "resolvedOn": "2026-10-14"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-middle-01",
+          "automation-senior-03",
+          "automation-middle-58"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "automation-junior-21",
+          "automation-middle-03",
+          "automation-senior-23"
+        ],
+        "sourceSection": "automation",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 1,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-senior-63",
+          "manual-senior-08"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 2,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-104",
+          "manual-junior-12",
+          "manual-junior-85"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 3,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-junior-09"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 4,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-112",
+          "manual-junior-06"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 5,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-01",
+          "manual-middle-89"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      },
+      {
+        "sourceQuestionNumber": 6,
+        "status": "covered",
+        "targetQuestionIds": [
+          "manual-middle-02",
+          "manual-middle-16",
+          "manual-senior-05"
+        ],
+        "sourceSection": "scenarios",
+        "reviewStatusBefore": "covered"
+      }
+    ]
+  },
+  "oct14ReviewFile": "source-review-oct14.json",
+  "linkedinMaterialsReviewFile": "linkedin-materials-review.json"
+}

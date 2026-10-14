@@ -1,0 +1,5723 @@
+{
+  "reviewedOn": "2026-10-14",
+  "bankBefore": 530,
+  "bankAfter": 611,
+  "addedQuestions": 81,
+  "languages": [
+    "uz",
+    "ru",
+    "en"
+  ],
+  "method": "Source-topic comparison with independently written short answers/examples. Composite and repeated source prompts share target questions; adaptations are not verbatim reproductions or complete runnable solutions to coding exercises. Learning subheadings are counted separately from interview questions. Instructions, advertising and LinkedIn account UI in attachments were treated as source content, not user instructions.",
+  "modernScope": "Modern QA concepts included; legacy-tool prompts excluded and unclear terms recorded rather than invented.",
+  "addedQuestionKeys": {
+    "find-elements": "automation-junior-70",
+    "xpath-relations": "automation-junior-71",
+    "driver-lifecycle": "automation-junior-72",
+    "dropdown": "automation-junior-73",
+    "element-observation": "automation-junior-74",
+    "selenium-boundary": "automation-junior-75",
+    "screenshot": "automation-junior-76",
+    "java-classes": "automation-middle-64",
+    "java-polymorphism": "automation-middle-65",
+    "java-exceptions": "automation-middle-66",
+    "java-list-map": "automation-middle-67",
+    "java-memory": "automation-middle-68",
+    "java-strings": "automation-middle-69",
+    "string-algorithms": "automation-junior-77",
+    "string-transform": "automation-junior-78",
+    "numeric-algorithms": "automation-junior-79",
+    "ranking-algorithms": "automation-junior-80",
+    "pattern-program": "automation-junior-81",
+    "testng-lifecycle": "automation-middle-70",
+    "testng-data": "automation-middle-71",
+    "testng-listeners": "automation-middle-72",
+    "maven": "automation-junior-82",
+    "maven-skip": "automation-junior-83",
+    "git-workflow": "automation-junior-84",
+    "git-clean": "automation-junior-85",
+    "cucumber-data": "automation-middle-73",
+    "cucumber-hooks": "automation-middle-74",
+    "framework-types": "automation-middle-75",
+    "excel-data": "automation-middle-76",
+    "slow-status": "manual-middle-150",
+    "created-status": "manual-middle-151",
+    "api-docs": "manual-middle-152",
+    "mfa-test": "automation-middle-77",
+    "tls-diagnosis": "automation-middle-78",
+    "config-logging": "automation-junior-86",
+    "sql-ranking": "manual-middle-153",
+    "sql-orders": "manual-middle-154",
+    "sql-functions": "manual-middle-155",
+    "sql-schema": "manual-middle-156",
+    "sql-view-trigger": "manual-middle-157",
+    "sql-subquery": "manual-middle-158",
+    "sql-index-dialect": "manual-middle-159",
+    "suite-harness": "manual-middle-160",
+    "reliability-install": "manual-middle-161",
+    "nonstandard-testing": "manual-middle-162",
+    "defect-cascade": "manual-middle-163",
+    "backlogs": "manual-middle-164",
+    "agile-metrics": "manual-middle-165",
+    "spike-tracer": "manual-middle-166",
+    "tdd-refactor": "manual-middle-167",
+    "iterative-models": "manual-middle-168",
+    "scrum-feedback": "manual-middle-169",
+    "abi": "automation-senior-25",
+    "python-self": "automation-junior-87",
+    "ai-qa": "manual-senior-76",
+    "candidate-questions": "manual-junior-151",
+    "hr-expectations": "manual-junior-152",
+    "jmeter-model": "automation-middle-79",
+    "jmeter-browser": "automation-middle-80",
+    "jmeter-cli": "automation-middle-81",
+    "jmeter-capacity": "automation-middle-82",
+    "jmeter-distributed": "automation-middle-83",
+    "jmeter-data": "automation-middle-84",
+    "jmeter-processors": "automation-middle-85",
+    "jmeter-timers": "automation-middle-86",
+    "jmeter-recording": "automation-middle-87",
+    "jmeter-sessions": "automation-middle-88",
+    "jmeter-scripting": "automation-middle-89",
+    "jmeter-tool-choice": "automation-middle-90",
+    "jug-puzzle": "manual-junior-153",
+    "split-puzzle": "manual-junior-154",
+    "switch-puzzle": "manual-junior-155",
+    "rotation-puzzle": "manual-junior-156",
+    "folded-pages": "manual-junior-157",
+    "cake-puzzle": "manual-junior-158",
+    "pair-puzzle": "manual-junior-159",
+    "accounting-puzzle": "manual-junior-160",
+    "ambiguous-math": "manual-junior-161",
+    "handshake-puzzle": "manual-junior-162",
+    "scale-puzzle": "manual-junior-163",
+    "quality-standards": "manual-middle-170"
+  },
+  "sources": {
+    "suraj": {
+      "fileName": "1752675114150.pdf",
+      "authorOrCompiler": "Suraj Rathod",
+      "pages": 11,
+      "sha256": "4bcea5d42957234f7cf38d081d66fc94ef952569a12609132c8861b0cc89e999",
+      "itemCount": 238,
+      "unit": "numbered interview prompts, including duplicates and composite prompts",
+      "items": [
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "1",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "2",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "3",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-09",
+            "automation-middle-04"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "4",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "5",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-54"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "6",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-26",
+            "manual-junior-150"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "7",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-132"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "8",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-senior-22",
+            "manual-senior-06"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "9",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-25",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "10",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-07",
+            "manual-junior-20"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "11",
+          "page": 1,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "12",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-22"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "13",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-134"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "14",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-22",
+            "automation-junior-59"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "15",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-15",
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "16",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-01",
+            "automation-junior-32"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "17",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "manual-junior-98"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "18",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-15",
+            "manual-middle-101"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "19",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-20"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "20",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-92",
+            "manual-middle-100"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "21",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-133"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "22",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-04",
+            "manual-middle-105"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "1: Overview & Manual Testing",
+          "sourceNumber": "23",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "1",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "2",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "3",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-31",
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "4",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-31"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "5",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "6",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "7",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "8",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Live-site locator exercise adapted to structural XPath concepts; no claim that a current site selector was verified."
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "9",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71",
+            "automation-junior-45"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Live-site locator exercise adapted to structural XPath concepts; no claim that a current site selector was verified."
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "10",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "11",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Live-site locator exercise adapted to structural XPath concepts; no claim that a current site selector was verified."
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "12",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-09",
+            "automation-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "13",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-46",
+            "automation-middle-65"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "14",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "15",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-73"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "16",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-33"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "17",
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-32"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "18",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-09"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "19",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-09"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "20",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-36"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "21",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "22",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-36"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "23",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-69"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "24",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-37",
+            "automation-junior-07"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "25",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-07"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "26",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-01"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "27",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-32"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "28",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-76"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "29",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-61"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "30",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "31",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-23",
+            "automation-middle-65"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "32",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-30",
+            "automation-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "33",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "34",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "35",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-76"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "36",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-19",
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "2: Selenium + Automation Coding",
+          "sourceNumber": "37",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-61"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "1",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-37"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "2",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-22"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "3",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "4",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-59"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "5",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "6",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "7",
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-56",
+            "automation-junior-03"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "8",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-29",
+            "automation-junior-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "9",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "10",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "11",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "12",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "13",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "14",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "15",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-82"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "16",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "17",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "3: JUnit / TestNG",
+          "sourceNumber": "18",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-03",
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "1",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "2",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-65"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "3",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-65"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "4",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-64"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "5",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-65"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "6",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-64"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "7",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-64"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "8",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-64"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "9",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-23"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "10",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-68",
+            "automation-junior-36"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "11",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-41",
+            "automation-middle-66"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "12",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-66"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "13",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-62"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "14",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-50",
+            "automation-middle-67"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "15",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-50"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "16",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-50",
+            "automation-middle-67"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "17",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-67"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "18",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-67"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "19",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-67"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "20",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-68"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "21",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-69"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "22",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-68"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "4: Core Java",
+          "sourceNumber": "23",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-57"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "1",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-69"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "2",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "3",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "4",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "5",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "6",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "7",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-78"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Ambiguous second-character reversal requires clarification; alternatives discussed."
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "8",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-78"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "9",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-78"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "10",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-148"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "11",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-78"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "12",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "13",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-81"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "14",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "15",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "16",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "17",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-79",
+            "automation-junior-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "18",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "19",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "20",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "21",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "22",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-81"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "23",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-31",
+            "automation-junior-69"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "24",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-33",
+            "automation-middle-66"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "25",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-154"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "26",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-37"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "27",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-153"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "28",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-154"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "29",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-45"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "5: Java Coding Questions",
+          "sourceNumber": "30",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "1",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-71"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "2",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-28"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "3",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-32",
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "4",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-73"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "5",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-41"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "6",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "7",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-151"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "8",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-72"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "9",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-36"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "10",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-36",
+            "manual-junior-75"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "11",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "12",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-151"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "13",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "14",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-middle-106"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "15",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-106"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "16",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-40",
+            "manual-middle-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "17",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-150"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "18",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-56",
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "19",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-55",
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "20",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-58",
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "21",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-35",
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "22",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "23",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-108",
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "24",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-78"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "6: API Testing",
+          "sourceNumber": "25",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "1",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-150",
+            "manual-junior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "2",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-13"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "3",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "4",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-72"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "5",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-169"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "6",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-164"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "7",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-165",
+            "manual-senior-13"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "8",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-11"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "9",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-126",
+            "manual-middle-66"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "10",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-13"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "11",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-22"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "12",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-82",
+            "automation-junior-25"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "13",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-15",
+            "automation-middle-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "14",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-18",
+            "automation-middle-73"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "15",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-73"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "16",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "17",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-73"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "18",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "19",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "20",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "21",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "22",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "automation-middle-01"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "23",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-20",
+            "automation-senior-23"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "24",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "25",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-82"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "26",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-83"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Incorrect Maven premise corrected: skipping checks does not remove code from a PR."
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "27",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "28",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-18"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "29",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "30",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "31",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-19"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "32",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-85"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "33",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "34",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "35",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-153"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "36",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-154"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "37",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-45"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "38",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "39",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-142"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "40",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-54"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "41",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-20"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "42",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-134"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "43",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-28",
+            "automation-middle-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "44",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-11"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "45",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-03"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "46",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-39",
+            "manual-middle-138"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "47",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-57"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "48",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-78"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "49",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-77"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "50",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "51",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "52",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "53",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-86"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "54",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-86"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "55",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-86"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "56",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-02"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "57",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "58",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-18",
+            "manual-middle-22"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "59",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-83"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Incorrect Maven premise corrected: skipping checks does not remove code from a PR."
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "60",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "61",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "automation-junior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "7: Tools, Agile, CI/CD, SQL & Miscellaneous",
+          "sourceNumber": "62",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "1",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-142"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "2",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "3",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-122",
+            "manual-middle-113"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "4",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "5",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-90"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "6",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "7",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-123"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "8",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "9",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-11"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "10",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "11",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-60",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "12",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "13",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-03",
+            "manual-middle-120"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "14",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "15",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-90"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "16",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-144"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "17",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "18",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "19",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "8: HR/Managerial Round",
+          "sourceNumber": "20",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        }
+      ],
+      "statusCounts": {
+        "adapted-topic-covered": 238
+      }
+    },
+    "aston": {
+      "fileName": "1774097837768.pdf",
+      "authorOrCompiler": "Aston Cook",
+      "pages": 12,
+      "sha256": "27a2da33a63fa1157c11e8bdcf95ea19a974ed9843cfbcd02dff95a5a8b9a970",
+      "itemCount": 10,
+      "unit": "interview questions",
+      "scopeNote": "This is the supplied 10-question preview, distinct from the earlier publicly indexed 30-question sample. Advertised paid 790+ Vault is not included in this attachment.",
+      "items": [
+        {
+          "sourceNumber": 1,
+          "page": 2,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ]
+        },
+        {
+          "sourceNumber": 2,
+          "page": 3,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-01",
+            "manual-junior-126",
+            "manual-middle-16"
+          ]
+        },
+        {
+          "sourceNumber": 3,
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ]
+        },
+        {
+          "sourceNumber": 4,
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-01",
+            "automation-middle-06"
+          ]
+        },
+        {
+          "sourceNumber": 5,
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-junior-128",
+            "manual-middle-152"
+          ]
+        },
+        {
+          "sourceNumber": 6,
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-113",
+            "manual-middle-122"
+          ]
+        },
+        {
+          "sourceNumber": 7,
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-65",
+            "automation-senior-22"
+          ]
+        },
+        {
+          "sourceNumber": 8,
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-63",
+            "manual-senior-08"
+          ]
+        },
+        {
+          "sourceNumber": 9,
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-76",
+            "manual-junior-144"
+          ]
+        },
+        {
+          "sourceNumber": 10,
+          "page": 11,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-151"
+          ]
+        }
+      ],
+      "statusCounts": {
+        "adapted-topic-covered": 10
+      }
+    },
+    "mithun": {
+      "fileName": "1756083163846.pdf",
+      "authorOrCompiler": "Mithun Biswas (compiler; JMeter section also credits Umar Arshad)",
+      "pages": 96,
+      "sha256": "d4ff52b49634ca98cf087694aa899aba537b0cfad3bf43bc6f50c7654566f088",
+      "itemCount": 293,
+      "unit": "numbered learning headings, including SDLC phases, principles and roadmap subtopics; not 293 distinct interview questions",
+      "items": [
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "1",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "2",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3",
+          "page": 4,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3.1",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-middle-124"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3.2",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3.3",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3.4",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-junior-15"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "3.5",
+          "page": 5,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-middle-129"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "4",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "5",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-168"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "6",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-149"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "7",
+          "page": 6,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "8",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-168"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 1 Software Development Life Cycle (SDLC)",
+          "sourceNumber": "9",
+          "page": 7,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-168"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "1",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-01"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.1",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.2",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.3",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47",
+            "manual-senior-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.4",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.5",
+          "page": 8,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.6",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "2.7",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "3",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-junior-15"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "4",
+          "page": 9,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-02"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "5",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-170"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 2 STLC & Principle of Software Testing",
+          "sourceNumber": "6",
+          "page": 10,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "1",
+          "page": 11,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "2",
+          "page": 11,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-135",
+            "manual-senior-01"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "3",
+          "page": 11,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-160"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "4",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-134"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "5",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-25"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "6",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-160"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "7",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-45"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "8",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-129"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "9",
+          "page": 12,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-160"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "10",
+          "page": 13,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-160"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "11",
+          "page": 13,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-45"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "12",
+          "page": 13,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-160",
+            "manual-middle-114"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "13",
+          "page": 14,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "14",
+          "page": 14,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 3 Testing Documents",
+          "sourceNumber": "15",
+          "page": 17,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-128"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "1",
+          "page": 18,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-19",
+            "manual-middle-17"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "2",
+          "page": 18,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-19"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "3",
+          "page": 19,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-19"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "4",
+          "page": 19,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-138"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "5",
+          "page": 19,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-138"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "6",
+          "page": 19,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-162"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7",
+          "page": 19,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.1",
+          "page": 20,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "automation-senior-20"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.2",
+          "page": 20,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "manual-junior-98"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.3",
+          "page": 20,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.4",
+          "page": 20,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-04"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.5",
+          "page": 20,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-04"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.6",
+          "page": 21,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-18"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.7",
+          "page": 21,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-04"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "7.8",
+          "page": 21,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-49"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "8",
+          "page": 21,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-139"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "9",
+          "page": 21,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-98"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "10",
+          "page": 22,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-98"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "11",
+          "page": 22,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-98"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "12",
+          "page": 22,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "manual-junior-60"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "13",
+          "page": 22,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "14",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.1",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-51"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.2",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-51"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.3",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-136"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.4",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-51"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.5",
+          "page": 23,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-34"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.10",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-162"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.11",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-101"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.12",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-29",
+            "manual-junior-52"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.6",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-27",
+            "manual-senior-27"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.7",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-99"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.8",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-161",
+            "manual-senior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.9",
+          "page": 24,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-161"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.13",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-136"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "15.14",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-100"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "16",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-48"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "17",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-18"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "18",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-132"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "19",
+          "page": 25,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-32",
+            "manual-middle-28"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "19.1",
+          "page": 26,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-161"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "20",
+          "page": 26,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-15"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "21",
+          "page": 26,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-163"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "22",
+          "page": 26,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-126"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "23",
+          "page": 26,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-126"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "24",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-126"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "25",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "26",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "27",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "28",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "29",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "30",
+          "page": 27,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "31",
+          "page": 28,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-131"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "32",
+          "page": 28,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "33",
+          "page": 29,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 4 Methods & Types of Software Testing",
+          "sourceNumber": "34",
+          "page": 29,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-65",
+            "manual-senior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 5 Techniques of Software Testing",
+          "sourceNumber": "5.1",
+          "page": 30,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-23",
+            "manual-junior-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 5 Techniques of Software Testing",
+          "sourceNumber": "5.2",
+          "page": 30,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-03"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 5 Techniques of Software Testing",
+          "sourceNumber": "5.3",
+          "page": 31,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-61"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 5 Techniques of Software Testing",
+          "sourceNumber": "5.4",
+          "page": 32,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-62"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 5 Techniques of Software Testing",
+          "sourceNumber": "5.5",
+          "page": 32,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-64"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.1",
+          "page": 33,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-27",
+            "manual-junior-103",
+            "manual-junior-109"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.2",
+          "page": 33,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-99",
+            "manual-junior-136"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.3",
+          "page": 34,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "manual-junior-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.4",
+          "page": 34,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-16"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.5",
+          "page": 34,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-06"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.6",
+          "page": 34,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-142"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 6 Some Common Concepts",
+          "sourceNumber": "6.7",
+          "page": 35,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-142"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.1",
+          "page": 36,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-126"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.2",
+          "page": 36,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-68",
+            "manual-middle-104"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.3",
+          "page": 36,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-114",
+            "manual-junior-115",
+            "manual-senior-30"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.4",
+          "page": 36,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-104",
+            "manual-middle-28"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.5",
+          "page": 36,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-11"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.10",
+          "page": 37,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-85",
+            "manual-middle-11",
+            "manual-junior-12"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.6",
+          "page": 37,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-104",
+            "manual-middle-45",
+            "manual-middle-116"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.7",
+          "page": 37,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-43",
+            "manual-middle-161"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.8",
+          "page": 37,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-84",
+            "manual-junior-87",
+            "manual-middle-104"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 7 Road Map for Mobile Application Testing",
+          "sourceNumber": "7.9",
+          "page": 37,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-11",
+            "manual-junior-83"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.1",
+          "page": 38,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-21",
+            "manual-senior-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.2",
+          "page": 38,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-165"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.3",
+          "page": 38,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-72"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.4",
+          "page": 38,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-164"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.5",
+          "page": 38,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-165"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.10",
+          "page": 39,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-44",
+            "manual-middle-13"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.6",
+          "page": 39,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-21"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.7",
+          "page": 39,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-167"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.8",
+          "page": 39,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-167"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.9",
+          "page": 39,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-168"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.11",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.12",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-63",
+            "manual-junior-13"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.13",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-164"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.14",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-164"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.15",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-167"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.16",
+          "page": 40,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-08",
+            "manual-senior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.17",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-169",
+            "manual-middle-13"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.18",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-senior-25"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.19",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-166"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.20",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-166"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.21",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-senior-15",
+            "manual-senior-08"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.22",
+          "page": 41,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-169"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.23",
+          "page": 42,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-166"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.24",
+          "page": 42,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-165"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 8 Agile Methodology and Concepts",
+          "sourceNumber": "8.25",
+          "page": 42,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-72",
+            "manual-middle-169"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.1",
+          "page": 44,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-42"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.2",
+          "page": 44,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.3",
+          "page": 44,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-42",
+            "manual-middle-156"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.4",
+          "page": 44,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-44"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.5",
+          "page": 45,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-155"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.6",
+          "page": 46,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-44",
+            "manual-junior-77",
+            "manual-middle-37"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.7",
+          "page": 47,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-156",
+            "manual-junior-76"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.8",
+          "page": 48,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-78"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.9",
+          "page": 48,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-45"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.10",
+          "page": 52,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-35"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.11",
+          "page": 53,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-35"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.12",
+          "page": 53,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-155"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.13",
+          "page": 53,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-155"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.14",
+          "page": 54,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.15",
+          "page": 54,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.16",
+          "page": 54,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.17",
+          "page": 54,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.18",
+          "page": 55,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.19",
+          "page": 55,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-50"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.20",
+          "page": 55,
+          "status": "needs-context",
+          "targetQuestionIds": [],
+          "note": "Source uses SQL sandbox for an old CLR permission-set model. Do not present this as a generic SQL feature or current security guarantee."
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.21",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-159"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.22",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-159"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.23",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-155"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.24",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-158"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.25",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-158"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.26",
+          "page": 56,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-159"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.27",
+          "page": 57,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.28",
+          "page": 57,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.29",
+          "page": 57,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-158"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.30",
+          "page": 57,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-156"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.31",
+          "page": 57,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-156"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.32",
+          "page": 58,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-79"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.33",
+          "page": 58,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-100"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.34",
+          "page": 58,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-19",
+            "manual-middle-100",
+            "manual-middle-157"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 9 Database & SQL Concepts",
+          "sourceNumber": "9.35",
+          "page": 58,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-19",
+            "manual-middle-100"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 10 Common SQL Queries",
+          "sourceNumber": "10.1",
+          "page": 59,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-153"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 10 Common SQL Queries",
+          "sourceNumber": "10.2",
+          "page": 59,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-153"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 10 Common SQL Queries",
+          "sourceNumber": "10.3",
+          "page": 59,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-96",
+            "manual-junior-121"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 10 Common SQL Queries",
+          "sourceNumber": "10.4",
+          "page": 59,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-159"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.1",
+          "page": 60,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-32",
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.2",
+          "page": 60,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-middle-108"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.3",
+          "page": 60,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-45",
+            "manual-middle-137"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.4",
+          "page": 60,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-58",
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.5",
+          "page": 61,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-39",
+            "manual-junior-74"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.6",
+          "page": 61,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-33"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.7",
+          "page": 61,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "automation-middle-14"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.10",
+          "page": 62,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "automation-middle-56"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.11",
+          "page": 62,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.8",
+          "page": 62,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-71"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.9",
+          "page": 62,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-56",
+            "automation-middle-55"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.12",
+          "page": 63,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.13",
+          "page": 63,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-32",
+            "manual-middle-107"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.14",
+          "page": 63,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-middle-108",
+            "manual-middle-106"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.15",
+          "page": 64,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-152"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.16",
+          "page": 64,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-108",
+            "manual-middle-29",
+            "manual-middle-33"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.17",
+          "page": 64,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-middle-108"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.18",
+          "page": 65,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-67",
+            "automation-junior-65"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.19",
+          "page": 65,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-middle-115"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.20",
+          "page": 65,
+          "status": "needs-context",
+          "targetQuestionIds": [],
+          "note": "Test API library is unnamed and unversioned; not a general API-testing definition."
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.21",
+          "page": 65,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-40",
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.22",
+          "page": 66,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-35",
+            "manual-junior-10"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 11 Application Program Interface (API)",
+          "sourceNumber": "10.23",
+          "page": 66,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-40"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.1",
+          "page": 69,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-63"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.2",
+          "page": 69,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-66"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.3",
+          "page": 69,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-61"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.4",
+          "page": 69,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-30",
+            "automation-junior-42"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.5",
+          "page": 70,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-65",
+            "automation-junior-30"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.6",
+          "page": 70,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.7",
+          "page": 70,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-61",
+            "automation-junior-64"
+          ],
+          "comparison": "existing-bank-topic",
+          "note": "Recorder/IDE tradeoffs adapted to tool selection; no legacy IDE command tutorial."
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.8",
+          "page": 70,
+          "status": "legacy-excluded",
+          "targetQuestionIds": [],
+          "note": "Legacy Selenese/IDE command vocabulary excluded under the agreed modern-tool scope."
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.9",
+          "page": 70,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-31"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.10",
+          "page": 71,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-62"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.11",
+          "page": 71,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.12",
+          "page": 71,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-71",
+            "automation-middle-08"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.13",
+          "page": 71,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-42"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.14",
+          "page": 72,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-30",
+            "automation-junior-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.15",
+          "page": 72,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-30",
+            "automation-middle-38"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.16",
+          "page": 72,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-07"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.17",
+          "page": 73,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.18",
+          "page": 73,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.19",
+          "page": 73,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.20",
+          "page": 74,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-73"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.21",
+          "page": 74,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.22",
+          "page": 74,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-31",
+            "automation-junior-43"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.23",
+          "page": 75,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-09"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.24",
+          "page": 75,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.25",
+          "page": 75,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-72"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.26",
+          "page": 75,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.27",
+          "page": 75,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-32",
+            "automation-junior-33"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.28",
+          "page": 76,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-02",
+            "automation-junior-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.29",
+          "page": 76,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-36"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.30",
+          "page": 76,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-74"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.31",
+          "page": 77,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-37"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.32",
+          "page": 77,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-54"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.33",
+          "page": 77,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-37",
+            "automation-middle-71",
+            "automation-middle-70"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.34",
+          "page": 77,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.35",
+          "page": 78,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.36",
+          "page": 78,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.37",
+          "page": 79,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-76"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.38",
+          "page": 79,
+          "status": "legacy-excluded",
+          "targetQuestionIds": [],
+          "note": "QTP comparison excluded under the agreed modern-tool scope."
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.39",
+          "page": 80,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-75"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.40",
+          "page": 80,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-47"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.41",
+          "page": 80,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-25",
+            "automation-junior-40"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.42",
+          "page": 81,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-66"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.43",
+          "page": 81,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-66"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.44",
+          "page": 81,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-33"
+          ],
+          "comparison": "existing-bank-topic"
+        },
+        {
+          "section": "Chapter 12 Selenium WebDriver (Automation)",
+          "sourceNumber": "11.45",
+          "page": 81,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-junior-87"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.1",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.2",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.3",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-83"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.4",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-84",
+            "manual-middle-62"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.5",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-85"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.6",
+          "page": 82,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.10",
+          "page": 83,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-84"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.11",
+          "page": 83,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-79",
+            "automation-middle-81"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.7",
+          "page": 83,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-82"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.8",
+          "page": 83,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-86"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.9",
+          "page": 83,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-90"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.12",
+          "page": 84,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-87"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.13",
+          "page": 84,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-87"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.14",
+          "page": 84,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-83"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.15",
+          "page": 85,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-90",
+            "automation-middle-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.16",
+          "page": 85,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-85"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.17",
+          "page": 85,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-81"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Misleading GUI recommendation corrected: GUI for design/debug, CLI for load."
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.18",
+          "page": 85,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-90"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.19",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-88"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.20",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-88"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.21",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-89"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.22",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-80"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.23",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-87"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.24",
+          "page": 86,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-82"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.25",
+          "page": 87,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-89"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.26",
+          "page": 87,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-89"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.27",
+          "page": 87,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-79",
+            "automation-middle-86"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.28",
+          "page": 87,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-79"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 13 JMeter Concepts (Automation)",
+          "sourceNumber": "12.29",
+          "page": 87,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "automation-middle-88"
+          ],
+          "comparison": "expanded-with-new-content"
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.1",
+          "page": 89,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-153"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.2",
+          "page": 89,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-154"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.3",
+          "page": 89,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-155"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.4",
+          "page": 90,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-154"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.5",
+          "page": 90,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-156"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.6",
+          "page": 93,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-157"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.7",
+          "page": 93,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-158"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.8",
+          "page": 94,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-159"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.10",
+          "page": 95,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-161"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.11",
+          "page": 95,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-162"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.9",
+          "page": 95,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-160"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        },
+        {
+          "section": "Chapter 14 Aptitude Questions",
+          "sourceNumber": "13.12",
+          "page": 96,
+          "status": "adapted-topic-covered",
+          "targetQuestionIds": [
+            "manual-junior-163"
+          ],
+          "comparison": "expanded-with-new-content",
+          "note": "Reasoning exercise adapted with explicit assumptions; duplicates consolidated, ambiguous wording clarified and original tyre-unit inconsistency corrected."
+        }
+      ],
+      "statusCounts": {
+        "adapted-topic-covered": 289,
+        "needs-context": 2,
+        "legacy-excluded": 2
+      }
+    }
+  },
+  "technicalChecks": [
+    {
+      "url": "https://jmeter.apache.org/usermanual/best-practices.html",
+      "purpose": "CLI load execution and generator capacity"
+    },
+    {
+      "url": "https://jmeter.apache.org/usermanual/component_reference.html",
+      "purpose": "Elements, processors, timers and modern scripting"
+    },
+    {
+      "url": "https://testng.org/",
+      "purpose": "Lifecycle, parameters, groups, listeners"
+    },
+    {
+      "url": "https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html",
+      "purpose": "Build lifecycle"
+    },
+    {
+      "url": "https://www.iso.org/standards/popular/iso-9000-family",
+      "purpose": "Quality management standards"
+    },
+    {
+      "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html",
+      "purpose": "Java access control"
+    }
+  ],
+  "pastedLinkedInText": {
+    "fileName": "Pasted text.txt",
+    "sha256": "3945fee848925481e8c1600124a67bc1669d364837dc8e9b2589b1b75bc88ffb",
+    "scope": "Same visible LinkedIn aggregation previously audited: 70 software-QA prompts; unrelated construction-QA content excluded. Personal/account UI and source prose not republished.",
+    "mappingFile": "coverage.json",
+    "status": "previous-topic-mappings-retained"
+  }
+}

@@ -1,0 +1,4084 @@
+{
+  "reviewedOn": "2026-10-14",
+  "bankQuestions": 530,
+  "addedQuestions": 69,
+  "languages": [
+    "uz",
+    "ru",
+    "en"
+  ],
+  "method": "Original adapted topic coverage; multiple source prompts can share one target and multiple targets can cover a composite prompt. Unresolved/legacy items are not labelled fully covered.",
+  "linkedinAttachments": "resumed from user-supplied PDF materials; see linkedin-materials-review.json",
+  "sources": {
+    "devto": {
+      "url": "https://dev.to/samelawrence/my-favorite-interview-questions-for-qa-engineers-485a",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 10,
+      "scopeNote": "Ten main question headings; multi-part prompts may map to more than one question.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-142"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-01",
+            "manual-junior-47",
+            "manual-senior-06"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-01",
+            "manual-senior-19"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-67",
+            "automation-senior-01"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17",
+            "manual-middle-145"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-middle-130",
+            "manual-junior-130"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-26",
+            "automation-middle-61"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-63",
+            "automation-middle-58",
+            "automation-middle-61"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-02",
+            "manual-senior-05"
+          ]
+        }
+      ],
+      "counts": {
+        "adapted-covered": 10
+      }
+    },
+    "testrigor": {
+      "url": "https://testrigor.com/blog/manual-qa-interview-questions/",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 30,
+      "scopeNote": "",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "manual-junior-140"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-125",
+            "manual-junior-01"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-15"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-24",
+            "manual-junior-25"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-134"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-134"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-06",
+            "manual-junior-128"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-18"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-02"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-63"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-04"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140",
+            "manual-senior-63"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-113"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 16,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-22",
+            "manual-junior-128"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 17,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-150",
+            "manual-junior-06"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 18,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-07",
+            "manual-senior-64"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 19,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-130",
+            "manual-junior-130"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 20,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-16",
+            "manual-senior-01"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 21,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-69"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 22,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-01",
+            "manual-senior-01"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 23,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-104",
+            "manual-junior-130"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 24,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-10",
+            "manual-middle-115"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 25,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-100",
+            "manual-junior-130"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 26,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-63",
+            "manual-junior-04"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 27,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-24",
+            "manual-senior-46"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 28,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-123",
+            "manual-middle-16"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 29,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-22",
+            "manual-junior-25",
+            "manual-junior-128"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 30,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-139"
+          ]
+        }
+      ],
+      "counts": {
+        "adapted-covered": 30
+      }
+    },
+    "indeed": {
+      "url": "https://uk.indeed.com/hire/interview-questions/qa",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 15,
+      "scopeNote": "Top list order used; article repeats answers in a different order.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-08"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-143",
+            "manual-junior-140"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-02",
+            "manual-junior-125"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-24"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-63"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-144"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-120"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-122"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-121"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-130",
+            "manual-junior-140"
+          ]
+        }
+      ],
+      "counts": {
+        "adapted-covered": 15
+      }
+    },
+    "toptal": {
+      "url": "https://www.toptal.com/developers/qa/interview-questions",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 10,
+      "scopeNote": "All ten prompts mapped. Numeric/transition exercises use original illustrative models and data, not copied diagrams. Assertion terminology is runner-dependent.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-02"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-08",
+            "manual-junior-61"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-62"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-07",
+            "manual-junior-20"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-64",
+            "automation-senior-21"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-58",
+            "manual-senior-16"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-143"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-144"
+          ]
+        }
+      ],
+      "counts": {
+        "adapted-covered": 10
+      }
+    },
+    "qamadness": {
+      "url": "https://www.qamadness.com/15-common-qa-job-interview-questions/",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 16,
+      "scopeNote": "15 technical headings plus the explicitly labelled bonus career question; promotional article links excluded.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-125"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-01"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-16"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-19"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-22"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-22"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-46"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-98"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-124"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-04"
+          ]
+        },
+        {
+          "sourceQuestionNumber": 16,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ]
+        }
+      ],
+      "counts": {
+        "adapted-covered": 16
+      }
+    },
+    "interviewbit": {
+      "url": "https://www.interviewbit.com/qa-interview-questions/",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 34,
+      "scopeNote": "26 interview prompts plus eight indexed MCQ topics, converted to open Q&A concepts; direct page inaccessible. Publisher-specific incomplete details explicitly marked.",
+      "access": "publisher-search-index",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-125"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-135"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-129"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-66"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-02",
+            "manual-middle-66"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-02"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-139"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-131"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-131"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-15"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-128",
+            "manual-senior-06"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 16,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-25"
+          ],
+          "sourceSection": "freshers"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-18",
+            "manual-middle-22"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "partial-source-context",
+          "targetQuestionIds": [
+            "manual-senior-45",
+            "manual-senior-01"
+          ],
+          "sourceSection": "experienced",
+          "note": "The prompt asks for five risk dimensions, but that publisher-specific enumeration is not exposed in the indexed answer. General risk analysis is covered; no unverified five-item list invented."
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-65"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-13",
+            "manual-senior-05"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-51"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-19"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-66"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-98",
+            "manual-middle-14"
+          ],
+          "sourceSection": "experienced"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-02"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "manual-middle-125"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-63"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-146"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-65",
+            "manual-senior-64"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-125"
+          ],
+          "sourceSection": "mcq-topics"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "partial-source-context",
+          "targetQuestionIds": [
+            "manual-middle-124"
+          ],
+          "sourceSection": "mcq-topics",
+          "note": "Indexed question wording/options are incomplete; mapped concept only, not an asserted MCQ answer."
+        }
+      ],
+      "counts": {
+        "adapted-covered": 32,
+        "partial-source-context": 2
+      }
+    },
+    "parasoft": {
+      "url": "https://www.parasoftchina.cn/top-75-qa-interview-questions-answers-with-examples/",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 67,
+      "scopeNote": "67 interview bullet prompts in seven sections. Explanatory headings/repeated answer headings are excluded from the count; title 75 is not used as evidence of actual question count.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-122"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-145"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-130"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-123"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-123"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-122"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 16,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-120"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 17,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-60"
+          ],
+          "sourceSection": "general"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-02",
+            "manual-junior-125"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-08"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-25"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-25"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "automation-junior-63"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-62"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-128"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 12,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-135"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 13,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-135"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 14,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 15,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-53"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 16,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-54"
+          ],
+          "sourceSection": "basics"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "sourceSection": "testing"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ],
+          "sourceSection": "testing"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-51"
+          ],
+          "sourceSection": "testing"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-17"
+          ],
+          "sourceSection": "testing"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-63"
+          ],
+          "sourceSection": "testing"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-08"
+          ],
+          "sourceSection": "workflow"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-130"
+          ],
+          "sourceSection": "workflow"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-64",
+            "automation-senior-21"
+          ],
+          "sourceSection": "workflow"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-58"
+          ],
+          "sourceSection": "workflow"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-20",
+            "manual-middle-133"
+          ],
+          "sourceSection": "targeted"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-01",
+            "automation-middle-61"
+          ],
+          "sourceSection": "targeted"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-02"
+          ],
+          "sourceSection": "targeted"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-01",
+            "automation-senior-03"
+          ],
+          "sourceSection": "targeted"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-61"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-01",
+            "manual-senior-05"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-21",
+            "manual-middle-134"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-134"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-134",
+            "manual-junior-54"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "manual-senior-43"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-08",
+            "manual-senior-03"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-06",
+            "manual-senior-02"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-121",
+            "manual-middle-120"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-senior-43"
+          ],
+          "sourceSection": "hypothetical"
+        },
+        {
+          "sourceQuestionNumber": 1,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-141"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 2,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-120"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 3,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-146"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 4,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-113"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 5,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-middle-61"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 6,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-148"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 7,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 8,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "automation-junior-64"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 9,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 10,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "manual-senior-01"
+          ],
+          "sourceSection": "personal"
+        },
+        {
+          "sourceQuestionNumber": 11,
+          "status": "adapted-covered",
+          "targetQuestionIds": [
+            "manual-junior-140",
+            "manual-senior-63"
+          ],
+          "sourceSection": "personal"
+        }
+      ],
+      "counts": {
+        "adapted-covered": 67
+      }
+    },
+    "geekinterview": {
+      "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing",
+      "reviewedOn": "2026-10-14",
+      "sourceItems": 235,
+      "scopeNote": "All 12 archive pages retrieved: 235 unique posts, some containing many subquestions. Modern-topic adaptations mapped per post; this is not an atomic subquestion count. Legacy commands excluded per user instruction; unresolved contextual details marked explicitly.",
+      "access": "public-page",
+      "items": [
+        {
+          "sourceOrdinal": 1,
+          "sourcePostId": "q92243",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92243",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 2,
+          "sourcePostId": "q76453",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q76453",
+          "targetQuestionIds": [
+            "manual-junior-59",
+            "manual-middle-127"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 3,
+          "sourcePostId": "q57514",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q57514",
+          "targetQuestionIds": [
+            "manual-middle-120",
+            "manual-senior-03"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 4,
+          "sourcePostId": "q92426",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92426",
+          "targetQuestionIds": [
+            "manual-middle-120",
+            "manual-senior-03"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 5,
+          "sourcePostId": "q92425",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92425",
+          "targetQuestionIds": [
+            "manual-middle-125",
+            "manual-senior-02",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 6,
+          "sourcePostId": "q92369",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92369",
+          "targetQuestionIds": [
+            "manual-junior-146"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 7,
+          "sourcePostId": "q92379",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92379",
+          "targetQuestionIds": [
+            "manual-junior-09",
+            "manual-junior-136",
+            "manual-junior-100"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 8,
+          "sourcePostId": "q90796",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q90796",
+          "targetQuestionIds": [
+            "manual-junior-14",
+            "manual-junior-54"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 9,
+          "sourcePostId": "q48704",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q48704",
+          "targetQuestionIds": [
+            "manual-middle-132"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 10,
+          "sourcePostId": "q41694",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q41694",
+          "targetQuestionIds": [
+            "manual-middle-130",
+            "manual-junior-21"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 11,
+          "sourcePostId": "q31894",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q31894",
+          "targetQuestionIds": [
+            "manual-junior-29",
+            "manual-middle-56"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 12,
+          "sourcePostId": "q92052",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q92052",
+          "targetQuestionIds": [
+            "manual-middle-03",
+            "manual-junior-146"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 13,
+          "sourcePostId": "q91956",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q91956",
+          "targetQuestionIds": [
+            "manual-junior-149"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 14,
+          "sourcePostId": "q91120",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q91120",
+          "targetQuestionIds": [
+            "manual-middle-142",
+            "manual-junior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 15,
+          "sourcePostId": "q16245",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q16245",
+          "targetQuestionIds": [
+            "manual-middle-126"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 16,
+          "sourcePostId": "q91698",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q91698",
+          "targetQuestionIds": [
+            "manual-middle-133"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 17,
+          "sourcePostId": "q91135",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q91135",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "automation-middle-62"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 18,
+          "sourcePostId": "q90732",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q90732",
+          "targetQuestionIds": [
+            "automation-junior-21",
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 19,
+          "sourcePostId": "q37551",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q37551",
+          "targetQuestionIds": [
+            "manual-junior-147"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 20,
+          "sourcePostId": "q74971",
+          "sourcePage": 0,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing#q74971",
+          "targetQuestionIds": [
+            "manual-junior-148"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 21,
+          "sourcePostId": "q63790",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q63790",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 22,
+          "sourcePostId": "q90905",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90905",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 23,
+          "sourcePostId": "q90467",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90467",
+          "targetQuestionIds": [
+            "manual-middle-104"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 24,
+          "sourcePostId": "q90989",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90989",
+          "targetQuestionIds": [
+            "manual-junior-146",
+            "manual-junior-23"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 25,
+          "sourcePostId": "q91114",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q91114",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 26,
+          "sourcePostId": "q91007",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q91007",
+          "targetQuestionIds": [
+            "manual-middle-127",
+            "manual-middle-114"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 27,
+          "sourcePostId": "q91113",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q91113",
+          "targetQuestionIds": [
+            "manual-middle-135"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 28,
+          "sourcePostId": "q91020",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q91020",
+          "targetQuestionIds": [
+            "manual-middle-125",
+            "manual-middle-127"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 29,
+          "sourcePostId": "q90685",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90685",
+          "targetQuestionIds": [
+            "manual-middle-22",
+            "manual-junior-18"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 30,
+          "sourcePostId": "q90400",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90400",
+          "targetQuestionIds": [
+            "manual-middle-142"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 31,
+          "sourcePostId": "q90539",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90539",
+          "targetQuestionIds": [
+            "manual-senior-20",
+            "manual-middle-133"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 32,
+          "sourcePostId": "q90112",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90112",
+          "targetQuestionIds": [
+            "manual-senior-06",
+            "manual-senior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 33,
+          "sourcePostId": "q90406",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90406",
+          "targetQuestionIds": [
+            "manual-junior-135"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 34,
+          "sourcePostId": "q89928",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q89928",
+          "targetQuestionIds": [
+            "manual-middle-122",
+            "manual-middle-113",
+            "manual-middle-119",
+            "manual-senior-14"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 35,
+          "sourcePostId": "q90125",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90125",
+          "targetQuestionIds": [
+            "manual-junior-29",
+            "manual-middle-56"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 36,
+          "sourcePostId": "q89924",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q89924",
+          "targetQuestionIds": [
+            "manual-junior-15",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 37,
+          "sourcePostId": "q90018",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q90018",
+          "targetQuestionIds": [
+            "manual-middle-140"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 38,
+          "sourcePostId": "q89929",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q89929",
+          "targetQuestionIds": [
+            "manual-middle-140",
+            "manual-middle-122",
+            "manual-middle-113",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 39,
+          "sourcePostId": "q17828",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q17828",
+          "targetQuestionIds": [
+            "manual-middle-128"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 40,
+          "sourcePostId": "q18053",
+          "sourcePage": 1,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page1#q18053",
+          "targetQuestionIds": [
+            "manual-middle-128"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 41,
+          "sourcePostId": "q88305",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88305",
+          "targetQuestionIds": [
+            "manual-middle-135",
+            "automation-middle-14"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 42,
+          "sourcePostId": "q88537",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88537",
+          "targetQuestionIds": [
+            "manual-middle-128"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 43,
+          "sourcePostId": "q88915",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88915",
+          "targetQuestionIds": [
+            "manual-middle-130"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 44,
+          "sourcePostId": "q89359",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q89359",
+          "targetQuestionIds": [
+            "manual-junior-144"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 45,
+          "sourcePostId": "q87996",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q87996",
+          "targetQuestionIds": [
+            "manual-senior-11",
+            "manual-middle-123"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 46,
+          "sourcePostId": "q88895",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88895",
+          "targetQuestionIds": [
+            "manual-middle-135"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 47,
+          "sourcePostId": "q67525",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q67525",
+          "targetQuestionIds": [
+            "manual-junior-33",
+            "manual-junior-10",
+            "automation-middle-61"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 48,
+          "sourcePostId": "q19190",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q19190",
+          "targetQuestionIds": [
+            "manual-senior-68"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 49,
+          "sourcePostId": "q85405",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q85405",
+          "targetQuestionIds": [
+            "manual-junior-22",
+            "manual-middle-145",
+            "manual-senior-68",
+            "manual-junior-135"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 50,
+          "sourcePostId": "q88309",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88309",
+          "targetQuestionIds": [
+            "manual-middle-128",
+            "manual-middle-135"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 51,
+          "sourcePostId": "q88922",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88922",
+          "targetQuestionIds": [
+            "manual-middle-145"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 52,
+          "sourcePostId": "q88928",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88928",
+          "targetQuestionIds": [
+            "manual-middle-136"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 53,
+          "sourcePostId": "q88923",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88923",
+          "targetQuestionIds": [
+            "manual-middle-130"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 54,
+          "sourcePostId": "q88870",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88870",
+          "targetQuestionIds": [
+            "manual-middle-140"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 55,
+          "sourcePostId": "q60198",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q60198",
+          "targetQuestionIds": [
+            "manual-middle-136"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 56,
+          "sourcePostId": "q16243",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q16243",
+          "targetQuestionIds": [
+            "manual-senior-07",
+            "manual-senior-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 57,
+          "sourcePostId": "q35885",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q35885",
+          "targetQuestionIds": [
+            "manual-senior-68",
+            "manual-senior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 58,
+          "sourcePostId": "q45044",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q45044",
+          "targetQuestionIds": [
+            "manual-middle-136"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 59,
+          "sourcePostId": "q35002",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q35002",
+          "targetQuestionIds": [
+            "manual-senior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 60,
+          "sourcePostId": "q88308",
+          "sourcePage": 2,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page2#q88308",
+          "targetQuestionIds": [
+            "manual-junior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 61,
+          "sourcePostId": "q85404",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q85404",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 62,
+          "sourcePostId": "q88209",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q88209",
+          "targetQuestionIds": [
+            "manual-middle-112",
+            "manual-senior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 63,
+          "sourcePostId": "q17633",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q17633",
+          "targetQuestionIds": [
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 64,
+          "sourcePostId": "q13388",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q13388",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 65,
+          "sourcePostId": "q80652",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q80652",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "manual-junior-04",
+            "manual-senior-07",
+            "manual-senior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 66,
+          "sourcePostId": "q62696",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q62696",
+          "targetQuestionIds": [],
+          "status": "legacy-excluded",
+          "note": "Historical CMM 18 KPA enumeration"
+        },
+        {
+          "sourceOrdinal": 67,
+          "sourcePostId": "q82371",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q82371",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 68,
+          "sourcePostId": "q84254",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q84254",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "manual-senior-13"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 69,
+          "sourcePostId": "q85339",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q85339",
+          "targetQuestionIds": [
+            "manual-junior-148",
+            "automation-junior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 70,
+          "sourcePostId": "q86729",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q86729",
+          "targetQuestionIds": [
+            "automation-senior-24"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 71,
+          "sourcePostId": "q31880",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q31880",
+          "targetQuestionIds": [
+            "manual-junior-58"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 72,
+          "sourcePostId": "q84950",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q84950",
+          "targetQuestionIds": [
+            "manual-senior-75",
+            "manual-senior-70",
+            "manual-junior-59",
+            "manual-junior-26"
+          ],
+          "status": "adapted-modern-part",
+          "note": "Quality Center-specific steps excluded; rollback/traceability topics adapted."
+        },
+        {
+          "sourceOrdinal": 73,
+          "sourcePostId": "q85611",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q85611",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "automation-middle-61"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 74,
+          "sourcePostId": "q32561",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q32561",
+          "targetQuestionIds": [
+            "automation-middle-48"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 75,
+          "sourcePostId": "q18187",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q18187",
+          "targetQuestionIds": [
+            "manual-junior-06",
+            "manual-middle-112"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 76,
+          "sourcePostId": "q16635",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q16635",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "manual-junior-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 77,
+          "sourcePostId": "q18251",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q18251",
+          "targetQuestionIds": [
+            "manual-middle-113",
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 78,
+          "sourcePostId": "q84091",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q84091",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 79,
+          "sourcePostId": "q64134",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q64134",
+          "targetQuestionIds": [
+            "automation-junior-23",
+            "automation-junior-36"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 80,
+          "sourcePostId": "q24667",
+          "sourcePage": 3,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page3#q24667",
+          "targetQuestionIds": [
+            "manual-middle-145"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 81,
+          "sourcePostId": "q22969",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q22969",
+          "targetQuestionIds": [
+            "manual-middle-145",
+            "manual-junior-19"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 82,
+          "sourcePostId": "q18054",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q18054",
+          "targetQuestionIds": [
+            "manual-middle-145",
+            "manual-junior-58"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 83,
+          "sourcePostId": "q17632",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q17632",
+          "targetQuestionIds": [
+            "manual-senior-20"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 84,
+          "sourcePostId": "q17622",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q17622",
+          "targetQuestionIds": [
+            "manual-junior-57",
+            "manual-senior-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 85,
+          "sourcePostId": "q17402",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q17402",
+          "targetQuestionIds": [
+            "manual-junior-19"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 86,
+          "sourcePostId": "q82351",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q82351",
+          "targetQuestionIds": [
+            "manual-middle-147"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 87,
+          "sourcePostId": "q82609",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q82609",
+          "targetQuestionIds": [
+            "manual-middle-114",
+            "manual-middle-148"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 88,
+          "sourcePostId": "q26459",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q26459",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 89,
+          "sourcePostId": "q80749",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q80749",
+          "targetQuestionIds": [
+            "manual-senior-11",
+            "manual-middle-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 90,
+          "sourcePostId": "q44259",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q44259",
+          "targetQuestionIds": [
+            "manual-senior-72"
+          ],
+          "status": "needs-source-context",
+          "note": "Exact EDI subscriber loop numbers depend on transaction version/implementation guide; not specified in archive excerpt."
+        },
+        {
+          "sourceOrdinal": 91,
+          "sourcePostId": "q58481",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q58481",
+          "targetQuestionIds": [
+            "automation-junior-23",
+            "automation-junior-36"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 92,
+          "sourcePostId": "q44823",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q44823",
+          "targetQuestionIds": [
+            "manual-middle-137"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 93,
+          "sourcePostId": "q77580",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q77580",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "manual-middle-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 94,
+          "sourcePostId": "q80238",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q80238",
+          "targetQuestionIds": [
+            "manual-junior-18"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 95,
+          "sourcePostId": "q80653",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q80653",
+          "targetQuestionIds": [
+            "manual-senior-63",
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 96,
+          "sourcePostId": "q79588",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q79588",
+          "targetQuestionIds": [
+            "manual-junior-57",
+            "manual-senior-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 97,
+          "sourcePostId": "q74680",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q74680",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "manual-senior-24"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 98,
+          "sourcePostId": "q79315",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q79315",
+          "targetQuestionIds": [
+            "manual-junior-57",
+            "manual-junior-09",
+            "manual-junior-88",
+            "manual-junior-149",
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 99,
+          "sourcePostId": "q35883",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q35883",
+          "targetQuestionIds": [
+            "manual-senior-06",
+            "manual-senior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 100,
+          "sourcePostId": "q64694",
+          "sourcePage": 4,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page4#q64694",
+          "targetQuestionIds": [
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 101,
+          "sourcePostId": "q44195",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q44195",
+          "targetQuestionIds": [
+            "manual-senior-65",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 102,
+          "sourcePostId": "q65835",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q65835",
+          "targetQuestionIds": [
+            "manual-senior-19",
+            "manual-senior-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 103,
+          "sourcePostId": "q67985",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q67985",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 104,
+          "sourcePostId": "q68805",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q68805",
+          "targetQuestionIds": [
+            "manual-middle-142",
+            "manual-junior-13"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 105,
+          "sourcePostId": "q37774",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q37774",
+          "targetQuestionIds": [
+            "manual-senior-67"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 106,
+          "sourcePostId": "q37849",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q37849",
+          "targetQuestionIds": [
+            "manual-middle-146",
+            "manual-junior-03"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 107,
+          "sourcePostId": "q37608",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q37608",
+          "targetQuestionIds": [
+            "manual-middle-115"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 108,
+          "sourcePostId": "q37552",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q37552",
+          "targetQuestionIds": [
+            "manual-junior-147"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 109,
+          "sourcePostId": "q36723",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q36723",
+          "targetQuestionIds": [
+            "manual-junior-03",
+            "manual-middle-100"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 110,
+          "sourcePostId": "q36369",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q36369",
+          "targetQuestionIds": [
+            "manual-junior-128",
+            "manual-senior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 111,
+          "sourcePostId": "q17629",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q17629",
+          "targetQuestionIds": [
+            "manual-junior-22",
+            "manual-senior-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 112,
+          "sourcePostId": "q30232",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q30232",
+          "targetQuestionIds": [
+            "manual-senior-07",
+            "manual-middle-132"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 113,
+          "sourcePostId": "q30550",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q30550",
+          "targetQuestionIds": [
+            "manual-junior-143"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 114,
+          "sourcePostId": "q31706",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q31706",
+          "targetQuestionIds": [
+            "manual-junior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 115,
+          "sourcePostId": "q17631",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q17631",
+          "targetQuestionIds": [
+            "manual-senior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 116,
+          "sourcePostId": "q67519",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q67519",
+          "targetQuestionIds": [
+            "manual-senior-44",
+            "manual-middle-113"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 117,
+          "sourcePostId": "q30764",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q30764",
+          "targetQuestionIds": [
+            "manual-junior-147"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 118,
+          "sourcePostId": "q76854",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q76854",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "manual-junior-15"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 119,
+          "sourcePostId": "q74694",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q74694",
+          "targetQuestionIds": [
+            "manual-senior-45"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 120,
+          "sourcePostId": "q34118",
+          "sourcePage": 5,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page5#q34118",
+          "targetQuestionIds": [
+            "automation-middle-61",
+            "automation-middle-58",
+            "automation-junior-65",
+            "automation-junior-66",
+            "automation-junior-64",
+            "automation-middle-63",
+            "manual-middle-118",
+            "automation-junior-03",
+            "automation-middle-01",
+            "automation-middle-31",
+            "manual-junior-144"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 121,
+          "sourcePostId": "q35884",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q35884",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 122,
+          "sourcePostId": "q67352",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q67352",
+          "targetQuestionIds": [
+            "manual-junior-29"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 123,
+          "sourcePostId": "q64131",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q64131",
+          "targetQuestionIds": [
+            "manual-senior-02",
+            "manual-senior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 124,
+          "sourcePostId": "q64594",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q64594",
+          "targetQuestionIds": [
+            "manual-junior-125",
+            "manual-junior-02"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 125,
+          "sourcePostId": "q64506",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q64506",
+          "targetQuestionIds": [
+            "manual-junior-02",
+            "manual-junior-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 126,
+          "sourcePostId": "q70597",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q70597",
+          "targetQuestionIds": [
+            "manual-senior-72"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 127,
+          "sourcePostId": "q26453",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q26453",
+          "targetQuestionIds": [
+            "automation-middle-48",
+            "automation-junior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 128,
+          "sourcePostId": "q17627",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q17627",
+          "targetQuestionIds": [
+            "automation-senior-01",
+            "automation-junior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 129,
+          "sourcePostId": "q17625",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q17625",
+          "targetQuestionIds": [
+            "manual-junior-14"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 130,
+          "sourcePostId": "q18116",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q18116",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 131,
+          "sourcePostId": "q26451",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q26451",
+          "targetQuestionIds": [
+            "manual-junior-59",
+            "manual-middle-133"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 132,
+          "sourcePostId": "q33978",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q33978",
+          "targetQuestionIds": [
+            "manual-middle-134"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 133,
+          "sourcePostId": "q32331",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q32331",
+          "targetQuestionIds": [
+            "manual-middle-127"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 134,
+          "sourcePostId": "q25653",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q25653",
+          "targetQuestionIds": [
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 135,
+          "sourcePostId": "q33034",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q33034",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 136,
+          "sourcePostId": "q33927",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q33927",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "manual-junior-59"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 137,
+          "sourcePostId": "q26450",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q26450",
+          "targetQuestionIds": [
+            "manual-junior-128",
+            "manual-senior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 138,
+          "sourcePostId": "q67718",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q67718",
+          "targetQuestionIds": [
+            "manual-middle-02",
+            "manual-senior-05"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 139,
+          "sourcePostId": "q64570",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q64570",
+          "targetQuestionIds": [
+            "manual-junior-47",
+            "manual-senior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 140,
+          "sourcePostId": "q68799",
+          "sourcePage": 6,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page6#q68799",
+          "targetQuestionIds": [
+            "manual-middle-112",
+            "manual-middle-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 141,
+          "sourcePostId": "q28695",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q28695",
+          "targetQuestionIds": [
+            "manual-middle-124",
+            "manual-senior-24"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 142,
+          "sourcePostId": "q57102",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q57102",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "manual-junior-130"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 143,
+          "sourcePostId": "q27801",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q27801",
+          "targetQuestionIds": [
+            "manual-senior-67"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 144,
+          "sourcePostId": "q65676",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q65676",
+          "targetQuestionIds": [
+            "manual-junior-48"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 145,
+          "sourcePostId": "q67853",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q67853",
+          "targetQuestionIds": [
+            "manual-middle-112",
+            "manual-middle-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 146,
+          "sourcePostId": "q47229",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q47229",
+          "targetQuestionIds": [
+            "manual-senior-70"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 147,
+          "sourcePostId": "q48073",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q48073",
+          "targetQuestionIds": [
+            "manual-junior-141",
+            "manual-junior-143"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 148,
+          "sourcePostId": "q57064",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q57064",
+          "targetQuestionIds": [
+            "automation-middle-61",
+            "automation-middle-58",
+            "manual-middle-147",
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 149,
+          "sourcePostId": "q32954",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q32954",
+          "targetQuestionIds": [
+            "manual-senior-44",
+            "manual-middle-113"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 150,
+          "sourcePostId": "q68213",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q68213",
+          "targetQuestionIds": [
+            "manual-middle-140",
+            "manual-junior-130"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 151,
+          "sourcePostId": "q50241",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q50241",
+          "targetQuestionIds": [
+            "manual-junior-57"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 152,
+          "sourcePostId": "q67351",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q67351",
+          "targetQuestionIds": [
+            "manual-senior-70"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 153,
+          "sourcePostId": "q58593",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q58593",
+          "targetQuestionIds": [
+            "manual-senior-19",
+            "manual-senior-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 154,
+          "sourcePostId": "q64135",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q64135",
+          "targetQuestionIds": [
+            "manual-middle-119",
+            "automation-middle-61"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 155,
+          "sourcePostId": "q64133",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q64133",
+          "targetQuestionIds": [
+            "manual-junior-19",
+            "manual-middle-143"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 156,
+          "sourcePostId": "q58577",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q58577",
+          "targetQuestionIds": [
+            "manual-junior-59"
+          ],
+          "status": "needs-source-context",
+          "note": "TRM acronym is ambiguous; RTM adaptation needs terminology confirmation."
+        },
+        {
+          "sourceOrdinal": 157,
+          "sourcePostId": "q51543",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q51543",
+          "targetQuestionIds": [
+            "manual-senior-69"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 158,
+          "sourcePostId": "q60952",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q60952",
+          "targetQuestionIds": [
+            "manual-junior-33",
+            "manual-junior-10"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 159,
+          "sourcePostId": "q50465",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q50465",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "manual-junior-125",
+            "manual-junior-01"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 160,
+          "sourcePostId": "q48825",
+          "sourcePage": 7,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page7#q48825",
+          "targetQuestionIds": [
+            "manual-senior-65",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 161,
+          "sourcePostId": "q52810",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q52810",
+          "targetQuestionIds": [
+            "manual-middle-01",
+            "manual-middle-124"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 162,
+          "sourcePostId": "q45797",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q45797",
+          "targetQuestionIds": [
+            "manual-middle-100"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 163,
+          "sourcePostId": "q48560",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q48560",
+          "targetQuestionIds": [
+            "manual-senior-02",
+            "manual-senior-68"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 164,
+          "sourcePostId": "q60848",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q60848",
+          "targetQuestionIds": [
+            "manual-senior-68"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 165,
+          "sourcePostId": "q58524",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q58524",
+          "targetQuestionIds": [
+            "manual-junior-98",
+            "manual-middle-14"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 166,
+          "sourcePostId": "q50221",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q50221",
+          "targetQuestionIds": [],
+          "status": "legacy-excluded",
+          "note": "Mercury product-specific workflow"
+        },
+        {
+          "sourceOrdinal": 167,
+          "sourcePostId": "q17626",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q17626",
+          "targetQuestionIds": [
+            "manual-senior-69"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 168,
+          "sourcePostId": "q59640",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q59640",
+          "targetQuestionIds": [
+            "manual-junior-13"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 169,
+          "sourcePostId": "q52121",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q52121",
+          "targetQuestionIds": [
+            "manual-junior-24"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 170,
+          "sourcePostId": "q55843",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q55843",
+          "targetQuestionIds": [
+            "manual-junior-100",
+            "manual-junior-06",
+            "manual-junior-19",
+            "manual-middle-125",
+            "manual-junior-135"
+          ],
+          "status": "needs-source-context",
+          "note": "Double V model terminology is not defined in excerpt; modern review/strategy topics covered."
+        },
+        {
+          "sourceOrdinal": 171,
+          "sourcePostId": "q52084",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q52084",
+          "targetQuestionIds": [
+            "manual-junior-24"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 172,
+          "sourcePostId": "q51673",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q51673",
+          "targetQuestionIds": [
+            "automation-junior-24",
+            "automation-middle-19",
+            "automation-middle-31"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 173,
+          "sourcePostId": "q26449",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q26449",
+          "targetQuestionIds": [
+            "manual-senior-13",
+            "manual-junior-22"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 174,
+          "sourcePostId": "q23878",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q23878",
+          "targetQuestionIds": [
+            "manual-middle-130",
+            "manual-junior-21"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 175,
+          "sourcePostId": "q16244",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q16244",
+          "targetQuestionIds": [
+            "manual-middle-49",
+            "manual-middle-116"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 176,
+          "sourcePostId": "q58599",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q58599",
+          "targetQuestionIds": [
+            "manual-middle-141"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 177,
+          "sourcePostId": "q56909",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q56909",
+          "targetQuestionIds": [
+            "manual-junior-59",
+            "manual-middle-133"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 178,
+          "sourcePostId": "q56816",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q56816",
+          "targetQuestionIds": [
+            "manual-middle-125"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 179,
+          "sourcePostId": "q56468",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q56468",
+          "targetQuestionIds": [
+            "manual-middle-149",
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 180,
+          "sourcePostId": "q25883",
+          "sourcePage": 8,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page8#q25883",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "manual-senior-71"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 181,
+          "sourcePostId": "q40916",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q40916",
+          "targetQuestionIds": [
+            "manual-junior-15",
+            "automation-junior-65",
+            "manual-junior-130"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 182,
+          "sourcePostId": "q29089",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q29089",
+          "targetQuestionIds": [
+            "manual-junior-18",
+            "manual-middle-22"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 183,
+          "sourcePostId": "q50142",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q50142",
+          "targetQuestionIds": [
+            "manual-junior-25",
+            "manual-senior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 184,
+          "sourcePostId": "q46739",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q46739",
+          "targetQuestionIds": [],
+          "status": "needs-source-context",
+          "note": "Multi-stage statistics question needs the complete process/data, absent from the excerpt."
+        },
+        {
+          "sourceOrdinal": 185,
+          "sourcePostId": "q26454",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q26454",
+          "targetQuestionIds": [
+            "manual-senior-45"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 186,
+          "sourcePostId": "q45052",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q45052",
+          "targetQuestionIds": [
+            "manual-middle-138"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 187,
+          "sourcePostId": "q44302",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q44302",
+          "targetQuestionIds": [
+            "manual-junior-15"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 188,
+          "sourcePostId": "q42864",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q42864",
+          "targetQuestionIds": [
+            "manual-junior-04",
+            "manual-junior-17"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 189,
+          "sourcePostId": "q42337",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q42337",
+          "targetQuestionIds": [
+            "manual-junior-48",
+            "manual-middle-126",
+            "manual-junior-25"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 190,
+          "sourcePostId": "q43860",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q43860",
+          "targetQuestionIds": [
+            "automation-middle-63",
+            "automation-junior-15"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 191,
+          "sourcePostId": "q33123",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q33123",
+          "targetQuestionIds": [
+            "manual-middle-137"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 192,
+          "sourcePostId": "q25794",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q25794",
+          "targetQuestionIds": [
+            "automation-middle-27"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 193,
+          "sourcePostId": "q24095",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q24095",
+          "targetQuestionIds": [
+            "manual-senior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 194,
+          "sourcePostId": "q41033",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q41033",
+          "targetQuestionIds": [
+            "automation-junior-65",
+            "manual-middle-115",
+            "automation-middle-61"
+          ],
+          "status": "adapted-modern-part",
+          "note": "QTP/TestDirector-specific commands excluded; automation and backend topics adapted."
+        },
+        {
+          "sourceOrdinal": 195,
+          "sourcePostId": "q40344",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q40344",
+          "targetQuestionIds": [
+            "manual-junior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 196,
+          "sourcePostId": "q33033",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q33033",
+          "targetQuestionIds": [
+            "manual-senior-63"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 197,
+          "sourcePostId": "q36660",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q36660",
+          "targetQuestionIds": [
+            "automation-junior-31",
+            "automation-middle-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 198,
+          "sourcePostId": "q26455",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q26455",
+          "targetQuestionIds": [
+            "manual-senior-45"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 199,
+          "sourcePostId": "q40118",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q40118",
+          "targetQuestionIds": [
+            "manual-middle-125",
+            "manual-junior-146"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 200,
+          "sourcePostId": "q33678",
+          "sourcePage": 9,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page9#q33678",
+          "targetQuestionIds": [
+            "manual-junior-03"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 201,
+          "sourcePostId": "q17556",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q17556",
+          "targetQuestionIds": [
+            "manual-junior-13"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 202,
+          "sourcePostId": "q17623",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q17623",
+          "targetQuestionIds": [
+            "manual-junior-13"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 203,
+          "sourcePostId": "q24243",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q24243",
+          "targetQuestionIds": [
+            "manual-junior-98"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 204,
+          "sourcePostId": "q24620",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q24620",
+          "targetQuestionIds": [
+            "manual-junior-07"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 205,
+          "sourcePostId": "q25069",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q25069",
+          "targetQuestionIds": [
+            "manual-junior-61"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 206,
+          "sourcePostId": "q25935",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q25935",
+          "targetQuestionIds": [
+            "manual-junior-98",
+            "manual-middle-14"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 207,
+          "sourcePostId": "q26452",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q26452",
+          "targetQuestionIds": [
+            "manual-senior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 208,
+          "sourcePostId": "q31845",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q31845",
+          "targetQuestionIds": [
+            "manual-middle-15"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 209,
+          "sourcePostId": "q33116",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q33116",
+          "targetQuestionIds": [
+            "manual-junior-21",
+            "manual-middle-130",
+            "manual-junior-52"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 210,
+          "sourcePostId": "q38435",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q38435",
+          "targetQuestionIds": [
+            "manual-middle-129",
+            "automation-junior-16",
+            "automation-junior-17"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 211,
+          "sourcePostId": "q37147",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q37147",
+          "targetQuestionIds": [
+            "manual-middle-136"
+          ],
+          "status": "needs-source-context",
+          "note": "Mass testing is nonstandard; volume-topic adaptation only."
+        },
+        {
+          "sourceOrdinal": 212,
+          "sourcePostId": "q27987",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q27987",
+          "targetQuestionIds": [],
+          "status": "legacy-excluded",
+          "note": "WinRunner calculator automation"
+        },
+        {
+          "sourceOrdinal": 213,
+          "sourcePostId": "q37089",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q37089",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "automation-junior-65",
+            "manual-junior-138",
+            "automation-junior-21",
+            "manual-junior-144",
+            "manual-middle-127",
+            "manual-senior-06",
+            "manual-junior-06"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 214,
+          "sourcePostId": "q26456",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q26456",
+          "targetQuestionIds": [
+            "manual-senior-65"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 215,
+          "sourcePostId": "q36482",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q36482",
+          "targetQuestionIds": [],
+          "status": "legacy-excluded",
+          "note": "WinRunner GUI map merging"
+        },
+        {
+          "sourceOrdinal": 216,
+          "sourcePostId": "q26521",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q26521",
+          "targetQuestionIds": [
+            "manual-middle-145"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 217,
+          "sourcePostId": "q28187",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q28187",
+          "targetQuestionIds": [
+            "manual-middle-66"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 218,
+          "sourcePostId": "q23459",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q23459",
+          "targetQuestionIds": [],
+          "status": "legacy-excluded",
+          "note": "WinRunner mode taxonomy"
+        },
+        {
+          "sourceOrdinal": 219,
+          "sourcePostId": "q32138",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q32138",
+          "targetQuestionIds": [
+            "manual-junior-16",
+            "manual-junior-63",
+            "manual-middle-100",
+            "manual-middle-145"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 220,
+          "sourcePostId": "q26524",
+          "sourcePage": 10,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page10#q26524",
+          "targetQuestionIds": [
+            "manual-junior-13",
+            "manual-junior-15"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 221,
+          "sourcePostId": "q31765",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q31765",
+          "targetQuestionIds": [
+            "manual-senior-73",
+            "manual-senior-74"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 222,
+          "sourcePostId": "q23226",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q23226",
+          "targetQuestionIds": [
+            "automation-junior-24",
+            "automation-middle-19",
+            "automation-middle-31"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 223,
+          "sourcePostId": "q29686",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q29686",
+          "targetQuestionIds": [
+            "manual-middle-66"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 224,
+          "sourcePostId": "q26458",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q26458",
+          "targetQuestionIds": [
+            "manual-senior-74"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 225,
+          "sourcePostId": "q24036",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q24036",
+          "targetQuestionIds": [
+            "manual-middle-129"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 226,
+          "sourcePostId": "q26260",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q26260",
+          "targetQuestionIds": [
+            "manual-junior-148",
+            "manual-junior-53",
+            "manual-senior-68",
+            "manual-middle-68",
+            "manual-junior-98"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 227,
+          "sourcePostId": "q17299",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q17299",
+          "targetQuestionIds": [
+            "automation-middle-58",
+            "manual-middle-135",
+            "manual-junior-18",
+            "manual-junior-07",
+            "manual-junior-25",
+            "manual-junior-47",
+            "manual-senior-05",
+            "manual-junior-17",
+            "manual-middle-140"
+          ],
+          "status": "adapted-modern-part",
+          "note": "WinRunner-specific questions excluded; modern bundled topics adapted."
+        },
+        {
+          "sourceOrdinal": 228,
+          "sourcePostId": "q24824",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q24824",
+          "targetQuestionIds": [
+            "manual-senior-13",
+            "manual-senior-73"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 229,
+          "sourcePostId": "q17624",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q17624",
+          "targetQuestionIds": [
+            "manual-senior-45"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 230,
+          "sourcePostId": "q17576",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q17576",
+          "targetQuestionIds": [
+            "manual-middle-147",
+            "manual-junior-30",
+            "manual-middle-08"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 231,
+          "sourcePostId": "q16861",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q16861",
+          "targetQuestionIds": [
+            "manual-middle-147",
+            "manual-junior-144"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 232,
+          "sourcePostId": "q73613",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q73613",
+          "targetQuestionIds": [
+            "manual-junior-57",
+            "manual-middle-22"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 233,
+          "sourcePostId": "q74055",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q74055",
+          "targetQuestionIds": [
+            "manual-middle-129",
+            "automation-junior-16"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 234,
+          "sourcePostId": "q77659",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q77659",
+          "targetQuestionIds": [
+            "manual-middle-119"
+          ],
+          "status": "adapted-covered"
+        },
+        {
+          "sourceOrdinal": 235,
+          "sourcePostId": "q77664",
+          "sourcePage": 11,
+          "url": "https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing/page11#q77664",
+          "targetQuestionIds": [
+            "manual-senior-71"
+          ],
+          "status": "adapted-covered"
+        }
+      ],
+      "counts": {
+        "adapted-covered": 222,
+        "adapted-modern-part": 3,
+        "legacy-excluded": 5,
+        "needs-source-context": 5
+      }
+    }
+  },
+  "updatedAnswers": [
+    "automation-junior-23"
+  ],
+  "snapshotNote": "Other counts describe the earlier 530-question website-source review; the later attachment review expands the bank to 611."
+}

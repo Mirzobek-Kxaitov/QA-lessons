@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA intervyuga tayyorgarlik — QA Academy</title>
+<meta name="description" content="Junior, Middle va Senior QA intervyu savollari. Manual, Playwright, Selenium, Python, Java va JavaScript. O‘zbek, rus va ingliz tillarida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/section.css">
+<link rel="stylesheet" href="/blog/interview/interview.css">
+</head><body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" opacity="0.35"/>
+        <path d="M31 52 L44 65 L70 35" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA<span class="dot">.</span>Academy
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="/#lessons">Darslar</a></li>
+      <li><a href="/automation/">Automation</a></li>
+      <li><a href="/cases/">Real keyslar</a></li>
+      <li><a href="/blog/" class="current">Blog</a></li>
+      <li><a href="/about.html">Muallif</a></li>
+      <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Temani almashtirish">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="interview">
+<a href="/blog/" class="back-link" data-i18n="back">← Blogga qaytish</a>
+<header class="article-head">
+<span class="cat-badge cat-qa" data-i18n="eyebrow">QA intervyu</span>
+<h1 data-i18n="title">QA intervyuga tayyorgarlik</h1>
+<p class="article-lead" data-i18n="intro">Bo‘limni tanlang. Intervyu savollari Junior, Middle va Senior darajalariga ajratilgan.</p>
+</header>
+<section class="controls" aria-label="Filters">
+<div class="control"><label for="ui-language" data-i18n="uiLanguage">Savollar tili</label><select id="ui-language"><option value="uz">O‘zbekcha</option><option value="ru">Русский</option><option value="en">English</option></select></div>
+<fieldset><legend data-i18n="section">Bo‘lim</legend><div class="buttons" id="sections"><button type="button" data-section="interview" data-i18n="interviewSection" aria-pressed="true">Intervyu savollari</button><button type="button" data-section="faq" data-i18n="faqSection" aria-pressed="false">Savol-Javoblar</button></div></fieldset>
+<fieldset id="level-control"><legend data-i18n="level">Daraja</legend><div class="buttons" id="levels"><button type="button" data-value="all" data-i18n="all" aria-pressed="true">Barchasi</button><button type="button" data-value="junior" aria-pressed="false">Junior</button><button type="button" data-value="middle" aria-pressed="false">Middle</button><button type="button" data-value="senior" aria-pressed="false">Senior</button></div></fieldset>
+</section>
+<p class="answer-hint" data-i18n="hint">Javob va misolni ko‘rish uchun savolni bosing.</p>
+<div id="question-groups"></div>
+<noscript><p>Savollarni ko‘rish uchun JavaScriptni yoqing. / Включите JavaScript. / Enable JavaScript to view questions.</p></noscript>
+<p class="source-note"><span data-i18n="source">Mavzular uchun yo‘nalish:</span> <a id="source-link" href="https://itvdn.com/ru/blog/article/250-questions-qa" target="_blank" rel="noopener">ITVDN — QA interview</a><span id="additional-sources"> · <a href="https://www.linkedin.com/top-content/recruitment-hr/interview-techniques-for-recruiters/interview-questions-for-qa-candidates/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.devassure.io/blog/top-qa-interview-questions/" target="_blank" rel="noopener">DevAssure</a> · <a href="https://thinksys.com/qa-testing/top-qa-interview-question-answer/" target="_blank" rel="noopener">ThinkSys</a> · <a href="https://dev.to/samelawrence/my-favorite-interview-questions-for-qa-engineers-485a" target="_blank" rel="noopener">DEV</a> · <a href="https://testrigor.com/blog/manual-qa-interview-questions/" target="_blank" rel="noopener">testRigor</a> · <a href="https://uk.indeed.com/hire/interview-questions/qa" target="_blank" rel="noopener">Indeed</a> · <a href="https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing" target="_blank" rel="noopener">GeekInterview</a> · <a href="https://www.interviewbit.com/qa-interview-questions/" target="_blank" rel="noopener">InterviewBit</a> · <a href="https://www.parasoftchina.cn/top-75-qa-interview-questions-answers-with-examples/" target="_blank" rel="noopener">Parasoft</a> · <a href="https://www.toptal.com/developers/qa/interview-questions" target="_blank" rel="noopener">Toptal</a> · <a href="https://www.qamadness.com/15-common-qa-job-interview-questions/" target="_blank" rel="noopener">QA Madness</a> · <span data-i18n="pdfSources">PDF materiallari:</span> Suraj Rathod, Aston Cook, Mithun Biswas</span>. <span data-i18n="original">Savollar va javoblar QA Academy uchun tuzilgan va moslashtirilgan. Darajalar tayyorgarlik uchun yo‘nalish beradi.</span></p>
+</main>
+<footer class="article-foot">
+    <p class="article-foot-note">Savol yoki fikringiz bormi? Telegramda yozing.</p>
+    <a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener" class="article-cta">Telegram →</a>
+  </footer>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">QA<span>.</span>Academy</div>
+      <p class="footer-tagline">Professional QA testor bo'lishning aniq va tezkor yo'li. Blog bo'limida esa — testingdan tashqari qiziqishlarim.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bo'limlar</h4>
+      <ul>
+        <li><a href="/#lessons">Darslar</a></li>
+        <li><a href="/automation/">Automation</a></li>
+        <li><a href="/cases/">Real keyslar</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">Muallif</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="https://t.me/MagistrIIAU" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.youtube.com/@QA_Academy_uz" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Mirzobek-Kxaitov" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 QA Academy.</div>
+    <div>Muallif: <a href="https://www.linkedin.com/in/xaitov-mirzobek-499737350/" target="_blank" rel="noopener">Mirzobek Xaitov</a></div>
+  </div>
+</footer>
+
+<script type="module" src="/blog/interview/interview.js"></script>
+</body></html>
