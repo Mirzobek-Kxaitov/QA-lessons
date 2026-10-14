@@ -41,13 +41,20 @@
 </header>
 <section class="controls" aria-label="Filters">
 <div class="control language-control">
-  <label for="ui-language" data-i18n="uiLanguage">Savollar tili</label>
-  <div class="language-select">
+  <label id="language-label" for="ui-language" data-i18n="uiLanguage">Savollar tili</label>
+  <div class="language-select" id="language-picker">
+    <button type="button" id="ui-language" class="language-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="language-menu" aria-labelledby="language-label language-current">
     <span class="language-icon" aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9Z"/></svg>
     </span>
-    <select id="ui-language"><option value="uz">O‘zbekcha</option><option value="ru">Русский</option><option value="en">English</option></select>
+    <span id="language-current">O‘zbekcha</span>
     <svg class="language-chevron" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div id="language-menu" class="language-menu" role="menu" aria-labelledby="language-label" hidden>
+      <button type="button" class="language-option" role="menuitemradio" data-locale="uz" aria-checked="true" tabindex="-1"><span class="language-code" aria-hidden="true">UZ</span><span lang="uz">O‘zbekcha</span><span class="language-check" aria-hidden="true">✓</span></button>
+      <button type="button" class="language-option" role="menuitemradio" data-locale="ru" aria-checked="false" tabindex="-1"><span class="language-code" aria-hidden="true">RU</span><span lang="ru">Русский</span><span class="language-check" aria-hidden="true">✓</span></button>
+      <button type="button" class="language-option" role="menuitemradio" data-locale="en" aria-checked="false" tabindex="-1"><span class="language-code" aria-hidden="true">EN</span><span lang="en">English</span><span class="language-check" aria-hidden="true">✓</span></button>
+    </div>
   </div>
 </div>
 <fieldset><legend data-i18n="section">Bo‘lim</legend><div class="buttons" id="sections"><button type="button" data-section="interview" data-i18n="interviewSection" aria-pressed="true">Intervyu savollari</button><button type="button" data-section="additional" data-i18n="additionalSection" aria-pressed="false">Qo‘shimcha savollar</button><button type="button" data-section="faq" data-i18n="faqSection" aria-pressed="false">Savol-Javoblar</button></div></fieldset>

@@ -19,7 +19,25 @@ const readStored = key => {try {return localStorage.getItem(key);} catch {return
 const saveStored = (key,value) => {try {localStorage.setItem(key,value);} catch { /* Storage is optional. */ }};
 const savedLanguage = readStored('qa_interview_language');
 if (copy[savedLanguage]) state.locale = savedLanguage;
-byId('ui-language').value = state.locale;
+const languageNames = {uz:'O‘zbekcha',ru:'Русский',en:'English'};
+const languagePicker = byId('language-picker');
+const languageTrigger = byId('ui-language');
+const languageMenu = byId('language-menu');
+const languageOptions = [...languageMenu.querySelectorAll('[data-locale]')];
+function updateLanguagePicker() {
+  byId('language-current').textContent = languageNames[state.locale];
+  languageOptions.forEach(option => option.setAttribute('aria-checked',String(option.dataset.locale === state.locale)));
+}
+function closeLanguageMenu(restoreFocus = false) {
+  languageMenu.hidden = true;
+  languageTrigger.setAttribute('aria-expanded','false');
+  if (restoreFocus) languageTrigger.focus();
+}
+function openLanguageMenu(index = languageOptions.findIndex(option => option.dataset.locale === state.locale)) {
+  languageMenu.hidden = false;
+  languageTrigger.setAttribute('aria-expanded','true');
+  languageOptions[index].focus();
+}
 const themeButton = byId('themeToggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
@@ -62,6 +80,7 @@ function questionItem(q,key,t) {
 }
 function render() {
   const t = copy[state.locale];
+  updateLanguagePicker();
   document.documentElement.lang = state.locale;
   document.title = `${t.title} — QA Academy`;
   document.querySelector('meta[name="description"]').content = t.intro;
@@ -146,8 +165,42 @@ byId('levels').addEventListener('click',event => {
   const button = event.target.closest('button[data-value]');
   if (button) {state.level = button.dataset.value;render();}
 });
-byId('ui-language').addEventListener('change',event => {
-  state.locale = event.target.value; saveStored('qa_interview_language',state.locale);render();
+languageTrigger.addEventListener('click',() => {
+  if (languageMenu.hidden) openLanguageMenu();
+  else closeLanguageMenu();
+});
+languageTrigger.addEventListener('keydown',event => {
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault(); openLanguageMenu();
+  }
+});
+languageMenu.addEventListener('click',event => {
+  const option = event.target.closest('button[data-locale]');
+  if (!option) return;
+  state.locale = option.dataset.locale;
+  saveStored('qa_interview_language',state.locale);
+  closeLanguageMenu(true); render();
+});
+languageMenu.addEventListener('keydown',event => {
+  const index = languageOptions.indexOf(document.activeElement);
+  let next;
+  if (event.key === 'ArrowDown') next = (index+1)%languageOptions.length;
+  else if (event.key === 'ArrowUp') next = (index-1+languageOptions.length)%languageOptions.length;
+  else if (event.key === 'Home') next = 0;
+  else if (event.key === 'End') next = languageOptions.length-1;
+  else if (event.key === 'Escape') {event.preventDefault(); closeLanguageMenu(true); return;}
+  else if (event.key === 'Tab') {closeLanguageMenu(true); return;}
+  else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+    next = languageOptions.findIndex(option => languageNames[option.dataset.locale].toLocaleLowerCase().startsWith(event.key.toLocaleLowerCase()));
+    if (next < 0) return;
+  }
+  if (next !== undefined) {event.preventDefault(); languageOptions[next].focus();}
+});
+document.addEventListener('pointerdown',event => {
+  if (!languagePicker.contains(event.target)) closeLanguageMenu();
+});
+languagePicker.addEventListener('focusout',event => {
+  if (!languagePicker.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
 render();
