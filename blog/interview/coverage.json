@@ -4986,5 +4986,6 @@
     ]
   },
   "oct14ReviewFile": "source-review-oct14.json",
-  "linkedinMaterialsReviewFile": "linkedin-materials-review.json"
+  "linkedinMaterialsReviewFile": "linkedin-materials-review.json",
+  "detailedContentReviewFile": "detailed-content-review.json"
 }

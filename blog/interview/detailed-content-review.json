@@ -1,0 +1,2924 @@
+{
+  "reviewedOn": "2026-10-14",
+  "scope": "All 611 questions, all levels and both main/additional sections; the 25 FAQ entries use the same expanded answers.",
+  "languages": [
+    "uz",
+    "ru",
+    "en"
+  ],
+  "format": [
+    "expanded question",
+    "short answer",
+    "explanation",
+    "related concepts",
+    "example",
+    "case analysis steps",
+    "follow-up questions"
+  ],
+  "method": "Editorially authored multilingual concept explanations, combined with each question’s existing specific answer/example and semantically related bank concepts. Original compact titles are retained for scanning. Shared principles are reused within a concept; expansion does not claim a unique essay or executable code solution for every prompt.",
+  "concepts": 67,
+  "assignments": {
+    "manual-junior-01": {
+      "concept": "testing",
+      "relatedQuestionIds": [
+        "manual-junior-02",
+        "manual-junior-47"
+      ]
+    },
+    "manual-junior-02": {
+      "concept": "testing",
+      "relatedQuestionIds": [
+        "manual-junior-125",
+        "manual-middle-119"
+      ]
+    },
+    "manual-junior-03": {
+      "concept": "review",
+      "relatedQuestionIds": [
+        "manual-junior-48",
+        "manual-middle-146"
+      ]
+    },
+    "manual-junior-04": {
+      "concept": "regression",
+      "relatedQuestionIds": [
+        "manual-junior-18",
+        "manual-middle-22"
+      ]
+    },
+    "manual-junior-05": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-25",
+        "manual-junior-134"
+      ]
+    },
+    "manual-junior-06": {
+      "concept": "bugreport",
+      "relatedQuestionIds": [
+        "manual-junior-54",
+        "manual-junior-07"
+      ]
+    },
+    "manual-junior-07": {
+      "concept": "defects",
+      "relatedQuestionIds": [
+        "manual-junior-20",
+        "manual-junior-131"
+      ]
+    },
+    "manual-junior-08": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-09": {
+      "concept": "auth",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-10": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-11": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-junior-96"
+      ]
+    },
+    "manual-junior-12": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-13": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-14": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": [
+        "manual-junior-15",
+        "manual-junior-21"
+      ]
+    },
+    "manual-junior-15": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-16": {
+      "concept": "levels",
+      "relatedQuestionIds": [
+        "manual-junior-50",
+        "manual-junior-98"
+      ]
+    },
+    "manual-junior-17": {
+      "concept": "levels",
+      "relatedQuestionIds": [
+        "manual-junior-51",
+        "manual-junior-100"
+      ]
+    },
+    "manual-junior-18": {
+      "concept": "regression",
+      "relatedQuestionIds": [
+        "manual-junior-04",
+        "manual-middle-22"
+      ]
+    },
+    "manual-junior-19": {
+      "concept": "levels",
+      "relatedQuestionIds": [
+        "manual-middle-17",
+        "manual-junior-48"
+      ]
+    },
+    "manual-junior-20": {
+      "concept": "defects",
+      "relatedQuestionIds": [
+        "manual-junior-07",
+        "manual-senior-66"
+      ]
+    },
+    "manual-junior-21": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-22": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-junior-61",
+        "manual-junior-23"
+      ]
+    },
+    "manual-junior-23": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-24": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-25": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-05",
+        "manual-junior-60"
+      ]
+    },
+    "manual-junior-26": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-150"
+      ]
+    },
+    "manual-junior-27": {
+      "concept": "network",
+      "relatedQuestionIds": [
+        "manual-junior-103",
+        "manual-junior-104"
+      ]
+    },
+    "manual-junior-28": {
+      "concept": "tls",
+      "relatedQuestionIds": [
+        "manual-senior-50",
+        "manual-junior-112"
+      ]
+    },
+    "manual-junior-29": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-30": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-31": {
+      "concept": "storage",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-32": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "manual-junior-35",
+        "manual-junior-10"
+      ]
+    },
+    "manual-junior-33": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "manual-junior-113",
+        "manual-junior-39"
+      ]
+    },
+    "manual-junior-34": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-35": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-36": {
+      "concept": "http",
+      "relatedQuestionIds": [
+        "manual-junior-37",
+        "manual-junior-38"
+      ]
+    },
+    "manual-junior-37": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-38": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-39": {
+      "concept": "dataformats",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-40": {
+      "concept": "http",
+      "relatedQuestionIds": [
+        "manual-junior-72",
+        "manual-middle-150"
+      ]
+    },
+    "manual-junior-41": {
+      "concept": "auth",
+      "relatedQuestionIds": [
+        "manual-middle-06",
+        "manual-middle-108"
+      ]
+    },
+    "manual-junior-42": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-43": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-junior-44",
+        "manual-middle-100"
+      ]
+    },
+    "manual-junior-44": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-45": {
+      "concept": "joins",
+      "relatedQuestionIds": [
+        "manual-junior-46",
+        "manual-middle-09"
+      ]
+    },
+    "manual-junior-46": {
+      "concept": "joins",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-47": {
+      "concept": "testing",
+      "relatedQuestionIds": [
+        "manual-junior-56",
+        "manual-junior-101"
+      ]
+    },
+    "manual-junior-48": {
+      "concept": "review",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-49": {
+      "concept": "exploration",
+      "relatedQuestionIds": [
+        "manual-junior-132",
+        "manual-junior-139"
+      ]
+    },
+    "manual-junior-50": {
+      "concept": "levels",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-51": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-58",
+        "manual-middle-136"
+      ]
+    },
+    "manual-junior-52": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-53": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-54": {
+      "concept": "defects",
+      "relatedQuestionIds": [
+        "manual-middle-132",
+        "manual-senior-66"
+      ]
+    },
+    "manual-junior-55": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-56": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-57": {
+      "concept": "planning",
+      "relatedQuestionIds": [
+        "manual-junior-135",
+        "manual-junior-58"
+      ]
+    },
+    "manual-junior-58": {
+      "concept": "planning",
+      "relatedQuestionIds": [
+        "manual-junior-57"
+      ]
+    },
+    "manual-junior-59": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-60": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-25",
+        "manual-junior-134"
+      ]
+    },
+    "manual-junior-61": {
+      "concept": "boundaries",
+      "relatedQuestionIds": [
+        "manual-junior-08",
+        "manual-junior-23"
+      ]
+    },
+    "manual-junior-62": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-middle-19",
+        "manual-middle-144"
+      ]
+    },
+    "manual-junior-63": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-64": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-65": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-66": {
+      "concept": "storage",
+      "relatedQuestionIds": [
+        "manual-junior-106",
+        "automation-middle-54"
+      ]
+    },
+    "manual-junior-67": {
+      "concept": "storage",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-68": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-69": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-70": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-71": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "automation-middle-56",
+        "manual-middle-58"
+      ]
+    },
+    "manual-junior-72": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-73": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-74": {
+      "concept": "dataformats",
+      "relatedQuestionIds": [
+        "manual-middle-111",
+        "manual-junior-39"
+      ]
+    },
+    "manual-junior-75": {
+      "concept": "http",
+      "relatedQuestionIds": [
+        "manual-middle-05",
+        "manual-middle-151"
+      ]
+    },
+    "manual-junior-76": {
+      "concept": "schema",
+      "relatedQuestionIds": [
+        "manual-middle-156",
+        "manual-middle-157"
+      ]
+    },
+    "manual-junior-77": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-middle-37",
+        "manual-middle-155"
+      ]
+    },
+    "manual-junior-78": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-middle-155",
+        "manual-junior-11"
+      ]
+    },
+    "manual-junior-79": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-80": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": [
+        "manual-junior-116"
+      ]
+    },
+    "manual-junior-81": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-82": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": [
+        "manual-junior-86"
+      ]
+    },
+    "manual-junior-83": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-84": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-85": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-86": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": [
+        "manual-junior-82"
+      ]
+    },
+    "manual-junior-87": {
+      "concept": "auth",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-88": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-89": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-90": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-91": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-92": {
+      "concept": "bugreport",
+      "relatedQuestionIds": [
+        "manual-junior-118",
+        "manual-junior-06"
+      ]
+    },
+    "manual-junior-93": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-94": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-95": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-96": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-junior-11"
+      ]
+    },
+    "manual-junior-97": {
+      "concept": "practice",
+      "relatedQuestionIds": [
+        "manual-middle-142"
+      ]
+    },
+    "manual-junior-98": {
+      "concept": "levels",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-99": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-100": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-senior-57",
+        "manual-middle-52"
+      ]
+    },
+    "manual-junior-101": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-middle-54",
+        "manual-middle-71"
+      ]
+    },
+    "manual-junior-102": {
+      "concept": "planning",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-103": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-104": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-105": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-106": {
+      "concept": "storage",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-107": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-108": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-109": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-110": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": [
+        "manual-middle-33"
+      ]
+    },
+    "manual-junior-111": {
+      "concept": "dataformats",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-112": {
+      "concept": "tls",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-113": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-114": {
+      "concept": "mobile",
+      "relatedQuestionIds": [
+        "manual-senior-30"
+      ]
+    },
+    "manual-junior-115": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-116": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": [
+        "manual-middle-88",
+        "manual-junior-80"
+      ]
+    },
+    "manual-junior-117": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-118": {
+      "concept": "bugreport",
+      "relatedQuestionIds": [
+        "manual-junior-92",
+        "manual-junior-06"
+      ]
+    },
+    "manual-junior-119": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-120": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-121": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-122": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-123": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-middle-03"
+      ]
+    },
+    "manual-junior-124": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-middle-57"
+      ]
+    },
+    "manual-junior-125": {
+      "concept": "testing",
+      "relatedQuestionIds": [
+        "manual-junior-02"
+      ]
+    },
+    "manual-junior-126": {
+      "concept": "mobile",
+      "relatedQuestionIds": [
+        "manual-middle-104"
+      ]
+    },
+    "manual-junior-127": {
+      "concept": "boundaries",
+      "relatedQuestionIds": [
+        "manual-middle-20"
+      ]
+    },
+    "manual-junior-128": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-129": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-130": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-131": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-132": {
+      "concept": "exploration",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-133": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-134": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-05",
+        "manual-junior-60"
+      ]
+    },
+    "manual-junior-135": {
+      "concept": "planning",
+      "relatedQuestionIds": [
+        "manual-junior-57"
+      ]
+    },
+    "manual-junior-136": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-137": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-138": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-139": {
+      "concept": "exploration",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-140": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-141": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-142": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-143": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-144": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-145": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-146": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-147": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-148": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-149": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-150": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-26"
+      ]
+    },
+    "automation-junior-01": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-02": {
+      "concept": "assertions",
+      "relatedQuestionIds": [
+        "automation-middle-62",
+        "automation-junior-55"
+      ]
+    },
+    "automation-junior-03": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-04": {
+      "concept": "locators",
+      "relatedQuestionIds": [
+        "automation-junior-31",
+        "automation-middle-08"
+      ]
+    },
+    "automation-junior-05": {
+      "concept": "waits",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-06": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-07": {
+      "concept": "waits",
+      "relatedQuestionIds": [
+        "automation-junior-08",
+        "automation-middle-08"
+      ]
+    },
+    "automation-junior-08": {
+      "concept": "locators",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-09": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-10": {
+      "concept": "fixtures",
+      "relatedQuestionIds": [
+        "automation-middle-10",
+        "automation-junior-14"
+      ]
+    },
+    "automation-junior-11": {
+      "concept": "assertions",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-12": {
+      "concept": "javascript",
+      "relatedQuestionIds": [
+        "automation-middle-12"
+      ]
+    },
+    "automation-junior-13": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-14": {
+      "concept": "fixtures",
+      "relatedQuestionIds": [
+        "automation-junior-10"
+      ]
+    },
+    "automation-junior-15": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-16": {
+      "concept": "git",
+      "relatedQuestionIds": [
+        "automation-junior-57"
+      ]
+    },
+    "automation-junior-17": {
+      "concept": "git",
+      "relatedQuestionIds": [
+        "automation-junior-84"
+      ]
+    },
+    "automation-junior-18": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-19": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-20": {
+      "concept": "cicd",
+      "relatedQuestionIds": [
+        "automation-senior-23"
+      ]
+    },
+    "automation-junior-21": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-22": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-23": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-24": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-25": {
+      "concept": "designcode",
+      "relatedQuestionIds": [
+        "automation-junior-40",
+        "automation-senior-04"
+      ]
+    },
+    "automation-junior-26": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-27": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-28": {
+      "concept": "events",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-29": {
+      "concept": "events",
+      "relatedQuestionIds": [
+        "automation-junior-32"
+      ]
+    },
+    "automation-junior-30": {
+      "concept": "selenium",
+      "relatedQuestionIds": [
+        "automation-junior-42"
+      ]
+    },
+    "automation-junior-31": {
+      "concept": "locators",
+      "relatedQuestionIds": [
+        "automation-junior-04",
+        "automation-middle-08"
+      ]
+    },
+    "automation-junior-32": {
+      "concept": "events",
+      "relatedQuestionIds": [
+        "automation-junior-29",
+        "automation-junior-33"
+      ]
+    },
+    "automation-junior-33": {
+      "concept": "events",
+      "relatedQuestionIds": [
+        "automation-junior-32"
+      ]
+    },
+    "automation-junior-34": {
+      "concept": "collections",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-35": {
+      "concept": "python",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-36": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-37": {
+      "concept": "javarunner",
+      "relatedQuestionIds": [
+        "automation-junior-54",
+        "automation-junior-56"
+      ]
+    },
+    "automation-junior-38": {
+      "concept": "javascript",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-39": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-40": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-41": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-42": {
+      "concept": "selenium",
+      "relatedQuestionIds": [
+        "automation-junior-30",
+        "automation-middle-07"
+      ]
+    },
+    "automation-junior-43": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-44": {
+      "concept": "locators",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-45": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-46": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-47": {
+      "concept": "auth",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-48": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-49": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-50": {
+      "concept": "collections",
+      "relatedQuestionIds": [
+        "automation-middle-67",
+        "automation-middle-43"
+      ]
+    },
+    "automation-junior-51": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-52": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-53": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-54": {
+      "concept": "javarunner",
+      "relatedQuestionIds": [
+        "automation-junior-37",
+        "automation-junior-56"
+      ]
+    },
+    "automation-junior-55": {
+      "concept": "assertions",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-56": {
+      "concept": "javarunner",
+      "relatedQuestionIds": [
+        "automation-junior-54",
+        "automation-junior-37"
+      ]
+    },
+    "automation-junior-57": {
+      "concept": "git",
+      "relatedQuestionIds": [
+        "automation-junior-16"
+      ]
+    },
+    "automation-junior-58": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-59": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-60": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-61": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-62": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-63": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-64": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-senior-21"
+      ]
+    },
+    "automation-junior-65": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-66": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-senior-22"
+      ]
+    },
+    "automation-junior-67": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-senior-01"
+      ]
+    },
+    "automation-junior-68": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-69": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-01": {
+      "concept": "requirements",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-02": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-03": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-junior-123"
+      ]
+    },
+    "manual-middle-04": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-05": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-06": {
+      "concept": "auth",
+      "relatedQuestionIds": [
+        "manual-middle-74",
+        "manual-junior-41"
+      ]
+    },
+    "manual-middle-07": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-08": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-09": {
+      "concept": "joins",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-10": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-11": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-12": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-13": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-14": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-15": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-16": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-junior-101"
+      ]
+    },
+    "manual-middle-17": {
+      "concept": "coverage",
+      "relatedQuestionIds": [
+        "manual-middle-143"
+      ]
+    },
+    "manual-middle-18": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-19": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-junior-62"
+      ]
+    },
+    "manual-middle-20": {
+      "concept": "boundaries",
+      "relatedQuestionIds": [
+        "manual-junior-127"
+      ]
+    },
+    "manual-middle-21": {
+      "concept": "review",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-22": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-23": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-senior-63",
+        "manual-senior-19"
+      ]
+    },
+    "manual-middle-24": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-25": {
+      "concept": "storage",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-26": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-27": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-28": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "manual-middle-29",
+        "manual-middle-152"
+      ]
+    },
+    "manual-middle-29": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-30": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-31": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "manual-middle-58"
+      ]
+    },
+    "manual-middle-32": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-33": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": [
+        "manual-junior-110"
+      ]
+    },
+    "manual-middle-34": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-35": {
+      "concept": "transactions",
+      "relatedQuestionIds": [
+        "manual-senior-27",
+        "manual-middle-100"
+      ]
+    },
+    "manual-middle-36": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-37": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-38": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-39": {
+      "concept": "schema",
+      "relatedQuestionIds": [
+        "manual-senior-28",
+        "manual-middle-100"
+      ]
+    },
+    "manual-middle-40": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-41": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-42": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-43": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-44": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-45": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-46": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-09"
+      ]
+    },
+    "manual-middle-47": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-48": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-49": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-50": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-junior-100"
+      ]
+    },
+    "manual-middle-51": {
+      "concept": "security",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-52": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-junior-100"
+      ]
+    },
+    "manual-middle-53": {
+      "concept": "security",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-54": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-junior-101"
+      ]
+    },
+    "manual-middle-55": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-56": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-57": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-junior-124"
+      ]
+    },
+    "manual-middle-58": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "manual-middle-31"
+      ]
+    },
+    "manual-middle-59": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-60": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-61": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-62": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-63": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-64": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-65": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-66": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-67": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-68": {
+      "concept": "requirements",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-69": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-70": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-71": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-junior-101"
+      ]
+    },
+    "manual-middle-72": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-73": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-74": {
+      "concept": "auth",
+      "relatedQuestionIds": [
+        "manual-middle-06"
+      ]
+    },
+    "manual-middle-75": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-76": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-77": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-78": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-79": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-80": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-81": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-82": {
+      "concept": "joins",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-83": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-84": {
+      "concept": "dataformats",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-85": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-86": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-87": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-88": {
+      "concept": "mobiletools",
+      "relatedQuestionIds": [
+        "manual-junior-116"
+      ]
+    },
+    "manual-middle-89": {
+      "concept": "requirements",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-90": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-91": {
+      "concept": "joins",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-92": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-93": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-94": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-95": {
+      "concept": "rules",
+      "relatedQuestionIds": [
+        "manual-junior-62"
+      ]
+    },
+    "manual-middle-96": {
+      "concept": "boundaries",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-97": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-98": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-99": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-100": {
+      "concept": "schema",
+      "relatedQuestionIds": [
+        "manual-middle-39"
+      ]
+    },
+    "manual-middle-101": {
+      "concept": "levels",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-102": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-103": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-104": {
+      "concept": "mobile",
+      "relatedQuestionIds": [
+        "manual-junior-126"
+      ]
+    },
+    "manual-middle-105": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-106": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-107": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-108": {
+      "concept": "auth",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-109": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-110": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-111": {
+      "concept": "dataformats",
+      "relatedQuestionIds": [
+        "manual-middle-138"
+      ]
+    },
+    "manual-middle-112": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-113": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-114": {
+      "concept": "planning",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-115": {
+      "concept": "ux",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-116": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-09"
+      ]
+    },
+    "manual-middle-117": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-junior-100"
+      ]
+    },
+    "manual-middle-118": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-119": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-120": {
+      "concept": "incident",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-121": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-122": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-123": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-124": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-125": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-126": {
+      "concept": "review",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-127": {
+      "concept": "planning",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-128": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-129": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-130": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-131": {
+      "concept": "exploration",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-132": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-133": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-134": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-135": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-136": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-junior-51"
+      ]
+    },
+    "manual-middle-137": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-58"
+      ]
+    },
+    "manual-middle-138": {
+      "concept": "dataformats",
+      "relatedQuestionIds": [
+        "manual-middle-111"
+      ]
+    },
+    "manual-middle-139": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-140": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-141": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-142": {
+      "concept": "practice",
+      "relatedQuestionIds": [
+        "manual-junior-97"
+      ]
+    },
+    "manual-middle-143": {
+      "concept": "coverage",
+      "relatedQuestionIds": [
+        "manual-middle-17"
+      ]
+    },
+    "manual-middle-144": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-145": {
+      "concept": "levels",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-146": {
+      "concept": "review",
+      "relatedQuestionIds": [
+        "manual-junior-03"
+      ]
+    },
+    "manual-middle-147": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-148": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-149": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-01": {
+      "concept": "flaky",
+      "relatedQuestionIds": [
+        "automation-middle-13",
+        "automation-senior-09"
+      ]
+    },
+    "automation-middle-02": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-03": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-04": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-05": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-06": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-07": {
+      "concept": "selenium",
+      "relatedQuestionIds": [
+        "automation-junior-42"
+      ]
+    },
+    "automation-middle-08": {
+      "concept": "locators",
+      "relatedQuestionIds": [
+        "automation-junior-31",
+        "automation-junior-04"
+      ]
+    },
+    "automation-middle-09": {
+      "concept": "events",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-10": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-11": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-12": {
+      "concept": "javascript",
+      "relatedQuestionIds": [
+        "automation-junior-12"
+      ]
+    },
+    "automation-middle-13": {
+      "concept": "flaky",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-14": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-15": {
+      "concept": "visual",
+      "relatedQuestionIds": [
+        "automation-middle-35"
+      ]
+    },
+    "automation-middle-16": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-17": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-18": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-19": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-20": {
+      "concept": "cicd",
+      "relatedQuestionIds": [
+        "automation-middle-22"
+      ]
+    },
+    "automation-middle-21": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-22": {
+      "concept": "cicd",
+      "relatedQuestionIds": [
+        "automation-middle-20"
+      ]
+    },
+    "automation-middle-23": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-24": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-25": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-26": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-27": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-28": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-29": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-30": {
+      "concept": "designcode",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-31": {
+      "concept": "assertions",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-32": {
+      "concept": "locators",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-33": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-34": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-35": {
+      "concept": "visual",
+      "relatedQuestionIds": [
+        "automation-middle-15"
+      ]
+    },
+    "automation-middle-36": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-37": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-38": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-39": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-40": {
+      "concept": "python",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-41": {
+      "concept": "python",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-42": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-43": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-44": {
+      "concept": "javascript",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-45": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": [
+        "automation-middle-49"
+      ]
+    },
+    "automation-middle-46": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-47": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-48": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-49": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": [
+        "automation-middle-45"
+      ]
+    },
+    "automation-middle-50": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-51": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-52": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-53": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-54": {
+      "concept": "storage",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-55": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-56": {
+      "concept": "api",
+      "relatedQuestionIds": [
+        "automation-middle-57",
+        "manual-middle-106"
+      ]
+    },
+    "automation-middle-57": {
+      "concept": "dataformats",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-58": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-middle-61"
+      ]
+    },
+    "automation-middle-59": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-60": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-61": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-middle-58"
+      ]
+    },
+    "automation-middle-62": {
+      "concept": "assertions",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-63": {
+      "concept": "designcode",
+      "relatedQuestionIds": [
+        "automation-middle-75"
+      ]
+    },
+    "manual-senior-01": {
+      "concept": "planning",
+      "relatedQuestionIds": [
+        "manual-senior-45",
+        "manual-middle-16"
+      ]
+    },
+    "manual-senior-02": {
+      "concept": "metrics",
+      "relatedQuestionIds": [
+        "manual-senior-06",
+        "manual-senior-67"
+      ]
+    },
+    "manual-senior-03": {
+      "concept": "incident",
+      "relatedQuestionIds": [
+        "manual-senior-59",
+        "manual-middle-120"
+      ]
+    },
+    "manual-senior-04": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-05": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-06": {
+      "concept": "coverage",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-07": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-middle-12",
+        "manual-senior-41"
+      ]
+    },
+    "manual-senior-08": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-09": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-33",
+        "manual-middle-46"
+      ]
+    },
+    "manual-senior-10": {
+      "concept": "web",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-11": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-senior-63"
+      ]
+    },
+    "manual-senior-12": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-13": {
+      "concept": "metrics",
+      "relatedQuestionIds": [
+        "manual-senior-73",
+        "manual-senior-14"
+      ]
+    },
+    "manual-senior-14": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-15": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-16": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-17": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-junior-101"
+      ]
+    },
+    "manual-senior-18": {
+      "concept": "bdd",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-19": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-middle-23"
+      ]
+    },
+    "manual-senior-20": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-21": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-22": {
+      "concept": "planning",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-23": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-24": {
+      "concept": "asyncapi",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-25": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-26": {
+      "concept": "risk",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-27": {
+      "concept": "transactions",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-28": {
+      "concept": "schema",
+      "relatedQuestionIds": [
+        "manual-middle-39"
+      ]
+    },
+    "manual-senior-29": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-30": {
+      "concept": "mobile",
+      "relatedQuestionIds": [
+        "manual-junior-114"
+      ]
+    },
+    "manual-senior-31": {
+      "concept": "mobile",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-32": {
+      "concept": "waits",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-33": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-senior-09",
+        "manual-senior-58"
+      ]
+    },
+    "manual-senior-34": {
+      "concept": "loadcapacity",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-35": {
+      "concept": "loadcapacity",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-36": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-senior-37",
+        "manual-middle-117"
+      ]
+    },
+    "manual-senior-37": {
+      "concept": "security",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-38": {
+      "concept": "security",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-39": {
+      "concept": "requirements",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-40": {
+      "concept": "practice",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-41": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-42": {
+      "concept": "rules",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-43": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-senior-69"
+      ]
+    },
+    "manual-senior-44": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-45": {
+      "concept": "risk",
+      "relatedQuestionIds": [
+        "manual-junior-101"
+      ]
+    },
+    "manual-senior-46": {
+      "concept": "documentation",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-47": {
+      "concept": "regression",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-48": {
+      "concept": "documentation",
+      "relatedQuestionIds": [
+        "manual-junior-05"
+      ]
+    },
+    "manual-senior-49": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-50": {
+      "concept": "tls",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-51": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-52": {
+      "concept": "specialized",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-53": {
+      "concept": "specialized",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-54": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-55": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-56": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-57": {
+      "concept": "security",
+      "relatedQuestionIds": [
+        "manual-junior-100"
+      ]
+    },
+    "manual-senior-58": {
+      "concept": "performance",
+      "relatedQuestionIds": [
+        "manual-junior-51",
+        "manual-middle-137"
+      ]
+    },
+    "manual-senior-59": {
+      "concept": "incident",
+      "relatedQuestionIds": [
+        "manual-senior-03"
+      ]
+    },
+    "manual-senior-60": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-61": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-62": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-63": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-senior-11",
+        "manual-middle-23"
+      ]
+    },
+    "manual-senior-64": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-65": {
+      "concept": "review",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-66": {
+      "concept": "defects",
+      "relatedQuestionIds": [
+        "manual-junior-07",
+        "manual-junior-20"
+      ]
+    },
+    "manual-senior-67": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-68": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-69": {
+      "concept": "leadership",
+      "relatedQuestionIds": [
+        "manual-senior-43"
+      ]
+    },
+    "manual-senior-70": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-71": {
+      "concept": "leadership",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-72": {
+      "concept": "specialized",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-73": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-74": {
+      "concept": "metrics",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-75": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-01": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-junior-67",
+        "automation-junior-65"
+      ]
+    },
+    "automation-senior-02": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-senior-22",
+        "automation-junior-66"
+      ]
+    },
+    "automation-senior-03": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-04": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-05": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-06": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-07": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-08": {
+      "concept": "loadcapacity",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-09": {
+      "concept": "flaky",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-10": {
+      "concept": "fixtures",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-11": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-12": {
+      "concept": "javascript",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-13": {
+      "concept": "automation",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-14": {
+      "concept": "playwright",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-15": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-16": {
+      "concept": "python",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-17": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-18": {
+      "concept": "javascript",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-19": {
+      "concept": "cicd",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-20": {
+      "concept": "levels",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-21": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-junior-64"
+      ]
+    },
+    "automation-senior-22": {
+      "concept": "automation",
+      "relatedQuestionIds": [
+        "automation-senior-02",
+        "automation-junior-66"
+      ]
+    },
+    "automation-senior-23": {
+      "concept": "cicd",
+      "relatedQuestionIds": [
+        "automation-junior-20"
+      ]
+    },
+    "automation-senior-24": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-70": {
+      "concept": "locators",
+      "relatedQuestionIds": [
+        "automation-junior-44",
+        "automation-junior-74"
+      ]
+    },
+    "automation-junior-71": {
+      "concept": "locators",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-72": {
+      "concept": "events",
+      "relatedQuestionIds": [
+        "automation-junior-33",
+        "automation-junior-48"
+      ]
+    },
+    "automation-junior-73": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-74": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-75": {
+      "concept": "events",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-76": {
+      "concept": "selenium",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-64": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-65": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-66": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-67": {
+      "concept": "collections",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-68": {
+      "concept": "java",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-69": {
+      "concept": "network",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-77": {
+      "concept": "coding",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-78": {
+      "concept": "coding",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-79": {
+      "concept": "coding",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-80": {
+      "concept": "coding",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-81": {
+      "concept": "coding",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-70": {
+      "concept": "javarunner",
+      "relatedQuestionIds": [
+        "automation-junior-54",
+        "automation-junior-56"
+      ]
+    },
+    "automation-middle-71": {
+      "concept": "javarunner",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-72": {
+      "concept": "flaky",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-82": {
+      "concept": "maven",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-83": {
+      "concept": "maven",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-84": {
+      "concept": "git",
+      "relatedQuestionIds": [
+        "automation-junior-17"
+      ]
+    },
+    "automation-junior-85": {
+      "concept": "git",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-73": {
+      "concept": "bdd",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-74": {
+      "concept": "bdd",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-75": {
+      "concept": "designcode",
+      "relatedQuestionIds": [
+        "automation-middle-63"
+      ]
+    },
+    "automation-middle-76": {
+      "concept": "dataformats",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-150": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-151": {
+      "concept": "http",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-152": {
+      "concept": "api",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-77": {
+      "concept": "auth",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-78": {
+      "concept": "tls",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-86": {
+      "concept": "infrastructure",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-153": {
+      "concept": "sql",
+      "relatedQuestionIds": [
+        "manual-middle-158",
+        "manual-middle-155"
+      ]
+    },
+    "manual-middle-154": {
+      "concept": "transactions",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-155": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-156": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-157": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-158": {
+      "concept": "sql",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-159": {
+      "concept": "schema",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-160": {
+      "concept": "planning",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-161": {
+      "concept": "recovery",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-162": {
+      "concept": "testing",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-163": {
+      "concept": "defects",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-164": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-165": {
+      "concept": "agile",
+      "relatedQuestionIds": [
+        "manual-senior-13",
+        "manual-middle-148"
+      ]
+    },
+    "manual-middle-166": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-167": {
+      "concept": "agile",
+      "relatedQuestionIds": [
+        "automation-senior-20",
+        "automation-middle-29"
+      ]
+    },
+    "manual-middle-168": {
+      "concept": "lifecycle",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-169": {
+      "concept": "agile",
+      "relatedQuestionIds": []
+    },
+    "automation-senior-25": {
+      "concept": "specialized",
+      "relatedQuestionIds": []
+    },
+    "automation-junior-87": {
+      "concept": "python",
+      "relatedQuestionIds": []
+    },
+    "manual-senior-76": {
+      "concept": "ai",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-151": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-152": {
+      "concept": "career",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-79": {
+      "concept": "jmeter",
+      "relatedQuestionIds": [
+        "automation-middle-84",
+        "automation-middle-88"
+      ]
+    },
+    "automation-middle-80": {
+      "concept": "jmeter",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-81": {
+      "concept": "jmeter",
+      "relatedQuestionIds": [
+        "automation-middle-82",
+        "automation-middle-80"
+      ]
+    },
+    "automation-middle-82": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-83": {
+      "concept": "loadcapacity",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-84": {
+      "concept": "jmeter",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-85": {
+      "concept": "jmeter",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-86": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-87": {
+      "concept": "tls",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-88": {
+      "concept": "jmeter",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-89": {
+      "concept": "jmeter",
+      "relatedQuestionIds": []
+    },
+    "automation-middle-90": {
+      "concept": "performance",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-153": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-154": {
+      "concept": "logic",
+      "relatedQuestionIds": [
+        "manual-junior-161"
+      ]
+    },
+    "manual-junior-155": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-156": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-157": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-158": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-159": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-160": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-161": {
+      "concept": "logic",
+      "relatedQuestionIds": [
+        "manual-junior-154"
+      ]
+    },
+    "manual-junior-162": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-junior-163": {
+      "concept": "logic",
+      "relatedQuestionIds": []
+    },
+    "manual-middle-170": {
+      "concept": "testing",
+      "relatedQuestionIds": [
+        "manual-junior-02"
+      ]
+    }
+  },
+  "technicalReferences": [
+    "https://playwright.dev/docs/best-practices",
+    "https://www.selenium.dev/documentation/webdriver/waits/",
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "https://jmeter.apache.org/usermanual/best-practices.html"
+  ],
+  "questionSpecificOverrides": [
+    "manual-junior-01",
+    "manual-junior-02",
+    "manual-junior-03",
+    "manual-junior-07",
+    "manual-junior-19",
+    "manual-junior-153",
+    "manual-junior-154",
+    "manual-junior-155",
+    "manual-junior-156",
+    "manual-junior-157",
+    "manual-junior-158",
+    "manual-junior-159",
+    "manual-junior-160",
+    "manual-junior-161",
+    "manual-junior-162",
+    "manual-junior-163",
+    "manual-junior-152"
+  ]
+}
