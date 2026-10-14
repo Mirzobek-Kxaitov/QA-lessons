@@ -40,7 +40,16 @@
 <p class="article-lead" data-i18n="intro">Bo‘limni tanlang. Intervyu savollari Junior, Middle va Senior darajalariga ajratilgan.</p>
 </header>
 <section class="controls" aria-label="Filters">
-<div class="control"><label for="ui-language" data-i18n="uiLanguage">Savollar tili</label><select id="ui-language"><option value="uz">O‘zbekcha</option><option value="ru">Русский</option><option value="en">English</option></select></div>
+<div class="control language-control">
+  <label for="ui-language" data-i18n="uiLanguage">Savollar tili</label>
+  <div class="language-select">
+    <span class="language-icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9Z"/></svg>
+    </span>
+    <select id="ui-language"><option value="uz">O‘zbekcha</option><option value="ru">Русский</option><option value="en">English</option></select>
+    <svg class="language-chevron" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</div>
 <fieldset><legend data-i18n="section">Bo‘lim</legend><div class="buttons" id="sections"><button type="button" data-section="interview" data-i18n="interviewSection" aria-pressed="true">Intervyu savollari</button><button type="button" data-section="additional" data-i18n="additionalSection" aria-pressed="false">Qo‘shimcha savollar</button><button type="button" data-section="faq" data-i18n="faqSection" aria-pressed="false">Savol-Javoblar</button></div></fieldset>
 <fieldset id="level-control"><legend data-i18n="level">Daraja</legend><div class="buttons" id="levels"><button type="button" data-value="junior" aria-pressed="true">Junior</button><button type="button" data-value="middle" aria-pressed="false">Middle</button><button type="button" data-value="senior" aria-pressed="false">Senior</button></div></fieldset>
 </section>

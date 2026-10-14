@@ -12,6 +12,15 @@
 .controls input {width:100%;background:var(--bg);}
 .controls select {width:100%;}
 .control {min-width:0;}
+.language-select {position:relative;width:min(100%,320px);}
+.controls .language-select select {appearance:none;-webkit-appearance:none;min-height:56px;padding:14px 48px 14px 60px;background:var(--bg-card);border:1px solid var(--line-strong);border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 3px 10px rgba(22,89,143,.05);transition:border-color .18s,box-shadow .18s;}
+.controls .language-select select:hover {border-color:var(--accent);box-shadow:0 4px 14px rgba(22,89,143,.1);}
+.language-icon {position:absolute;left:12px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;background:var(--accent-tint);border-radius:9px;color:var(--accent-deep);pointer-events:none;}
+.language-chevron {position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--ink-muted);pointer-events:none;}
+.language-select:focus-within .language-chevron {color:var(--accent-deep);}
+[data-theme="dark"] .language-select select {color-scheme:dark;}
+@media(max-width:560px) {.language-select {width:100%;}}
+@media(prefers-reduced-motion:reduce) {.controls .language-select select {transition:none;}}
 
 [hidden] {display:none!important;}
 .source-note {font-size:14px;color:var(--ink-soft);}
