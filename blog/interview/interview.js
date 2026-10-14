@@ -1,17 +1,19 @@
 import { questions } from './questions.js';
 import { answers } from './answers.js';
 import { faq } from './faq.js';
+import { additional } from './additional.js';
 
 const questionsById = new Map(questions.map(q => [q.id,q]));
 
+const additionalIds = new Set(additional.map(entry => entry.questionId));
 const expandedQuestions = new Set();
 
 const copy = {
-  uz: {pdfSources:'PDF materiallari:',section:'Bo‘lim',interviewSection:'Intervyu savollari',faqSection:'Savol-Javoblar',faqIntro:'QA asoslarini qisqa javob va oddiy misollar bilan takrorlang.',answer:'Qisqa javob',example:'Oddiy misol',hint:'Javob va misolni ko‘rish uchun savolni bosing.',back:'← Blogga qaytish',eyebrow:'QA intervyu',title:'QA intervyuga tayyorgarlik',intro:'Bo‘limni tanlang. Intervyu savollari Junior, Middle va Senior darajalariga ajratilgan.',uiLanguage:'Savollar tili',level:'Daraja',all:'Barchasi',source:'Mavzular uchun yo‘nalish:',original:'Savollar va javoblar QA Academy uchun tuzilgan va moslashtirilgan. Darajalar tayyorgarlik uchun yo‘nalish beradi.',empty:'Savol topilmadi. Filtrlarni o‘zgartiring.',theme:'Temani almashtirish',menu:'Menyuni ochish',nav:['Darslar','Automation','Real keyslar','Blog','Muallif'],topics:{practice:'Amaliy topshiriqlar',performance:'Performance va yuklama',security:'Xavfsizlik',programming:'Dasturlash asoslari',git:'Git va kod review',cicd:'CI/CD',infrastructure:'Test infratuzilmasi',theory:'Nazariya',design:'Test dizayn',documentation:'Hujjatlar',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Strategiya',automation:'Automation'}},
-  ru: {pdfSources:'Материалы PDF:',section:'Раздел',interviewSection:'Вопросы для интервью',faqSection:'Вопросы и ответы',faqIntro:'Повторите основы QA с краткими ответами и простыми примерами.',answer:'Краткий ответ',example:'Простой пример',hint:'Нажмите на вопрос, чтобы увидеть ответ и пример.',back:'← Вернуться в блог',eyebrow:'QA интервью',title:'Подготовка к QA-интервью',intro:'Выберите раздел. Вопросы для интервью распределены по уровням Junior, Middle и Senior.',uiLanguage:'Язык вопросов',level:'Уровень',all:'Все',source:'Ориентир для тем:',original:'Вопросы и ответы составлены и адаптированы для QA Academy. Уровни служат ориентиром для подготовки.',empty:'Вопросы не найдены. Измените фильтры.',theme:'Переключить тему',menu:'Открыть меню',nav:['Уроки','Automation','Практические кейсы','Блог','Автор'],topics:{practice:'Практические задания',performance:'Производительность и нагрузка',security:'Безопасность',programming:'Основы программирования',git:'Git и review кода',cicd:'CI/CD',infrastructure:'Тестовая инфраструктура',theory:'Теория',design:'Тест-дизайн',documentation:'Документация',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Стратегия',automation:'Automation'}},
-  en: {pdfSources:'PDF materials:',section:'Section',interviewSection:'Interview questions',faqSection:'Questions & Answers',faqIntro:'Review QA fundamentals with short answers and simple examples.',answer:'Short answer',example:'Simple example',hint:'Click a question to see its answer and example.',back:'← Back to blog',eyebrow:'QA interview',title:'Prepare for your QA interview',intro:'Choose a section. Interview questions are organized by Junior, Middle and Senior levels.',uiLanguage:'Question language',level:'Level',all:'All',source:'Topic inspiration:',original:'Questions and answers written and adapted for QA Academy. Levels provide guidance for preparation.',empty:'No questions found. Change your filters.',theme:'Switch theme',menu:'Open menu',nav:['Lessons','Automation','Practical cases','Blog','Author'],topics:{practice:'Practical exercises',performance:'Performance and load',security:'Security',programming:'Programming fundamentals',git:'Git and code review',cicd:'CI/CD',infrastructure:'Test infrastructure',theory:'Theory',design:'Test design',documentation:'Documentation',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Strategy',automation:'Automation'}}
+  uz: {additionalSection:'Qo‘shimcha savollar',additionalIntro:'Mantiqiy topshiriqlar, HR, umumiy kodlash va tor soha mavzulari. Asosiy QA savollaridan keyin tayyorlanish uchun.',additionalTopics:{logic:'Mantiqiy topshiriqlar',career:'HR va karyera',coding:'Umumiy kodlash topshiriqlari',specialized:'Telekom va tizim mavzulari'},pdfSources:'PDF materiallari:',section:'Bo‘lim',interviewSection:'Intervyu savollari',faqSection:'Savol-Javoblar',faqIntro:'QA asoslarini qisqa javob va oddiy misollar bilan takrorlang.',answer:'Qisqa javob',example:'Oddiy misol',hint:'Javob va misolni ko‘rish uchun savolni bosing.',back:'← Blogga qaytish',eyebrow:'QA intervyu',title:'QA intervyuga tayyorgarlik',intro:'Bo‘limni tanlang. Intervyu savollari Junior, Middle va Senior darajalariga ajratilgan.',uiLanguage:'Savollar tili',level:'Daraja',source:'Mavzular uchun yo‘nalish:',original:'Savollar va javoblar QA Academy uchun tuzilgan va moslashtirilgan. Darajalar tayyorgarlik uchun yo‘nalish beradi.',empty:'Savol topilmadi. Filtrlarni o‘zgartiring.',theme:'Temani almashtirish',menu:'Menyuni ochish',nav:['Darslar','Automation','Real keyslar','Blog','Muallif'],topics:{practice:'Amaliy topshiriqlar',performance:'Performance va yuklama',security:'Xavfsizlik',programming:'Dasturlash asoslari',git:'Git va kod review',cicd:'CI/CD',infrastructure:'Test infratuzilmasi',theory:'Nazariya',design:'Test dizayn',documentation:'Hujjatlar',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Strategiya',automation:'Automation'}},
+  ru: {additionalSection:'Дополнительные вопросы',additionalIntro:'Логические задачи, HR, общее программирование и узкие отраслевые темы для подготовки после основных вопросов QA.',additionalTopics:{logic:'Логические задачи',career:'HR и карьера',coding:'Общие задачи по программированию',specialized:'Телеком и системные темы'},pdfSources:'Материалы PDF:',section:'Раздел',interviewSection:'Вопросы для интервью',faqSection:'Вопросы и ответы',faqIntro:'Повторите основы QA с краткими ответами и простыми примерами.',answer:'Краткий ответ',example:'Простой пример',hint:'Нажмите на вопрос, чтобы увидеть ответ и пример.',back:'← Вернуться в блог',eyebrow:'QA интервью',title:'Подготовка к QA-интервью',intro:'Выберите раздел. Вопросы для интервью распределены по уровням Junior, Middle и Senior.',uiLanguage:'Язык вопросов',level:'Уровень',source:'Ориентир для тем:',original:'Вопросы и ответы составлены и адаптированы для QA Academy. Уровни служат ориентиром для подготовки.',empty:'Вопросы не найдены. Измените фильтры.',theme:'Переключить тему',menu:'Открыть меню',nav:['Уроки','Automation','Практические кейсы','Блог','Автор'],topics:{practice:'Практические задания',performance:'Производительность и нагрузка',security:'Безопасность',programming:'Основы программирования',git:'Git и review кода',cicd:'CI/CD',infrastructure:'Тестовая инфраструктура',theory:'Теория',design:'Тест-дизайн',documentation:'Документация',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Стратегия',automation:'Automation'}},
+  en: {additionalSection:'Additional questions',additionalIntro:'Logic exercises, HR, general coding and specialized topics to review after the core QA questions.',additionalTopics:{logic:'Logic exercises',career:'HR and career',coding:'General coding exercises',specialized:'Telecom and systems topics'},pdfSources:'PDF materials:',section:'Section',interviewSection:'Interview questions',faqSection:'Questions & Answers',faqIntro:'Review QA fundamentals with short answers and simple examples.',answer:'Short answer',example:'Simple example',hint:'Click a question to see its answer and example.',back:'← Back to blog',eyebrow:'QA interview',title:'Prepare for your QA interview',intro:'Choose a section. Interview questions are organized by Junior, Middle and Senior levels.',uiLanguage:'Question language',level:'Level',source:'Topic inspiration:',original:'Questions and answers written and adapted for QA Academy. Levels provide guidance for preparation.',empty:'No questions found. Change your filters.',theme:'Switch theme',menu:'Open menu',nav:['Lessons','Automation','Practical cases','Blog','Author'],topics:{practice:'Practical exercises',performance:'Performance and load',security:'Security',programming:'Programming fundamentals',git:'Git and code review',cicd:'CI/CD',infrastructure:'Test infrastructure',theory:'Theory',design:'Test design',documentation:'Documentation',web:'Web',api:'API',sql:'SQL',mobile:'Mobile',strategy:'Strategy',automation:'Automation'}}
 };
-const state = {locale:'uz',level:'all',section:'interview'};
+const state = {locale:'uz',level:'junior',section:'interview'};
 const byId = id => document.getElementById(id);
 const readStored = key => {try {return localStorage.getItem(key);} catch {return null;}};
 const saveStored = (key,value) => {try {localStorage.setItem(key,value);} catch { /* Storage is optional. */ }};
@@ -68,7 +70,7 @@ function render() {
   themeButton.title = t.theme; themeButton.setAttribute('aria-label',t.theme);
   document.querySelector('.hamburger').setAttribute('aria-label',t.menu);
   document.querySelector('.controls').setAttribute('aria-label',t.section);
-  byId('level-control').hidden = state.section === 'faq';
+  byId('level-control').hidden = state.section !== 'interview';
   byId('additional-sources').hidden = state.section === 'faq';
   byId('sections').querySelectorAll('button').forEach(button => {
     button.setAttribute('aria-pressed',String(button.dataset.section === state.section));
@@ -80,7 +82,7 @@ function render() {
   byId('levels').querySelectorAll('button').forEach(button => {
     button.setAttribute('aria-pressed',String(button.dataset.value === state.level));
   });
-  const visible = questions.filter(q => state.level === 'all' || q.level === state.level);
+  const visible = questions.filter(q => !additionalIds.has(q.id) && q.level === state.level);
   const container = byId('question-groups');
   container.querySelectorAll('details').forEach(details => {
     if (details.open) expandedQuestions.add(details.dataset.questionId);
@@ -93,6 +95,23 @@ function render() {
     const list = make('ol','questions');
     faq.forEach(entry => {list.append(questionItem(questionsById.get(entry.questionId),entry.id,t));});
     section.append(list); container.append(section);
+    return;
+  }
+  if (state.section === 'additional') {
+    const section = make('section','question-section');
+    section.append(make('h2','',t.additionalSection),make('p','',t.additionalIntro));
+    let number = 0;
+    for (const category of ['logic','career','coding','specialized']) {
+      const entries = additional.filter(entry => entry.category === category);
+      if (!entries.length) continue;
+      section.append(make('h3','topic-heading',t.additionalTopics[category]));
+      const list = make('ol','questions'); list.start = number+1;
+      entries.forEach(entry => {
+        list.append(questionItem(questionsById.get(entry.questionId),entry.questionId,t)); number++;
+      });
+      section.append(list);
+    }
+    container.append(section);
     return;
   }
   if (!visible.length) container.append(make('p','empty-state',t.empty));
