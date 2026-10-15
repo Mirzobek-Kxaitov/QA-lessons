@@ -33,14 +33,15 @@
 </nav>
 
 <main class="interview">
-<a href="/blog/" class="back-link" data-i18n="back">← Blogga qaytish</a>
+<div class="page-topline"><a href="/blog/" class="back-link" data-i18n="back">← Blogga qaytish</a></div>
+
 <header class="article-head">
-<span class="cat-badge cat-qa" data-i18n="eyebrow">QA intervyu</span>
+<div class="hero-copy">
 <h1 data-i18n="title">QA intervyuga tayyorgarlik</h1>
-<p class="article-lead" data-i18n="intro">Bo‘limni tanlang. Intervyu savollari Junior, Middle va Senior darajalariga ajratilgan.</p>
+<p class="article-lead" data-i18n="intro">Daraja va mavzuni tanlang. Savolni bosib javobni o‘qing.</p>
+</div>
 </header>
-<section class="controls" aria-label="Filters">
-<div class="control language-control">
+<section class="controls" aria-label="Filters"><div class="toolbar"><fieldset id="level-control"><legend data-i18n="level">Daraja</legend><div class="buttons" id="levels"><button type="button" data-value="junior" aria-pressed="true">Junior</button><button type="button" data-value="middle" aria-pressed="false">Middle</button><button type="button" data-value="senior" aria-pressed="false">Senior</button></div></fieldset><div class="control language-control">
   <label id="language-label" for="ui-language" data-i18n="uiLanguage">Savollar tili</label>
   <div class="language-select" id="language-picker">
     <button type="button" id="ui-language" class="language-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="language-menu" aria-labelledby="language-label language-current">
@@ -57,11 +58,11 @@
     </div>
   </div>
 </div>
-<fieldset><legend data-i18n="section">Bo‘lim</legend><div class="buttons" id="sections"><button type="button" data-section="interview" data-i18n="interviewSection" aria-pressed="true">Intervyu savollari</button><button type="button" data-section="additional" data-i18n="additionalSection" aria-pressed="false">Qo‘shimcha savollar</button><button type="button" data-section="faq" data-i18n="faqSection" aria-pressed="false">Savol-Javoblar</button></div></fieldset>
-<fieldset id="level-control"><legend data-i18n="level">Daraja</legend><div class="buttons" id="levels"><button type="button" data-value="junior" aria-pressed="true">Junior</button><button type="button" data-value="middle" aria-pressed="false">Middle</button><button type="button" data-value="senior" aria-pressed="false">Senior</button></div></fieldset>
-</section>
-<p class="answer-hint" data-i18n="hint">Javob va misolni ko‘rish uchun savolni bosing.</p>
-<div id="question-groups"></div>
+</div><fieldset class="section-control"><legend data-i18n="section">Bo‘lim</legend><div class="buttons" id="sections"><button type="button" data-section="interview" data-i18n="interviewSection" aria-pressed="true">Intervyu savollari</button><button type="button" data-section="additional" data-i18n="additionalSection" aria-pressed="false">Qo‘shimcha savollar</button><button type="button" data-section="faq" data-i18n="faqSection" aria-pressed="false">Savol-Javoblar</button></div></fieldset></section>
+<div class="study-layout">
+<aside class="topic-sidebar"><div class="sidebar-title"><span class="sidebar-dot"></span><span data-i18n="topicsLabel">Mavzular</span></div><nav id="topic-nav" aria-label="Mavzular"></nav></aside>
+<div class="study-content"><div class="topic-intro"><div><div class="topic-eyebrow" id="topic-eyebrow"></div><h2 id="topic-title" tabindex="-1"></h2><p id="topic-description"></p></div><span class="topic-mark" id="topic-mark" aria-hidden="true"></span></div><p class="answer-hint" data-i18n="hint">Avval javobni o‘ylang, keyin savolni ochib solishtiring.</p><div id="question-groups"></div><button type="button" class="next-topic" id="next-topic"><span data-i18n="nextTopic">Keyingi mavzu</span><span aria-hidden="true">→</span></button></div>
+</div>
 <noscript><p>Savollarni ko‘rish uchun JavaScriptni yoqing. / Включите JavaScript. / Enable JavaScript to view questions.</p></noscript>
 <p class="source-note"><span data-i18n="source">Mavzular uchun yo‘nalish:</span> <a id="source-link" href="https://itvdn.com/ru/blog/article/250-questions-qa" target="_blank" rel="noopener">ITVDN — QA interview</a><span id="additional-sources"> · <a href="https://www.linkedin.com/top-content/recruitment-hr/interview-techniques-for-recruiters/interview-questions-for-qa-candidates/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.devassure.io/blog/top-qa-interview-questions/" target="_blank" rel="noopener">DevAssure</a> · <a href="https://thinksys.com/qa-testing/top-qa-interview-question-answer/" target="_blank" rel="noopener">ThinkSys</a> · <a href="https://dev.to/samelawrence/my-favorite-interview-questions-for-qa-engineers-485a" target="_blank" rel="noopener">DEV</a> · <a href="https://testrigor.com/blog/manual-qa-interview-questions/" target="_blank" rel="noopener">testRigor</a> · <a href="https://uk.indeed.com/hire/interview-questions/qa" target="_blank" rel="noopener">Indeed</a> · <a href="https://www.geekinterview.com/Interview-Questions/Testing/QA-Testing" target="_blank" rel="noopener">GeekInterview</a> · <a href="https://www.interviewbit.com/qa-interview-questions/" target="_blank" rel="noopener">InterviewBit</a> · <a href="https://www.parasoftchina.cn/top-75-qa-interview-questions-answers-with-examples/" target="_blank" rel="noopener">Parasoft</a> · <a href="https://www.toptal.com/developers/qa/interview-questions" target="_blank" rel="noopener">Toptal</a> · <a href="https://www.qamadness.com/15-common-qa-job-interview-questions/" target="_blank" rel="noopener">QA Madness</a> · <span data-i18n="pdfSources">PDF materiallari:</span> Suraj Rathod, Aston Cook, Mithun Biswas</span>. <span data-i18n="original">Savollar va javoblar QA Academy uchun tuzilgan va moslashtirilgan. Darajalar tayyorgarlik uchun yo‘nalish beradi.</span></p>
 </main>
