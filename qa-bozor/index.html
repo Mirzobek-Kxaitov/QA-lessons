@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="uz">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="O‘zbekistondagi QA vakansiyalari: ish beruvchilar so‘rayotgan ko‘nikmalar, talablar va haftalik jamlanma." name="description"/>
+<title>QA Bozor — QA Academy</title>
+<link href="/qa-bozor/icon.svg?v=3" rel="icon" type="image/svg+xml"/>
+<script>try{const t=localStorage.getItem('qa-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
+<link href="/qa-bozor/styles.css?v=4" rel="stylesheet"/>
+<script src="/qa-bozor/app.js?v=3" type="module"></script>
+</head>
+<body>
+<a class="skip" href="#main">Asosiy mazmunga o‘tish</a>
+<aside class="sidebar">
+<a aria-label="QA Bozor bosh sahifa" class="brand" href="#overview"><span class="brand-mark" data-icon="brand"></span><span>qa<span class="brand-light">bozor</span><small>QA ACADEMY</small></span><span class="brand-version">/ 02</span></a>
+<div class="workspace"><span class="workspace-icon" data-icon="layers"></span><div>QA &amp; Testing<small>O‘zbekiston · hh.uz</small></div><span class="workspace-chevron" data-icon="chevrons"></span></div>
+<p class="nav-label">WORKSPACE</p>
+<nav aria-label="Asosiy navigatsiya">
+<a data-view="overview" href="#overview"><span data-icon="overview"></span><span class="nav-text">Umumiy ko‘rinish</span></a>
+<a data-view="vacancies" href="#vacancies"><span data-icon="briefcase"></span><span class="nav-text">Vakansiyalar</span> <b id="nav-count">—</b></a>
+<a data-view="weekly" href="#weekly"><span data-icon="chart"></span><span class="nav-text">Haftalik jamlanma</span></a>
+<a data-view="method" href="#method"><span data-icon="info"></span><span class="nav-text">Ma’lumotlar haqida</span></a>
+</nav>
+<div class="sidebar-footer"><span class="source-logo">hh</span><span>Ochiq e’lonlar tahlili<small>QA Academy loyihasi</small></span><span class="live-dot"></span></div>
+</aside>
+<div class="page">
+<header class="topbar"><div class="breadcrumb"><a href="/" class="academy-home" aria-label="QA Academy bosh sahifasi">← QA Academy</a><span data-icon="globe"></span> O‘zbekiston <span class="slash">/</span> <strong>QA intelligence</strong></div><div class="top-actions"><button aria-label="Rang mavzusini almashtirish" class="theme-button" id="theme-toggle"><span data-icon="sun"></span></button><span class="pill">BETA</span></div></header>
+<main id="main">
+<section class="page-heading"><div class="hero-copy"><h1 id="page-title">QA bozoridagi talablar</h1><p id="page-subtitle">Vakansiyalar va ish beruvchilar so‘rayotgan ko‘nikmalar.</p></div><div class="hero-actions"><button class="button secondary" id="export" aria-label="CSV yuklash" title="CSV yuklash"><span data-icon="download"></span> <span>CSV yuklash</span></button></div></section>
+<div class="update-strip"><span><i class="live-dot"></i> <span id="updated">Ma’lumotlar yuklanmoqda…</span></span></div>
+<section aria-label="Vakansiyalar filtrlari" class="filter-panel">
+<div class="filter-main"><span class="filter-caption"><span data-icon="filter"></span> Bozorni filtrlash</span><div aria-label="QA yo‘nalishi" class="segments" id="direction" role="group"><button class="active" data-direction="all">Barchasi</button><button data-direction="Manual">Manual</button><button data-direction="Automation">Automation</button></div><label>Daraja<select id="grade"><option value="all">Barcha darajalar</option><option>Intern</option><option>Junior</option><option>Middle</option><option>Senior</option><option>Lead</option><option value="Unspecified">Darajasi belgilanmagan</option></select></label><button class="reset text-button" hidden="" id="reset">Filtrlarni tozalash</button></div>
+<details class="more-filters" id="extra-filters"><summary>Qo‘shimcha filtrlar</summary><div class="filter-row"><label>Shahar<select id="city"><option value="all">Butun O‘zbekiston</option></select></label><label>Ish formati<select id="format"><option value="all">Barcha formatlar</option><option value="REMOTE">Masofaviy</option><option value="ON_SITE">Ofisda</option><option value="HYBRID">Gibrid</option></select></label><label>E’lon haftasi<select id="week"><option value="all">Barcha haftalar</option></select></label></div></details>
+</section>
+<div class="error-box" hidden="" id="error" role="alert"><span id="error-message"></span><button aria-label="Ma’lumotlarni qayta yuklash" class="text-button" id="refresh">↻ Qayta yuklash</button></div>
+<div class="loading" id="loading"><span class="spinner"></span> Haqiqiy vakansiyalar tayyorlanmoqda…</div>
+<div hidden="" id="content">
+<section class="view" id="overview-view">
+<div class="section-kicker"><span>01 / BOZOR TASVIRI</span><span id="sample-label">MANBA: HH.UZ</span></div><div class="metrics" id="metrics"></div>
+<div class="analysis-grid"><section class="card skills-card"><div class="card-heading"><div><p class="eyebrow">SKILL DEMAND</p><h2>Eng talabgir ko‘nikmalar</h2></div><span class="small-label"><span class="live-dot"></span> hh.uz</span></div><div class="skill-mode"><label for="context">Hisoblash doirasi</label><select id="context"><option value="requirements">Talablar + afzalliklar</option><option value="required">Faqat talablar bo‘limi</option><option value="preferred">Faqat afzalliklar</option><option value="mentioned">Barcha eslatmalar</option></select></div><p class="chart-note" id="chart-note"></p><div class="skill-list" id="skills"></div><button class="wide-link" id="more-skills">Barcha ko‘nikmalarni ko‘rish ↓</button></section>
+</div>
+<section class="card recent-card"><div class="card-heading"><div><p class="eyebrow">IMKONIYATLAR</p><h2>So‘nggi vakansiyalar</h2></div><a class="inline-link" href="#vacancies">Barchasini ko‘rish →</a></div><div id="recent-jobs"></div></section>
+</section>
+<section class="view" hidden="" id="vacancies-view"><div class="section-title"><div><h2>QA vakansiyalari <span class="count-label" id="jobs-total"></span></h2><p>EN — ingliz tili talab yoki afzallik sifatida so‘ralgan.</p></div><label class="search-label"><span data-icon="search"></span><input aria-label="Vakansiyalarni qidirish" id="search" placeholder="Lavozim, kompaniya yoki ko‘nikma…" type="search"/></label></div><div class="jobs-list" id="jobs-list"></div></section>
+<section class="view" hidden="" id="weekly-view"><section class="card"><div class="card-heading"><div><p class="eyebrow">HAFTA KESIMIDA</p><h2>E’lonlar va talablar jamlanmasi</h2></div></div><p class="muted">Guruhlash e’lonning Toshkent vaqtidagi sanasiga asoslanadi. Eski haftalar faqat biz kuzatgan e’lonlardan iborat.</p><div class="weekly-bars" id="weekly-bars"></div><div class="callout" id="history-note"></div></section><div class="week-cards" id="week-cards"></div></section>
+<section class="view" hidden="" id="method-view"><div class="method-grid"><section class="card"><p class="eyebrow">SHAFFOF HISOBLASH</p><h2>Raqamlar qanday hosil bo‘ladi?</h2><div class="coverage" id="coverage"></div><ol class="method-list"><li><strong>O‘zbekiston bo‘yicha qidiruv</strong><p>hh.uz’da QA, tester, тестировщик va boshqa testlash nomlari bilan qidiriladi.</p></li><li><strong>Saralash va takrorlarni chiqarish</strong><p>E’lon ID bo‘yicha birlashtiriladi. Ishlab chiqarish, farmatsevtika va boshqa software QA bo‘lmagan rollar chiqariladi. Boshqa ID bilan qayta e’lon qilingan ishlar alohida hisoblanishi mumkin.</p></li><li><strong>Asl jumlalarni saqlash</strong><p>Talab, afzallik, vazifa va konteksti aniqlanmagan jumlalar ajratiladi. Lug‘atdagi ko‘nikmalar asl matn bilan bog‘lanadi. AI tomonidan o‘ylab topilgan talablar yo‘q.</p></li><li><strong>Noyob vakansiyalarni sanash</strong><p>Bitta ko‘nikma bitta e’londa ko‘p yozilsa ham bir marta sanaladi. Foiz = shu ko‘nikma uchragan e’lonlar ÷ filtrlangan e’lonlar × 100.</p></li></ol></section><section class="card"><p class="eyebrow">TO‘G‘RI TALQIN QILISH</p><h2>Bilish muhim bo‘lgan jihatlar</h2><div class="method-notes"><h3>Bu kuzatilgan namuna</h3><p>Natija butun mehnat bozorining to‘liq hisoboti emas. E’londa yozilmagan ko‘nikma ishda kerak bo‘lmasligini anglatmaydi.</p><h3>Talablar avtomatik ajratiladi</h3><p>Bo‘lim nomlari va lug‘at asosidagi ajratishda xato, inkor yoki muqobil talabni noto‘g‘ri talqin qilish mumkin. Asl jumla orqali tekshiring.</p><h3>Yo‘nalish va daraja</h3><p>Yo‘nalish yozilmagan e’lonlar interfeysda Manual guruhiga kiradi. Automation ochiq yozilgan e’lonlar shu guruhda ko‘rinadi. Daraja esa faqat lavozim nomidan olinadi.</p><h3>Hozircha saqlangan to‘plam</h3><p>Kundalik avtomatik yig‘ish hali ulanmagan. Sahifa oxirgi saqlangan to‘plamni ko‘rsatadi.</p><h3>E’lon holati o‘zgarishi mumkin</h3><p>Yig‘ilgandan keyin e’lon yopilgan bo‘lishi mumkin. Joriy holatni hh.uz havolasida tekshiring.</p><h3>Ingliz tili belgisi</h3><p>Ingliz tili texnik ko‘nikmalar reytingiga kiritilmaydi. Talablar yoki afzalliklar bo‘limida ingliz tili aniqlangan vakansiyalarda EN belgisi bor. Asl jumlani vakansiya ichida o‘qing.</p></div></section></div><section class="card run-card"><h2>Yig‘ish tarixi</h2><div id="runs"></div></section></section>
+<footer class="main-footer"><span>qa<span>bozor</span> <small>· Haqiqiy e’lonlar. Aniqroq tayyorgarlik.</small></span><a href="#method">Manba va metodologiya ↗</a></footer>
+</div>
+</main>
+</div>
+<dialog aria-labelledby="detail-heading" id="detail"><div class="dialog-top"><span class="eyebrow" id="detail-eyebrow">MANBADAN DALIL</span><button aria-label="Yopish" class="close-button" id="close-detail">×</button></div><div id="detail-body"></div></dialog>
+<div hidden="" id="toast" role="status"></div>
+</body>
+</html>
