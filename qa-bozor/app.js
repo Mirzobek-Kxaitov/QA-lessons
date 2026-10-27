@@ -223,7 +223,7 @@ $('#detail').addEventListener('click',event=>{if(event.target===$('#detail')){co
 $('#export').addEventListener('click',downloadCSV);
 $('#refresh').addEventListener('click',load);
 document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));
-function updateThemeButton(){const light=document.documentElement.dataset.theme==='light';$('#theme-toggle').innerHTML=icon(light?'moon':'sun');$('#theme-toggle').setAttribute('aria-label',light?'To‘q mavzuga o‘tish':'Ochiq mavzuga o‘tish');document.querySelector('meta[name="theme-color"]').content=light?'#ffffff':'#0b0d14';}
+function updateThemeButton(){const light=document.documentElement.dataset.theme==='light';$('#theme-toggle').innerHTML=icon(light?'moon':'sun');$('#theme-toggle').setAttribute('aria-label',light?'To‘q mavzuga o‘tish':'Ochiq mavzuga o‘tish');document.querySelector('meta[name="theme-color"]').content=light?'#ffffff':'#0e1620';}
 $('#theme-toggle').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('qa-theme',document.documentElement.dataset.theme);}catch{}updateThemeButton();});
 function focusSearch(){state.view='vacancies';location.hash='vacancies';render();$('#search').focus();$('#search').scrollIntoView({block:'center',behavior:'smooth'});}
 document.addEventListener('keydown',event=>{if(event.key==='k'&&(event.metaKey||event.ctrlKey)){event.preventDefault();if(!$('#detail').open)focusSearch();}});
