@@ -554,6 +554,13 @@ body {
   .hero-stats { gap: 28px; }
   .stat-num { font-size: 28px; }
 }
+/* Keep the expanded academy navigation readable on tablet widths. */
+.nav-links{gap:18px}.nav-links a,.logo{white-space:nowrap}
+@media(max-width:1100px){
+.hamburger{display:flex}
+.nav-links{display:none;position:absolute;top:calc(100% + 1px);left:0;right:0;background:var(--bg-card);border-bottom:1px solid var(--line);flex-direction:column;padding:16px 32px;gap:14px;box-shadow:0 12px 30px rgba(0,0,0,.1);align-items:flex-start}
+.nav-links.open{display:flex}.nav-links li{width:100%}
+}
 </style>
 </head>
 <body>
@@ -570,6 +577,7 @@ body {
       <span style="font-weight:700;font-size:20px">QA<span style="color:var(--accent)">.</span>Academy</span>
     </a>
     <ul class="nav-links">
+      <li><a href="/qa-bozor">Рынок QA</a></li>
       <li><a href="#curriculum">Программа</a></li>
       <li><a href="#lessons">Уроки</a></li>
       <li><a href="#about">О курсе</a></li>

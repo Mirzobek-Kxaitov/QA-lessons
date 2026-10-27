@@ -202,6 +202,13 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
   .hero > .eyebrow, .hero h1 .line, .hero-subtitle, .cta-row, .hero-meta { animation: none; opacity: 1; transform: none; }
   .accent-word svg path { animation: none; stroke-dashoffset: 0; }
 }
+/* Keep the expanded academy navigation readable on tablet widths. */
+.nav-links{gap:18px}.nav-links a,.logo{white-space:nowrap}
+@media(max-width:1100px){
+.hamburger{display:flex}
+.nav-links{display:none;position:absolute;top:calc(100% + 1px);left:0;right:0;background:var(--bg-card);border-bottom:1px solid var(--line);flex-direction:column;padding:16px 32px;gap:14px;box-shadow:0 12px 30px rgba(0,0,0,.1);align-items:flex-start}
+.nav-links.open{display:flex}.nav-links li{width:100%}
+}
 </style>
 </head>
 <body>
@@ -218,6 +225,7 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color:
     </a>
     <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
+      <li><a href="/qa-bozor">Ish bozori</a></li>
       <li><a href="#lessons">Darslar</a></li>
       <li><a href="automation/index.html">Automation</a></li>
       <li><a href="cases/index.html">Real keyslar</a></li>
