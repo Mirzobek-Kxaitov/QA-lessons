@@ -37,6 +37,8 @@ jobs:
         run: python scripts/qa-market/seed.py
       - name: Run parser regression checks
         run: python -m unittest discover -s scripts/qa-market -v
+      - name: Run filter state regression checks
+        run: node --test tests/filter-state.test.mjs
       - name: Collect public vacancies
         run: python scripts/qa-market/collector.py
       - name: Build dashboard snapshot

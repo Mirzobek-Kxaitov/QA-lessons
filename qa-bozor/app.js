@@ -124,6 +124,7 @@ function renderOverview(jobs) {
 }
 function renderJobs() {
  const jobs=searchedJobs();
+ if(state.view==='vacancies')$('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
  $('#jobs-total').textContent=`${jobs.length} ta`;
  $('#jobs-list').innerHTML = jobs.length ? jobs.map(job=>{
   const skills=[...new Set(job.requirements.filter(relevant).map(r=>r.skill))].slice(0,6);

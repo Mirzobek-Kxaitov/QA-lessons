@@ -419,7 +419,9 @@ def collect(args):
             if not args.limit and not args.query:
                 for (payload,) in db.execute('SELECT data FROM vacancies'):
                     previous = json.loads(payload)
-                    if previous.get('archived') is not True:
+                    decisions = json.loads((ROOT / 'review-decisions.json').read_text())
+                    category = decisions.get(previous['id'], {}).get('classification', previous.get('classification'))
+                    if category == 'included' and previous.get('archived') is not True:
                         candidates.setdefault(previous['id'], {'id': previous['id'], 'url': previous['url']})
             report['candidates'] = len(candidates)
             selected = list(candidates.values())[:args.limit] if args.limit else list(candidates.values())
