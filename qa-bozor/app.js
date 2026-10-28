@@ -1,4 +1,5 @@
-import {readFilters,filterSearch,leaveVacancies} from './filter-state.js?v=1';
+import {mergeSources} from './source-data.js?v=1';
+import {readFilters,filterSearch,leaveVacancies} from './filter-state.js?v=2';
 import {directionsFor, languageEvidence, jobLanguages, technicalRequirement} from './job-presentation.js?v=8';
 const $ = (s) => document.querySelector(s);
 const escapeHTML = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -61,7 +62,7 @@ function weekLabel(key) {
  return `${dateFormat(monday.toISOString())} – ${dateFormat(sunday.toISOString())}`;
 }
 function baseJobs() {
- return data.jobs.filter(j => j.archived!==true&&j.availability!=='unavailable'&&(state.direction==='all'||directionsFor(j).includes(state.direction)) &&
+ return data.jobs.filter(j => j.archived!==true&&j.availability!=='unavailable'&&(state.source==='all'||j.source===state.source||(j.other_sources||[]).some(x=>x.source===state.source))&&(state.direction==='all'||directionsFor(j).includes(state.direction)) &&
    (state.grade==='all'||j.grades.includes(state.grade)) && (state.city==='all'||j.city===state.city) &&
    (state.format==='all'||(j.work_format_codes||[]).includes(state.format)) &&
    (state.week==='all'||weekOf(j.published_at)===state.week));
@@ -86,7 +87,9 @@ function empty(title='Bu filtrlar bo‘yicha e’lon topilmadi.',text='Boshqa da
  return `<div class="empty"><strong>${e(title)}</strong>${e(text)}</div>`;
 }
 function directionNote(j){return !(j.directions||[]).some(x=>['Manual','Automation'].includes(x))?'Yo‘nalish yozilmagan; Manual guruhiga qo‘shilgan.':'';}
-function statusNote(j){return j.archived===true?'Arxivlangan':j.availability==='unavailable'?'Hozir ochilmadi':j.status_checked_at?'hh.uz sahifasi tekshirilgan: '+dateFormat(j.status_checked_at,true):'Joriy holat tekshirilmagan';}
+function sourceLabel(j){return j.source==='telegram'?'Telegram':'hh.uz';}
+function sourceSummary(jobs){return [...new Set(jobs.map(sourceLabel))].join(' + ')||'hh.uz + Telegram';}
+function statusNote(j){return j.archived===true?'Arxivlangan':j.availability==='unavailable'?'Hozir ochilmadi':j.status_checked_at?sourceLabel(j)+' sahifasi tekshirilgan: '+dateFormat(j.status_checked_at,true):'Joriy holat tekshirilmagan';}
 function tags(j) {
  return [...directionsFor(j),...j.grades].filter(x=>x!=='Unspecified').map(t=>`<span title="${e(t==='Manual'?directionNote(j):'')}" class="tag ${t==='Manual'||t==='Intern'||t==='Junior'?'green':''}">${e(t)}</span>`).join('');
 }
@@ -109,7 +112,7 @@ function renderOverview(jobs) {
  const skills = new Set(jobs.flatMap(j=>j.requirements.filter(relevant).map(r=>r.skill)));
  const currentWeek = weekOf(new Date().toISOString());
  const newThisWeek = jobs.filter(j=>weekOf(j.published_at)===currentWeek).length;
- $('#sample-label').textContent=`${jobs.length} TA E’LON · HH.UZ`;
+ $('#sample-label').textContent=`${jobs.length} TA E’LON · ${sourceSummary(jobs)}`;
  $('#metrics').innerHTML = metric('QA vakansiyalari',jobs.length,'ta','Tanlangan filtrlar bo‘yicha','briefcase')+
    metric('Shu haftada chiqqan',newThisWeek,'ta',`${weekLabel(currentWeek)} · oxirgi yig‘imgacha`,'chart')+
    metric('Noyob ko‘nikmalar',skills.size,'ta','Tanlangan hisoblash doirasida','sparkles')+
@@ -127,7 +130,7 @@ function renderJobs() {
  $('#jobs-total').textContent=`${jobs.length} ta`;
  $('#jobs-list').innerHTML = jobs.length ? jobs.map(job=>{
   const skills=[...new Set(job.requirements.filter(relevant).map(r=>r.skill))].slice(0,6);
-  return `<article class="job-card"><div class="job-card-header"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${languageBadges(job)}<div class="job-meta">${e(job.company)}</div></div></div><p class="salary">${e(job.salary_text||'Maosh ko‘rsatilmagan')}</p><div class="job-meta">${e(job.city)} · ${e(job.experience||'Tajriba ko‘rsatilmagan')} · ${e((job.work_format_codes||[]).map(label).join(' / ')||job.work_format||'Format ko‘rsatilmagan')}</div><div class="job-tags">${tags(job)}</div><div class="skill-chips">${skills.map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')}</div><div class="job-card-bottom"><span>${e(dateFormat(job.published_at,true))}</span><a href="${e(job.url)}" target="_blank" rel="noopener noreferrer">hh.uz ↗</a></div></article>`;
+  return `<article class="job-card"><div class="job-card-header"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${languageBadges(job)}<div class="job-meta">${e(job.company)}${job.source==='telegram'?' · @'+e(job.channel):''}</div></div></div><p class="salary">${e(job.salary_text||'Maosh ko‘rsatilmagan')}</p><div class="job-meta">${e(job.city)} · ${e(job.experience||'Tajriba ko‘rsatilmagan')} · ${e((job.work_format_codes||[]).map(label).join(' / ')||job.work_format||'Format ko‘rsatilmagan')}</div><div class="job-tags">${tags(job)}</div><div class="skill-chips">${skills.map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')}</div><div class="job-card-bottom"><span>${e(dateFormat(job.published_at,true))}</span><a href="${e(job.url)}" target="_blank" rel="noopener noreferrer">${e(sourceLabel(job))} ↗</a></div></article>`;
  }).join(''):empty('Qidiruv bo‘yicha e’lon topilmadi.','Qidiruv matnini yoki yuqoridagi filtrlarni o‘zgartiring.');
 }
 function renderWeekly(jobs) {
@@ -142,12 +145,12 @@ function renderWeekly(jobs) {
 }
 function renderMethod() {
  const c=data.coverage;
- $('#coverage').innerHTML = `<span>${c.collected} ta yig‘ilgan</span><span>${c.included||0} ta QA</span><span>${(c.excluded||0)+(c.excluded_region||0)} ta chiqarilgan</span><span>${c.review||0} ta tekshirishda</span>`;
- $('#runs').innerHTML=data.runs.map(r=>`<div class="run-row"><span>${e(dateFormat(r.finished_at||r.started_at,true))} · ${e(new Intl.DateTimeFormat('uz-UZ',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'}).format(new Date(r.finished_at||r.started_at)))} (Toshkent)</span><span>${r.collected} ta e’lon · ${r.errors} ta xato · ${e(r.status==='complete'?'Qidiruvlar to‘liq olindi':'Qisman olingan')}</span></div>`).join('');
+ $('#coverage').innerHTML = `<span>hh.uz: ${c.collected} ta yig‘ilgan</span>${data.telegram?'<span>Telegram: '+data.telegram.jobs.length+' ta QA posti · oxirgi '+data.telegram.window_days+' kun · '+data.telegram.coverage.review+' ta tekshiruvga qolgan</span>':''}<span>${c.included||0} ta QA</span><span>${(c.excluded||0)+(c.excluded_region||0)} ta chiqarilgan</span><span>${c.review||0} ta tekshirishda</span>`;
+ $('#runs').innerHTML=data.runs.map(r=>`<div class="run-row"><span>${e(dateFormat(r.finished_at||r.started_at,true))} · ${e(new Intl.DateTimeFormat('uz-UZ',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'}).format(new Date(r.finished_at||r.started_at)))} (Toshkent)</span><span>hh.uz · ${r.collected} ta e’lon · ${r.errors} ta xato · ${e(r.status==='complete'?'Qidiruvlar to‘liq olindi':'Qisman olingan')}</span></div>`).join('');
 }
 function syncURL(){const query=filterSearch(state);const url=location.pathname+(query?'?'+query:'')+'#'+state.view;if(url!==location.pathname+location.search+location.hash)history.replaceState(null,'',url);}
 function navigateView(view){leaveVacancies(state,view);const query=filterSearch(state);history.pushState(null,'',location.pathname+(query?'?'+query:'')+'#'+view);render();}
-function applyControls(){for(const key of ['grade','city','format','week','context'])$('#'+key).value=state[key];$('#search').value=state.query;}
+function applyControls(){for(const key of ['source','grade','city','format','week','context'])$('#'+key).value=state[key];$('#search').value=state.query;}
 function render() {
  if(!data) return;
  syncURL();
@@ -158,7 +161,7 @@ function render() {
  $('#page-subtitle').textContent=pageInfo[state.view][1];
  $('.page-heading').classList.toggle('compact',state.view!=='overview');
  $('.filter-panel').hidden=state.view==='method';$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
- $('#reset').hidden=state.direction==='all'&&['grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;
+ $('#reset').hidden=state.direction==='all'&&['source','grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;
  document.querySelectorAll('[data-direction]').forEach(b=>{const active=b.dataset.direction===state.direction;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
  $('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
  renderOverview(jobs);renderJobs();renderWeekly(jobs);renderMethod();
@@ -174,7 +177,7 @@ function showSkill(skill,week=null) {
 function showJob(id) {
  detailJob=data.jobs.find(j=>j.id===id);if(!detailJob)return;
  const j=detailJob;
- $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div><p class="source-disclaimer">${e(statusNote(j))}${directionNote(j)?' · '+e(directionNote(j)):''}</p>${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">hh.uz’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${languageNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
+ $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div><p class="source-disclaimer">${e(statusNote(j))}${directionNote(j)?' · '+e(directionNote(j)):''}</p>${j.source==='telegram'?'<p class="source-disclaimer">@'+e(j.channel)+' ochiq posti. O‘zbekiston uchun mosligi matndan ajratilgan; e’lon hali ochiqligini manbada tekshiring.</p>':''}${j.other_sources?.length?'<p class="source-disclaimer">Shu e’lon Telegramda ham bor: '+j.other_sources.map(x=>'<a href="'+e(x.url)+'" target="_blank" rel="noopener noreferrer">@'+e(x.channel)+'</a>').join(', ')+'</p>':''}${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">${e(sourceLabel(j))}’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${languageNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
  renderJobRequirements('required');
  if(!$('#detail').open)showDetail('VAKANSIYA · TALABLAR');else{$('#detail-eyebrow').textContent='VAKANSIYA · TALABLAR';$('#detail').scrollTop=0;}
 }
@@ -188,10 +191,10 @@ function toast(message) {$('#toast').textContent=message;$('#toast').hidden=fals
 function downloadCSV() {
  const jobs=state.view==='vacancies'?searchedJobs():baseJobs();
  if(!jobs.length){toast('Yuklash uchun e’lon topilmadi.');return;}
- const columns=['ID','Lavozim','Kompaniya','Shahar','Daraja','Yo‘nalish','Tajriba','Maosh','Tillar','E’lon sanasi','Havola'];
+ const columns=['Manba','ID','Lavozim','Kompaniya','Shahar','Daraja','Yo‘nalish','Tajriba','Maosh','Tillar','E’lon sanasi','Havola'];
  const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
  const safe=v=>/^[=+\-@\t\r]/.test(String(v??''))?"'"+v:v;
- const rows=jobs.map(j=>[j.id,j.title,j.company,j.city,j.grades.map(label).join('; '),directionsFor(j).join('; '),j.experience,j.salary_text,jobLanguages(j).map(l=>l.code).join('; ')||'Aniqlanmadi',j.published_at,j.url]);
+ const rows=jobs.map(j=>[sourceLabel(j),j.id,j.title,j.company,j.city,j.grades.map(label).join('; '),directionsFor(j).join('; '),j.experience,j.salary_text,jobLanguages(j).map(l=>l.code).join('; ')||'Aniqlanmadi',j.published_at,j.url]);
  const blob=new Blob(['\ufeff'+[columns,...rows].map(r=>r.map(v=>quote(safe(v))).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='qa-bozor-vakansiyalar.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast(`${jobs.length} ta vakansiya yuklandi`);
 }
@@ -200,13 +203,21 @@ async function load() {
  try {
   const response=await fetch(new URL('./data.json',import.meta.url),{cache:'no-store'});if(!response.ok)throw new Error('Ma’lumot faylini ochib bo‘lmadi.');
   const incoming=await response.json();if(!Array.isArray(incoming.jobs)||!incoming.runs?.length)throw new Error('Ma’lumot shakli noto‘g‘ri.');
-  data=incoming;data.jobs.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
+  data=incoming;
+  try{
+   const tgResponse=await fetch(new URL('./telegram-data.json',import.meta.url),{cache:'no-store'});
+   if(!tgResponse.ok)throw new Error('Telegram snapshot missing');
+   const tg=await tgResponse.json();if(!Array.isArray(tg.jobs))throw new Error('Invalid Telegram snapshot');
+   data.telegram=tg;data.jobs=mergeSources(data.jobs,tg.jobs);
+   if(Date.now()-new Date(tg.collected_at)>2*86400000){$('#source-warning').textContent='Telegram jamlanmasi 2 kundan beri yangilanmagan. Yig‘ilgan sanaga e’tibor bering.';$('#source-warning').hidden=false;}
+  }catch(error){data.jobs=mergeSources(data.jobs,[]);$('#source-warning').hidden=false;}
+  data.jobs.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
   const cities=[...new Set(data.jobs.map(j=>j.city).filter(Boolean))].sort();
   $('#city').innerHTML='<option value="all">Butun O‘zbekiston</option>'+cities.map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');$('#city').value=state.city;
   const weeks=[...new Set(data.jobs.map(j=>weekOf(j.published_at)))].sort().reverse();
   $('#week').innerHTML='<option value="all">Barcha haftalar</option>'+weeks.map(w=>`<option value="${e(w)}">${e(weekLabel(w))}</option>`).join('');$('#week').value=state.week;
   $('#nav-count').textContent=data.jobs.filter(j=>j.archived!==true&&j.availability!=='unavailable').length;
-  const last=data.runs.at(-1);const age=(Date.now()-new Date(last.finished_at||last.started_at))/86400000;$('#freshness').hidden=age<2;$('#freshness').textContent='Ma’lumotlar '+Math.floor(age)+' kun oldin yig‘ilgan. Yangi e’lonlar va o‘zgarishlar hali ko‘rinmasligi mumkin.';$('#updated').textContent=`Yig‘ilgan: ${dateFormat(last.finished_at||last.started_at,true)} · hh.uz · ${data.coverage.collected} ta e’lon tekshirildi`;
+  const last=data.runs.at(-1);const age=(Date.now()-new Date(last.finished_at||last.started_at))/86400000;$('#freshness').hidden=age<2;$('#freshness').textContent='Ma’lumotlar '+Math.floor(age)+' kun oldin yig‘ilgan. Yangi e’lonlar va o‘zgarishlar hali ko‘rinmasligi mumkin.';$('#updated').textContent=`Yig‘ilgan: ${dateFormat(last.finished_at||last.started_at,true)} · hh.uz · ${data.coverage.collected} ta e’lon tekshirildi${data.telegram?' · @unilance: '+dateFormat(data.telegram.collected_at,true)+' · '+data.telegram.jobs.length+' ta QA posti':''}`;
   for(const key of ['city','week'])if(![...$('#'+key).options].some(o=>o.value===state[key]))state[key]='all';
   applyControls();$('#content').hidden=false;render();
  }catch(error){$('#error-message').textContent='Ma’lumotlarni yuklab bo‘lmadi. Internet aloqasini tekshiring va qayta yuklang.';$('#error').hidden=false;console.error(error);}
@@ -223,10 +234,10 @@ document.addEventListener('click',event=>{
  if(target.dataset.week){state.query='';$('#search').value='';state.week=target.dataset.week;$('#week').value=state.week;navigateView('vacancies');window.scrollTo({top:0,behavior:'smooth'});}
  if(target.dataset.detailTab)renderJobRequirements(target.dataset.detailTab);
 });
-['grade','city','format','week','context'].forEach(key=>$('#'+key).addEventListener('change',event=>{state[key]=event.target.value;state.more=false;render();}));
-$('#search').addEventListener('input',event=>{state.query=event.target.value;syncURL();renderJobs();$('#reset').hidden=state.direction==='all'&&['grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;});
+['source','grade','city','format','week','context'].forEach(key=>$('#'+key).addEventListener('change',event=>{state[key]=event.target.value;state.more=false;render();}));
+$('#search').addEventListener('input',event=>{state.query=event.target.value;syncURL();renderJobs();$('#reset').hidden=state.direction==='all'&&['source','grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;});
 $('#more-skills').addEventListener('click',()=>{state.more=!state.more;renderOverview(baseJobs());});
-$('#reset').addEventListener('click',()=>{for(const k of ['grade','city','format','week']){state[k]='all';$('#'+k).value='all';}state.direction='all';state.query='';state.more=false;$('#search').value='';render();});
+$('#reset').addEventListener('click',()=>{for(const k of ['source','grade','city','format','week']){state[k]='all';$('#'+k).value='all';}state.direction='all';state.query='';state.more=false;$('#search').value='';render();});
 $('#close-detail').addEventListener('click',closeDetail);
 $('#detail').addEventListener('click',event=>{if(event.target===$('#detail')){const r=$('#detail').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDetail();}});
 $('#export').addEventListener('click',downloadCSV);

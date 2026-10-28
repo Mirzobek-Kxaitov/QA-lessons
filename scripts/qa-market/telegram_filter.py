@@ -4,6 +4,7 @@ Only `included` posts should be published automatically. `review` posts need a
 human decision; source text and URL must be retained by the channel adapter.
 """
 import re
+import unicodedata
 
 ROLE = re.compile(r'\b(?:qa|aqa|sdet|tester|testor|testchi)\b|quality\s+assurance|тестировщик|тестировщица|тестировщи[кч]|тестиров|testlash\s+(?:muhandis|mutaxassis)|testing\s+engineer', re.I)
 HIRING = re.compile(r'vacanc|ваканси|hiring|we.re looking|join our team|ищем|требуется|набираем|ишга|вакансия|vakansi|ishga\s+(?:taklif|qabul|olamiz)|(?:qidiramiz|izlaymiz|kerak)|ish\s+o[‘\x27ʻ’]rni|job\s+opening', re.I)
@@ -16,7 +17,14 @@ CANDIDATE_DETAILS = re.compile(r'maosh|oylik|salary|зарплат|требов�
 
 def classify_post(text):
     """Return a decision and readable reason, without asserting authenticity."""
-    text = re.sub(r'\s+', ' ', text or '').strip()
+    text = unicodedata.normalize('NFKC', text or '')
+    lines=[x.strip() for x in text.splitlines() if x.strip() and not x.strip().startswith('#')]
+    headline=' '.join(lines[:2])
+    if lines and re.search(r'developer|dasturchi|designer|дизайнер|разработчик|backend|frontend',lines[0],re.I) and not ROLE.search(lines[0]):
+        return {'classification':'excluded','reason':'Asosiy lavozim dasturchi yoki dizayner'}
+    if headline and not ROLE.search(headline):
+        return {'classification':'excluded','reason':'Asosiy lavozim QA emas'}
+    text = re.sub(r'\s+', ' ', text).strip()
     if not ROLE.search(text):
         return {'classification':'excluded','reason':'QA roli aniqlanmadi'}
     if SEEKING.search(text):
@@ -25,6 +33,6 @@ def classify_post(text):
         return {'classification':'review' if SOFTWARE.search(text) else 'excluded','reason':'Software QA bilan boshqa soha aralashgan yoki boshqa soha'}
     if PROMOTION.search(text) and not (HIRING.search(text) and CANDIDATE_DETAILS.search(text)):
         return {'classification':'review' if HIRING.search(text) else 'excluded','reason':'Kurs yoki tadbir reklamasi bo‘lishi mumkin'}
-    if HIRING.search(text) and CANDIDATE_DETAILS.search(text):
+    if (HIRING.search(text) or re.search(r'компания\s*:|company\s*:|kompaniya\s*:',text,re.I)) and CANDIDATE_DETAILS.search(text):
         return {'classification':'included','reason':'QA roli va ishga qabul qilish dalillari bor'}
     return {'classification':'review','reason':'QA eslatilgan, lekin vakansiya ekaniga dalil yetarli emas'}
