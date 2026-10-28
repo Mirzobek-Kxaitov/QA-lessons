@@ -1,0 +1,7 @@
+{
+  "138082335": {"classification": "excluded", "reason": "iPhone telefonlarining texnik/tashqi holatini baholash va inventarizatsiya; software QA emas."},
+  "138253483": {"classification": "excluded", "reason": "Ishlab chiqarish sifati, GMP/GLP/GHP va laboratoriya nazorati; software QA emas."},
+  "138253482": {"classification": "excluded", "reason": "Ishlab chiqarish sifati, GMP/GLP/GHP va laboratoriya nazorati; software QA emas."},
+  "138105563": {"classification": "excluded", "reason": "Avtomobil elektronikasi va yangi uskunalarni sinash; software QA emas."},
+  "138417226": {"classification": "review", "reason": "Sarlavhada tester bor, tavsif esa full-stack/CTO vazifalarini beradi. QA statistikaga qo‘shilmadi."}
+}

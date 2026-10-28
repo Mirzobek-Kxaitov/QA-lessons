@@ -1,0 +1,71 @@
+name: Refresh QA market
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: qa-market-refresh
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/qa-market/requirements.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Restore collection history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          mkdir -p scripts/qa-market/data
+          artifact_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=qa-market-state&per_page=1" --jq '.artifacts[0] | select(.expired == false) | .id' || true)
+          if [ -n "$artifact_id" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact_id/zip" > /tmp/qa-market-state.zip
+            unzip -o /tmp/qa-market-state.zip -d scripts/qa-market/data
+          fi
+      - name: Recover baseline when history is missing
+        run: python scripts/qa-market/seed.py
+      - name: Run parser regression checks
+        run: python -m unittest discover -s scripts/qa-market -v
+      - name: Run filter state regression checks
+        run: node --test tests/filter-state.test.mjs
+      - name: Collect public vacancies
+        run: python scripts/qa-market/collector.py
+      - name: Build dashboard snapshot
+        run: python scripts/qa-market/build_dashboard.py
+      - name: Publish complete snapshot
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa-bozor/data.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh QA vacancy snapshot'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Save durable collection history
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-market-state
+          path: scripts/qa-market/data/vacancies.sqlite3
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Save diagnostic report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-market-diagnostics
+          path: scripts/qa-market/data/raw/**/report.json
+          retention-days: 14
