@@ -34,6 +34,7 @@ let previousFocus = null;
 const pageInfo = {
  overview:['QA bozoridagi talablar','Vakansiyalar va ish beruvchilar so‘rayotgan ko‘nikmalar.'],
  vacancies:['QA vakansiyalari','Ish beruvchi talablarini ko‘ring va vakansiyalarni solishtiring.'],
+ audit:['Kunlik audit','Manbadan saytgacha: yetib kelgan, qolib ketgan va tekshirishdagi e’lonlar.'],
  weekly:['Haftalik jamlanma','E’lonlar va talablar hafta kesimida.'],
  method:['Har bir raqamning manbasi bor.','Qamrov, hisoblash usuli va natijalarni to‘g‘ri talqin qilish.']
 };
@@ -160,11 +161,17 @@ function render() {
  $('#page-title').textContent=pageInfo[state.view][0];
  $('#page-subtitle').textContent=pageInfo[state.view][1];
  $('.page-heading').classList.toggle('compact',state.view!=='overview');
- $('.filter-panel').hidden=state.view==='method';$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
+ $('.filter-panel').hidden=['method','audit'].includes(state.view);$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
  $('#reset').hidden=state.direction==='all'&&['source','grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;
  document.querySelectorAll('[data-direction]').forEach(b=>{const active=b.dataset.direction===state.direction;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
  $('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
- renderOverview(jobs);renderJobs();renderWeekly(jobs);renderMethod();
+ renderOverview(jobs);renderJobs();renderWeekly(jobs);renderMethod();renderAudit();
+}
+function renderAudit(){
+ const reports=data.audit?.days||[];
+ const names={matched:'Mos keldi',needs_review:'Tekshirish kerak',provisional:'Hali yakuniy emas',live_unavailable:'Saytni tekshirib bo‘lmadi',inventory_missing:'Manba inventari yetarli emas'};
+ const list=(rows,title)=>rows?.length?`<details class="audit-issues"><summary>${e(title)} · ${rows.length} ta</summary>${rows.map(r=>`<p><a class="inline-link" href="${e(r.url)}" target="_blank" rel="noopener noreferrer">${e(r.title||r.id)} ↗</a><br>${e(r.reason)}</p>`).join('')}</details>`:'';
+ $('#audit-results').innerHTML=reports.length?reports.map(report=>`<section class="card audit-day"><h2>${e(report.date)}${report.open_day?' · kun davom etmoqda':''}</h2><p class="muted">Audit: ${e(dateFormat(report.generated_at,true))} · Toshkent vaqti. Har manbaning yig‘ilgan sanasiga e’tibor bering.</p>${report.sources.map(r=>`<article class="audit-source"><h3>${r.source==='telegram'?'Telegram · @unilance':'hh.uz'} <span class="tag">${e(names[r.status]||r.status)}</span></h3><p class="muted">Manba tekshirildi: ${e(r.checked_at?dateFormat(r.checked_at,true):'Noma’lum')}</p><div class="audit-counts">${[['QA deb topilgan',r.confirmed],['Saytga yetgan',r.arrived],['Yetmagan',r.arrived===null?null:r.missing.length],['Noaniq',r.review.length],['O‘qilmagan',r.unreadable.length],['Eski nusxa',r.stale?.length||0]].map(([label,n])=>`<div><strong>${n??'—'}</strong><span>${e(label)}</span></div>`).join('')}</div>${r.reason?'<p>'+e(r.reason)+'</p>':''}${r.hidden?'<p class="muted">'+r.hidden+' ta e’lon yetgan, lekin arxiv/ochilmaslik holati sabab ro‘yxatda yashirilgan.</p>':''}${list(r.missing,'Saytga yetmaganlar')}${list(r.stale,'Eski nusxasi turganlar')}${list(r.review,'Sababi tekshiriladigan postlar')}${list(r.unreadable,'Rasm/video sabab tekshirilmaganlar')}</article>`).join('')}</section>`).join(''):empty('Audit hali tayyor emas.','Birinchi kunlik hisobot yig‘ilgandan keyin shu yerda ko‘rinadi.');
 }
 function showDetail(title) {previousFocus=document.activeElement;$('#detail-eyebrow').textContent=title;$('#detail').showModal();$('#detail').scrollTop=0;}
 function closeDetail() {$('#detail').close();previousFocus?.focus();}
@@ -211,6 +218,7 @@ async function load() {
    data.telegram=tg;data.jobs=mergeSources(data.jobs,tg.jobs);
    if(Date.now()-new Date(tg.collected_at)>2*86400000){$('#source-warning').textContent='Telegram jamlanmasi 2 kundan beri yangilanmagan. Yig‘ilgan sanaga e’tibor bering.';$('#source-warning').hidden=false;}
   }catch(error){data.jobs=mergeSources(data.jobs,[]);$('#source-warning').hidden=false;}
+  try{const auditResponse=await fetch(new URL('./audit-data.json',import.meta.url),{cache:'no-store'});if(auditResponse.ok)data.audit=await auditResponse.json();}catch{}
   data.jobs.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
   const cities=[...new Set(data.jobs.map(j=>j.city).filter(Boolean))].sort();
   $('#city').innerHTML='<option value="all">Butun O‘zbekiston</option>'+cities.map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');$('#city').value=state.city;

@@ -51,3 +51,5 @@ body{font-size:16px;line-height:1.65;letter-spacing:-.1px}.sidebar{width:248px}.
 .classification-note{font-size:12px;color:var(--muted);line-height:1.7;margin:10px 0 0}
 
 .english-badge+.english-badge{margin-left:4px}
+
+.audit-day{margin-bottom:20px}.audit-source{border-top:1px solid var(--line);padding-top:24px;margin-top:24px}.audit-source h3{font-size:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.audit-counts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:20px 0}.audit-counts>div{background:var(--raised);border-radius:10px;padding:14px}.audit-counts strong{display:block;font-size:28px}.audit-counts span{font-size:12px;color:var(--muted)}.audit-issues{border-top:1px solid var(--line);padding:14px 0}.audit-issues summary{cursor:pointer;font-weight:600}.audit-issues p{font-size:14px;margin:14px 0;overflow-wrap:anywhere}@media(max-width:760px){.audit-counts{grid-template-columns:repeat(2,minmax(0,1fr))}.audit-source h3{font-size:18px}nav a{min-width:0;flex:1}.nav-text{overflow-wrap:anywhere}}

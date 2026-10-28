@@ -21,11 +21,12 @@ def build(folder=ROOT / 'data', output=OUT):
     if not runs or runs[-1]['status'] != 'complete':
         raise RuntimeError('Latest collection is incomplete; published snapshot is preserved')
     decisions=json.loads((ROOT/'review-decisions.json').read_text())
-    counts=Counter(); jobs=[]
+    counts=Counter(); jobs=[]; inventory=[]
     for (payload,) in db.execute('SELECT data FROM vacancies ORDER BY published_at DESC'):
         row=json.loads(payload)
         category=decisions.get(row['id'],{}).get('classification',row['classification'])
         counts[category]+=1
+        inventory.append({'id':row['id'],'url':row['url'],'title':row['title'],'published_at':row.get('published_at'),'classification':category,'reason':decisions.get(row['id'],{}).get('reason') or ('Software QA dalili bor' if category=='included' else 'Qo‘lda tekshirish kerak' if category=='review' else 'QA yoki hudud mezoniga mos emas')})
         if category!='included':continue
         if row.get('description_html'):
             row['requirements']=requirements(row['description_html'])
@@ -38,7 +39,7 @@ def build(folder=ROOT / 'data', output=OUT):
             job['location_note']='Sahifadagi JSON-LD manzili va hh hudud kodi mos kelmaydi. Shahar filtri hh hudud kodi .97.2759. (Toshkent) asosida.'
         jobs.append(job)
     db.close()
-    result={'schema_version':2,'built_at':datetime.now(timezone.utc).isoformat(),'source':'hh.uz','region':'O‘zbekiston','jobs':jobs,'runs':runs,'coverage':{'collected':sum(counts.values()),**counts,'reviewed_decisions':len(decisions)},'review_notes':list(decisions.values())}
+    result={'schema_version':2,'built_at':datetime.now(timezone.utc).isoformat(),'source':'hh.uz','region':'O‘zbekiston','jobs':jobs,'runs':runs,'coverage':{'collected':sum(counts.values()),**counts,'reviewed_decisions':len(decisions)},'review_notes':list(decisions.values()),'audit_inventory':inventory}
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary=output.with_suffix('.tmp')
     temporary.write_text(json.dumps(result,ensure_ascii=False),encoding='utf-8');temporary.replace(output)
