@@ -22,3 +22,9 @@ Checks:
 python -m unittest discover -s scripts/qa-market -v
 node --test tests/filter-state.test.mjs
 ```
+
+## Telegram
+
+`python scripts/qa-market/telegram_collect.py` reads public `@unilance` text posts from the last 30 days (up to 20 preview pages). The independent `Refresh Telegram QA posts` workflow runs hourly at minute 17; GitHub may delay scheduled jobs. No account, bot token or channel membership is used. Failure preserves the last Telegram snapshot and does not block hh collection. Photo/video-only content is not scanned.
+
+Only posts with a QA role, hiring evidence and Uzbekistan/worldwide eligibility are published. Ambiguous posts are counted for review but not exposed as vacancies. The filter does not establish authenticity. Explicit hh vacancy links matching existing records are merged to prevent double counting; other reposts may still be separate. Deleted Telegram posts are not interpreted as confirmed closed jobs. Collection freshness is shown, and a warning appears after two days without updates.

@@ -82,10 +82,10 @@ def requirement_blocks(html):
             if re.match(r'^(?:(?:основные|ваши|наши|job|your)\s+)?(?:задачи|обязанности|responsibilit|duties|vazifa)|^(?:чем|что).*(?:заниматься|делать)|^предстоит', lower):
                 section = 'responsibility'
                 continue
-            if re.match(r'^(?:(?:наши|основные|обязательные|ключевые)\s+)?(?:требования|ожидания|навыки)|^мы ожидаем|^requirements|^qualifications|^required skills|^must.have|^what.*(?:need|bring|expect)|^что.*(?:нужно|важно)|^talab|^(?:asosiy )?ko[‘\x27ʻ]nikma', lower):
+            if re.match(r'^(?:(?:наши|основные|обязательные|ключевые)\s+)?(?:требования|ожидания|навыки)|^мы ожидаем|^что ищут в кандидате|^majburiy talab|^requirements|^qualifications|^required skills|^must.have|^what.*(?:need|bring|expect)|^что.*(?:нужно|важно)|^talab|^(?:asosiy )?ko[‘\x27ʻ]nikma', lower):
                 section = 'required'
                 continue
-            if re.match(r'^условия|^(?:мы |что мы )?предлагаем|^benefits|^conditions|^о компании|^about us|^почему.*нами|^что.*получ|^sharoit|^bizning afzallik|^biz (?:taklif|taqdim)|^nimalarni taklif|^why this', lower):
+            if re.match(r'^условия|^(?:мы |что мы )?предлагаем|^benefits|^what we offer|^conditions|^о компании|^about us|^почему.*нами|^что.*получ|^sharoit|^bizning afzallik|^biz (?:taklif|taqdim)|^nimalarni taklif|^why this', lower):
                 section = 'other'
                 continue
         kind = section
