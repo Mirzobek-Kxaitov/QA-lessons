@@ -6,3 +6,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Collector runtime state stays in CI artifacts, never in the website checkout.
+scripts/qa-market/data/

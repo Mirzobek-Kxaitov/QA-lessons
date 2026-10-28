@@ -1,3 +1,4 @@
+import {readFilters,filterSearch,leaveVacancies} from './filter-state.js?v=1';
 import {directionsFor, englishEvidence, technicalRequirement} from './job-presentation.js?v=3';
 const $ = (s) => document.querySelector(s);
 const escapeHTML = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -26,7 +27,7 @@ const label = v => ({Unspecified:'Darajasi belgilanmagan',REMOTE:'Masofaviy',ON_
 const skillLabels = {'Test documentation':'Test hujjatlari','Test design':'Test dizayni','API testing':'API testing','Mobile testing':'Mobile testing','English':'Ingliz tili','Russian':'Rus tili','Uzbek':'O‘zbek tili'};
 const skillName = s => skillLabels[s] || s;
 let data;
-let state = {view:'overview',direction:'all',grade:'all',city:'all',format:'all',week:'all',context:'requirements',query:'',more:false};
+let state = {view:location.hash.slice(1)||'overview',...readFilters(location.search),more:false};
 let detailJob = null;
 let previousFocus = null;
 const pageInfo = {
@@ -60,7 +61,7 @@ function weekLabel(key) {
  return `${dateFormat(monday.toISOString())} – ${dateFormat(sunday.toISOString())}`;
 }
 function baseJobs() {
- return data.jobs.filter(j => (state.direction==='all'||directionsFor(j).includes(state.direction)) &&
+ return data.jobs.filter(j => j.archived!==true&&j.availability!=='unavailable'&&(state.direction==='all'||directionsFor(j).includes(state.direction)) &&
    (state.grade==='all'||j.grades.includes(state.grade)) && (state.city==='all'||j.city===state.city) &&
    (state.format==='all'||(j.work_format_codes||[]).includes(state.format)) &&
    (state.week==='all'||weekOf(j.published_at)===state.week));
@@ -84,8 +85,10 @@ function pct(n,total) {return total?Math.round(n*100/total):0;}
 function empty(title='Bu filtrlar bo‘yicha e’lon topilmadi.',text='Boshqa daraja yoki yo‘nalishni tanlang, yoki filtrlarni tozalang.') {
  return `<div class="empty"><strong>${e(title)}</strong>${e(text)}</div>`;
 }
+function directionNote(j){return !(j.directions||[]).some(x=>['Manual','Automation'].includes(x))?'Yo‘nalish yozilmagan; Manual guruhiga qo‘shilgan.':'';}
+function statusNote(j){return j.archived===true?'Arxivlangan':j.availability==='unavailable'?'Hozir ochilmadi':j.status_checked_at?'hh.uz sahifasi tekshirilgan: '+dateFormat(j.status_checked_at,true):'Joriy holat tekshirilmagan';}
 function tags(j) {
- return [...directionsFor(j),...j.grades].filter(x=>x!=='Unspecified').map(t=>`<span class="tag ${t==='Manual'||t==='Intern'||t==='Junior'?'green':''}">${e(t)}</span>`).join('');
+ return [...directionsFor(j),...j.grades].filter(x=>x!=='Unspecified').map(t=>`<span title="${e(t==='Manual'?directionNote(j):'')}" class="tag ${t==='Manual'||t==='Intern'||t==='Junior'?'green':''}">${e(t)}</span>`).join('');
 }
 function englishBadge(j) {
  const evidence=englishEvidence(j);
@@ -105,12 +108,11 @@ function metric(title,value,unit,note,iconName) {
 function renderOverview(jobs) {
  const ranked = ranking(jobs);
  const skills = new Set(jobs.flatMap(j=>j.requirements.filter(relevant).map(r=>r.skill)));
- const latest = data.runs.at(-1)?.finished_at || data.built_at;
- const currentWeek = weekOf(latest);
+ const currentWeek = weekOf(new Date().toISOString());
  const newThisWeek = jobs.filter(j=>weekOf(j.published_at)===currentWeek).length;
  $('#sample-label').textContent=`${jobs.length} TA E’LON · HH.UZ`;
  $('#metrics').innerHTML = metric('QA vakansiyalari',jobs.length,'ta','Tanlangan filtrlar bo‘yicha','briefcase')+
-   metric('Shu haftada chiqqan',newThisWeek,'ta',`${weekLabel(currentWeek)} · kuzatilgan`,'chart')+
+   metric('Shu haftada chiqqan',newThisWeek,'ta',`${weekLabel(currentWeek)} · oxirgi yig‘imgacha`,'chart')+
    metric('Noyob ko‘nikmalar',skills.size,'ta','Tanlangan hisoblash doirasida','sparkles')+
    metric('Ingliz tili',pct(jobs.filter(j=>englishEvidence(j).length).length,jobs.length),'%',`${jobs.filter(j=>englishEvidence(j).length).length} ta e’londa talab yoki afzallik`,'globe');
  $('#chart-note').textContent = `${jobs.length} ta e’lon orasida · har bir ko‘nikma bitta e’londa bir marta sanaladi`;
@@ -143,8 +145,12 @@ function renderMethod() {
  $('#coverage').innerHTML = `<span>${c.collected} ta yig‘ilgan</span><span>${c.included||0} ta QA</span><span>${(c.excluded||0)+(c.excluded_region||0)} ta chiqarilgan</span><span>${c.review||0} ta tekshirishda</span>`;
  $('#runs').innerHTML=data.runs.map(r=>`<div class="run-row"><span>${e(dateFormat(r.finished_at||r.started_at,true))} · ${e(new Intl.DateTimeFormat('uz-UZ',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'}).format(new Date(r.finished_at||r.started_at)))} (Toshkent)</span><span>${r.collected} ta e’lon · ${r.errors} ta xato · ${e(r.status==='complete'?'Qidiruvlar to‘liq olindi':'Qisman olingan')}</span></div>`).join('');
 }
+function syncURL(){const query=filterSearch(state);const url=location.pathname+(query?'?'+query:'')+'#'+state.view;if(url!==location.pathname+location.search+location.hash)history.replaceState(null,'',url);}
+function navigateView(view){leaveVacancies(state,view);const query=filterSearch(state);history.pushState(null,'',location.pathname+(query?'?'+query:'')+'#'+view);render();}
+function applyControls(){for(const key of ['grade','city','format','week','context'])$('#'+key).value=state[key];$('#search').value=state.query;}
 function render() {
  if(!data) return;
+ syncURL();
  const jobs=baseJobs();
  for(const name of Object.keys(pageInfo)) $(`#${name}-view`).hidden=name!==state.view;
  document.querySelectorAll('nav [data-view]').forEach(a=>{a.classList.toggle('active',a.dataset.view===state.view);if(a.dataset.view===state.view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
@@ -154,6 +160,7 @@ function render() {
  $('.filter-panel').hidden=state.view==='method';$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
  $('#reset').hidden=state.direction==='all'&&['grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;
  document.querySelectorAll('[data-direction]').forEach(b=>{const active=b.dataset.direction===state.direction;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+ $('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
  renderOverview(jobs);renderJobs();renderWeekly(jobs);renderMethod();
 }
 function showDetail(title) {previousFocus=document.activeElement;$('#detail-eyebrow').textContent=title;$('#detail').showModal();$('#detail').scrollTop=0;}
@@ -167,7 +174,7 @@ function showSkill(skill,week=null) {
 function showJob(id) {
  detailJob=data.jobs.find(j=>j.id===id);if(!detailJob)return;
  const j=detailJob;
- $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div>${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">hh.uz’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${englishNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
+ $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div><p class="source-disclaimer">${e(statusNote(j))}${directionNote(j)?' · '+e(directionNote(j)):''}</p>${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">hh.uz’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${englishNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
  renderJobRequirements('required');
  if(!$('#detail').open)showDetail('VAKANSIYA · TALABLAR');else{$('#detail-eyebrow').textContent='VAKANSIYA · TALABLAR';$('#detail').scrollTop=0;}
 }
@@ -198,24 +205,26 @@ async function load() {
   $('#city').innerHTML='<option value="all">Butun O‘zbekiston</option>'+cities.map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');$('#city').value=state.city;
   const weeks=[...new Set(data.jobs.map(j=>weekOf(j.published_at)))].sort().reverse();
   $('#week').innerHTML='<option value="all">Barcha haftalar</option>'+weeks.map(w=>`<option value="${e(w)}">${e(weekLabel(w))}</option>`).join('');$('#week').value=state.week;
-  $('#nav-count').textContent=data.jobs.length;
-  const last=data.runs.at(-1);$('#updated').textContent=`Yig‘ilgan: ${dateFormat(last.finished_at||last.started_at,true)} · hh.uz · ${data.coverage.collected} ta e’lon tekshirildi`;
-  $('#content').hidden=false;render();
+  $('#nav-count').textContent=data.jobs.filter(j=>j.archived!==true&&j.availability!=='unavailable').length;
+  const last=data.runs.at(-1);const age=(Date.now()-new Date(last.finished_at||last.started_at))/86400000;$('#freshness').hidden=age<2;$('#freshness').textContent='Ma’lumotlar '+Math.floor(age)+' kun oldin yig‘ilgan. Yangi e’lonlar va o‘zgarishlar hali ko‘rinmasligi mumkin.';$('#updated').textContent=`Yig‘ilgan: ${dateFormat(last.finished_at||last.started_at,true)} · hh.uz · ${data.coverage.collected} ta e’lon tekshirildi`;
+  for(const key of ['city','week'])if(![...$('#'+key).options].some(o=>o.value===state[key]))state[key]='all';
+  applyControls();$('#content').hidden=false;render();
  }catch(error){$('#error-message').textContent='Ma’lumotlarni yuklab bo‘lmadi. Internet aloqasini tekshiring va qayta yuklang.';$('#error').hidden=false;console.error(error);}
  finally{$('#loading').hidden=true;$('#refresh').disabled=false;}
 }
-function route() {const name=location.hash.slice(1)||'overview';const next=Object.hasOwn(pageInfo,name)?name:'overview';const changed=state.view!==next;state.view=next;render();if(changed)window.scrollTo({top:0,behavior:'instant'});}
+function route() {const name=location.hash.slice(1)||'overview';const next=Object.hasOwn(pageInfo,name)?name:'overview';const changed=state.view!==next;leaveVacancies(state,next);$('#search').value=state.query;render();if(changed)window.scrollTo({top:0,behavior:'instant'});}
 window.addEventListener('hashchange',route);
+window.addEventListener('popstate',()=>{Object.assign(state,readFilters(location.search));applyControls();route();});
 document.addEventListener('click',event=>{
  const target=event.target.closest('button,[data-job]');if(!target)return;
  if(target.dataset.direction){state.direction=target.dataset.direction;state.more=false;render();}
  if(target.dataset.job)showJob(target.dataset.job);
  if(target.dataset.skill)showSkill(target.dataset.skill,target.dataset.skillWeek||null);
- if(target.dataset.week){state.week=target.dataset.week;$('#week').value=state.week;location.hash='vacancies';state.view='vacancies';render();window.scrollTo({top:0,behavior:'smooth'});}
+ if(target.dataset.week){state.query='';$('#search').value='';state.week=target.dataset.week;$('#week').value=state.week;navigateView('vacancies');window.scrollTo({top:0,behavior:'smooth'});}
  if(target.dataset.detailTab)renderJobRequirements(target.dataset.detailTab);
 });
 ['grade','city','format','week','context'].forEach(key=>$('#'+key).addEventListener('change',event=>{state[key]=event.target.value;state.more=false;render();}));
-$('#search').addEventListener('input',event=>{state.query=event.target.value;renderJobs();$('#reset').hidden=state.direction==='all'&&['grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;});
+$('#search').addEventListener('input',event=>{state.query=event.target.value;syncURL();renderJobs();$('#reset').hidden=state.direction==='all'&&['grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;});
 $('#more-skills').addEventListener('click',()=>{state.more=!state.more;renderOverview(baseJobs());});
 $('#reset').addEventListener('click',()=>{for(const k of ['grade','city','format','week']){state[k]='all';$('#'+k).value='all';}state.direction='all';state.query='';state.more=false;$('#search').value='';render();});
 $('#close-detail').addEventListener('click',closeDetail);
@@ -225,7 +234,7 @@ $('#refresh').addEventListener('click',load);
 document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));
 function updateThemeButton(){const light=document.documentElement.dataset.theme==='light';$('#theme-toggle').innerHTML=icon(light?'moon':'sun');$('#theme-toggle').setAttribute('aria-label',light?'To‘q mavzuga o‘tish':'Ochiq mavzuga o‘tish');document.querySelector('meta[name="theme-color"]').content=light?'#ffffff':'#0e1620';}
 $('#theme-toggle').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('qa-theme',document.documentElement.dataset.theme);}catch{}updateThemeButton();});
-function focusSearch(){state.view='vacancies';location.hash='vacancies';render();$('#search').focus();$('#search').scrollIntoView({block:'center',behavior:'smooth'});}
+function focusSearch(){navigateView('vacancies');$('#search').focus();$('#search').scrollIntoView({block:'center',behavior:'smooth'});}
 document.addEventListener('keydown',event=>{if(event.key==='k'&&(event.metaKey||event.ctrlKey)){event.preventDefault();if(!$('#detail').open)focusSearch();}});
 updateThemeButton();
-route();load();
+applyControls();route();load();
