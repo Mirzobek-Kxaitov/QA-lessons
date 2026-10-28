@@ -13,3 +13,6 @@ class TelegramCollectTests(unittest.TestCase):
   self.assertEqual(classify_post('Backend Developer vacancy\nWork with QA team. Requirements: SQL. Salary $1000')['classification'],'excluded')
  def test_missing_channel_markup_fails_instead_of_publishing_empty_snapshot(self):
   with self.assertRaises(ValueError):posts_from_html('<h1>Access denied</h1>','unilance')
+ def test_media_only_post_is_preserved_for_audit(self):
+  posts,_=posts_from_html('<div class="tgme_widget_message" data-post="unilance/1"><time datetime="2026-10-28T04:00:00Z"></time></div>','unilance')
+  self.assertTrue(posts[0]['media_only']);self.assertEqual(posts[0]['url'],'https://t.me/unilance/1')

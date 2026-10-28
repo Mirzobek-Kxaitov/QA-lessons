@@ -24,7 +24,9 @@ def posts_from_html(source, channel):
     for node in nodes:
         ref=node.get('data-post','');text=node.select_one('.tgme_widget_message_text');stamp=node.select_one('time[datetime]')
         if not re.fullmatch(re.escape(channel)+r'/\d+',ref) or not stamp:continue
-        if not text:continue  # Photo/video-only posts require a separate OCR workflow.
+        if not text:
+            result.append({'id':'tg:'+ref,'url':'https://t.me/'+ref,'published_at':stamp['datetime'],'text':'','links':[],'media_only':True})
+            continue
         for br in text.find_all('br'):br.replace_with('\n')
         result.append({'id':'tg:'+ref,'url':'https://t.me/'+ref,'published_at':stamp['datetime'],'text':unicodedata.normalize('NFKC',text.get_text('\n',strip=True)),'links':[a.get('href','') for a in text.select('a[href]')]})
     older=soup.select_one('a.tme_messages_more[href]')
@@ -57,7 +59,7 @@ def to_job(post, channel):
 
 
 def collect(output=OUT, days=30, max_pages=20):
-    cutoff=datetime.now(timezone.utc)-timedelta(days=days);jobs=[];counts={'included':0,'excluded':0,'review':0};seen=set();pages=0
+    cutoff=datetime.now(timezone.utc)-timedelta(days=days);jobs=[];counts={'included':0,'excluded':0,'review':0};seen=set();pages=0;inventory=[]
     session=requests.Session()
     for channel in CHANNELS:
         url='https://t.me/s/'+channel
@@ -68,16 +70,20 @@ def collect(output=OUT, days=30, max_pages=20):
                 if post['id'] in seen:continue
                 seen.add(post['id'])
                 if datetime.fromisoformat(post['published_at'])<cutoff:continue
+                if post.get('media_only'):
+                    inventory.append({'id':post['id'],'url':post['url'],'published_at':post['published_at'],'classification':'unreadable','reason':'Rasm/video ichidagi matn avtomatik o‘qilmagan'})
+                    continue
                 job,decision=to_job(post,channel);counts[decision['classification']]+=1
+                inventory.append({'id':post['id'],'url':post['url'],'published_at':post['published_at'],'classification':decision['classification'],'reason':decision['reason'],'linked_hh_id':job.get('linked_hh_id') if job else None})
                 if job:jobs.append(job)
             if not older or (posts and min(datetime.fromisoformat(p['published_at']) for p in posts)<cutoff):break
             next_url=urljoin('https://t.me',older)
             if not next_url.startswith('https://t.me/s/'+channel+'?before='):raise ValueError('Unexpected pagination URL')
             url=next_url;time.sleep(1)
         else:raise RuntimeError('Pagination limit reached; previous snapshot preserved')
-    payload={'schema_version':1,'source':'telegram','channels':CHANNELS,'collected_at':now(),'window_days':days,'pages':pages,'coverage':counts,'jobs':sorted(jobs,key=lambda j:j['published_at'],reverse=True)}
+    payload={'schema_version':1,'source':'telegram','channels':CHANNELS,'collected_at':now(),'window_days':days,'pages':pages,'coverage':counts,'audit_inventory':inventory,'jobs':sorted(jobs,key=lambda j:j['published_at'],reverse=True)}
     output.parent.mkdir(parents=True,exist_ok=True);temp=output.with_suffix('.tmp');temp.write_text(json.dumps(payload,ensure_ascii=False),encoding='utf-8');temp.replace(output)
-    print(json.dumps({k:v for k,v in payload.items() if k!='jobs'},ensure_ascii=False));print('QA posts:',len(jobs))
+    print(json.dumps({k:v for k,v in payload.items() if k not in ('jobs','audit_inventory')},ensure_ascii=False));print('QA posts:',len(jobs))
 
 
 if __name__=='__main__':collect()
