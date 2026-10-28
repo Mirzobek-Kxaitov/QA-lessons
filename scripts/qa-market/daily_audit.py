@@ -30,7 +30,7 @@ def reconcile(source, snapshot, live, target):
     confirmed=[r for r in rows.values() if r['classification']=='included']
     review=[r for r in rows.values() if r['classification']=='review']
     unreadable=[r for r in rows.values() if r['classification']=='unreadable']
-    base={'source':source,'checked_at':checked,'observed':len(rows),'confirmed':len(confirmed),'review':review,'unreadable':unreadable,'excluded':sum(r['classification'] not in ('included','review','unreadable') for r in rows.values()),'missing':[]}
+    base={'source':source,'checked_at':checked,'observed':len(rows),'confirmed':len(confirmed),'review':review,'unreadable':unreadable,'excluded':sum(r['classification'] not in ('included','review','unreadable') for r in rows.values()),'missing':[],'excluded_items':[r for r in rows.values() if r['classification'] not in ('included','review','unreadable')]}
     if live is None:
         return {**base,'status':'live_unavailable','arrived':None,'reason':'Saytdagi JSON ochilmadi; bu nol e’lon degani emas'}
     ids={r['id'] for r in live['jobs']}

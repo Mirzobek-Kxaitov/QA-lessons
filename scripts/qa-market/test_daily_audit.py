@@ -23,3 +23,7 @@ class AuditTests(unittest.TestCase):
  def test_unreadable_media_does_not_inflate_confirmed_qa(self):
   report=reconcile('telegram',{'collected_at':'2026-10-29T02:00:00Z','audit_inventory':[self.row('1','unreadable')]},{'jobs':[]},'2026-10-28')
   self.assertEqual(report['confirmed'],0);self.assertEqual(len(report['unreadable']),1);self.assertEqual(report['status'],'needs_review')
+
+ def test_excluded_posts_keep_traceable_reasons_for_manual_audit(self):
+  report=reconcile('telegram',{'collected_at':'2026-10-29T02:00:00Z','audit_inventory':[self.row('1','excluded')]},{'jobs':[]},'2026-10-28')
+  self.assertEqual(report['confirmed'],0);self.assertEqual(report['excluded_items'][0]['url'],'https://t.me/unilance/1')
