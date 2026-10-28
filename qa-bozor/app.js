@@ -1,5 +1,5 @@
 import {readFilters,filterSearch,leaveVacancies} from './filter-state.js?v=1';
-import {directionsFor, englishEvidence, technicalRequirement} from './job-presentation.js?v=3';
+import {directionsFor, languageEvidence, jobLanguages, technicalRequirement} from './job-presentation.js?v=8';
 const $ = (s) => document.querySelector(s);
 const escapeHTML = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const e = escapeHTML;
@@ -90,17 +90,16 @@ function statusNote(j){return j.archived===true?'Arxivlangan':j.availability==='
 function tags(j) {
  return [...directionsFor(j),...j.grades].filter(x=>x!=='Unspecified').map(t=>`<span title="${e(t==='Manual'?directionNote(j):'')}" class="tag ${t==='Manual'||t==='Intern'||t==='Junior'?'green':''}">${e(t)}</span>`).join('');
 }
-function englishBadge(j) {
- const evidence=englishEvidence(j);
- return evidence.length?`<abbr class="english-badge" title="Ingliz tili talab yoki afzallik sifatida so‘ralgan">EN</abbr>`:'';
+function languageBadges(j) {
+ return jobLanguages(j).map(l=>`<abbr class="english-badge" title="${e(l.name)} talab yoki afzallik sifatida so‘ralgan" aria-label="${e(l.name)}">${l.code}</abbr>`).join('');
 }
-function englishNote(j) {
- const evidence=[...new Set(englishEvidence(j).map(r=>r.evidence))];
- return evidence.length?`<section class="language-note"><strong>${englishBadge(j)} Ingliz tili</strong>${evidence.map(text=>`<p>${e(text)}</p>`).join('')}</section>`:'';
+function languageNote(j) {
+ const langs=jobLanguages(j);
+ return langs.length?`<section class="language-note"><strong>Til talablari</strong>${langs.map(l=>`<p><b>${e(l.name)}:</b> ${[...new Set(languageEvidence(j,l.skill).map(r=>r.evidence))].map(e).join('<br>')}</p>`).join('')}</section>`:'';
 }
 function initials(company) { return company.replace(/^(ООО|АО|ИП|Гос\. корп\.)\s*/,'').replace(/[«»"()]/g,'').split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase(); }
 function row(job) {
- return `<article class="job-row"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${englishBadge(job)}<div class="job-meta"><span>${e(job.company)}</span><span>·</span><span>${e(job.city)}</span></div></div><div class="job-tags">${tags(job)}</div><span class="job-date">${e(dateFormat(job.published_at))}</span></article>`;
+ return `<article class="job-row"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${languageBadges(job)}<div class="job-meta"><span>${e(job.company)}</span><span>·</span><span>${e(job.city)}</span></div></div><div class="job-tags">${tags(job)}</div><span class="job-date">${e(dateFormat(job.published_at))}</span></article>`;
 }
 function metric(title,value,unit,note,iconName) {
  return `<article class="metric"><div class="metric-top"><span>${e(title)}</span><span class="metric-icon" aria-hidden="true">${icon(iconName)}</span></div><div class="metric-value">${e(value)}<small>${e(unit)}</small></div><p>${e(note)}</p></article>`;
@@ -114,7 +113,7 @@ function renderOverview(jobs) {
  $('#metrics').innerHTML = metric('QA vakansiyalari',jobs.length,'ta','Tanlangan filtrlar bo‘yicha','briefcase')+
    metric('Shu haftada chiqqan',newThisWeek,'ta',`${weekLabel(currentWeek)} · oxirgi yig‘imgacha`,'chart')+
    metric('Noyob ko‘nikmalar',skills.size,'ta','Tanlangan hisoblash doirasida','sparkles')+
-   metric('Ingliz tili',pct(jobs.filter(j=>englishEvidence(j).length).length,jobs.length),'%',`${jobs.filter(j=>englishEvidence(j).length).length} ta e’londa talab yoki afzallik`,'globe');
+   metric('Til talabi',pct(jobs.filter(j=>languageEvidence(j).length).length,jobs.length),'%',`${jobs.filter(j=>languageEvidence(j).length).length} ta e’londa talab yoki afzallik`,'globe');
  $('#chart-note').textContent = `${jobs.length} ta e’lon orasida · har bir ko‘nikma bitta e’londa bir marta sanaladi`;
  $('#skills').innerHTML = ranked.length ? ranked.slice(0,state.more?100:10).map((r,i)=>
  `<button class="skill-row" data-skill="${e(r.skill)}" aria-label="${e(skillName(r.skill))}: ${r.count} ta vakansiya, ${pct(r.count,jobs.length)} foiz. Asl jumlalarni ko‘rish"><span class="skill-name"><i>${String(i+1).padStart(2,'0')}</i>${e(skillName(r.skill))}</span><span class="skill-track"><span class="skill-fill" style="width:${pct(r.count,jobs.length)}%"></span></span><span class="skill-number">${pct(r.count,jobs.length)}%<small>${r.count} ta e’lon</small></span></button>`).join('') : empty('Bu doirada ko‘nikmalar aniqlanmadi.','“Barcha eslatmalar”ni tanlang yoki filtrlarni o‘zgartiring.');
@@ -128,7 +127,7 @@ function renderJobs() {
  $('#jobs-total').textContent=`${jobs.length} ta`;
  $('#jobs-list').innerHTML = jobs.length ? jobs.map(job=>{
   const skills=[...new Set(job.requirements.filter(relevant).map(r=>r.skill))].slice(0,6);
-  return `<article class="job-card"><div class="job-card-header"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${englishBadge(job)}<div class="job-meta">${e(job.company)}</div></div></div><p class="salary">${e(job.salary_text||'Maosh ko‘rsatilmagan')}</p><div class="job-meta">${e(job.city)} · ${e(job.experience||'Tajriba ko‘rsatilmagan')} · ${e((job.work_format_codes||[]).map(label).join(' / ')||job.work_format||'Format ko‘rsatilmagan')}</div><div class="job-tags">${tags(job)}</div><div class="skill-chips">${skills.map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')}</div><div class="job-card-bottom"><span>${e(dateFormat(job.published_at,true))}</span><a href="${e(job.url)}" target="_blank" rel="noopener noreferrer">hh.uz ↗</a></div></article>`;
+  return `<article class="job-card"><div class="job-card-header"><div class="company-avatar" aria-hidden="true">${e(initials(job.company))}</div><div class="job-main"><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${languageBadges(job)}<div class="job-meta">${e(job.company)}</div></div></div><p class="salary">${e(job.salary_text||'Maosh ko‘rsatilmagan')}</p><div class="job-meta">${e(job.city)} · ${e(job.experience||'Tajriba ko‘rsatilmagan')} · ${e((job.work_format_codes||[]).map(label).join(' / ')||job.work_format||'Format ko‘rsatilmagan')}</div><div class="job-tags">${tags(job)}</div><div class="skill-chips">${skills.map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')}</div><div class="job-card-bottom"><span>${e(dateFormat(job.published_at,true))}</span><a href="${e(job.url)}" target="_blank" rel="noopener noreferrer">hh.uz ↗</a></div></article>`;
  }).join(''):empty('Qidiruv bo‘yicha e’lon topilmadi.','Qidiruv matnini yoki yuqoridagi filtrlarni o‘zgartiring.');
 }
 function renderWeekly(jobs) {
@@ -169,13 +168,13 @@ function closeDetail() {$('#detail').close();previousFocus?.focus();}
 function showSkill(skill,week=null) {
  const jobs=baseJobs().filter(j=>(!week||weekOf(j.published_at)===week)&&j.requirements.some(r=>r.skill===skill&&relevant(r)));
  const denominator=baseJobs().filter(j=>!week||weekOf(j.published_at)===week).length;
- $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(skillName(skill))}</h2><p class="dialog-intro">${denominator} ta filtrlangan e’lonning ${jobs.length} tasida (${pct(jobs.length,denominator)}%) uchraydi. Quyida asl tildagi jumlalar berilgan.</p>${jobs.length?jobs.map(job=>`<article class="evidence-card"><div class="evidence-company"><span>${e(job.company)}</span><span>${e(dateFormat(job.published_at))}</span></div><h3><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${englishBadge(job)}</h3>${job.requirements.filter(r=>r.skill===skill&&relevant(r)).map(r=>`<blockquote>${e(r.evidence)}<br><span class="evidence-context">${e(label(r.kind))}</span></blockquote>`).join('')}<a class="inline-link" href="${e(job.url)}" target="_blank" rel="noopener noreferrer">Asl e’lonni ochish ↗</a></article>`).join(''):empty('Bu filtrda dalil topilmadi.','Filtrlarni yoki hisoblash doirasini o‘zgartiring.')}`;
+ $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(skillName(skill))}</h2><p class="dialog-intro">${denominator} ta filtrlangan e’lonning ${jobs.length} tasida (${pct(jobs.length,denominator)}%) uchraydi. Quyida asl tildagi jumlalar berilgan.</p>${jobs.length?jobs.map(job=>`<article class="evidence-card"><div class="evidence-company"><span>${e(job.company)}</span><span>${e(dateFormat(job.published_at))}</span></div><h3><button class="job-title" data-job="${e(job.id)}">${e(job.title)}</button>${languageBadges(job)}</h3>${job.requirements.filter(r=>r.skill===skill&&relevant(r)).map(r=>`<blockquote>${e(r.evidence)}<br><span class="evidence-context">${e(label(r.kind))}</span></blockquote>`).join('')}<a class="inline-link" href="${e(job.url)}" target="_blank" rel="noopener noreferrer">Asl e’lonni ochish ↗</a></article>`).join(''):empty('Bu filtrda dalil topilmadi.','Filtrlarni yoki hisoblash doirasini o‘zgartiring.')}`;
  if(!$('#detail').open)showDetail('KO‘NIKMA · ASL JUMLALAR');else{$('#detail-eyebrow').textContent='KO‘NIKMA · ASL JUMLALAR';$('#detail').scrollTop=0;}
 }
 function showJob(id) {
  detailJob=data.jobs.find(j=>j.id===id);if(!detailJob)return;
  const j=detailJob;
- $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div><p class="source-disclaimer">${e(statusNote(j))}${directionNote(j)?' · '+e(directionNote(j)):''}</p>${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">hh.uz’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${englishNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
+ $('#detail-body').innerHTML=`<h2 id="detail-heading">${e(j.title)}</h2><p class="dialog-intro">${e(j.company)} · ${e(j.city)}</p><div class="detail-facts"><div><strong>Maosh</strong>${e(j.salary_text||'Ko‘rsatilmagan')}</div><div><strong>Tajriba</strong>${e(j.experience||'Ko‘rsatilmagan')}</div><div><strong>Daraja / yo‘nalish</strong>${e([...j.grades,...directionsFor(j)].map(label).join(' / '))}</div><div><strong>Ish formati</strong>${e((j.work_format_codes||[]).map(label).join(' / ')||j.work_format||'Ko‘rsatilmagan')}</div><div><strong>E’lon sanasi</strong>${e(dateFormat(j.published_at,true))}</div><div><strong>Kuzatilgan sana</strong>${e(dateFormat(j.collected_at,true))}</div></div><p class="source-disclaimer">${e(statusNote(j))}${directionNote(j)?' · '+e(directionNote(j)):''}</p>${j.location_note?`<p class="source-disclaimer">${e(j.location_note)}</p>`:''}<div class="detail-actions"><a class="button primary" href="${e(j.url)}" target="_blank" rel="noopener noreferrer">hh.uz’da ochish ↗</a></div><p class="source-disclaimer">E’lon holati o‘zgargan bo‘lishi mumkin. Talablar avtomatik ajratilgan; asl tavsif bilan tekshiring.</p>${languageNote(j)}<h3 class="detail-subheading">Ajratilgan ko‘nikmalar</h3><div class="detail-skills">${[...new Set(j.requirements.filter(technicalRequirement).map(r=>r.skill))].map(s=>`<span class="skill-chip">${e(skillName(s))}</span>`).join('')||'<span class="muted">Lug‘atdagi ko‘nikma aniqlanmadi.</span>'}</div><div class="detail-tabs" role="group" aria-label="E’lon mazmuni"><button class="active" data-detail-tab="required">Talablar</button><button data-detail-tab="preferred">Afzalliklar</button><button data-detail-tab="all">Asl tavsif</button></div><div id="job-requirements"></div>`;
  renderJobRequirements('required');
  if(!$('#detail').open)showDetail('VAKANSIYA · TALABLAR');else{$('#detail-eyebrow').textContent='VAKANSIYA · TALABLAR';$('#detail').scrollTop=0;}
 }
@@ -189,10 +188,10 @@ function toast(message) {$('#toast').textContent=message;$('#toast').hidden=fals
 function downloadCSV() {
  const jobs=state.view==='vacancies'?searchedJobs():baseJobs();
  if(!jobs.length){toast('Yuklash uchun e’lon topilmadi.');return;}
- const columns=['ID','Lavozim','Kompaniya','Shahar','Daraja','Yo‘nalish','Tajriba','Maosh','Ingliz tili','E’lon sanasi','Havola'];
+ const columns=['ID','Lavozim','Kompaniya','Shahar','Daraja','Yo‘nalish','Tajriba','Maosh','Tillar','E’lon sanasi','Havola'];
  const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
  const safe=v=>/^[=+\-@\t\r]/.test(String(v??''))?"'"+v:v;
- const rows=jobs.map(j=>[j.id,j.title,j.company,j.city,j.grades.map(label).join('; '),directionsFor(j).join('; '),j.experience,j.salary_text,englishEvidence(j).length?'Talab/afzallikda bor':'Aniqlanmadi',j.published_at,j.url]);
+ const rows=jobs.map(j=>[j.id,j.title,j.company,j.city,j.grades.map(label).join('; '),directionsFor(j).join('; '),j.experience,j.salary_text,jobLanguages(j).map(l=>l.code).join('; ')||'Aniqlanmadi',j.published_at,j.url]);
  const blob=new Blob(['\ufeff'+[columns,...rows].map(r=>r.map(v=>quote(safe(v))).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='qa-bozor-vakansiyalar.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast(`${jobs.length} ta vakansiya yuklandi`);
 }
