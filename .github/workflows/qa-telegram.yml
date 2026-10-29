@@ -1,7 +1,7 @@
 name: Refresh Telegram QA posts
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17,47 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,15 +23,16 @@ jobs:
       - run: python -m unittest discover -s scripts/qa-market -v
       - run: node --test tests/*.test.mjs
       - name: Collect public QA posts
+        id: refresh
         run: python scripts/qa-market/telegram_collect.py
-      - name: Publish Telegram snapshot
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add qa-bozor/telegram-data.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'data: refresh Telegram QA posts'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+      - name: Publish snapshot and attempt status
+        if: always() && (steps.refresh.outcome == 'success' || steps.refresh.outcome == 'failure')
+        run: python scripts/qa-market/publish_snapshot.py qa-bozor/telegram-data.json qa-bozor/telegram-health.json
+      - name: Retain failed Telegram responses
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-diagnostics
+          path: scripts/qa-market/data/telegram-diagnostics/
+          retention-days: 7
+          if-no-files-found: ignore

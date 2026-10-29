@@ -8,8 +8,8 @@
 <title>QA Bozor — QA Academy</title>
 <link href="/qa-bozor/icon.svg?v=5" rel="icon" type="image/svg+xml"/>
 <script>try{const t=localStorage.getItem('qa-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
-<link href="/qa-bozor/styles.css?v=10" rel="stylesheet"/>
-<script src="/qa-bozor/app.js?v=11" type="module"></script>
+<link href="/qa-bozor/styles.css?v=12" rel="stylesheet"/>
+<script src="/qa-bozor/app.js?v=12" type="module"></script>
 </head>
 <body>
 <a class="skip" href="#main">Asosiy mazmunga o‘tish</a>
@@ -31,6 +31,7 @@
 <main id="main">
 <section class="page-heading"><div class="hero-copy"><h1 id="page-title">QA bozoridagi talablar</h1><p id="page-subtitle">Vakansiyalar va ish beruvchilar so‘rayotgan ko‘nikmalar.</p></div><div class="hero-actions"><button class="button secondary" id="export" aria-label="CSV yuklash" title="CSV yuklash"><span data-icon="download"></span> <span>CSV yuklash</span></button></div></section>
 <div class="update-strip"><span><i class="live-dot"></i> <span id="updated">Ma’lumotlar yuklanmoqda…</span></span></div>
+<section id="health-status" class="health-status" aria-label="Yig‘ish holati" role="status"></section>
 <p class="callout" id="source-warning" hidden>Telegram ma’lumotlari yuklanmadi. Hozir hh.uz natijalari ko‘rsatilmoqda.</p><p class="callout" id="freshness" role="status" hidden></p>
 <section aria-label="Vakansiyalar filtrlari" class="filter-panel">
 <div class="filter-main"><span class="filter-caption"><span data-icon="filter"></span> Bozorni filtrlash</span><div aria-label="QA yo‘nalishi" class="segments" id="direction" role="group"><button class="active" data-direction="all">Barchasi</button><button data-direction="Manual">Manual</button><button data-direction="Automation">Automation</button></div><label>Daraja<select id="grade"><option value="all">Barcha darajalar</option><option>Intern</option><option>Junior</option><option>Middle</option><option>Senior</option><option>Lead</option><option value="Unspecified">Darajasi belgilanmagan</option></select></label><button class="reset text-button" hidden="" id="reset">Filtrlarni tozalash</button></div>

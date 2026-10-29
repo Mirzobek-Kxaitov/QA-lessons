@@ -19,6 +19,7 @@ def build(folder=ROOT / 'data', output=OUT):
         item.update(queries=details.get('queries'),collected=details.get('collected',0),errors=len(details.get('errors',[])))
         runs.append(item)
     if not runs or runs[-1]['status'] != 'complete':
+        db.close()
         raise RuntimeError('Latest collection is incomplete; published snapshot is preserved')
     decisions=json.loads((ROOT/'review-decisions.json').read_text())
     counts=Counter(); jobs=[]; inventory=[]

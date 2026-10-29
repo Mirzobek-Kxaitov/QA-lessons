@@ -167,9 +167,22 @@ function render() {
  $('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
  renderOverview(jobs);renderJobs();renderWeekly(jobs);renderMethod();renderAudit();
 }
+function renderHealth(){
+ if(!data)return;
+ const time=v=>v?dateFormat(v,true)+' '+new Intl.DateTimeFormat('uz-UZ',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'}).format(new Date(v)):'Noma’lum';
+ const localDay=v=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tashkent',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(v));
+ const localHour=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tashkent',hour:'2-digit',hourCycle:'h23'}).format(new Date()));
+ $('#health-status').innerHTML=[['hh','hh.uz',data.runs.at(-1)?.finished_at],['telegram','Telegram',data.telegram?.collected_at]].map(([key,title,stamp])=>{
+  const health=data.health?.[key];const age=stamp?(Date.now()-new Date(stamp))/60000:Infinity;
+  const stale=key==='telegram'?age>90:!stamp||(localHour>=8&&localDay(stamp)!==localDay(new Date()));
+  const failed=health?.status==='failed';
+  const state=failed?'Oxirgi urinishda xato':stale?'Yangilanish kechikmoqda':health?.status==='success'?'Yig‘ish ishlayapti':'Urinish holati noma’lum';
+  return `<div class="health-item ${failed||stale?'health-warning':''}"><strong>${title}: ${state}</strong><span>Oxirgi yaxshi jamlanma: ${e(time(stamp))} (Toshkent)</span>${health?.finished_at?'<span>Oxirgi urinish: '+e(time(health.finished_at))+'</span>':''}${failed?'<span>'+e(health.error)+' · eski jamlanma saqlangan.</span>':''}</div>`;
+ }).join('');
+}
 function renderAudit(){
  const reports=data.audit?.days||[];
- const names={matched:'Mos keldi',needs_review:'Tekshirish kerak',provisional:'Hali yakuniy emas',live_unavailable:'Saytni tekshirib bo‘lmadi',inventory_missing:'Manba inventari yetarli emas'};
+ const names={matched:'Mos keldi',needs_review:'Tekshirish kerak',provisional:'Hali yakuniy emas',live_unavailable:'Saytni tekshirib bo‘lmadi',inventory_missing:'Manba inventari yetarli emas',collection_failed:'Oxirgi yig‘ish xato bilan tugagan'};
  const list=(rows,title)=>rows?.length?`<details class="audit-issues"><summary>${e(title)} · ${rows.length} ta</summary>${rows.map(r=>`<p><a class="inline-link" href="${e(r.url)}" target="_blank" rel="noopener noreferrer">${e(r.title||r.id)} ↗</a><br>${e(r.reason)}</p>`).join('')}</details>`:'';
  $('#audit-results').innerHTML=reports.length?reports.map(report=>`<section class="card audit-day"><h2>${e(report.date)}${report.open_day?' · kun davom etmoqda':''}</h2><p class="muted">Audit: ${e(dateFormat(report.generated_at,true))} · Toshkent vaqti. Har manbaning yig‘ilgan sanasiga e’tibor bering.</p>${report.sources.map(r=>`<article class="audit-source"><h3>${r.source==='telegram'?'Telegram · @unilance':'hh.uz'} <span class="tag">${e(names[r.status]||r.status)}</span></h3><p class="muted">Manba tekshirildi: ${e(r.checked_at?dateFormat(r.checked_at,true):'Noma’lum')}</p><div class="audit-counts">${[['QA deb topilgan',r.confirmed],['Saytga yetgan',r.arrived],['Yetmagan',r.arrived===null?null:r.missing.length],['Noaniq',r.review.length],['O‘qilmagan',r.unreadable.length],['Eski nusxa',r.stale?.length||0]].map(([label,n])=>`<div><strong>${n??'—'}</strong><span>${e(label)}</span></div>`).join('')}</div>${r.reason?'<p>'+e(r.reason)+'</p>':''}${r.hidden?'<p class="muted">'+r.hidden+' ta e’lon yetgan, lekin arxiv/ochilmaslik holati sabab ro‘yxatda yashirilgan.</p>':''}${list(r.missing,'Saytga yetmaganlar')}${list(r.stale,'Eski nusxasi turganlar')}${list(r.review,'Sababi tekshiriladigan postlar')}${list(r.unreadable,'Rasm/video sabab tekshirilmaganlar')}${list(r.excluded_items,'Qoidaga ko‘ra chiqarilganlar')}</article>`).join('')}</section>`).join(''):empty('Audit hali tayyor emas.','Birinchi kunlik hisobot yig‘ilgandan keyin shu yerda ko‘rinadi.');
 }
@@ -219,6 +232,7 @@ async function load() {
    if(Date.now()-new Date(tg.collected_at)>2*86400000){$('#source-warning').textContent='Telegram jamlanmasi 2 kundan beri yangilanmagan. Yig‘ilgan sanaga e’tibor bering.';$('#source-warning').hidden=false;}
   }catch(error){data.jobs=mergeSources(data.jobs,[]);$('#source-warning').hidden=false;}
   try{const auditResponse=await fetch(new URL('./audit-data.json',import.meta.url),{cache:'no-store'});if(auditResponse.ok)data.audit=await auditResponse.json();}catch{}
+  data.health={};await Promise.all(['hh','telegram'].map(async source=>{try{const r=await fetch(new URL('./'+source+'-health.json',import.meta.url),{cache:'no-store'});if(r.ok)data.health[source]=await r.json();}catch{}}));
   data.jobs.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
   const cities=[...new Set(data.jobs.map(j=>j.city).filter(Boolean))].sort();
   $('#city').innerHTML='<option value="all">Butun O‘zbekiston</option>'+cities.map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');$('#city').value=state.city;
@@ -227,7 +241,7 @@ async function load() {
   $('#nav-count').textContent=data.jobs.filter(j=>j.archived!==true&&j.availability!=='unavailable').length;
   const last=data.runs.at(-1);const age=(Date.now()-new Date(last.finished_at||last.started_at))/86400000;$('#freshness').hidden=age<2;$('#freshness').textContent='Ma’lumotlar '+Math.floor(age)+' kun oldin yig‘ilgan. Yangi e’lonlar va o‘zgarishlar hali ko‘rinmasligi mumkin.';$('#updated').textContent=`Yig‘ilgan: ${dateFormat(last.finished_at||last.started_at,true)} · hh.uz · ${data.coverage.collected} ta e’lon tekshirildi${data.telegram?' · @unilance: '+dateFormat(data.telegram.collected_at,true)+' · '+data.telegram.jobs.length+' ta QA posti':''}`;
   for(const key of ['city','week'])if(![...$('#'+key).options].some(o=>o.value===state[key]))state[key]='all';
-  applyControls();$('#content').hidden=false;render();
+  applyControls();$('#content').hidden=false;render();renderHealth();
  }catch(error){$('#error-message').textContent='Ma’lumotlarni yuklab bo‘lmadi. Internet aloqasini tekshiring va qayta yuklang.';$('#error').hidden=false;console.error(error);}
  finally{$('#loading').hidden=true;$('#refresh').disabled=false;}
 }
@@ -257,3 +271,5 @@ function focusSearch(){navigateView('vacancies');$('#search').focus();$('#search
 document.addEventListener('keydown',event=>{if(event.key==='k'&&(event.metaKey||event.ctrlKey)){event.preventDefault();if(!$('#detail').open)focusSearch();}});
 updateThemeButton();
 applyControls();route();load();
+
+setInterval(renderHealth,60000);

@@ -28,3 +28,10 @@ class ExportTests(unittest.TestCase):
         job=parse_detail(html,'https://hh.uz/vacancy/123')
         self.assertTrue(job['archived'])
         self.assertIsNotNone(job['status_checked_at'])
+
+class ArchivedMarkupTests(unittest.TestCase):
+    def test_observed_hh_archived_selectors_are_supported(self):
+        from collector import ARCHIVE_SELECTOR
+        from bs4 import BeautifulSoup
+        for marker in ['vacancy-title-archived-text','vacancy-archive-description','vacancy-archive-message']:
+            self.assertIsNotNone(BeautifulSoup('<div data-qa="'+marker+'">В архиве</div>','html.parser').select_one(ARCHIVE_SELECTOR))

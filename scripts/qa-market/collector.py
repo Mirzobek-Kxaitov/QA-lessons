@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent
 QUERIES = ['QA', 'тестировщик', 'тестированию', 'tester', 'SDET', 'AQA', 'Quality Assurance']
 TITLE_SELECTOR = '[data-qa="serp-item__title"]'
 DESC_SELECTOR = '[data-qa="vacancy-description"]'
+ARCHIVE_SELECTOR = '[data-qa="vacancy-archive-message"], [data-qa="vacancy-title-archived-text"], [data-qa="vacancy-archive-description"]'
 SKILLS = {
     'SQL': r'\bsql\b', 'Postman': r'\bpostman\b',
     'API testing': r'\bapi\b|\brest(?:ful)?\b|\bgrpc\b',
@@ -286,7 +287,18 @@ class Blocked(RuntimeError):
 
 def fetch(page, url, selector, artifact, delay, allow_missing=False):
     time.sleep(delay)
-    response = page.goto(url, wait_until='domcontentloaded', timeout=60000)
+    for attempt in range(3):
+        try:
+            response = page.goto(url, wait_until='domcontentloaded', timeout=60000)
+        except PlaywrightTimeout:
+            if attempt == 2:raise
+            time.sleep(3 ** (attempt + 1))
+            continue
+        status = response.status if response else 0
+        if status >= 500 and attempt < 2:
+            time.sleep(3 ** (attempt + 1))
+            continue
+        break
     status = response.status if response else 0
     # Stop rather than retry aggressively or attempt to solve a challenge.
     if status in (403, 406, 429) or 'captcha' in page.url.lower():
@@ -428,7 +440,7 @@ def collect(args):
             for index, item in enumerate(selected, 1):
                 artifact = run_dir / f'vacancy-{item["id"]}.html'
                 try:
-                    response_status = fetch(page, item['url'], DESC_SELECTOR + ', [data-qa="vacancy-archive-message"]', artifact, args.delay, allow_missing=True)
+                    response_status = fetch(page, item['url'], DESC_SELECTOR + ', ' + ARCHIVE_SELECTOR, artifact, args.delay, allow_missing=True)
                     html = page.content()
                     if response_status in (404, 410):
                         previous = db.execute('SELECT data FROM vacancies WHERE id=?', (item['id'],)).fetchone()
@@ -441,7 +453,7 @@ def collect(args):
                             raise ValueError('New vacancy unavailable')
                         continue
                     artifact.write_text(html, encoding='utf-8')
-                    if BeautifulSoup(html, 'html.parser').select_one('[data-qa="vacancy-archive-message"]') and not BeautifulSoup(html, 'html.parser').select_one(DESC_SELECTOR):
+                    if BeautifulSoup(html, 'html.parser').select_one(ARCHIVE_SELECTOR) and not BeautifulSoup(html, 'html.parser').select_one(DESC_SELECTOR):
                         previous = db.execute('SELECT data FROM vacancies WHERE id=?', (item['id'],)).fetchone()
                         if not previous:
                             raise ValueError('Archive page without a previously collected description')
@@ -449,7 +461,7 @@ def collect(args):
                         record.update(archived=True, status_checked_at=now())
                     else:
                         record = parse_detail(html, item['url'])
-                    if BeautifulSoup(html, 'html.parser').select_one('[data-qa="vacancy-archive-message"]'):
+                    if BeautifulSoup(html, 'html.parser').select_one(ARCHIVE_SELECTOR):
                         record['archived'] = True
                     record['availability'] = 'archived' if record.get('archived') is True else 'observed'
                     save_record(db, stamp, record)

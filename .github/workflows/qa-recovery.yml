@@ -1,0 +1,29 @@
+name: Recover delayed QA refresh
+on:
+  schedule:
+    - cron: '43 * * * *'
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Daily QA delivery audit']
+    types: [completed]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: qa-refresh-recovery
+  cancel-in-progress: false
+jobs:
+  recover:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/qa-market/recover_refresh.py
+        env:
+          GH_TOKEN: ${{ github.token }}
