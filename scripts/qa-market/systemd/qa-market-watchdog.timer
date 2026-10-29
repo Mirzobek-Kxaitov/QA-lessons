@@ -1,0 +1,10 @@
+[Unit]
+Description=Check QA market freshness every 5 minutes
+
+[Timer]
+OnCalendar=*-*-* *:0/5:00
+Persistent=true
+AccuracySec=15s
+
+[Install]
+WantedBy=timers.target
