@@ -42,3 +42,9 @@ Telegram public-page requests retry at most three times for transient transport/
 The recovery workflow checks source freshness, avoids already running/recent attempts, and dispatches overdue collection. It runs after audit and has an hourly best-effort schedule. All GitHub schedules may be delayed/dropped; these mechanisms reduce missed runs but cannot supply an exact-time SLA. For that, move scheduling to an always-on server or external scheduler. No external server scheduler has been installed yet.
 
 Generated snapshot publication retries non-fast-forward races without force push. HH collection still stops on 403/CAPTCHA/429 and preserves its last complete snapshot.
+
+### VPS freshness watchdog
+
+`vps_watchdog.py` uses only Python standard libraries. The supplied systemd timer checks main-branch source health every five minutes. It dispatches hh after 07:00 Asia/Tashkent when today has no successful snapshot, and Telegram when its snapshot is at least 30 minutes old. Active runs and a 30-minute retry cooldown prevent duplicate dispatches. Collection, retained SQLite artifacts, publishing and delivery audits remain in GitHub Actions; GitHub queue time still applies.
+
+Install the script at `/opt/qa-market-watchdog/vps_watchdog.py` and units from `systemd/` under `/etc/systemd/system/`. Store a repository Actions-write credential as `GH_TOKEN=...` in `/etc/qa-market-watchdog.env` with owner root and mode 0600. Never commit this file. Enable `qa-market-watchdog.timer`; inspect `journalctl -u qa-market-watchdog.service` for freshness/dispatch/errors. Credential expiry or server downtime requires operator attention. `--dry-run` verifies authenticated read access without dispatching.
