@@ -9,6 +9,7 @@ import unicodedata
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
+from transport import fetch_parsed
 from collector import parse_detail, now
 from telegram_filter import classify_post, ROLE
 
@@ -63,9 +64,12 @@ def collect(output=OUT, days=30, max_pages=20):
     session=requests.Session()
     for channel in CHANNELS:
         url='https://t.me/s/'+channel
-        for _ in range(max_pages):
-            response=session.get(url,timeout=30);response.raise_for_status()
-            posts,older=posts_from_html(response.text,channel);pages+=1
+        visited=set()
+        for page_index in range(max_pages):
+            if url in visited:raise ValueError('Pagination loop; previous snapshot preserved')
+            visited.add(url)
+            posts,older=fetch_parsed(session,url,lambda source:posts_from_html(source,channel),ROOT/'data/telegram-diagnostics'/channel/str(page_index))
+            pages+=1
             for post in posts:
                 if post['id'] in seen:continue
                 seen.add(post['id'])
@@ -86,4 +90,6 @@ def collect(output=OUT, days=30, max_pages=20):
     print(json.dumps({k:v for k,v in payload.items() if k not in ('jobs','audit_inventory')},ensure_ascii=False));print('QA posts:',len(jobs))
 
 
-if __name__=='__main__':collect()
+if __name__=='__main__':
+    from refresh_health import execute
+    execute('telegram',collect)

@@ -71,6 +71,14 @@ def run(target=None):
                 if not isinstance(live.get('jobs'),list):raise ValueError('Invalid deployed snapshot')
             except (requests.RequestException,ValueError):live=None
             result=reconcile(name,local,live,target)
+        health_file=ROOT/('hh-health.json' if name=='hh.uz' else 'telegram-health.json')
+        if health_file.exists():
+            health=json.loads(health_file.read_text())
+            result['last_attempt_at']=health.get('finished_at')
+            result['last_attempt_status']=health.get('status')
+            if health.get('status')=='failed':
+                result['status']='collection_failed'
+                result['reason']='Oxirgi yig‘ish muvaffaqiyatsiz: '+str(health.get('error') or 'Sabab diagnostikada')+'; oxirgi yaxshi jamlanma saqlangan.'
         sources.append(result)
     report={'date':target,'generated_at':datetime.now(TZ).isoformat(),'open_day':target>=today.isoformat(),'sources':sources}
     output=ROOT/'audit-data.json'
