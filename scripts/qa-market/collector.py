@@ -409,6 +409,7 @@ def collect(args):
     db.execute('INSERT INTO runs VALUES (?, ?, NULL, ?, ?)', (stamp, now(), 'running', '{}'))
     db.commit()
     status = 'failed'
+    selected = []; completed_ids = set()
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=not args.headed)
@@ -449,6 +450,7 @@ def collect(args):
                             record.update(status_checked_at=now(), availability='unavailable')
                             save_record(db, stamp, record)
                             report['collected'] += 1
+                            completed_ids.add(item['id'])
                         else:
                             raise ValueError('New vacancy unavailable')
                         continue
@@ -466,10 +468,12 @@ def collect(args):
                     record['availability'] = 'archived' if record.get('archived') is True else 'observed'
                     save_record(db, stamp, record)
                     report['collected'] += 1
+                    completed_ids.add(item['id'])
                     category = record['classification']
                     report['classifications'][category] = report['classifications'].get(category, 0) + 1
                     print(f'DETAIL {index}/{len(selected)} {record["id"]} [{category}] {record["title"]}', flush=True)
-                except Blocked:
+                except Blocked as exc:
+                    report['blocked'] = True
                     raise
                 except Exception as exc:
                     report['errors'].append({'id': item['id'], 'error': str(exc)})
@@ -481,6 +485,15 @@ def collect(args):
         report['errors'].append({'fatal': str(exc)})
         print(f'STOPPED: {exc}', file=sys.stderr, flush=True)
     finally:
+        # Publish verified records only when every requested search completed.
+        # A blocked detail page stops further requests; unresolved IDs stay explicit.
+        expected_queries = args.query or QUERIES
+        report['publishable'] = (not args.limit and len(report['queries']) == len(expected_queries)
+            and all(q['complete'] for q in report['queries'].values())
+            and report['collected'] > 0)
+        report['unresolved'] = [{**item, 'reason': 'Sahifa o‘qilmadi; talablar va holat tasdiqlanmagan'}
+            for item in selected if item['id'] not in completed_ids]
+        if status == 'failed' and report['publishable']:status = 'partial'
         report['status'] = status
         report['finished_at'] = now()
         db.execute('UPDATE runs SET finished_at=?, status=?, details=? WHERE id=?', (report['finished_at'], status, json.dumps(report, ensure_ascii=False), stamp))

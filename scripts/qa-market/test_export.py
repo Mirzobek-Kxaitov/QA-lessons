@@ -35,3 +35,15 @@ class ArchivedMarkupTests(unittest.TestCase):
         from bs4 import BeautifulSoup
         for marker in ['vacancy-title-archived-text','vacancy-archive-description','vacancy-archive-message']:
             self.assertIsNotNone(BeautifulSoup('<div data-qa="'+marker+'">В архиве</div>','html.parser').select_one(ARCHIVE_SELECTOR))
+
+class PartialExportTests(unittest.TestCase):
+    def test_verified_partial_publishes_unresolved_ids_without_inventing_jobs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);db=database(root/'vacancies.sqlite3')
+            issue={'id':'999','url':'https://hh.uz/vacancy/999','reason':'Blocked'}
+            details={'publishable':True,'collected':1,'errors':[{'fatal':'403'}],'unresolved':[issue]}
+            db.execute("INSERT INTO runs VALUES ('part','2026-11-04','2026-11-04','partial',?)",(json.dumps(details),));db.commit()
+            save_record(db,'part',parse_detail(fixture(),'https://hh.uz/vacancy/123'));db.close()
+            out=root/'out.json';build(root,out);actual=json.loads(out.read_text())
+            self.assertEqual(actual['collection_issues'],[issue]);self.assertEqual(len(actual['jobs']),1)
+            self.assertEqual(actual['runs'][-1]['status'],'partial')

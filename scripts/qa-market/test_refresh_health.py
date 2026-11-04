@@ -14,3 +14,10 @@ class HealthTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp,patch.object(refresh_health,'ROOT',Path(tmp)):
    refresh_health.execute('telegram',lambda:None)
    actual=json.loads((Path(tmp)/'telegram-health.json').read_text());self.assertEqual(actual['status'],'success');self.assertIsNotNone(actual['last_success_at']);self.assertFalse((Path(tmp)/'telegram-health.tmp').exists())
+ def test_partial_preserves_complete_success_and_sets_source_cooldown(self):
+  with tempfile.TemporaryDirectory() as tmp,patch.object(refresh_health,'ROOT',Path(tmp)):
+   path=Path(tmp)/'hh-health.json';path.write_text(json.dumps({'last_success_at':'2026-11-03T00:00:00Z'}))
+   refresh_health.execute('hh',lambda:{'reason':'blocked detail','unresolved':[{'id':'999'}]})
+   actual=json.loads(path.read_text());self.assertEqual(actual['status'],'partial')
+   self.assertEqual(actual['last_success_at'],'2026-11-03T00:00:00Z')
+   self.assertIsNotNone(actual['next_retry_at']);self.assertEqual(actual['unresolved'],[{'id':'999'}])

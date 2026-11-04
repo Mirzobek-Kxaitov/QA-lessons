@@ -39,7 +39,7 @@ jobs:
         run: python -m unittest discover -s scripts/qa-market -v
       - name: Run filter state regression checks
         run: node --test tests/*.test.mjs
-      - name: Collect and build complete snapshot
+      - name: Collect and build verified snapshot
         id: refresh
         run: python scripts/qa-market/refresh_health.py hh
       - name: Publish snapshot and attempt status
@@ -54,7 +54,7 @@ jobs:
           retention-days: 90
           if-no-files-found: warn
       - name: Save diagnostic report
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: qa-market-diagnostics
