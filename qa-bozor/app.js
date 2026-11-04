@@ -220,7 +220,9 @@ function downloadCSV() {
 }
 function snapshotURL(name){
  const local=['localhost','127.0.0.1'].includes(location.hostname);
- return local?new URL('./'+name,import.meta.url):new URL(name,'https://raw.githubusercontent.com/Mirzobek-Kxaitov/QA-lessons/codex/qa-data/qa-bozor/');
+ const url=local?new URL('./'+name,import.meta.url):new URL(name,'https://raw.githubusercontent.com/Mirzobek-Kxaitov/QA-lessons/codex/qa-data/qa-bozor/');
+ if(!local)url.searchParams.set('refresh',String(Date.now()));
+ return url;
 }
 async function load() {
  $('#error').hidden=true;$('#loading').hidden=false;$('#refresh').disabled=true;
