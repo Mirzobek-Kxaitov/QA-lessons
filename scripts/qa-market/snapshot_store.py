@@ -14,7 +14,7 @@ def git(*args,cwd=None,check=True):
 
 
 def restore():
-    git('fetch','origin',BRANCH)
+    git('fetch','origin',f'+refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}')
     for path in FILES:
         body=git('show',f'origin/{BRANCH}:{path}').stdout
         json.loads(body)
@@ -25,7 +25,7 @@ def publish(paths):
     if any(path not in FILES for path in paths):raise ValueError('Only QA snapshot paths may be published')
     payload={path:Path(path).read_bytes() for path in paths}
     for attempt in range(3):
-        git('fetch','origin',BRANCH)
+        git('fetch','origin',f'+refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}')
         with tempfile.TemporaryDirectory() as tmp:
             tree=Path(tmp)/'store'
             git('worktree','add','--detach',str(tree),f'origin/{BRANCH}')

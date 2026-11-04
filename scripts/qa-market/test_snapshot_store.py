@@ -20,6 +20,7 @@ class StoreTests(unittest.TestCase):
                     p=Path(name);p.parent.mkdir(exist_ok=True);p.write_text(json.dumps({'version':'baseline'}))
                 git('add','.');git('commit','-m','baseline');git('branch','-M','main')
                 git('push','origin','HEAD:refs/heads/'+snapshot_store.BRANCH)
+                git('config','remote.origin.fetch','+refs/heads/main:refs/remotes/origin/main')
                 Path('qa-bozor/hh-health.json').write_text('{"version":"new hh"}')
                 snapshot_store.publish(['qa-bozor/hh-health.json'])
                 Path('qa-bozor/telegram-health.json').write_text('{"version":"new tg"}')
