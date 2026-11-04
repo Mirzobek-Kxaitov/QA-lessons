@@ -34,7 +34,7 @@ let previousFocus = null;
 const pageInfo = {
  overview:['QA bozoridagi talablar','Vakansiyalar va ish beruvchilar so‘rayotgan ko‘nikmalar.'],
  vacancies:['QA vakansiyalari','Ish beruvchi talablarini ko‘ring va vakansiyalarni solishtiring.'],
- audit:['Kunlik audit','Manbadan saytgacha: yetib kelgan, qolib ketgan va tekshirishdagi e’lonlar.'],
+ audit:['Kunlik audit','Manbadan ommaviy jamlanmagacha: yetib kelgan va tekshirishdagi e’lonlar.'],
  weekly:['Haftalik jamlanma','E’lonlar va talablar hafta kesimida.'],
  method:['Har bir raqamning manbasi bor.','Qamrov, hisoblash usuli va natijalarni to‘g‘ri talqin qilish.']
 };
