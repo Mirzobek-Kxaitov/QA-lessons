@@ -21,7 +21,11 @@ def main():
     current=datetime.now(timezone.utc)
     for source,workflow,file in [('hh','qa-market.yml','data.json'),('telegram','qa-telegram.yml','telegram-data.json')]:
         snapshot=json.loads((ROOT/file).read_text())
-        stamp=snapshot.get('collected_at') or snapshot['runs'][-1]['finished_at']
+        health_file=ROOT/f'{source}-health.json'
+        health=json.loads(health_file.read_text()) if health_file.exists() else {}
+        retry_at=health.get('next_retry_at')
+        if retry_at and current<datetime.fromisoformat(retry_at.replace('Z','+00:00')):continue
+        stamp=health.get('last_success_at') or snapshot.get('collected_at') or snapshot['runs'][-1]['finished_at']
         if not due(source,stamp,current):continue
         recent=json.loads(subprocess.check_output(['gh','run','list','--repo',REPO,'--workflow',workflow,'--limit','1','--json','status,createdAt'],text=True))
         if recent:

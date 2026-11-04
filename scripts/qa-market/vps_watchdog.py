@@ -28,6 +28,10 @@ def run(dry_run=False):
         import base64
         content = api(f'contents/qa-bozor/{source}-health.json?ref=main')
         health = json.loads(base64.b64decode(content['content']))
+        retry_at = health.get('next_retry_at')
+        if retry_at and now < datetime.fromisoformat(retry_at.replace('Z', '+00:00')):
+            print(source + ': source cooldown', flush=True)
+            continue
         stamp = health.get('last_success_at')
         last = datetime.fromisoformat(stamp.replace('Z', '+00:00')) if stamp else None
         due = (last is None or (now-last).total_seconds() >= 1800) if source == 'telegram' else (

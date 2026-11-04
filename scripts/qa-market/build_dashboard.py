@@ -16,9 +16,9 @@ def build(folder=ROOT / 'data', output=OUT):
     for run in db.execute('SELECT id,started_at,finished_at,status,details FROM runs ORDER BY started_at'):
         item = dict(zip(['id','started_at','finished_at','status','details'], run))
         details=json.loads(item.pop('details'))
-        item.update(queries=details.get('queries'),collected=details.get('collected',0),errors=len(details.get('errors',[])))
+        item.update(queries=details.get('queries'),collected=details.get('collected',0),errors=len(details.get('errors',[])),publishable=details.get('publishable',False),unresolved=details.get('unresolved',[]),blocked=details.get('blocked',False))
         runs.append(item)
-    if not runs or runs[-1]['status'] != 'complete':
+    if not runs or (runs[-1]['status'] != 'complete' and not (runs[-1]['status']=='partial' and runs[-1]['publishable'])):
         db.close()
         raise RuntimeError('Latest collection is incomplete; published snapshot is preserved')
     decisions=json.loads((ROOT/'review-decisions.json').read_text())
@@ -40,7 +40,7 @@ def build(folder=ROOT / 'data', output=OUT):
             job['location_note']='Sahifadagi JSON-LD manzili va hh hudud kodi mos kelmaydi. Shahar filtri hh hudud kodi .97.2759. (Toshkent) asosida.'
         jobs.append(job)
     db.close()
-    result={'schema_version':2,'built_at':datetime.now(timezone.utc).isoformat(),'source':'hh.uz','region':'O‘zbekiston','jobs':jobs,'runs':runs,'coverage':{'collected':sum(counts.values()),**counts,'reviewed_decisions':len(decisions)},'review_notes':list(decisions.values()),'audit_inventory':inventory}
+    result={'collection_issues':runs[-1]['unresolved'],'schema_version':2,'built_at':datetime.now(timezone.utc).isoformat(),'source':'hh.uz','region':'O‘zbekiston','jobs':jobs,'runs':runs,'coverage':{'collected':sum(counts.values()),**counts,'reviewed_decisions':len(decisions)},'review_notes':list(decisions.values()),'audit_inventory':inventory}
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary=output.with_suffix('.tmp')
     temporary.write_text(json.dumps(result,ensure_ascii=False),encoding='utf-8');temporary.replace(output)

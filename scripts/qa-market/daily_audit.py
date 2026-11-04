@@ -79,6 +79,10 @@ def run(target=None):
             if health.get('status')=='failed':
                 result['status']='collection_failed'
                 result['reason']='Oxirgi yig‘ish muvaffaqiyatsiz: '+str(health.get('error') or 'Sabab diagnostikada')+'; oxirgi yaxshi jamlanma saqlangan.'
+        if local.get('collection_issues'):
+            result['status']='collection_partial'
+            result['unresolved']=local['collection_issues']
+            result['reason']='Jamlanma qisman yangilangan. Quyidagi sahifalarning sanasi, talablari yoki joriy holati tasdiqlanmagan; ular bo‘yicha kunlik qamrov noma’lum.'
         sources.append(result)
     report={'date':target,'generated_at':datetime.now(TZ).isoformat(),'open_day':target>=today.isoformat(),'sources':sources}
     output=ROOT/'audit-data.json'
