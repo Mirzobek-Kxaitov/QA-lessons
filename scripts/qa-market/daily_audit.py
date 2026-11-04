@@ -12,7 +12,7 @@ import requests
 import time
 
 ROOT=Path(__file__).resolve().parents[2]/'qa-bozor'
-BASE='https://www.qa-academy.uz/qa-bozor/'
+BASE='https://raw.githubusercontent.com/Mirzobek-Kxaitov/QA-lessons/codex/qa-data/qa-bozor/'
 TZ=ZoneInfo('Asia/Tashkent')
 
 

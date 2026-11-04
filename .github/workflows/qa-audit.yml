@@ -23,18 +23,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Restore current source snapshots
+        run: python scripts/qa-market/snapshot_store.py
       - run: pip install -r scripts/qa-market/requirements.txt
       - run: python -m unittest discover -s scripts/qa-market -v
       - name: Compare source inventory with the deployed site
         run: python scripts/qa-market/daily_audit.py
       - name: Save daily audit
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add qa-bozor/audit-data.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'audit: reconcile daily QA source deliveries'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+        run: python scripts/qa-market/publish_snapshot.py qa-bozor/audit-data.json

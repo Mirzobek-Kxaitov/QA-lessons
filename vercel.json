@@ -1,8 +1,25 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/bug-bounty", "destination": "/cases/bug-bounty", "permanent": true },
-    { "source": "/ghost-record", "destination": "/cases/ghost-record", "permanent": true },
-    { "source": "/bigint-env", "destination": "/cases/bigint-env", "permanent": true }
-  ]
+    {
+      "source": "/bug-bounty",
+      "destination": "/cases/bug-bounty",
+      "permanent": true
+    },
+    {
+      "source": "/ghost-record",
+      "destination": "/cases/ghost-record",
+      "permanent": true
+    },
+    {
+      "source": "/bigint-env",
+      "destination": "/cases/bigint-env",
+      "permanent": true
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "codex/qa-data": false
+    }
+  }
 }

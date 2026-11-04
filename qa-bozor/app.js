@@ -218,21 +218,25 @@ function downloadCSV() {
  const blob=new Blob(['\ufeff'+[columns,...rows].map(r=>r.map(v=>quote(safe(v))).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='qa-bozor-vakansiyalar.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast(`${jobs.length} ta vakansiya yuklandi`);
 }
+function snapshotURL(name){
+ const local=['localhost','127.0.0.1'].includes(location.hostname);
+ return local?new URL('./'+name,import.meta.url):new URL(name,'https://raw.githubusercontent.com/Mirzobek-Kxaitov/QA-lessons/codex/qa-data/qa-bozor/');
+}
 async function load() {
  $('#error').hidden=true;$('#loading').hidden=false;$('#refresh').disabled=true;
  try {
-  const response=await fetch(new URL('./data.json',import.meta.url),{cache:'no-store'});if(!response.ok)throw new Error('Ma’lumot faylini ochib bo‘lmadi.');
+  const response=await fetch(snapshotURL('data.json'),{cache:'no-store'});if(!response.ok)throw new Error('Ma’lumot faylini ochib bo‘lmadi.');
   const incoming=await response.json();if(!Array.isArray(incoming.jobs)||!incoming.runs?.length)throw new Error('Ma’lumot shakli noto‘g‘ri.');
   data=incoming;
   try{
-   const tgResponse=await fetch(new URL('./telegram-data.json',import.meta.url),{cache:'no-store'});
+   const tgResponse=await fetch(snapshotURL('telegram-data.json'),{cache:'no-store'});
    if(!tgResponse.ok)throw new Error('Telegram snapshot missing');
    const tg=await tgResponse.json();if(!Array.isArray(tg.jobs))throw new Error('Invalid Telegram snapshot');
    data.telegram=tg;data.jobs=mergeSources(data.jobs,tg.jobs);
    if(Date.now()-new Date(tg.collected_at)>2*86400000){$('#source-warning').textContent='Telegram jamlanmasi 2 kundan beri yangilanmagan. Yig‘ilgan sanaga e’tibor bering.';$('#source-warning').hidden=false;}
   }catch(error){data.jobs=mergeSources(data.jobs,[]);$('#source-warning').hidden=false;}
-  try{const auditResponse=await fetch(new URL('./audit-data.json',import.meta.url),{cache:'no-store'});if(auditResponse.ok)data.audit=await auditResponse.json();}catch{}
-  data.health={};await Promise.all(['hh','telegram'].map(async source=>{try{const r=await fetch(new URL('./'+source+'-health.json',import.meta.url),{cache:'no-store'});if(r.ok)data.health[source]=await r.json();}catch{}}));
+  try{const auditResponse=await fetch(snapshotURL('audit-data.json'),{cache:'no-store'});if(auditResponse.ok)data.audit=await auditResponse.json();}catch{}
+  data.health={};await Promise.all(['hh','telegram'].map(async source=>{try{const r=await fetch(snapshotURL(source+'-health.json'),{cache:'no-store'});if(r.ok)data.health[source]=await r.json();}catch{}}));
   data.jobs.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
   const cities=[...new Set(data.jobs.map(j=>j.city).filter(Boolean))].sort();
   $('#city').innerHTML='<option value="all">Butun O‘zbekiston</option>'+cities.map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');$('#city').value=state.city;
