@@ -26,7 +26,7 @@ def run(dry_run=False):
     local = now.astimezone(ZoneInfo('Asia/Tashkent'))
     for source, workflow in [('hh', 'qa-market.yml'), ('telegram', 'qa-telegram.yml')]:
         import base64
-        content = api(f'contents/qa-bozor/{source}-health.json?ref=main')
+        content = api(f'contents/qa-bozor/{source}-health.json?ref=codex/qa-data')
         health = json.loads(base64.b64decode(content['content']))
         retry_at = health.get('next_retry_at')
         if retry_at and now < datetime.fromisoformat(retry_at.replace('Z', '+00:00')):

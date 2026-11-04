@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Restore current source snapshots
+        run: python scripts/qa-market/snapshot_store.py
       - run: python scripts/qa-market/recover_refresh.py
         env:
           GH_TOKEN: ${{ github.token }}

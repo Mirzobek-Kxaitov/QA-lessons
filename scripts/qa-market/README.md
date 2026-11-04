@@ -52,3 +52,7 @@ Install the script at `/opt/qa-market-watchdog/vps_watchdog.py` and units from `
 ### Partial hh detail collection
 
 All configured searches must finish before any partial snapshot may publish. Successfully parsed details are saved, prior records retain their own collection timestamps, and unresolved candidate IDs/URLs appear in `collection_issues` and the daily audit with unknown date/coverage. A 403/CAPTCHA stops further source requests; no challenge is bypassed. Partial delivery does not advance `last_success_at`; health is `partial` and recovery waits six hours. Failed hh attempts also receive a six-hour recovery cooldown. Search failures preserve the existing public snapshot.
+
+### Deploy-independent snapshots
+
+Generated JSON is published on `codex/qa-data`; Vercel deployments are disabled for that branch. Collectors, audits and recovery restore those JSON files before running main-branch code. The production dashboard reads public raw GitHub snapshots, while localhost uses local JSON for previews. Audit delivery checks verify the public snapshot endpoint separately from website code deployment. A Vercel deployment is still required once for dashboard code changes; source collection no longer creates one deployment per refresh.
