@@ -32,3 +32,20 @@
   feedback.textContent=correct?(ru?'Верно! Тестирование помогает оценивать качество и находить проблемы.':'To‘g‘ri! Testlash sifatni baholash va muammolarni aniqlashga yordam beradi.'):(ru?'Попробуйте ещё раз. Тестирование не гарантирует отсутствие всех ошибок.':'Yana urinib ko‘ring. Testlash barcha xatolar yo‘qligini kafolatlamaydi.');
  }));
 })();
+
+// Change scenes only when a scroll checkpoint is crossed. No idle animation.
+(() => {
+ const steps=[...document.querySelectorAll('[data-journey-step]')];
+ if(!steps.length||!('IntersectionObserver' in window))return;
+ document.body.classList.add('journey-enhanced');
+ const activate=index=>{
+  document.querySelectorAll('[data-journey-art]').forEach(art=>art.classList.toggle('is-active',art.dataset.journeyArt===index));
+  steps.forEach(step=>step.classList.toggle('is-active',step.dataset.journeyStep===index));
+  document.querySelectorAll('[data-journey-link]').forEach(link=>{if(link.dataset.journeyLink===index)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});
+ };
+ const observer=new IntersectionObserver(entries=>{
+  for(const entry of entries)if(entry.isIntersecting)activate(entry.target.dataset.journeyStep);
+ },{rootMargin:'-35% 0px -40% 0px',threshold:0});
+ steps.forEach(step=>observer.observe(step));
+ document.querySelectorAll('[data-journey-link]').forEach(link=>link.addEventListener('click',()=>activate(link.dataset.journeyLink)));
+})();

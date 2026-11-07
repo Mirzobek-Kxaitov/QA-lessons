@@ -161,7 +161,7 @@ function render() {
  $('#page-title').textContent=pageInfo[state.view][0];
  $('#page-subtitle').textContent=pageInfo[state.view][1];
  $('.page-heading').classList.toggle('compact',state.view!=='overview');
- $('.filter-panel').hidden=['method','audit'].includes(state.view);$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
+ $('.filter-panel').hidden=['method','audit'].includes(state.view);$('#classification-note').hidden=state.view!=='vacancies';$('#export').hidden=state.view!=='vacancies';$('.hero-actions').hidden=state.view!=='vacancies';
  $('#reset').hidden=state.direction==='all'&&['source','grade','city','format','week'].every(k=>state[k]==='all')&&!state.query;
  document.querySelectorAll('[data-direction]').forEach(b=>{const active=b.dataset.direction===state.direction;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
  $('#classification-note').textContent=`${jobs.filter(j=>j.grades.includes('Unspecified')).length}/${jobs.length} ta e’londa daraja yozilmagan. Yo‘nalishi yozilmagan e’lonlar Manual guruhida.`;
@@ -172,13 +172,17 @@ function renderHealth(){
  const time=v=>v?dateFormat(v,true)+' '+new Intl.DateTimeFormat('uz-UZ',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'}).format(new Date(v)):'Noma’lum';
  const localDay=v=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tashkent',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(v));
  const localHour=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tashkent',hour:'2-digit',hourCycle:'h23'}).format(new Date()));
+ const notices=[];
  $('#health-status').innerHTML=[['hh','hh.uz',data.runs.at(-1)?.finished_at],['telegram','Telegram',data.telegram?.collected_at]].map(([key,title,stamp])=>{
   const health=data.health?.[key];const age=stamp?(Date.now()-new Date(stamp))/60000:Infinity;
   const stale=key==='telegram'?age>90:!stamp||(localHour>=8&&localDay(stamp)!==localDay(new Date()));
   const failed=health?.status==='failed';const partial=health?.status==='partial';
   const state=partial?'Qisman yangilandi':failed?'Oxirgi urinishda xato':stale?'Yangilanish kechikmoqda':health?.status==='success'?'Yig‘ish ishlayapti':'Urinish holati noma’lum';
+  if(failed||partial||stale||health?.status!=='success')notices.push(title+': '+state.toLocaleLowerCase('uz-UZ'));
   return `<div class="health-item ${failed||stale||partial?'health-warning':''}"><strong>${title}: ${state}</strong><span>${partial?'Oxirgi qisman jamlanma':'Oxirgi yaxshi jamlanma'}: ${e(time(stamp))} (Toshkent)</span>${health?.finished_at?'<span>Oxirgi urinish: '+e(time(health.finished_at))+'</span>':''}${failed||partial?'<span>'+e(health.error)+'</span>':''}</div>`;
  }).join('');
+ $('#health-summary').textContent=notices.length?notices.join(' · '):'Manbalar · yig‘ish ishlayapti';
+ const details=$('#source-health');if(!details.dataset.initialized){details.open=Object.values(data.health||{}).some(h=>h.status==='failed');details.dataset.initialized='true';}
 }
 function renderAudit(){
  const reports=data.audit?.days||[];
@@ -272,10 +276,10 @@ $('#export').addEventListener('click',downloadCSV);
 $('#refresh').addEventListener('click',load);
 document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));
 function updateThemeButton(){const light=document.documentElement.dataset.theme==='light';$('#theme-toggle').innerHTML=icon(light?'moon':'sun');$('#theme-toggle').setAttribute('aria-label',light?'To‘q mavzuga o‘tish':'Ochiq mavzuga o‘tish');document.querySelector('meta[name="theme-color"]').content=light?'#ffffff':'#0e1620';}
-$('#theme-toggle').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('qa-theme',document.documentElement.dataset.theme);}catch{}updateThemeButton();});
+$('#theme-toggle').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('qa-theme',document.documentElement.dataset.theme);localStorage.setItem('qa_theme',document.documentElement.dataset.theme);}catch{}updateThemeButton();});
 function focusSearch(){navigateView('vacancies');$('#search').focus();$('#search').scrollIntoView({block:'center',behavior:'smooth'});}
 document.addEventListener('keydown',event=>{if(event.key==='k'&&(event.metaKey||event.ctrlKey)){event.preventDefault();if(!$('#detail').open)focusSearch();}});
 updateThemeButton();
 applyControls();route();load();
 
-setInterval(renderHealth,60000);
+setInterval(()=>{if(!document.hidden)renderHealth();},60000);
