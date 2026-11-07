@@ -340,21 +340,12 @@ body {
 }
 .theme-toggle:hover { transform: scale(1.1); }
 </style>
+<link rel="stylesheet" href="assets/reading-brand.css?v=2">
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">QA <span>Academy</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Darslar</a></li>
-      <li><a href="testshop/index.html">TestShop</a></li>
-      <li><a href="about.html" style="color:var(--blue);font-weight:600">Muallif</a></li>
-      <li><a href="ru/about.html" style="padding:6px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-weight:600">RU</a></li>
-    </ul>
-  </div>
-</nav>
+<nav class="academy-global-nav" aria-label="QA Academy navigatsiyasi"><div class="shell-inner"><a class="shell-brand" href="/"><span class="shell-mark" aria-hidden="true">QA</span><span>QA<span class="shell-dot">.</span>Academy</span></a><button class="shell-menu-toggle" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="shell-links">☰</button><ul class="shell-links" id="shell-links"><li><a href="/#lessons">Darslar</a></li><li><a href="/automation/">Automation</a></li><li><a href="/cases/">Real keyslar</a></li><li><a href="/blog/">Blog</a></li><li><a href="/qa-bozor/">Ish bozori</a></li><li><a class="shell-start" href="/lessons/01-qa-intro.html">Boshlash ↗</a></li><li><button class="shell-theme" id="themeToggle" data-shell-theme aria-label="Rang mavzusini almashtirish">◐</button></li></ul></div></nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -642,5 +633,6 @@ function toggleTheme() {
 })();
 </script>
 
+<script src="assets/site-shell.js?v=1" defer></script>
 </body>
 </html>
